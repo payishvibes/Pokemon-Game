@@ -73,6 +73,7 @@ namespace PokemonGame.ScriptableObjects
         }
     }
 
+    [System.Serializable]
     public class MovePPData
     {
         public int MaxPP;

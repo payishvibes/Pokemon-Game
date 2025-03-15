@@ -15,14 +15,14 @@ MonoBehaviour:
   name: Squirtle
   primaryType: 18
   secondaryType: 0
-  moves:
-  - {fileID: 11400000, guid: d4639e5cb3f782d4587a463bffb7265a, type: 2}
-  - {fileID: 11400000, guid: d64e418a175825643a0869689a75d087, type: 2}
-  texture: {fileID: 21300000, guid: 608e4d377eeb8674d956108a10a6343d, type: 3}
+  evolutionTree: {fileID: 11400000, guid: 5eccf2a93603120489186f36be0bcae9, type: 2}
+  texture: {fileID: 21300000, guid: d7f2fb2a6115a154f94128c33f828cca, type: 3}
+  dexNo: 7
+  catchRate: 45
   baseHealth: 44
   baseAttack: 48
   baseDefense: 65
-  baseSpecialAttack: 50
-  baseSpecialDefense: 64
-  baseSpeed: 43
-  baseExpYield: 63
+  baseSpecialAttack: 7
+  baseSpecialDefense: 50
+  baseSpeed: 64
+  yields: 3f00000000000000000000000100000000000000000000000000000001000000

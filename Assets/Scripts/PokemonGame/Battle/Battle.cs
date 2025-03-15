@@ -50,8 +50,6 @@ namespace PokemonGame.Battle
         [Space] 
         
         [Header("Assignments")] 
-        [SerializeField] private ExperienceCalculator expCalculator;
-
         [SerializeField] private TextAsset battlerUsedText;
 
         [SerializeField] private ParticleSystem spawnEffect;
@@ -63,6 +61,9 @@ namespace PokemonGame.Battle
         public int currentBattlerIndex;
 
         public int opponentBattlerIndex;
+
+        [HideInInspector] public int currentDisplayBattlerIndex;
+        [HideInInspector] public int opponentDisplayBattlerIndex;
 
         [Space]
         [Header("Other Readouts")]
@@ -213,8 +214,9 @@ namespace PokemonGame.Battle
             turnItemQueue.Remove(TurnItem.OpponentMove);
             
             QueDialogue($"{defeated.name} Fainted!");
-            
-            int exp = expCalculator.GetExperienceFromDefeatingBattler(defeated, true, battlersThatParticipated.Count);
+
+            int exp = ExperienceCalculator.GetExperienceFromDefeatingBattler(defeated, true,
+                battlersThatParticipated.Count);
 
             foreach (Battler battler in battlersThatParticipated)
             {
@@ -447,10 +449,9 @@ namespace PokemonGame.Battle
                 StartCoroutine(ExitBattleWin());
             }
             
-            if (_playerWantsToSwap)
+            if (_playerWantsToSwap) // player has swapped because their battler died
             {
                 swappedDialogue = true;
-                Debug.Log(currentTurn);
                 PlayerSwappedBattler();
             }
                 
@@ -519,7 +520,7 @@ namespace PokemonGame.Battle
         {
             QueDialogue($"Threw a pokeball at {opponentCurrentBattler.name}!");
 
-            if (expCalculator.Captured(opponentCurrentBattler, (PokeBall)_playerItemToUse))
+            if (ExperienceCalculator.Captured(opponentCurrentBattler, (PokeBall)_playerItemToUse))
             {
                 uiManager.ShrinkOpponentBattler(true);
                 QueDialogue($"Caught {opponentCurrentBattler.name}!");
@@ -577,11 +578,13 @@ namespace PokemonGame.Battle
             if (!skipShrink)
             {
                 uiManager.ShrinkPlayerBattler();
+                currentBattlerIndex = index;
                 StartCoroutine(DelayChangeBattlerIndex(index));
             }
             else
             {
                 currentBattlerIndex = index;
+                currentDisplayBattlerIndex = index;
                 Instantiate(spawnEffect, uiManager.playerBattler.transform.position, spawnEffect.transform.rotation,
                     uiManager.playerBattler);
                 uiManager.ExpandPlayerBattler();
@@ -592,7 +595,7 @@ namespace PokemonGame.Battle
         private IEnumerator DelayChangeBattlerIndex(int index)
         {
             yield return new WaitForSeconds(shrinkEffectDelay);
-            currentBattlerIndex = index;
+            currentDisplayBattlerIndex = index;
             Instantiate(spawnEffect, uiManager.playerBattler.transform.position, spawnEffect.transform.rotation,
                 uiManager.playerBattler);
             uiManager.ExpandPlayerBattler();
@@ -604,11 +607,13 @@ namespace PokemonGame.Battle
             if (!skipShrink)
             {
                 uiManager.ShrinkOpponentBattler();
+                opponentBattlerIndex = index;
                 StartCoroutine(DelayChangeOpponentBattlerIndex(index));
             }
             else
             {
                 opponentBattlerIndex = index;
+                opponentDisplayBattlerIndex = index;
                 Instantiate(spawnEffect, uiManager.opponentBattler.transform.position, spawnEffect.transform.rotation,
                     uiManager.opponentBattler);
                 uiManager.ExpandOpponentBattler();
@@ -619,7 +624,7 @@ namespace PokemonGame.Battle
         private IEnumerator DelayChangeOpponentBattlerIndex(int index)
         {
             yield return new WaitForSeconds(shrinkEffectDelay);
-            opponentBattlerIndex = index;
+            opponentDisplayBattlerIndex = index;
             Instantiate(spawnEffect, uiManager.opponentBattler.transform.position, spawnEffect.transform.rotation,
                 uiManager.opponentBattler);
             uiManager.ExpandOpponentBattler();

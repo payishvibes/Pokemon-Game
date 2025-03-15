@@ -15,15 +15,14 @@ MonoBehaviour:
   name: Charmander
   primaryType: 7
   secondaryType: 0
-  moves:
-  - {fileID: 11400000, guid: d4639e5cb3f782d4587a463bffb7265a, type: 2}
-  - {fileID: 11400000, guid: 71e65ff655656454b8becbb1cc1b57b4, type: 2}
-  - {fileID: 11400000, guid: 20feb6eebf69e2f438f8c3b2aa15ed27, type: 2}
-  texture: {fileID: 21300000, guid: 7474906acb369644c90c292e5efd482b, type: 3}
+  evolutionTree: {fileID: 11400000, guid: 58547a32e5e74524da8dd4b80fe92f07, type: 2}
+  texture: {fileID: 21300000, guid: a5158da973c76e64cb7d0251166dc06c, type: 3}
+  dexNo: 4
+  catchRate: 45
   baseHealth: 39
   baseAttack: 52
   baseDefense: 43
-  baseSpecialAttack: 60
-  baseSpecialDefense: 50
-  baseSpeed: 65
-  baseExpYield: 62
+  baseSpecialAttack: 4
+  baseSpecialDefense: 60
+  baseSpeed: 50
+  yields: 3e00000000000000000000000000000000000000000000000100000001000000

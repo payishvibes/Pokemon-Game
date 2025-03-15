@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d18b0702c76df542a3a20fe8e6205e9, type: 3}
   m_Name: Charmelion
   m_EditorClassIdentifier: 
-  name: Charmelion
+  name: Charmeleon
   primaryType: 7
   secondaryType: 0
-  moves:
-  - {fileID: 11400000, guid: 71e65ff655656454b8becbb1cc1b57b4, type: 2}
-  - {fileID: 11400000, guid: d4639e5cb3f782d4587a463bffb7265a, type: 2}
-  texture: {fileID: 21300000, guid: 4dd18965cac68a447bbe1e13bcdf17d4, type: 3}
+  evolutionTree: {fileID: 0}
+  texture: {fileID: 21300000, guid: e436bd577ba38154ba74f7e1a6725d14, type: 3}
+  dexNo: 5
+  catchRate: 45
   baseHealth: 58
   baseAttack: 64
   baseDefense: 58
-  baseSpecialAttack: 80
-  baseSpecialDefense: 65
-  baseSpeed: 80
-  baseExpYield: 142
+  baseSpecialAttack: 5
+  baseSpecialDefense: 80
+  baseSpeed: 65
+  yields: 8e00000000000000000000000000000001000000000000000100000002000000

@@ -8,6 +8,7 @@ namespace PokemonGame.ScriptableObjects
     [CreateAssetMenu(order = 6, fileName = "new Evolution Tree", menuName = "Pokemon Game/New Evolution Tree")]
     public class EvolutionTree : ScriptableObject
     {
+        public ExperienceGroup expGroup;
         public List<Evolution> evolutions = new List<Evolution>();
     }
 
@@ -31,8 +32,19 @@ namespace PokemonGame.ScriptableObjects
         public BattlerTemplate evolution;
     }
 
-    public enum EvolutionTriggerType{
+    public enum EvolutionTriggerType
+    {
         Level,
         Item,
-    }   
+    }
+
+    public enum ExperienceGroup
+    {
+        MediumFast,
+        Erratic,
+        Fluctuating,
+        MediumSlow,
+        Fast,
+        Slow
+    }
 }

@@ -15,14 +15,14 @@ MonoBehaviour:
   name: Charizard
   primaryType: 7
   secondaryType: 8
-  moves:
-  - {fileID: 11400000, guid: 71e65ff655656454b8becbb1cc1b57b4, type: 2}
-  - {fileID: 11400000, guid: d4639e5cb3f782d4587a463bffb7265a, type: 2}
-  texture: {fileID: 21300000, guid: 97341afbfc9517c45b97d0dad5fa3a8a, type: 3}
+  evolutionTree: {fileID: 0}
+  texture: {fileID: 21300000, guid: 65af11b838c1d6e4abd19ff82b9e1c89, type: 3}
+  dexNo: 6
+  catchRate: 45
   baseHealth: 78
-  baseAttack: 84
+  baseAttack: 104
   baseDefense: 78
-  baseSpecialAttack: 109
-  baseSpecialDefense: 85
-  baseSpeed: 100
-  baseExpYield: 267
+  baseSpecialAttack: 6
+  baseSpecialDefense: 159
+  baseSpeed: 115
+  yields: 0b01000000000000000000000000000003000000000000000000000003000000

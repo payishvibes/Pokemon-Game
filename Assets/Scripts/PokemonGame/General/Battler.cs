@@ -1,5 +1,3 @@
-using System.Linq;
-
 namespace PokemonGame.General
 {
     using System;
@@ -17,29 +15,32 @@ namespace PokemonGame.General
         /// <summary>
         /// The source that the battler uses to determine base stats 
         /// </summary>
+        [Header("Source")]
         public BattlerTemplate source;
 
         private int _oldLevel;
         /// <summary>
         /// </summary>
         /// The level is what determines stats and if the battler respects the player
+        [Space]
         public int level;
-
-        /// <summary>
-        /// The name of the battler, unlike batter templates this can be changed for nicknames
-        /// </summary>
-        public new string name;
-        /// <summary>
-        /// The maximum health of the battler
-        /// </summary>
-        public int maxHealth;
-
+        
         /// <summary>
         /// The current health of the battler
         /// </summary>
         public int currentHealth;
 
-        public int catchRate;
+        /// <summary>
+        /// The name of the battler, unlike batter templates this can be changed for nicknames
+        /// </summary>
+        public new string name;
+        
+        /// <summary>
+        /// The maximum health of the battler
+        /// </summary>
+        [Space]
+        [Header("Stats")]
+        public int maxHealth;
         
         /// <summary>
         /// The current amount of experience points the battler has in progressing through its current level
@@ -65,32 +66,53 @@ namespace PokemonGame.General
         /// The speed statistic for the battler
         /// </summary>
         public int speed;
+
         /// <summary>
-        /// The sprite that the battler uses
+        /// The HP EV of the battler
         /// </summary>
+        [Space]
+        [Header("EV's")]
+        public int hpEV;
+
+        /// <summary>
+        /// The Attack EV of the battler
+        /// </summary>
+        public int attackEV;
         
-        public Sprite texture;
+        /// <summary>
+        /// The Defense EV of the battler
+        /// </summary>
+        public int defenseEV;
+
+        /// <summary>
+        /// The Special Attack EV of the battler
+        /// </summary>
+        public int specialAttackEV;
+        
+        /// <summary>
+        /// The Special Defense EV of the battler
+        /// </summary>
+        public int specialDefenseEV;
+
+        /// <summary>
+        /// The Speed EV of the battler
+        /// </summary>
+        public int speedEV;
+        
         /// <summary>
         /// Is the battler fainted
         /// </summary>
+        [Space]
         public bool isFainted;
         /// <summary>
         /// The current status effect that the batter has
         /// </summary>
         public StatusEffect statusEffect;
-
-        /// <summary>
-        /// The primary type of the battler
-        /// </summary>
-        public BasicType primaryType;
-        /// <summary>
-        /// The secondary type of the battler
-        /// </summary>
-        public BasicType secondaryType;
         
         /// <summary>
         /// The list of moves that the battler has
         /// </summary>
+        [Space]
         public List<Move> moves;
 
         /// <summary>
@@ -216,16 +238,6 @@ namespace PokemonGame.General
         }
 
         /// <summary>
-        /// Test if a battler can learn a move
-        /// </summary>
-        /// <param name="moveToLearn">Move to test</param>
-        /// <returns></returns>
-        public bool CanLearn(Move moveToLearn)
-        {
-            return source.moves.Contains(moveToLearn);
-        }
-
-        /// <summary>
         /// Used for updating stats and such outside of runtime
         /// </summary>
         private void OnValidate()
@@ -243,7 +255,6 @@ namespace PokemonGame.General
             if (_oldSource != source)
             {
                 UpdateStats();
-                UpdateSource();
             }
 
             _oldSource = source;
@@ -266,6 +277,8 @@ namespace PokemonGame.General
         {
             if(!source) return;
             
+            // maxHealth = Mathf.FloorToInt((2f * source.baseHealth + )/100)
+            
             //maxHealth = Mathf.FloorToInt(0.01f * (2 * source.baseHealth + 15 + Mathf.FloorToInt(0.25f * 15)) * level) + level + 10;
             attack = Mathf.FloorToInt(0.01f * (2 * source.baseAttack + 15 + Mathf.FloorToInt(0.25f * 15)) * level) + 5;
             defense = Mathf.FloorToInt(0.01f * (2 * source.baseDefense + 15 + Mathf.FloorToInt(0.25f * 15)) * level) + 5;
@@ -273,23 +286,6 @@ namespace PokemonGame.General
             specialDefense = Mathf.FloorToInt(0.01f * (2 * source.baseSpecialDefense + 15 + Mathf.FloorToInt(0.25f * 15)) * level) + 5;
             speed = Mathf.FloorToInt(0.01f * (2 * source.baseSpeed + 15 + Mathf.FloorToInt(0.25f * 15)) * level) + 5;
             maxHealth = Mathf.FloorToInt(0.01f * (2 * source.baseHealth + 15 + Mathf.FloorToInt(0.25f * 15)) * level) + 5;
-        }
-
-        //Updates the source of the battler
-        /// <summary>
-        /// Updates the properties of the battler that derive from the source template
-        /// </summary>
-        private void UpdateSource()
-        {
-            primaryType = source.primaryType;
-            secondaryType = source.secondaryType;
-            texture = source.texture;
-            catchRate = source.catchRate;
-
-            if (string.IsNullOrEmpty(name))
-            {
-                name = source.name;
-            }
         }
 
         public void UpdateLevel(int newLevel)
@@ -319,11 +315,8 @@ namespace PokemonGame.General
             returnBattler.isFainted = false;
             returnBattler.exp = 0;
             returnBattler.statusEffect = statusEffect;
-            returnBattler.primaryType = source.primaryType;
-            returnBattler.secondaryType = source.secondaryType;
             returnBattler.moves = new List<Move>();
             returnBattler.movePpInfos = new List<MovePPData>();
-            returnBattler.catchRate = source.catchRate;
 
             foreach (var move in moves)
             {
@@ -337,8 +330,6 @@ namespace PokemonGame.General
 
             if (autoAssignHealth)
                 returnBattler.currentHealth = returnBattler.maxHealth;
-
-            returnBattler.texture = source.texture;
             
             return returnBattler;
         }

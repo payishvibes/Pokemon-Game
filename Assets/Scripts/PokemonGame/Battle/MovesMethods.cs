@@ -21,7 +21,7 @@ namespace PokemonGame.Battle
             //Checking to see if the move is capable of hitting the opponent battler
             foreach (var hType in move.type.cantHit)
             {
-                if (hType == Type.FromBasic(battlerBeingAttacked.primaryType) || hType == Type.FromBasic(battlerBeingAttacked.secondaryType))
+                if (hType == Type.FromBasic(battlerBeingAttacked.source.primaryType) || hType == Type.FromBasic(battlerBeingAttacked.source.secondaryType))
                 {
                     Debug.Log(move.type + " can't hit that battler");
                     return 0;
@@ -33,11 +33,11 @@ namespace PokemonGame.Battle
             //Calculating type disadvantages
             foreach (var weakType in move.type.weakAgainst)
             {
-                if (weakType == Type.FromBasic(battlerBeingAttacked.primaryType))
+                if (weakType == Type.FromBasic(battlerBeingAttacked.source.primaryType))
                 {
                     type /= 2;
                 }
-                if (weakType == Type.FromBasic(battlerBeingAttacked.secondaryType))
+                if (weakType == Type.FromBasic(battlerBeingAttacked.source.secondaryType))
                 {
                     type /= 2;
                 }
@@ -46,11 +46,11 @@ namespace PokemonGame.Battle
             //Calculating type advantages
             foreach (var strongType in move.type.strongAgainst)
             {
-                if (strongType == Type.FromBasic(battlerBeingAttacked.primaryType))
+                if (strongType == Type.FromBasic(battlerBeingAttacked.source.primaryType))
                 {
                     type *= 2;
                 }
-                if (strongType == Type.FromBasic(battlerBeingAttacked.secondaryType))
+                if (strongType == Type.FromBasic(battlerBeingAttacked.source.secondaryType))
                 {
                     type *= 2;
                 }
@@ -64,7 +64,7 @@ namespace PokemonGame.Battle
 
             //STAB =  Same type attack bonus
             int stab = 1;
-            if (move.type == Type.FromBasic(battlerThatUsed.primaryType))
+            if (move.type == Type.FromBasic(battlerThatUsed.source.primaryType))
             {
                 stab = 2;
             }

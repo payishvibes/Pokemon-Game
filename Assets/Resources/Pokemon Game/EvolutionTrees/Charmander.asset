@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9dd3f44f970d41449f76a15312c9261, type: 3}
   m_Name: Charmander
   m_EditorClassIdentifier: 
+  expGroup: 3
   evolutions:
   - initial: {fileID: 11400000, guid: 4f843dafd69ae554e90f655d7e688db3, type: 2}
     possibleEvolutions:
