@@ -14,23 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   source: {fileID: 11400000, guid: db309f2b3aa1fb047b0aa64dcd5d8d4c, type: 2}
   level: 5
+  currentHealth: 10
   name: Squirtle
   maxHealth: 10
-  currentHealth: 10
-  catchRate: 0
-  exp: 0
   attack: 10
   defense: 12
-  specialAttack: 10
-  specialDefense: 12
-  speed: 10
-  texture: {fileID: 21300000, guid: 608e4d377eeb8674d956108a10a6343d, type: 3}
+  specialAttack: 6
+  specialDefense: 10
+  speed: 12
+  exp: 45
+  hpEV: 0
+  attackEV: 0
+  defenseEV: 0
+  specialAttackEV: 0
+  specialDefenseEV: 0
+  speedEV: 0
   isFainted: 0
   statusEffect: {fileID: 11400000, guid: 70a8b2171523288439f255c2f97685d9, type: 2}
-  frozen: 0
-  asleep: 0
-  primaryType: 18
-  secondaryType: 0
   moves:
   - {fileID: 11400000, guid: d4639e5cb3f782d4587a463bffb7265a, type: 2}
   - {fileID: 11400000, guid: d64e418a175825643a0869689a75d087, type: 2}
+  movePpInfos: []

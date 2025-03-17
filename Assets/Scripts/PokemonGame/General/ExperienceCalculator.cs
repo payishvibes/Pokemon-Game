@@ -1,29 +1,39 @@
-using PokemonGame.ScriptableObjects;
 using UnityEngine;
 
 namespace PokemonGame.General
 {
+    using ScriptableObjects;
+    
     public static class ExperienceCalculator
     {
-        public static int GetExperienceFromDefeatingBattler(Battler defeated, bool trainer, int noOfBattlersParticipated)
+        public static int GetExperienceFromDefeatingBattler(Battler defeated, Battler victor, bool trainer, int noOfBattlersParticipated)
         {
             // Calculations from: https://bulbapedia.bulbagarden.net/wiki/Experience#Experience_gain_in_battle
             
             int exp = 0;
 
-            double a = trainer ? 1.5 : 1;
+            float a = trainer ? 1.5f : 1f;
+            
+            float e = 1; // lucky egg
 
-            // lucky egg
-            double e = 1;
+            float s = noOfBattlersParticipated;
 
-            double s = noOfBattlersParticipated;
+            float b = defeated.source.yields[0];
 
-            double b = defeated.source.yields[0];
+            float L = defeated.level;
 
-            double L = defeated.level;
+            float Lp = victor.level;
 
-            exp = (int)(b * L / 7 * 1 / s * e * a);
+            float t = 1;
 
+            float v = 1; // evolution check one, gains more if should be able to evolve
+
+            float f = 1.7f; // friendship bonus
+
+            float p = 1; // rotom exp check
+
+            exp = Mathf.FloorToInt((((b * L) / 5) * (1/s) * Mathf.Pow((2 * L + 10) / (L + Lp + 10), 2.5f) + 1f) * t * e * v * f * p);
+            
             return exp;
         }
 
@@ -39,101 +49,101 @@ namespace PokemonGame.General
             switch (battler.source.evolutionTree.expGroup)
             {
                 case ExperienceGroup.Erratic:
-                    required = ErraticGrowth(battler);
+                    required = ErraticGrowth(battler.level+1) - ErraticGrowth(battler.level);
                     break;
                 case ExperienceGroup.Fast:
-                    required = FastGrowth(battler);
+                    required = FastGrowth(battler.level+1) - FastGrowth(battler.level);
                     break;
                 case ExperienceGroup.MediumFast:
-                    required = MediumFastGrowth(battler);
+                    required = MediumFastGrowth(battler.level+1) - MediumFastGrowth(battler.level);
                     break;
                 case ExperienceGroup.MediumSlow:
-                    required = MediumSlowGrowth(battler);
+                    required = MediumSlowGrowth(battler.level+1) - MediumSlowGrowth(battler.level);
                     break;
                 case ExperienceGroup.Slow:
-                    required = SlowGrowth(battler);
+                    required = SlowGrowth(battler.level+1) - SlowGrowth(battler.level);
                     break;
                 case ExperienceGroup.Fluctuating:
-                    required = FluctuatingGrowth(battler);
+                    required = FluctuatingGrowth(battler.level+1) - FluctuatingGrowth(battler.level);
                     break;
             }
 
             return required;
         }
 
-        private static int ErraticGrowth(Battler battler)
+        private static int ErraticGrowth(int level)
         {
             int required = 0;
 
-            switch (battler.level)
+            switch (level)
             {
                 case <50:
-                    required = ((battler.level * battler.level * battler.level) * (100 - battler.level)) / (50);
+                    required = Mathf.FloorToInt(((level * level * level) * (100 - level)) / (50f));
                     break;
-                case var expression when (50 <= battler.level && battler.level < 68):
-                    required = ((battler.level * battler.level * battler.level) * (150 - battler.level)) / (100);
+                case var expression when (50 <= level && level < 68):
+                    required = Mathf.FloorToInt((level * level * level) * (150 - level) / (100f));
                     break;
-                case var expression when (68 <= battler.level && battler.level < 98):
-                    required = ((battler.level * battler.level * battler.level) * Mathf.FloorToInt((1911 - 10 * battler.level) / 3f))/(500);
+                case var expression when (68 <= level && level < 98):
+                    required = Mathf.FloorToInt(((level * level * level) * (1911 - 10 * level) / 3f)/(500f));
                     break;
                 case >= 98:
-                    required = ((battler.level * battler.level * battler.level) * (160 - battler.level)) / (100);
+                    required = Mathf.FloorToInt((level * level * level) * (160 - level) / (100f));
                     break;
             }
             
             return required;
         }
 
-        private static int FastGrowth(Battler battler)
+        private static int FastGrowth(int level)
         {
             int required = 0;
 
-            required = (4 * (battler.level * battler.level * battler.level)) / (5);
+            required = Mathf.FloorToInt(4 * (level * level * level) / (5f));
             
             return required;
         }
 
-        private static int MediumFastGrowth(Battler battler)
+        private static int MediumFastGrowth(int level)
         {
             int required = 0;
 
-            required = battler.level * battler.level * battler.level;
+            required = level * level * level;
             
             return required;
         }
 
-        private static int MediumSlowGrowth(Battler battler)
+        private static int MediumSlowGrowth(int level)
         {
             int required = 0;
 
-            required = (6/5)*(battler.level * battler.level * battler.level) - (15 * battler.level * battler.level) + 100*battler.level - 140;
+            required = Mathf.FloorToInt(6f / 5f * level * level * level) - 15 * level * level + 100*level - 140;
             
             return required;
         }
 
-        private static int SlowGrowth(Battler battler)
+        private static int SlowGrowth(int level)
         {
             int required = 0;
 
-            required = (5 * battler.level * battler.level * battler.level) / (4);
+            required = Mathf.FloorToInt(5 * level * level * level / (4f));
             
             return required;
         }
 
-        private static int FluctuatingGrowth(Battler battler)
+        private static int FluctuatingGrowth(int level)
         {
             int required = 0;
 
-            switch (battler.level)
+            switch (level)
             {
                 case <15:
-                    required = (((battler.level * battler.level * battler.level) * (Mathf.FloorToInt((battler.level + 1)/3f) + 24))/50);
+                    required = Mathf.FloorToInt(((level * level * level) * (((level + 1)/3f) + 24))/50f);
                     break;
-                case var expression when (15 <= battler.level && battler.level < 36):
-                    required = ((battler.level * battler.level * battler.level) * (battler.level + 14)) / (50);
+                case var expression when (15 <= level && level < 36):
+                    required = Mathf.FloorToInt(((level * level * level) * (level + 14)) / (50f));
                     break;
-                case var expression when (36 <= battler.level && battler.level < 100):
-                    required = (((battler.level * battler.level * battler.level) * (Mathf.FloorToInt((battler.level / 2f)) + 32)) / 50);
+                case var expression when (36 <= level && level < 100):
+                    required = Mathf.FloorToInt(((level * level * level) * (((level / 2f)) + 32)) / 50f);
                     break;
             }
             

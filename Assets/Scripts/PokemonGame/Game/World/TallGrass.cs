@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using PokemonGame.Dialogue;
@@ -6,12 +5,13 @@ using PokemonGame.Game;
 using PokemonGame.Game.Party;
 using PokemonGame.General;
 using PokemonGame.Global;
+using PokemonGame.ScriptableObjects;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class TallGrass : DialogueTrigger
 {
-    [SerializeField] private List<Battler> pool;
+    [SerializeField] private List<BattlerTemplate> pool;
     [SerializeField] private int minLevel, maxLevel;
     [SerializeField] private float attemptDelay;
     [SerializeField] private int oneInChance;
@@ -79,15 +79,14 @@ public class TallGrass : DialogueTrigger
 
     private void Attack()
     {
-        Battler attacker = Battler.CreateCopy(pool[Random.Range(0, pool.Count)]);
-        attacker.UpdateLevel(Random.Range(minLevel, maxLevel));
+        BattlerTemplate template = pool[Random.Range(0, pool.Count)];
+        
+        Battler attacker = Battler.Init(template, Random.Range(minLevel, maxLevel), template.name, new List<Move>(), true);
 
         _attacker = attacker;
-        
-        Debug.Log($"Attacked by a wild {attacker.name}");
         _waitingForStartBattle = true;
         
-        QueDialogue($"A wild {attacker.name} attacked!");
+        QueDialogue($"{attacker.name} appeared?!");
     }
 
     private IEnumerator StartBattle()

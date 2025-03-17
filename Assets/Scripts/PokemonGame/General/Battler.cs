@@ -43,10 +43,6 @@ namespace PokemonGame.General
         public int maxHealth;
         
         /// <summary>
-        /// The current amount of experience points the battler has in progressing through its current level
-        /// </summary>
-        public int exp;
-        /// <summary>
         /// The attack statistic for the battler
         /// </summary>
         public int attack;
@@ -66,38 +62,22 @@ namespace PokemonGame.General
         /// The speed statistic for the battler
         /// </summary>
         public int speed;
+        /// <summary>
+        /// The current amount of experience points the battler has in progressing through its current level
+        /// </summary>
+        [Space] public int exp;
 
         /// <summary>
         /// The HP EV of the battler
         /// </summary>
         [Space]
-        [Header("EV's")]
-        public int hpEV;
+        public int[] EVs = new int[6];
+        public int[] IVs = new int[6];
 
         /// <summary>
-        /// The Attack EV of the battler
+        /// The Affection stat of the battler
         /// </summary>
-        public int attackEV;
-        
-        /// <summary>
-        /// The Defense EV of the battler
-        /// </summary>
-        public int defenseEV;
-
-        /// <summary>
-        /// The Special Attack EV of the battler
-        /// </summary>
-        public int specialAttackEV;
-        
-        /// <summary>
-        /// The Special Defense EV of the battler
-        /// </summary>
-        public int specialDefenseEV;
-
-        /// <summary>
-        /// The Speed EV of the battler
-        /// </summary>
-        public int speedEV;
+        public int affection;
         
         /// <summary>
         /// Is the battler fainted
@@ -276,16 +256,24 @@ namespace PokemonGame.General
         private void UpdateStats()
         {
             if(!source) return;
+
+            maxHealth = Mathf.FloorToInt((((2f * source.baseHealth + IVs[0]) * 2 + Mathf.FloorToInt(EVs[0] / 4f)) *
+                                          level) / 100) + level + 10;
             
-            // maxHealth = Mathf.FloorToInt((2f * source.baseHealth + )/100)
+            attack = Mathf.FloorToInt((((2f * source.baseAttack + IVs[1]) * 2 + Mathf.FloorToInt(EVs[1] / 4f)) *
+                                          level) / 100) + 5;
             
-            //maxHealth = Mathf.FloorToInt(0.01f * (2 * source.baseHealth + 15 + Mathf.FloorToInt(0.25f * 15)) * level) + level + 10;
-            attack = Mathf.FloorToInt(0.01f * (2 * source.baseAttack + 15 + Mathf.FloorToInt(0.25f * 15)) * level) + 5;
-            defense = Mathf.FloorToInt(0.01f * (2 * source.baseDefense + 15 + Mathf.FloorToInt(0.25f * 15)) * level) + 5;
-            specialAttack = Mathf.FloorToInt(0.01f * (2 * source.baseSpecialAttack + 15 + Mathf.FloorToInt(0.25f * 15)) * level) + 5;
-            specialDefense = Mathf.FloorToInt(0.01f * (2 * source.baseSpecialDefense + 15 + Mathf.FloorToInt(0.25f * 15)) * level) + 5;
-            speed = Mathf.FloorToInt(0.01f * (2 * source.baseSpeed + 15 + Mathf.FloorToInt(0.25f * 15)) * level) + 5;
-            maxHealth = Mathf.FloorToInt(0.01f * (2 * source.baseHealth + 15 + Mathf.FloorToInt(0.25f * 15)) * level) + 5;
+            defense = Mathf.FloorToInt((((2f * source.baseDefense + IVs[2]) * 2 + Mathf.FloorToInt(EVs[2] / 4f)) *
+                                       level) / 100) + 5;
+            
+            specialAttack = Mathf.FloorToInt((((2f * source.baseSpecialAttack + IVs[3]) * 2 + Mathf.FloorToInt(EVs[3] / 4f)) *
+                                        level) / 100) + 5;
+            
+            specialDefense = Mathf.FloorToInt((((2f * source.baseSpecialDefense + IVs[4]) * 2 + Mathf.FloorToInt(EVs[4] / 4f)) *
+                                        level) / 100) + 5;
+            
+            speed = Mathf.FloorToInt((((2f * source.baseSpeed + IVs[5]) * 2 + Mathf.FloorToInt(EVs[5] / 4f)) *
+                                               level) / 100) + 5;
         }
 
         public void UpdateLevel(int newLevel)
@@ -298,6 +286,47 @@ namespace PokemonGame.General
         /// <summary>
         /// Returns a battler that has been created using the parameters given
         /// </summary>
+        /// <param name="sourceBattler">The Battler that the new battler will be based on</param>
+        /// <param name="autoAssignHealth">Automatically set the battlers health to the max health?</param>
+        /// <returns>A battler that has been created using the parameters given</returns>
+        public static Battler Init(Battler sourceBattler, bool autoAssignHealth)
+        {
+            return Init(sourceBattler.source, sourceBattler.level, sourceBattler.name, sourceBattler.isFainted,
+                sourceBattler.exp, sourceBattler.statusEffect, sourceBattler.EVs, sourceBattler.IVs,
+                sourceBattler.currentHealth,
+                sourceBattler.moves, autoAssignHealth);
+        }
+
+        public static Battler Init(BattlerTemplate source, int level, string name, List<Move> moves, bool autoAssignHealth)
+        {
+            int[] EVs = new[]
+            {
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            };
+            
+            int[] IVs = new[]
+            {
+                UnityEngine.Random.Range(0, 32),
+                UnityEngine.Random.Range(0, 32),
+                UnityEngine.Random.Range(0, 32),
+                UnityEngine.Random.Range(0, 32),
+                UnityEngine.Random.Range(0, 32),
+                UnityEngine.Random.Range(0, 32)
+            };
+            
+            return Init(source, level, name, false,
+                0, StatusEffect.Healthy, EVs, IVs, 0,
+                moves, autoAssignHealth);
+        }
+
+        /// <summary>
+        /// Returns a battler that has been created using the parameters given
+        /// </summary>
         /// <param name="source">The Battler Template that the new battler will use to calculate stats</param>
         /// <param name="level">The <see cref="level"/> of the new battler</param>
         /// <param name="statusEffect">The status effect that the new battler will have</param>
@@ -305,18 +334,20 @@ namespace PokemonGame.General
         /// <param name="moves">Moves that the battler has</param>
         /// <param name="autoAssignHealth">Auto assign health to the <see cref="maxHealth"/> when creating</param>
         /// <returns>A battler that has been created using the parameters given</returns>
-        public static Battler Init(BattlerTemplate source, int level, StatusEffect statusEffect, string name, List<Move> moves, bool autoAssignHealth)
+        public static Battler Init(BattlerTemplate source, int level, string name, bool isFainted, int exp,
+            StatusEffect statusEffect, int[] EVs, int[] IVs, int currentHealth, List<Move> moves, bool autoAssignHealth)
         {
             Battler returnBattler = CreateInstance<Battler>();
             
             returnBattler.source = source;
             returnBattler.UpdateLevel(level);
             returnBattler.name = name;
-            returnBattler.isFainted = false;
-            returnBattler.exp = 0;
+            returnBattler.isFainted = isFainted;
+            returnBattler.exp = exp;
             returnBattler.statusEffect = statusEffect;
             returnBattler.moves = new List<Move>();
             returnBattler.movePpInfos = new List<MovePPData>();
+            returnBattler.EVs = EVs;
 
             foreach (var move in moves)
             {
@@ -330,6 +361,8 @@ namespace PokemonGame.General
 
             if (autoAssignHealth)
                 returnBattler.currentHealth = returnBattler.maxHealth;
+            else
+                returnBattler.currentHealth = currentHealth;
             
             return returnBattler;
         }
@@ -341,8 +374,7 @@ namespace PokemonGame.General
         /// <returns>The copied battler</returns>
         public static Battler CreateCopy(Battler battler)
         {
-            Battler returnBattler = Init(battler.source, battler.level, battler.statusEffect, battler.name,
-                battler.moves, true);
+            Battler returnBattler = Init(battler, true);
 
             returnBattler.currentHealth = battler.currentHealth;
             returnBattler.isFainted = battler.isFainted;

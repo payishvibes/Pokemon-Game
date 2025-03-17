@@ -8,7 +8,7 @@ public class MenuBattlerDisplay : MonoBehaviour
     [SerializeField] private TextMeshProUGUI battlerNameText;
     [SerializeField] private TextMeshProUGUI battlerHealthText;
     [SerializeField] private TextMeshProUGUI statusDisplay;
-    [SerializeField] private TextMeshProUGUI expText;
+    [SerializeField] private RectMask2D expDisplay;
     [SerializeField] private Image battlerSpriteImage;
     [SerializeField] private Image background;
     [SerializeField] private Color aliveColour;
@@ -21,7 +21,7 @@ public class MenuBattlerDisplay : MonoBehaviour
         battlerSpriteImage.sprite = sprite;
         statusDisplay.text = effect.name;
         statusDisplay.color = effect.colour;
-        expText.text = exp.ToString()+ "/"+maxExp;
+        expDisplay.padding = new Vector4(0, 0, 282 - (float)exp/(float)maxExp * 282f, 0);
         background.color = health == 0 ? defeatedColour : aliveColour;
     }
 }

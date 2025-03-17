@@ -21,7 +21,7 @@ namespace PokemonGame.Dialogue
                     break;
                 case "givebattler":
                     BattlerTemplate template = Registry.GetBattlerTemplate(tagValues[0]);
-                    Battler battler = Battler.Init(template, int.Parse(tagValues[1]), StatusEffect.Healthy,
+                    Battler battler = Battler.Init(template, int.Parse(tagValues[1]),
                         template.name, new List<Move>(), true);
                     PartyManager.AddBattler(battler);
                     break;

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
+using PokemonGame.General;
 
 namespace PokemonGame.ScriptableObjects
 {
@@ -14,11 +15,14 @@ namespace PokemonGame.ScriptableObjects
         public BasicType primaryType;
         public BasicType secondaryType;
         public EvolutionTree evolutionTree;
+        public ExperienceGroup expGroup;
         public Sprite texture;
         public int dexNo;
+        public List<PossibleMove> possibleMoves;
         [Space] 
         [Header("Stats")] 
         public int catchRate;
+        public int baseFriendship;
         public int baseHealth;
         public int baseAttack;
         public int baseDefense;
@@ -30,12 +34,11 @@ namespace PokemonGame.ScriptableObjects
         public void TryFillInfo()
         {
             StreamReader streamReader =
-                new StreamReader("C:\\Users\\Mr. Monster\\Documents\\Pokemon Gen 7 database\\pokemon.csv");
+                new StreamReader("C:\\Users\\Mr. Monster\\Documents\\Pokemon Gen 7 database\\Pokemon Database.csv");
             bool found = false;
             bool endOfFile = false;
             string data = "";
             int dexNo = 0;
-            int index = 0;
             while (!found && !endOfFile)
             {
                 string dataString = streamReader.ReadLine();
@@ -45,40 +48,49 @@ namespace PokemonGame.ScriptableObjects
                     break;
                 }
 
-                var dataValues = Regex.Split(dataString, @"(?<=[^']),(?=[^'])", RegexOptions.None);
+                var dataValues = Regex.Split(dataString, @"(?<=[^ ]),(?=[^ ])", RegexOptions.None);
                 
-                if (dataValues[30] == name)
+                if (dataValues[2].Replace("\"", "") == name)
                 {
                     found = true;
                     data = dataString;
-                    dexNo = index;
+                    dexNo = int.Parse(dataValues[1]);
                 }
-                index++;
             }
             
             streamReader.Close();
 
             if (found)
             {
-                var values = Regex.Split(data, @"(?<=[^']),(?=[^'])", RegexOptions.None);
+                data = data.Replace("\"", "");
+                data = data.Replace("NULL", "");
+                var values = Regex.Split(data, @"(?<=[^ ]),(?=[^ ])", RegexOptions.None);
                 
-                primaryType = (BasicType) Enum.Parse(typeof(BasicType), values[36], true);
-                if (!string.IsNullOrEmpty(values[37]))
+                primaryType = (BasicType) Enum.Parse(typeof(BasicType), values[9], true);
+                if (!string.IsNullOrEmpty(values[10]))
                 {
-                    secondaryType = (BasicType) Enum.Parse(typeof(BasicType), values[37], true);
+                    secondaryType = (BasicType) Enum.Parse(typeof(BasicType), values[10], true);
                 }
                 
-                catchRate = int.Parse(values[23]);
-                baseHealth = int.Parse(values[28]);
-                baseAttack = int.Parse(values[19]);
+                catchRate = int.Parse(values[37]);
+                baseHealth = int.Parse(values[23]);
+                baseAttack = int.Parse(values[24]);
                 baseDefense = int.Parse(values[25]);
-                baseSpecialAttack = int.Parse(values[32]);
-                baseSpecialDefense = int.Parse(values[33]);
-                baseSpeed = int.Parse(values[34]);
+                baseSpecialAttack = int.Parse(values[26]);
+                baseSpecialDefense = int.Parse(values[27]);
+                baseSpeed = int.Parse(values[28]);
+                baseFriendship = int.Parse(values[21]);
                 this.dexNo = dexNo;
 
                 evolutionTree = Resources.Load<EvolutionTree>($"Pokemon Game/EvolutionTrees/{name}");
                 texture = Resources.Load<Sprite>($"Pokemon Game/Sprites/{dexNo}");
+                
+                while (yields.Count < 8)
+                {
+                    yields.Add(0);
+                }
+                
+                expGroup = (ExperienceGroup) Enum.Parse(typeof(ExperienceGroup), values[38].Replace(" ", ""), true);
             }
             
             streamReader =
@@ -95,8 +107,9 @@ namespace PokemonGame.ScriptableObjects
                     break;
                 }
 
-                var dataValues = dataString.Split(',');
-                if (dataValues[0] == name)
+                var dataValues = Regex.Split(dataString, @"(?<=[^']),(?=[^'])", RegexOptions.None);
+                
+                if (dataValues[2].Replace("\"", "") == name)
                 {
                     found = true;
                     data = dataString;
@@ -104,15 +117,11 @@ namespace PokemonGame.ScriptableObjects
             }
             
             streamReader.Close();
-            
+
             if (found)
             {
-                var stats = data.Split(',');
-
-                while (yields.Count < 8)
-                {
-                    yields.Add(0);
-                }
+                data = data.Replace("\"", "");
+                var stats = Regex.Split(data, @"(?<=[^']),(?=[^'])", RegexOptions.None);
 
                 yields[0] = int.Parse(stats[1]);
                 yields[1] = int.Parse(stats[2]);
@@ -124,5 +133,13 @@ namespace PokemonGame.ScriptableObjects
                 yields[7] = int.Parse(stats[8]);
             }
         }
+    }
+
+    [Serializable]
+    public class PossibleMove
+    {
+        public Move move;
+        public bool throughLevelUp;
+        [ConditionalHide("levelUp")] public int level;
     }
 }

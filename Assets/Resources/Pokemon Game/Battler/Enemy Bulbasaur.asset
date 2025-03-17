@@ -17,18 +17,14 @@ MonoBehaviour:
   currentHealth: 10
   name: Bulbasaur
   maxHealth: 10
-  exp: 0
   attack: 10
   defense: 10
   specialAttack: 12
   specialDefense: 12
   speed: 10
-  hpEV: 0
-  attackEV: 0
-  defenseEV: 0
-  specialAttackEV: 0
-  specialDefenseEV: 0
-  speedEV: 0
+  exp: 0
+  EVs: 000000000000000000000000000000000000000000000000
+  affection: 0
   isFainted: 0
   statusEffect: {fileID: 11400000, guid: 70a8b2171523288439f255c2f97685d9, type: 2}
   moves:

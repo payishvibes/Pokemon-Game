@@ -16,13 +16,15 @@ MonoBehaviour:
   primaryType: 7
   secondaryType: 0
   evolutionTree: {fileID: 11400000, guid: 58547a32e5e74524da8dd4b80fe92f07, type: 2}
+  expGroup: 3
   texture: {fileID: 21300000, guid: a5158da973c76e64cb7d0251166dc06c, type: 3}
   dexNo: 4
   catchRate: 45
+  baseFriendship: 50
   baseHealth: 39
   baseAttack: 52
   baseDefense: 43
-  baseSpecialAttack: 4
-  baseSpecialDefense: 60
-  baseSpeed: 50
+  baseSpecialAttack: 60
+  baseSpecialDefense: 50
+  baseSpeed: 65
   yields: 3e00000000000000000000000000000000000000000000000100000001000000

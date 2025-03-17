@@ -215,13 +215,20 @@ namespace PokemonGame.Battle
             
             QueDialogue($"{defeated.name} Fainted!");
 
-            int exp = ExperienceCalculator.GetExperienceFromDefeatingBattler(defeated, true,
+            int exp = ExperienceCalculator.GetExperienceFromDefeatingBattler(defeated, playerCurrentBattler, true,
                 battlersThatParticipated.Count);
 
             foreach (Battler battler in battlersThatParticipated)
             {
                 battler.exp += exp;
             }
+
+            playerCurrentBattler.EVs[0] += defeated.source.yields[1];
+            playerCurrentBattler.EVs[1] += defeated.source.yields[2];
+            playerCurrentBattler.EVs[2] += defeated.source.yields[3];
+            playerCurrentBattler.EVs[3] += defeated.source.yields[4];
+            playerCurrentBattler.EVs[4] += defeated.source.yields[5];
+            playerCurrentBattler.EVs[5] += defeated.source.yields[6];
         }
 
         private void Update()

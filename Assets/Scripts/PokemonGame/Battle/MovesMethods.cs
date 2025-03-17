@@ -1,3 +1,6 @@
+using System;
+using System.IO;
+using System.Text.RegularExpressions;
 using PokemonGame.General;
 
 namespace PokemonGame.Battle
@@ -109,6 +112,37 @@ namespace PokemonGame.Battle
             damage = randomness;
 
             return damage;
+        }
+
+        public void CreateMoves()
+        {
+            StreamReader streamReader =
+                new StreamReader("C:\\Users\\Mr. Monster\\Documents\\Pokemon Gen 7 database\\moves.csv");
+            bool endOfFile = false;
+            while (!endOfFile)
+            {
+                string dataString = streamReader.ReadLine();
+                if (string.IsNullOrEmpty(dataString))
+                {
+                    endOfFile = true;
+                    break;
+                }
+                
+                dataString = dataString.Replace("", "");
+                dataString = dataString.Replace("â\u20ac”", "0");
+                dataString = dataString.Replace("%", "");
+                var values = Regex.Split(dataString, @"(?<=[^0]),(?=[^0])", RegexOptions.None);
+                
+                Move
+                
+                primaryType = (BasicType) Enum.Parse(typeof(BasicType), values[9], true);
+                if (!string.IsNullOrEmpty(values[10]))
+                {
+                    secondaryType = (BasicType) Enum.Parse(typeof(BasicType), values[10], true);
+                }
+            }
+            
+            streamReader.Close();
         }
 
         private int CalculateDamage(MoveMethodEventArgs e)
