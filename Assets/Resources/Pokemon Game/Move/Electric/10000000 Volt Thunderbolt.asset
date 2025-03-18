@@ -18,7 +18,10 @@ MonoBehaviour:
   basePP: 1
   accuracy: 2.1474836e+9
   category: 1
-  zMove: 0
+  zMove: 1
+  zCrystal: {fileID: 0}
+  unique: 1
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

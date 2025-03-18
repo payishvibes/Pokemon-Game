@@ -21,7 +21,6 @@ namespace PokemonGame.ScriptableObjects
         [ConditionalHide("useInBattle", 1)] public bool lockedTarget;
         [ConditionalHide("lockedTarget", 1)] public bool playerParty;
         [ConditionalHide("lockedTarget", 1)] public int targetIndex;
-        public bool heldItem;
     
         public UnityEvent<ItemMethodEventArgs> ItemMethodEvent;
 

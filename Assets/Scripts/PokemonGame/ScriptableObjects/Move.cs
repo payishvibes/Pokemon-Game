@@ -20,9 +20,23 @@ namespace PokemonGame.ScriptableObjects
         public float accuracy;
         public MoveCategory category;
         public bool zMove;
+        [ConditionalHide("zMove")] 
+        public Item zCrystal;
+
+        [ConditionalHide("zMove")] public bool unique;
+        
+        [ConditionalHide("unique")] public Battler uniqueBattler;
     
         public UnityEvent<MoveMethodEventArgs> MoveMethodEvent;
-    
+
+        private void OnValidate()
+        {
+            if (!zMove)
+            {
+                unique = false;
+            }
+        }
+
         /// <summary>
         /// Calls the associated function in StatusMoveMethods.cs
         /// </summary>
