@@ -23,6 +23,7 @@ MonoBehaviour:
   - move: {fileID: 0}
     throughLevelUp: 0
     level: 0
+    item: {fileID: 0}
   catchRate: 45
   baseFriendship: 50
   baseHealth: 45
