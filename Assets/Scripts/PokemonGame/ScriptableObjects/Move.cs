@@ -19,6 +19,7 @@ namespace PokemonGame.ScriptableObjects
         public int basePP;
         public float accuracy;
         public MoveCategory category;
+        public bool zMove;
     
         public UnityEvent<MoveMethodEventArgs> MoveMethodEvent;
     
@@ -54,7 +55,8 @@ namespace PokemonGame.ScriptableObjects
     {
         Physical,
         Special,
-        Status
+        Status,
+        ZMove
     }
     
     /// <summary>

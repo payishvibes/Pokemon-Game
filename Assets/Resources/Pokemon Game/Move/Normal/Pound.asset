@@ -18,6 +18,7 @@ MonoBehaviour:
   basePP: 35
   accuracy: 1
   category: 0
+  zMove: 0
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

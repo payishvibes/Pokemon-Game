@@ -130,30 +130,59 @@ namespace PokemonGame.Battle
                     break;
                 }
                 
-                dataString = dataString.Replace("â\u20ac”", "0");
+                dataString = dataString.Replace("—", "-1");
                 dataString = dataString.Replace("%", "");
+                dataString = dataString.Replace("∞", "-2");
+                dataString = dataString.Replace("\"", "");
                 var values = Regex.Split(dataString, @",(?=[^0])", RegexOptions.None);
+
+                values[1] = values[1].Replace(",", "");
                 
                 Move move = CreateInstance<Move>();
                 
                 move.type = Type.FromBasic((BasicType)Enum.Parse(typeof(BasicType), values[2], true));
-                move.category = (MoveCategory)Enum.Parse(typeof(MoveCategory), values[3], true);
+                if (string.IsNullOrEmpty(values[3]))
+                {
+                    move.category = MoveCategory.ZMove;
+                }
+                else
+                {
+                    move.category = (MoveCategory)Enum.Parse(typeof(MoveCategory), values[3], true);
+                }
                 move.name = values[1];
                 move.basePP = int.Parse(values[4]);
-                move.damage = int.Parse(values[5]);
-                move.accuracy = int.Parse(values[6])/100f;
+                if (values[5] == "-2")
+                {
+                    move.damage = Int32.MaxValue;
+                }
+                else if (values[5] == "-1")
+                {
+                    move.damage = 0;
+                }
+                else
+                {
+                    move.damage = int.Parse(values[5]);
+                }
+                
+                if (values[6] == "-2")
+                {
+                    move.accuracy = Int32.MaxValue;
+                }
+                else if (values[6] == "-1")
+                {
+                    move.accuracy = 0;
+                }
+                else
+                {
+                    move.accuracy = int.Parse(values[6])/100f;
+                }
                 
                 AssetDatabase.CreateAsset(move, $"Assets/Resources/Pokemon Game/Move/{move.type.name}/{move.name}.asset");
-                AssetDatabase.SaveAssets();
-
-                Debug.Log($"Created move: {move.name}");
-
-                endOfFile = true;
             }
             
             streamReader.Close();
             
-            Debug.Log((DateTime.Now - start).TotalMilliseconds);
+            AssetDatabase.SaveAssets();
         }
 
         public static MovesMethods GetMoveMethods()
