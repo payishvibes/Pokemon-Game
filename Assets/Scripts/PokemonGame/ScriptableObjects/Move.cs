@@ -17,6 +17,7 @@ namespace PokemonGame.ScriptableObjects
         public Type type;
         public int damage;
         public int basePP;
+        public float accuracy;
         public MoveCategory category;
     
         public UnityEvent<MoveMethodEventArgs> MoveMethodEvent;
@@ -32,6 +33,11 @@ namespace PokemonGame.ScriptableObjects
             if (PP > 0)
             {
                 MoveMethodEvent?.Invoke(e);
+                if (MoveMethodEvent == null)
+                {
+                    MovesMethods.GetMoveMethods().DefaultMoveMethod(e);
+                }
+                
                 e.attacker.movePpInfos[e.moveIndex].MoveWasUsed();
             }
             else

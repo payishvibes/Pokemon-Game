@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Text.RegularExpressions;
 using PokemonGame.General;
+using UnityEditor;
 
 namespace PokemonGame.Battle
 {
@@ -116,6 +117,7 @@ namespace PokemonGame.Battle
 
         public void CreateMoves()
         {
+            DateTime start = DateTime.Now;
             StreamReader streamReader =
                 new StreamReader("C:\\Users\\Mr. Monster\\Documents\\Pokemon Gen 7 database\\moves.csv");
             bool endOfFile = false;
@@ -128,26 +130,45 @@ namespace PokemonGame.Battle
                     break;
                 }
                 
-                dataString = dataString.Replace("", "");
                 dataString = dataString.Replace("â\u20ac”", "0");
                 dataString = dataString.Replace("%", "");
-                var values = Regex.Split(dataString, @"(?<=[^0]),(?=[^0])", RegexOptions.None);
+                var values = Regex.Split(dataString, @",(?=[^0])", RegexOptions.None);
                 
-                Move
+                Move move = CreateInstance<Move>();
                 
-                primaryType = (BasicType) Enum.Parse(typeof(BasicType), values[9], true);
-                if (!string.IsNullOrEmpty(values[10]))
-                {
-                    secondaryType = (BasicType) Enum.Parse(typeof(BasicType), values[10], true);
-                }
+                move.type = Type.FromBasic((BasicType)Enum.Parse(typeof(BasicType), values[2], true));
+                move.category = (MoveCategory)Enum.Parse(typeof(MoveCategory), values[3], true);
+                move.name = values[1];
+                move.basePP = int.Parse(values[4]);
+                move.damage = int.Parse(values[5]);
+                move.accuracy = int.Parse(values[6])/100f;
+                
+                AssetDatabase.CreateAsset(move, $"Assets/Resources/Pokemon Game/Move/{move.type.name}/{move.name}.asset");
+                AssetDatabase.SaveAssets();
+
+                Debug.Log($"Created move: {move.name}");
+
+                endOfFile = true;
             }
             
             streamReader.Close();
+            
+            Debug.Log((DateTime.Now - start).TotalMilliseconds);
+        }
+
+        public static MovesMethods GetMoveMethods()
+        {
+            return Resources.Load<MovesMethods>("Pokemon Game/Move/Move Methods");
         }
 
         private int CalculateDamage(MoveMethodEventArgs e)
         {
             return CalculateDamage(e.move, e.attacker, e.target);
+        }
+
+        public void DefaultMoveMethod(MoveMethodEventArgs e)
+        {
+            e.damageDealt = CalculateDamage(e.move, e.attacker, e.target);
         }
         
         public void Toxic(MoveMethodEventArgs e)
@@ -156,33 +177,12 @@ namespace PokemonGame.Battle
             Battle.Singleton.QueDialogue($"{e.target.name} was poisoned!", true);
         }
 
-        public void Ember(MoveMethodEventArgs e)
-        {
-            e.damageDealt = CalculateDamage(e.move, e.attacker, e.target);
-        }
-
-        public void RazorLeaf(MoveMethodEventArgs e)
-        {
-            e.damageDealt = CalculateDamage(e.move, e.attacker, e.target);
-        }
-
-        public void Tackle(MoveMethodEventArgs e)
-        {
-            int damage = CalculateDamage(e.move, e.attacker, e.target);
-            e.damageDealt = damage;
-        }
-
         public void LeechLife(MoveMethodEventArgs e)
         {
             int damage = CalculateDamage(e);
             e.damageDealt = damage;
             Battle.Singleton.QueDialogue($"{e.attacker.name} healed {damage/2} health!");
             e.attacker.Heal(damage/2);
-        }
-
-        public void StringShot(MoveMethodEventArgs e)
-        {
-            
         }
     }   
 }
