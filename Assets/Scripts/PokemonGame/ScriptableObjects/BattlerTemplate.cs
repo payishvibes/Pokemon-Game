@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
+using Newtonsoft.Json;
 using PokemonGame.General;
+using PokemonGame.Global;
 
 namespace PokemonGame.ScriptableObjects
 {
@@ -32,6 +35,14 @@ namespace PokemonGame.ScriptableObjects
         public List<int> yields;
         
         public void TryFillInfo()
+        {
+            FillMoveInfo();
+            
+            // FillBasicInfo();
+            // FillYieldInfo();
+        }
+
+        private void FillBasicInfo()
         {
             StreamReader streamReader =
                 new StreamReader("C:\\Users\\Mr. Monster\\Documents\\Pokemon Gen 7 database\\Pokemon Database.csv");
@@ -92,12 +103,15 @@ namespace PokemonGame.ScriptableObjects
                 
                 expGroup = (ExperienceGroup) Enum.Parse(typeof(ExperienceGroup), values[38].Replace(" ", ""), true);
             }
-            
-            streamReader =
+        }
+
+        private void FillYieldInfo()
+        {
+            StreamReader streamReader =
                 new StreamReader("C:\\Users\\Mr. Monster\\Documents\\Pokemon Gen 7 database\\yield values.csv");
-            found = false;
-            endOfFile = false;
-            data = "";
+            bool found = false;
+            bool endOfFile = false;
+            string data = "";
             while (!found && !endOfFile)
             {
                 string dataString = streamReader.ReadLine();
@@ -133,6 +147,75 @@ namespace PokemonGame.ScriptableObjects
                 yields[7] = int.Parse(stats[8]);
             }
         }
+
+        private void FillMoveInfo()
+        {
+            using (StreamReader r = new StreamReader("C:\\Users\\Mr. Monster\\Downloads\\ultrasunultramoon.json"))
+            {
+                string json = r.ReadToEnd();
+                List<PokemonData> items = JsonConvert.DeserializeObject<List<PokemonData>>(json);
+
+                List<MoveData> movesNumbers = items[dexNo - 1].moves.ToList();
+                List<PossibleMove> newPossibleMoves = new List<PossibleMove>(); 
+                
+                for (int i = 0; i < movesNumbers.Count; i++)
+                {
+                    StreamReader streamReader =
+                        new StreamReader("C:\\Users\\Mr. Monster\\Documents\\Pokemon Gen 7 database\\moves.csv");
+                    bool endOfFile = false;
+                    while (!endOfFile)
+                    {
+                        string dataString = streamReader.ReadLine();
+                        if (dataString == null)
+                        {
+                            endOfFile = true;
+                            break;
+                        }
+
+                        var dataValues = Regex.Split(dataString, @"(?<=[^']),(?=[^'])", RegexOptions.None);
+                
+                        if (int.Parse(dataValues[0]) == movesNumbers[i].move)
+                        {
+                            dataString = dataString.Replace("\"", "");
+                            dataValues[1] = dataValues[1].Replace(",", "");
+
+                            PossibleMove newPossibleMove = new PossibleMove();
+                            newPossibleMove.move = Registry.GetMove(dataValues[1]);
+                            newPossibleMove.throughLevelUp = movesNumbers[i].method == "levelup";
+                            if (newPossibleMove.throughLevelUp)
+                            {
+                                newPossibleMove.level = movesNumbers[i].level;
+                            }
+                            else
+                            {
+                                newPossibleMove.item = Registry.GetItem(movesNumbers[i].item);
+                            }
+                            
+                            newPossibleMoves.Add(newPossibleMove);
+                        }
+                    }
+            
+                    streamReader.Close();
+                }
+
+                possibleMoves = newPossibleMoves;
+            }
+        }
+    }
+
+    public class PokemonData
+    {
+        public int pokemon;
+        public int form;
+        public MoveData[] moves;
+    }
+
+    public class MoveData
+    {
+        public int move;
+        public string method;
+        public int level;
+        public string item;
     }
 
     [Serializable]
@@ -140,6 +223,7 @@ namespace PokemonGame.ScriptableObjects
     {
         public Move move;
         public bool throughLevelUp;
-        [ConditionalHide("levelUp")] public int level;
+        public int level;
+        public Item item;
     }
 }

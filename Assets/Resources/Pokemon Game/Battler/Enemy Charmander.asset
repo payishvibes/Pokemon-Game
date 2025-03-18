@@ -14,23 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   source: {fileID: 11400000, guid: 4f843dafd69ae554e90f655d7e688db3, type: 2}
   level: 5
+  currentHealth: 22
   name: Charmander
-  maxHealth: 9
-  currentHealth: 9
-  catchRate: 0
+  maxHealth: 22
+  attack: 15
+  defense: 13
+  specialAttack: 17
+  specialDefense: 15
+  speed: 18
   exp: 0
-  attack: 11
-  defense: 10
-  specialAttack: 11
-  specialDefense: 10
-  speed: 12
-  texture: {fileID: 21300000, guid: 7474906acb369644c90c292e5efd482b, type: 3}
+  EVs: 000000000000000000000000000000000000000000000000
+  IVs: 000000000000000000000000000000000000000000000000
+  affection: 0
   isFainted: 0
   statusEffect: {fileID: 11400000, guid: 70a8b2171523288439f255c2f97685d9, type: 2}
-  frozen: 0
-  asleep: 0
-  primaryType: 7
-  secondaryType: 0
   moves:
   - {fileID: 11400000, guid: 71e65ff655656454b8becbb1cc1b57b4, type: 2}
   - {fileID: 11400000, guid: d4639e5cb3f782d4587a463bffb7265a, type: 2}
+  movePpInfos: []

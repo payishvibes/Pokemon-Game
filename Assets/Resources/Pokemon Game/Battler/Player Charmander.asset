@@ -14,22 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   source: {fileID: 11400000, guid: 4f843dafd69ae554e90f655d7e688db3, type: 2}
   level: 5
-  currentHealth: 9
+  currentHealth: 22
   name: Charmander
-  maxHealth: 9
-  attack: 11
-  defense: 10
-  specialAttack: 6
-  specialDefense: 11
-  speed: 10
+  maxHealth: 22
+  attack: 15
+  defense: 13
+  specialAttack: 17
+  specialDefense: 15
+  speed: 18
   exp: 8
-  hpEV: 0
-  attackEV: 0
-  defenseEV: 0
-  specialAttackEV: 0
-  specialDefenseEV: 0
+  EVs: 000000000000000000000000000000000000000000000000
+  IVs: 000000000000000000000000000000000000000000000000
   affection: 0
-  speedEV: 0
   isFainted: 0
   statusEffect: {fileID: 11400000, guid: 70a8b2171523288439f255c2f97685d9, type: 2}
   moves:
