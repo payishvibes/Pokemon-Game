@@ -73,6 +73,7 @@ namespace PokemonGame.General
         [Space]
         public int[] EVs = new int[6];
         public int[] IVs = new int[6];
+        public Nature nature;
 
         /// <summary>
         /// The Affection stat of the battler
@@ -257,23 +258,118 @@ namespace PokemonGame.General
         {
             if(!source) return;
 
+            float attackModifier = 1;
+            float defenseModifier = 1;
+            float specialAttackModifier = 1;
+            float specialDefenseModifier = 1;
+            float speedModifier = 1;
+
+            switch (nature)
+            {
+                case Nature.Adamant:
+                    attackModifier = 1.1f;
+                    specialAttackModifier = 0.9f;
+                    break;
+                case Nature.Bold:
+                    defenseModifier = 1.1f;
+                    attackModifier = 0.9f;
+                    break;
+                case Nature.Brave:
+                    attackModifier = 1.1f;
+                    speedModifier = 0.9f;
+                    break;
+                case Nature.Calm:
+                    specialDefenseModifier = 1.1f;
+                    attackModifier = 0.9f;
+                    break;
+                case Nature.Careful:
+                    specialDefenseModifier = 1.1f;
+                    attackModifier = 0.9f;
+                    break;
+                case Nature.Gentle:
+                    specialDefenseModifier = 1.1f;
+                    defenseModifier = 0.9f;
+                    break;
+                case Nature.Hasty:
+                    speedModifier = 1.1f;
+                    attackModifier = 0.9f;
+                    break;
+                case Nature.Impish:
+                    defenseModifier = 1.1f;
+                    specialAttackModifier = 0.9f;
+                    break;
+                case Nature.Jolly:
+                    speedModifier = 1.1f;
+                    specialAttackModifier = 0.9f;
+                    break;
+                case Nature.Lax:
+                    defenseModifier = 1.1f;
+                    specialDefenseModifier = 0.9f;
+                    break;
+                case Nature.Lonely:
+                    attackModifier = 1.1f;
+                    defenseModifier = 0.9f;
+                    break;
+                case Nature.Mild:
+                    specialAttackModifier = 1.1f;
+                    defenseModifier = 0.9f;
+                    break;
+                case Nature.Modest:
+                    attackModifier = 1.1f;
+                    specialAttackModifier = 0.9f;
+                    break;
+                case Nature.Naive:
+                    specialAttackModifier = 1.1f;
+                    defenseModifier = 0.9f;
+                    break;
+                case Nature.Naughty:
+                    attackModifier = 1.1f;
+                    specialDefenseModifier = 0.9f;
+                    break;
+                case Nature.Quiet:
+                    specialAttackModifier = 1.1f;
+                    speedModifier = 0.9f;
+                    break;
+                case Nature.Rash:
+                    specialAttackModifier = 1.1f;
+                    specialDefenseModifier = 0.9f;
+                    break;
+                case Nature.Relaxed:
+                    defenseModifier = 1.1f;
+                    speedModifier = 0.9f;
+                    break;
+                case Nature.Sassy:
+                    specialDefenseModifier = 1.1f;
+                    speedModifier = 0.9f;
+                    break;
+                case Nature.Timid:
+                    speedModifier = 1.1f;
+                    attackModifier = 0.9f;
+                    break;
+            }
+
             maxHealth = Mathf.FloorToInt((((2f * source.baseHealth + IVs[0]) * 2 + Mathf.FloorToInt(EVs[0] / 4f)) *
                                           level) / 100) + level + 10;
             
             attack = Mathf.FloorToInt((((2f * source.baseAttack + IVs[1]) * 2 + Mathf.FloorToInt(EVs[1] / 4f)) *
                                           level) / 100) + 5;
+            attack = Mathf.FloorToInt(attack * attackModifier);
             
             defense = Mathf.FloorToInt((((2f * source.baseDefense + IVs[2]) * 2 + Mathf.FloorToInt(EVs[2] / 4f)) *
                                        level) / 100) + 5;
+            defense = Mathf.FloorToInt(defense * defenseModifier);
             
             specialAttack = Mathf.FloorToInt((((2f * source.baseSpecialAttack + IVs[3]) * 2 + Mathf.FloorToInt(EVs[3] / 4f)) *
                                         level) / 100) + 5;
+            specialAttack = Mathf.FloorToInt(specialAttack * specialAttackModifier);
             
             specialDefense = Mathf.FloorToInt((((2f * source.baseSpecialDefense + IVs[4]) * 2 + Mathf.FloorToInt(EVs[4] / 4f)) *
                                         level) / 100) + 5;
+            specialDefense = Mathf.FloorToInt(specialDefense * specialDefenseModifier);
             
             speed = Mathf.FloorToInt((((2f * source.baseSpeed + IVs[5]) * 2 + Mathf.FloorToInt(EVs[5] / 4f)) *
                                                level) / 100) + 5;
+            speed = Mathf.FloorToInt(speed * speedModifier);
         }
 
         public void UpdateLevel(int newLevel)
@@ -381,5 +477,34 @@ namespace PokemonGame.General
             
             return returnBattler;
         }
+    }
+
+    public enum Nature
+    {
+        Adamant,
+        Bashful,
+        Bold,
+        Brave,
+        Calm,
+        Careful,
+        Docile,
+        Gentle,
+        Hardy,
+        Hasty,
+        Impish,
+        Jolly,
+        Lax,
+        Lonely,
+        Mild,
+        Modest,
+        Naive,
+        Naughty,
+        Quiet,
+        Quirky,
+        Rash,
+        Relaxed,
+        Sassy,
+        Serious,
+        Timid
     }
 }
