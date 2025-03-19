@@ -1,5 +1,4 @@
 using System;
-using PokemonGame.Battle;
 using PokemonGame.General;
 using UnityEngine.Events;
 
@@ -14,7 +13,7 @@ namespace PokemonGame.ScriptableObjects
         public new string name;
         public Sprite sprite;
         public ItemType type;
-        public string description;
+        [TextArea] public string description;
         public int cost;
         public bool useInBattle;
         [ConditionalHide("useInBattle", 1)] public bool lockedTarget;
@@ -55,7 +54,7 @@ namespace PokemonGame.ScriptableObjects
         TR,
         Berry,
         KeyItem,
-        HeldItem,
+        HoldItems,
     }
 
     public enum ItemUseType : int

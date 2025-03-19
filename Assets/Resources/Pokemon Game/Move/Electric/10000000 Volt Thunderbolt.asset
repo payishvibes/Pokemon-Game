@@ -14,13 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: 10000000 Volt Thunderbolt
   type: {fileID: 11400000, guid: cde34f3d09353db4dbc1c3345d036ff3, type: 2}
+  description: Pikachu-exclusive Z-Move. High critical hit ratio.
   damage: 195
   basePP: 1
-  accuracy: 2.1474836e+9
+  accuracy: 0
   category: 1
-  zMove: 1
+  probability: -1
+  zMove: 0
   zCrystal: {fileID: 0}
-  unique: 1
+  unique: 0
   uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:

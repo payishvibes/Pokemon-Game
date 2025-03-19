@@ -15,10 +15,12 @@ namespace PokemonGame.ScriptableObjects
     {
         public new string name;
         public Type type;
+        [TextArea] public string description;
         public int damage;
         public int basePP;
         public float accuracy;
         public MoveCategory category;
+        [Tooltip("Only used if the move has a chance to do something else")] public float probability;
         public bool zMove;
         [ConditionalHide("zMove")] 
         public Item zCrystal;

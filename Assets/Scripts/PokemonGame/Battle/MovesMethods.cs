@@ -119,7 +119,7 @@ namespace PokemonGame.Battle
         {
             DateTime start = DateTime.Now;
             StreamReader streamReader =
-                new StreamReader("C:\\Users\\Mr. Monster\\Documents\\Pokemon Gen 7 database\\moves.csv");
+                new StreamReader("C:\\Users\\Mr. Monster\\Documents\\Pokemon Gen 7 database\\moves other.csv");
             bool endOfFile = false;
             while (!endOfFile)
             {
@@ -136,48 +136,65 @@ namespace PokemonGame.Battle
                 dataString = dataString.Replace("\"", "");
                 var values = Regex.Split(dataString, @",(?=[^0])", RegexOptions.None);
 
-                values[1] = values[1].Replace(",", "");
+                values[0] = values[0].Replace(",", "");
+
+                values[2] = values[2].Replace("https://img.pokemondb.net/images/icons/move-special.png", "Special");
+                values[2] = values[2].Replace("https://img.pokemondb.net/images/icons/move-physical.png", "Physical");
+                values[2] = values[2].Replace("https://img.pokemondb.net/images/icons/move-special.png", "Status");
                 
                 Move move = CreateInstance<Move>();
                 
-                move.type = Type.FromBasic((BasicType)Enum.Parse(typeof(BasicType), values[2], true));
-                if (string.IsNullOrEmpty(values[3]))
+                move.type = Type.FromBasic((BasicType)Enum.Parse(typeof(BasicType), values[1], true));
+                if (string.IsNullOrEmpty(values[2]))
                 {
                     move.category = MoveCategory.ZMove;
                 }
                 else
                 {
-                    move.category = (MoveCategory)Enum.Parse(typeof(MoveCategory), values[3], true);
+                    move.category = (MoveCategory)Enum.Parse(typeof(MoveCategory), values[2], true);
                 }
-                move.name = values[1];
-                move.basePP = int.Parse(values[4]);
-                if (values[5] == "-2")
+                move.name = values[0];
+                move.basePP = int.Parse(values[5]);
+                move.description = values[6];
+                if (values[3] == "-1")
+                {
+                    move.probability = 0;
+                }
+                else
+                {
+                    move.probability = int.Parse(values[7]);
+                }
+                if (values[3] == "-2")
                 {
                     move.damage = Int32.MaxValue;
                 }
-                else if (values[5] == "-1")
+                else if (values[3] == "-1")
                 {
                     move.damage = 0;
                 }
                 else
                 {
-                    move.damage = int.Parse(values[5]);
+                    move.damage = int.Parse(values[3]);
                 }
                 
-                if (values[6] == "-2")
+                if (values[4] == "-2")
                 {
                     move.accuracy = Int32.MaxValue;
                 }
-                else if (values[6] == "-1")
+                else if (values[4] == "-1")
                 {
                     move.accuracy = 0;
                 }
                 else
                 {
-                    move.accuracy = int.Parse(values[6])/100f;
+                    move.accuracy = int.Parse(values[4])/100f;
                 }
                 
                 AssetDatabase.CreateAsset(move, $"Assets/Resources/Pokemon Game/Move/{move.type.name}/{move.name}.asset");
+                
+                Debug.Log($"Created Move: {move.name}");
+
+                endOfFile = true;
             }
             
             streamReader.Close();
