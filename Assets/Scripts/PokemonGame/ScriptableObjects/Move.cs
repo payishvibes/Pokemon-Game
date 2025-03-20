@@ -14,11 +14,13 @@ namespace PokemonGame.ScriptableObjects
     public class Move : ScriptableObject
     {
         public new string name;
+        [HideInInspector] public int id;
         public Type type;
         [TextArea] public string description;
         public int damage;
         public int basePP;
         public float accuracy;
+        public float priority;
         public MoveCategory category;
         [Tooltip("Only used if the move has a chance to do something else")] public float probability;
         public bool zMove;
@@ -30,6 +32,8 @@ namespace PokemonGame.ScriptableObjects
         [ConditionalHide("unique")] public Battler uniqueBattler;
     
         public UnityEvent<MoveMethodEventArgs> MoveMethodEvent;
+
+        public int target;
 
         private void OnValidate()
         {

@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.IO;
 using System.Text.RegularExpressions;
 using PokemonGame.General;
@@ -119,7 +120,7 @@ namespace PokemonGame.Battle
         {
             DateTime start = DateTime.Now;
             StreamReader streamReader =
-                new StreamReader("C:\\Users\\Mr. Monster\\Documents\\Pokemon Gen 7 database\\moves other.csv");
+                new StreamReader("C:\\Users\\Mr. Monster\\Documents\\Pokemon Gen 7 database\\moves (1).csv");
             bool endOfFile = false;
             while (!endOfFile)
             {
@@ -130,65 +131,82 @@ namespace PokemonGame.Battle
                     break;
                 }
                 
-                dataString = dataString.Replace("—", "-1");
-                dataString = dataString.Replace("%", "");
-                dataString = dataString.Replace("∞", "-2");
-                dataString = dataString.Replace("\"", "");
                 var values = Regex.Split(dataString, @",(?=[^0])(?=[^ ])", RegexOptions.None);
 
-                values[0] = values[0].Replace(",", "");
-
-                values[2] = values[2].Replace("https://img.pokemondb.net/images/icons/move-special.png", "Special");
-                values[2] = values[2].Replace("https://img.pokemondb.net/images/icons/move-physical.png", "Physical");
-                values[2] = values[2].Replace("https://img.pokemondb.net/images/icons/move-status.png", "Status");
+                TextInfo textInfo = new CultureInfo("en-AU", false).TextInfo;
                 
                 Move move = CreateInstance<Move>();
-                
-                move.type = Type.FromBasic((BasicType)Enum.Parse(typeof(BasicType), values[1], true));
-                if (values[6].ToLower().Contains("z-"))
+                move.name = textInfo.ToTitleCase(values[1]);
+
+                switch (int.Parse(values[3]))
                 {
-                    move.category = MoveCategory.ZMove;
+                    case 1:
+                        move.type = Type.FromBasic(BasicType.Normal);
+                        break;
+                    case 2:
+                        move.type = Type.FromBasic(BasicType.Fighting);
+                        break;
+                    case 3:
+                        move.type = Type.FromBasic(BasicType.Flying);
+                        break;
+                    case 4:
+                        move.type = Type.FromBasic(BasicType.Poison);
+                        break;
+                    case 5:
+                        move.type = Type.FromBasic(BasicType.Ground);
+                        break;
+                    case 6:
+                        move.type = Type.FromBasic(BasicType.Rock);
+                        break;
+                    case 7:
+                        move.type = Type.FromBasic(BasicType.Bug);
+                        break;
+                    case 8:
+                        move.type = Type.FromBasic(BasicType.Ghost);
+                        break;
+                    case 9:
+                        move.type = Type.FromBasic(BasicType.Steel);
+                        break;
+                    case 10:
+                        move.type = Type.FromBasic(BasicType.Fire);
+                        break;
+                    case 11:
+                        move.type = Type.FromBasic(BasicType.Water);
+                        break;
+                    case 12:
+                        move.type = Type.FromBasic(BasicType.Grass);
+                        break;
+                    case 13:
+                        move.type = Type.FromBasic(BasicType.Electric);
+                        break;
+                    case 14:
+                        move.type = Type.FromBasic(BasicType.Psychic);
+                        break;
+                    case 15:
+                        move.type = Type.FromBasic(BasicType.Ice);
+                        break;
+                    case 16:
+                        move.type = Type.FromBasic(BasicType.Dragon);
+                        break;
+                    case 17:
+                        move.type = Type.FromBasic(BasicType.Dark);
+                        break;
+                    case 18:
+                        move.type = Type.FromBasic(BasicType.Fairy);
+                        break;
                 }
-                else
-                {
-                    move.category = (MoveCategory)Enum.Parse(typeof(MoveCategory), values[2], true);
-                }
-                move.name = values[0];
+
+                move.damage = int.Parse(values[4]);
                 move.basePP = int.Parse(values[5]);
-                move.description = values[6];
-                if (values[7] == "-1")
+                move.accuracy = int.Parse(values[6]);
+                move.priority = int.Parse(values[7]);
+
+                move.target = int.Parse(values[8]);
+
+                switch (int.Parse(values[9]))
                 {
-                    move.probability = 0;
-                }
-                else
-                {
-                    move.probability = int.Parse(values[7]);
-                }
-                
-                if (values[3] == "-2")
-                {
-                    move.damage = Int32.MaxValue;
-                }
-                else if (values[3] == "-1")
-                {
-                    move.damage = 0;
-                }
-                else
-                {
-                    move.damage = int.Parse(values[3]);
-                }
-                
-                if (values[4] == "-2")
-                {
-                    move.accuracy = Int32.MaxValue;
-                }
-                else if (values[4] == "-1")
-                {
-                    move.accuracy = 0;
-                }
-                else
-                {
-                    move.accuracy = int.Parse(values[4])/100f;
+                    case 1:
+                        break;
                 }
                 
                 AssetDatabase.CreateAsset(move, $"Assets/Resources/Pokemon Game/Move/{move.type.name}/{move.name}.asset");
