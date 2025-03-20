@@ -145,7 +145,7 @@ namespace PokemonGame.Battle
                 Move move = CreateInstance<Move>();
                 
                 move.type = Type.FromBasic((BasicType)Enum.Parse(typeof(BasicType), values[1], true));
-                if (string.IsNullOrEmpty(values[2]))
+                if (values[6].ToLower().Contains("z-"))
                 {
                     move.category = MoveCategory.ZMove;
                 }

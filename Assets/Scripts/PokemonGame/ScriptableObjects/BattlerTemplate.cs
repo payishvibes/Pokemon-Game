@@ -94,11 +94,11 @@ namespace PokemonGame.ScriptableObjects
                 texture.basic = Resources.Load<Sprite>($"Pokemon Game/sprites/{dexNo}");
                 texture.shiny = Resources.Load<Sprite>($"Pokemon Game/sprites/shiny/{dexNo}");
                 texture.female = Resources.Load<Sprite>($"Pokemon Game/sprites/female/{dexNo}");
-                texture.femaleShiny = Resources.Load<Sprite>($"Pokemon Game/sprites/female/shiny/{dexNo}");
+                texture.femaleShiny = Resources.Load<Sprite>($"Pokemon Game/sprites/shiny/female/{dexNo}");
                 texture.basicBack = Resources.Load<Sprite>($"Pokemon Game/sprites/back/{dexNo}");
                 texture.shinyBack = Resources.Load<Sprite>($"Pokemon Game/sprites/back/shiny/{dexNo}");
                 texture.femaleBack = Resources.Load<Sprite>($"Pokemon Game/sprites/back/female/{dexNo}");
-                texture.femaleShinyBack = Resources.Load<Sprite>($"Pokemon Game/sprites/back/female/shiny/{dexNo}");
+                texture.femaleShinyBack = Resources.Load<Sprite>($"Pokemon Game/sprites/back/shiny/female/{dexNo}");
                 
                 while (yields.Count < 8)
                 {
@@ -167,6 +167,7 @@ namespace PokemonGame.ScriptableObjects
         public List<Move> tutor;
     }
 
+    [Serializable]
     public class Sprites
     {
         public Sprite basic;

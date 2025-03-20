@@ -15,10 +15,22 @@ MonoBehaviour:
   name: Charmeleon
   primaryType: 7
   secondaryType: 0
-  evolutionTree: {fileID: 0}
-  expGroup: 3
-  texture: {fileID: 21300000, guid: e436bd577ba38154ba74f7e1a6725d14, type: 3}
+  texture:
+    basic: {fileID: 21300000, guid: e436bd577ba38154ba74f7e1a6725d14, type: 3}
+    female: {fileID: 0}
+    basicBack: {fileID: 21300000, guid: 3483f7ce4a8a27644bcabb7b7a3e763d, type: 3}
+    femaleBack: {fileID: 0}
+    shiny: {fileID: 21300000, guid: 9fcbed08235cb6a438bf628d36f067fc, type: 3}
+    femaleShiny: {fileID: 0}
+    shinyBack: {fileID: 21300000, guid: fe4d4997375f71e4aa86d821a0a88348, type: 3}
+    femaleShinyBack: {fileID: 0}
   dexNo: 5
+  possibleMoves:
+    egg: []
+    tutor: []
+  evolutions:
+    possibleEvolutions: []
+  expGroup: 3
   catchRate: 45
   baseFriendship: 50
   baseHealth: 58

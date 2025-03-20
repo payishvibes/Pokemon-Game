@@ -15,10 +15,22 @@ MonoBehaviour:
   name: Lunala
   primaryType: 15
   secondaryType: 9
-  evolutionTree: {fileID: 0}
-  expGroup: 5
-  texture: {fileID: 21300000, guid: 72df84727f5b2a64ea8e3a9f174d6aff, type: 3}
+  texture:
+    basic: {fileID: 21300000, guid: 72df84727f5b2a64ea8e3a9f174d6aff, type: 3}
+    female: {fileID: 0}
+    basicBack: {fileID: 21300000, guid: b1c1963e0130c014caadd3a0cfb0ce59, type: 3}
+    femaleBack: {fileID: 0}
+    shiny: {fileID: 21300000, guid: 8b09fa57dfebac446a5e15ec3decb6c5, type: 3}
+    femaleShiny: {fileID: 0}
+    shinyBack: {fileID: 21300000, guid: 9d3113b693c2bd944ac4c5289c258fe0, type: 3}
+    femaleShinyBack: {fileID: 0}
   dexNo: 792
+  possibleMoves:
+    egg: []
+    tutor: []
+  evolutions:
+    possibleEvolutions: []
+  expGroup: 5
   catchRate: 45
   baseFriendship: 0
   baseHealth: 137

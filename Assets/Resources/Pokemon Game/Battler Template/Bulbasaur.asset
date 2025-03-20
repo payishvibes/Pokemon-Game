@@ -15,11 +15,22 @@ MonoBehaviour:
   name: Bulbasaur
   primaryType: 10
   secondaryType: 14
-  evolutionTree: {fileID: 11400000, guid: b38a500dc2c846e4291766f6027aa0d4, type: 2}
-  expGroup: 3
-  texture: {fileID: 21300000, guid: 38597cbc14a606d4596c45f72acc4d8c, type: 3}
+  texture:
+    basic: {fileID: 21300000, guid: 38597cbc14a606d4596c45f72acc4d8c, type: 3}
+    female: {fileID: 0}
+    basicBack: {fileID: 21300000, guid: 6839649afdbde4d4fab121d2ca2763de, type: 3}
+    femaleBack: {fileID: 0}
+    shiny: {fileID: 21300000, guid: 1ea44c5ae77a5e448a6e70dbd47bdb09, type: 3}
+    femaleShiny: {fileID: 0}
+    shinyBack: {fileID: 21300000, guid: e47397aa68102dc45af17be41ff6ffe5, type: 3}
+    femaleShinyBack: {fileID: 0}
   dexNo: 1
-  possibleMoves: []
+  possibleMoves:
+    egg: []
+    tutor: []
+  evolutions:
+    possibleEvolutions: []
+  expGroup: 3
   catchRate: 45
   baseFriendship: 50
   baseHealth: 45

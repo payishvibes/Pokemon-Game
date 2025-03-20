@@ -18,7 +18,7 @@ MonoBehaviour:
   damage: 195
   basePP: 1
   accuracy: 0
-  category: 1
+  category: 3
   probability: 0
   zMove: 0
   zCrystal: {fileID: 0}

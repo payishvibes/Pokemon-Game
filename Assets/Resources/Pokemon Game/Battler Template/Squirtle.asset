@@ -15,10 +15,22 @@ MonoBehaviour:
   name: Squirtle
   primaryType: 18
   secondaryType: 0
-  evolutionTree: {fileID: 11400000, guid: 5eccf2a93603120489186f36be0bcae9, type: 2}
-  expGroup: 3
-  texture: {fileID: 21300000, guid: d7f2fb2a6115a154f94128c33f828cca, type: 3}
+  texture:
+    basic: {fileID: 21300000, guid: d7f2fb2a6115a154f94128c33f828cca, type: 3}
+    female: {fileID: 0}
+    basicBack: {fileID: 21300000, guid: 1118db3b014edc94da1007b2c4aae383, type: 3}
+    femaleBack: {fileID: 0}
+    shiny: {fileID: 21300000, guid: 4615683b1417da14ba571b804c436cf7, type: 3}
+    femaleShiny: {fileID: 0}
+    shinyBack: {fileID: 21300000, guid: 88af43b0d22b93d47bb302af1009e361, type: 3}
+    femaleShinyBack: {fileID: 0}
   dexNo: 7
+  possibleMoves:
+    egg: []
+    tutor: []
+  evolutions:
+    possibleEvolutions: []
+  expGroup: 3
   catchRate: 45
   baseFriendship: 50
   baseHealth: 44

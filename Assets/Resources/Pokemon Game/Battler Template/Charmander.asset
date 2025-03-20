@@ -15,10 +15,22 @@ MonoBehaviour:
   name: Charmander
   primaryType: 7
   secondaryType: 0
-  evolutionTree: {fileID: 11400000, guid: 58547a32e5e74524da8dd4b80fe92f07, type: 2}
-  expGroup: 3
-  texture: {fileID: 21300000, guid: a5158da973c76e64cb7d0251166dc06c, type: 3}
+  texture:
+    basic: {fileID: 21300000, guid: a5158da973c76e64cb7d0251166dc06c, type: 3}
+    female: {fileID: 0}
+    basicBack: {fileID: 21300000, guid: 0faeff5f869647646892c97fd4d0e56b, type: 3}
+    femaleBack: {fileID: 0}
+    shiny: {fileID: 21300000, guid: f72df5d192ae85244a02568a019952aa, type: 3}
+    femaleShiny: {fileID: 0}
+    shinyBack: {fileID: 21300000, guid: 2a858b83a8efb6646a1dfe5636bfafe0, type: 3}
+    femaleShinyBack: {fileID: 0}
   dexNo: 4
+  possibleMoves:
+    egg: []
+    tutor: []
+  evolutions:
+    possibleEvolutions: []
+  expGroup: 3
   catchRate: 45
   baseFriendship: 50
   baseHealth: 39

@@ -15,10 +15,22 @@ MonoBehaviour:
   name: Ivysaur
   primaryType: 10
   secondaryType: 14
-  evolutionTree: {fileID: 0}
-  expGroup: 3
-  texture: {fileID: 21300000, guid: d387224ffba627c409ead162273d5ced, type: 3}
+  texture:
+    basic: {fileID: 21300000, guid: d387224ffba627c409ead162273d5ced, type: 3}
+    female: {fileID: 0}
+    basicBack: {fileID: 21300000, guid: 9d89c8f7cbc94fc4d8875f5ebeb2a91a, type: 3}
+    femaleBack: {fileID: 0}
+    shiny: {fileID: 21300000, guid: e273e73bc5357c343953b68f0ef0a6ec, type: 3}
+    femaleShiny: {fileID: 0}
+    shinyBack: {fileID: 21300000, guid: ee060e3628088ab4c965e0999ee04666, type: 3}
+    femaleShinyBack: {fileID: 0}
   dexNo: 2
+  possibleMoves:
+    egg: []
+    tutor: []
+  evolutions:
+    possibleEvolutions: []
+  expGroup: 3
   catchRate: 45
   baseFriendship: 50
   baseHealth: 60

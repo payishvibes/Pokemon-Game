@@ -15,11 +15,22 @@ MonoBehaviour:
   name: Venusaur
   primaryType: 10
   secondaryType: 14
-  evolutionTree: {fileID: 0}
-  expGroup: 3
-  texture: {fileID: 21300000, guid: 84730f526606efa4bb040a5a3e94348f, type: 3}
+  texture:
+    basic: {fileID: 21300000, guid: 84730f526606efa4bb040a5a3e94348f, type: 3}
+    female: {fileID: 21300000, guid: 4bf10bf17324d8345b79c32990a5cf0e, type: 3}
+    basicBack: {fileID: 21300000, guid: ac66daead871f3840b8ff935ef5a9b6f, type: 3}
+    femaleBack: {fileID: 21300000, guid: 73423835cb836a94b87ec504f4954b1a, type: 3}
+    shiny: {fileID: 21300000, guid: bf0f428989fae6843af3aad84fddeb71, type: 3}
+    femaleShiny: {fileID: 21300000, guid: 8ab07e648688e9047b07ea11e725581a, type: 3}
+    shinyBack: {fileID: 21300000, guid: 9dfd1cdc530321941a224d1732ccbf21, type: 3}
+    femaleShinyBack: {fileID: 21300000, guid: d15d0abb218b9f34eb698bc410cb61f1, type: 3}
   dexNo: 3
-  possibleMoves: []
+  possibleMoves:
+    egg: []
+    tutor: []
+  evolutions:
+    possibleEvolutions: []
+  expGroup: 3
   catchRate: 45
   baseFriendship: 50
   baseHealth: 80
