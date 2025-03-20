@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Play Rough
   type: {fileID: 11400000, guid: f2728e728c5c1fb4db2022f5766212eb, type: 2}
+  description: May lower opponent's Attack.
   damage: 90
   basePP: 10
   accuracy: 0.9
   category: 0
+  probability: 10
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

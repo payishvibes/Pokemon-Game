@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eeb2b8de5210984b8e677799cc5bc80, type: 3}
+  m_Name: TM52
+  m_EditorClassIdentifier: 
+  name: TM52
+  sprite: {fileID: 21300000, guid: bac1faf0f9d7be24da49bcdbe08adce0, type: 3}
+  type: 2
+  description: "The user heightens its mental focus and unleashes its power. This
+    may also lower the target\uFFFDs Sp. Def."
+  cost: 0
+  useInBattle: 0
+  lockedTarget: 0
+  playerParty: 0
+  targetIndex: 0
+  ItemMethodEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  move: {fileID: 11400000, guid: d1d96a206293c574e92ec99167d761d1, type: 2}

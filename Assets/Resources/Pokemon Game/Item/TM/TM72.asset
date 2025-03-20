@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eeb2b8de5210984b8e677799cc5bc80, type: 3}
+  m_Name: TM72
+  m_EditorClassIdentifier: 
+  name: TM72
+  sprite: {fileID: 21300000, guid: 7aa5fa1b6363c51428ecea222f9ffd90, type: 3}
+  type: 2
+  description: "After making its attack, the user rushes back to switch places with
+    a party Pok\uFFFDmon in waiting."
+  cost: 0
+  useInBattle: 0
+  lockedTarget: 0
+  playerParty: 0
+  targetIndex: 0
+  ItemMethodEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  move: {fileID: 11400000, guid: deaf5df6b019cb4468b23dc477248e6c, type: 2}

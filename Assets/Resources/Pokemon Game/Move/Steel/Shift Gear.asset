@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Shift Gear
   type: {fileID: 11400000, guid: e15b708ccad685240ae9eea4c601524a, type: 2}
+  description: Raises user's Attack and sharply raises Speed.
   damage: 0
   basePP: 10
   accuracy: 0
   category: 2
+  probability: 0
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

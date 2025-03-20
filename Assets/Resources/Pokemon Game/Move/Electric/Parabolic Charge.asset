@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Parabolic Charge
   type: {fileID: 11400000, guid: cde34f3d09353db4dbc1c3345d036ff3, type: 2}
+  description: User recovers half the HP inflicted on opponent.
   damage: 65
   basePP: 20
   accuracy: 1
   category: 1
+  probability: 0
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

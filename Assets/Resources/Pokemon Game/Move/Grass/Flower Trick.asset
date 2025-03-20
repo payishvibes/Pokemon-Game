@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e5aad296ed7fa84eacb82768c04ccc9, type: 3}
+  m_Name: Flower Trick
+  m_EditorClassIdentifier: 
+  name: Flower Trick
+  type: {fileID: 11400000, guid: 16677bacbe9d55246878c477b58016ba, type: 2}
+  description: Never misses; always results in a critical hit.
+  damage: 70
+  basePP: -1
+  accuracy: 0.1
+  category: 0
+  probability: -2
+  zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
+  MoveMethodEvent:
+    m_PersistentCalls:
+      m_Calls: []

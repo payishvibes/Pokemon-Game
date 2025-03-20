@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b184adcd3091dd459bfd89c1b8710ff, type: 3}
+  m_Name: Holo Caster
+  m_EditorClassIdentifier: 
+  name: Holo Caster
+  sprite: {fileID: 21300000, guid: 2922a5da4b2ee9e44b8d110175a79e7a, type: 3}
+  type: 4
+  description: "A device that allows users to receive and view hologram clips at
+    any time. It\u2019s also used to chat with others."
+  cost: 0
+  useInBattle: 0
+  lockedTarget: 0
+  playerParty: 0
+  targetIndex: 0
+  ItemMethodEvent:
+    m_PersistentCalls:
+      m_Calls: []

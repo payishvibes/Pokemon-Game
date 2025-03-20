@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Coil
   type: {fileID: 11400000, guid: a1e857e04105cf747bc8c86d4a4cc14c, type: 2}
+  description: Raises user's Attack, Defense and Accuracy.
   damage: 0
   basePP: 20
   accuracy: 0
   category: 2
+  probability: 0
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

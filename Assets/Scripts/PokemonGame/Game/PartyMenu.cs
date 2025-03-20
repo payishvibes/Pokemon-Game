@@ -20,7 +20,7 @@ public class PartyMenu : MonoBehaviour
                 display.Init(currentBattler.name, currentBattler.currentHealth, currentBattler.maxHealth,
                     currentBattler.statusEffect, currentBattler.exp,
                     ExperienceCalculator.RequiredForNextLevel(currentBattler),
-                    currentBattler.source.texture);
+                    currentBattler.GetSpriteFront());
             }
         }
     }

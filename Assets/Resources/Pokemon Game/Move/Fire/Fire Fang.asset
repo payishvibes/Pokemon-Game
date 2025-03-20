@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Fire Fang
   type: {fileID: 11400000, guid: 2a85514d25185dc4b9be8cdaec17c0d0, type: 2}
+  description: May cause flinching and/or burn opponent.
   damage: 65
   basePP: 15
   accuracy: 0.95
   category: 0
+  probability: 10
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

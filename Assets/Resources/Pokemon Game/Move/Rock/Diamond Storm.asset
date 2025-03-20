@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Diamond Storm
   type: {fileID: 11400000, guid: b26a9af63fede1e4982ef43c75f280ea, type: 2}
+  description: May sharply raise user's Defense.
   damage: 100
   basePP: 5
   accuracy: 0.95
   category: 0
+  probability: 50
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

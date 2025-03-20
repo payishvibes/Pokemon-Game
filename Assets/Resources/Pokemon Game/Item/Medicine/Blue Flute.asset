@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b184adcd3091dd459bfd89c1b8710ff, type: 3}
+  m_Name: Blue Flute
+  m_EditorClassIdentifier: 
+  name: Blue Flute
+  sprite: {fileID: 21300000, guid: 4ef44ee566cb75c4d9c1ceaf4b79b676, type: 3}
+  type: 1
+  description: A flute made from blue glass that awakens sleeping Pokemon.
+  cost: 0
+  useInBattle: 0
+  lockedTarget: 0
+  playerParty: 0
+  targetIndex: 0
+  ItemMethodEvent:
+    m_PersistentCalls:
+      m_Calls: []

@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Smog
   type: {fileID: 11400000, guid: a1e857e04105cf747bc8c86d4a4cc14c, type: 2}
+  description: May poison opponent.
   damage: 30
   basePP: 20
   accuracy: 0.7
   category: 1
+  probability: 40
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

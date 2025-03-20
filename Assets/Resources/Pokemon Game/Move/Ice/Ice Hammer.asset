@@ -14,11 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Ice Hammer
   type: {fileID: 11400000, guid: cc8553e72fcb59547b96efa41bfb6395, type: 2}
+  description: The user swings and hits with its strong, heavy fist. It lowers the
+    user's Speed, however.
   damage: 100
   basePP: 10
   accuracy: 0.9
   category: 0
+  probability: 100
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

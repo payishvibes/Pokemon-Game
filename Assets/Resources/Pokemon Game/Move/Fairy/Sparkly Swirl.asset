@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Sparkly Swirl
   type: {fileID: 11400000, guid: f2728e728c5c1fb4db2022f5766212eb, type: 2}
-  damage: 120
-  basePP: 5
-  accuracy: 0.85
+  description: "Cures all status problems in the party Pok\xE9mon."
+  damage: 90
+  basePP: 15
+  accuracy: 1
   category: 1
+  probability: 0
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

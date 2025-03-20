@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Acid Spray
   type: {fileID: 11400000, guid: a1e857e04105cf747bc8c86d4a4cc14c, type: 2}
+  description: Sharply lowers opponent's Special Defense.
   damage: 40
   basePP: 20
   accuracy: 1
   category: 1
+  probability: 100
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

@@ -14,11 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Prismatic Laser
   type: {fileID: 11400000, guid: d43687aadbc21ff4291682914e2bc664, type: 2}
+  description: The user shoots powerful lasers using the power of a prism. The user
+    can't move on the next turn.
   damage: 160
   basePP: 10
   accuracy: 1
   category: 1
+  probability: 0
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

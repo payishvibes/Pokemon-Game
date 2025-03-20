@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b184adcd3091dd459bfd89c1b8710ff, type: 3}
+  m_Name: Apricorn Box
+  m_EditorClassIdentifier: 
+  name: Apricorn Box
+  sprite: {fileID: 21300000, guid: a78f874ea833a774197f3fd3f1a4fec8, type: 3}
+  type: 4
+  description: A handy box where you can store up to 99 of each kind of Apricorn.
+  cost: 0
+  useInBattle: 0
+  lockedTarget: 0
+  playerParty: 0
+  targetIndex: 0
+  ItemMethodEvent:
+    m_PersistentCalls:
+      m_Calls: []

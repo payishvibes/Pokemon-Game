@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Hyperspace Fury
   type: {fileID: 11400000, guid: 6814cf3b84c0291459658e8469b19aa6, type: 2}
+  description: Lowers user's Defense. Can strike through Protect/Detect.
   damage: 100
-  basePP: 5
-  accuracy: 0
+  basePP: 100
+  accuracy: 0.05
   category: 0
+  probability: -2
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

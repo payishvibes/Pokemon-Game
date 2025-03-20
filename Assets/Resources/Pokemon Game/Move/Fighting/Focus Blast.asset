@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Focus Blast
   type: {fileID: 11400000, guid: d19a1b210053ade4ab55da13c78024fd, type: 2}
+  description: May lower opponent's Special Defense.
   damage: 120
   basePP: 5
   accuracy: 0.7
   category: 1
+  probability: 10
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

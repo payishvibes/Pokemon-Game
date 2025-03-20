@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Snarl
   type: {fileID: 11400000, guid: 6814cf3b84c0291459658e8469b19aa6, type: 2}
+  description: Lowers opponent's Special Attack.
   damage: 55
   basePP: 15
   accuracy: 0.95
   category: 1
+  probability: 100
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

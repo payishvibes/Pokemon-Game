@@ -99,28 +99,5 @@ namespace PokemonGame.Global
             Debug.LogWarning($"Could not find {fileToSearch}: {name}, returning null");
             return null;
         }
-
-        /// <summary>
-        /// Gets an evolution for a battler as defined in an evolution tree
-        /// </summary>
-        /// <param name="sampleBattler">The battler you want to evolve</param>
-        /// <returns>The evolution if possible</returns>
-        public static Evolution GetEvolution(Battler sampleBattler)
-        {
-            EvolutionTree[] trees = Resources.LoadAll<EvolutionTree>("Pokemon Game/Evolution Trees");
-
-            for (int i = 0; i < trees.Length; i++)
-            {
-                for (int j = 0; j < trees[i].evolutions.Count; j++)
-                {
-                    if (trees[i].evolutions[j].initial == sampleBattler.source)
-                    {
-                        return trees[i].evolutions[j];
-                    }
-                }
-            }
-            
-            return null;
-        }
     }
 }

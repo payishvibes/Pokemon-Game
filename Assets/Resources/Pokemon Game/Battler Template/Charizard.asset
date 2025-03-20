@@ -191,7 +191,7 @@ MonoBehaviour:
   - move: {fileID: 11400000, guid: a5264ad4f182e954998622e9dfd04eaf, type: 2}
     throughLevelUp: 0
     level: 0
-    item: {fileID: 0}
+    item: {fileID: 11400000, guid: 8b972b0fa35e3ef44965a1bf0f446fb7, type: 2}
   - move: {fileID: 11400000, guid: 88595a9c89c9c234fb39496c66a49395, type: 2}
     throughLevelUp: 0
     level: 0

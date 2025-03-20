@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b184adcd3091dd459bfd89c1b8710ff, type: 3}
+  m_Name: Ilima's Normalium Z
+  m_EditorClassIdentifier: 
+  name: Ilima's Normalium Z
+  sprite: {fileID: 21300000, guid: 0bcd5c294b08fcd49b9ef3b9b62a2070, type: 3}
+  type: 4
+  description: The Normalium Z you were entrusted with by Ilima. You were asked to
+    place it on the pedestal at the back of Verdant Cavern.
+  cost: 0
+  useInBattle: 0
+  lockedTarget: 0
+  playerParty: 0
+  targetIndex: 0
+  ItemMethodEvent:
+    m_PersistentCalls:
+      m_Calls: []

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b184adcd3091dd459bfd89c1b8710ff, type: 3}
+  m_Name: Prison Bottle
+  m_EditorClassIdentifier: 
+  name: Prison Bottle
+  sprite: {fileID: 21300000, guid: b5640f45c9af6614b8faf1269d45d40e, type: 3}
+  type: 4
+  description: A bottle believed to have been used to seal away the power of a certain
+    Pokemon long, long ago.
+  cost: 0
+  useInBattle: 0
+  lockedTarget: 0
+  playerParty: 0
+  targetIndex: 0
+  ItemMethodEvent:
+    m_PersistentCalls:
+      m_Calls: []

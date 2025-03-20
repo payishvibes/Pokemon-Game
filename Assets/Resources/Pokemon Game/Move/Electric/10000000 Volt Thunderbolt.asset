@@ -19,7 +19,7 @@ MonoBehaviour:
   basePP: 1
   accuracy: 0
   category: 1
-  probability: -1
+  probability: 0
   zMove: 0
   zCrystal: {fileID: 0}
   unique: 0

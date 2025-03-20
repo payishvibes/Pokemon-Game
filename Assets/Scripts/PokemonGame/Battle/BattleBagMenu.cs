@@ -68,14 +68,14 @@ namespace PokemonGame.Battle
                 Button useButton = display.GetComponentInChildren<Button>();
                 int index = i;
                 
-                if (Battle.Singleton.trainerBattle && sortedItems[i].item.type == ItemType.PokeBall)
+                if (Battle.Singleton.trainerBattle && sortedItems[i].item.type == ItemType.PokeBalls)
                 {
                     useButton.interactable = false;
                 }
 
                 if (sortedItems[i].item.lockedTarget)
                 {
-                    if (sortedItems[i].item.type == ItemType.PokeBall)
+                    if (sortedItems[i].item.type == ItemType.PokeBalls)
                     {
                         useButton.onClick.AddListener(() =>
                         {

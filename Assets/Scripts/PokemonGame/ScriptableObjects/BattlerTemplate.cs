@@ -1,11 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using PokemonGame.General;
-using PokemonGame.Global;
 
 namespace PokemonGame.ScriptableObjects
 {
@@ -17,11 +13,11 @@ namespace PokemonGame.ScriptableObjects
         public new string name;
         public BasicType primaryType;
         public BasicType secondaryType;
-        public EvolutionTree evolutionTree;
-        public ExperienceGroup expGroup;
-        public Sprite texture;
+        public Sprites texture;
         public int dexNo;
-        public List<PossibleMove> possibleMoves;
+        public PossibleMoves possibleMoves;
+        public Evolution evolutions;
+        public ExperienceGroup expGroup;
         [Space] 
         [Header("Stats")] 
         public int catchRate;
@@ -38,8 +34,8 @@ namespace PokemonGame.ScriptableObjects
         {
             FillMoveInfo();
             
-            // FillBasicInfo();
-            // FillYieldInfo();
+            FillBasicInfo();
+            FillYieldInfo();
         }
 
         private void FillBasicInfo()
@@ -93,8 +89,16 @@ namespace PokemonGame.ScriptableObjects
                 baseFriendship = int.Parse(values[21]);
                 this.dexNo = dexNo;
 
-                evolutionTree = Resources.Load<EvolutionTree>($"Pokemon Game/EvolutionTrees/{name}");
-                texture = Resources.Load<Sprite>($"Pokemon Game/Sprites/{dexNo}");
+                texture = new Sprites();
+                
+                texture.basic = Resources.Load<Sprite>($"Pokemon Game/sprites/{dexNo}");
+                texture.shiny = Resources.Load<Sprite>($"Pokemon Game/sprites/shiny/{dexNo}");
+                texture.female = Resources.Load<Sprite>($"Pokemon Game/sprites/female/{dexNo}");
+                texture.femaleShiny = Resources.Load<Sprite>($"Pokemon Game/sprites/female/shiny/{dexNo}");
+                texture.basicBack = Resources.Load<Sprite>($"Pokemon Game/sprites/back/{dexNo}");
+                texture.shinyBack = Resources.Load<Sprite>($"Pokemon Game/sprites/back/shiny/{dexNo}");
+                texture.femaleBack = Resources.Load<Sprite>($"Pokemon Game/sprites/back/female/{dexNo}");
+                texture.femaleShinyBack = Resources.Load<Sprite>($"Pokemon Game/sprites/back/female/shiny/{dexNo}");
                 
                 while (yields.Count < 8)
                 {
@@ -150,80 +154,28 @@ namespace PokemonGame.ScriptableObjects
 
         private void FillMoveInfo()
         {
-            using (StreamReader r = new StreamReader("C:\\Users\\Mr. Monster\\Downloads\\ultrasunultramoon.json"))
-            {
-                string json = r.ReadToEnd();
-                List<PokemonData> items = JsonConvert.DeserializeObject<List<PokemonData>>(json);
-
-                List<MoveData> movesNumbers = items[dexNo - 1].moves.ToList();
-                List<PossibleMove> newPossibleMoves = new List<PossibleMove>(); 
-                
-                for (int i = 0; i < movesNumbers.Count; i++)
-                {
-                    StreamReader streamReader =
-                        new StreamReader("C:\\Users\\Mr. Monster\\Documents\\Pokemon Gen 7 database\\moves.csv");
-                    bool endOfFile = false;
-                    while (!endOfFile)
-                    {
-                        string dataString = streamReader.ReadLine();
-                        if (dataString == null)
-                        {
-                            endOfFile = true;
-                            break;
-                        }
-
-                        var dataValues = Regex.Split(dataString, @"(?<=[^']),(?=[^'])", RegexOptions.None);
-                
-                        if (int.Parse(dataValues[0]) == movesNumbers[i].move)
-                        {
-                            dataString = dataString.Replace("\"", "");
-                            dataValues[1] = dataValues[1].Replace(",", "");
-
-                            PossibleMove newPossibleMove = new PossibleMove();
-                            newPossibleMove.move = Registry.GetMove(dataValues[1]);
-                            newPossibleMove.throughLevelUp = movesNumbers[i].method == "levelup";
-                            if (newPossibleMove.throughLevelUp)
-                            {
-                                newPossibleMove.level = movesNumbers[i].level;
-                            }
-                            else
-                            {
-                                newPossibleMove.item = Registry.GetItem(movesNumbers[i].item);
-                            }
-                            
-                            newPossibleMoves.Add(newPossibleMove);
-                        }
-                    }
             
-                    streamReader.Close();
-                }
-
-                possibleMoves = newPossibleMoves;
-            }
         }
     }
 
-    public class PokemonData
-    {
-        public int pokemon;
-        public int form;
-        public MoveData[] moves;
-    }
-
-    public class MoveData
-    {
-        public int move;
-        public string method;
-        public int level;
-        public string item;
-    }
-
     [Serializable]
-    public class PossibleMove
+    public class PossibleMoves
     {
-        public Move move;
-        public bool throughLevelUp;
-        public int level;
-        public Item item;
+        public Dictionary<Move, int> levelup;
+        public Dictionary<Move, int> tm;
+        public List<Move> egg;
+        public List<Move> tutor;
+    }
+
+    public class Sprites
+    {
+        public Sprite basic;
+        public Sprite female;
+        public Sprite basicBack;
+        public Sprite femaleBack;
+        public Sprite shiny;
+        public Sprite femaleShiny;
+        public Sprite shinyBack;
+        public Sprite femaleShinyBack;
     }
 }

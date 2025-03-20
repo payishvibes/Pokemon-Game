@@ -420,6 +420,16 @@ namespace PokemonGame.General
                 moves, autoAssignHealth);
         }
 
+        public Sprite GetSpriteFront()
+        {
+            return source.texture.basic;
+        }
+
+        public Sprite GetSpriteBack()
+        {
+            return source.texture.basicBack;
+        }
+
         /// <summary>
         /// Returns a battler that has been created using the parameters given
         /// </summary>

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eeb2b8de5210984b8e677799cc5bc80, type: 3}
+  m_Name: TM13
+  m_EditorClassIdentifier: 
+  name: TM13
+  sprite: {fileID: 21300000, guid: 3e73c837e2af7ce42a0ee4a8a77006ff, type: 3}
+  type: 2
+  description: The target is struck with an icy-cold beam of energy. This may also
+    leave the target frozen.
+  cost: 0
+  useInBattle: 0
+  lockedTarget: 0
+  playerParty: 0
+  targetIndex: 0
+  ItemMethodEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  move: {fileID: 11400000, guid: 8d8b1e9bf7587a144be07b5218ff47e3, type: 2}

@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Whirlwind
   type: {fileID: 11400000, guid: 7d400c8d21a01854e94041f45793cbf1, type: 2}
+  description: "In battles, the opponent switches. In the wild, the Pok\xE9mon runs."
   damage: 0
   basePP: 20
-  accuracy: 2.1474836e+9
+  accuracy: 0
   category: 2
+  probability: 0
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

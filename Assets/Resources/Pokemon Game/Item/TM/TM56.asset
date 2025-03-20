@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eeb2b8de5210984b8e677799cc5bc80, type: 3}
+  m_Name: TM56
+  m_EditorClassIdentifier: 
+  name: TM56
+  sprite: {fileID: 21300000, guid: 2833154e6e0477a428365ea6cf9da6d0, type: 3}
+  type: 2
+  description: "The user flings its held item at the target to attack. This move\uFFFDs
+    power and effects depend on the item."
+  cost: 0
+  useInBattle: 0
+  lockedTarget: 0
+  playerParty: 0
+  targetIndex: 0
+  ItemMethodEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  move: {fileID: 11400000, guid: b28d84d0564542d448c7ef8bb277f869, type: 2}

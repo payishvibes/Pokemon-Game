@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Hyperspace Hole
   type: {fileID: 11400000, guid: d43687aadbc21ff4291682914e2bc664, type: 2}
+  description: Can strike through Protect/Detect.
   damage: 80
-  basePP: 5
-  accuracy: 0
+  basePP: -1
+  accuracy: 0.05
   category: 1
+  probability: -2
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

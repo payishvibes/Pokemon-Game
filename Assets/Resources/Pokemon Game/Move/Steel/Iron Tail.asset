@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Iron Tail
   type: {fileID: 11400000, guid: e15b708ccad685240ae9eea4c601524a, type: 2}
+  description: May lower opponent's Defense.
   damage: 100
   basePP: 15
   accuracy: 0.75
   category: 0
+  probability: 30
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

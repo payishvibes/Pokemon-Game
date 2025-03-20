@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Absorb
   type: {fileID: 11400000, guid: 16677bacbe9d55246878c477b58016ba, type: 2}
+  description: User recovers half the HP inflicted on opponent.
   damage: 20
   basePP: 25
   accuracy: 1
   category: 1
+  probability: 0
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

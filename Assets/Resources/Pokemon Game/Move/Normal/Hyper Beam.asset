@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Hyper Beam
   type: {fileID: 11400000, guid: 7d400c8d21a01854e94041f45793cbf1, type: 2}
+  description: User must recharge next turn.
   damage: 150
   basePP: 5
   accuracy: 0.9
   category: 1
+  probability: 0
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

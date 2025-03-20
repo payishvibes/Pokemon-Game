@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Sand Tomb
   type: {fileID: 11400000, guid: 4641dc3e5ff6ea64f8f1cea1bfaf0a9c, type: 2}
+  description: Traps opponent, damaging them for 4-5 turns.
   damage: 35
   basePP: 15
   accuracy: 0.85
   category: 0
+  probability: 100
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

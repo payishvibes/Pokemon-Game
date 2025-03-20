@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Hurricane
   type: {fileID: 11400000, guid: 6a482d51d49ba5a45bff8e1435389d3f, type: 2}
+  description: May confuse opponent.
   damage: 110
   basePP: 10
   accuracy: 0.7
   category: 1
+  probability: 30
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

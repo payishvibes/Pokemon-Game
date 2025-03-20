@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Stoked Sparksurfer
   type: {fileID: 11400000, guid: cde34f3d09353db4dbc1c3345d036ff3, type: 2}
+  description: Alolan Raichu-exclusive Electric type Z-Move.
   damage: 175
   basePP: 1
-  accuracy: 2.1474836e+9
+  accuracy: 0
   category: 1
-  zMove: 1
+  probability: 100
+  zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

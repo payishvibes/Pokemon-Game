@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Rock Blast
   type: {fileID: 11400000, guid: b26a9af63fede1e4982ef43c75f280ea, type: 2}
+  description: Hits 2-5 times in one turn.
   damage: 25
   basePP: 10
   accuracy: 0.9
   category: 0
+  probability: 0
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

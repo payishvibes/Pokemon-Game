@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Cross Poison
   type: {fileID: 11400000, guid: a1e857e04105cf747bc8c86d4a4cc14c, type: 2}
+  description: High critical hit ratio. May poison opponent.
   damage: 70
   basePP: 20
   accuracy: 1
   category: 0
+  probability: 10
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Dragon Breath
   type: {fileID: 11400000, guid: 2a0dd581c0f039443914f076081082d8, type: 2}
+  description: May paralyze opponent.
   damage: 60
   basePP: 20
   accuracy: 1
   category: 1
+  probability: 30
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

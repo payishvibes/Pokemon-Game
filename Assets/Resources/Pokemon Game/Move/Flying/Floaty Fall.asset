@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Floaty Fall
   type: {fileID: 11400000, guid: 6a482d51d49ba5a45bff8e1435389d3f, type: 2}
+  description: May cause flinching.
   damage: 90
   basePP: 15
   accuracy: 0.95
   category: 0
+  probability: 30
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

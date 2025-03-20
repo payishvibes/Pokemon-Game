@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Charge Beam
   type: {fileID: 11400000, guid: cde34f3d09353db4dbc1c3345d036ff3, type: 2}
+  description: May raise user's Special Attack.
   damage: 50
   basePP: 10
   accuracy: 0.9
   category: 1
+  probability: 70
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

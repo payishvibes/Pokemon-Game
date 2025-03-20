@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Hex
   type: {fileID: 11400000, guid: 50da9e89bbda9c5418a62d8a5362cab0, type: 2}
+  description: Inflicts more damage if the target has a status condition.
   damage: 65
   basePP: 10
   accuracy: 1
   category: 1
+  probability: 0
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

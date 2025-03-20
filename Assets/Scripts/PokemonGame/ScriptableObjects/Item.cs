@@ -46,20 +46,12 @@ namespace PokemonGame.ScriptableObjects
 
     public enum ItemType : int
     {
-        Item = 1,
-        PokeBall,
-        BattleItem,
+        Items,
         Medicine,
         TM,
-        TR,
-        Berry,
-        KeyItem,
-        HoldItems,
-    }
-
-    public enum ItemUseType : int
-    {
-        Battle = 1,
-        Held
+        Berries,
+        KeyItems,
+        ZCrystals,
+        PokeBalls
     }
 }

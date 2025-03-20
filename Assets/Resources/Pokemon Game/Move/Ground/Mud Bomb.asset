@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Mud Bomb
   type: {fileID: 11400000, guid: 4641dc3e5ff6ea64f8f1cea1bfaf0a9c, type: 2}
+  description: May lower opponent's Accuracy.
   damage: 65
   basePP: 10
   accuracy: 0.85
   category: 1
+  probability: 30
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

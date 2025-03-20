@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eeb2b8de5210984b8e677799cc5bc80, type: 3}
+  m_Name: TM38
+  m_EditorClassIdentifier: 
+  name: TM38
+  sprite: {fileID: 21300000, guid: 2f3e0fb4245b3ab4ba321c105e888fc5, type: 3}
+  type: 2
+  description: The target is attacked with an intense blast of all-consuming fire.
+    This may also leave the target with a burn.
+  cost: 0
+  useInBattle: 0
+  lockedTarget: 0
+  playerParty: 0
+  targetIndex: 0
+  ItemMethodEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  move: {fileID: 11400000, guid: f98c1484eacf1e74d96610d1cef3f02e, type: 2}

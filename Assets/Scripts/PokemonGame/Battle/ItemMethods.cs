@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Text.RegularExpressions;
+using PokemonGame.Global;
 using UnityEditor;
 
 namespace PokemonGame.Battle
@@ -18,7 +19,7 @@ namespace PokemonGame.Battle
         {
             DateTime start = DateTime.Now;
             StreamReader streamReader =
-                new StreamReader("C:\\Users\\Mr. Monster\\Documents\\Pokemon Gen 7 database\\items.csv");
+                new StreamReader("C:\\Users\\Mr. Monster\\Documents\\Pokemon Gen 7 database\\tms.csv");
             bool endOfFile = false;
             while (!endOfFile)
             {
@@ -30,23 +31,37 @@ namespace PokemonGame.Battle
                 }
                 
                 // var values = Regex.Split(dataString, @",(?=[^0])", RegexOptions.None);
-                var values = dataString.Split(",");
+                dataString = dataString.Replace("\"", "");
+                dataString = dataString.Replace("é", "e");
+                var values = Regex.Split(dataString, @",(?=[^0])(?=[^ ])", RegexOptions.None);
 
-                if (string.IsNullOrEmpty(values[1]))
+                if (values[0] == "???")
                 {
-                    break;
+                    continue;
                 }
                 
-                Item item = CreateInstance<Item>();
+                TM item = CreateInstance<TM>();
                 
-                item.type = (ItemType)Enum.Parse(typeof(ItemType), values[1].Replace(" ", ""), true);
+                item.type = ItemType.TM;
                 item.name = values[0];
-                item.description = values[2];
+                item.description = values[3];
+                item.sprite = Resources.Load<Sprite>($"Pokemon Game/Sprites/items/tm-{values[2].ToLower()}");
+                item.move = Registry.GetMove(values[1]);
+                if (!item.sprite)
+                {
+                    Debug.LogWarning("No sprite found, possible spelling difference or missing sprite");
+                }
+
+                if (values.Length > 4)
+                {
+                    Debug.LogWarning("More than 2 entries, possible faulty description");
+                }
                 
-                AssetDatabase.CreateAsset(item, $"Assets/Resources/Pokemon Game/Item//{item.name}.asset");
-                endOfFile = true;
-            }
+                AssetDatabase.CreateAsset(item, $"Assets/Resources/Pokemon Game/Item/TM/{item.name}.asset");
+                
+                Debug.Log($"Created Item: {item.name}");
             
+            }
             streamReader.Close();
             
             AssetDatabase.SaveAssets();

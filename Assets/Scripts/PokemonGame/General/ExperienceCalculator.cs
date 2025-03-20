@@ -41,12 +41,7 @@ namespace PokemonGame.General
         {
             int required = 0;
 
-            if (!battler.source.evolutionTree)
-            {
-                return -1;
-            }
-
-            switch (battler.source.evolutionTree.expGroup)
+            switch (battler.source.expGroup)
             {
                 case ExperienceGroup.Erratic:
                     required = ErraticGrowth(battler.level+1) - ErraticGrowth(battler.level);

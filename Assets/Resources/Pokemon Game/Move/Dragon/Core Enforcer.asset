@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Core Enforcer
   type: {fileID: 11400000, guid: 2a0dd581c0f039443914f076081082d8, type: 2}
+  description: Suppresses the target's ability if the target has already moved.
   damage: 100
   basePP: 10
   accuracy: 1
   category: 1
+  probability: 0
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

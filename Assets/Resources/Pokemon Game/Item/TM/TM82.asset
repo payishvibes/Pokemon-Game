@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eeb2b8de5210984b8e677799cc5bc80, type: 3}
+  m_Name: TM82
+  m_EditorClassIdentifier: 
+  name: TM82
+  sprite: {fileID: 21300000, guid: cdb91ea359281ee49aaad8e12353632f, type: 3}
+  type: 2
+  description: "The target is knocked away, and a different Pok\uFFFDmon is dragged
+    out. In the wild, this ends a battle against a single Pok\uFFFDmon."
+  cost: 0
+  useInBattle: 0
+  lockedTarget: 0
+  playerParty: 0
+  targetIndex: 0
+  ItemMethodEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  move: {fileID: 11400000, guid: 8e4f3bc92508c7d45b535c3e95b791f2, type: 2}

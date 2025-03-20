@@ -14,11 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Lunge
   type: {fileID: 11400000, guid: bf9a294a54121aa4388e9b483a5a6612, type: 2}
+  description: The user makes a lunge at the target, attacking with full force. This
+    also lowers the target's Attack stat.
   damage: 80
   basePP: 15
   accuracy: 1
   category: 0
+  probability: 100
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

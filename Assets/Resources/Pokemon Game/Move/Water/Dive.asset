@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Dive
   type: {fileID: 11400000, guid: e96a8bed7870822469f0947b19e4e57d, type: 2}
+  description: Dives underwater on first turn, attacks on second turn.
   damage: 80
   basePP: 10
   accuracy: 1
   category: 0
+  probability: 0
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

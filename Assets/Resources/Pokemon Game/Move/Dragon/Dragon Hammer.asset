@@ -14,11 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Dragon Hammer
   type: {fileID: 11400000, guid: 2a0dd581c0f039443914f076081082d8, type: 2}
+  description: The user uses its body like a hammer to attack the target and inflict
+    damage.
   damage: 90
   basePP: 15
   accuracy: 1
   category: 0
+  probability: 0
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

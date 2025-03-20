@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Heat Crash
   type: {fileID: 11400000, guid: 2a85514d25185dc4b9be8cdaec17c0d0, type: 2}
+  description: The heavier the user, the stronger the attack.
   damage: 0
   basePP: 10
   accuracy: 1
   category: 0
+  probability: 0
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

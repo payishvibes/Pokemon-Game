@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Eerie Impulse
   type: {fileID: 11400000, guid: cde34f3d09353db4dbc1c3345d036ff3, type: 2}
+  description: Sharply lowers opponent's Special Attack.
   damage: 0
   basePP: 15
   accuracy: 1
   category: 2
+  probability: 0
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

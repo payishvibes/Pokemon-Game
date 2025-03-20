@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Tail Slap
   type: {fileID: 11400000, guid: 7d400c8d21a01854e94041f45793cbf1, type: 2}
+  description: Hits 2-5 times in one turn.
   damage: 25
   basePP: 10
   accuracy: 0.85
   category: 0
+  probability: 0
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

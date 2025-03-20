@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eeb2b8de5210984b8e677799cc5bc80, type: 3}
+  m_Name: TM80
+  m_EditorClassIdentifier: 
+  name: TM80
+  sprite: {fileID: 21300000, guid: 4fdc2cd2fdf5b434bb3c2df379be1dad, type: 3}
+  type: 2
+  description: "Large boulders are hurled at the opposing Pok\uFFFDmon to inflict
+    damage. This may also make the opposing Pok\uFFFDmon flinch."
+  cost: 0
+  useInBattle: 0
+  lockedTarget: 0
+  playerParty: 0
+  targetIndex: 0
+  ItemMethodEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  move: {fileID: 11400000, guid: 98fa084e09bd1974c9104697fb5e7344, type: 2}

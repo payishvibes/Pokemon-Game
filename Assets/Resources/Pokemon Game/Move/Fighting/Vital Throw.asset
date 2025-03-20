@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Vital Throw
   type: {fileID: 11400000, guid: d19a1b210053ade4ab55da13c78024fd, type: 2}
+  description: User attacks last, but ignores Accuracy and Evasiveness.
   damage: 70
-  basePP: 10
-  accuracy: 2.1474836e+9
+  basePP: -1
+  accuracy: 0.1
   category: 0
+  probability: -2
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

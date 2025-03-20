@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Aqua Ring
   type: {fileID: 11400000, guid: e96a8bed7870822469f0947b19e4e57d, type: 2}
+  description: Restores a little HP each turn.
   damage: 0
   basePP: 20
   accuracy: 0
   category: 2
+  probability: 0
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

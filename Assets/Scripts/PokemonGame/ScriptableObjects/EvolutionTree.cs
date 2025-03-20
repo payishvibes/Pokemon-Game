@@ -3,19 +3,10 @@ namespace PokemonGame.ScriptableObjects
     using System;
     using System.Collections.Generic;
     using General;
-    using UnityEngine;
-
-    [CreateAssetMenu(order = 6, fileName = "new Evolution Tree", menuName = "Pokemon Game/New Evolution Tree")]
-    public class EvolutionTree : ScriptableObject
-    {
-        public ExperienceGroup expGroup;
-        public List<Evolution> evolutions = new List<Evolution>();
-    }
-
+    
     [Serializable]
     public class Evolution
     {
-        public BattlerTemplate initial;
         public List<EvolutionData> possibleEvolutions;
     }
 

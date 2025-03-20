@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Fusion Bolt
   type: {fileID: 11400000, guid: cde34f3d09353db4dbc1c3345d036ff3, type: 2}
+  description: Power increases if Fusion Flare is used in the same turn.
   damage: 100
   basePP: 5
   accuracy: 1
   category: 0
+  probability: 0
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

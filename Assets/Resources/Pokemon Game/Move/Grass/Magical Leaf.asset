@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Magical Leaf
   type: {fileID: 11400000, guid: 16677bacbe9d55246878c477b58016ba, type: 2}
+  description: Ignores Accuracy and Evasiveness.
   damage: 60
-  basePP: 20
-  accuracy: 2.1474836e+9
+  basePP: -1
+  accuracy: 0.2
   category: 1
+  probability: -2
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

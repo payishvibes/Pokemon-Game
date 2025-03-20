@@ -134,13 +134,13 @@ namespace PokemonGame.Battle
                 dataString = dataString.Replace("%", "");
                 dataString = dataString.Replace("∞", "-2");
                 dataString = dataString.Replace("\"", "");
-                var values = Regex.Split(dataString, @",(?=[^0])", RegexOptions.None);
+                var values = Regex.Split(dataString, @",(?=[^0])(?=[^ ])", RegexOptions.None);
 
                 values[0] = values[0].Replace(",", "");
 
                 values[2] = values[2].Replace("https://img.pokemondb.net/images/icons/move-special.png", "Special");
                 values[2] = values[2].Replace("https://img.pokemondb.net/images/icons/move-physical.png", "Physical");
-                values[2] = values[2].Replace("https://img.pokemondb.net/images/icons/move-special.png", "Status");
+                values[2] = values[2].Replace("https://img.pokemondb.net/images/icons/move-status.png", "Status");
                 
                 Move move = CreateInstance<Move>();
                 
@@ -156,7 +156,7 @@ namespace PokemonGame.Battle
                 move.name = values[0];
                 move.basePP = int.Parse(values[5]);
                 move.description = values[6];
-                if (values[3] == "-1")
+                if (values[7] == "-1")
                 {
                     move.probability = 0;
                 }
@@ -164,6 +164,7 @@ namespace PokemonGame.Battle
                 {
                     move.probability = int.Parse(values[7]);
                 }
+                
                 if (values[3] == "-2")
                 {
                     move.damage = Int32.MaxValue;
@@ -193,8 +194,6 @@ namespace PokemonGame.Battle
                 AssetDatabase.CreateAsset(move, $"Assets/Resources/Pokemon Game/Move/{move.type.name}/{move.name}.asset");
                 
                 Debug.Log($"Created Move: {move.name}");
-
-                endOfFile = true;
             }
             
             streamReader.Close();

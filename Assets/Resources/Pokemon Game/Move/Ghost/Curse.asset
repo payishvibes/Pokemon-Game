@@ -14,11 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Curse
   type: {fileID: 11400000, guid: 50da9e89bbda9c5418a62d8a5362cab0, type: 2}
+  description: Ghosts lose 50 of max HP and curse the opponent; Non-Ghosts raise
+    Attack, Defense and lower Speed.
   damage: 0
   basePP: 10
   accuracy: 0
   category: 2
+  probability: 0
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

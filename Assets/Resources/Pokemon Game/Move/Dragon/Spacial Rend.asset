@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Spacial Rend
   type: {fileID: 11400000, guid: 2a0dd581c0f039443914f076081082d8, type: 2}
+  description: High critical hit ratio.
   damage: 100
   basePP: 5
   accuracy: 0.95
   category: 1
+  probability: 0
   zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []

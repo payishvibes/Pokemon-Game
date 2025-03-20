@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Oceanic Operetta
   type: {fileID: 11400000, guid: e96a8bed7870822469f0947b19e4e57d, type: 2}
+  description: Primarina-exclusive Z-Move.
   damage: 195
   basePP: 1
-  accuracy: 2.1474836e+9
+  accuracy: 0
   category: 1
-  zMove: 1
+  probability: 0
+  zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
       m_Calls: []
