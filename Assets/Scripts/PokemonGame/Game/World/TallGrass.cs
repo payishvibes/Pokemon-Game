@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Ink.Parsed;
 using PokemonGame.Dialogue;
 using PokemonGame.Game;
 using PokemonGame.Game.Party;
@@ -82,7 +83,13 @@ public class TallGrass : DialogueTrigger
         BattlerTemplate template = pool[Random.Range(0, pool.Count)];
         
         Battler attacker = Battler.Init(template, Random.Range(minLevel, maxLevel), template.name, new List<Move>(), true);
+        List<Move> moves = attacker.GetMostRecentMoves();
 
+        for (int i = 0; i < moves.Count; i++)
+        {
+            attacker.LearnMove(moves[i]);
+        }
+        
         _attacker = attacker;
         _waitingForStartBattle = true;
         

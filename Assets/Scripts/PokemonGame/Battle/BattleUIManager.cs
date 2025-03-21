@@ -348,10 +348,8 @@ namespace PokemonGame.Battle
 
             for (var i = 0; i < battle.playerParty[battle.currentBattlerIndex].moves.Count; i++)
             {
-                Debug.Log($"at the {i} move");
                 if (battle.playerParty[battle.currentBattlerIndex].moves[i])
                 {
-                    Debug.Log($"{i} move exists");
                     int currentPP = battle.playerParty[battle.currentBattlerIndex].movePpInfos[i].CurrentPP;
                     int maxPP = battle.playerParty[battle.currentBattlerIndex].movePpInfos[i].MaxPP;
                     

@@ -90,7 +90,7 @@ namespace PokemonGame.Global
             ScriptableObject[] objs = Resources.LoadAll<ScriptableObject>($"Pokemon Game/{fileToSearch}");
             foreach (var obj in objs)
             {
-                if (obj.name == name)
+                if (obj.name.ToLower() == name.ToLower())
                 {
                     return obj;
                 }

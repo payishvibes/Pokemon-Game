@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>PokeApiNet</id>
+    <version>4.0.0</version>
+    <authors>JJ Banda</authors>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <readme>README.md</readme>
+    <projectUrl>https://github.com/jtwotimes/PokeApiNet</projectUrl>
+    <description>.Net client for the PokeAPI api</description>
+    <releaseNotes>https://github.com/jtwotimes/PokeApiNet/blob/master/CHANGELOG.md</releaseNotes>
+    <tags>pokemon pokeapi</tags>
+    <repository url="https://github.com/jtwotimes/PokeApiNet" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Microsoft.CSharp" version="4.7.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Caching.Memory" version="6.0.1" exclude="Build,Analyzers" />
+        <dependency id="System.Collections.Immutable" version="6.0.0" exclude="Build,Analyzers" />
+        <dependency id="System.Text.Json" version="8.0.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.1">
+        <dependency id="Microsoft.CSharp" version="4.7.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Caching.Memory" version="6.0.1" exclude="Build,Analyzers" />
+        <dependency id="System.Collections.Immutable" version="6.0.0" exclude="Build,Analyzers" />
+        <dependency id="System.Text.Json" version="8.0.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

@@ -1,7 +1,12 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using PokeApiNet;
+using PokemonGame.Global;
 
 namespace PokemonGame.ScriptableObjects
 {
@@ -10,6 +15,8 @@ namespace PokemonGame.ScriptableObjects
     [CreateAssetMenu(order = 1, fileName = "New Battler Template", menuName = "Pokemon Game/New Battler Template")]
     public class BattlerTemplate : ScriptableObject
     {
+        public static PokeApiClient pokeClient;
+
         public new string name;
         public BasicType primaryType;
         public BasicType secondaryType;
@@ -18,9 +25,7 @@ namespace PokemonGame.ScriptableObjects
         public PossibleMoves possibleMoves;
         public Evolution evolutions;
         public ExperienceGroup expGroup;
-        [Space] 
-        [Header("Stats")] 
-        public int catchRate;
+        [Space] [Header("Stats")] public int catchRate;
         public int baseFriendship;
         public int baseHealth;
         public int baseAttack;
@@ -29,13 +34,13 @@ namespace PokemonGame.ScriptableObjects
         public int baseSpecialDefense;
         public int baseSpeed;
         public List<int> yields;
-        
+
         public void TryFillInfo()
         {
-            FillMoveInfo();
-            
             FillBasicInfo();
             FillYieldInfo();
+
+            FillMoveAsync();
         }
 
         private void FillBasicInfo()
@@ -56,7 +61,7 @@ namespace PokemonGame.ScriptableObjects
                 }
 
                 var dataValues = Regex.Split(dataString, @"(?<=[^ ]),(?=[^ ])", RegexOptions.None);
-                
+
                 if (dataValues[2].Replace("\"", "") == name)
                 {
                     found = true;
@@ -64,7 +69,7 @@ namespace PokemonGame.ScriptableObjects
                     dexNo = int.Parse(dataValues[1]);
                 }
             }
-            
+
             streamReader.Close();
 
             if (found)
@@ -72,13 +77,13 @@ namespace PokemonGame.ScriptableObjects
                 data = data.Replace("\"", "");
                 data = data.Replace("NULL", "");
                 var values = Regex.Split(data, @"(?<=[^ ]),(?=[^ ])", RegexOptions.None);
-                
-                primaryType = (BasicType) Enum.Parse(typeof(BasicType), values[9], true);
+
+                primaryType = (BasicType)Enum.Parse(typeof(BasicType), values[9], true);
                 if (!string.IsNullOrEmpty(values[10]))
                 {
-                    secondaryType = (BasicType) Enum.Parse(typeof(BasicType), values[10], true);
+                    secondaryType = (BasicType)Enum.Parse(typeof(BasicType), values[10], true);
                 }
-                
+
                 catchRate = int.Parse(values[37]);
                 baseHealth = int.Parse(values[23]);
                 baseAttack = int.Parse(values[24]);
@@ -90,7 +95,7 @@ namespace PokemonGame.ScriptableObjects
                 this.dexNo = dexNo;
 
                 texture = new Sprites();
-                
+
                 texture.basic = Resources.Load<Sprite>($"Pokemon Game/sprites/{dexNo}");
                 texture.shiny = Resources.Load<Sprite>($"Pokemon Game/sprites/shiny/{dexNo}");
                 texture.female = Resources.Load<Sprite>($"Pokemon Game/sprites/female/{dexNo}");
@@ -99,13 +104,13 @@ namespace PokemonGame.ScriptableObjects
                 texture.shinyBack = Resources.Load<Sprite>($"Pokemon Game/sprites/back/shiny/{dexNo}");
                 texture.femaleBack = Resources.Load<Sprite>($"Pokemon Game/sprites/back/female/{dexNo}");
                 texture.femaleShinyBack = Resources.Load<Sprite>($"Pokemon Game/sprites/back/shiny/female/{dexNo}");
-                
+
                 while (yields.Count < 8)
                 {
                     yields.Add(0);
                 }
-                
-                expGroup = (ExperienceGroup) Enum.Parse(typeof(ExperienceGroup), values[38].Replace(" ", ""), true);
+
+                expGroup = (ExperienceGroup)Enum.Parse(typeof(ExperienceGroup), values[38].Replace(" ", ""), true);
             }
         }
 
@@ -126,14 +131,14 @@ namespace PokemonGame.ScriptableObjects
                 }
 
                 var dataValues = Regex.Split(dataString, @"(?<=[^']),(?=[^'])", RegexOptions.None);
-                
+
                 if (dataValues[2].Replace("\"", "") == name)
                 {
                     found = true;
                     data = dataString;
                 }
             }
-            
+
             streamReader.Close();
 
             if (found)
@@ -152,19 +157,91 @@ namespace PokemonGame.ScriptableObjects
             }
         }
 
-        private void FillMoveInfo()
+        public async void FillMoveAsync()
         {
+            await FillMoveInfo(this);
+        }
+
+        private static async Task FillMoveInfo(BattlerTemplate template)
+        {
+            if (pokeClient == null)
+            {
+                pokeClient = new PokeApiClient();
+            }
             
+            Pokemon pokemon = await pokeClient.GetResourceAsync<Pokemon>(template.name.ToLower());
+
+            // List<PokeApiNet.Move> allMoves = await pokeClient.GetResourceAsync(pokemon.Moves.Select(move => move.Move));
+
+            PossibleMoves newPossibleMoves = new PossibleMoves();
+
+            foreach (var move in pokemon.Moves)
+            {
+                Move moveCanLearn = Registry.GetMove(move.Move.Name.Replace("-", " "));
+                
+                // move.VersionGroupDetails[0].
+                
+                List<VersionGroup> versionGroups =
+                    await pokeClient.GetResourceAsync(move.VersionGroupDetails.Select(learnMethod => learnMethod.VersionGroup));
+
+                bool genSeven = false;
+
+                int index = 0;
+                
+                foreach (var group in versionGroups)
+                {
+                    if (group.Name == "ultra-sun-ultra-moon")
+                    {
+                        genSeven = true;
+                        break;
+                    }
+
+                    index++;
+                }
+
+                if (!genSeven)
+                {
+                    continue;
+                }
+
+                MoveLearnMethod moveLearnMethod =
+                    await pokeClient.GetResourceAsync(move.VersionGroupDetails[index].MoveLearnMethod);
+                    
+                bool levelUp = moveLearnMethod.Name == "level-up";
+                bool egg = moveLearnMethod.Name == "egg";
+                bool tutor = moveLearnMethod.Name == "tutor";
+                bool machine = moveLearnMethod.Name == "machine";
+
+                if (levelUp)
+                {
+                    int level = move.VersionGroupDetails[index].LevelLearnedAt;
+                    newPossibleMoves.levelup.Add(moveCanLearn, level);
+                }
+                else if (egg)
+                {
+                    newPossibleMoves.egg.Add(moveCanLearn);
+                }
+                else if (tutor)
+                {
+                    newPossibleMoves.tutor.Add(moveCanLearn);
+                }
+                else if (machine)
+                {
+                    newPossibleMoves.tm.Add(moveCanLearn);
+                }
+            }
+
+            template.possibleMoves = newPossibleMoves;
         }
     }
 
     [Serializable]
     public class PossibleMoves
     {
-        public Dictionary<Move, int> levelup;
-        public Dictionary<Move, int> tm;
-        public List<Move> egg;
-        public List<Move> tutor;
+        public SerializableDictionary<Move, int> levelup = new SerializableDictionary<Move, int>();
+        public List<Move> tm = new List<Move>();
+        public List<Move> egg = new List<Move>();
+        public List<Move> tutor = new List<Move>();
     }
 
     [Serializable]
@@ -178,5 +255,38 @@ namespace PokemonGame.ScriptableObjects
         public Sprite femaleShiny;
         public Sprite shinyBack;
         public Sprite femaleShinyBack;
+    }
+
+    [Serializable]
+    public class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, ISerializationCallbackReceiver
+    {
+        [SerializeField] private List<TKey> keys = new List<TKey>();
+
+        [SerializeField] private List<TValue> values = new List<TValue>();
+
+        // save the dictionary to lists
+        public void OnBeforeSerialize()
+        {
+            keys.Clear();
+            values.Clear();
+            foreach (KeyValuePair<TKey, TValue> pair in this)
+            {
+                keys.Add(pair.Key);
+                values.Add(pair.Value);
+            }
+        }
+
+        // load dictionary from lists
+        public void OnAfterDeserialize()
+        {
+            this.Clear();
+
+            if (keys.Count != values.Count)
+                throw new System.Exception(string.Format(
+                    "there are {0} keys and {1} values after deserialization. Make sure that both key and value types are serializable."));
+
+            for (int i = 0; i < keys.Count; i++)
+                this.Add(keys[i], values[i]);
+        }
     }
 }

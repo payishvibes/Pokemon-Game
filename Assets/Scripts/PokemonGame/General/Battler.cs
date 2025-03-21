@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace PokemonGame.General
 {
     using System;
@@ -249,6 +251,38 @@ namespace PokemonGame.General
             {
                 moves.RemoveAt(4);
             }
+        }
+
+        public List<Move> GetMostRecentMoves()
+        {
+            Debug.Log("getting most recent moves");
+            
+            SerializableDictionary<Move, int> levelUpMoves = source.possibleMoves.levelup;
+            var sortedLevelUpMoves = levelUpMoves.OrderBy(x => x.Value).ToList();
+            Debug.Log(levelUpMoves.Count);
+            Debug.Log(sortedLevelUpMoves.Count);
+
+            sortedLevelUpMoves.Reverse();
+
+            List<Move> returnMoves = new List<Move>();
+
+            for (int i = 0; i < sortedLevelUpMoves.Count; i++)
+            {
+                Debug.Log($"checking move {i}");
+                
+                if (returnMoves.Count >= 4)
+                {
+                    break;
+                }
+                
+                if (sortedLevelUpMoves[i].Value <= level)
+                {
+                    returnMoves.Add(sortedLevelUpMoves[i].Key);
+                    Debug.Log($"Adding {sortedLevelUpMoves[i].Key.name}");
+                }
+            }
+
+            return returnMoves;
         }
         
         /// <summary>

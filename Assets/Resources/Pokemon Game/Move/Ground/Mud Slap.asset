@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e5aad296ed7fa84eacb82768c04ccc9, type: 3}
+  m_Name: Mud Slap
+  m_EditorClassIdentifier: 
+  name: Mud-Slap
+  id: 0
+  type: {fileID: 11400000, guid: 4641dc3e5ff6ea64f8f1cea1bfaf0a9c, type: 2}
+  description: Lowers opponent's Accuracy.
+  damage: 20
+  basePP: 10
+  accuracy: 1
+  priority: 0
+  category: 1
+  probability: 100
+  zMove: 0
+  zCrystal: {fileID: 0}
+  unique: 0
+  uniqueBattler: {fileID: 0}
+  MoveMethodEvent:
+    m_PersistentCalls:
+      m_Calls: []

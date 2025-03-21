@@ -52,8 +52,10 @@ namespace PokemonGame.ScriptableObjects
             if (PP > 0)
             {
                 MoveMethodEvent?.Invoke(e);
+                Debug.Log(MoveMethodEvent == null);
                 if (MoveMethodEvent == null)
                 {
+                    Debug.Log("default move method");
                     MovesMethods.GetMoveMethods().DefaultMoveMethod(e);
                 }
                 

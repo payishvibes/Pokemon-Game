@@ -1,0 +1,4675 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PokeApiNet</name>
+    </assembly>
+    <members>
+        <member name="T:PokeApiNet.Cache.BaseCacheManager">
+            <summary>
+            Base class for a cache manager implementation.
+            </summary>
+            <remarks>
+            Main goal of the class is to cache the enumeration of types that are subclasses of <see cref="T:PokeApiNet.ResourceBase"/> in the assembly.
+            </remarks>
+        </member>
+        <member name="M:PokeApiNet.Cache.BaseExpirableCache.Clear">
+            <summary>
+            Clears all cache data
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Cache.BaseExpirableCache.CacheEntryOptions">
+            <summary>
+            Gets the <see cref="T:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions"/> instance.
+            </summary>
+            <remarks>
+            New options instance has to be constantly instantiated instead of shared
+            as a consequence of <see cref="P:PokeApiNet.Cache.BaseExpirableCache.ClearToken"/> being mutable
+            </remarks>
+        </member>
+        <member name="M:PokeApiNet.Cache.BaseExpirableCache.Dispose">
+            <summary>
+            Dispose object
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.Cache.ResourceCacheManager">
+            <summary>
+            Manages caches for instances of subclasses from <see cref="T:PokeApiNet.ResourceBase"/>
+            </summary>
+        </member>
+        <member name="M:PokeApiNet.Cache.ResourceCacheManager.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:PokeApiNet.Cache.ResourceCacheManager.Store``1(``0)">
+            <summary>
+            Caches a value
+            </summary>
+            <typeparam name="T">Type of object to be cached</typeparam>
+            <param name="obj">Object to cache</param>
+            <exception cref="T:System.NotSupportedException">
+            The given type is not supported for searching via PokeAPI
+            </exception>
+        </member>
+        <member name="M:PokeApiNet.Cache.ResourceCacheManager.Get``1(System.Int32)">
+            <summary>
+            Gets a value from cache by id or null if not cached or if not found
+            </summary>
+            <typeparam name="T">Type of object to get</typeparam>
+            <param name="id">Id of the resource</param>
+            <returns>The cached object or null if not found</returns>
+        </member>
+        <member name="M:PokeApiNet.Cache.ResourceCacheManager.Get``1(System.String)">
+            <summary>
+            Gets a value from cache by name or null if not cached or if not found
+            </summary>
+            <typeparam name="T">Type of object to get</typeparam>
+            <param name="name">Name of the resource</param>
+            <returns>The cached object or null if not found</returns>
+        </member>
+        <member name="M:PokeApiNet.Cache.ResourceCacheManager.ClearAll">
+            <summary>
+            Clears all caches
+            </summary>
+        </member>
+        <member name="M:PokeApiNet.Cache.ResourceCacheManager.Clear``1">
+            <summary>
+            Clears a specific cache
+            </summary>
+            <typeparam name="T">The type of cache to clear</typeparam>
+        </member>
+        <member name="M:PokeApiNet.Cache.ResourceCacheManager.Dispose">
+            <summary>
+            Dispose object
+            </summary>
+        </member>
+        <member name="M:PokeApiNet.Cache.ResourceCacheManager.ResourceCache.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:PokeApiNet.Cache.ResourceCacheManager.ResourceCache.Store(PokeApiNet.ApiResource)">
+            <summary>
+            Stores an object in cache
+            </summary>
+            <param name="obj">The object to store</param>
+        </member>
+        <member name="M:PokeApiNet.Cache.ResourceCacheManager.ResourceCache.Store(PokeApiNet.NamedApiResource)">
+            <summary>
+            Stores an object in cache
+            </summary>
+            <param name="obj">The object to store</param>
+        </member>
+        <member name="M:PokeApiNet.Cache.ResourceCacheManager.ResourceCache.Get(System.Int32)">
+            <summary>
+            Gets a resource from cache by id
+            </summary>
+            <param name="id">The id of the resource</param>
+            <returns>The object from cache with the matching id</returns>
+        </member>
+        <member name="M:PokeApiNet.Cache.ResourceCacheManager.ResourceCache.Get(System.String)">
+            <summary>
+            Gets a resource from cache by name
+            </summary>
+            <param name="name">The name of the resource</param>
+            <returns>The object from cache with the matching name</returns>
+        </member>
+        <member name="M:PokeApiNet.Cache.ResourceCacheManager.ResourceCache.Dispose">
+            <summary>
+            Dispose object
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.Cache.ResourceListCacheManager">
+            <summary>
+            Manages caches for instances of subclasses from <see cref="T:PokeApiNet.ResourceList`1"/>
+            </summary>
+        </member>
+        <member name="M:PokeApiNet.Cache.ResourceListCacheManager.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:PokeApiNet.Cache.ResourceListCacheManager.Store``1(System.String,PokeApiNet.ResourceList{``0})">
+            <summary>
+            Caches a value
+            </summary>
+            <typeparam name="T">Type of object to be cached</typeparam>
+            <param name="url">The URL associated to the resource list</param>
+            <param name="obj">The resource list to cache</param>
+            <exception cref="T:System.NotSupportedException">
+            The given type is not supported for searching via PokeAPI
+            </exception>
+        </member>
+        <member name="M:PokeApiNet.Cache.ResourceListCacheManager.GetApiResourceList``1(System.String)">
+            <summary>
+            Gets the <see cref="T:PokeApiNet.ApiResourceList`1"/> stored in cache associated to a URL.
+            </summary>
+            <typeparam name="T">The type of resource in the resource list.</typeparam>
+            <param name="url">The URL to access the cache with.</param>
+            <returns>
+            A <see cref="T:PokeApiNet.ApiResourceList`1"/> in case of a cache hit; null otherwise.
+            </returns>
+        </member>
+        <member name="M:PokeApiNet.Cache.ResourceListCacheManager.GetNamedResourceList``1(System.String)">
+            <summary>
+            Gets the <see cref="T:PokeApiNet.NamedApiResourceList`1"/> stored in cache associated to a URL.
+            </summary>
+            <typeparam name="T">The type of resource in the resource list.</typeparam>
+            <param name="url">The URL to access the cache with.</param>
+            <returns>
+            A <see cref="T:PokeApiNet.NamedApiResourceList`1"/> in case of a cache hit; null otherwise.
+            </returns>
+        </member>
+        <member name="M:PokeApiNet.Cache.ResourceListCacheManager.ClearAll">
+            <summary>
+            Clears all caches
+            </summary>
+        </member>
+        <member name="M:PokeApiNet.Cache.ResourceListCacheManager.Clear``1">
+            <summary>
+            Clears a specific cache
+            </summary>
+            <typeparam name="T">The type of cache to clear</typeparam>
+        </member>
+        <member name="M:PokeApiNet.Cache.ResourceListCacheManager.Dispose">
+            <summary>
+            Dispose object
+            </summary>
+        </member>
+        <member name="M:PokeApiNet.Cache.ResourceListCacheManager.ListCache.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:PokeApiNet.Cache.ResourceListCacheManager.ListCache.Store``1(System.String,PokeApiNet.ResourceList{``0})">
+            <summary>
+            Stores a resource list in cache
+            </summary>
+            <param name="url">The url of the resource list</param>
+            <param name="resourceList">The list of resources</param>
+            <typeparam name="T">The type of objects in the resource list</typeparam>
+        </member>
+        <member name="M:PokeApiNet.Cache.ResourceListCacheManager.ListCache.Get``1(System.String)">
+            <summary>
+            Gets a resource list from cache
+            </summary>
+            <param name="url">The url of the resource list</param>
+            <typeparam name="T">The type of objects in the resource list</typeparam>
+            <returns>The resource list from cache</returns>
+        </member>
+        <member name="M:PokeApiNet.Cache.ResourceListCacheManager.ListCache.Dispose">
+            <summary>
+            Dispose object
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.Berry">
+            <summary>
+            Berries are small fruits that can provide HP and status condition restoration,
+            stat enhancement, and even damage negation when eaten by Pokémon.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Berry.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Berry.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Berry.GrowthTime">
+            <summary>
+            Time it takes the tree to grow one stage, in hours.
+            Berry trees go through four of these growth stages
+            before they can be picked.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Berry.MaxHarvest">
+            <summary>
+            The maximum number of these berries that can grow
+            on one tree in Generation IV.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Berry.NaturalGiftPower">
+            <summary>
+            The power of the move "Natural Gift" when used with
+            this Berry.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Berry.Size">
+            <summary>
+            The size of this Berry, in millimeters.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Berry.Smoothness">
+            <summary>
+            The smoothness of this Berry, used in making
+            Pokeblocks of Poffins.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Berry.SoilDryness">
+            <summary>
+            The speed at which this Berry dries out the soil as
+            it grows. A higher rate means the soil dries out
+            more quickly.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Berry.Firmness">
+            <summary>
+            The firmness of this berry, used in making Pokeblocks
+            or Poffins.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Berry.Flavors">
+            <summary>
+            A list of references to each flavor a berry can have
+            and the potency of each of those flavors in regards
+            to this berry.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Berry.Item">
+            <summary>
+            Berries are actually items. This is a reference to
+            the item specific data for this berry.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Berry.NaturalGiftType">
+            <summary>
+            The type inherited by "Natural Gift" when used with
+            this Berry.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.BerryFlavorMap">
+            <summary>
+            The potency and flavor that a berry can have
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.BerryFlavorMap.Potency">
+            <summary>
+            How powerful the referenced flavor is for this
+            berry.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.BerryFlavorMap.Flavor">
+            <summary>
+            The referenced berry flavor.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.BerryFirmness">
+            <summary>
+            Berries can be soft or hard.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.BerryFirmness.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.BerryFirmness.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.BerryFirmness.Berries">
+            <summary>
+            A list of berries with this firmness.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.BerryFirmness.Names">
+            <summary>
+            The name of this resource listed in different
+            languages.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.BerryFlavor">
+            <summary>
+            Flavors determine whether a Pokémon will benefit or suffer from eating
+            a berry based on their nature.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.BerryFlavor.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.BerryFlavor.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.BerryFlavor.Berries">
+            <summary>
+            A list of berries with this firmness.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.BerryFlavor.ContestType">
+            <summary>
+            The contest type that correlates with this berry
+            flavor.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.BerryFlavor.Names">
+            <summary>
+            The name of this resource in different languages.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.FlavorBerryMap">
+            <summary>
+            The potency and flavor that a berry can have
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.FlavorBerryMap.Potency">
+            <summary>
+            How powerful this referenced flavor is for this
+            berry.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.FlavorBerryMap.Berry">
+            <summary>
+            The berry with the referenced flavor.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.Language">
+            <summary>
+            Languages for translations of API resource information.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Language.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Language.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Language.Official">
+            <summary>
+            Whether or not the games are published in this language.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Language.Iso639">
+            <summary>
+            The two-letter code of the country where this language
+            is spoken. Note that it is not unique.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Language.Iso3166">
+            <summary>
+            The two-letter code of the language. Note that it is not
+            unique.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Language.Names">
+            <summary>
+            The name of this resource listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Language.IsApiEndpointCaseSensitive">
+            <summary>
+            Is endpoint case sensitive
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.ApiResource`1">
+            <summary>
+            A reference to an API object that does not have a `Name` property
+            </summary>
+            <typeparam name="T">The type of resource</typeparam>
+        </member>
+        <member name="T:PokeApiNet.Descriptions">
+            <summary>
+            The description for an API resource
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Descriptions.Description">
+            <summary>
+            The localized description for an API resource in a
+            specific language.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Descriptions.Language">
+            <summary>
+            The language this name is in.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.Effects">
+            <summary>
+            The effect of an API resource
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Effects.Effect">
+            <summary>
+            The localized effect text for an API resource in a
+            specific language.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Effects.Language">
+            <summary>
+            The language this effect is in.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.Encounter">
+            <summary>
+            Encounter information for a Pokémon
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Encounter.MinLevel">
+            <summary>
+            The lowest level the Pokémon could be encountered at.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Encounter.MaxLevel">
+            <summary>
+            The highest level the Pokémon could be encountered at.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Encounter.ConditionValues">
+            <summary>
+            A list of condition values that must be in effect for this
+            encounter to occur.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Encounter.Chance">
+            <summary>
+            Percent chance that this encounter will occur.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Encounter.Method">
+            <summary>
+            The method by which this encounter happens.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.FlavorTexts">
+            <summary>
+            A flavor text entry for an API resource
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.FlavorTexts.FlavorText">
+            <summary>
+            The localized flavor text for an API resource in a specific language.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.FlavorTexts.Language">
+            <summary>
+            The language this name is in.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.GenerationGameIndex">
+            <summary>
+            The index information for a generation game
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.GenerationGameIndex.GameIndex">
+            <summary>
+            The internal id of an API resource within game data.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.GenerationGameIndex.Generation">
+            <summary>
+            The generation relevent to this game index.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.MachineVersionDetail">
+            <summary>
+            The version detail information for a machine
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MachineVersionDetail.Machine">
+            <summary>
+            The machine that teaches a move from an item.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MachineVersionDetail.VersionGroup">
+            <summary>
+            The version group of this specific machine.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.Names">
+            <summary>
+            A name with language information
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Names.Name">
+            <summary>
+            The localized name for an API resource in a specific language.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Names.Language">
+            <summary>
+            The language this name is in.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.NamedApiResource`1">
+            <summary>
+            A reference to an API resource that has a `Name` property
+            </summary>
+            <typeparam name="T">The type of reference</typeparam>
+        </member>
+        <member name="P:PokeApiNet.NamedApiResource`1.Name">
+            <summary>
+            The name of the referenced resource.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PastGenerationData`1">
+            <summary>
+            Class representing data from a previous generation.
+            </summary>
+            <typeparam name="TData">The type of the data.</typeparam>
+        </member>
+        <member name="P:PokeApiNet.PastGenerationData`1.Generation">
+            <summary>
+            The final generation in which the Pokemon had the given data.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PastGenerationData`1.Data">
+            <summary>
+            The previous data.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.VerboseEffect">
+            <summary>
+            The long text for effect text entries
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.VerboseEffect.Effect">
+            <summary>
+            The localized effect text for an API resource in a
+            specific language.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.VerboseEffect.ShortEffect">
+            <summary>
+            The localized effect text in brief.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.VerboseEffect.Language">
+            <summary>
+            The language this effect is in.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.VersionEncounterDetail">
+            <summary>
+            The detailed information for version encounter entries
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.VersionEncounterDetail.Version">
+            <summary>
+            The game version this encounter happens in.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.VersionEncounterDetail.MaxChance">
+            <summary>
+            The total percentage of all encounter potential.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.VersionEncounterDetail.EncounterDetails">
+            <summary>
+            A list of encounters and their specifics.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.VersionGameIndex">
+            <summary>
+            The index information for games
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.VersionGameIndex.GameIndex">
+            <summary>
+            The internal id of an API resource within game data.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.VersionGameIndex.Version">
+            <summary>
+            The version relevent to this game index.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.VersionGroupFlavorText">
+            <summary>
+            The version group flavor text information
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.VersionGroupFlavorText.Text">
+            <summary>
+            The localized name for an API resource in a specific language.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.VersionGroupFlavorText.Language">
+            <summary>
+            The language this name is in.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.VersionGroupFlavorText.VersionGroup">
+            <summary>
+            The version group which uses this flavor text.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.ContestType">
+            <summary>
+            Contest types are categories judges used to weigh
+            a Pokémon's condition in Pokémon contests.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ContestType.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ContestType.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ContestType.BerryFlavor">
+            <summary>
+            The berry flavor that correlates with this contest
+            type.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ContestType.Names">
+            <summary>
+            The name of this contest type listed in different
+            languages.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.ContestName">
+            <summary>
+            The name of the context
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ContestName.Name">
+            <summary>
+            The name for this contest.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ContestName.Color">
+            <summary>
+            The color associated with this contest's name.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ContestName.Language">
+            <summary>
+            The language that this name is in.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.ContestEffect">
+            <summary>
+            Contest effects refer to the effects of moves
+            when used in contests.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ContestEffect.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ContestEffect.Appeal">
+            <summary>
+            The base number of hearts the user of this move
+            gets.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ContestEffect.Jam">
+            <summary>
+            The base number of hearts the user's opponent
+            loses.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ContestEffect.EffectEntries">
+            <summary>
+            The result of this contest effect listed in
+            different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ContestEffect.FlavorTextEntries">
+            <summary>
+            The flavor text of this contest effect listed in
+            different languages.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.SuperContestEffect">
+            <summary>
+            Super contest effects refer to the effects of moves
+            when used in super contests.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.SuperContestEffect.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.SuperContestEffect.Appeal">
+            <summary>
+            The level of appeal this super contest effect has.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.SuperContestEffect.FlavorTextEntries">
+            <summary>
+            The flavor text of this super contest effect listed
+            in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.SuperContestEffect.Moves">
+            <summary>
+            A list of moves that have the effect when used in
+            super contests.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.EncounterMethod">
+            <summary>
+            Methods by which the player might can encounter Pokémon
+            in the wild, e.g., walking in tall grass.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EncounterMethod.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EncounterMethod.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EncounterMethod.Order">
+            <summary>
+            A good value for sorting.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EncounterMethod.Names">
+            <summary>
+            The name of this resource listed in different
+            languages.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.EncounterCondition">
+            <summary>
+            Conditions which affect what pokemon might appear in the
+            wild, e.g., day or night.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EncounterCondition.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EncounterCondition.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EncounterCondition.Names">
+            <summary>
+            The name of this resource listed in different
+            languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EncounterCondition.Values">
+            <summary>
+            A list of possible values for this encounter condition.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.EncounterConditionValue">
+            <summary>
+            Encounter condition values are the various states that an encounter
+            condition can have, i.e., time of day can be either day or night.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EncounterConditionValue.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EncounterConditionValue.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EncounterConditionValue.Condition">
+            <summary>
+            The condition this encounter condition value pertains
+            to.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EncounterConditionValue.Names">
+            <summary>
+            The name of this resource listed in different
+            languages.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.EvolutionChain">
+            <summary>
+            Evolution chains are essentially family trees. They start with
+            the lowest stage within a family and detail evolution conditions
+            for each as well as Pokémon they can evolve into up through the
+            hierarchy.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EvolutionChain.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EvolutionChain.BabyTriggerItem">
+            <summary>
+            The item that a Pokémon would be holding
+            when mating that would trigger the egg hatching
+            a baby Pokémon rather than a basic Pokémon.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EvolutionChain.Chain">
+            <summary>
+            The base chain link object. Each link contains
+            evolution details for a Pokémon in the chain.
+            Each link references the next Pokémon in the
+            natural evolution order.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.ChainLink">
+            <summary>
+            The linking information between a Pokémon and it's evolution(s)
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ChainLink.IsBaby">
+            <summary>
+            Whether or not this link is for a baby Pokémon. This would
+            only ever be true on the base link.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ChainLink.Species">
+            <summary>
+            The Pokémon species at this point in the evolution chain.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ChainLink.EvolutionDetails">
+            <summary>
+            All details regarding the specific details of the referenced
+            Pokémon species evolution.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ChainLink.EvolvesTo">
+            <summary>
+            A List of chain objects.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.EvolutionDetail">
+            <summary>
+            The details for an evolution
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EvolutionDetail.Item">
+            <summary>
+            The item required to cause evolution this into Pokémon species.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EvolutionDetail.Trigger">
+            <summary>
+            The type of event that triggers evolution into this Pokémon
+            species.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EvolutionDetail.Gender">
+            <summary>
+            The id of the gender of the evolving Pokémon species must be in
+            order to evolve into this Pokémon species.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EvolutionDetail.HeldItem">
+            <summary>
+            The item the evolving Pokémon species must be holding during the
+            evolution trigger event to evolve into this Pokémon species.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EvolutionDetail.KnownMove">
+            <summary>
+            The move that must be known by the evolving Pokémon species
+            during the evolution trigger event in order to evolve into
+            this Pokémon species.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EvolutionDetail.KnownMoveType">
+            <summary>
+            The evolving Pokémon species must know a move with this type
+            during the evolution trigger event in order to evolve into this
+            Pokémon species.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EvolutionDetail.Location">
+            <summary>
+            The location the evolution must be triggered at.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EvolutionDetail.MinLevel">
+            <summary>
+            The minimum required level of the evolving Pokémon species to
+            evolve into this Pokémon species.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EvolutionDetail.MinHappiness">
+            <summary>
+            The minimum required level of happiness the evolving Pokémon
+            species to evolve into this Pokémon species.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EvolutionDetail.MinBeauty">
+            <summary>
+            The minimum required level of beauty the evolving Pokémon species
+            to evolve into this Pokémon species.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EvolutionDetail.MinAffection">
+            <summary>
+            The minimum required level of affection the evolving Pokémon
+            species to evolve into this Pokémon species.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EvolutionDetail.NeedsOverworldRain">
+            <summary>
+            Whether or not it must be raining in the overworld to cause
+            evolution this Pokémon species.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EvolutionDetail.PartySpecies">
+            <summary>
+            The Pokémon species that must be in the players party in
+            order for the evolving Pokémon species to evolve into this
+            Pokémon species.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EvolutionDetail.PartyType">
+            <summary>
+            The player must have a Pokémon of this type in their party
+            during the evolution trigger event in order for the evolving
+            Pokémon species to evolve into this Pokémon species.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EvolutionDetail.RelativePhysicalStats">
+            <summary>
+            The required relation between the Pokémon's Attack and Defense
+            stats. 1 means Attack > Defense. 0 means Attack = Defense.
+            -1 means Attack &gt; Defense.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EvolutionDetail.TimeOfDay">
+            <summary>
+            The required time of day. Day or night.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EvolutionDetail.TradeSpecies">
+            <summary>
+            Pokémon species for which this one must be traded.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EvolutionDetail.TurnUpsideDown">
+            <summary>
+            Whether or not the 3DS needs to be turned upside-down as this
+            Pokémon levels up.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.EvolutionTrigger">
+            <summary>
+            Evolution triggers are the events and conditions that
+            cause a Pokémon to evolve.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EvolutionTrigger.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EvolutionTrigger.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EvolutionTrigger.Names">
+            <summary>
+            The name of this resource listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EvolutionTrigger.PokemonSpecies">
+            <summary>
+            A list of pokemon species that result from this evolution
+            trigger.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.Generation">
+            <summary>
+            A generation is a grouping of the Pokémon games that separates
+            them based on the Pokémon they include. In each generation, a new
+            set of Pokémon, Moves, Abilities and Types that did not exist in
+            the previous generation are released.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Generation.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Generation.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Generation.Abilities">
+            <summary>
+            A list of abilities that were introduced in this generation.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Generation.Names">
+            <summary>
+            The name of this resource listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Generation.MainRegion">
+            <summary>
+            The main region travelled in this generation.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Generation.Moves">
+            <summary>
+            A list of moves that were introduced in this generation.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Generation.PokemonSpecies">
+            <summary>
+            A list of Pokemon species that were introduced in this
+            generation.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Generation.Types">
+            <summary>
+            A list of types that were introduced in this generation.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Generation.VersionGroups">
+            <summary>
+            A list of version groups that were introduced in this
+            generation.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.Pokedex">
+            <summary>
+            A Pokédex is a handheld electronic encyclopedia device; one which
+            is capable of recording and retaining information of the various
+            Pokémon in a given region with the exception of the national dex
+            and some smaller dexes related to portions of a region.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Pokedex.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Pokedex.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Pokedex.IsMainSeries">
+            <summary>
+            Whether or not this Pokédex originated in the main series of the video games.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Pokedex.Descriptions">
+            <summary>
+            The description of this resource listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Pokedex.Names">
+            <summary>
+            The name of this resource listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Pokedex.PokemonEntries">
+            <summary>
+            A list of Pokémon catalogued in this Pokédex and their indexes.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Pokedex.Region">
+            <summary>
+            The region this Pokédex catalogues Pokémon for.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Pokedex.VersionGroups">
+            <summary>
+            A list of version groups this Pokédex is relevant to.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonEntry">
+            <summary>
+            The entry information
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonEntry.EntryNumber">
+            <summary>
+            The index of this Pokémon species entry within the Pokédex.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonEntry.PokemonSpecies">
+            <summary>
+            The Pokémon species being encountered.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.Version">
+            <summary>
+            Versions of the games, e.g., Red, Blue or Yellow.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Version.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Version.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Version.Names">
+            <summary>
+            The name of this resource listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Version.VersionGroup">
+            <summary>
+            The version group this version belongs to.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.VersionGroup">
+            <summary>
+            Version groups categorize highly similar versions of the games.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.VersionGroup.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.VersionGroup.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.VersionGroup.Order">
+            <summary>
+            Order for sorting. Almost by date of release,
+            except similar versions are grouped together.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.VersionGroup.Generation">
+            <summary>
+            The generation this version was introduced in.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.VersionGroup.MoveLearnMethods">
+            <summary>
+            A list of methods in which Pokémon can learn moves in
+            this version group.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.VersionGroup.Pokedexes">
+            <summary>
+            A list of Pokédexes introduces in this version group.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.VersionGroup.Regions">
+            <summary>
+            A list of regions that can be visited in this version group.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.VersionGroup.Versions">
+            <summary>
+            The versions this version group owns.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.Item">
+            <summary>
+            An item is an object in the games which the player can
+            pick up, keep in their bag, and use in some manner. They
+            have various uses, including healing, powering up, helping
+            catch Pokémon, or to access a new area.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Item.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Item.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Item.Cost">
+            <summary>
+            The price of this item in stores.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Item.FlingPower">
+            <summary>
+            The power of the move Fling when used with this item.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Item.FlingEffect">
+            <summary>
+            The effect of the move Fling when used with this item.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Item.Attributes">
+            <summary>
+            A list of attributes this item has.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Item.Category">
+            <summary>
+            The category of items this item falls into.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Item.EffectEntries">
+            <summary>
+            The effect of this ability listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Item.FlavorGroupTextEntries">
+            <summary>
+            The flavor text of this ability listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Item.GameIndices">
+            <summary>
+            A list of game indices relevent to this item by generation.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Item.Names">
+            <summary>
+            The name of this item listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Item.Sprites">
+            <summary>
+            A set of sprites used to depict this item in the game.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Item.HeldByPokemon">
+            <summary>
+            A list of Pokémon that might be found in the wild holding this item.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Item.BabyTriggerFor">
+            <summary>
+            An evolution chain this item requires to produce a baby during mating.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Item.Machines">
+            <summary>
+            A list of the machines related to this item.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.ItemSprites">
+            <summary>
+            The default description of this item.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ItemSprites.Default">
+            <summary>
+            The default description of this item.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.ItemHolderPokemon">
+            <summary>
+            Information for which Pokémon holds an item
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ItemHolderPokemon.Pokemon">
+            <summary>
+            The Pokémon that holds this item.
+            </summary>
+            <remarks>The docs lie; this is not a string</remarks>
+        </member>
+        <member name="P:PokeApiNet.ItemHolderPokemon.VersionDetails">
+            <summary>
+            The details for the version that this item is held in by the Pokémon.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.ItemHolderPokemonVersionDetail">
+            <summary>
+            Information for which Pokémon hold an item
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ItemHolderPokemonVersionDetail.Rarity">
+            <summary>
+            How often this Pokémon holds this item in this version.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ItemHolderPokemonVersionDetail.Version">
+            <summary>
+            The version that this item is held in by the Pokémon.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.ItemAttribute">
+            <summary>
+            Item attributes define particular aspects of items,
+            e.g. "usable in battle" or "consumable".
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ItemAttribute.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ItemAttribute.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ItemAttribute.Items">
+            <summary>
+            A list of items that have this attribute.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ItemAttribute.Names">
+            <summary>
+            The name of this item attribute listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ItemAttribute.Descriptions">
+            <summary>
+            The description of this item attribute listed in different languages.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.ItemCategory">
+            <summary>
+            Item categories determine where items will be placed in the players bag.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ItemCategory.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ItemCategory.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ItemCategory.Items">
+            <summary>
+            A list of items that are a part of this category.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ItemCategory.Names">
+            <summary>
+            The name of this item category listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ItemCategory.Pocket">
+            <summary>
+            The pocket items in this category would be put in.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.ItemFlingEffect">
+            <summary>
+            The various effects of the move "Fling" when used with different items.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ItemFlingEffect.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ItemFlingEffect.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ItemFlingEffect.EffectEntries">
+            <summary>
+            The result of this fling effect listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ItemFlingEffect.Items">
+            <summary>
+            A list of items that have this fling effect.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.ItemPocket">
+            <summary>
+            Pockets within the players bag used for storing items by category.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ItemPocket.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ItemPocket.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ItemPocket.Categories">
+            <summary>
+            A list of item categories that are relevant to this item pocket.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ItemPocket.Names">
+            <summary>
+            The name of this resource listed in different languages.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.Location">
+            <summary>
+            Locations that can be visited within the games. Locations make
+            up sizable portions of regions, like cities or routes.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Location.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Location.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Location.Region">
+            <summary>
+            The region this location can be found in.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Location.Names">
+            <summary>
+            The name of this resource listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Location.GameIndices">
+            <summary>
+            A list of game indices relevent to this location by generation.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Location.Areas">
+            <summary>
+            Areas that can be found within this location
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.LocationArea">
+            <summary>
+            Location areas are sections of areas, such as floors in a building
+            or cave. Each area has its own set of possible Pokémon encounters.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.LocationArea.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.LocationArea.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.LocationArea.GameIndex">
+            <summary>
+            The internal id of an API resource within game data.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.LocationArea.EncounterMethodRates">
+            <summary>
+            A list of methods in which Pokémon may be encountered in this
+            area and how likely the method will occur depending on the version
+            of the game.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.LocationArea.Location">
+            <summary>
+            The region this location can be found in.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.LocationArea.Names">
+            <summary>
+            The name of this resource listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.LocationArea.PokemonEncounters">
+            <summary>
+            A list of Pokémon that can be encountered in this area along with
+            version specific details about the encounter.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.EncounterMethodRate">
+            <summary>
+            A mapping between an encounter method and the version that applies
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EncounterMethodRate.EncounterMethod">
+            <summary>
+            The method in which Pokémon may be encountered in an area.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EncounterMethodRate.VersionDetails">
+            <summary>
+            The chance of the encounter to occur on a version of the game.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.EncounterVersionDetails">
+            <summary>
+            The details for an encounter with the version
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EncounterVersionDetails.Rate">
+            <summary>
+            The chance of an encounter to occur.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EncounterVersionDetails.Version">
+            <summary>
+            The version of the game in which the encounter can occur with
+            the given chance.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonEncounter">
+            <summary>
+            A Pokémon encounter and the version that encounter can happen
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonEncounter.Pokemon">
+            <summary>
+            The Pokémon being encountered.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonEncounter.VersionDetails">
+            <summary>
+            A list of versions and encounters with Pokémon that might happen
+            in the referenced location area.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PalParkArea">
+            <summary>
+            Areas used for grouping Pokémon encounters in Pal Park. They're like
+            habitats that are specific to Pal Park.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PalParkArea.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PalParkArea.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PalParkArea.Names">
+            <summary>
+            The name of this resource listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PalParkArea.PokemonEncounters">
+            <summary>
+            A list of Pokémon encountered in thi pal park area along with
+            details.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PalParkEncounterSpecies">
+            <summary>
+            Information for an encounter in PalPark
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PalParkEncounterSpecies.BaseScore">
+            <summary>
+            The base score given to the player when this Pokémon is caught
+            during a pal park run.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PalParkEncounterSpecies.Rate">
+            <summary>
+            The base rate for encountering this Pokémon in this pal park area.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PalParkEncounterSpecies.PokemonSpecies">
+            <summary>
+            The Pokémon species being encountered.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.Region">
+            <summary>
+            A region is an organized area of the Pokémon world. Most often,
+            the main difference between regions is the species of Pokémon
+            that can be encountered within them.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Region.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Region.Locations">
+            <summary>
+            A list of locations that can be found in this region.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Region.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Region.Names">
+            <summary>
+            The name of this resource listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Region.MainGeneration">
+            <summary>
+            The generation this region was introduced in.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Region.Pokedexes">
+            <summary>
+            A list of pokédexes that catalogue Pokémon in this region.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Region.VersionGroups">
+            <summary>
+            A list of version groups where this region can be visited.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.Machine">
+            <summary>
+            Machines are the representation of items that teach moves
+            to Pokémon. They vary from version to version, so it is
+            not certain that one specific TM or HM corresponds to a
+            single Machine.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Machine.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Machine.Item">
+            <summary>
+            The TM or HM item that corresponds to this machine.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Machine.Move">
+            <summary>
+            The move that is taught by this machine.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Machine.VersionGroup">
+            <summary>
+            The version group that this machine applies to.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.Move">
+            <summary>
+            Moves are the skills of Pokémon in battle. In battle, a Pokémon
+            uses one move each turn. Some moves (including those learned by
+            Hidden Machine) can be used outside of battle as well, usually
+            for the purpose of removing obstacles or exploring new areas.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Move.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Move.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Move.Accuracy">
+            <summary>
+            The percent value of how likely this move is to be successful.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Move.EffectChance">
+            <summary>
+            The percent value of how likely it is this moves effect will happen.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Move.Pp">
+            <summary>
+            Power points. The number of times this move can be used.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Move.Priority">
+            <summary>
+            A value between -8 and 8. Sets the order in which moves are executed
+            during battle. See
+            [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/Priority)
+            for greater detail.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Move.Power">
+            <summary>
+            The base power of this move with a value of 0 if it does not have
+            a base power.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Move.ContestCombos">
+            <summary>
+            A detail of normal and super contest combos that require this move.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Move.ContestType">
+            <summary>
+            The type of appeal this move gives a Pokémon when used in a contest.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Move.ContestEffect">
+            <summary>
+            The effect the move has when used in a contest.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Move.DamageClass">
+            <summary>
+            The type of damage the move inflicts on the target, e.g. physical.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Move.EffectEntries">
+            <summary>
+            The effect of this move listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Move.EffectChanges">
+            <summary>
+            The list of previous effects this move has had across version
+            groups of the games.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Move.FlavorTextEntries">
+            <summary>
+            The flavor text of this move listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Move.Generation">
+            <summary>
+            The generation in which this move was introduced.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Move.LearnedByPokemon">
+            <summary>The pokemon that learn this move.</summary>
+        </member>
+        <member name="P:PokeApiNet.Move.Machines">
+            <summary>
+            A list of the machines that teach this move.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Move.Meta">
+            <summary>
+            Metadata about this move
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Move.Names">
+            <summary>
+            The name of this resource listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Move.PastValues">
+            <summary>
+            A list of move resource value changes across version groups
+            of the game.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Move.StatChanges">
+            <summary>
+            A list of stats this moves effects and how much it
+            effects them.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Move.SuperContestEffect">
+            <summary>
+            The effect the move has when used in a super contest.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Move.Target">
+            <summary>
+            The type of target that will receive the effects of the attack.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Move.Type">
+            <summary>
+            The elemental type of this move.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.ContestComboSets">
+            <summary>
+            A set of moves that are combos
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ContestComboSets.Normal">
+            <summary>
+            A detail of moves this move can be used before or after,
+            granting additional appeal points in contests.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ContestComboSets.Super">
+            <summary>
+            A detail of moves this move can be used before or after,
+            granting additional appeal points in super contests.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.ContestComboDetail">
+            <summary>
+            A detailed list of combos
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ContestComboDetail.UseBefore">
+            <summary>
+            A list of moves to use before this move.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ContestComboDetail.UseAfter">
+            <summary>
+            A list of moves to use after this move.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.MoveFlavorText">
+            <summary>
+            The flavor text for a move
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveFlavorText.FlavorText">
+            <summary>
+            The localized flavor text for an api resource in a
+            specific language.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveFlavorText.Language">
+            <summary>
+            The language this name is in.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveFlavorText.VersionGroup">
+            <summary>
+            The version group that uses this flavor text.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.MoveMetaData">
+            <summary>
+            The additional data for a move
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveMetaData.Ailment">
+            <summary>
+            The status ailment this move inflicts on its target.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveMetaData.Category">
+            <summary>
+            The category of move this move falls under, e.g. damage or
+            ailment.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveMetaData.MinHits">
+            <summary>
+            The minimum number of times this move hits. Null if it always
+            only hits once.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveMetaData.MaxHits">
+            <summary>
+            The maximum number of times this move hits. Null if it always
+            only hits once.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveMetaData.MinTurns">
+            <summary>
+            The minimum number of turns this move continues to take effect.
+            Null if it always only lasts one turn.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveMetaData.MaxTurns">
+            <summary>
+            The maximum number of turns this move continues to take effect.
+            Null if it always only lasts one turn.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveMetaData.Drain">
+            <summary>
+            HP drain (if positive) or Recoil damage (if negative), in percent
+            of damage done.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveMetaData.Healing">
+            <summary>
+            The amount of hp gained by the attacking Pokemon, in percent of
+            it's maximum HP.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveMetaData.CritRate">
+            <summary>
+            Critical hit rate bonus.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveMetaData.AilmentChance">
+            <summary>
+            The likelihood this attack will cause an ailment.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveMetaData.FlinchChance">
+            <summary>
+            The likelihood this attack will cause the target Pokémon to flinch.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveMetaData.StatChance">
+            <summary>
+            The likelihood this attack will cause a stat change in the target
+            Pokémon.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.MoveStatChange">
+            <summary>
+            The status and the change for a move
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveStatChange.Change">
+            <summary>
+            The amount of change
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveStatChange.Stat">
+            <summary>
+            The stat being affected.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PastMoveStatValues">
+            <summary>
+            Move status values
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PastMoveStatValues.Accuracy">
+            <summary>
+            The percent value of how likely this move is to be successful.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PastMoveStatValues.EffectChance">
+            <summary>
+            The percent value of how likely it is this moves effect will
+            take effect.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PastMoveStatValues.Power">
+            <summary>
+            The base power of this move with a value of 0 if it does not have
+            a base power.
+            </summary>
+            <remarks>The docs lie - this is null</remarks>
+        </member>
+        <member name="P:PokeApiNet.PastMoveStatValues.Pp">
+            <summary>
+            Power points. The number of times this move can be used.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PastMoveStatValues.EffectEntries">
+            <summary>
+            The effect of this move listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PastMoveStatValues.Type">
+            <summary>
+            The elemental type of this move.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PastMoveStatValues.VersionGroup">
+            <summary>
+            The version group in which these move stat values were in effect.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.MoveAilment">
+            <summary>
+            Move Ailments are status conditions caused by moves used during battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveAilment.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveAilment.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveAilment.Moves">
+            <summary>
+            A list of moves that cause this ailment.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveAilment.Names">
+            <summary>
+            The name of this resource listed in different languages.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.MoveBattleStyle">
+            <summary>
+            Styles of moves when used in the Battle Palace.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveBattleStyle.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveBattleStyle.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveBattleStyle.Names">
+            <summary>
+            The name of this resource listed in different languages.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.MoveCategory">
+            <summary>
+            Very general categories that loosely group move effects.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveCategory.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveCategory.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveCategory.Moves">
+            <summary>
+            A list of moves that fall into this category.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveCategory.Descriptions">
+            <summary>
+            The description of this resource listed in different languages.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.MoveDamageClass">
+            <summary>
+            Damage classes moves can have, e.g. physical, special, or non-damaging.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveDamageClass.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveDamageClass.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveDamageClass.Moves">
+            <summary>
+            A list of moves that fall into this damage public class.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveDamageClass.Descriptions">
+            <summary>
+            The description of this resource listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveDamageClass.Names">
+            <summary>
+            The name of this resource listed in different languages.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.MoveLearnMethod">
+            <summary>
+            Methods by which Pokémon can learn moves.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveLearnMethod.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveLearnMethod.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveLearnMethod.Descriptions">
+            <summary>
+            The description of this resource listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveLearnMethod.Names">
+            <summary>
+            The name of this resource listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveLearnMethod.VersionGroups">
+            <summary>
+            A list of version groups where moves can be learned through this method.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.MoveTarget">
+            <summary>
+            Targets moves can be directed at during battle. Targets can be Pokémon,
+            environments or even other moves.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveTarget.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveTarget.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveTarget.Descriptions">
+            <summary>
+            The description of this resource listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveTarget.Moves">
+            <summary>
+            A list of moves that that are directed at this target.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveTarget.Names">
+            <summary>
+            The name of this resource listed in different languages.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.Ability">
+            <summary>
+            Abilities provide passive effects for Pokémon in battle or in
+            the overworld. Pokémon have multiple possible abilities but
+            can have only one ability at a time.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Ability.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Ability.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Ability.IsMainSeries">
+            <summary>
+            Whether or not this ability originated in the main series of the video games.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Ability.Generation">
+            <summary>
+            The generation this ability originated in.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Ability.Names">
+            <summary>
+            The name of this resource listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Ability.EffectEntries">
+            <summary>
+            The effect of this ability listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Ability.EffectChanges">
+            <summary>
+            The list of previous effects this ability has had across version groups.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Ability.FlavorTextEntries">
+            <summary>
+            The flavor text of this ability listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Ability.Pokemon">
+            <summary>
+            A list of Pokémon that could potentially have this ability.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.AbilityEffectChange">
+            <summary>
+            An ability and it's associated versions
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.AbilityEffectChange.EffectEntries">
+            <summary>
+            The previous effect of this ability listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.AbilityEffectChange.VersionGroup">
+            <summary>
+            The version group in which the previous effect of this ability originated.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.AbilityFlavorText">
+            <summary>
+            The flavor text for an ability
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.AbilityFlavorText.FlavorText">
+            <summary>
+            The localized name for an API resource in a specific language.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.AbilityFlavorText.Language">
+            <summary>
+            The language this text resource is in.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.AbilityFlavorText.VersionGroup">
+            <summary>
+            The version group that uses this flavor text.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.AbilityPokemon">
+            <summary>
+            A mapping of an ability to a possible Pokémon
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.AbilityPokemon.IsHidden">
+            <summary>
+            Whether or not this a hidden ability for the referenced Pokémon.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.AbilityPokemon.Slot">
+            <summary>
+            Pokémon have 3 ability 'slots' which hold references to possible
+            abilities they could have. This is the slot of this ability for the
+            referenced pokemon.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.AbilityPokemon.Pokemon">
+            <summary>
+            The Pokémon this ability could belong to.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.Characteristic">
+            <summary>
+            Characteristics indicate which stat contains a Pokémon's highest IV.
+            A Pokémon's Characteristic is determined by the remainder of its
+            highest IV divided by 5 (gene_modulo).
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Characteristic.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Characteristic.GeneModulo">
+            <summary>
+            The remainder of the highest stat/IV divided by 5.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Characteristic.PossibleValues">
+            <summary>
+            The possible values of the highest stat that would result in
+            a Pokémon recieving this characteristic when divided by 5.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Characteristic.HighestStat">
+            <summary>
+            The highest stat of this characteristic.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Characteristic.Descriptions">
+            <summary>
+            The descriptions of this characteristic listed in different languages.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.EggGroup">
+            <summary>
+            Egg Groups are categories which determine which Pokémon are able
+            to interbreed. Pokémon may belong to either one or two Egg Groups.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EggGroup.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EggGroup.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EggGroup.Names">
+            <summary>
+            The name of this resource listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.EggGroup.PokemonSpecies">
+            <summary>
+            A list of all Pokémon species that are members of this egg group.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.Gender">
+            <summary>
+            Genders were introduced in Generation II for the purposes of
+            breeding Pokémon but can also result in visual differences or
+            even different evolutionary lines
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Gender.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Gender.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Gender.PokemonSpeciesDetails">
+            <summary>
+            A list of Pokémon species that can be this gender and how likely it
+            is that they will be.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Gender.RequiredForEvolution">
+            <summary>
+            A list of Pokémon species that required this gender in order for a
+            Pokémon to evolve into them.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonSpeciesGender">
+            <summary>
+            A rate of chance of a Pokémon being a specific gender
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpeciesGender.Rate">
+            <summary>
+            The chance of this Pokémon being female, in eighths; or -1 for
+            genderless.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpeciesGender.PokemonSpecies">
+            <summary>
+            A Pokémon species that can be the referenced gender.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.GrowthRate">
+            <summary>
+            Growth rates are the speed with which Pokémon gain levels through experience.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.GrowthRate.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.GrowthRate.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.GrowthRate.Formula">
+            <summary>
+            The formula used to calculate the rate at which the Pokémon species
+            gains level.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.GrowthRate.Descriptions">
+            <summary>
+            The descriptions of this characteristic listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.GrowthRate.Levels">
+            <summary>
+            A list of levels and the amount of experienced needed to atain them
+            based on this growth rate.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.GrowthRate.PokemonSpecies">
+            <summary>
+            A list of Pokémon species that gain levels at this growth rate.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.GrowthRateExperienceLevel">
+            <summary>
+            Information of a level and how much experience is needed to get to it
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.GrowthRateExperienceLevel.Level">
+            <summary>
+            The level gained.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.GrowthRateExperienceLevel.Experience">
+            <summary>
+            The amount of experience required to reach the referenced level.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.Nature">
+            <summary>
+            Natures influence how a Pokémon's stats grow.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Nature.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Nature.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Nature.DecreasedStat">
+            <summary>
+            The stat decreased by 10% in Pokémon with this nature.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Nature.IncreasedStat">
+            <summary>
+            The stat increased by 10% in Pokémon with this nature.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Nature.HatesFlavor">
+            <summary>
+            The flavor hated by Pokémon with this nature.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Nature.LikesFlavor">
+            <summary>
+            The flavor liked by Pokémon with this nature.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Nature.PokeathlonStatChanges">
+            <summary>
+            A list of Pokéathlon stats this nature effects and how much it
+            effects them.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Nature.MoveBattleStylePreferences">
+            <summary>
+            A list of battle styles and how likely a Pokémon with this nature is
+            to use them in the Battle Palace or Battle Tent.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Nature.Names">
+            <summary>
+            The name of this resource listed in different languages.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.NatureStatChange">
+            <summary>
+            The change information for a nature
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.NatureStatChange.MaxChange">
+            <summary>
+            The amount of change.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.NatureStatChange.PokeathlonStat">
+            <summary>
+            The stat being affected.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.MoveBattleStylePreference">
+            <summary>
+            Move information for a battle style
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveBattleStylePreference.LowHpPreference">
+            <summary>
+            Chance of using the move, in percent, if HP is under one half.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveBattleStylePreference.HighHpPreference">
+            <summary>
+            Chance of using the move, in percent, if HP is over one half.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveBattleStylePreference.MoveBattleStyle">
+            <summary>
+            The move battle style.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokeathlonStat">
+            <summary>
+            Pokeathlon Stats are different attributes of a Pokémon's performance
+            in Pokéathlons. In Pokéathlons, competitions happen on different
+            courses; one for each of the different Pokéathlon stats.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokeathlonStat.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokeathlonStat.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokeathlonStat.Names">
+            <summary>
+            The name of this resource listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokeathlonStat.AffectingNatures">
+            <summary>
+            A detail of natures which affect this Pokéathlon stat positively
+            or negatively.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.NaturePokeathlonStatAffectSets">
+            <summary>
+            The natures and how they are changed with the referenced Pokéathlon stat
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.NaturePokeathlonStatAffectSets.Increase">
+            <summary>
+            A list of natures and how they change the referenced Pokéathlon stat.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.NaturePokeathlonStatAffectSets.Decrease">
+            <summary>
+            A list of natures and how they change the referenced Pokéathlon stat.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.NaturePokeathlonStatAffect">
+            <summary>
+            The change information for a Pokéathlon stat
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.NaturePokeathlonStatAffect.MaxChange">
+            <summary>
+            The maximum amount of change to the referenced Pokéathlon stat.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.NaturePokeathlonStatAffect.Nature">
+            <summary>
+            The nature causing the change.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.Pokemon">
+            <summary>
+            Pokémon are the creatures that inhabit the world of the Pokémon games.
+            They can be caught using Pokéballs and trained by battling with other Pokémon.
+            Each Pokémon belongs to a specific species but may take on a variant which
+            makes it differ from other Pokémon of the same species, such as base stats,
+            available abilities and typings.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Pokemon.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Pokemon.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Pokemon.BaseExperience">
+            <summary>
+            The base experience gained for defeating this Pokémon.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Pokemon.Height">
+            <summary>
+            The height of this Pokémon in decimetres.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Pokemon.IsDefault">
+            <summary>
+            Set for exactly one Pokémon used as the default for each species.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Pokemon.Order">
+            <summary>
+            Order for sorting. Almost national order, except families
+            are grouped together.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Pokemon.Weight">
+            <summary>
+            The weight of this Pokémon in hectograms.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Pokemon.Abilities">
+            <summary>
+            A list of abilities this Pokémon could potentially have.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Pokemon.Forms">
+            <summary>
+            A list of forms this Pokémon can take on.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Pokemon.GameIndicies">
+            <summary>
+            A list of game indices relevent to Pokémon item by generation.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Pokemon.HeldItems">
+            <summary>
+            A list of items this Pokémon may be holding when encountered.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Pokemon.LocationAreaEncounters">
+            <summary>
+            A link to a list of location areas, as well as encounter
+            details pertaining to specific versions.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Pokemon.Moves">
+            <summary>
+            A list of moves along with learn methods and level
+            details pertaining to specific version groups.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Pokemon.PastTypes">
+            <summary>
+            Type data in previous generations for this Pokemon.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Pokemon.Sprites">
+            <summary>
+            A set of sprites used to depict this Pokémon in the game.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Pokemon.Species">
+            <summary>
+            The species this Pokémon belongs to.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Pokemon.Stats">
+            <summary>
+            A list of base stat values for this Pokémon.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Pokemon.Types">
+            <summary>
+            A list of details showing types this Pokémon has.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonAbility">
+            <summary>
+            A Pokémon ability
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonAbility.IsHidden">
+            <summary>
+            Whether or not this is a hidden ability.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonAbility.Slot">
+            <summary>
+            The slot this ability occupies in this Pokémon species.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonAbility.Ability">
+            <summary>
+            The ability the Pokémon may have.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonType">
+            <summary>
+            A Pokémon type
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonType.Slot">
+            <summary>
+            The order the Pokémon's types are listed in.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonType.Type">
+            <summary>
+            The type the referenced Pokémon has.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonPastTypes">
+            <summary>
+            Class for storing a Pokemon's type data in a previous generation.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonPastTypes.Types">
+            <summary>
+            The previous list of types.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonHeldItem">
+            <summary>
+            A Pokémon held item
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonHeldItem.Item">
+            <summary>
+            The item the referenced Pokémon holds.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonHeldItem.VersionDetails">
+            <summary>
+            The details of the different versions in which the item is held.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonHeldItemVersion">
+            <summary>
+            A Pokémon held item and version information
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonHeldItemVersion.Version">
+            <summary>
+            The version in which the item is held.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonHeldItemVersion.Rarity">
+            <summary>
+            How often the item is held.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonMove">
+            <summary>
+            A reference to a move and the version information
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonMove.Move">
+            <summary>
+            The move the Pokémon can learn.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonMove.VersionGroupDetails">
+            <summary>
+            The details of the version in which the Pokémon can learn the move.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonMoveVersion">
+            <summary>
+            The moves a Pokémon learns in which versions
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonMoveVersion.MoveLearnMethod">
+            <summary>
+            The method by which the move is learned.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonMoveVersion.VersionGroup">
+            <summary>
+            The version group in which the move is learned.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonMoveVersion.LevelLearnedAt">
+            <summary>
+            The minimum level to learn the move.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonStat">
+            <summary>
+            A Pokémon stat
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonStat.Stat">
+            <summary>
+            The stat the Pokémon has.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonStat.Effort">
+            <summary>
+            The effort points (EV) the Pokémon has in the stat.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonStat.BaseStat">
+            <summary>
+            The base value of the stat.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonSprites">
+            <summary>
+            Pokémon sprite information
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.FrontDefault">
+            <summary>
+            The default depiction of this Pokémon from the front in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.FrontShiny">
+            <summary>
+            The shiny depiction of this Pokémon from the front in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.FrontFemale">
+            <summary>
+            The female depiction of this Pokémon from the front in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.FrontShinyFemale">
+            <summary>
+            The shiny female depiction of this Pokémon from the front in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.BackDefault">
+            <summary>
+            The default depiction of this Pokémon from the back in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.BackShiny">
+            <summary>
+            The shiny depiction of this Pokémon from the back in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.BackFemale">
+            <summary>
+            The female depiction of this Pokémon from the back in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.BackShinyFemale">
+            <summary>
+            The shiny female depiction of this Pokémon from the back in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.Other">
+            <summary>
+            Other sprites
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.Versions">
+            <summary>
+            Pókemon sprites versioned by game generation
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonSprites.OtherSprites">
+            <summary>
+            Other Pokémon sprites
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.OtherSprites.DreamWorld">
+            <summary>
+            DreamWorld sprites
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.OtherSprites.Home">
+            <summary>
+            Home sprites
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.OtherSprites.OfficialArtwork">
+            <summary>
+            Official Artwork sprites
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonSprites.OtherSprites.DreamWorldSprites">
+            <summary>
+            DreamWorld Pókemon sprites
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.OtherSprites.DreamWorldSprites.FrontDefault">
+            <summary>
+            The default depiction of this Pokémon from the front in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.OtherSprites.DreamWorldSprites.FrontFemale">
+            <summary>
+            The female depiction of this Pokémon from the front in battle.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonSprites.OtherSprites.HomeSprites">
+            <summary>
+            Home Pókemon sprites
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.OtherSprites.HomeSprites.FrontDefault">
+            <summary>
+            The default depiction of this Pokémon from the front in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.OtherSprites.HomeSprites.FrontFemale">
+            <summary>
+            The female depiction of this Pokémon from the front in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.OtherSprites.HomeSprites.FrontShiny">
+            <summary>
+            The shiny depiction of this Pokémon from the front in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.OtherSprites.HomeSprites.FrontShinyFemale">
+            <summary>
+            The shiny female depiction of this Pokémon from the front in battle.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonSprites.OtherSprites.OfficialArtworkSprites">
+            <summary>
+            Official Artwork sprites
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.OtherSprites.OfficialArtworkSprites.FrontDefault">
+            <summary>
+            The default depiction of this Pokémon from the front in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.OtherSprites.OfficialArtworkSprites.FrontShiny">
+            <summary>
+            The shiny depiction of this Pokémon from the front in battle.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonSprites.VersionSprites">
+            <summary>
+            Pókemon sprites versioned by game generation
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationI">
+            <summary>
+            Pókemon sprites for Generation I
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationII">
+            <summary>
+            Pókemon sprites for Generation II
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIII">
+            <summary>
+            Pókemon sprites for Generation III
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIV">
+            <summary>
+            Pókemon sprites for Generation IV
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationV">
+            <summary>
+            Pókemon sprites for Generation V
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVI">
+            <summary>
+            Pókemon sprites for Generation VI
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVII">
+            <summary>
+            Pókemon sprites for Generation VII
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVIII">
+            <summary>
+            Pókemon sprites for Generation VIII
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonSprites.VersionSprites.GenerationISprites">
+            <summary>
+            Pókemon sprites for Generation I
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationISprites.RedBlue">
+            <summary>
+            Pókemon Red-Blue sprites
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationISprites.Yellow">
+            <summary>
+            Pókemon Yellow sprites
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonSprites.VersionSprites.GenerationISprites.RedBlueSprites">
+            <summary>
+            Pókemon Red-Blue sprites
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationISprites.RedBlueSprites.BackDefault">
+            <summary>
+            The default depiction of this Pokémon from the back in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationISprites.RedBlueSprites.BackGray">
+            <summary>
+            The default depiction of this Pokémon from the back in battle on gray background.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationISprites.RedBlueSprites.BackTransparent">
+            <summary>
+            The default depiction of this Pokémon from the back in battle on transparent background.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationISprites.RedBlueSprites.FrontDefault">
+            <summary>
+            The default depiction of this Pokémon from the front in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationISprites.RedBlueSprites.FrontGray">
+            <summary>
+            The default depiction of this Pokémon from the front in battle on gray background.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationISprites.RedBlueSprites.FrontTransparent">
+            <summary>
+            The default depiction of this Pokémon from the front in battle on transparent background.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonSprites.VersionSprites.GenerationISprites.YellowSprites">
+            <summary>
+            Pókemon Yellow sprites
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationISprites.YellowSprites.BackDefault">
+            <summary>
+            The default depiction of this Pokémon from the back in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationISprites.YellowSprites.BackGray">
+            <summary>
+            The default depiction of this Pokémon from the back in battle on gray background.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationISprites.YellowSprites.BackTransparent">
+            <summary>
+            The default depiction of this Pokémon from the back in battle on transparent background.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationISprites.YellowSprites.FrontDefault">
+            <summary>
+            The default depiction of this Pokémon from the front in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationISprites.YellowSprites.FrontGray">
+            <summary>
+            The default depiction of this Pokémon from the front in battle on gray background.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationISprites.YellowSprites.FrontTransparent">
+            <summary>
+            The default depiction of this Pokémon from the front in battle on transparent background.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonSprites.VersionSprites.GenerationIISprites">
+            <summary>
+            Pókemon sprites for Generation II
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIISprites.Crystal">
+            <summary>
+            Pókemon Crystal sprites
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIISprites.Gold">
+            <summary>
+            Pókemon Gold sprites
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIISprites.Silver">
+            <summary>
+            Pókemon Silver sprites
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonSprites.VersionSprites.GenerationIISprites.CrystalSprites">
+            <summary>
+            Pókemon Crystal sprites
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIISprites.CrystalSprites.BackDefault">
+            <summary>
+            The default depiction of this Pokémon from the back in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIISprites.CrystalSprites.BackShiny">
+            <summary>
+            The default depiction of this Pokémon from the back shiny in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIISprites.CrystalSprites.BackShinyTransparent">
+            <summary>
+            The default depiction of this Pokémon from the back shiny in battle on transparent background.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIISprites.CrystalSprites.BackTransparent">
+            <summary>
+            The default depiction of this Pokémon from the back in battle on transparent background.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIISprites.CrystalSprites.FrontDefault">
+            <summary>
+            The default depiction of this Pokémon from the front in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIISprites.CrystalSprites.FrontShiny">
+            <summary>
+            The default depiction of this Pokémon from the front shiny in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIISprites.CrystalSprites.FrontShinyTransparent">
+            <summary>
+            The default depiction of this Pokémon from the front shiny in battle on transparent background.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIISprites.CrystalSprites.FrontTransparent">
+            <summary>
+            The default depiction of this Pokémon from the front in battle on transparent background.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonSprites.VersionSprites.GenerationIISprites.GoldSprites">
+            <summary>
+            Pókemon Gold sprites
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIISprites.GoldSprites.BackDefault">
+            <summary>
+            The default depiction of this Pokémon from the back in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIISprites.GoldSprites.BackShiny">
+            <summary>
+            The default depiction of this Pokémon from the back shiny in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIISprites.GoldSprites.FrontDefault">
+            <summary>
+            The default depiction of this Pokémon from the front in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIISprites.GoldSprites.FrontShiny">
+            <summary>
+            The default depiction of this Pokémon from the front shiny in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIISprites.GoldSprites.FrontTransparent">
+            <summary>
+            The default depiction of this Pokémon from the front in battle on transparent background.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonSprites.VersionSprites.GenerationIISprites.SilverSprites">
+            <summary>
+            Pókemon Silver sprites
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIISprites.SilverSprites.BackDefault">
+            <summary>
+            The default depiction of this Pokémon from the back in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIISprites.SilverSprites.BackShiny">
+            <summary>
+            The default depiction of this Pokémon from the back shiny in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIISprites.SilverSprites.FrontDefault">
+            <summary>
+            The default depiction of this Pokémon from the front in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIISprites.SilverSprites.FrontShiny">
+            <summary>
+            The default depiction of this Pokémon from the front shiny in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIISprites.SilverSprites.FrontTransparent">
+            <summary>
+            The default depiction of this Pokémon from the front in battle on transparent background.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonSprites.VersionSprites.GenerationIIISprites">
+            <summary>
+            Pókemon sprites for Generation III
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIIISprites.Emerald">
+            <summary>
+            Pókemon Emerald sprites
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIIISprites.FireredLeafgreen">
+            <summary>
+            Pókemon Firered/Leafgreen sprites
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIIISprites.RubySapphire">
+            <summary>
+            Pókemon Ruby/Sapphire sprites
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonSprites.VersionSprites.GenerationIIISprites.EmeraldSprites">
+            <summary>
+            Pókemon Emerald sprites
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIIISprites.EmeraldSprites.FrontDefault">
+            <summary>
+            The default depiction of this Pokémon from the front in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIIISprites.EmeraldSprites.FrontShiny">
+            <summary>
+            The default depiction of this Pokémon from the front shiny in battle.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonSprites.VersionSprites.GenerationIIISprites.FireredLeafgreenSprites">
+            <summary>
+            Pókemon Firered/Leafgreen sprites
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIIISprites.FireredLeafgreenSprites.BackDefault">
+            <summary>
+            The default depiction of this Pokémon from the back in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIIISprites.FireredLeafgreenSprites.BackShiny">
+            <summary>
+            The default depiction of this Pokémon from the back shiny in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIIISprites.FireredLeafgreenSprites.FrontDefault">
+            <summary>
+            The default depiction of this Pokémon from the front in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIIISprites.FireredLeafgreenSprites.FrontShiny">
+            <summary>
+            The default depiction of this Pokémon from the front shiny in battle.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonSprites.VersionSprites.GenerationIIISprites.RubySapphireSprites">
+            <summary>
+            Pókemon Ruby/Sapphire sprites
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIIISprites.RubySapphireSprites.BackDefault">
+            <summary>
+            The default depiction of this Pokémon from the back in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIIISprites.RubySapphireSprites.BackShiny">
+            <summary>
+            The default depiction of this Pokémon from the back shiny in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIIISprites.RubySapphireSprites.FrontDefault">
+            <summary>
+            The default depiction of this Pokémon from the front in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIIISprites.RubySapphireSprites.FrontShiny">
+            <summary>
+            The default depiction of this Pokémon from the front shiny in battle.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonSprites.VersionSprites.GenerationIVSprites">
+            <summary>
+            Pókemon sprites for Generation IV
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIVSprites.DiamondPearl">
+            <summary>
+            Pókemon Diamond/Pearl sprites
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIVSprites.HeartGoldSoulSilver">
+            <summary>
+            Pókemon Heartgold/Soulsilver sprites
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIVSprites.Platinum">
+            <summary>
+            Pókemon Platinum sprites
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonSprites.VersionSprites.GenerationIVSprites.DiamondPearlSprites">
+            <summary>
+            Pókemon Diamond/Pearl sprites
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIVSprites.DiamondPearlSprites.BackDefault">
+            <summary>
+            The default depiction of this Pokémon from the back in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIVSprites.DiamondPearlSprites.BackFemale">
+            <summary>
+            The default depiction of this Pokémon from the back female in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIVSprites.DiamondPearlSprites.BackShiny">
+            <summary>
+            The default depiction of this Pokémon from the back shiny in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIVSprites.DiamondPearlSprites.BackShinyFemale">
+            <summary>
+            The default depiction of this Pokémon from the back female shiny in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIVSprites.DiamondPearlSprites.FrontDefault">
+            <summary>
+            The default depiction of this Pokémon from the front in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIVSprites.DiamondPearlSprites.FrontFemale">
+            <summary>
+            The default depiction of this Pokémon from the front female in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIVSprites.DiamondPearlSprites.FrontShiny">
+            <summary>
+            The default depiction of this Pokémon from the front shiny in battle.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIVSprites.DiamondPearlSprites.FrontShinyFemale" -->
+        <member name="T:PokeApiNet.PokemonSprites.VersionSprites.GenerationIVSprites.HeartGoldSoulSilverSprites">
+            <summary>
+            Pókemon Heartgold/Soulsilver sprites
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIVSprites.HeartGoldSoulSilverSprites.BackDefault">
+            <summary>
+            The default depiction of this Pokémon from the back in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIVSprites.HeartGoldSoulSilverSprites.BackFemale">
+            <summary>
+            The default depiction of this Pokémon from the back female in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIVSprites.HeartGoldSoulSilverSprites.BackShiny">
+            <summary>
+            The default depiction of this Pokémon from the back shiny in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIVSprites.HeartGoldSoulSilverSprites.BackShinyFemale">
+            <summary>
+            The default depiction of this Pokémon from the back female shiny in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIVSprites.HeartGoldSoulSilverSprites.FrontDefault">
+            <summary>
+            The default depiction of this Pokémon from the front in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIVSprites.HeartGoldSoulSilverSprites.FrontFemale">
+            <summary>
+            The default depiction of this Pokémon from the front female in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIVSprites.HeartGoldSoulSilverSprites.FrontShiny">
+            <summary>
+            The default depiction of this Pokémon from the front shiny in battle.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIVSprites.HeartGoldSoulSilverSprites.FrontShinyFemale" -->
+        <member name="T:PokeApiNet.PokemonSprites.VersionSprites.GenerationIVSprites.PlatinumSprites">
+            <summary>
+            Pókemon Platinum sprites
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIVSprites.PlatinumSprites.BackDefault">
+            <summary>
+            The default depiction of this Pokémon from the back in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIVSprites.PlatinumSprites.BackFemale">
+            <summary>
+            The default depiction of this Pokémon from the back female in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIVSprites.PlatinumSprites.BackShiny">
+            <summary>
+            The default depiction of this Pokémon from the back shiny in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIVSprites.PlatinumSprites.BackShinyFemale">
+            <summary>
+            The default depiction of this Pokémon from the back female shiny in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIVSprites.PlatinumSprites.FrontDefault">
+            <summary>
+            The default depiction of this Pokémon from the front in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIVSprites.PlatinumSprites.FrontFemale">
+            <summary>
+            The default depiction of this Pokémon from the front female in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIVSprites.PlatinumSprites.FrontShiny">
+            <summary>
+            The default depiction of this Pokémon from the front shiny in battle.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:PokeApiNet.PokemonSprites.VersionSprites.GenerationIVSprites.PlatinumSprites.FrontShinyFemale" -->
+        <member name="T:PokeApiNet.PokemonSprites.VersionSprites.GenerationVSprites">
+            <summary>
+            Pókemon sprites for Generation V
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVSprites.BlackWhite">
+            <summary>
+            Pókemon Black/White sprites
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonSprites.VersionSprites.GenerationVSprites.BlackWhiteSprites">
+            <summary>
+            Pókemon Black/White sprites
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVSprites.BlackWhiteSprites.Animated">
+            <summary>
+            The animated depiction of this Pokémon from the back in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVSprites.BlackWhiteSprites.BackDefault">
+            <summary>
+            The default depiction of this Pokémon from the back in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVSprites.BlackWhiteSprites.BackFemale">
+            <summary>
+            The default depiction of this Pokémon from the back female in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVSprites.BlackWhiteSprites.BackShiny">
+            <summary>
+            The default depiction of this Pokémon from the back shiny in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVSprites.BlackWhiteSprites.BackShinyFemale">
+            <summary>
+            The default depiction of this Pokémon from the back female shiny in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVSprites.BlackWhiteSprites.FrontDefault">
+            <summary>
+            The default depiction of this Pokémon from the front in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVSprites.BlackWhiteSprites.FrontFemale">
+            <summary>
+            The default depiction of this Pokémon from the front female in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVSprites.BlackWhiteSprites.FrontShiny">
+            <summary>
+            The default depiction of this Pokémon from the front shiny in battle.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVSprites.BlackWhiteSprites.FrontShinyFemale" -->
+        <member name="T:PokeApiNet.PokemonSprites.VersionSprites.GenerationVSprites.BlackWhiteSprites.AnimatedSprites">
+            <summary>
+            The animated depiction of this Pokémon from the back in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVSprites.BlackWhiteSprites.AnimatedSprites.BackDefault">
+            <summary>
+            The default depiction of this Pokémon from the back in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVSprites.BlackWhiteSprites.AnimatedSprites.BackFemale">
+            <summary>
+            The default depiction of this Pokémon from the back female in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVSprites.BlackWhiteSprites.AnimatedSprites.BackShiny">
+            <summary>
+            The default depiction of this Pokémon from the back shiny in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVSprites.BlackWhiteSprites.AnimatedSprites.BackShinyFemale">
+            <summary>
+            The default depiction of this Pokémon from the back female shiny in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVSprites.BlackWhiteSprites.AnimatedSprites.FrontDefault">
+            <summary>
+            The default depiction of this Pokémon from the front in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVSprites.BlackWhiteSprites.AnimatedSprites.FrontFemale">
+            <summary>
+            The default depiction of this Pokémon from the front female in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVSprites.BlackWhiteSprites.AnimatedSprites.FrontShiny">
+            <summary>
+            The default depiction of this Pokémon from the front shiny in battle.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVSprites.BlackWhiteSprites.AnimatedSprites.FrontShinyFemale" -->
+        <member name="T:PokeApiNet.PokemonSprites.VersionSprites.GenerationVISprites">
+            <summary>
+            Pókemon sprites for Generation VI
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVISprites.OmegaRubyAlphaSapphire">
+            <summary>
+            Pókemon OmegaRuby/AlphaSapphire sprites
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVISprites.XY">
+            <summary>
+            Pókemon X/Y sprites
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonSprites.VersionSprites.GenerationVISprites.OmegaRubyAlphaSapphireSprites">
+            <summary>
+            Pókemon OmegaRuby/AlphaSapphire sprites
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVISprites.OmegaRubyAlphaSapphireSprites.FrontDefault">
+            <summary>
+            The default depiction of this Pokémon from the front in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVISprites.OmegaRubyAlphaSapphireSprites.FrontFemale">
+            <summary>
+            The default depiction of this Pokémon from the front female in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVISprites.OmegaRubyAlphaSapphireSprites.FrontShiny">
+            <summary>
+            The default depiction of this Pokémon from the front shiny in battle.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVISprites.OmegaRubyAlphaSapphireSprites.FrontShinyFemale" -->
+        <member name="T:PokeApiNet.PokemonSprites.VersionSprites.GenerationVISprites.XYSprites">
+            <summary>
+            Pókemon X/Y sprites
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVISprites.XYSprites.FrontDefault">
+            <summary>
+            The default depiction of this Pokémon from the front in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVISprites.XYSprites.FrontFemale">
+            <summary>
+            The default depiction of this Pokémon from the front female in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVISprites.XYSprites.FrontShiny">
+            <summary>
+            The default depiction of this Pokémon from the front shiny in battle.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVISprites.XYSprites.FrontShinyFemale" -->
+        <member name="T:PokeApiNet.PokemonSprites.VersionSprites.GenerationVIISprites">
+            <summary>
+            Pókemon sprites for Generation VII
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVIISprites.Icons">
+            <summary>
+            Pókemon Icons sprites
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVIISprites.UltraSunUltraMoon">
+            <summary>
+            Pókemon UltraSun/UltraMoon sprites
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonSprites.VersionSprites.GenerationVIISprites.IconsSprites">
+            <summary>
+            Pókemon Icons sprites
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVIISprites.IconsSprites.FrontDefault">
+            <summary>
+            The default depiction of this Pokémon from the front in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVIISprites.IconsSprites.FrontFemale">
+            <summary>
+            The default depiction of this Pokémon from the front female in battle.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonSprites.VersionSprites.GenerationVIISprites.UltraSunUltraMoonSprites">
+            <summary>
+            Pókemon UltraSun/UltraMoon sprites
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVIISprites.UltraSunUltraMoonSprites.FrontDefault">
+            <summary>
+            The default depiction of this Pokémon from the front in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVIISprites.UltraSunUltraMoonSprites.FrontFemale">
+            <summary>
+            The default depiction of this Pokémon from the front female in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVIISprites.UltraSunUltraMoonSprites.FrontShiny">
+            <summary>
+            The default depiction of this Pokémon from the front shiny in battle.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVIISprites.UltraSunUltraMoonSprites.FrontShinyFemale" -->
+        <member name="T:PokeApiNet.PokemonSprites.VersionSprites.GenerationVIIISprites">
+            <summary>
+            Pókemon sprites for Generation VIII
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVIIISprites.Icons">
+            <summary>
+            Pókemon Icons sprites
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonSprites.VersionSprites.GenerationVIIISprites.IconsSprites">
+            <summary>
+            Pókemon Icons sprites
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVIIISprites.IconsSprites.FrontDefault">
+            <summary>
+            The default depiction of this Pokémon from the front in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSprites.VersionSprites.GenerationVIIISprites.IconsSprites.FrontFemale">
+            <summary>
+            The default depiction of this Pokémon from the front female in battle.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.LocationAreaEncounter">
+            <summary>
+            A list of possible encounter locations for a Pokémon with the version information
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.LocationAreaEncounter.LocationArea">
+            <summary>
+            The location area the referenced Pokémon can be encountered in.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.LocationAreaEncounter.VersionDetails">
+            <summary>
+            A list of versions and encounters with the referenced Pokémon
+            that might happen.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonColor">
+            <summary>
+            Colors used for sorting Pokémon in a Pokédex. The color listed in the
+            Pokédex is usually the color most apparent or covering each Pokémon's
+            body. No orange category exists; Pokémon that are primarily orange are
+            listed as red or brown.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonColor.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonColor.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonColor.Names">
+            <summary>
+            The name of this resource listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonColor.PokemonSpecies">
+            <summary>
+            A list of the Pokémon species that have this color.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonForm">
+            <summary>
+            Some Pokémon may appear in one of multiple, visually different
+            forms. These differences are purely cosmetic. For variations
+            within a Pokémon species, which do differ in more than just visuals,
+            the 'Pokémon' entity is used to represent such a variety.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonForm.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonForm.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonForm.Order">
+            <summary>
+            The order in which forms should be sorted within all forms.
+            Multiple forms may have equal order, in which case they should
+            fall back on sorting by name.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonForm.FormOrder">
+            <summary>
+            The order in which forms should be sorted within a species' forms.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonForm.IsDefault">
+            <summary>
+            True for exactly one form used as the default for each Pokémon.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonForm.IsBattleOnly">
+            <summary>
+            Whether or not this form can only happen during battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonForm.IsMega">
+            <summary>
+            Whether or not this form requires mega evolution.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonForm.FormName">
+            <summary>
+            The name of this form.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonForm.Pokemon">
+            <summary>
+            The Pokémon that can take on this form.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonForm.Sprites">
+            <summary>
+            A set of sprites used to depict this Pokémon form in the game.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonForm.VersionGroup">
+            <summary>
+            The version group this Pokémon form was introduced in.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonForm.Names">
+            <summary>
+            The form specific full name of this Pokémon form, or empty if
+            the form does not have a specific name.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonForm.FormNames">
+            <summary>
+            The form specific form name of this Pokémon form, or empty if the
+            form does not have a specific name.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonFormSprites">
+            <summary>
+            Pokémon sprite information with relation to a form
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonFormSprites.FrontDefault">
+            <summary>
+            The default depiction of this Pokémon form from the front in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonFormSprites.FrontShiny">
+            <summary>
+            The shiny depiction of this Pokémon form from the front in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonFormSprites.BackDefault">
+            <summary>
+            The default depiction of this Pokémon form from the back in battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonFormSprites.BackShiny">
+            <summary>
+            The shiny depiction of this Pokémon form from the back in battle.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonHabitat">
+            <summary>
+            Habitats are generally different terrain Pokémon can be found in but
+            can also be areas designated for rare or legendary Pokémon.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonHabitat.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonHabitat.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonHabitat.Names">
+            <summary>
+            The name of this resource listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonHabitat.PokemonSpecies">
+            <summary>
+            A list of the Pokémon species that can be found in this habitat.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonShape">
+            <summary>
+            Shapes used for sorting Pokémon in a Pokédex.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonShape.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonShape.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonShape.AwesomeNames">
+            <summary>
+            The "scientific" name of this Pokémon shape listed in
+            different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonShape.Names">
+            <summary>
+            The name of this resource listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonShape.PokemonSpecies">
+            <summary>
+            A list of the Pokémon species that have this shape.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.AwesomeNames">
+            <summary>
+            The "scientific" name for an API resource and the language information
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.AwesomeNames.AwesomeName">
+            <summary>
+            The localized "scientific" name for an API resource in a
+            specific language.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.AwesomeNames.Language">
+            <summary>
+            The language this "scientific" name is in.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonSpecies">
+            <summary>
+            A Pokémon Species forms the basis for at least one Pokémon. Attributes
+            of a Pokémon species are shared across all varieties of Pokémon within
+            the species. A good example is Wormadam; Wormadam is the species which
+            can be found in three different varieties, Wormadam-Trash,
+            Wormadam-Sandy and Wormadam-Plant.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpecies.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpecies.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpecies.Order">
+            <summary>
+            The order in which species should be sorted. Based on National Dex
+            order, except families are grouped together and sorted by stage.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpecies.GenderRate">
+            <summary>
+            The chance of this Pokémon being female, in eighths; or -1 for
+            genderless.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpecies.CaptureRate">
+            <summary>
+            The base capture rate; up to 255. The higher the number, the easier
+            the catch.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpecies.BaseHappiness">
+            <summary>
+            The happiness when caught by a normal Pokéball; up to 255. The higher
+            the number, the happier the Pokémon.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpecies.IsBaby">
+            <summary>
+            Whether or not this is a baby Pokémon.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpecies.IsLegendary">
+            <summary>
+            Whether or not this is a legendary Pokémon.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpecies.IsMythical">
+            <summary>
+            Whether or not this is a mythical Pokémon.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpecies.HatchCounter">
+            <summary>
+            Initial hatch counter: one must walk 255 × (hatch_counter + 1) steps
+            before this Pokémon's egg hatches, unless utilizing bonuses like
+            Flame Body's.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpecies.HasGenderDifferences">
+            <summary>
+            Whether or not this Pokémon has visual gender differences.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpecies.FormsSwitchable">
+            <summary>
+            Whether or not this Pokémon has multiple forms and can switch between
+            them.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpecies.GrowthRate">
+            <summary>
+            The rate at which this Pokémon species gains levels.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpecies.PokedexNumbers">
+            <summary>
+            A list of Pokedexes and the indexes reserved within them for this
+            Pokémon species.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpecies.EggGroups">
+            <summary>
+            A list of egg groups this Pokémon species is a member of.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpecies.Color">
+            <summary>
+            The color of this Pokémon for Pokédex search.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpecies.Shape">
+            <summary>
+            The shape of this Pokémon for Pokédex search.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpecies.EvolvesFromSpecies">
+            <summary>
+            The Pokémon species that evolves into this Pokemon_species.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpecies.EvolutionChain">
+            <summary>
+            The evolution chain this Pokémon species is a member of.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpecies.Habitat">
+            <summary>
+            The habitat this Pokémon species can be encountered in.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpecies.Generation">
+            <summary>
+            The generation this Pokémon species was introduced in.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpecies.Names">
+            <summary>
+            The name of this resource listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpecies.PalParkEncounters">
+            <summary>
+            A list of encounters that can be had with this Pokémon species in
+            pal park.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpecies.FlavorTextEntries">
+            <summary>
+            A list of flavor text entries for this Pokémon species.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpecies.FormDescriptions">
+            <summary>
+            Descriptions of different forms Pokémon take on within the Pokémon
+            species.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpecies.Genera">
+            <summary>
+            The genus of this Pokémon species listed in multiple languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpecies.Varieties">
+            <summary>
+            A list of the Pokémon that exist within this Pokémon species.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonSpeciesFlavorTexts">
+            <summary>
+            The flavor text for a Pokémon species
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpeciesFlavorTexts.FlavorText">
+            <summary>
+            The localized flavor text for an api resource in a specific language
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpeciesFlavorTexts.Version">
+            <summary>
+            The game version this flavor text is extracted from.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpeciesFlavorTexts.Language">
+            <summary>
+            The language this flavor text is in.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.Genuses">
+            <summary>
+            The genus information for a Pokémon and the associated language
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Genuses.Genus">
+            <summary>
+            The localized genus for the referenced Pokémon species
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Genuses.Language">
+            <summary>
+            The language this genus is in.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonSpeciesDexEntry">
+            <summary>
+            The Pokémon Pokédex entry information
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpeciesDexEntry.EntryNumber">
+            <summary>
+            The index number within the Pokédex.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpeciesDexEntry.Pokedex">
+            <summary>
+            The Pokédex the referenced Pokémon species can be found in.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PalParkEncounterArea">
+            <summary>
+            Information for a PalPark area
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PalParkEncounterArea.BaseScore">
+            <summary>
+            The base score given to the player when the referenced Pokémon is
+            caught during a pal park run.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PalParkEncounterArea.Rate">
+            <summary>
+            The base rate for encountering the referenced Pokémon in this pal
+            park area.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PalParkEncounterArea.Area">
+            <summary>
+            The pal park area where this encounter happens.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokemonSpeciesVariety">
+            <summary>
+            A variety of a Pokémon species
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpeciesVariety.IsDefault">
+            <summary>
+            Whether this variety is the default variety.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.PokemonSpeciesVariety.Pokemon">
+            <summary>
+            The Pokémon variety.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.Stat">
+            <summary>
+            Stats determine certain aspects of battles. Each Pokémon has a value
+            for each stat which grows as they gain levels and can be altered
+            momentarily by effects in battles.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Stat.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Stat.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Stat.GameIndex">
+            <summary>
+            ID the games use for this stat.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Stat.IsBattleOnly">
+            <summary>
+            Whether this stat only exists within a battle.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Stat.AffectingMoves">
+            <summary>
+            A detail of moves which affect this stat positively or negatively.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Stat.AffectingNatures">
+            <summary>
+            A detail of natures which affect this stat positively or negatively.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Stat.Characteristics">
+            <summary>
+            A list of characteristics that are set on a Pokémon when its highest
+            base stat is this stat.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Stat.MoveDamageClass">
+            <summary>
+            The public class of damage this stat is directly related to.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Stat.Names">
+            <summary>
+            The name of this resource listed in different languages.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.MoveStatAffectSets">
+            <summary>
+            A list of moves and how they change statuses
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveStatAffectSets.Increase">
+            <summary>
+            A list of moves and how they change the referenced stat.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveStatAffectSets.Decrease">
+            <summary>
+            A list of moves and how they change the referenced stat.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.MoveStatAffect">
+            <summary>
+            A reference to a move and the change to a status
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveStatAffect.Change">
+            <summary>
+            The maximum amount of change to the referenced stat.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.MoveStatAffect.Move">
+            <summary>
+            The move causing the change.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.NatureStatAffectSets">
+            <summary>
+            A reference to a nature and the change to a status
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.NatureStatAffectSets.Increase">
+            <summary>
+            A list of natures and how they change the referenced stat.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.NatureStatAffectSets.Decrease">
+            <summary>
+            A list of natures and how they change the referenced stat.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.Type">
+            <summary>
+            Types are properties for Pokémon and their moves. Each type has three
+            properties: which types of Pokémon it is super effective against,
+            which types of Pokémon it is not very effective against, and which types
+            of Pokémon it is completely ineffective against.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Type.Id">
+            <summary>
+            The identifier for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Type.Name">
+            <summary>
+            The name for this resource.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Type.DamageRelations">
+            <summary>
+            A detail of how effective this type is toward others and vice versa.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Type.GameIndices">
+            <summary>
+            A list of game indices relevent to this item by generation.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Type.Generation">
+            <summary>
+            The generation this type was introduced in.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Type.MoveDamageClass">
+            <summary>
+            The public class of damage inflicted by this type.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Type.Names">
+            <summary>
+            The name of this resource listed in different languages.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Type.Pokemon">
+            <summary>
+            A list of details of Pokémon that have this type.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.Type.Moves">
+            <summary>
+            A list of moves that have this type.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.TypePokemon">
+            <summary>
+            A Pokémon type information
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.TypePokemon.Slot">
+            <summary>
+            The order the Pokémon's types are listed in.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.TypePokemon.Pokemon">
+            <summary>
+            The Pokémon that has the referenced type.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.TypeRelations">
+            <summary>
+            The information for how a type interacts with other types
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.TypeRelations.NoDamageTo">
+            <summary>
+            A list of types this type has no effect on.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.TypeRelations.HalfDamageTo">
+            <summary>
+            A list of types this type is not very effect against.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.TypeRelations.DoubleDamageTo">
+            <summary>
+            A list of types this type is very effect against.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.TypeRelations.NoDamageFrom">
+            <summary>
+            A list of types that have no effect on this type.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.TypeRelations.HalfDamageFrom">
+            <summary>
+            A list of types that are not very effective against this type.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.TypeRelations.DoubleDamageFrom">
+            <summary>
+            A list of types that are very effective against this type.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.ResourceBase">
+            <summary>
+            The base class for classes that have an API endpoint. These
+            classes can also be cached with their id value.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ResourceBase.Id">
+            <summary>
+            The identifier for this resource
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ResourceBase.ApiEndpoint">
+            <summary>
+            The endpoint string for this resource
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ResourceBase.IsApiEndpointCaseSensitive">
+            <summary>
+            Is endpoint case sensitive
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.NamedApiResource">
+            <summary>
+            The base class for API resources that have a name property
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.NamedApiResource.Name">
+            <summary>
+            The name of this resource
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.ApiResource">
+            <summary>
+            The base class for API resources that don't have a name property
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.ResourceList`1">
+            <summary>
+            The base class for all resource lists
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ResourceList`1.Count">
+            <summary>
+            The total number of resources available from this API
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ResourceList`1.Next">
+            <summary>
+            The URL for the next page in the list.
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.ResourceList`1.Previous">
+            <summary>
+            The URL for the previous page in the list.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.ApiResourceList`1">
+            <summary>
+            The paging object for un-named resources
+            </summary>
+            <typeparam name="T">The type of the paged resource</typeparam>
+        </member>
+        <member name="P:PokeApiNet.ApiResourceList`1.Results">
+            <summary>
+            A list of un-named API resources.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.NamedApiResourceList`1">
+            <summary>
+            The paging object for named resources
+            </summary>
+            <typeparam name="T">The type of the paged resource</typeparam>
+        </member>
+        <member name="P:PokeApiNet.NamedApiResourceList`1.Results">
+            <summary>
+            A list of named API resources.
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.UrlNavigation`1">
+            <summary>
+            Allows for automatic fetching of a resource via a url
+            </summary>
+        </member>
+        <member name="P:PokeApiNet.UrlNavigation`1.Url">
+            <summary>
+            Url of the referenced resource
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.PokeApiClient">
+            <summary>
+            Gets data from the PokeAPI service
+            </summary>
+        </member>
+        <member name="F:PokeApiNet.PokeApiClient.DefaultUserAgent">
+            <summary>
+            The default `User-Agent` header value used by instances of <see cref="T:PokeApiNet.PokeApiClient"/>.
+            </summary>
+        </member>
+        <member name="M:PokeApiNet.PokeApiClient.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:PokeApiNet.PokeApiClient.#ctor(System.Net.Http.Headers.ProductHeaderValue)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PokeApiNet.PokeApiClient"/> with 
+            a given value for the `User-Agent` header
+            </summary>
+            <param name="userAgent">The value for the default `User-Agent` header.</param>
+        </member>
+        <member name="M:PokeApiNet.PokeApiClient.#ctor(System.Net.Http.HttpMessageHandler)">
+            <summary>
+            Constructor with message handler
+            </summary>
+            <param name="messageHandler">Message handler implementation</param>
+        </member>
+        <member name="M:PokeApiNet.PokeApiClient.#ctor(System.Net.Http.HttpMessageHandler,System.Net.Http.Headers.ProductHeaderValue)">
+            <summary>
+            Constructor with message handler and `User-Agent` header value
+            </summary>
+            <param name="messageHandler">Message handler implementation</param>
+            <param name="userAgent">The value for the default `User-Agent` header.</param>
+        </member>
+        <member name="M:PokeApiNet.PokeApiClient.#ctor(System.Net.Http.HttpClient)">
+            <summary>
+            Construct accepting directly a HttpClient. Useful when used in projects where
+            IHttpClientFactory is used to create and configure HttpClient instances with different policies.
+            See https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests
+            </summary>
+            <param name="httpClient">HttpClient implementation</param>
+        </member>
+        <member name="M:PokeApiNet.PokeApiClient.Dispose">
+            <summary>
+            Close resources
+            </summary>
+        </member>
+        <member name="M:PokeApiNet.PokeApiClient.GetResourcesWithParamsAsync``1(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Send a request to the api and serialize the response into the specified type
+            </summary>
+            <typeparam name="T">The type of resource</typeparam>
+            <param name="apiParam">The name or id of the resource</param>
+            <param name="cancellationToken">Cancellation token for the request; not utilized if data has been cached</param>
+            <exception cref="T:System.Net.Http.HttpRequestException">Something went wrong with your request</exception>
+            <returns>An instance of the specified type with data from the request</returns>
+        </member>
+        <member name="M:PokeApiNet.PokeApiClient.GetResourceByUrlAsync``1(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Gets a resource from a navigation url; resource is retrieved from cache if possible
+            </summary>
+            <typeparam name="T">The type of resource</typeparam>
+            <param name="url">Navigation url</param>
+            <param name="cancellationToken">Cancellation token for the request; not utilized if data has been cached</param>
+            <exception cref="T:System.NotSupportedException">Navigation url doesn't contain the resource id</exception>
+            <returns>The object of the resource</returns>
+        </member>
+        <member name="M:PokeApiNet.PokeApiClient.GetResourceAsync``1(System.Int32)">
+            <summary>
+            Gets a resource by id; resource is retrieved from cache if possible
+            </summary>
+            <typeparam name="T">The type of resource</typeparam>
+            <param name="id">Id of resource</param>
+            <returns>The object of the resource</returns>
+        </member>
+        <member name="M:PokeApiNet.PokeApiClient.GetResourceAsync``1(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Gets a resource by id; resource is retrieved from cache if possible
+            </summary>
+            <typeparam name="T">The type of resource</typeparam>
+            <param name="id">Id of resource</param>
+            <param name="cancellationToken">Cancellation token for the request; not utilized if data has been cached</param>
+            <returns>The object of the resource</returns>
+        </member>
+        <member name="M:PokeApiNet.PokeApiClient.GetResourceAsync``1(System.String)">
+            <summary>
+            Gets a resource by name; resource is retrieved from cache if possible. This lookup
+            is case insensitive.
+            </summary>
+            <typeparam name="T">The type of resource</typeparam>
+            <param name="name">Name of resource</param>
+            <returns>The object of the resource</returns>
+        </member>
+        <member name="M:PokeApiNet.PokeApiClient.GetResourceAsync``1(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Gets a resource by name; resource is retrieved from cache if possible. This lookup
+            is case insensitive.
+            </summary>
+            <typeparam name="T">The type of resource</typeparam>
+            <param name="name">Name of resource</param>
+            <param name="cancellationToken">Cancellation token for the request; not utilized if data has been cached</param>
+            <returns>The object of the resource</returns>
+        </member>
+        <member name="M:PokeApiNet.PokeApiClient.GetResourceAsync``1(System.Collections.Generic.IEnumerable{PokeApiNet.UrlNavigation{``0}})">
+            <summary>
+            Resolves all navigation properties in a collection
+            </summary>
+            <typeparam name="T">Navigation type</typeparam>
+            <param name="collection">The collection of navigation objects</param>
+            <returns>A list of resolved objects</returns>
+        </member>
+        <member name="M:PokeApiNet.PokeApiClient.GetResourceAsync``1(System.Collections.Generic.IEnumerable{PokeApiNet.UrlNavigation{``0}},System.Threading.CancellationToken)">
+            <summary>
+            Resolves all navigation properties in a collection
+            </summary>
+            <typeparam name="T">Navigation type</typeparam>
+            <param name="collection">The collection of navigation objects</param>
+            <param name="cancellationToken">Cancellation token for the request; not utilized if data has been cached</param>
+            <returns>A list of resolved objects</returns>
+        </member>
+        <member name="M:PokeApiNet.PokeApiClient.GetResourceAsync``1(PokeApiNet.UrlNavigation{``0})">
+            <summary>
+            Resolves a single navigation property
+            </summary>
+            <typeparam name="T">Navigation type</typeparam>
+            <param name="urlResource">The single navigation object to resolve</param>
+            <returns>A resolved object</returns>
+        </member>
+        <member name="M:PokeApiNet.PokeApiClient.GetResourceAsync``1(PokeApiNet.UrlNavigation{``0},System.Threading.CancellationToken)">
+            <summary>
+            Resolves a single navigation property
+            </summary>
+            <typeparam name="T">Navigation type</typeparam>
+            <param name="urlResource">The single navigation object to resolve</param>
+            <param name="cancellationToken">Cancellation token for the request; not utilized if data has been cached</param>
+            <returns>A resolved object</returns>
+        </member>
+        <member name="M:PokeApiNet.PokeApiClient.ClearCache">
+            <summary>
+            Clears all cached data for both resources and resource lists
+            </summary>
+        </member>
+        <member name="M:PokeApiNet.PokeApiClient.ClearResourceCache``1">
+            <summary>
+            Clears the cached data for a specific resource
+            </summary>
+            <typeparam name="T">The type of cache</typeparam>
+        </member>
+        <member name="M:PokeApiNet.PokeApiClient.ClearResourceCache">
+            <summary>
+            Clears the cached data for all resource types
+            </summary>
+        </member>
+        <member name="M:PokeApiNet.PokeApiClient.ClearResourceListCache">
+            <summary>
+            Clears the cached data for all resource lists
+            </summary>
+        </member>
+        <member name="M:PokeApiNet.PokeApiClient.ClearResourceListCache``1">
+            <summary>
+            Clears the cached data for a specific resource list
+            </summary>
+            <typeparam name="T">The type of cache</typeparam>
+        </member>
+        <member name="M:PokeApiNet.PokeApiClient.GetNamedResourcePageAsync``1(System.Threading.CancellationToken)">
+            <summary>
+            Gets a single page of named resource data
+            </summary>
+            <typeparam name="T">The type of resource</typeparam>
+            <param name="cancellationToken">Cancellation token for the request; not utilized if data has been cached</param>
+            <returns>The paged resource object</returns>
+        </member>
+        <member name="M:PokeApiNet.PokeApiClient.GetNamedResourcePageAsync``1(System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Gets the specified page of named resource data
+            </summary>
+            <typeparam name="T">The type of resource</typeparam>
+            <param name="limit">The number of resources in a list page</param>
+            <param name="offset">Page offset</param>
+            <param name="cancellationToken">Cancellation token for the request; not utilized if data has been cached</param>
+            <returns>The paged resource object</returns>
+        </member>
+        <member name="M:PokeApiNet.PokeApiClient.GetAllNamedResourcesAsync``1(System.Threading.CancellationToken)">
+            <summary>
+            Gets all the named resources
+            </summary>
+            <typeparam name="T">The type of resource</typeparam>
+            <param name="cancellationToken">Cancellation token for the request; not utilized if data has been cached</param>
+            <returns>An async enumeration of the requested resources</returns>
+        </member>
+        <member name="M:PokeApiNet.PokeApiClient.GetApiResourcePageAsync``1(System.Threading.CancellationToken)">
+            <summary>
+            Gets a single page of unnamed resource data
+            </summary>
+            <typeparam name="T">The type of resource</typeparam>
+            <param name="cancellationToken">Cancellation token for the request; not utilized if data has been cached</param>
+            <returns>The paged resource object</returns>
+        </member>
+        <member name="M:PokeApiNet.PokeApiClient.GetApiResourcePageAsync``1(System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Gets the specified page of unnamed resource data
+            </summary>
+            <typeparam name="T">The type of resource</typeparam>
+            <param name="limit">The number of resources in a list page</param>
+            <param name="offset">Page offset</param>
+            <param name="cancellationToken">Cancellation token for the request; not utilized if data has been cached</param>
+            <returns>The paged resource object</returns>
+        </member>
+        <member name="M:PokeApiNet.PokeApiClient.GetAllApiResourcesAsync``1(System.Threading.CancellationToken)">
+            <summary>
+            Gets all the unnamed resources
+            </summary>
+            <typeparam name="T">The type of resource</typeparam>
+            <param name="cancellationToken">Cancellation token for the request; not utilized if data has been cached</param>
+            <returns>An async enumeration of the requested resources</returns>
+        </member>
+        <member name="M:PokeApiNet.PokeApiClient.GetAsync``1(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Handles all outbound API requests to the PokeAPI server and deserializes the response
+            </summary>
+        </member>
+        <member name="M:PokeApiNet.PokeApiClient.DeserializeStream``1(System.IO.Stream)">
+            <summary>
+            Handles deserialization of a given stream to a given type
+            </summary>
+        </member>
+        <member name="T:PokeApiNet.QueryHelpers">
+            <summary>
+            Based on https://source.dot.net/#Microsoft.AspNetCore.WebUtilities/QueryHelpers.cs,1c1b023fbf834a3d
+            </summary>
+            <remarks>
+            Once could opt for depending on https://www.nuget.org/packages/Microsoft.AspNetCore.WebUtilities/ instead of vendoring
+            the class in the library, but the nuget package contains a lot more than whats required in this lib.
+            </remarks>
+        </member>
+        <member name="M:PokeApiNet.QueryHelpers.AddQueryString(System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Append the given query keys and values to the URI.
+            </summary>
+            <param name="uri">The base URI.</param>
+            <param name="queryString">A dictionary of query keys and values to append.</param>
+            <returns>The combined result.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="uri"/> is <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="queryString"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:PokeApiNet.QueryHelpers.AddQueryString(System.String,System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.String}})">
+            <summary>
+            Append the given query keys and values to the URI.
+            </summary>
+            <param name="uri">The base URI.</param>
+            <param name="queryString">A collection of name value query pairs to append.</param>
+            <returns>The combined result.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="uri"/> is <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="queryString"/> is <c>null</c>.</exception>
+        </member>
+    </members>
+</doc>
