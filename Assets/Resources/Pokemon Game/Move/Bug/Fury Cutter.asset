@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Fury Cutter
   m_EditorClassIdentifier: 
   name: Fury Cutter
+  id: 0
   type: {fileID: 11400000, guid: bf9a294a54121aa4388e9b483a5a6612, type: 2}
   description: Power increases each turn.
   damage: 40
   basePP: 20
   accuracy: 0.95
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

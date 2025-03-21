@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Aeroblast
   m_EditorClassIdentifier: 
   name: Aeroblast
+  id: 0
   type: {fileID: 11400000, guid: 6a482d51d49ba5a45bff8e1435389d3f, type: 2}
   description: High critical hit ratio.
   damage: 100
   basePP: 5
   accuracy: 0.95
+  priority: 0
   category: 1
   probability: 0
   zMove: 0

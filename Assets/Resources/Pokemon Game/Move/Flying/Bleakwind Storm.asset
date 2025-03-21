@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Bleakwind Storm
   m_EditorClassIdentifier: 
   name: Bleakwind Storm
+  id: 0
   type: {fileID: 11400000, guid: 6a482d51d49ba5a45bff8e1435389d3f, type: 2}
   description: May lower opponent's Speed.
   damage: 100
   basePP: 10
   accuracy: 0.8
+  priority: 0
   category: 1
   probability: 0
   zMove: 0

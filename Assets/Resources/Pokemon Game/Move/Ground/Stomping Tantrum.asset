@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Stomping Tantrum
   m_EditorClassIdentifier: 
   name: Stomping Tantrum
+  id: 0
   type: {fileID: 11400000, guid: 4641dc3e5ff6ea64f8f1cea1bfaf0a9c, type: 2}
   description: Driven by frustration, the user attacks the target. If the user's
     previous move has failed, the power of this move doubles.
   damage: 75
   basePP: 10
   accuracy: 1
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

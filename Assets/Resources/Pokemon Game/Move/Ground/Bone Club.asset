@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Bone Club
   m_EditorClassIdentifier: 
   name: Bone Club
+  id: 0
   type: {fileID: 11400000, guid: 4641dc3e5ff6ea64f8f1cea1bfaf0a9c, type: 2}
   description: May cause flinching.
   damage: 65
   basePP: 20
   accuracy: 0.85
+  priority: 0
   category: 0
   probability: 10
   zMove: 0

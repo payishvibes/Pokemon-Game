@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Aurora Veil
   m_EditorClassIdentifier: 
   name: Aurora Veil
+  id: 0
   type: {fileID: 11400000, guid: cc8553e72fcb59547b96efa41bfb6395, type: 2}
   description: Halves damage from Physical and Special attacks for five turns.
   damage: 0
   basePP: 20
   accuracy: 0
+  priority: 0
   category: 2
   probability: 0
   zMove: 0

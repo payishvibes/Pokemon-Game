@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Metal Sound
   m_EditorClassIdentifier: 
   name: Metal Sound
+  id: 0
   type: {fileID: 11400000, guid: e15b708ccad685240ae9eea4c601524a, type: 2}
   description: Sharply lowers opponent's Special Defense.
   damage: 0
   basePP: 40
   accuracy: 0.85
+  priority: 0
   category: 2
   probability: 0
   zMove: 0

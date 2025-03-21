@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Psyshield Bash
   m_EditorClassIdentifier: 
   name: Psyshield Bash
+  id: 0
   type: {fileID: 11400000, guid: d43687aadbc21ff4291682914e2bc664, type: 2}
   description: Raises user's Defense and Special Defense.
   damage: 70
   basePP: 10
   accuracy: 0.9
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Dragon Tail
   m_EditorClassIdentifier: 
   name: Dragon Tail
+  id: 0
   type: {fileID: 11400000, guid: 2a0dd581c0f039443914f076081082d8, type: 2}
   description: "In battles, the opponent switches. In the wild, the Pok\xE9mon runs."
   damage: 60
   basePP: 10
   accuracy: 0.9
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

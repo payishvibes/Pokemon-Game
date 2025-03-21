@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: After You
   m_EditorClassIdentifier: 
   name: After You
+  id: 0
   type: {fileID: 11400000, guid: 7d400c8d21a01854e94041f45793cbf1, type: 2}
   description: Gives target priority in the next turn.
   damage: 0
   basePP: 15
   accuracy: 0
+  priority: 0
   category: 2
   probability: 0
   zMove: 0

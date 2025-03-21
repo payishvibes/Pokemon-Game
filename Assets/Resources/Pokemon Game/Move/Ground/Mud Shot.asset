@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Mud Shot
   m_EditorClassIdentifier: 
   name: Mud Shot
+  id: 0
   type: {fileID: 11400000, guid: 4641dc3e5ff6ea64f8f1cea1bfaf0a9c, type: 2}
   description: Lowers opponent's Speed.
   damage: 55
   basePP: 15
   accuracy: 0.95
+  priority: 0
   category: 1
   probability: 100
   zMove: 0

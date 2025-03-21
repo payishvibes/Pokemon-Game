@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Revival Blessing
   m_EditorClassIdentifier: 
   name: Revival Blessing
+  id: 0
   type: {fileID: 11400000, guid: 7d400c8d21a01854e94041f45793cbf1, type: 2}
   description: "Revives a fainted party Pok\xE9mon to half HP."
   damage: 0
   basePP: 1
   accuracy: 0
+  priority: 0
   category: 2
   probability: 0
   zMove: 0

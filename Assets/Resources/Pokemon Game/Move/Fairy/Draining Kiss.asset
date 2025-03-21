@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Draining Kiss
   m_EditorClassIdentifier: 
   name: Draining Kiss
+  id: 0
   type: {fileID: 11400000, guid: f2728e728c5c1fb4db2022f5766212eb, type: 2}
   description: User recovers most the HP inflicted on opponent.
   damage: 50
   basePP: 10
   accuracy: 1
+  priority: 0
   category: 1
   probability: 0
   zMove: 0

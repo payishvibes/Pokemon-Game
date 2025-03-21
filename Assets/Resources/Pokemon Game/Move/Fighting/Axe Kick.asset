@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Axe Kick
   m_EditorClassIdentifier: 
   name: Axe Kick
+  id: 0
   type: {fileID: 11400000, guid: d19a1b210053ade4ab55da13c78024fd, type: 2}
   description: May confuse opponent. If it misses, the user loses HP.
   damage: 120
   basePP: 10
   accuracy: 0.9
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

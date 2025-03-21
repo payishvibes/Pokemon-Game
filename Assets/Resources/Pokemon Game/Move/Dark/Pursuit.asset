@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Pursuit
   m_EditorClassIdentifier: 
   name: Pursuit
+  id: 0
   type: {fileID: 11400000, guid: 6814cf3b84c0291459658e8469b19aa6, type: 2}
   description: Double power if the opponent is switching out.
   damage: 40
   basePP: 20
   accuracy: 1
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

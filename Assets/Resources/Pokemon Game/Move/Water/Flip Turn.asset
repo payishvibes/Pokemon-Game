@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Flip Turn
   m_EditorClassIdentifier: 
   name: Flip Turn
+  id: 0
   type: {fileID: 11400000, guid: e96a8bed7870822469f0947b19e4e57d, type: 2}
   description: "After making its attack, the user rushes back to switch places with
     a party Pok\xE9mon in waiting."
   damage: 60
   basePP: 20
   accuracy: 1
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

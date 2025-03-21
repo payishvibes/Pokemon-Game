@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Clanging Scales
   m_EditorClassIdentifier: 
   name: Clanging Scales
+  id: 0
   type: {fileID: 11400000, guid: 2a0dd581c0f039443914f076081082d8, type: 2}
   description: Lowers user's Defense.
   damage: 110
   basePP: 5
   accuracy: 1
+  priority: 0
   category: 1
   probability: 100
   zMove: 0

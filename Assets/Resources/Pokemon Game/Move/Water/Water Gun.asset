@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Water Gun
   m_EditorClassIdentifier: 
   name: Water Gun
+  id: 0
   type: {fileID: 11400000, guid: e96a8bed7870822469f0947b19e4e57d, type: 2}
   description: 
   damage: 40
   basePP: 25
   accuracy: 1
+  priority: 0
   category: 1
   probability: 0
   zMove: 0

@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Struggle Bug
   m_EditorClassIdentifier: 
   name: Struggle Bug
+  id: 0
   type: {fileID: 11400000, guid: bf9a294a54121aa4388e9b483a5a6612, type: 2}
   description: Lowers opponent's Special Attack.
   damage: 50
   basePP: 20
   accuracy: 1
+  priority: 0
   category: 1
   probability: 100
   zMove: 0

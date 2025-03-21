@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Dual Wingbeat
   m_EditorClassIdentifier: 
   name: Dual Wingbeat
+  id: 0
   type: {fileID: 11400000, guid: 6a482d51d49ba5a45bff8e1435389d3f, type: 2}
   description: The user slams the target with its wings. The target is hit twice
     in a row.
   damage: 40
   basePP: 10
   accuracy: 0.9
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

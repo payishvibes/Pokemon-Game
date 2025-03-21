@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Hydro Pump
   m_EditorClassIdentifier: 
   name: Hydro Pump
+  id: 0
   type: {fileID: 11400000, guid: e96a8bed7870822469f0947b19e4e57d, type: 2}
   description: 
   damage: 110
   basePP: 5
   accuracy: 0.8
+  priority: 0
   category: 1
   probability: 0
   zMove: 0

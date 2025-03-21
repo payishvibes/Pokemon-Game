@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Hyperspace Hole
   m_EditorClassIdentifier: 
   name: Hyperspace Hole
+  id: 0
   type: {fileID: 11400000, guid: d43687aadbc21ff4291682914e2bc664, type: 2}
   description: Can strike through Protect/Detect.
   damage: 80
   basePP: -1
   accuracy: 0.05
+  priority: 0
   category: 1
   probability: -2
   zMove: 0

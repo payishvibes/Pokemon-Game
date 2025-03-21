@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Genesis Supernova
   m_EditorClassIdentifier: 
   name: Genesis Supernova
+  id: 0
   type: {fileID: 11400000, guid: d43687aadbc21ff4291682914e2bc664, type: 2}
   description: Mew-exclusive Z-Move.
   damage: 185
   basePP: 1
   accuracy: 0
-  category: 1
+  priority: 0
+  category: 3
   probability: 0
   zMove: 0
   zCrystal: {fileID: 0}

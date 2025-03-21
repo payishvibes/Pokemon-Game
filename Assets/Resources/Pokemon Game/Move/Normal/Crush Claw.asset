@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Crush Claw
   m_EditorClassIdentifier: 
   name: Crush Claw
+  id: 0
   type: {fileID: 11400000, guid: 7d400c8d21a01854e94041f45793cbf1, type: 2}
   description: May lower opponent's Defense.
   damage: 75
   basePP: 10
   accuracy: 0.95
+  priority: 0
   category: 0
   probability: 50
   zMove: 0

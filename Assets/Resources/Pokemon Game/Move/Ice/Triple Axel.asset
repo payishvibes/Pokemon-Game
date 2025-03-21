@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Triple Axel
   m_EditorClassIdentifier: 
   name: Triple Axel
+  id: 0
   type: {fileID: 11400000, guid: cc8553e72fcb59547b96efa41bfb6395, type: 2}
   description: Attacks thrice with more power each time.
   damage: 20
   basePP: 10
   accuracy: 0.9
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

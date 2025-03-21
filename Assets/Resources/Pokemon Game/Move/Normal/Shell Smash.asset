@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Shell Smash
   m_EditorClassIdentifier: 
   name: Shell Smash
+  id: 0
   type: {fileID: 11400000, guid: 7d400c8d21a01854e94041f45793cbf1, type: 2}
   description: Sharply raises user's Attack, Special Attack and Speed but lowers
     Defense and Special Defense.
   damage: 0
   basePP: 15
   accuracy: 0
+  priority: 0
   category: 2
   probability: 0
   zMove: 0

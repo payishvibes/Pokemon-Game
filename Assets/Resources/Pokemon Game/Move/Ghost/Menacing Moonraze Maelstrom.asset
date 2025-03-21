@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Menacing Moonraze Maelstrom
   m_EditorClassIdentifier: 
   name: Menacing Moonraze Maelstrom
+  id: 0
   type: {fileID: 11400000, guid: 50da9e89bbda9c5418a62d8a5362cab0, type: 2}
   description: Lunala-exclusive Z-Move.
   damage: 200
   basePP: 1
   accuracy: 0
-  category: 1
+  priority: 0
+  category: 3
   probability: 0
   zMove: 0
   zCrystal: {fileID: 0}

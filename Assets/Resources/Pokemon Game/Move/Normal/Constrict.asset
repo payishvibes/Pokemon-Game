@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Constrict
   m_EditorClassIdentifier: 
   name: Constrict
+  id: 0
   type: {fileID: 11400000, guid: 7d400c8d21a01854e94041f45793cbf1, type: 2}
   description: May lower opponent's Speed by one stage.
   damage: 10
   basePP: 35
   accuracy: 1
+  priority: 0
   category: 0
   probability: 10
   zMove: 0

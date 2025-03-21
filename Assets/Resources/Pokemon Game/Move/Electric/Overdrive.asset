@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Overdrive
   m_EditorClassIdentifier: 
   name: Overdrive
+  id: 0
   type: {fileID: 11400000, guid: cde34f3d09353db4dbc1c3345d036ff3, type: 2}
   description: Hits all adjacent opponents.
   damage: 80
   basePP: 10
   accuracy: 1
+  priority: 0
   category: 1
   probability: 0
   zMove: 0

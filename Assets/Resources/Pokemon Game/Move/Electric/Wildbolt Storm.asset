@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Wildbolt Storm
   m_EditorClassIdentifier: 
   name: Wildbolt Storm
+  id: 0
   type: {fileID: 11400000, guid: cde34f3d09353db4dbc1c3345d036ff3, type: 2}
   description: May paralyze target.
   damage: 100
   basePP: 10
   accuracy: 0.8
+  priority: 0
   category: 1
   probability: 0
   zMove: 0

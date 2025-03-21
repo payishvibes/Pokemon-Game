@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Stone Axe
   m_EditorClassIdentifier: 
   name: Stone Axe
+  id: 0
   type: {fileID: 11400000, guid: b26a9af63fede1e4982ef43c75f280ea, type: 2}
   description: Sets up Stealth Rock.
   damage: 65
   basePP: 15
   accuracy: 0.9
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Fishious Rend
   m_EditorClassIdentifier: 
   name: Fishious Rend
+  id: 0
   type: {fileID: 11400000, guid: e96a8bed7870822469f0947b19e4e57d, type: 2}
   description: If the user attacks before the target, the power of this move is doubled.
   damage: 85
   basePP: 10
   accuracy: 1
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Rock Polish
   m_EditorClassIdentifier: 
   name: Rock Polish
+  id: 0
   type: {fileID: 11400000, guid: b26a9af63fede1e4982ef43c75f280ea, type: 2}
   description: Sharply raises user's Speed.
   damage: 0
   basePP: 20
   accuracy: 0
+  priority: 0
   category: 2
   probability: 0
   zMove: 0

@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Bug Buzz
   m_EditorClassIdentifier: 
   name: Bug Buzz
+  id: 0
   type: {fileID: 11400000, guid: bf9a294a54121aa4388e9b483a5a6612, type: 2}
   description: May lower opponent's Special Defense.
   damage: 90
   basePP: 10
   accuracy: 1
+  priority: 0
   category: 1
   probability: 10
   zMove: 0

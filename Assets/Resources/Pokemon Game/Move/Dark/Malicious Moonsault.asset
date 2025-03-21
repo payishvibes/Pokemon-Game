@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Malicious Moonsault
   m_EditorClassIdentifier: 
   name: Malicious Moonsault
+  id: 0
   type: {fileID: 11400000, guid: 6814cf3b84c0291459658e8469b19aa6, type: 2}
   description: Incineroar-exclusive Z-Move.
   damage: 180
   basePP: 1
   accuracy: 0
-  category: 0
+  priority: 0
+  category: 3
   probability: 0
   zMove: 0
   zCrystal: {fileID: 0}

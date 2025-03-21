@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Flame Wheel
   m_EditorClassIdentifier: 
   name: Flame Wheel
+  id: 0
   type: {fileID: 11400000, guid: 2a85514d25185dc4b9be8cdaec17c0d0, type: 2}
   description: May burn opponent.
   damage: 60
   basePP: 25
   accuracy: 1
+  priority: 0
   category: 0
   probability: 10
   zMove: 0

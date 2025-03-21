@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Behemoth Blade
   m_EditorClassIdentifier: 
   name: Behemoth Blade
+  id: 0
   type: {fileID: 11400000, guid: e15b708ccad685240ae9eea4c601524a, type: 2}
   description: Damage doubles if target is Dynamaxed.
   damage: 100
   basePP: 5
   accuracy: 1
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

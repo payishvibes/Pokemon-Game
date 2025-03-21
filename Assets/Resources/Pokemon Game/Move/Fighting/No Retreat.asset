@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: No Retreat
   m_EditorClassIdentifier: 
   name: No Retreat
+  id: 0
   type: {fileID: 11400000, guid: d19a1b210053ade4ab55da13c78024fd, type: 2}
   description: Raises all stats but user cannot switch out.
   damage: 0
   basePP: 5
   accuracy: 0
+  priority: 0
   category: 2
   probability: 100
   zMove: 0

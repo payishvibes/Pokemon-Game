@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Sky Drop
   m_EditorClassIdentifier: 
   name: Sky Drop
+  id: 0
   type: {fileID: 11400000, guid: 6a482d51d49ba5a45bff8e1435389d3f, type: 2}
   description: Takes opponent into the air on first turn, drops them on second turn.
   damage: 60
   basePP: 10
   accuracy: 1
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

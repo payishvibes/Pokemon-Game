@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Combat Torque
   m_EditorClassIdentifier: 
   name: Combat Torque
+  id: 0
   type: {fileID: 11400000, guid: d19a1b210053ade4ab55da13c78024fd, type: 2}
   description: May paralyze the opponent.
   damage: 100
   basePP: 10
   accuracy: 1
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

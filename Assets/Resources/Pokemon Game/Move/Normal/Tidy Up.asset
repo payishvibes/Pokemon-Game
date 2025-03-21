@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Tidy Up
   m_EditorClassIdentifier: 
   name: Tidy Up
+  id: 0
   type: {fileID: 11400000, guid: 7d400c8d21a01854e94041f45793cbf1, type: 2}
   description: "Removes the effects of entry hazards and Substitute, and boosts user\u2019s
     Attack and Speed."
   damage: 0
   basePP: 10
   accuracy: 0
+  priority: 0
   category: 2
   probability: 0
   zMove: 0

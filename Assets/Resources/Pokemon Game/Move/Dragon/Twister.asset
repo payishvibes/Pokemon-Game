@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Twister
   m_EditorClassIdentifier: 
   name: Twister
+  id: 0
   type: {fileID: 11400000, guid: 2a0dd581c0f039443914f076081082d8, type: 2}
   description: "May cause flinching. Hits Pok\xE9mon using Fly/Bounce with double
     power."
   damage: 40
   basePP: 20
   accuracy: 1
+  priority: 0
   category: 1
   probability: 20
   zMove: 0

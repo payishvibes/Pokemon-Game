@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Aerial Ace
   m_EditorClassIdentifier: 
   name: Aerial Ace
+  id: 0
   type: {fileID: 11400000, guid: 6a482d51d49ba5a45bff8e1435389d3f, type: 2}
   description: Ignores Accuracy and Evasiveness.
   damage: 60
   basePP: -1
   accuracy: 0.2
+  priority: 0
   category: 0
   probability: -2
   zMove: 0

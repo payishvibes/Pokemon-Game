@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Aura Wheel
   m_EditorClassIdentifier: 
   name: Aura Wheel
+  id: 0
   type: {fileID: 11400000, guid: cde34f3d09353db4dbc1c3345d036ff3, type: 2}
   description: Changes type based on Morpeko's Mode.
   damage: 110
   basePP: 10
   accuracy: 1
+  priority: 0
   category: 0
   probability: 100
   zMove: 0

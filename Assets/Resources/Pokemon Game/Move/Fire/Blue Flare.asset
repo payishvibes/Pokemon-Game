@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Blue Flare
   m_EditorClassIdentifier: 
   name: Blue Flare
+  id: 0
   type: {fileID: 11400000, guid: 2a85514d25185dc4b9be8cdaec17c0d0, type: 2}
   description: May burn opponent.
   damage: 130
   basePP: 5
   accuracy: 0.85
+  priority: 0
   category: 1
   probability: 20
   zMove: 0

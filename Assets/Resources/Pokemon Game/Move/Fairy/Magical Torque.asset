@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Magical Torque
   m_EditorClassIdentifier: 
   name: Magical Torque
+  id: 0
   type: {fileID: 11400000, guid: f2728e728c5c1fb4db2022f5766212eb, type: 2}
   description: May confuse the opponent.
   damage: 100
   basePP: 10
   accuracy: 1
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

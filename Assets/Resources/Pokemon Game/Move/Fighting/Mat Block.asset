@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Mat Block
   m_EditorClassIdentifier: 
   name: Mat Block
+  id: 0
   type: {fileID: 11400000, guid: d19a1b210053ade4ab55da13c78024fd, type: 2}
   description: Protects teammates from damaging moves.
   damage: 0
   basePP: 10
   accuracy: 0
+  priority: 0
   category: 2
   probability: 0
   zMove: 0

@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Flying Press
   m_EditorClassIdentifier: 
   name: Flying Press
+  id: 0
   type: {fileID: 11400000, guid: d19a1b210053ade4ab55da13c78024fd, type: 2}
   description: Deals Fighting and Flying type damage.
   damage: 100
   basePP: 10
   accuracy: 0.95
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

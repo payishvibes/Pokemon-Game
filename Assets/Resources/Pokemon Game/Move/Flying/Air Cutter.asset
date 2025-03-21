@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Air Cutter
   m_EditorClassIdentifier: 
   name: Air Cutter
+  id: 0
   type: {fileID: 11400000, guid: 6a482d51d49ba5a45bff8e1435389d3f, type: 2}
   description: High critical hit ratio.
   damage: 60
   basePP: 25
   accuracy: 0.95
+  priority: 0
   category: 1
   probability: 0
   zMove: 0

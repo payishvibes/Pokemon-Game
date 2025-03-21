@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Bouncy Bubble
   m_EditorClassIdentifier: 
   name: Bouncy Bubble
+  id: 0
   type: {fileID: 11400000, guid: e96a8bed7870822469f0947b19e4e57d, type: 2}
   description: User recovers half the HP inflicted on opponent.
   damage: 90
   basePP: 15
   accuracy: 1
+  priority: 0
   category: 1
   probability: 0
   zMove: 0

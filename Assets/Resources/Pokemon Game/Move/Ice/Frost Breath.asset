@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Frost Breath
   m_EditorClassIdentifier: 
   name: Frost Breath
+  id: 0
   type: {fileID: 11400000, guid: cc8553e72fcb59547b96efa41bfb6395, type: 2}
   description: Always results in a critical hit.
   damage: 60
   basePP: 10
   accuracy: 0.9
+  priority: 0
   category: 1
   probability: 100
   zMove: 0

@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Sonic Boom
   m_EditorClassIdentifier: 
   name: Sonic Boom
+  id: 0
   type: {fileID: 11400000, guid: 7d400c8d21a01854e94041f45793cbf1, type: 2}
   description: Always inflicts 20 HP.
   damage: 0
   basePP: 20
   accuracy: 0.9
+  priority: 0
   category: 1
   probability: 0
   zMove: 0

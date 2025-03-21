@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Will-O-Wisp
   m_EditorClassIdentifier: 
   name: Will-O-Wisp
+  id: 0
   type: {fileID: 11400000, guid: 2a85514d25185dc4b9be8cdaec17c0d0, type: 2}
   description: Burns opponent.
   damage: 0
   basePP: 15
   accuracy: 0.85
+  priority: 0
   category: 2
   probability: 0
   zMove: 0

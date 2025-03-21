@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: False Swipe
   m_EditorClassIdentifier: 
   name: False Swipe
+  id: 0
   type: {fileID: 11400000, guid: 7d400c8d21a01854e94041f45793cbf1, type: 2}
   description: Always leaves opponent with at least 1 HP.
   damage: 40
   basePP: 40
   accuracy: 1
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

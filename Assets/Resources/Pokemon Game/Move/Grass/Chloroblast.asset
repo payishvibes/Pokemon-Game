@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Chloroblast
   m_EditorClassIdentifier: 
   name: Chloroblast
+  id: 0
   type: {fileID: 11400000, guid: 16677bacbe9d55246878c477b58016ba, type: 2}
   description: User receives recoil damage.
   damage: 150
   basePP: 5
   accuracy: 0.95
+  priority: 0
   category: 1
   probability: 0
   zMove: 0

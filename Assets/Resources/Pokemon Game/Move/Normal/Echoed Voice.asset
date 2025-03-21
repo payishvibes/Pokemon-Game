@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Echoed Voice
   m_EditorClassIdentifier: 
   name: Echoed Voice
+  id: 0
   type: {fileID: 11400000, guid: 7d400c8d21a01854e94041f45793cbf1, type: 2}
   description: Power increases each turn.
   damage: 40
   basePP: 15
   accuracy: 1
+  priority: 0
   category: 1
   probability: 0
   zMove: 0

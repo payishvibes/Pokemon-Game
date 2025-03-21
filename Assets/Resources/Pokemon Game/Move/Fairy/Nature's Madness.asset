@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Nature's Madness
   m_EditorClassIdentifier: 
   name: Nature's Madness
+  id: 0
   type: {fileID: 11400000, guid: f2728e728c5c1fb4db2022f5766212eb, type: 2}
   description: Halves the foe's HP.
   damage: 0
   basePP: 10
   accuracy: 0.9
+  priority: 0
   category: 1
   probability: 0
   zMove: 0

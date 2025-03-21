@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Present
   m_EditorClassIdentifier: 
   name: Present
+  id: 0
   type: {fileID: 11400000, guid: 7d400c8d21a01854e94041f45793cbf1, type: 2}
   description: Either deals damage or heals.
   damage: 0
   basePP: 15
   accuracy: 0.9
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

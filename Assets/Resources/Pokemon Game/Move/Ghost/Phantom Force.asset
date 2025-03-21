@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Phantom Force
   m_EditorClassIdentifier: 
   name: Phantom Force
+  id: 0
   type: {fileID: 11400000, guid: 50da9e89bbda9c5418a62d8a5362cab0, type: 2}
   description: Disappears on first turn, attacks on second. Can strike through Protect/Detect.
   damage: 90
   basePP: 10
   accuracy: 1
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

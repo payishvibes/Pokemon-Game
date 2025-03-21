@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Metal Claw
   m_EditorClassIdentifier: 
   name: Metal Claw
+  id: 0
   type: {fileID: 11400000, guid: e15b708ccad685240ae9eea4c601524a, type: 2}
   description: May raise user's Attack.
   damage: 50
   basePP: 35
   accuracy: 0.95
+  priority: 0
   category: 0
   probability: 10
   zMove: 0

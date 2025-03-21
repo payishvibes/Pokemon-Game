@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Mystical Power
   m_EditorClassIdentifier: 
   name: Mystical Power
+  id: 0
   type: {fileID: 11400000, guid: d43687aadbc21ff4291682914e2bc664, type: 2}
   description: Raises user's Special Attack.
   damage: 70
   basePP: 10
   accuracy: 0.9
+  priority: 0
   category: 1
   probability: 0
   zMove: 0

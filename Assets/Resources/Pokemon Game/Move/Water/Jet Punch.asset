@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Jet Punch
   m_EditorClassIdentifier: 
   name: Jet Punch
+  id: 0
   type: {fileID: 11400000, guid: e96a8bed7870822469f0947b19e4e57d, type: 2}
   description: Always goes first.
   damage: 60
   basePP: 15
   accuracy: 1
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

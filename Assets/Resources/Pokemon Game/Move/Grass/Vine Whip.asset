@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Vine Whip
   m_EditorClassIdentifier: 
   name: Vine Whip
+  id: 0
   type: {fileID: 11400000, guid: 16677bacbe9d55246878c477b58016ba, type: 2}
   description: 
   damage: 45
   basePP: 25
   accuracy: 1
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

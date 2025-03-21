@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Reversal
   m_EditorClassIdentifier: 
   name: Reversal
+  id: 0
   type: {fileID: 11400000, guid: d19a1b210053ade4ab55da13c78024fd, type: 2}
   description: The lower the user's HP, the higher the power.
   damage: 0
   basePP: 15
   accuracy: 1
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

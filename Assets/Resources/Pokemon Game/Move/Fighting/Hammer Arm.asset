@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Hammer Arm
   m_EditorClassIdentifier: 
   name: Hammer Arm
+  id: 0
   type: {fileID: 11400000, guid: d19a1b210053ade4ab55da13c78024fd, type: 2}
   description: Lowers user's Speed.
   damage: 100
   basePP: 10
   accuracy: 0.9
+  priority: 0
   category: 0
   probability: 100
   zMove: 0

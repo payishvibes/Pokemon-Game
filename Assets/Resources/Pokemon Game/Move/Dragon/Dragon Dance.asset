@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Dragon Dance
   m_EditorClassIdentifier: 
   name: Dragon Dance
+  id: 0
   type: {fileID: 11400000, guid: 2a0dd581c0f039443914f076081082d8, type: 2}
   description: Raises user's Attack and Speed.
   damage: 0
   basePP: 20
   accuracy: 0
+  priority: 0
   category: 2
   probability: 0
   zMove: 0

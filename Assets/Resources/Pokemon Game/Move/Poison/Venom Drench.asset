@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Venom Drench
   m_EditorClassIdentifier: 
   name: Venom Drench
+  id: 0
   type: {fileID: 11400000, guid: a1e857e04105cf747bc8c86d4a4cc14c, type: 2}
   description: Lowers poisoned opponent's Special Attack and Speed.
   damage: 0
   basePP: 20
   accuracy: 1
+  priority: 0
   category: 2
   probability: 100
   zMove: 0

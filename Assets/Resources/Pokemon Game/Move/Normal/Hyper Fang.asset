@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Hyper Fang
   m_EditorClassIdentifier: 
   name: Hyper Fang
+  id: 0
   type: {fileID: 11400000, guid: 7d400c8d21a01854e94041f45793cbf1, type: 2}
   description: May cause flinching.
   damage: 80
   basePP: 15
   accuracy: 0.9
+  priority: 0
   category: 0
   probability: 10
   zMove: 0

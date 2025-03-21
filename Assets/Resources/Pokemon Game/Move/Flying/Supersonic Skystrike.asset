@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Supersonic Skystrike
   m_EditorClassIdentifier: 
   name: Supersonic Skystrike
+  id: 0
   type: {fileID: 11400000, guid: 6a482d51d49ba5a45bff8e1435389d3f, type: 2}
   description: Flying type Z-Move.
   damage: 0
   basePP: 1
   accuracy: 0
+  priority: 0
   category: 3
   probability: 0
   zMove: 0

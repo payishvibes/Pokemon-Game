@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Heat Crash
   m_EditorClassIdentifier: 
   name: Heat Crash
+  id: 0
   type: {fileID: 11400000, guid: 2a85514d25185dc4b9be8cdaec17c0d0, type: 2}
   description: The heavier the user, the stronger the attack.
   damage: 0
   basePP: 10
   accuracy: 1
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

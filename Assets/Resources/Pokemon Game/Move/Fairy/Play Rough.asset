@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Play Rough
   m_EditorClassIdentifier: 
   name: Play Rough
+  id: 0
   type: {fileID: 11400000, guid: f2728e728c5c1fb4db2022f5766212eb, type: 2}
   description: May lower opponent's Attack.
   damage: 90
   basePP: 10
   accuracy: 0.9
+  priority: 0
   category: 0
   probability: 10
   zMove: 0

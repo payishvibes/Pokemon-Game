@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Thunder Cage
   m_EditorClassIdentifier: 
   name: Thunder Cage
+  id: 0
   type: {fileID: 11400000, guid: cde34f3d09353db4dbc1c3345d036ff3, type: 2}
   description: Deals damage and traps opponent, damaging them for 4-5 turns.
   damage: 80
   basePP: 15
   accuracy: 0.9
+  priority: 0
   category: 1
   probability: 0
   zMove: 0

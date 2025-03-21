@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Rock Smash
   m_EditorClassIdentifier: 
   name: Rock Smash
+  id: 0
   type: {fileID: 11400000, guid: d19a1b210053ade4ab55da13c78024fd, type: 2}
   description: May lower opponent's Defense.
   damage: 40
   basePP: 15
   accuracy: 1
+  priority: 0
   category: 0
   probability: 50
   zMove: 0

@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Infestation
   m_EditorClassIdentifier: 
   name: Infestation
+  id: 0
   type: {fileID: 11400000, guid: bf9a294a54121aa4388e9b483a5a6612, type: 2}
   description: Traps opponent, damaging them for 4-5 turns.
   damage: 20
   basePP: 20
   accuracy: 1
+  priority: 0
   category: 1
   probability: 100
   zMove: 0

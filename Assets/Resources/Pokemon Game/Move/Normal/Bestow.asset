@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Bestow
   m_EditorClassIdentifier: 
   name: Bestow
+  id: 0
   type: {fileID: 11400000, guid: 7d400c8d21a01854e94041f45793cbf1, type: 2}
   description: Gives the user's held item to the target.
   damage: 0
   basePP: 15
   accuracy: 0
+  priority: 0
   category: 2
   probability: 0
   zMove: 0

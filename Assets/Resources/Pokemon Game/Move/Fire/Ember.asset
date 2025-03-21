@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Ember
   m_EditorClassIdentifier: 
   name: Ember
+  id: 0
   type: {fileID: 11400000, guid: 2a85514d25185dc4b9be8cdaec17c0d0, type: 2}
   description: May burn opponent.
   damage: 40
   basePP: 25
   accuracy: 1
+  priority: 0
   category: 1
   probability: 10
   zMove: 0

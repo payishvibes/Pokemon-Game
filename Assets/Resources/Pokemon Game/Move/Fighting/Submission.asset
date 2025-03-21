@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Submission
   m_EditorClassIdentifier: 
   name: Submission
+  id: 0
   type: {fileID: 11400000, guid: d19a1b210053ade4ab55da13c78024fd, type: 2}
   description: User receives recoil damage.
   damage: 80
   basePP: 20
   accuracy: 0.8
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

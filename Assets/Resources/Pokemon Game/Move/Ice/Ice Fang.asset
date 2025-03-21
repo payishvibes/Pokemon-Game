@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Ice Fang
   m_EditorClassIdentifier: 
   name: Ice Fang
+  id: 0
   type: {fileID: 11400000, guid: cc8553e72fcb59547b96efa41bfb6395, type: 2}
   description: May cause flinching and/or freeze opponent.
   damage: 65
   basePP: 15
   accuracy: 0.95
+  priority: 0
   category: 0
   probability: 10
   zMove: 0

@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Doodle
   m_EditorClassIdentifier: 
   name: Doodle
+  id: 0
   type: {fileID: 11400000, guid: 7d400c8d21a01854e94041f45793cbf1, type: 2}
   description: Changes the abilities of the user and its teammates to that of the
     target.
   damage: 0
   basePP: 10
   accuracy: 1
+  priority: 0
   category: 2
   probability: 0
   zMove: 0

@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Astonish
   m_EditorClassIdentifier: 
   name: Astonish
+  id: 0
   type: {fileID: 11400000, guid: 50da9e89bbda9c5418a62d8a5362cab0, type: 2}
   description: May cause flinching.
   damage: 30
   basePP: 15
   accuracy: 1
+  priority: 0
   category: 0
   probability: 30
   zMove: 0

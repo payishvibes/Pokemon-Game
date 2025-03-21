@@ -33,8 +33,6 @@ namespace PokemonGame.ScriptableObjects
     
         public UnityEvent<MoveMethodEventArgs> MoveMethodEvent;
 
-        public int target;
-
         private void OnValidate()
         {
             if (!zMove)

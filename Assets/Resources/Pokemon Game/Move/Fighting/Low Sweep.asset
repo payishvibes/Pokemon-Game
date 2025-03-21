@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Low Sweep
   m_EditorClassIdentifier: 
   name: Low Sweep
+  id: 0
   type: {fileID: 11400000, guid: d19a1b210053ade4ab55da13c78024fd, type: 2}
   description: Lowers opponent's Speed.
   damage: 65
   basePP: 20
   accuracy: 1
+  priority: 0
   category: 0
   probability: 100
   zMove: 0

@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Smack Down
   m_EditorClassIdentifier: 
   name: Smack Down
+  id: 0
   type: {fileID: 11400000, guid: b26a9af63fede1e4982ef43c75f280ea, type: 2}
   description: "Makes Flying-type Pok\xE9mon vulnerable to Ground moves."
   damage: 50
   basePP: 15
   accuracy: 1
+  priority: 0
   category: 0
   probability: 100
   zMove: 0

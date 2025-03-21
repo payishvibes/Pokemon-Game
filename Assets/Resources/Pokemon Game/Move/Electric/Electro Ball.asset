@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Electro Ball
   m_EditorClassIdentifier: 
   name: Electro Ball
+  id: 0
   type: {fileID: 11400000, guid: cde34f3d09353db4dbc1c3345d036ff3, type: 2}
   description: The faster the user, the stronger the attack.
   damage: 0
   basePP: 10
   accuracy: 1
+  priority: 0
   category: 1
   probability: 0
   zMove: 0

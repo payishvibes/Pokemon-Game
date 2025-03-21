@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Freezing Glare
   m_EditorClassIdentifier: 
   name: Freezing Glare
+  id: 0
   type: {fileID: 11400000, guid: d43687aadbc21ff4291682914e2bc664, type: 2}
   description: May freeze opponent.
   damage: 90
   basePP: 10
   accuracy: 1
+  priority: 0
   category: 1
   probability: 10
   zMove: 0

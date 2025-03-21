@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Raging Fury
   m_EditorClassIdentifier: 
   name: Raging Fury
+  id: 0
   type: {fileID: 11400000, guid: 2a85514d25185dc4b9be8cdaec17c0d0, type: 2}
   description: User attacks for 2-3 turns but then becomes confused.
   damage: 120
   basePP: 10
   accuracy: 1
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

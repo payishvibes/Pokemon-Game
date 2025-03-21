@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Night Shade
   m_EditorClassIdentifier: 
   name: Night Shade
+  id: 0
   type: {fileID: 11400000, guid: 50da9e89bbda9c5418a62d8a5362cab0, type: 2}
   description: Inflicts damage equal to user's level.
   damage: 0
   basePP: 15
   accuracy: 1
+  priority: 0
   category: 1
   probability: 0
   zMove: 0

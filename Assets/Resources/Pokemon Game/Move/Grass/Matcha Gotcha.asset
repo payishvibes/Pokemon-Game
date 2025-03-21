@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Matcha Gotcha
   m_EditorClassIdentifier: 
   name: Matcha Gotcha
+  id: 0
   type: {fileID: 11400000, guid: 16677bacbe9d55246878c477b58016ba, type: 2}
   description: Deals damage, restores HP, may burn opponent.
   damage: 80
   basePP: 15
   accuracy: 0.9
+  priority: 0
   category: 1
   probability: 20
   zMove: 0

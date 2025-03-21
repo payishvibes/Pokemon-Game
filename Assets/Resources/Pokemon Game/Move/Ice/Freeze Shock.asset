@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Freeze Shock
   m_EditorClassIdentifier: 
   name: Freeze Shock
+  id: 0
   type: {fileID: 11400000, guid: cc8553e72fcb59547b96efa41bfb6395, type: 2}
   description: Charges on first turn, attacks on second. May paralyze opponent.
   damage: 140
   basePP: 5
   accuracy: 0.9
+  priority: 0
   category: 0
   probability: 30
   zMove: 0

@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Stun Spore
   m_EditorClassIdentifier: 
   name: Stun Spore
+  id: 0
   type: {fileID: 11400000, guid: 16677bacbe9d55246878c477b58016ba, type: 2}
   description: Paralyzes opponent.
   damage: 0
   basePP: 30
   accuracy: 0.75
+  priority: 0
   category: 2
   probability: 0
   zMove: 0

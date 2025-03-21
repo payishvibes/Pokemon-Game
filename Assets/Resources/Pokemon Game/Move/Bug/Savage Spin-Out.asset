@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Savage Spin-Out
   m_EditorClassIdentifier: 
   name: Savage Spin-Out
+  id: 0
   type: {fileID: 11400000, guid: bf9a294a54121aa4388e9b483a5a6612, type: 2}
   description: Bug type Z-Move.
   damage: 0
   basePP: 1
   accuracy: 0
+  priority: 0
   category: 3
   probability: 0
   zMove: 0

@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Tachyon Cutter
   m_EditorClassIdentifier: 
   name: Tachyon Cutter
+  id: 0
   type: {fileID: 11400000, guid: e15b708ccad685240ae9eea4c601524a, type: 2}
   description: Guaranteed to hit twice in a row.
   damage: 50
   basePP: -1
   accuracy: 0.1
+  priority: 0
   category: 1
   probability: -2
   zMove: 0

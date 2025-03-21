@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Buzzy Buzz
   m_EditorClassIdentifier: 
   name: Buzzy Buzz
+  id: 0
   type: {fileID: 11400000, guid: cde34f3d09353db4dbc1c3345d036ff3, type: 2}
   description: Paralyzes the opponent.
   damage: 90
   basePP: 15
   accuracy: 1
+  priority: 0
   category: 1
   probability: 100
   zMove: 0

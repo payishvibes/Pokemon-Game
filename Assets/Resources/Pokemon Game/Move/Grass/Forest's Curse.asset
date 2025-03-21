@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Forest's Curse
   m_EditorClassIdentifier: 
   name: Forest's Curse
+  id: 0
   type: {fileID: 11400000, guid: 16677bacbe9d55246878c477b58016ba, type: 2}
   description: Adds Grass type to opponent.
   damage: 0
   basePP: 20
   accuracy: 1
+  priority: 0
   category: 2
   probability: 0
   zMove: 0

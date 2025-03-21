@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Moonblast
   m_EditorClassIdentifier: 
   name: Moonblast
+  id: 0
   type: {fileID: 11400000, guid: f2728e728c5c1fb4db2022f5766212eb, type: 2}
   description: May lower opponent's Special Attack.
   damage: 95
   basePP: 15
   accuracy: 1
+  priority: 0
   category: 1
   probability: 30
   zMove: 0

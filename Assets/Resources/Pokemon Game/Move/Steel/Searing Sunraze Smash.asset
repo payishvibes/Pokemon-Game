@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Searing Sunraze Smash
   m_EditorClassIdentifier: 
   name: Searing Sunraze Smash
+  id: 0
   type: {fileID: 11400000, guid: e15b708ccad685240ae9eea4c601524a, type: 2}
   description: Solgaleo-exclusive Z-Move.
   damage: 200
   basePP: 1
   accuracy: 0
-  category: 0
+  priority: 0
+  category: 3
   probability: 0
   zMove: 0
   zCrystal: {fileID: 0}

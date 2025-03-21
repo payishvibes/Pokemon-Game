@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Solar Blade
   m_EditorClassIdentifier: 
   name: Solar Blade
+  id: 0
   type: {fileID: 11400000, guid: 16677bacbe9d55246878c477b58016ba, type: 2}
   description: Charges on first turn, attacks on second.
   damage: 125
   basePP: 10
   accuracy: 1
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Raging Bull
   m_EditorClassIdentifier: 
   name: Raging Bull
+  id: 0
   type: {fileID: 11400000, guid: 7d400c8d21a01854e94041f45793cbf1, type: 2}
   description: "Type depends on the user\u2019s form. Breaks through Reflect and
     Light Screen barriers."
   damage: 90
   basePP: 10
   accuracy: 1
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

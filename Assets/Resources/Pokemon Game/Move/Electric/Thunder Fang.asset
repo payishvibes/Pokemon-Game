@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Thunder Fang
   m_EditorClassIdentifier: 
   name: Thunder Fang
+  id: 0
   type: {fileID: 11400000, guid: cde34f3d09353db4dbc1c3345d036ff3, type: 2}
   description: May cause flinching and/or paralyze opponent.
   damage: 65
   basePP: 15
   accuracy: 0.95
+  priority: 0
   category: 0
   probability: 10
   zMove: 0

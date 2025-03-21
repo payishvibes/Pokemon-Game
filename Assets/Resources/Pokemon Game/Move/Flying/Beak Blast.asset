@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Beak Blast
   m_EditorClassIdentifier: 
   name: Beak Blast
+  id: 0
   type: {fileID: 11400000, guid: 6a482d51d49ba5a45bff8e1435389d3f, type: 2}
   description: "The user first heats up its beak, and then it attacks the target.
     Making direct contact with the Pok\xE9mon while it's heating up its beak results
@@ -20,6 +21,7 @@ MonoBehaviour:
   damage: 100
   basePP: 15
   accuracy: 1
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

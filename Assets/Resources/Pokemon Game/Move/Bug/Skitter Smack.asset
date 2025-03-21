@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Skitter Smack
   m_EditorClassIdentifier: 
   name: Skitter Smack
+  id: 0
   type: {fileID: 11400000, guid: bf9a294a54121aa4388e9b483a5a6612, type: 2}
   description: Lowers opponent's Sp. Attack.
   damage: 70
   basePP: 10
   accuracy: 0.9
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

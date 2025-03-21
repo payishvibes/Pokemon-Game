@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Glaciate
   m_EditorClassIdentifier: 
   name: Glaciate
+  id: 0
   type: {fileID: 11400000, guid: cc8553e72fcb59547b96efa41bfb6395, type: 2}
   description: Lowers opponent's Speed.
   damage: 65
   basePP: 10
   accuracy: 0.95
+  priority: 0
   category: 1
   probability: 100
   zMove: 0

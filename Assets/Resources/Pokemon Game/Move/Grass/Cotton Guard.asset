@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Cotton Guard
   m_EditorClassIdentifier: 
   name: Cotton Guard
+  id: 0
   type: {fileID: 11400000, guid: 16677bacbe9d55246878c477b58016ba, type: 2}
   description: Drastically raises user's Defense.
   damage: 0
   basePP: 10
   accuracy: 0
+  priority: 0
   category: 2
   probability: 0
   zMove: 0

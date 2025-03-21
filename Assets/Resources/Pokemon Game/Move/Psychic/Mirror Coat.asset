@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Mirror Coat
   m_EditorClassIdentifier: 
   name: Mirror Coat
+  id: 0
   type: {fileID: 11400000, guid: d43687aadbc21ff4291682914e2bc664, type: 2}
   description: When hit by a Special Attack, user strikes back with 2x power.
   damage: 0
   basePP: 20
   accuracy: 1
+  priority: 0
   category: 1
   probability: 0
   zMove: 0

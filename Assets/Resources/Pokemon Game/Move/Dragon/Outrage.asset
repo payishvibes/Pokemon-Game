@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Outrage
   m_EditorClassIdentifier: 
   name: Outrage
+  id: 0
   type: {fileID: 11400000, guid: 2a0dd581c0f039443914f076081082d8, type: 2}
   description: User attacks for 2-3 turns but then becomes confused.
   damage: 120
   basePP: 10
   accuracy: 1
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

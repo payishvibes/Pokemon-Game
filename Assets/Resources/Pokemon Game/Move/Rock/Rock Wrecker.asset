@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Rock Wrecker
   m_EditorClassIdentifier: 
   name: Rock Wrecker
+  id: 0
   type: {fileID: 11400000, guid: b26a9af63fede1e4982ef43c75f280ea, type: 2}
   description: User must recharge next turn.
   damage: 150
   basePP: 5
   accuracy: 0.9
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

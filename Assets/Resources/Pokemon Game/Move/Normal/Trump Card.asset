@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Trump Card
   m_EditorClassIdentifier: 
   name: Trump Card
+  id: 0
   type: {fileID: 11400000, guid: 7d400c8d21a01854e94041f45793cbf1, type: 2}
   description: The lower the PP, the higher the power.
   damage: 0
   basePP: -1
   accuracy: 0.05
+  priority: 0
   category: 1
   probability: -2
   zMove: 0

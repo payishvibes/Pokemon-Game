@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Supercell Slam
   m_EditorClassIdentifier: 
   name: Supercell Slam
+  id: 0
   type: {fileID: 11400000, guid: cde34f3d09353db4dbc1c3345d036ff3, type: 2}
   description: 
   damage: 100
   basePP: 15
   accuracy: 0.95
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

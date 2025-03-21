@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Psystrike
   m_EditorClassIdentifier: 
   name: Psystrike
+  id: 0
   type: {fileID: 11400000, guid: d43687aadbc21ff4291682914e2bc664, type: 2}
   description: Inflicts damage based on the target's Defense, not Special Defense.
   damage: 100
   basePP: 10
   accuracy: 1
+  priority: 0
   category: 1
   probability: 0
   zMove: 0

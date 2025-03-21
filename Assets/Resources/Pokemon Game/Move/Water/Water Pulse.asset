@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Water Pulse
   m_EditorClassIdentifier: 
   name: Water Pulse
+  id: 0
   type: {fileID: 11400000, guid: e96a8bed7870822469f0947b19e4e57d, type: 2}
   description: May confuse opponent.
   damage: 60
   basePP: 20
   accuracy: 1
+  priority: 0
   category: 1
   probability: 20
   zMove: 0

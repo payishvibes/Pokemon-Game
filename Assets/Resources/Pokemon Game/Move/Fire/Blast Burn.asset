@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Blast Burn
   m_EditorClassIdentifier: 
   name: Blast Burn
+  id: 0
   type: {fileID: 11400000, guid: 2a85514d25185dc4b9be8cdaec17c0d0, type: 2}
   description: User must recharge next turn.
   damage: 150
   basePP: 5
   accuracy: 0.9
+  priority: 0
   category: 1
   probability: 0
   zMove: 0

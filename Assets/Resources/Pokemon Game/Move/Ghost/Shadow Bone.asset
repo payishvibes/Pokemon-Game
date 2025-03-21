@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Shadow Bone
   m_EditorClassIdentifier: 
   name: Shadow Bone
+  id: 0
   type: {fileID: 11400000, guid: 50da9e89bbda9c5418a62d8a5362cab0, type: 2}
   description: May lower opponent's Defense.
   damage: 85
   basePP: 10
   accuracy: 1
+  priority: 0
   category: 0
   probability: 20
   zMove: 0

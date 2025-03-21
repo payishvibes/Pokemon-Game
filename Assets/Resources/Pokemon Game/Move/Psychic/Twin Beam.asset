@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Twin Beam
   m_EditorClassIdentifier: 
   name: Twin Beam
+  id: 0
   type: {fileID: 11400000, guid: d43687aadbc21ff4291682914e2bc664, type: 2}
   description: Hits twice in one turn.
   damage: 40
   basePP: 10
   accuracy: 1
+  priority: 0
   category: 1
   probability: 0
   zMove: 0

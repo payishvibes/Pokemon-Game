@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Tar Shot
   m_EditorClassIdentifier: 
   name: Tar Shot
+  id: 0
   type: {fileID: 11400000, guid: b26a9af63fede1e4982ef43c75f280ea, type: 2}
   description: Lowers the opponent's Speed and makes them weaker to Fire-type moves.
   damage: 0
   basePP: 15
   accuracy: 1
+  priority: 0
   category: 2
   probability: 100
   zMove: 0

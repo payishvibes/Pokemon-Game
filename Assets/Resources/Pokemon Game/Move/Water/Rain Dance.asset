@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Rain Dance
   m_EditorClassIdentifier: 
   name: Rain Dance
+  id: 0
   type: {fileID: 11400000, guid: e96a8bed7870822469f0947b19e4e57d, type: 2}
   description: Makes it rain for 5 turns.
   damage: 0
   basePP: 5
   accuracy: 0
+  priority: 0
   category: 2
   probability: 0
   zMove: 0

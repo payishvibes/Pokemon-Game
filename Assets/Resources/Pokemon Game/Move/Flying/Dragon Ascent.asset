@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Dragon Ascent
   m_EditorClassIdentifier: 
   name: Dragon Ascent
+  id: 0
   type: {fileID: 11400000, guid: 6a482d51d49ba5a45bff8e1435389d3f, type: 2}
   description: Lowers user's Defense and Special Defense.
   damage: 120
   basePP: 5
   accuracy: 1
+  priority: 0
   category: 0
   probability: 100
   zMove: 0

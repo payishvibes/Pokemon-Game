@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Sandstorm
   m_EditorClassIdentifier: 
   name: Sandstorm
+  id: 0
   type: {fileID: 11400000, guid: b26a9af63fede1e4982ef43c75f280ea, type: 2}
   description: Creates a sandstorm for 5 turns.
   damage: 0
   basePP: 10
   accuracy: 0
+  priority: 0
   category: 2
   probability: 0
   zMove: 0

@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Take Down
   m_EditorClassIdentifier: 
   name: Take Down
+  id: 0
   type: {fileID: 11400000, guid: 7d400c8d21a01854e94041f45793cbf1, type: 2}
   description: User receives recoil damage.
   damage: 90
   basePP: 20
   accuracy: 0.85
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

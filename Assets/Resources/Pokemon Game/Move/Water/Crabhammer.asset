@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Crabhammer
   m_EditorClassIdentifier: 
   name: Crabhammer
+  id: 0
   type: {fileID: 11400000, guid: e96a8bed7870822469f0947b19e4e57d, type: 2}
   description: High critical hit ratio.
   damage: 100
   basePP: 10
   accuracy: 0.9
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

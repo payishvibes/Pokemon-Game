@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Gastro Acid
   m_EditorClassIdentifier: 
   name: Gastro Acid
+  id: 0
   type: {fileID: 11400000, guid: a1e857e04105cf747bc8c86d4a4cc14c, type: 2}
   description: Cancels out the effect of the opponent's Ability.
   damage: 0
   basePP: 10
   accuracy: 1
+  priority: 0
   category: 2
   probability: 0
   zMove: 0

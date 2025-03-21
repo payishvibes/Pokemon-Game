@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Arm Thrust
   m_EditorClassIdentifier: 
   name: Arm Thrust
+  id: 0
   type: {fileID: 11400000, guid: d19a1b210053ade4ab55da13c78024fd, type: 2}
   description: Hits 2-5 times in one turn.
   damage: 15
   basePP: 20
   accuracy: 1
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

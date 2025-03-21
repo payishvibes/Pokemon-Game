@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Ally Switch
   m_EditorClassIdentifier: 
   name: Ally Switch
+  id: 0
   type: {fileID: 11400000, guid: d43687aadbc21ff4291682914e2bc664, type: 2}
   description: User switches with opposite teammate.
   damage: 0
   basePP: 15
   accuracy: 0
+  priority: 0
   category: 2
   probability: 0
   zMove: 0

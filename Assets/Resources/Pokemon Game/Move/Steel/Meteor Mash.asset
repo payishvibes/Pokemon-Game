@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Meteor Mash
   m_EditorClassIdentifier: 
   name: Meteor Mash
+  id: 0
   type: {fileID: 11400000, guid: e15b708ccad685240ae9eea4c601524a, type: 2}
   description: May raise user's Attack.
   damage: 90
   basePP: 10
   accuracy: 0.9
+  priority: 0
   category: 0
   probability: 20
   zMove: 0

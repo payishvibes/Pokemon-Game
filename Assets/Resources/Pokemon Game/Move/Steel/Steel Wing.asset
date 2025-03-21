@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Steel Wing
   m_EditorClassIdentifier: 
   name: Steel Wing
+  id: 0
   type: {fileID: 11400000, guid: e15b708ccad685240ae9eea4c601524a, type: 2}
   description: May raise user's Defense.
   damage: 70
   basePP: 25
   accuracy: 0.9
+  priority: 0
   category: 0
   probability: 10
   zMove: 0

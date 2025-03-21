@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Slack Off
   m_EditorClassIdentifier: 
   name: Slack Off
+  id: 0
   type: {fileID: 11400000, guid: 7d400c8d21a01854e94041f45793cbf1, type: 2}
   description: User recovers half its max HP.
   damage: 0
   basePP: 5
   accuracy: 0
+  priority: 0
   category: 2
   probability: 0
   zMove: 0

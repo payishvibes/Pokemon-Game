@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Heal Pulse
   m_EditorClassIdentifier: 
   name: Heal Pulse
+  id: 0
   type: {fileID: 11400000, guid: d43687aadbc21ff4291682914e2bc664, type: 2}
   description: Restores half the target's max HP.
   damage: 0
   basePP: 10
   accuracy: 0
+  priority: 0
   category: 2
   probability: 0
   zMove: 0

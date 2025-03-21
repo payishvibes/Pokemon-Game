@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Rototiller
   m_EditorClassIdentifier: 
   name: Rototiller
+  id: 0
   type: {fileID: 11400000, guid: 4641dc3e5ff6ea64f8f1cea1bfaf0a9c, type: 2}
   description: Raises Attack and Special Attack of Grass-types.
   damage: 0
   basePP: 10
   accuracy: 0
+  priority: 0
   category: 2
   probability: 100
   zMove: 0

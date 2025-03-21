@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Hydro Cannon
   m_EditorClassIdentifier: 
   name: Hydro Cannon
+  id: 0
   type: {fileID: 11400000, guid: e96a8bed7870822469f0947b19e4e57d, type: 2}
   description: User must recharge next turn.
   damage: 150
   basePP: 5
   accuracy: 0.9
+  priority: 0
   category: 1
   probability: 0
   zMove: 0

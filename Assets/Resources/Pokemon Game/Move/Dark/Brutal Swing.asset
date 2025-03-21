@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Brutal Swing
   m_EditorClassIdentifier: 
   name: Brutal Swing
+  id: 0
   type: {fileID: 11400000, guid: 6814cf3b84c0291459658e8469b19aa6, type: 2}
   description: The user swings its body around violently to inflict damage on everything
     in its vicinity.
   damage: 60
   basePP: 20
   accuracy: 1
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Comet Punch
   m_EditorClassIdentifier: 
   name: Comet Punch
+  id: 0
   type: {fileID: 11400000, guid: 7d400c8d21a01854e94041f45793cbf1, type: 2}
   description: Hits 2-5 times in one turn.
   damage: 18
   basePP: 15
   accuracy: 0.85
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

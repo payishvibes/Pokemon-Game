@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Dark Void
   m_EditorClassIdentifier: 
   name: Dark Void
+  id: 0
   type: {fileID: 11400000, guid: 6814cf3b84c0291459658e8469b19aa6, type: 2}
   description: Puts all adjacent opponents to sleep.
   damage: 0
   basePP: 10
   accuracy: 0.5
+  priority: 0
   category: 2
   probability: 0
   zMove: 0

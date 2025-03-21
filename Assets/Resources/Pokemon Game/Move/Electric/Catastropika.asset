@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Catastropika
   m_EditorClassIdentifier: 
   name: Catastropika
+  id: 0
   type: {fileID: 11400000, guid: cde34f3d09353db4dbc1c3345d036ff3, type: 2}
   description: Pikachu-exclusive Z-Move.
   damage: 210
   basePP: 1
   accuracy: 0
-  category: 0
+  priority: 0
+  category: 3
   probability: 0
   zMove: 0
   zCrystal: {fileID: 0}

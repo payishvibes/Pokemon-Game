@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Rising Voltage
   m_EditorClassIdentifier: 
   name: Rising Voltage
+  id: 0
   type: {fileID: 11400000, guid: cde34f3d09353db4dbc1c3345d036ff3, type: 2}
   description: Power doubles on Electric Terrain.
   damage: 70
   basePP: 20
   accuracy: 1
+  priority: 0
   category: 1
   probability: 0
   zMove: 0

@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Shadow Punch
   m_EditorClassIdentifier: 
   name: Shadow Punch
+  id: 0
   type: {fileID: 11400000, guid: 50da9e89bbda9c5418a62d8a5362cab0, type: 2}
   description: Ignores Accuracy and Evasiveness.
   damage: 60
   basePP: -1
   accuracy: 0.2
+  priority: 0
   category: 0
   probability: -2
   zMove: 0

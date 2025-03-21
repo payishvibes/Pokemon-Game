@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Mirror Move
   m_EditorClassIdentifier: 
   name: Mirror Move
+  id: 0
   type: {fileID: 11400000, guid: 6a482d51d49ba5a45bff8e1435389d3f, type: 2}
   description: User performs the opponent's last move.
   damage: 0
   basePP: 20
   accuracy: 0
+  priority: 0
   category: 2
   probability: 0
   zMove: 0

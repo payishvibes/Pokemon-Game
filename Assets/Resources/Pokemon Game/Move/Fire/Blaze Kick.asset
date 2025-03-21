@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Blaze Kick
   m_EditorClassIdentifier: 
   name: Blaze Kick
+  id: 0
   type: {fileID: 11400000, guid: 2a85514d25185dc4b9be8cdaec17c0d0, type: 2}
   description: High critical hit ratio. May burn opponent.
   damage: 85
   basePP: 10
   accuracy: 0.9
+  priority: 0
   category: 0
   probability: 10
   zMove: 0

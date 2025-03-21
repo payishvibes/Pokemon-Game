@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Spikes
   m_EditorClassIdentifier: 
   name: Spikes
+  id: 0
   type: {fileID: 11400000, guid: 4641dc3e5ff6ea64f8f1cea1bfaf0a9c, type: 2}
   description: Damages opponents switching into battle.
   damage: 0
   basePP: 20
   accuracy: 0
+  priority: 0
   category: 2
   probability: 0
   zMove: 0

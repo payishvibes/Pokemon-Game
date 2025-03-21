@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Fiery Dance
   m_EditorClassIdentifier: 
   name: Fiery Dance
+  id: 0
   type: {fileID: 11400000, guid: 2a85514d25185dc4b9be8cdaec17c0d0, type: 2}
   description: May raise user's Special Attack.
   damage: 80
   basePP: 10
   accuracy: 1
+  priority: 0
   category: 1
   probability: 50
   zMove: 0

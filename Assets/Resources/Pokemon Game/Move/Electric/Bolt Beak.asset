@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Bolt Beak
   m_EditorClassIdentifier: 
   name: Bolt Beak
+  id: 0
   type: {fileID: 11400000, guid: cde34f3d09353db4dbc1c3345d036ff3, type: 2}
   description: If the user attacks before the target, the power of this move is doubled.
   damage: 85
   basePP: 10
   accuracy: 1
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

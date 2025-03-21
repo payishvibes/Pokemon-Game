@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Poison Jab
   m_EditorClassIdentifier: 
   name: Poison Jab
+  id: 0
   type: {fileID: 11400000, guid: a1e857e04105cf747bc8c86d4a4cc14c, type: 2}
   description: May poison the opponent.
   damage: 80
   basePP: 20
   accuracy: 1
+  priority: 0
   category: 0
   probability: 30
   zMove: 0

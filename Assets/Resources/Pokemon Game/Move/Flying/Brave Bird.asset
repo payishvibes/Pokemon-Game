@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Brave Bird
   m_EditorClassIdentifier: 
   name: Brave Bird
+  id: 0
   type: {fileID: 11400000, guid: 6a482d51d49ba5a45bff8e1435389d3f, type: 2}
   description: User receives recoil damage.
   damage: 120
   basePP: 15
   accuracy: 1
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

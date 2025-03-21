@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Clangorous Soulblaze
   m_EditorClassIdentifier: 
   name: Clangorous Soulblaze
+  id: 0
   type: {fileID: 11400000, guid: 2a0dd581c0f039443914f076081082d8, type: 2}
   description: Kommo-o exclusive Z-Move.
   damage: 185
   basePP: 1
   accuracy: 0
-  category: 1
+  priority: 0
+  category: 3
   probability: 0
   zMove: 0
   zCrystal: {fileID: 0}

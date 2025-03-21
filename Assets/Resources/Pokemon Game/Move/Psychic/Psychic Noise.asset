@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Psychic Noise
   m_EditorClassIdentifier: 
   name: Psychic Noise
+  id: 0
   type: {fileID: 11400000, guid: d43687aadbc21ff4291682914e2bc664, type: 2}
   description: Deals damage and prevents target from healing.
   damage: 75
   basePP: 10
   accuracy: 1
+  priority: 0
   category: 1
   probability: 0
   zMove: 0

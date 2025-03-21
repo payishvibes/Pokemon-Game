@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Barb Barrage
   m_EditorClassIdentifier: 
   name: Barb Barrage
+  id: 0
   type: {fileID: 11400000, guid: a1e857e04105cf747bc8c86d4a4cc14c, type: 2}
   description: May poison opponent; inflicts double damage if the target is already
     poisoned.
   damage: 60
   basePP: 10
   accuracy: 1
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

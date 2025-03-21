@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Aura Sphere
   m_EditorClassIdentifier: 
   name: Aura Sphere
+  id: 0
   type: {fileID: 11400000, guid: d19a1b210053ade4ab55da13c78024fd, type: 2}
   description: Ignores Accuracy and Evasiveness.
   damage: 80
   basePP: -1
   accuracy: 0.2
+  priority: 0
   category: 1
   probability: -2
   zMove: 0

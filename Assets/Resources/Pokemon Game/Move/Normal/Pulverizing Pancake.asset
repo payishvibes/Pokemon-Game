@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Pulverizing Pancake
   m_EditorClassIdentifier: 
   name: Pulverizing Pancake
+  id: 0
   type: {fileID: 11400000, guid: 7d400c8d21a01854e94041f45793cbf1, type: 2}
   description: Snorlax-exclusive Normal type Z-Move.
   damage: 210
   basePP: 1
   accuracy: 0
-  category: 0
+  priority: 0
+  category: 3
   probability: 0
   zMove: 0
   zCrystal: {fileID: 0}

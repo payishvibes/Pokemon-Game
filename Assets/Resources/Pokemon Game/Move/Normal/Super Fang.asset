@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Super Fang
   m_EditorClassIdentifier: 
   name: Super Fang
+  id: 0
   type: {fileID: 11400000, guid: 7d400c8d21a01854e94041f45793cbf1, type: 2}
   description: Always takes off half of the opponent's HP.
   damage: 0
   basePP: 10
   accuracy: 0.9
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Hydro Vortex
   m_EditorClassIdentifier: 
   name: Hydro Vortex
+  id: 0
   type: {fileID: 11400000, guid: e96a8bed7870822469f0947b19e4e57d, type: 2}
   description: Water type Z-Move.
   damage: 0
   basePP: 1
   accuracy: 0
+  priority: 0
   category: 3
   probability: 0
   zMove: 0

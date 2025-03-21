@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Sandsear Storm
   m_EditorClassIdentifier: 
   name: Sandsear Storm
+  id: 0
   type: {fileID: 11400000, guid: 4641dc3e5ff6ea64f8f1cea1bfaf0a9c, type: 2}
   description: May burn target.
   damage: 100
   basePP: 10
   accuracy: 0.8
+  priority: 0
   category: 1
   probability: 0
   zMove: 0

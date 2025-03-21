@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Splintered Stormshards
   m_EditorClassIdentifier: 
   name: Splintered Stormshards
+  id: 0
   type: {fileID: 11400000, guid: b26a9af63fede1e4982ef43c75f280ea, type: 2}
   description: Lycanroc-exclusive Z-Move.
   damage: 190
   basePP: 1
   accuracy: 0
-  category: 0
+  priority: 0
+  category: 3
   probability: 0
   zMove: 0
   zCrystal: {fileID: 0}

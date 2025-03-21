@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Stockpile
   m_EditorClassIdentifier: 
   name: Stockpile
+  id: 0
   type: {fileID: 11400000, guid: 7d400c8d21a01854e94041f45793cbf1, type: 2}
   description: Stores energy for use with Spit Up and Swallow.
   damage: 0
   basePP: 20
   accuracy: 0
+  priority: 0
   category: 2
   probability: 0
   zMove: 0

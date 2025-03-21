@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Magical Leaf
   m_EditorClassIdentifier: 
   name: Magical Leaf
+  id: 0
   type: {fileID: 11400000, guid: 16677bacbe9d55246878c477b58016ba, type: 2}
   description: Ignores Accuracy and Evasiveness.
   damage: 60
   basePP: -1
   accuracy: 0.2
+  priority: 0
   category: 1
   probability: -2
   zMove: 0

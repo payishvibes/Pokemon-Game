@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Rock Tomb
   m_EditorClassIdentifier: 
   name: Rock Tomb
+  id: 0
   type: {fileID: 11400000, guid: b26a9af63fede1e4982ef43c75f280ea, type: 2}
   description: Lowers opponent's Speed.
   damage: 60
   basePP: 15
   accuracy: 0.95
+  priority: 0
   category: 0
   probability: 100
   zMove: 0

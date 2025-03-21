@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Subzero Slammer
   m_EditorClassIdentifier: 
   name: Subzero Slammer
+  id: 0
   type: {fileID: 11400000, guid: cc8553e72fcb59547b96efa41bfb6395, type: 2}
   description: Ice type Z-Move.
   damage: 0
   basePP: 1
   accuracy: 0
+  priority: 0
   category: 3
   probability: 0
   zMove: 0

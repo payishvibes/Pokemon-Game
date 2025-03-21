@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Drill Run
   m_EditorClassIdentifier: 
   name: Drill Run
+  id: 0
   type: {fileID: 11400000, guid: 4641dc3e5ff6ea64f8f1cea1bfaf0a9c, type: 2}
   description: High critical hit ratio.
   damage: 80
   basePP: 10
   accuracy: 0.95
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

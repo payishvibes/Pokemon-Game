@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Rolling Kick
   m_EditorClassIdentifier: 
   name: Rolling Kick
+  id: 0
   type: {fileID: 11400000, guid: d19a1b210053ade4ab55da13c78024fd, type: 2}
   description: May cause flinching.
   damage: 60
   basePP: 15
   accuracy: 0.85
+  priority: 0
   category: 0
   probability: 30
   zMove: 0

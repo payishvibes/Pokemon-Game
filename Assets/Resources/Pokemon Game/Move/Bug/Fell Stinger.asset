@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Fell Stinger
   m_EditorClassIdentifier: 
   name: Fell Stinger
+  id: 0
   type: {fileID: 11400000, guid: bf9a294a54121aa4388e9b483a5a6612, type: 2}
   description: Drastically raises user's Attack if target is KO'd.
   damage: 50
   basePP: 25
   accuracy: 1
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

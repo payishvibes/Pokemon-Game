@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Hard Press
   m_EditorClassIdentifier: 
   name: Hard Press
+  id: 0
   type: {fileID: 11400000, guid: e15b708ccad685240ae9eea4c601524a, type: 2}
   description: 
   damage: 0
   basePP: 10
   accuracy: 1
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

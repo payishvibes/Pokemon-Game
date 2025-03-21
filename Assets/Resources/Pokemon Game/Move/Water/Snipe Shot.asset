@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Snipe Shot
   m_EditorClassIdentifier: 
   name: Snipe Shot
+  id: 0
   type: {fileID: 11400000, guid: e96a8bed7870822469f0947b19e4e57d, type: 2}
   description: Ignores moves and abilities that draw in moves. High critical hit
     ratio.
   damage: 80
   basePP: 15
   accuracy: 1
+  priority: 0
   category: 1
   probability: 0
   zMove: 0

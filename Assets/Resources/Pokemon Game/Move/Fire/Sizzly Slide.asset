@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Sizzly Slide
   m_EditorClassIdentifier: 
   name: Sizzly Slide
+  id: 0
   type: {fileID: 11400000, guid: 2a85514d25185dc4b9be8cdaec17c0d0, type: 2}
   description: Burns the opponent.
   damage: 90
   basePP: 15
   accuracy: 1
+  priority: 0
   category: 0
   probability: 100
   zMove: 0

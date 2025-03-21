@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Shattered Psyche
   m_EditorClassIdentifier: 
   name: Shattered Psyche
+  id: 0
   type: {fileID: 11400000, guid: d43687aadbc21ff4291682914e2bc664, type: 2}
   description: Psychic type Z-Move.
   damage: 0
   basePP: 1
   accuracy: 0
+  priority: 0
   category: 3
   probability: 0
   zMove: 0

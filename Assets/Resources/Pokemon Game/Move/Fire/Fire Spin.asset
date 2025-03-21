@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Fire Spin
   m_EditorClassIdentifier: 
   name: Fire Spin
+  id: 0
   type: {fileID: 11400000, guid: 2a85514d25185dc4b9be8cdaec17c0d0, type: 2}
   description: Traps opponent, damaging them for 4-5 turns.
   damage: 35
   basePP: 15
   accuracy: 0.85
+  priority: 0
   category: 1
   probability: 100
   zMove: 0

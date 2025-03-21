@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Acid Armor
   m_EditorClassIdentifier: 
   name: Acid Armor
+  id: 0
   type: {fileID: 11400000, guid: a1e857e04105cf747bc8c86d4a4cc14c, type: 2}
   description: Sharply raises user's Defense.
   damage: 0
   basePP: 20
   accuracy: 0
+  priority: 0
   category: 2
   probability: 0
   zMove: 0

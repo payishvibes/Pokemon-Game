@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Iron Defense
   m_EditorClassIdentifier: 
   name: Iron Defense
+  id: 0
   type: {fileID: 11400000, guid: e15b708ccad685240ae9eea4c601524a, type: 2}
   description: Sharply raises user's Defense.
   damage: 0
   basePP: 15
   accuracy: 0
+  priority: 0
   category: 2
   probability: 0
   zMove: 0

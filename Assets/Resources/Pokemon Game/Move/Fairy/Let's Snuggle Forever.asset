@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Let's Snuggle Forever
   m_EditorClassIdentifier: 
   name: Let's Snuggle Forever
+  id: 0
   type: {fileID: 11400000, guid: f2728e728c5c1fb4db2022f5766212eb, type: 2}
   description: Mimikyu-exclusive Z-Move.
   damage: 190
   basePP: 1
   accuracy: 0
-  category: 0
+  priority: 0
+  category: 3
   probability: 0
   zMove: 0
   zCrystal: {fileID: 0}

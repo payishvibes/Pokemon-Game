@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Wrap
   m_EditorClassIdentifier: 
   name: Wrap
+  id: 0
   type: {fileID: 11400000, guid: 7d400c8d21a01854e94041f45793cbf1, type: 2}
   description: Traps opponent, damaging them for 4-5 turns.
   damage: 15
   basePP: 20
   accuracy: 0.9
+  priority: 0
   category: 0
   probability: 100
   zMove: 0

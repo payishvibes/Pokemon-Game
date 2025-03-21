@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Mist Ball
   m_EditorClassIdentifier: 
   name: Mist Ball
+  id: 0
   type: {fileID: 11400000, guid: d43687aadbc21ff4291682914e2bc664, type: 2}
   description: May lower opponent's Special Attack.
   damage: 95
   basePP: 5
   accuracy: 1
+  priority: 0
   category: 1
   probability: 50
   zMove: 0

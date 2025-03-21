@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Breaking Swipe
   m_EditorClassIdentifier: 
   name: Breaking Swipe
+  id: 0
   type: {fileID: 11400000, guid: 2a0dd581c0f039443914f076081082d8, type: 2}
   description: Hits multiple opponents and lowers their attack.
   damage: 60
   basePP: 15
   accuracy: 1
+  priority: 0
   category: 0
   probability: 100
   zMove: 0

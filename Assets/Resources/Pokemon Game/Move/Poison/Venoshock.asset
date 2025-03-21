@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Venoshock
   m_EditorClassIdentifier: 
   name: Venoshock
+  id: 0
   type: {fileID: 11400000, guid: a1e857e04105cf747bc8c86d4a4cc14c, type: 2}
   description: Inflicts double damage if the target is poisoned.
   damage: 65
   basePP: 10
   accuracy: 1
+  priority: 0
   category: 1
   probability: 0
   zMove: 0

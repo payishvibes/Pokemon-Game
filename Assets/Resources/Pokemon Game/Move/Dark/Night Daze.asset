@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Night Daze
   m_EditorClassIdentifier: 
   name: Night Daze
+  id: 0
   type: {fileID: 11400000, guid: 6814cf3b84c0291459658e8469b19aa6, type: 2}
   description: May lower opponent's Accuracy.
   damage: 85
   basePP: 10
   accuracy: 0.95
+  priority: 0
   category: 1
   probability: 40
   zMove: 0

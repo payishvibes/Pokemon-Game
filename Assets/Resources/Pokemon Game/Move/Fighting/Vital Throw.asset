@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Vital Throw
   m_EditorClassIdentifier: 
   name: Vital Throw
+  id: 0
   type: {fileID: 11400000, guid: d19a1b210053ade4ab55da13c78024fd, type: 2}
   description: User attacks last, but ignores Accuracy and Evasiveness.
   damage: 70
   basePP: -1
   accuracy: 0.1
+  priority: 0
   category: 0
   probability: -2
   zMove: 0

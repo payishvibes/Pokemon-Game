@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Strange Steam
   m_EditorClassIdentifier: 
   name: Strange Steam
+  id: 0
   type: {fileID: 11400000, guid: f2728e728c5c1fb4db2022f5766212eb, type: 2}
   description: May confuse opponent.
   damage: 90
   basePP: 10
   accuracy: 0.95
+  priority: 0
   category: 1
   probability: 20
   zMove: 0

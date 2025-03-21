@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Bonemerang
   m_EditorClassIdentifier: 
   name: Bonemerang
+  id: 0
   type: {fileID: 11400000, guid: 4641dc3e5ff6ea64f8f1cea1bfaf0a9c, type: 2}
   description: Hits twice in one turn.
   damage: 50
   basePP: 10
   accuracy: 0.9
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

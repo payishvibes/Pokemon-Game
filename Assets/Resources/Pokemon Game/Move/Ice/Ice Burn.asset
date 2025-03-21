@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Ice Burn
   m_EditorClassIdentifier: 
   name: Ice Burn
+  id: 0
   type: {fileID: 11400000, guid: cc8553e72fcb59547b96efa41bfb6395, type: 2}
   description: Charges on first turn, attacks on second. May burn opponent.
   damage: 140
   basePP: 5
   accuracy: 0.9
+  priority: 0
   category: 1
   probability: 30
   zMove: 0

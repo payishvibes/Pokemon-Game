@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Circle Throw
   m_EditorClassIdentifier: 
   name: Circle Throw
+  id: 0
   type: {fileID: 11400000, guid: d19a1b210053ade4ab55da13c78024fd, type: 2}
   description: "In battles, the opponent switches. In the wild, the Pok\xE9mon runs."
   damage: 60
   basePP: 10
   accuracy: 0.9
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

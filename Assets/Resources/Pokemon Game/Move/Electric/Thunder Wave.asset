@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Thunder Wave
   m_EditorClassIdentifier: 
   name: Thunder Wave
+  id: 0
   type: {fileID: 11400000, guid: cde34f3d09353db4dbc1c3345d036ff3, type: 2}
   description: Paralyzes opponent.
   damage: 0
   basePP: 20
   accuracy: 0.9
+  priority: 0
   category: 2
   probability: 0
   zMove: 0

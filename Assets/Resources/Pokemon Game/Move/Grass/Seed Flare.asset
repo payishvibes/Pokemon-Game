@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Seed Flare
   m_EditorClassIdentifier: 
   name: Seed Flare
+  id: 0
   type: {fileID: 11400000, guid: 16677bacbe9d55246878c477b58016ba, type: 2}
   description: May lower opponent's Special Defense.
   damage: 120
   basePP: 5
   accuracy: 0.85
+  priority: 0
   category: 1
   probability: 40
   zMove: 0

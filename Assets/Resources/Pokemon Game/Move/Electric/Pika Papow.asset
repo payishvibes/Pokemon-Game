@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Pika Papow
   m_EditorClassIdentifier: 
   name: Pika Papow
+  id: 0
   type: {fileID: 11400000, guid: cde34f3d09353db4dbc1c3345d036ff3, type: 2}
   description: Power increases when player's bond is stronger.
   damage: 0
   basePP: -1
   accuracy: 0.2
+  priority: 0
   category: 1
   probability: -2
   zMove: 0

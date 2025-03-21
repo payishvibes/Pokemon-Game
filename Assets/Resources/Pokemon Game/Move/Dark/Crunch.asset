@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Crunch
   m_EditorClassIdentifier: 
   name: Crunch
+  id: 0
   type: {fileID: 11400000, guid: 6814cf3b84c0291459658e8469b19aa6, type: 2}
   description: May lower opponent's Defense.
   damage: 80
   basePP: 15
   accuracy: 1
+  priority: 0
   category: 0
   probability: 20
   zMove: 0

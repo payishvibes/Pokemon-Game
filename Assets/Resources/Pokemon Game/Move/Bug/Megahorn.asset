@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Megahorn
   m_EditorClassIdentifier: 
   name: Megahorn
+  id: 0
   type: {fileID: 11400000, guid: bf9a294a54121aa4388e9b483a5a6612, type: 2}
   description: 
   damage: 120
   basePP: 10
   accuracy: 0.85
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

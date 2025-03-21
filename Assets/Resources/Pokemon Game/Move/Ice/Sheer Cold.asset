@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Sheer Cold
   m_EditorClassIdentifier: 
   name: Sheer Cold
+  id: 0
   type: {fileID: 11400000, guid: cc8553e72fcb59547b96efa41bfb6395, type: 2}
   description: One-Hit-KO, if it hits.
   damage: 0
   basePP: 5
   accuracy: 0.3
+  priority: 0
   category: 1
   probability: 0
   zMove: 0

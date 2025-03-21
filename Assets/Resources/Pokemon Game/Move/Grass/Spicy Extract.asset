@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Spicy Extract
   m_EditorClassIdentifier: 
   name: Spicy Extract
+  id: 0
   type: {fileID: 11400000, guid: 16677bacbe9d55246878c477b58016ba, type: 2}
   description: Harshly lowers the opponent's Defense and sharply raises their Attack.
   damage: 0
   basePP: -1
   accuracy: 0.15
+  priority: 0
   category: 2
   probability: -2
   zMove: 0

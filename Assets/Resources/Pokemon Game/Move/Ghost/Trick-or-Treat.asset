@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Trick-or-Treat
   m_EditorClassIdentifier: 
   name: Trick-or-Treat
+  id: 0
   type: {fileID: 11400000, guid: 50da9e89bbda9c5418a62d8a5362cab0, type: 2}
   description: Adds Ghost type to opponent.
   damage: 0
   basePP: 20
   accuracy: 1
+  priority: 0
   category: 2
   probability: 0
   zMove: 0

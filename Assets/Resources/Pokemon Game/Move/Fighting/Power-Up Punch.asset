@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Power-Up Punch
   m_EditorClassIdentifier: 
   name: Power-Up Punch
+  id: 0
   type: {fileID: 11400000, guid: d19a1b210053ade4ab55da13c78024fd, type: 2}
   description: Raises Attack.
   damage: 40
   basePP: 20
   accuracy: 1
+  priority: 0
   category: 0
   probability: 100
   zMove: 0

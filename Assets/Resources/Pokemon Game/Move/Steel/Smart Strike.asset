@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Smart Strike
   m_EditorClassIdentifier: 
   name: Smart Strike
+  id: 0
   type: {fileID: 11400000, guid: e15b708ccad685240ae9eea4c601524a, type: 2}
   description: The user stabs the target with a sharp horn. This attack never misses.
   damage: 70
   basePP: 10
   accuracy: 0
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

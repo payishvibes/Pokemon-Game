@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Clear Smog
   m_EditorClassIdentifier: 
   name: Clear Smog
+  id: 0
   type: {fileID: 11400000, guid: a1e857e04105cf747bc8c86d4a4cc14c, type: 2}
   description: Removes all of the target's stat changes.
   damage: 50
   basePP: 15
   accuracy: 0
+  priority: 0
   category: 1
   probability: 0
   zMove: 0

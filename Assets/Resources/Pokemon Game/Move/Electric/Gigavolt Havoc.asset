@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Gigavolt Havoc
   m_EditorClassIdentifier: 
   name: Gigavolt Havoc
+  id: 0
   type: {fileID: 11400000, guid: cde34f3d09353db4dbc1c3345d036ff3, type: 2}
   description: Electric type Z-Move.
   damage: 0
   basePP: 1
   accuracy: 0
+  priority: 0
   category: 3
   probability: 0
   zMove: 0

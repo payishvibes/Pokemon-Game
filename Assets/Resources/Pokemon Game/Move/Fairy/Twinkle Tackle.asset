@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Twinkle Tackle
   m_EditorClassIdentifier: 
   name: Twinkle Tackle
+  id: 0
   type: {fileID: 11400000, guid: f2728e728c5c1fb4db2022f5766212eb, type: 2}
   description: Fairy type Z-Move.
   damage: 0
   basePP: 1
   accuracy: 0
+  priority: 0
   category: 3
   probability: 0
   zMove: 0

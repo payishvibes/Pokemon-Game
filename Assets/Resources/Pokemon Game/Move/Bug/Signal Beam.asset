@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Signal Beam
   m_EditorClassIdentifier: 
   name: Signal Beam
+  id: 0
   type: {fileID: 11400000, guid: bf9a294a54121aa4388e9b483a5a6612, type: 2}
   description: May confuse opponent.
   damage: 75
   basePP: 15
   accuracy: 1
+  priority: 0
   category: 1
   probability: 10
   zMove: 0

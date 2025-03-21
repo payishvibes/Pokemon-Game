@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Mountain Gale
   m_EditorClassIdentifier: 
   name: Mountain Gale
+  id: 0
   type: {fileID: 11400000, guid: cc8553e72fcb59547b96efa41bfb6395, type: 2}
   description: Lowers user's Speed.
   damage: 100
   basePP: 10
   accuracy: 0.85
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

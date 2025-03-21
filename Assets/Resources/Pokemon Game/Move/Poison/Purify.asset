@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Purify
   m_EditorClassIdentifier: 
   name: Purify
+  id: 0
   type: {fileID: 11400000, guid: a1e857e04105cf747bc8c86d4a4cc14c, type: 2}
   description: The user heals the target's status condition. If the move succeeds,
     it also restores the user's own HP.
   damage: 0
   basePP: 20
   accuracy: 0
+  priority: 0
   category: 2
   probability: 0
   zMove: 0

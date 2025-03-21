@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Roar of Time
   m_EditorClassIdentifier: 
   name: Roar of Time
+  id: 0
   type: {fileID: 11400000, guid: 2a0dd581c0f039443914f076081082d8, type: 2}
   description: User must recharge next turn.
   damage: 150
   basePP: 5
   accuracy: 0.9
+  priority: 0
   category: 1
   probability: 0
   zMove: 0

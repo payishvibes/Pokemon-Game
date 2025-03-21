@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: U-turn
   m_EditorClassIdentifier: 
   name: U-turn
+  id: 0
   type: {fileID: 11400000, guid: bf9a294a54121aa4388e9b483a5a6612, type: 2}
   description: User switches out immediately after attacking.
   damage: 70
   basePP: 20
   accuracy: 1
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

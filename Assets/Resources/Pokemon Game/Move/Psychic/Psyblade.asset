@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Psyblade
   m_EditorClassIdentifier: 
   name: Psyblade
+  id: 0
   type: {fileID: 11400000, guid: d43687aadbc21ff4291682914e2bc664, type: 2}
   description: Power increases on Electric Terrain.
   damage: 80
   basePP: 15
   accuracy: 1
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

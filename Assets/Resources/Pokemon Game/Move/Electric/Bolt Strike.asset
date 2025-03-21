@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Bolt Strike
   m_EditorClassIdentifier: 
   name: Bolt Strike
+  id: 0
   type: {fileID: 11400000, guid: cde34f3d09353db4dbc1c3345d036ff3, type: 2}
   description: May paralyze opponent.
   damage: 130
   basePP: 5
   accuracy: 0.85
+  priority: 0
   category: 0
   probability: 20
   zMove: 0

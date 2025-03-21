@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Population Bomb
   m_EditorClassIdentifier: 
   name: Population Bomb
+  id: 0
   type: {fileID: 11400000, guid: 7d400c8d21a01854e94041f45793cbf1, type: 2}
   description: Hits 1-10 times in a row.
   damage: 20
   basePP: 10
   accuracy: 0.9
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

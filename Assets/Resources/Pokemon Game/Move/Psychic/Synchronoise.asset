@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Synchronoise
   m_EditorClassIdentifier: 
   name: Synchronoise
+  id: 0
   type: {fileID: 11400000, guid: d43687aadbc21ff4291682914e2bc664, type: 2}
   description: "Hits any Pok\xE9mon that shares a type with the user."
   damage: 120
   basePP: 10
   accuracy: 1
+  priority: 0
   category: 1
   probability: 0
   zMove: 0

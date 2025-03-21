@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Thunder
   m_EditorClassIdentifier: 
   name: Thunder
+  id: 0
   type: {fileID: 11400000, guid: cde34f3d09353db4dbc1c3345d036ff3, type: 2}
   description: May paralyze opponent.
   damage: 110
   basePP: 10
   accuracy: 0.7
+  priority: 0
   category: 1
   probability: 30
   zMove: 0

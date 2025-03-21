@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Stealth Rock
   m_EditorClassIdentifier: 
   name: Stealth Rock
+  id: 0
   type: {fileID: 11400000, guid: b26a9af63fede1e4982ef43c75f280ea, type: 2}
   description: Damages opponents switching into battle.
   damage: 0
   basePP: 20
   accuracy: 0
+  priority: 0
   category: 2
   probability: 0
   zMove: 0

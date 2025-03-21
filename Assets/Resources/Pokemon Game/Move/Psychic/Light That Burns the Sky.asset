@@ -13,13 +13,15 @@ MonoBehaviour:
   m_Name: Light That Burns the Sky
   m_EditorClassIdentifier: 
   name: Light That Burns the Sky
+  id: 0
   type: {fileID: 11400000, guid: d43687aadbc21ff4291682914e2bc664, type: 2}
   description: Ultra Necrozma-exclusive Z-Move. Ignores target's ability; uses highest
     Attack stat.
   damage: 200
   basePP: 1
   accuracy: 0
-  category: 1
+  priority: 0
+  category: 3
   probability: 0
   zMove: 0
   zCrystal: {fileID: 0}

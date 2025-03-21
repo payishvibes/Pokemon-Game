@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: V-create
   m_EditorClassIdentifier: 
   name: V-create
+  id: 0
   type: {fileID: 11400000, guid: 2a85514d25185dc4b9be8cdaec17c0d0, type: 2}
   description: Lowers user's Defense, Special Defense and Speed.
   damage: 180
   basePP: 5
   accuracy: 0.95
+  priority: 0
   category: 0
   probability: 100
   zMove: 0

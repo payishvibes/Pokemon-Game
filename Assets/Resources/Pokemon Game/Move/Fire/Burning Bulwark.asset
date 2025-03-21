@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Burning Bulwark
   m_EditorClassIdentifier: 
   name: Burning Bulwark
+  id: 0
   type: {fileID: 11400000, guid: 2a85514d25185dc4b9be8cdaec17c0d0, type: 2}
   description: 
   damage: 0
   basePP: -1
   accuracy: 0.1
+  priority: 0
   category: 2
   probability: -2
   zMove: 0

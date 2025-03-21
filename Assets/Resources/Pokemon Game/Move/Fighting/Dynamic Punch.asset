@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Dynamic Punch
   m_EditorClassIdentifier: 
   name: Dynamic Punch
+  id: 0
   type: {fileID: 11400000, guid: d19a1b210053ade4ab55da13c78024fd, type: 2}
   description: Confuses opponent.
   damage: 100
   basePP: 5
   accuracy: 0.5
+  priority: 0
   category: 0
   probability: 100
   zMove: 0

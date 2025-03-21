@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Octolock
   m_EditorClassIdentifier: 
   name: Octolock
+  id: 0
   type: {fileID: 11400000, guid: d19a1b210053ade4ab55da13c78024fd, type: 2}
   description: Lowers opponent's Defense and Special Defense every turn, and they
     cannot flee or switch out.
   damage: 0
   basePP: 15
   accuracy: 1
+  priority: 0
   category: 2
   probability: 0
   zMove: 0

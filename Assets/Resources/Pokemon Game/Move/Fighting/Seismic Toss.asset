@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Seismic Toss
   m_EditorClassIdentifier: 
   name: Seismic Toss
+  id: 0
   type: {fileID: 11400000, guid: d19a1b210053ade4ab55da13c78024fd, type: 2}
   description: Inflicts damage equal to user's level.
   damage: 0
   basePP: 20
   accuracy: 1
+  priority: 0
   category: 0
   probability: 0
   zMove: 0

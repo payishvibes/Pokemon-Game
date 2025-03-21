@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Mist
   m_EditorClassIdentifier: 
   name: Mist
+  id: 0
   type: {fileID: 11400000, guid: cc8553e72fcb59547b96efa41bfb6395, type: 2}
   description: User's stats cannot be changed for a period of time.
   damage: 0
   basePP: 30
   accuracy: 0
+  priority: 0
   category: 2
   probability: 0
   zMove: 0

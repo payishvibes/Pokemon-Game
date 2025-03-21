@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Hyperspace Fury
   m_EditorClassIdentifier: 
   name: Hyperspace Fury
+  id: 0
   type: {fileID: 11400000, guid: 6814cf3b84c0291459658e8469b19aa6, type: 2}
   description: Lowers user's Defense. Can strike through Protect/Detect.
   damage: 100
   basePP: 100
   accuracy: 0.05
+  priority: 0
   category: 0
   probability: -2
   zMove: 0
