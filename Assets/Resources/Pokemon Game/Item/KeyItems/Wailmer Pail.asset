@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wailmer Pail
   m_EditorClassIdentifier: 
   name: Wailmer Pail
-  sprite: {fileID: 21300000, guid: 7076d49eb7ae0e940bd74151604211a2, type: 3}
+  sprite: {fileID: 21300000, guid: 664ff492b4e1391419886e7cf6b3a1d1, type: 3}
   type: 4
   description: This is a tool for watering Berries you planted to make them grow
     more quickly.

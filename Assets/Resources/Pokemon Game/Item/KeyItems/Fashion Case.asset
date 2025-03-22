@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fashion Case
   m_EditorClassIdentifier: 
   name: Fashion Case
-  sprite: {fileID: 21300000, guid: 40f5b4ca5db8021498c30e0fc4441e0b, type: 3}
+  sprite: {fileID: 21300000, guid: 6f55aba58433c78459071960e79736b8, type: 3}
   type: 4
   description: A lovely case to store colorful Props for your Pokemon to wear in
     a musical.

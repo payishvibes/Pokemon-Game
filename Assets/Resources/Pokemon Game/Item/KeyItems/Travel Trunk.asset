@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Travel Trunk
   m_EditorClassIdentifier: 
   name: Travel Trunk
-  sprite: {fileID: 21300000, guid: 6262b2826fb8f8a4fa01771578d0a86e, type: 3}
+  sprite: {fileID: 21300000, guid: 41eac823ec0eda54fb49faf08afac8cc, type: 3}
   type: 4
   description: A light and yet incredibly effective trunk, which can contain every
     last piece of clothing that can be bought.

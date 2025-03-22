@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Razz Berry
   m_EditorClassIdentifier: 
   name: Razz Berry
-  sprite: {fileID: 21300000, guid: 6c3a0716b021cac498e5b20fe3ef2055, type: 3}
+  sprite: {fileID: 21300000, guid: d4257a16bb1bdb14ca12ac208e87f46f, type: 3}
   type: 3
   description: Used to make Pokeblocks that will enhance your Coolness. Its red flesh
     is spicy when eaten.

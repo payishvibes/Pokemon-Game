@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Houndoominite
   m_EditorClassIdentifier: 
   name: Houndoominite
-  sprite: {fileID: 21300000, guid: c61b27960622da34d8f0c971f45092a2, type: 3}
+  sprite: {fileID: 21300000, guid: 99ec01a64c1e60848823875249a55a0c, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Houndoom hold it,
     and this stone will enable it to Mega Evolve during battle.

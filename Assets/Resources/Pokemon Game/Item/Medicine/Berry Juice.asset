@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Berry Juice
   m_EditorClassIdentifier: 
   name: Berry Juice
-  sprite: {fileID: 21300000, guid: ebf1a47d50dbaab4487d67d94affb6fe, type: 3}
+  sprite: {fileID: 21300000, guid: 1d2c2fa377423db449375fa637a733e5, type: 3}
   type: 1
   description: A 100 percent pure juice made of Berries. When consumed, it restores
     20 HP to an injured Pokemon.

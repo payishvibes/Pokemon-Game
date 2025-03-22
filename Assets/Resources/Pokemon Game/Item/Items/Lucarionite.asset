@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lucarionite
   m_EditorClassIdentifier: 
   name: Lucarionite
-  sprite: {fileID: 21300000, guid: 6e1535ab58affcd488d42263d2921814, type: 3}
+  sprite: {fileID: 21300000, guid: f7568027889cf2c4f8540cad295e5a16, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Lucario hold it,
     and this stone will enable it to Mega Evolve during battle.

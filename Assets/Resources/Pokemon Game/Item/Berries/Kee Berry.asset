@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Kee Berry
   m_EditorClassIdentifier: 
   name: Kee Berry
-  sprite: {fileID: 21300000, guid: d7ee19da0c35e214889849543a62a451, type: 3}
+  sprite: {fileID: 21300000, guid: 5d8fb793a0cb68b4b8155a45e1241ed4, type: 3}
   type: 3
   description: "If held by a Pokemon, this Berry will increase the holder\u2019s
     Defense if it\u2019s hit with a physical move."

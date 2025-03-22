@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lumiose Galette
   m_EditorClassIdentifier: 
   name: Lumiose Galette
-  sprite: {fileID: 21300000, guid: 233a7e1aeb2efd441967d79a72d0faf2, type: 3}
+  sprite: {fileID: 21300000, guid: 26f9e430850c8de49b9dcefb5da66252, type: 3}
   type: 1
   description: A popular treat in Lumiose City. It can be used once to heal all the
     status conditions of a Pokemon.

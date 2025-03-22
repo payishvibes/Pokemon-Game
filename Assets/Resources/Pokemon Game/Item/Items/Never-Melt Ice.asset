@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Never-Melt Ice
   m_EditorClassIdentifier: 
   name: Never-Melt Ice
-  sprite: {fileID: 21300000, guid: 7927101ecf001a043b7c81641c443643, type: 3}
+  sprite: {fileID: 21300000, guid: c533341eae6af4f4abb447a1f430166a, type: 3}
   type: 0
   description: "An item to be held by a Pokemon. It\u2019s a heat- repelling piece
     of ice that boosts the power of Ice-type moves."

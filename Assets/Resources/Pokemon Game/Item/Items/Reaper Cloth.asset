@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Reaper Cloth
   m_EditorClassIdentifier: 
   name: Reaper Cloth
-  sprite: {fileID: 21300000, guid: 4a754d27173676642ad3d79ccec43173, type: 3}
+  sprite: {fileID: 21300000, guid: 72443bb4b0bc0644587b6a0335d5fb60, type: 3}
   type: 0
   description: "A cloth imbued with horrifyingly strong spiritual energy. It\u2019s
     loved by a certain Pokemon."

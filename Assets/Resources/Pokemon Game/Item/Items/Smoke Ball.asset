@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Smoke Ball
   m_EditorClassIdentifier: 
   name: Smoke Ball
-  sprite: {fileID: 21300000, guid: 70728428c52cf8646b159955b92d107c, type: 3}
+  sprite: {fileID: 21300000, guid: e455de2521ede3c4c88545087596c217, type: 3}
   type: 0
   description: An item to be held by a Pokemon. It enables the holder to flee from
     any wild Pokemon encounter without fail.

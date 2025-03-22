@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Incinium Z
   m_EditorClassIdentifier: 
   name: Incinium Z
-  sprite: {fileID: 21300000, guid: d497446cf6d640c43a40dc0f66002473, type: 3}
+  sprite: {fileID: 0}
   type: 5
   description: "It converts Z-Power into crystals that upgrade Incineroar\u2019s
     Darkest Lariat to an exclusive Z-Move."

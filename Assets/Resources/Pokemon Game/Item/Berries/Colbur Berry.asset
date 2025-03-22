@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Colbur Berry
   m_EditorClassIdentifier: 
   name: Colbur Berry
-  sprite: {fileID: 21300000, guid: 4d51f64a36c636547b10f124f23938dc, type: 3}
+  sprite: {fileID: 21300000, guid: d5d2f6e2d69de7e49831759036781a8e, type: 3}
   type: 3
   description: If held by a Pokemon, this Berry will lessen the damage taken from
     one supereffective Dark-type attack.

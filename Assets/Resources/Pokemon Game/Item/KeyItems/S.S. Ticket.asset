@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: S.S. Ticket
   m_EditorClassIdentifier: 
   name: S.S. Ticket
-  sprite: {fileID: 21300000, guid: a770ea10ad72a4741a3e9a0eb5214d59, type: 3}
+  sprite: {fileID: 0}
   type: 4
   description: Ticket required for sailing on a ferry.
   cost: 0

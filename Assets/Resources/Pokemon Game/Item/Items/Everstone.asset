@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Everstone
   m_EditorClassIdentifier: 
   name: Everstone
-  sprite: {fileID: 21300000, guid: 1e3cd1a18c3b777468e5889acf3e8705, type: 3}
+  sprite: {fileID: 21300000, guid: 3d45a74c76171924db4dc72235bf0b56, type: 3}
   type: 0
   description: An item to be held by a Pokemon. A Pokemon holding this peculiar stone
     is prevented from evolving.

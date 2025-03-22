@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Absolite
   m_EditorClassIdentifier: 
   name: Absolite
-  sprite: {fileID: 21300000, guid: 9ad3b64c5c255c04d8721b4870cd3376, type: 3}
+  sprite: {fileID: 21300000, guid: 562c65e4e3872c343adc5b9bb9e9d00c, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Absol hold it, and
     this stone will enable it to Mega Evolve during battle.

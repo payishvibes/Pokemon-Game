@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tyranitarite
   m_EditorClassIdentifier: 
   name: Tyranitarite
-  sprite: {fileID: 21300000, guid: 5e6802eb6236d4a44940c57b8490cbf4, type: 3}
+  sprite: {fileID: 21300000, guid: 00a0a2e4e413b374698a9b0ceae9f1c7, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Tyranitar hold it,
     and this stone will enable it to Mega Evolve during battle.

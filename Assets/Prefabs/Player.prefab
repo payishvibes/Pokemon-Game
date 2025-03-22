@@ -661,7 +661,7 @@ MonoBehaviour:
   camFreeLook: {fileID: 7329654793326322050}
   cam: {fileID: 7329654792492178585}
   groundDetectorPos: {fileID: 583212358}
-  normalSpeed: 6
+  normalSpeed: 7
   canMove: 1
   speed: 0
   ground:

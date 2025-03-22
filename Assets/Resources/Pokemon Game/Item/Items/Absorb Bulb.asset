@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Absorb Bulb
   m_EditorClassIdentifier: 
   name: Absorb Bulb
-  sprite: {fileID: 21300000, guid: f4fe8b02d458b6f46ac03dc7ff7731f5, type: 3}
+  sprite: {fileID: 21300000, guid: e3bf8ec87cdd4544dbc7169703a935ad, type: 3}
   type: 0
   description: An item to be held by a Pokemon. It boosts Sp. Atk if hit with a Water-type
     attack. It can only be used once.

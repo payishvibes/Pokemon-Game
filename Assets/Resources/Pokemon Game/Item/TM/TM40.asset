@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM40
   m_EditorClassIdentifier: 
   name: TM40
-  sprite: {fileID: 21300000, guid: e05340742d9f0554db8e6eac496d51bc, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: The user confounds the target with speed, then slashes. This attack
     never misses.

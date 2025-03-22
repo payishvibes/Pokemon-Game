@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM72
   m_EditorClassIdentifier: 
   name: TM72
-  sprite: {fileID: 21300000, guid: 7aa5fa1b6363c51428ecea222f9ffd90, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: "After making its attack, the user rushes back to switch places with
     a party Pok\uFFFDmon in waiting."

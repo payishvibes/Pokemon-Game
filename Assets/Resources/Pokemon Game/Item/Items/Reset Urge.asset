@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Reset Urge
   m_EditorClassIdentifier: 
   name: Reset Urge
-  sprite: {fileID: 21300000, guid: a552ea92569d7b44bb620756813e17ac, type: 3}
+  sprite: {fileID: 21300000, guid: 3b04324fc6f628f468d454cec8ea2450, type: 3}
   type: 0
   description: When used, it restores any stat changes of an ally Pokemon.
   cost: 0

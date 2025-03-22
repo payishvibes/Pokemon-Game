@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: X Defense 2
   m_EditorClassIdentifier: 
   name: X Defense 2
-  sprite: {fileID: 21300000, guid: 125da5e4fc5861d4b8d3f879ab3dba9b, type: 3}
+  sprite: {fileID: 21300000, guid: a51216bdf16eaf64d8ca7555d3ae39e8, type: 3}
   type: 0
   description: It sharply raises the Defense stat of a Pokemon in battle. It wears
     off if the Pokemon is withdrawn.

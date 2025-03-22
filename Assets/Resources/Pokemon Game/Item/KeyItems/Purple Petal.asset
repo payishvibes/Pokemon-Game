@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Purple Petal
   m_EditorClassIdentifier: 
   name: Purple Petal
-  sprite: {fileID: 21300000, guid: be95d2ee6795ebe46a9925741b5059c5, type: 3}
+  sprite: {fileID: 21300000, guid: 234aac47c1967f34fbb0cfacebed701d, type: 3}
   type: 4
   description: "A pressed flower petal you receive from Nanu during Mina\u2019s trial.
     The goal is to collect seven different kinds of petals."

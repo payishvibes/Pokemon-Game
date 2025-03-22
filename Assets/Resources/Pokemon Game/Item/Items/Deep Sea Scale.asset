@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Deep Sea Scale
   m_EditorClassIdentifier: 
   name: Deep Sea Scale
-  sprite: {fileID: 21300000, guid: 5a27c1c09bc04504db875b4160a1e690, type: 3}
+  sprite: {fileID: 21300000, guid: 68a0dfbfa5db90d42ace43d9c845c059, type: 3}
   type: 0
   description: "An item to be held by Clamperl. This scale shines with a faint pink
     and raises the holder\u2019s Sp. Def stat."

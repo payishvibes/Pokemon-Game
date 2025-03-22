@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Belue Berry
   m_EditorClassIdentifier: 
   name: Belue Berry
-  sprite: {fileID: 21300000, guid: b3a1e3e3f90ee6f48b7f409947c7a808, type: 3}
+  sprite: {fileID: 21300000, guid: e07c9f6fee6bd064d8d16167c28657ed, type: 3}
   type: 3
   description: Used to make Pokeblocks that will enhance your Beauty, this Berry
     is rare in other regions.

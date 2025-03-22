@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM77
   m_EditorClassIdentifier: 
   name: TM77
-  sprite: {fileID: 21300000, guid: 537f04ec481711d469e007cd9b007f98, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: The user hypnotizes itself into copying any stat change made by the
     target.

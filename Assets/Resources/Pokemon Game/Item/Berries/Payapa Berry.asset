@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Payapa Berry
   m_EditorClassIdentifier: 
   name: Payapa Berry
-  sprite: {fileID: 21300000, guid: dcdcfa7bbff8303488d32cb091cab6f1, type: 3}
+  sprite: {fileID: 21300000, guid: 1ef2e87a34c82744b8f2f351a9f895b5, type: 3}
   type: 3
   description: If held by a Pokemon, this Berry will lessen the damage taken from
     one supereffective Psychic-type attack.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Flying Gem
   m_EditorClassIdentifier: 
   name: Flying Gem
-  sprite: {fileID: 21300000, guid: d8fd6eeb88edb6a4688d194c5976c336, type: 3}
+  sprite: {fileID: 21300000, guid: 8b9f9261f0c91314cba412112abed368, type: 3}
   type: 0
   description: A gem with an essence of air. When held, it strengthens the power
     of a Flying-type move one time.

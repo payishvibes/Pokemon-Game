@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mind Plate
   m_EditorClassIdentifier: 
   name: Mind Plate
-  sprite: {fileID: 21300000, guid: 76363456da793b241a27b12dc968571b, type: 3}
+  sprite: {fileID: 21300000, guid: c4a53f98bb22a714b9e7f74c45232bf8, type: 3}
   type: 0
   description: "An item to be held by a Pokemon. It\u2019s a stone tablet that boosts
     the power of Psychic-type moves."

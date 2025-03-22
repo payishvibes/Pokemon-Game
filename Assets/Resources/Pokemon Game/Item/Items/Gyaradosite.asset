@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gyaradosite
   m_EditorClassIdentifier: 
   name: Gyaradosite
-  sprite: {fileID: 21300000, guid: 87d5aa69efcef2942822cf5e61b1c4a0, type: 3}
+  sprite: {fileID: 21300000, guid: 547a1a55677bb0b448e4afbbcf25cad2, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Gyarados hold it,
     and this stone will enable it to Mega Evolve during battle.

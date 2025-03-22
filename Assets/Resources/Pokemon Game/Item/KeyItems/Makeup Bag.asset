@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Makeup Bag
   m_EditorClassIdentifier: 
   name: Makeup Bag
-  sprite: {fileID: 21300000, guid: b1fc6c1977fdd9e4daec206d57fb8950, type: 3}
+  sprite: {fileID: 21300000, guid: 9ea32d475c7a8f548a75359b5c9824d1, type: 3}
   type: 4
   description: A rather chic-looking case for carrying lipsticks.
   cost: 0

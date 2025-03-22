@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Swift Wing
   m_EditorClassIdentifier: 
   name: Swift Wing
-  sprite: {fileID: 21300000, guid: 51e6a2abbc07e9b4da44c38bba155e85, type: 3}
+  sprite: {fileID: 21300000, guid: dd3bfe406d8c06e418a7494bfd4b541a, type: 3}
   type: 1
   description: An item for use on a Pokemon. It slightly increases the base Speed
     stat of a single Pokemon.

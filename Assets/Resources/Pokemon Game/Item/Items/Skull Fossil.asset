@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Skull Fossil
   m_EditorClassIdentifier: 
   name: Skull Fossil
-  sprite: {fileID: 21300000, guid: 6f9418168b4b57d4b979603cd613b4d3, type: 3}
+  sprite: {fileID: 21300000, guid: 973887c0ef9b74949bda3dcf66a83f0e, type: 3}
   type: 0
   description: "A fossil from a prehistoric Pokemon that once lived on the land.
     It appears as though it\u2019s part of a head."

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Steel Gem
   m_EditorClassIdentifier: 
   name: Steel Gem
-  sprite: {fileID: 21300000, guid: d83394454a117ae4ca5c3b176d4cc992, type: 3}
+  sprite: {fileID: 21300000, guid: b7943160924d5294286e027707f9f6f2, type: 3}
   type: 0
   description: A gem with an essence of steel. When held, it strengthens the power
     of a Steel-type move one time.

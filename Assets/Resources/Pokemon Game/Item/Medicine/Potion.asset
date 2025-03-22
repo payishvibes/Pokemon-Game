@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Potion
   m_EditorClassIdentifier: 
   name: Potion
-  sprite: {fileID: 21300000, guid: 45d91baba3fb1f545a3a5b2de79a7abf, type: 3}
+  sprite: {fileID: 21300000, guid: 5b615f78e32ae654cbf459d76aaaa995, type: 3}
   type: 1
   description: A spray-type medicine for treating wounds. It can be used to restore
     20 HP to an injured Pokemon.

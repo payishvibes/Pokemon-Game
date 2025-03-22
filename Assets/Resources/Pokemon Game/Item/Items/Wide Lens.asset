@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wide Lens
   m_EditorClassIdentifier: 
   name: Wide Lens
-  sprite: {fileID: 21300000, guid: 3086ebad1bc06cd4a8140cdafe65e194, type: 3}
+  sprite: {fileID: 21300000, guid: c5bdce4215abef94586b4ed384356b22, type: 3}
   type: 0
   description: "An item to be held by a Pokemon. It\u2019s a magnifying lens that
     slightly boosts the accuracy of moves."

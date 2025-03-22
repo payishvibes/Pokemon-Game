@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Devon Scuba Gear
   m_EditorClassIdentifier: 
   name: Devon Scuba Gear
-  sprite: {fileID: 21300000, guid: 16c7954bb74244840a99666b7ee4fbc9, type: 3}
+  sprite: {fileID: 21300000, guid: d8e37929c92f5ed4a9c84b6fd261bf3f, type: 3}
   type: 4
   description: A device made by Devon Corporation that provides oxygen to users during
     the use of Dive.

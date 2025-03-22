@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Adventure Rules
   m_EditorClassIdentifier: 
   name: Adventure Rules
-  sprite: {fileID: 21300000, guid: c9d1b8ed3b20c0742939584444299bea, type: 3}
+  sprite: {fileID: 21300000, guid: ad0133a1832ec154c87b3b5c5a54ff12, type: 3}
   type: 4
   description: This book contains all the points a new Trainer needs to know on a
     journey. It was handmade by a kind friend.

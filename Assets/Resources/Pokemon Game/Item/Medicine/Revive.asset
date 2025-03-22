@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Revive
   m_EditorClassIdentifier: 
   name: Revive
-  sprite: {fileID: 21300000, guid: 128f44b093d51ef479a863a1da65b2eb, type: 3}
+  sprite: {fileID: 21300000, guid: abbbef6eebcae9d4b9689dbb34df64a1, type: 3}
   type: 1
   description: "A medicine that can revive fainted Pokemon. It also restores half
     of a fainted Pokemon\u2019s maximum HP."

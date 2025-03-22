@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mega Stickpin
   m_EditorClassIdentifier: 
   name: Mega Stickpin
-  sprite: {fileID: 21300000, guid: 83f17dc56f2d95f4f938439e807b49ac, type: 3}
+  sprite: {fileID: 21300000, guid: 99ab2b9152254e8429806d84aa54d14e, type: 3}
   type: 4
   description: This stickpin contains an untold power that somehow enables Pokemon
     carrying a Mega Stone to Mega Evolve in battle.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Oran Berry
   m_EditorClassIdentifier: 
   name: Oran Berry
-  sprite: {fileID: 21300000, guid: 033e9471c0cb04644b3ddd1be4fb06a7, type: 3}
+  sprite: {fileID: 21300000, guid: 36795140d9e28e74ab04d1a47e373ec7, type: 3}
   type: 3
   description: A Berry to be consumed by Pokemon. If a Pokemon holds one, it can
     restore its own HP by 10 points during battle.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Steelium Z
   m_EditorClassIdentifier: 
   name: Steelium Z
-  sprite: {fileID: 21300000, guid: fb5284b7a3bf1244aa714e5687828029, type: 3}
+  sprite: {fileID: 0}
   type: 5
   description: It converts Z-Power into crystals that upgrade Steel-type moves to
     Steel-type Z-Moves.

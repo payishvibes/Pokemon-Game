@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dowsing Machine
   m_EditorClassIdentifier: 
   name: Dowsing Machine
-  sprite: {fileID: 21300000, guid: a0bf1e61bab62c346b89f01950a7b826, type: 3}
+  sprite: {fileID: 21300000, guid: 1c68e840b18f42e44a0af63e31ce15f5, type: 3}
   type: 4
   description: "This high-tech machine shows the location of invisible items. It\u2019s
     attached to the head when in use."

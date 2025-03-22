@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM02
   m_EditorClassIdentifier: 
   name: TM02
-  sprite: {fileID: 21300000, guid: cdb91ea359281ee49aaad8e12353632f, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: The user slashes the target with huge sharp claws.
   cost: 0

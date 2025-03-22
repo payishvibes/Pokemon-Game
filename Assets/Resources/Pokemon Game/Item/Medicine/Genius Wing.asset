@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Genius Wing
   m_EditorClassIdentifier: 
   name: Genius Wing
-  sprite: {fileID: 21300000, guid: 12870e4b3a05df34181adb512f747733, type: 3}
+  sprite: {fileID: 21300000, guid: 547646242d2daf148b951ec27fac80b6, type: 3}
   type: 1
   description: An item for use on a Pokemon. It slightly increases the base Sp. Atk
     stat of a single Pokemon.

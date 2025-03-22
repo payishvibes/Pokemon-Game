@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Honey
   m_EditorClassIdentifier: 
   name: Honey
-  sprite: {fileID: 21300000, guid: e2f8c088929578a48a02e0f1e9bf84b9, type: 3}
+  sprite: {fileID: 21300000, guid: 9a1112877ac577c4fa8e94bddda91356, type: 3}
   type: 0
   description: A sweet honey with a lush aroma that attracts wild Pokemon when it
     is used in tall grass, in caves, or on special trees.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Twisted Spoon
   m_EditorClassIdentifier: 
   name: Twisted Spoon
-  sprite: {fileID: 21300000, guid: 376405322774db24baecc7e5e927b41f, type: 3}
+  sprite: {fileID: 21300000, guid: a46dd45f9d824674aac6fc564d2637d5, type: 3}
   type: 0
   description: An item to be held by a Pokemon. This spoon is imbued with telekinetic
     power and boosts Psychic-type moves.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pal Pad
   m_EditorClassIdentifier: 
   name: Pal Pad
-  sprite: {fileID: 21300000, guid: 81f6cc7343b46b2448dc26ee70c64933, type: 3}
+  sprite: {fileID: 21300000, guid: d55b85e567e004445af7eb10c6f4099e, type: 3}
   type: 4
   description: A convenient notepad that is used to register your Friends and friend
     codes and keep a record of your gameplay.

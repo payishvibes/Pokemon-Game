@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Black Glasses
   m_EditorClassIdentifier: 
   name: Black Glasses
-  sprite: {fileID: 21300000, guid: 1b4b2e94ab0215e4fa8e21bb821c3f38, type: 3}
+  sprite: {fileID: 21300000, guid: 1a7583f938d90a84db33757303ff69e4, type: 3}
   type: 0
   description: An item to be held by a Pokemon. A pair of shady-looking glasses that
     boost the power of Dark-type moves.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Oval Charm
   m_EditorClassIdentifier: 
   name: Oval Charm
-  sprite: {fileID: 21300000, guid: 5be921edd1a720843b258d020bf9da15, type: 3}
+  sprite: {fileID: 21300000, guid: 69ae74eb4f15e0740a76420cf60a602e, type: 3}
   type: 4
   description: An oval charm said to increase the chance of Pokemon Eggs being found
     at the Nursery.

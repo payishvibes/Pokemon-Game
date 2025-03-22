@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rowap Berry
   m_EditorClassIdentifier: 
   name: Rowap Berry
-  sprite: {fileID: 21300000, guid: a0f39b8c7f35ef644bc62fb4ff14ed8d, type: 3}
+  sprite: {fileID: 21300000, guid: a2a229140c5cbc44fb8c764e8abcc4d2, type: 3}
   type: 3
   description: A Berry to be consumed by Pokemon. If a special attack hits the Pokemon
     holding it, the attacker will also be hurt.

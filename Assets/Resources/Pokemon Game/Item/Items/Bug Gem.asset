@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bug Gem
   m_EditorClassIdentifier: 
   name: Bug Gem
-  sprite: {fileID: 21300000, guid: 48c3492bec04f86439ab7dddffec69bc, type: 3}
+  sprite: {fileID: 21300000, guid: eba44a9d80ac28942b45730a3c69d0ec, type: 3}
   type: 0
   description: A gem with an insect-like essence. When held, it strengthens the power
     of a Bug-type move one time.

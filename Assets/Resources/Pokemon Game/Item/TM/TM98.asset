@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM98
   m_EditorClassIdentifier: 
   name: TM98
-  sprite: {fileID: 21300000, guid: 160f2b9ac60d9d74f98ea8a121692420, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: The user charges at the target and may make it flinch.
   cost: 0

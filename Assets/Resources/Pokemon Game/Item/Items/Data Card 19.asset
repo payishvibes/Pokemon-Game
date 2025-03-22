@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Data Card 19
   m_EditorClassIdentifier: 
   name: Data Card 19
-  sprite: {fileID: 21300000, guid: 6435d5f859e3ff04c9d7702beaa10d2f, type: 3}
+  sprite: {fileID: 21300000, guid: 396c257076de3bf4a8cc27922ca57b1c, type: 3}
   type: 0
   description: It holds Pokeathlon records. It is a card that shows how many Link
     Pokeathlon wins you have had.

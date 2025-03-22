@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Vs. Recorder
   m_EditorClassIdentifier: 
   name: Vs. Recorder
-  sprite: {fileID: 21300000, guid: 37591add24aa9584ca1a6b15933893e7, type: 3}
+  sprite: {fileID: 0}
   type: 4
   description: An amazing device that can record a battle between friends or the
     battles at certain special battle facilities.

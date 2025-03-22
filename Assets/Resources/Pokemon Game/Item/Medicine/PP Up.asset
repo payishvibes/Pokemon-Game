@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PP Up
   m_EditorClassIdentifier: 
   name: PP Up
-  sprite: {fileID: 21300000, guid: d5b5c475e893eb64daa45e17d556788a, type: 3}
+  sprite: {fileID: 21300000, guid: c68fda68574d21a40bf25f9d5f11c3c8, type: 3}
   type: 1
   description: A medicine that can slightly raise the maximum PP of a single move
     that has been learned by the target Pokemon.

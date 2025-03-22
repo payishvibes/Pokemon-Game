@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Poke Doll
   m_EditorClassIdentifier: 
   name: Poke Doll
-  sprite: {fileID: 21300000, guid: 0fb065c44263dde46a2299112bdb80eb, type: 3}
+  sprite: {fileID: 21300000, guid: 23b06eab970e0d24285c6a93bae56516, type: 3}
   type: 0
   description: A doll that attracts the attention of a Pokemon. It guarantees escape
     from any battle with wild Pokemon.

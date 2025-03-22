@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM75
   m_EditorClassIdentifier: 
   name: TM75
-  sprite: {fileID: 21300000, guid: 537f04ec481711d469e007cd9b007f98, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: "A frenetic dance to uplift the fighting spirit. This sharply raises
     the user\uFFFDs Attack stat."

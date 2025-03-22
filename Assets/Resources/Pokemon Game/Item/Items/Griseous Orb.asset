@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Griseous Orb
   m_EditorClassIdentifier: 
   name: Griseous Orb
-  sprite: {fileID: 21300000, guid: ecbc0bb4be626a24ab47049bf99e404c, type: 3}
+  sprite: {fileID: 21300000, guid: fe16f3351a1b99045b349310d1e729ce, type: 3}
   type: 0
   description: A glowing orb to be held by Giratina. It boosts the power of Dragon-
     and Ghost-type moves when it is held.

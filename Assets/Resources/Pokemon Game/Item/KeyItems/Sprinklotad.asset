@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sprinklotad
   m_EditorClassIdentifier: 
   name: Sprinklotad
-  sprite: {fileID: 21300000, guid: aaf86d59e68b05044a765b37ae138478, type: 3}
+  sprite: {fileID: 21300000, guid: 9c49043814cf0e841a07efb16838b9c0, type: 3}
   type: 4
   description: A watering can shaped like a Lotad. It helps promote the healthy growth
     of any Berries planted in good, soft soil.

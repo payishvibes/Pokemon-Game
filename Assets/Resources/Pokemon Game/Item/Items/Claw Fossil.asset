@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Claw Fossil
   m_EditorClassIdentifier: 
   name: Claw Fossil
-  sprite: {fileID: 21300000, guid: 75e67a9511e22ad4cb95999576eb7636, type: 3}
+  sprite: {fileID: 21300000, guid: c9a0cab3c8599c549a1f3f5adb6f3862, type: 3}
   type: 0
   description: A fossil from a prehistoric Pokemon that once lived in the sea. It
     appears to be a fragment of a claw.

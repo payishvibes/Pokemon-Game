@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Meteorite Shard
   m_EditorClassIdentifier: 
   name: Meteorite Shard
-  sprite: {fileID: 21300000, guid: f4f32acd4bbec3b4fae38ae3c3e69dda, type: 3}
+  sprite: {fileID: 21300000, guid: 13d9a436353925c4a8d976092b3a8c6a, type: 3}
   type: 4
   description: "One of the fragments of a Meteorite from Granite Cave. It\u2019s
     faintly warm to the touch."

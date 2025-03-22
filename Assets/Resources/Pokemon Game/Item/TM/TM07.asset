@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM07
   m_EditorClassIdentifier: 
   name: TM07
-  sprite: {fileID: 21300000, guid: 3e73c837e2af7ce42a0ee4a8a77006ff, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: "The user summons a hailstorm lasting five turns. It damages all Pok\uFFFDmon
     except the Ice type."

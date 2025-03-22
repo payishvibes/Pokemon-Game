@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ice Stone
   m_EditorClassIdentifier: 
   name: Ice Stone
-  sprite: {fileID: 21300000, guid: acea8d6cff958c5418979c44cecb9661, type: 3}
+  sprite: {fileID: 21300000, guid: 847f0a07ad055d449ab3d8c574067314, type: 3}
   type: 0
   description: A peculiar stone that can make certain species of Pokemon evolve.
     It has an unmistakable snowflake pattern.

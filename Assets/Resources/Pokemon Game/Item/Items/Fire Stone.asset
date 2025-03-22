@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fire Stone
   m_EditorClassIdentifier: 
   name: Fire Stone
-  sprite: {fileID: 21300000, guid: 28bd52c4034ebf646a9fcec92a735f51, type: 3}
+  sprite: {fileID: 21300000, guid: 5c0c5653987d48642ada169c9ed632f1, type: 3}
   type: 0
   description: A peculiar stone that can make certain species of Pokemon evolve.
     The stone has a fiery orange heart.

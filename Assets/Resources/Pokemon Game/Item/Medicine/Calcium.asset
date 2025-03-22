@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Calcium
   m_EditorClassIdentifier: 
   name: Calcium
-  sprite: {fileID: 21300000, guid: 46ac2ec02945b0c45b646e6cf837cdef, type: 3}
+  sprite: {fileID: 21300000, guid: f1d0a3afe9b29a5438da7d4e9f4dc628, type: 3}
   type: 1
   description: A nutritious drink for Pokemon. When consumed, it raises the base
     Sp. Atk stat of a single Pokemon.

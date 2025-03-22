@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Light Stone
   m_EditorClassIdentifier: 
   name: Light Stone
-  sprite: {fileID: 21300000, guid: 13bca58f050ea79449b0a9c261adf392, type: 3}
+  sprite: {fileID: 21300000, guid: e096dace7a3d90340a5b29a39b299e33, type: 3}
   type: 4
   description: "Reshiram\u2019s body was destroyed and changed into this stone. It
     is said to be waiting for the emergence of a hero."

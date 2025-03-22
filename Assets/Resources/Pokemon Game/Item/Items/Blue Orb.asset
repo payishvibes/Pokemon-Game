@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Blue Orb
   m_EditorClassIdentifier: 
   name: Blue Orb
-  sprite: {fileID: 21300000, guid: 288173f279ec3824a9f2d8dc8344c9b7, type: 3}
+  sprite: {fileID: 21300000, guid: b32a309bd1209684fbfd17c095c48dda, type: 3}
   type: 0
   description: "A shiny blue orb that is said to have a legend tied to it. It\u2019s
     known to have a deep connection with the Hoenn region."

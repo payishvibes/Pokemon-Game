@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rage Candy Bar
   m_EditorClassIdentifier: 
   name: Rage Candy Bar
-  sprite: {fileID: 21300000, guid: b7c6e07ddff2a8549bd5a617c584da42, type: 3}
+  sprite: {fileID: 21300000, guid: 93a6e3d70234d0c4b93e06d27d9340ae, type: 3}
   type: 1
   description: "Mahogany Town\u2019s famous candy. It can be used once to heal all
     the status conditions of a Pokemon."

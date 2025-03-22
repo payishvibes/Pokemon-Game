@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Power Anklet
   m_EditorClassIdentifier: 
   name: Power Anklet
-  sprite: {fileID: 21300000, guid: 1ec5e6194d9d4364ebf50a3b448d55ca, type: 3}
+  sprite: {fileID: 21300000, guid: bf008bfc21525954ebcfbc94dda9c6b4, type: 3}
   type: 0
   description: "An item to be held by a Pokemon. It reduces Speed but allows the
     holder\u2019s Speed stat to grow more after battling."

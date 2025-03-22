@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Garchompite
   m_EditorClassIdentifier: 
   name: Garchompite
-  sprite: {fileID: 21300000, guid: 45b7a7f8102353d44a6c1cc68ba4bfdc, type: 3}
+  sprite: {fileID: 21300000, guid: d4077635d69142b4e82aa6fd5316ae4d, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Garchomp hold it,
     and this stone will enable it to Mega Evolve during battle.

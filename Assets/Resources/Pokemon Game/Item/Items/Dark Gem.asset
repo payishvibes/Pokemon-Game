@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dark Gem
   m_EditorClassIdentifier: 
   name: Dark Gem
-  sprite: {fileID: 21300000, guid: 229b3fff7779e8047be6ffa254ac826f, type: 3}
+  sprite: {fileID: 21300000, guid: 98c5deba44d14a346b48e5bc5c714253, type: 3}
   type: 0
   description: A gem with an essence of darkness. When held, it strengthens the power
     of a Dark-type move one time.

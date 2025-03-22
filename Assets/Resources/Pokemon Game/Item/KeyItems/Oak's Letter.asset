@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Oak's Letter
   m_EditorClassIdentifier: 
   name: Oak's Letter
-  sprite: {fileID: 21300000, guid: 2d342bc4e7e3c8f448c98537dd8ba94f, type: 3}
+  sprite: {fileID: 0}
   type: 4
   description: A letter from Professor Oak. Written in it is a request for you to
     go to Route 224.

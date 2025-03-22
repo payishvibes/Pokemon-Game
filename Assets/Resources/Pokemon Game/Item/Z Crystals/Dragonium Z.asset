@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dragonium Z
   m_EditorClassIdentifier: 
   name: Dragonium Z
-  sprite: {fileID: 21300000, guid: ad64d6651e4ef2449bfe2a65987dc2ac, type: 3}
+  sprite: {fileID: 0}
   type: 5
   description: It converts Z-Power into crystals that upgrade Dragon-type moves to
     Dragon-type Z-Moves.

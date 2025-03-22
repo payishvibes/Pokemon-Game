@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Muscle Wing
   m_EditorClassIdentifier: 
   name: Muscle Wing
-  sprite: {fileID: 21300000, guid: 1d23f7c75db6c714093b29cbbb0103fb, type: 3}
+  sprite: {fileID: 21300000, guid: 9a457bba142287f40a5a9d994da3ebb3, type: 3}
   type: 1
   description: An item for use on a Pokemon. It slightly increases the base Attack
     stat of a single Pokemon.

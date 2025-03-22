@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Root Fossil
   m_EditorClassIdentifier: 
   name: Root Fossil
-  sprite: {fileID: 21300000, guid: d5988bca1bc1ead41b547206fc4c65ed, type: 3}
+  sprite: {fileID: 21300000, guid: 8ec227fc948dd6246aa6e90000257ba7, type: 3}
   type: 0
   description: "A fossil from a prehistoric Pokemon that once lived in the sea. It
     looks as if it could be part of a plant\u2019s root."

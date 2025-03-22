@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d18b0702c76df542a3a20fe8e6205e9, type: 3}
+  m_Name: Charmeleon
+  m_EditorClassIdentifier: 
+  name: Charmeleon
+  primaryType: 7
+  secondaryType: 0
+  texture:
+    basic: {fileID: 21300000, guid: e436bd577ba38154ba74f7e1a6725d14, type: 3}
+    female: {fileID: 0}
+    basicBack: {fileID: 21300000, guid: 3483f7ce4a8a27644bcabb7b7a3e763d, type: 3}
+    femaleBack: {fileID: 0}
+    shiny: {fileID: 21300000, guid: 9fcbed08235cb6a438bf628d36f067fc, type: 3}
+    femaleShiny: {fileID: 0}
+    shinyBack: {fileID: 21300000, guid: fe4d4997375f71e4aa86d821a0a88348, type: 3}
+    femaleShinyBack: {fileID: 0}
+  dexNo: 5
+  possibleMoves:
+    levelup:
+      keys:
+      - {fileID: 11400000, guid: 848882fed3c84e047bfe311504764911, type: 2}
+      - {fileID: 11400000, guid: 42eba83cd8cfea242a2bc2c24fd4a595, type: 2}
+      - {fileID: 11400000, guid: 71e65ff655656454b8becbb1cc1b57b4, type: 2}
+      - {fileID: 11400000, guid: b0cb5ddc202d57e4297df613100629dc, type: 2}
+      - {fileID: 11400000, guid: 86897707f82be264da1daf40aafd980b, type: 2}
+      - {fileID: 11400000, guid: ec476dfeed9d91b4e9433b221f506040, type: 2}
+      - {fileID: 11400000, guid: f29472527a00e8549a83e69a99476413, type: 2}
+      - {fileID: 11400000, guid: f9b81ff65ece41d4b9fb329a585db887, type: 2}
+      - {fileID: 11400000, guid: c6352a0bab2fc1d408f2bc8fa3cef378, type: 2}
+      - {fileID: 11400000, guid: 9515df19ec4529f44a7669af0a79b676, type: 2}
+      - {fileID: 11400000, guid: 54cb85136123f384faeb2e5a1d8ccf02, type: 2}
+      - {fileID: 11400000, guid: 852dbf64e7d2c7a4eb582fe79e1ad25e, type: 2}
+      values: 0100000001000000010000002b00000011000000320000000a00000027000000150000001c0000002000000036000000
+    tm:
+    - {fileID: 11400000, guid: 157e90d1343feb84fa0f8050b1d26346, type: 2}
+    - {fileID: 11400000, guid: d64e418a175825643a0869689a75d087, type: 2}
+    - {fileID: 11400000, guid: 4906e02cd94083e4b9a3ff65afbaa7ae, type: 2}
+    - {fileID: 11400000, guid: f98c1484eacf1e74d96610d1cef3f02e, type: 2}
+    - {fileID: 11400000, guid: 457b5bd9d4c0aa940bbc9d0300ec96fe, type: 2}
+    - {fileID: 11400000, guid: 98fa084e09bd1974c9104697fb5e7344, type: 2}
+    - {fileID: 11400000, guid: aca5db6d4ade2ca42b273a54a86fa2d4, type: 2}
+    - {fileID: 11400000, guid: e64daca0bb1f7d24e9da057ca41d1480, type: 2}
+    - {fileID: 11400000, guid: e242e7f9193bb1047b3c360fa47f6bc2, type: 2}
+    - {fileID: 11400000, guid: d7c74a17158a8454396d8c6107df184a, type: 2}
+    - {fileID: 11400000, guid: c2e2fe624083032449950f6ca8b43e1a, type: 2}
+    - {fileID: 11400000, guid: 910b49de4ce52c04a83339ef4081d551, type: 2}
+    - {fileID: 11400000, guid: e555b56d435cc5b47b9387c3b5c4717b, type: 2}
+    - {fileID: 11400000, guid: efe6e01b327c93e41a1982d04df529ce, type: 2}
+    - {fileID: 11400000, guid: 24e65cd33fc0be1478bf29b3f2ad62cd, type: 2}
+    - {fileID: 11400000, guid: 3eaa7fdc38582b24ebd2cf887d3d4d39, type: 2}
+    - {fileID: 11400000, guid: 6b6e6f426f86f7848b4a4be49594bfaf, type: 2}
+    - {fileID: 11400000, guid: 97899e6e8c4dd184aa33afab0545c04e, type: 2}
+    - {fileID: 11400000, guid: e2f64c50af8c8db43b24c02773c64325, type: 2}
+    - {fileID: 11400000, guid: 7aef2e18bddd5664f9e347c679e35131, type: 2}
+    - {fileID: 11400000, guid: d1b17bceacbb5a64fbc9c445499ad08b, type: 2}
+    - {fileID: 11400000, guid: e5091156d8024f74f98c34856b864e0e, type: 2}
+    - {fileID: 11400000, guid: b28d84d0564542d448c7ef8bb277f869, type: 2}
+    - {fileID: 11400000, guid: ffc5c3629a0d6ef45b09b5836444dde0, type: 2}
+    - {fileID: 11400000, guid: b7ad05587e50d1c439a1cb68869a13d5, type: 2}
+    - {fileID: 11400000, guid: a0773b271e953a24a8e70b075d1629d1, type: 2}
+    - {fileID: 11400000, guid: 43909ec1b9d56b640aef96639d6c4419, type: 2}
+    - {fileID: 11400000, guid: 125658e3fd8654a45a19e22a8f461e57, type: 2}
+    - {fileID: 11400000, guid: a5264ad4f182e954998622e9dfd04eaf, type: 2}
+    egg: []
+    tutor:
+    - {fileID: 11400000, guid: 5b6cc3aa5734ce443a448d3cd1524685, type: 2}
+    - {fileID: 11400000, guid: 88595a9c89c9c234fb39496c66a49395, type: 2}
+    - {fileID: 11400000, guid: 336eda2a3f8b3644fb6f6298c28bdf94, type: 2}
+    - {fileID: 11400000, guid: 1eff0b9abd97cf84a8f51a7b128af38f, type: 2}
+    - {fileID: 11400000, guid: cbdadf8a7b1558642bdaeeaaec05f0ad, type: 2}
+    - {fileID: 11400000, guid: e0a7dc3602697e540a3628a1697ecbad, type: 2}
+    - {fileID: 11400000, guid: 663d8829a0cfa2b44b85193c1fd326d9, type: 2}
+    - {fileID: 11400000, guid: 210653cf93cfd944ab4abb9aec87e9b5, type: 2}
+  evolutions:
+    possibleEvolutions:
+    - triggerType: 0
+      level: 36
+      item: {fileID: 0}
+      evolution: {fileID: 11400000, guid: 75c56c60da9236d48bf971985640a860, type: 2}
+  expGroup: 3
+  catchRate: 45
+  baseFriendship: 50
+  baseHealth: 58
+  baseAttack: 64
+  baseDefense: 58
+  baseSpecialAttack: 80
+  baseSpecialDefense: 65
+  baseSpeed: 80
+  yields: 8e00000000000000000000000000000001000000000000000100000002000000

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TMV Pass
   m_EditorClassIdentifier: 
   name: TMV Pass
-  sprite: {fileID: 21300000, guid: 05a60f011e962374fa01edc63e542eeb, type: 3}
+  sprite: {fileID: 21300000, guid: 8d3ae4101ada94941b35de572231698e, type: 3}
   type: 4
   description: A commuter pass that allows the holder to ride the TMV between Lumiose
     City and Kiloude City at any time.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Data Card 12
   m_EditorClassIdentifier: 
   name: Data Card 12
-  sprite: {fileID: 21300000, guid: a9d29878a28b3b94e83f95cacc688f1f, type: 3}
+  sprite: {fileID: 21300000, guid: 4a806241939928d46a7fb87842d5188b, type: 3}
   type: 0
   description: It holds Pokeathlon records. It is a card that shows how many times
     your Pokemon failed in the Pokeathlon.

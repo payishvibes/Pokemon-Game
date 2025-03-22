@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rich Mulch
   m_EditorClassIdentifier: 
   name: Rich Mulch
-  sprite: {fileID: 21300000, guid: 502522a65efd3414e9fbbfdbae77fa39, type: 3}
+  sprite: {fileID: 21300000, guid: 0077be26b9cf6fe4ba39ba01ea75990a, type: 3}
   type: 0
   description: A fertilizer for growing Berries. However, it appears to be unsuitable
     for the soil in the Hoenn region and has no effect.

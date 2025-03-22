@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM74
   m_EditorClassIdentifier: 
   name: TM74
-  sprite: {fileID: 21300000, guid: 5c0fac9e97db6b343b5834a1fbed5a11, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: "The user tackles the target with a high-speed spin. The slower the
     user compared to the target, the greater the move\uFFFDs power."

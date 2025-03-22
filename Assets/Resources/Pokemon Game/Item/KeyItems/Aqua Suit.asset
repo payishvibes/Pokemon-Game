@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Aqua Suit
   m_EditorClassIdentifier: 
   name: Aqua Suit
-  sprite: {fileID: 21300000, guid: 93b736530dc9e634084a6d24c8f9a0aa, type: 3}
+  sprite: {fileID: 21300000, guid: a71cd3c5a7b2d8d4692364f349f6e6a2, type: 3}
   type: 4
   description: A suit made with the collective technological know-how of Team Aqua.
     It can withstand any impact.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Charizardite X
   m_EditorClassIdentifier: 
   name: Charizardite X
-  sprite: {fileID: 21300000, guid: dee2d9c44c256ac46b60477b7276a318, type: 3}
+  sprite: {fileID: 21300000, guid: 0c9e91bce0310d948959956f25058d6f, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Charizard hold it,
     and this stone will enable it to Mega Evolve during battle.

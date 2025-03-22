@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Machine Part
   m_EditorClassIdentifier: 
   name: Machine Part
-  sprite: {fileID: 21300000, guid: 8613f60ce87bf9d40b2bb75d7ae7bc38, type: 3}
+  sprite: {fileID: 21300000, guid: 19600ed315a00a8479ffe334f8c19fda, type: 3}
   type: 4
   description: An important part of a machine that was stolen from the Power Plant.
   cost: 0

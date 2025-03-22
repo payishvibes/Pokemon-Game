@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ghostium Z
   m_EditorClassIdentifier: 
   name: Ghostium Z
-  sprite: {fileID: 21300000, guid: bb313f8d55beb174bb59e03f692659b3, type: 3}
+  sprite: {fileID: 0}
   type: 5
   description: It converts Z-Power into crystals that upgrade Ghost-type moves to
     Ghost-type Z-Moves.

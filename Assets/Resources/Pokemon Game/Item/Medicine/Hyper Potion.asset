@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Hyper Potion
   m_EditorClassIdentifier: 
   name: Hyper Potion
-  sprite: {fileID: 21300000, guid: a89925f4da367794db095b24fa0ee675, type: 3}
+  sprite: {fileID: 21300000, guid: c4cc306558d744b47bd266981c2ae75b, type: 3}
   type: 1
   description: A spray-type medicine for treating wounds. It can be used to restore
     120 HP to an injured Pokemon.

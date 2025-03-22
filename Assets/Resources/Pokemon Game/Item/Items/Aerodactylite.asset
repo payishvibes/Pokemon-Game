@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Aerodactylite
   m_EditorClassIdentifier: 
   name: Aerodactylite
-  sprite: {fileID: 21300000, guid: 5965bee989570b54ab901b727fa39563, type: 3}
+  sprite: {fileID: 21300000, guid: 50367dbf100186547a9221d0f60e88e7, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Aerodactyl hold it,
     and this stone will enable it to Mega Evolve during battle.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sablenite
   m_EditorClassIdentifier: 
   name: Sablenite
-  sprite: {fileID: 21300000, guid: 2d370663328208a41937f71e809605c9, type: 3}
+  sprite: {fileID: 21300000, guid: e60ad12847451e347a86d21514d51eda, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Sableye hold it,
     and this stone will enable it to Mega Evolve during battle.

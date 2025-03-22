@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sparkling Stone
   m_EditorClassIdentifier: 
   name: Sparkling Stone
-  sprite: {fileID: 21300000, guid: 53436be786d2cfc439b655de7a0e833f, type: 3}
+  sprite: {fileID: 21300000, guid: 8847f41fc516c7c46bd2e185e5099e9c, type: 3}
   type: 4
   description: A stone entrusted by a Pokemon that has been venerated as a guardian
     deity in the Alola region. There is said to be some secret in how it sparkles.

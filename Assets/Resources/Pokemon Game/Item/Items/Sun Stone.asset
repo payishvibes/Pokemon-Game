@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sun Stone
   m_EditorClassIdentifier: 
   name: Sun Stone
-  sprite: {fileID: 21300000, guid: 97616bb2a56dcbe479664da5ad620275, type: 3}
+  sprite: {fileID: 21300000, guid: df58a8cbe5241cf46b56224ba839d0c1, type: 3}
   type: 0
   description: A peculiar stone that can make certain species of Pokemon evolve.
     It burns as red as the evening sun.

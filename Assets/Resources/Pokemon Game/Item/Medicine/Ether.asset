@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ether
   m_EditorClassIdentifier: 
   name: Ether
-  sprite: {fileID: 21300000, guid: 7e8311123f127eb4da74dd4df7ca323e, type: 3}
+  sprite: {fileID: 21300000, guid: a2e91807ff4195b4e97395ec6ce4a3d1, type: 3}
   type: 1
   description: This medicine can restore 10 PP to a single selected move that has
     been learned by a Pokemon.

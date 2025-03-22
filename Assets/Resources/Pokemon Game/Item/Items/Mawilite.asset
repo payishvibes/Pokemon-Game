@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mawilite
   m_EditorClassIdentifier: 
   name: Mawilite
-  sprite: {fileID: 21300000, guid: ee21561340917a845aa89402451ef13a, type: 3}
+  sprite: {fileID: 21300000, guid: 0e23b01d0bd90ae46947d56973ec8bce, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Mawile hold it, and
     this stone will enable it to Mega Evolve during battle.

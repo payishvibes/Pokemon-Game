@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Leppa Berry
   m_EditorClassIdentifier: 
   name: Leppa Berry
-  sprite: {fileID: 21300000, guid: be057bc3977c060409793086f0895926, type: 3}
+  sprite: {fileID: 21300000, guid: 8b0123cfa7aa43c4e8cc8669dc9f36cc, type: 3}
   type: 3
   description: A Berry to be consumed by Pokemon. If a Pokemon holds one, it can
     restore 10 PP to a depleted move during battle.

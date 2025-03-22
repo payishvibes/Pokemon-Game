@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Choice Scarf
   m_EditorClassIdentifier: 
   name: Choice Scarf
-  sprite: {fileID: 21300000, guid: 2a890521204155f4288851608dcba17a, type: 3}
+  sprite: {fileID: 21300000, guid: d598d4400a1e3574fbe836e5ca9b8d53, type: 3}
   type: 0
   description: An item to be held by a Pokemon. This curious scarf boosts Speed but
     only allows the use of one move.

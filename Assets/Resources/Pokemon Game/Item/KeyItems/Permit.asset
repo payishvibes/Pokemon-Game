@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Permit
   m_EditorClassIdentifier: 
   name: Permit
-  sprite: {fileID: 21300000, guid: 3544249b3cb59554fbc5c5165fe1fdf5, type: 3}
+  sprite: {fileID: 21300000, guid: f37ba8cb60617a94bb0684d894fc1fda, type: 3}
   type: 4
   description: A permit that is needed to enter the Nature Preserve. Not many know
     about it.

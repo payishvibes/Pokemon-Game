@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Guard Spec.
   m_EditorClassIdentifier: 
   name: Guard Spec.
-  sprite: {fileID: 21300000, guid: 926622a663570ac4a935c0b56cf1c58f, type: 3}
+  sprite: {fileID: 0}
   type: 0
   description: "An item that prevents stat reduction among the Trainer\u2019s party
     Pokemon for five turns after it is used in battle."

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Yellow Flute
   m_EditorClassIdentifier: 
   name: Yellow Flute
-  sprite: {fileID: 21300000, guid: 072486901cb361a4db02c6bef95173fb, type: 3}
+  sprite: {fileID: 21300000, guid: 8e43e5a0480839f478c7aa4b7834ffd3, type: 3}
   type: 1
   description: A flute made from yellow glass that snaps Pokemon out of confusion.
   cost: 0

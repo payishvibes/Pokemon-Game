@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mental Herb
   m_EditorClassIdentifier: 
   name: Mental Herb
-  sprite: {fileID: 21300000, guid: 37bfcda68c583d94bbb7207fb0c97256, type: 3}
+  sprite: {fileID: 21300000, guid: d621e97c61d1b0b4193437ac2b2002e4, type: 3}
   type: 0
   description: An item to be held by a Pokemon. The holder shakes off move-binding
     effects to move freely. It can be used only once.

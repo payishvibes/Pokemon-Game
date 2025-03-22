@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Starf Berry
   m_EditorClassIdentifier: 
   name: Starf Berry
-  sprite: {fileID: 21300000, guid: 752b96b58074f464fb0fe03632539e4a, type: 3}
+  sprite: {fileID: 21300000, guid: adc002a1f1943744c94671320eefa18b, type: 3}
   type: 3
   description: "A Berry to be consumed by Pokemon. If a Pokemon holds one, one of
     its stats will sharply increase when it\u2019s in a pinch."

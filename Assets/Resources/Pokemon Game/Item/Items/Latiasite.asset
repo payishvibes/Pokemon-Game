@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Latiasite
   m_EditorClassIdentifier: 
   name: Latiasite
-  sprite: {fileID: 21300000, guid: 125ad8b89546c3c4b86eeef3dc4e7325, type: 3}
+  sprite: {fileID: 21300000, guid: 6edce85fa554b3d42afa31854997e9d6, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Latias hold it, and
     this stone will enable it to Mega Evolve during battle.

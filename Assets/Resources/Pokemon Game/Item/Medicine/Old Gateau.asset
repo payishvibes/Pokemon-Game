@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Old Gateau
   m_EditorClassIdentifier: 
   name: Old Gateau
-  sprite: {fileID: 21300000, guid: 21d01479897c29641a6a3be8e07467a7, type: 3}
+  sprite: {fileID: 21300000, guid: 51cab702e06b04f45849bbddcd981ef1, type: 3}
   type: 1
   description: "The Old Chateau\u2019s hidden specialty. It can be used once to heal
     all the status conditions of a Pokemon."

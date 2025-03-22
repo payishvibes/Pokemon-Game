@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Reply Mail
   m_EditorClassIdentifier: 
   name: Reply Mail
-  sprite: {fileID: 21300000, guid: 82abb433a97bcbe4186b5be003073573, type: 3}
+  sprite: {fileID: 21300000, guid: d43c72001841f03448ca31ae86ace200, type: 3}
   type: 0
   description: Stationery designed to make it easy to respond to a letter you received.
     Have a Pokemon hold it for delivery.

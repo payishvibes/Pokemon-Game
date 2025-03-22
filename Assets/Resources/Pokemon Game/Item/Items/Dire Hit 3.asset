@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dire Hit 3
   m_EditorClassIdentifier: 
   name: Dire Hit 3
-  sprite: {fileID: 21300000, guid: 3dc7362978024d34db1a1bcbdaf6f087, type: 3}
+  sprite: {fileID: 21300000, guid: c79a7cb6063195949a37c51038e3b210, type: 3}
   type: 0
   description: "It can be used many times to greatly raise a Pokemon\u2019s critical-hit
     ratio. It wears off if the Pokemon is withdrawn."

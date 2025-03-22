@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pearl String
   m_EditorClassIdentifier: 
   name: Pearl String
-  sprite: {fileID: 21300000, guid: ae17dcf8f920d6646b34a31164df9030, type: 3}
+  sprite: {fileID: 21300000, guid: a3685e006012fdd4a9498c058bbd082a, type: 3}
   type: 0
   description: Very large pearls that sparkle in a pretty silver color. They can
     be sold at a high price to shops.

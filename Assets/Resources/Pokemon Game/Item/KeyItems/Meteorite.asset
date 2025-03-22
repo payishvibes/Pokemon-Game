@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Meteorite
   m_EditorClassIdentifier: 
   name: Meteorite
-  sprite: {fileID: 21300000, guid: d4c794c18170a504a8c1574884137f9e, type: 3}
+  sprite: {fileID: 21300000, guid: de45e35cf9299264ab4f00534c1aa7ff, type: 3}
   type: 4
   description: "A Meteorite that you got at Mt. Chimney. Some sort of pattern has
     risen to the surface, and it\u2019s shining with seven colors of light."

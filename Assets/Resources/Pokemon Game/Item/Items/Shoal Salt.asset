@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shoal Salt
   m_EditorClassIdentifier: 
   name: Shoal Salt
-  sprite: {fileID: 21300000, guid: 12841e49bba68bc47b31e6c68b1cf8e4, type: 3}
+  sprite: {fileID: 21300000, guid: 7c56b7baee6353342922e4e845a30802, type: 3}
   type: 0
   description: Salt that you found inside Shoal Cave.
   cost: 0

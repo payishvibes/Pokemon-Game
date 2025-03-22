@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Escape Rope
   m_EditorClassIdentifier: 
   name: Escape Rope
-  sprite: {fileID: 21300000, guid: 07bb733c3501daf4b94b4f2a326699fa, type: 3}
+  sprite: {fileID: 21300000, guid: 4f0c3d56c14155842bd45c3a1140d075, type: 3}
   type: 0
   description: A long and durable rope. Use it to escape instantly from a cave or
     a dungeon.

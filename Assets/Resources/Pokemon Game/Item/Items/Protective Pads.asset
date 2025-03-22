@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Protective Pads
   m_EditorClassIdentifier: 
   name: Protective Pads
-  sprite: {fileID: 21300000, guid: e30e8d0749492ba4aac1f1a5fffc43a9, type: 3}
+  sprite: {fileID: 21300000, guid: b9d784414439daf429e9b11810f7590b, type: 3}
   type: 0
   description: An item to be held by a Pokemon. These pads protect the holder from
     effects caused by making direct contact with the target.

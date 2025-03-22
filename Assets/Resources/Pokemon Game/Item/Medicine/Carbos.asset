@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Carbos
   m_EditorClassIdentifier: 
   name: Carbos
-  sprite: {fileID: 21300000, guid: 087e4e2244256c345b05de7178a575e3, type: 3}
+  sprite: {fileID: 21300000, guid: 897c08c080e1e1c4d9062c7f77bb29a8, type: 3}
   type: 1
   description: A nutritious drink for Pokemon. When consumed, it raises the base
     Speed stat of a single Pokemon.

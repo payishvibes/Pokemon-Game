@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tidal Bell
   m_EditorClassIdentifier: 
   name: Tidal Bell
-  sprite: {fileID: 21300000, guid: ce46d82a20a8e854ebbcaa131e38c369, type: 3}
+  sprite: {fileID: 21300000, guid: 3c10057c01237664e9b13d77b57639cf, type: 3}
   type: 4
   description: A very old-fashioned bell that makes a gentle ringing sound.
   cost: 0

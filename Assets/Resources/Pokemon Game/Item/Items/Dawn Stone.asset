@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dawn Stone
   m_EditorClassIdentifier: 
   name: Dawn Stone
-  sprite: {fileID: 21300000, guid: fe26a878e45bdf847b9af4151e66c0eb, type: 3}
+  sprite: {fileID: 21300000, guid: 0e04fe2e43d23c74eb356f4570a207fb, type: 3}
   type: 0
   description: A peculiar stone that can make certain species of Pokemon evolve.
     It sparkles like a glittering eye.

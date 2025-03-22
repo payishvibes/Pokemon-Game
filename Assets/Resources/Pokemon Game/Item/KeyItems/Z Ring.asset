@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Z Ring
   m_EditorClassIdentifier: 
   name: Z-Ring
-  sprite: {fileID: 21300000, guid: 36d88cbb72baab3428c1e33609f896ab, type: 3}
+  sprite: {fileID: 21300000, guid: 43d15daa560c1374f877ec3e7f68b61e, type: 3}
   type: 4
   description: A mysterious ring that enables Pokemon to use Z-Power. It requires
     both the willpower and the physical power of the Trainer wearing it.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Yellow Apricorn
   m_EditorClassIdentifier: 
   name: Yellow Apricorn
-  sprite: {fileID: 21300000, guid: 91099af99410f014a846049f6e54a687, type: 3}
+  sprite: {fileID: 21300000, guid: a7de4090da0964940aa585348b235fd5, type: 3}
   type: 0
   description: A yellow Apricorn. It has an invigorating scent.
   cost: 0

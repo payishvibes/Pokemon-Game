@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM82
   m_EditorClassIdentifier: 
   name: TM82
-  sprite: {fileID: 21300000, guid: cdb91ea359281ee49aaad8e12353632f, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: "The target is knocked away, and a different Pok\uFFFDmon is dragged
     out. In the wild, this ends a battle against a single Pok\uFFFDmon."

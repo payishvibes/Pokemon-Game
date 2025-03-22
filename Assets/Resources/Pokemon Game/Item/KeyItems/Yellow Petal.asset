@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Yellow Petal
   m_EditorClassIdentifier: 
   name: Yellow Petal
-  sprite: {fileID: 21300000, guid: a4e5126f85aa2e74e9092207b2fdfe62, type: 3}
+  sprite: {fileID: 21300000, guid: ffda55670321a0a4891740a65345e3e3, type: 3}
   type: 4
   description: "A pressed flower petal you receive from Sophocles during Mina\u2019s
     trial. The goal is to collect seven different kinds of petals."

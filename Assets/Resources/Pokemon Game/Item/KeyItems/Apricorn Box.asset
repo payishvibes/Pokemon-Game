@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Apricorn Box
   m_EditorClassIdentifier: 
   name: Apricorn Box
-  sprite: {fileID: 21300000, guid: a78f874ea833a774197f3fd3f1a4fec8, type: 3}
+  sprite: {fileID: 21300000, guid: 027cda6887408c44ea22b66ba6596baf, type: 3}
   type: 4
   description: A handy box where you can store up to 99 of each kind of Apricorn.
   cost: 0

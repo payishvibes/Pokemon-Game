@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Grip Claw
   m_EditorClassIdentifier: 
   name: Grip Claw
-  sprite: {fileID: 21300000, guid: 56417bf85f3e1744095f6083fc7a8c91, type: 3}
+  sprite: {fileID: 21300000, guid: 0a43f04f50f6db24192e17c59fc0b758, type: 3}
   type: 0
   description: An item to be held by a Pokemon. It extends the duration of multi-turn
     attacks like Bind and Wrap.

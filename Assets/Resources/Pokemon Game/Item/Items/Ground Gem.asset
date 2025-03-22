@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ground Gem
   m_EditorClassIdentifier: 
   name: Ground Gem
-  sprite: {fileID: 21300000, guid: 0189f5dc8729a0e4da5eef52b31a632f, type: 3}
+  sprite: {fileID: 21300000, guid: edc99d08d7def7d4198377111728bc6a, type: 3}
   type: 0
   description: A gem with an essence of land. When held, it strengthens the power
     of a Ground-type move one time.

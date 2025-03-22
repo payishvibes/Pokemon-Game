@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Swampertite
   m_EditorClassIdentifier: 
   name: Swampertite
-  sprite: {fileID: 21300000, guid: d91187738ed972740b01ec9336476c4e, type: 3}
+  sprite: {fileID: 21300000, guid: 68258e92c8e5fbd43a757e5e915e8160, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Swampert hold it,
     and this stone will enable it to Mega Evolve during battle.

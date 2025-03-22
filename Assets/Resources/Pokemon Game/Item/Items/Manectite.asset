@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Manectite
   m_EditorClassIdentifier: 
   name: Manectite
-  sprite: {fileID: 21300000, guid: e44e27e5ac860c7428a44f296b53d0a2, type: 3}
+  sprite: {fileID: 21300000, guid: 2ea00f9f1fa26f849bc10f240fe47401, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Manectric hold it,
     and this stone will enable it to Mega Evolve during battle.

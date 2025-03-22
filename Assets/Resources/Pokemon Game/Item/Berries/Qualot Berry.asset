@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Qualot Berry
   m_EditorClassIdentifier: 
   name: Qualot Berry
-  sprite: {fileID: 21300000, guid: 5b2aeb68779d6a44ebf1ccac889a3c2d, type: 3}
+  sprite: {fileID: 21300000, guid: 1b0cfba674192584d8c1b9a085b5ecc4, type: 3}
   type: 3
   description: A Berry to be consumed by Pokemon. Using it on a Pokemon makes it
     more friendly but lowers its base Defense.

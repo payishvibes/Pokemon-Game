@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lansat Berry
   m_EditorClassIdentifier: 
   name: Lansat Berry
-  sprite: {fileID: 21300000, guid: 6529d5adb5ad9a44aa0bc6f6172b4fc3, type: 3}
+  sprite: {fileID: 21300000, guid: 66351d53b29a5314ba2d30d4d5d9ae0e, type: 3}
   type: 3
   description: "A Berry to be consumed by Pokemon. If a Pokemon holds one, its critical-hit
     ratio will increase when it\u2019s in a pinch."

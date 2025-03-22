@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bebf25c6a89132d42aaac5081558bc9e, type: 3}
+  m_Name: Premier Ball
+  m_EditorClassIdentifier: 
+  name: Premier Ball
+  sprite: {fileID: 21300000, guid: ad374cce3d3096b4bbc9b08c61395ff2, type: 3}
+  type: 6
+  description: A somewhat rare Poke Ball that was made as a commemorative item used
+    to celebrate an event of some sort.
+  cost: 0
+  lockedTarget: 1
+  playerParty: 0
+  targetIndex: 0
+  ItemMethodEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  bonus: 1

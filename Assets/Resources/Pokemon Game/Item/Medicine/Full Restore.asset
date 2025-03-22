@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Full Restore
   m_EditorClassIdentifier: 
   name: Full Restore
-  sprite: {fileID: 21300000, guid: 871b4fbeb7d461e4597a01599dea1166, type: 3}
+  sprite: {fileID: 21300000, guid: 11b9bfa5d91c4bd428e64ab6c34a5c3d, type: 3}
   type: 1
   description: A medicine that can be used to fully restore the HP of a single Pokemon
     and heal any status conditions it has.

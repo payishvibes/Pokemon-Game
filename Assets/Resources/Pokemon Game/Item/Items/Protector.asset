@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Protector
   m_EditorClassIdentifier: 
   name: Protector
-  sprite: {fileID: 21300000, guid: d2bc7f3035c5c024692c35ff83fe3fd0, type: 3}
+  sprite: {fileID: 21300000, guid: ab4f2e1fcb4885b43a2c8ed0198119de, type: 3}
   type: 0
   description: "A protective item of some sort. It is extremely stiff and heavy.
     It\u2019s loved by a certain Pokemon."

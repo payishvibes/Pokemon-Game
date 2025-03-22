@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Zygarde Cube
   m_EditorClassIdentifier: 
   name: Zygarde Cube
-  sprite: {fileID: 21300000, guid: 7c22fbcaf6d9de44e97c76a4a8f99e63, type: 3}
+  sprite: {fileID: 21300000, guid: e91001127ab3914418bebe821881a616, type: 3}
   type: 4
   description: An item to store Zygarde Cores and Cells. You can also use it to teach
     Zygarde moves.

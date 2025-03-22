@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Marshadium Z
   m_EditorClassIdentifier: 
   name: Marshadium Z
-  sprite: {fileID: 21300000, guid: f5fb3686c8140804988e0bf942eca969, type: 3}
+  sprite: {fileID: 0}
   type: 5
   description: "It converts Z-Power into crystals that upgrade Marshadow\u2019s Spectral
     Thief to an exclusive Z-Move."

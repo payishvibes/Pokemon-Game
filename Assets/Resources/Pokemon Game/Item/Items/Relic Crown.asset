@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Relic Crown
   m_EditorClassIdentifier: 
   name: Relic Crown
-  sprite: {fileID: 21300000, guid: a73a9f81c887eb342a5f87921d6531a4, type: 3}
+  sprite: {fileID: 21300000, guid: f83d0a18592eb4149abd4f371d00b05a, type: 3}
   type: 0
   description: A heavy crown made by an ancient civilization about 3,000 years ago.
   cost: 0

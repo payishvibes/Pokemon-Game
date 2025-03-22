@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Normal Gem
   m_EditorClassIdentifier: 
   name: Normal Gem
-  sprite: {fileID: 21300000, guid: d271e0d5bb3bd4f40b18897da69f2ccf, type: 3}
+  sprite: {fileID: 21300000, guid: f7c58747eddad0f40aacaf4a51be4186, type: 3}
   type: 0
   description: A gem with an ordinary essence. When held, it strengthens the power
     of a Normal-type move one time.

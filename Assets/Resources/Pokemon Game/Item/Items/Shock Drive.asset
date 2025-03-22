@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shock Drive
   m_EditorClassIdentifier: 
   name: Shock Drive
-  sprite: {fileID: 21300000, guid: dfc1ae61b5c27c940a933baf203d4dd5, type: 3}
+  sprite: {fileID: 21300000, guid: f1e5b61931ba74f4582c4673060ae8d1, type: 3}
   type: 0
   description: "A cassette to be held by Genesect. It changes Genesect\u2019s Techno
     Blast move so it becomes Electric type."

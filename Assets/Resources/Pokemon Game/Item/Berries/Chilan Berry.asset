@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Chilan Berry
   m_EditorClassIdentifier: 
   name: Chilan Berry
-  sprite: {fileID: 21300000, guid: 4953e5923078e3142a6150f3f88fed68, type: 3}
+  sprite: {fileID: 21300000, guid: f56e45b4d72094247a4c4ce5e4a8e773, type: 3}
   type: 3
   description: If held by a Pokemon, this Berry will lessen the damage taken from
     one Normal-type attack.

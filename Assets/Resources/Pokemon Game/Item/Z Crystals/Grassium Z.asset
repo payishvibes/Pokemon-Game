@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Grassium Z
   m_EditorClassIdentifier: 
   name: Grassium Z
-  sprite: {fileID: 21300000, guid: 672c29a55c3c7a84f9fa1fa57060c3b8, type: 3}
+  sprite: {fileID: 0}
   type: 5
   description: It converts Z-Power into crystals that upgrade Grass-type moves to
     Grass-type Z-Moves.

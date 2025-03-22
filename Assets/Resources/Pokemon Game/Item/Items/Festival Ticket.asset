@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Festival Ticket
   m_EditorClassIdentifier: 
   name: Festival Ticket
-  sprite: {fileID: 21300000, guid: b87a0a7ac9f979341871d0e02d02d9f1, type: 3}
+  sprite: {fileID: 21300000, guid: b354e6d6baa5340499e69e310f2cc8ba, type: 3}
   type: 0
   description: A ticket that allows you to host a mission in Festival Plaza.
   cost: 0

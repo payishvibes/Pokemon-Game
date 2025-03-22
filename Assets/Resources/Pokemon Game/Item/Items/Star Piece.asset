@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Star Piece
   m_EditorClassIdentifier: 
   name: Star Piece
-  sprite: {fileID: 21300000, guid: 8496b9d9aead3df4ba2ab1f7d3e8ac8f, type: 3}
+  sprite: {fileID: 21300000, guid: 89429078d28411342bf87effcf990b7b, type: 3}
   type: 0
   description: A small shard of a beautiful gem that demonstrates a distinctly red
     sparkle. It can be sold at a high price to shops.

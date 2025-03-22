@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Intriguing Stone
   m_EditorClassIdentifier: 
   name: Intriguing Stone
-  sprite: {fileID: 21300000, guid: 39e32b7d8e978ac43b65872b383e9a6c, type: 3}
+  sprite: {fileID: 21300000, guid: 5cc887485766a96409fd0b901c7fcb60, type: 3}
   type: 4
   description: "A rather curious stone that might appear valuable to some. It\u2019s
     all in the eye of the beholder."

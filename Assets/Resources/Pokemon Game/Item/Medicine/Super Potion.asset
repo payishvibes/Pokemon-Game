@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Super Potion
   m_EditorClassIdentifier: 
   name: Super Potion
-  sprite: {fileID: 21300000, guid: c7dfee106fdef274685dc22592ead8db, type: 3}
+  sprite: {fileID: 21300000, guid: 5c124fb4bf7a720458cf181a9a84e89d, type: 3}
   type: 1
   description: A spray-type medicine for treating wounds. It can be used to restore
     60 HP to an injured Pokemon.

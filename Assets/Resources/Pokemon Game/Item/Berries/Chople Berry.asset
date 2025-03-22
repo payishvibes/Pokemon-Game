@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Chople Berry
   m_EditorClassIdentifier: 
   name: Chople Berry
-  sprite: {fileID: 21300000, guid: 1132cbda5ad100c4b8bd49b9146c3920, type: 3}
+  sprite: {fileID: 21300000, guid: 860b153e6217c5b4bb75ef1d24c8c992, type: 3}
   type: 3
   description: If held by a Pokemon, this Berry will lessen the damage taken from
     one supereffective Fighting-type attack.

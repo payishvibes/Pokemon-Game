@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pretty Wing
   m_EditorClassIdentifier: 
   name: Pretty Wing
-  sprite: {fileID: 21300000, guid: 9c1300173601403489095b6291b1de56, type: 3}
+  sprite: {fileID: 21300000, guid: 8cd45a24c7ead3e4c86d3f90a804a504, type: 3}
   type: 0
   description: "Though this feather is beautiful, it\u2019s just a regular feather
     and has no effect on Pokemon."

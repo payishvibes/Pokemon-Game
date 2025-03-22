@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Burn Drive
   m_EditorClassIdentifier: 
   name: Burn Drive
-  sprite: {fileID: 21300000, guid: c896991245a41ff4c9221e224bef5802, type: 3}
+  sprite: {fileID: 21300000, guid: c8a9f3a000ce1b04288544124d29eb2e, type: 3}
   type: 0
   description: "A cassette to be held by Genesect. It changes Genesect\u2019s Techno
     Blast move so it becomes Fire type."

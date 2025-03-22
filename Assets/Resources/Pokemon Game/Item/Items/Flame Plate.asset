@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Flame Plate
   m_EditorClassIdentifier: 
   name: Flame Plate
-  sprite: {fileID: 21300000, guid: d091035bb6a44b848aea7c6b8f184d80, type: 3}
+  sprite: {fileID: 21300000, guid: a154a7345aead1a4d8ec7288dfa78d86, type: 3}
   type: 0
   description: "An item to be held by a Pokemon. It\u2019s a stone tablet that boosts
     the power of Fire-type moves."

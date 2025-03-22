@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Thanks Mail
   m_EditorClassIdentifier: 
   name: Thanks Mail
-  sprite: {fileID: 21300000, guid: 5e80cb797bfb05d44a9a246478cb8e85, type: 3}
+  sprite: {fileID: 21300000, guid: d6fc21be35e8a464f89424cd2aaa87aa, type: 3}
   type: 0
   description: Stationery designed to make it easy for you to express thanks. Have
     a Pokemon hold it for delivery.

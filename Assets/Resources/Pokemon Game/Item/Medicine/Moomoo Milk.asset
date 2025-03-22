@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Moomoo Milk
   m_EditorClassIdentifier: 
   name: Moomoo Milk
-  sprite: {fileID: 21300000, guid: 2408b81f1b9d3e343877110cb83fae49, type: 3}
+  sprite: {fileID: 21300000, guid: 76dac2d5efece224ea7b818d2d88b247, type: 3}
   type: 1
   description: A bottle of highly nutritious milk. When consumed, it restores up
     to 100 HP to an injured Pokemon.

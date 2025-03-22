@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Like Mail
   m_EditorClassIdentifier: 
   name: Like Mail
-  sprite: {fileID: 21300000, guid: 734011de9c8bfc94697143b3b49e030b, type: 3}
+  sprite: {fileID: 21300000, guid: 7e24f92c103086f41a16246b302b9cca, type: 3}
   type: 0
   description: Stationery designed to allow you to recommend something to the reader.
     Have a Pokemon hold it for delivery.

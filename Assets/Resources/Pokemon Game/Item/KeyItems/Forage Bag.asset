@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Forage Bag
   m_EditorClassIdentifier: 
   name: Forage Bag
-  sprite: {fileID: 21300000, guid: 9865e247d7433414bb46236f19c6bc57, type: 3}
+  sprite: {fileID: 21300000, guid: 3a726029dc853734cb33a4169c229ee7, type: 3}
   type: 4
   description: "A bag to carry ingredients gathered during Mallow\u2019s trial in
     the jungle."

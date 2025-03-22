@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fluffy Tail
   m_EditorClassIdentifier: 
   name: Fluffy Tail
-  sprite: {fileID: 21300000, guid: 52997850e71a735498a5c41c875080d2, type: 3}
+  sprite: {fileID: 21300000, guid: f6d91ac5cb9d24a4cb5ec39c35e6c873, type: 3}
   type: 0
   description: A toy that attracts the attention of a Pokemon. It guarantees escape
     from any battle with wild Pokemon.

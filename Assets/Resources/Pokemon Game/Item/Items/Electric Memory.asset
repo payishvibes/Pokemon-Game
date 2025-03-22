@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Electric Memory
   m_EditorClassIdentifier: 
   name: Electric Memory
-  sprite: {fileID: 21300000, guid: b43dba94f7ddf4c4fb0ccde24735502b, type: 3}
+  sprite: {fileID: 21300000, guid: a73b76c1d56938044b3c092b97370f1c, type: 3}
   type: 0
   description: A memory disc that contains Electric-type data. It changes the type
     of the holder if held by a certain species of Pokemon.

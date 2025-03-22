@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Awakening
   m_EditorClassIdentifier: 
   name: Awakening
-  sprite: {fileID: 21300000, guid: cbbfae6d8af57f148888f3993e144ffd, type: 3}
+  sprite: {fileID: 21300000, guid: c4844decadeec3f40a0d3a9c14bd4925, type: 3}
   type: 1
   description: A spray-type medicine used against sleep. It can be used once to rouse
     a Pokemon from the clutches of sleep.

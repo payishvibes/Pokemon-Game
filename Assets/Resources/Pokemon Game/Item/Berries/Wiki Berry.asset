@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wiki Berry
   m_EditorClassIdentifier: 
   name: Wiki Berry
-  sprite: {fileID: 21300000, guid: 03ecc5c740ec9f1458a480c0a81fb7e5, type: 3}
+  sprite: {fileID: 21300000, guid: 5656f66cb76f2824b8e66940527abd66, type: 3}
   type: 3
   description: "If held by a Pokemon, it restores the user\u2019s HP in a pinch,
     but it will cause confusion if the user hates the taste."

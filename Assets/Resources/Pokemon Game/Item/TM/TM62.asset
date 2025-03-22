@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM62
   m_EditorClassIdentifier: 
   name: TM62
-  sprite: {fileID: 21300000, guid: e05340742d9f0554db8e6eac496d51bc, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: The user nimbly strikes the target. If the user is not holding an
     item, this attack inflicts massive damage.

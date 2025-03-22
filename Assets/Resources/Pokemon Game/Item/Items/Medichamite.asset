@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Medichamite
   m_EditorClassIdentifier: 
   name: Medichamite
-  sprite: {fileID: 21300000, guid: 8ed056af3146dc04b9ad1fb81fe140d8, type: 3}
+  sprite: {fileID: 21300000, guid: e0089018b76cbdb4f9aa946937b887a6, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Medicham hold it,
     and this stone will enable it to Mega Evolve during battle.

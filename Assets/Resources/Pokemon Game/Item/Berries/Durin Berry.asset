@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Durin Berry
   m_EditorClassIdentifier: 
   name: Durin Berry
-  sprite: {fileID: 21300000, guid: c7bca2ccd09ecbc42868d814a41cfbd0, type: 3}
+  sprite: {fileID: 21300000, guid: 15d32dec34515e747bd7e94ee11c82f5, type: 3}
   type: 3
   description: Used to make Pokeblocks that will enhance your Cleverness, this Berry
     is rare in other regions.

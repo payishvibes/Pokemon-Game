@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ice Heal
   m_EditorClassIdentifier: 
   name: Ice Heal
-  sprite: {fileID: 21300000, guid: 593d5afabc2105145aefe365a3f2b5a2, type: 3}
+  sprite: {fileID: 21300000, guid: e4b68d63bf4fe1642b759f65c29d4ccf, type: 3}
   type: 1
   description: A spray-type medicine for freezing. It can be used once to defrost
     a Pokemon that has been frozen solid.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Holo Caster
   m_EditorClassIdentifier: 
   name: Holo Caster
-  sprite: {fileID: 21300000, guid: 2922a5da4b2ee9e44b8d110175a79e7a, type: 3}
+  sprite: {fileID: 21300000, guid: 6e022b38ae899fd4a960813b878a2c12, type: 3}
   type: 4
   description: "A device that allows users to receive and view hologram clips at
     any time. It\u2019s also used to chat with others."

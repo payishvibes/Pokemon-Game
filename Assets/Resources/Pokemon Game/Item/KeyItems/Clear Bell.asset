@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Clear Bell
   m_EditorClassIdentifier: 
   name: Clear Bell
-  sprite: {fileID: 21300000, guid: 9911861351a2c7541b91d002e4ce6ef0, type: 3}
+  sprite: {fileID: 21300000, guid: 11e3baeb153657346a9d03562aa760e2, type: 3}
   type: 4
   description: A very old-fashioned bell that makes a gentle ringing sound.
   cost: 0

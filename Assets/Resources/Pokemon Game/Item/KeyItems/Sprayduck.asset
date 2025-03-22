@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sprayduck
   m_EditorClassIdentifier: 
   name: Sprayduck
-  sprite: {fileID: 21300000, guid: f419f6a37276b5b429c0f4c06b8163dc, type: 3}
+  sprite: {fileID: 21300000, guid: 3549b2def288dc5428171c42809e9163, type: 3}
   type: 4
   description: A watering can shaped like a Psyduck. It helps promote the healthy
     growth of any Berries planted in good, soft soil.

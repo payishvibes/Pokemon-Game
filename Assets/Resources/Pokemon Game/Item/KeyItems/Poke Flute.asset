@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Poke Flute
   m_EditorClassIdentifier: 
   name: Poke Flute
-  sprite: {fileID: 21300000, guid: e625973cb0c7c48459873d38f3f665a0, type: 3}
+  sprite: {fileID: 21300000, guid: 54139db570d98ce44985fa45579f529a, type: 3}
   type: 4
   description: A flute that can play with such a beautiful tone that even sleeping
     Pokemon find themselves roused.

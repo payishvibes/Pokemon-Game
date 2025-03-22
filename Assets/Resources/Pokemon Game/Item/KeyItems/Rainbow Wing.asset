@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rainbow Wing
   m_EditorClassIdentifier: 
   name: Rainbow Wing
-  sprite: {fileID: 21300000, guid: c497ccee3902f6447bca1c0005fef098, type: 3}
+  sprite: {fileID: 21300000, guid: a9f11a9c630d8ff4297b771796da53a4, type: 3}
   type: 4
   description: A mystical rainbow feather that sparkles.
   cost: 0

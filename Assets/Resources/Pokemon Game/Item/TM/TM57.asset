@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM57
   m_EditorClassIdentifier: 
   name: TM57
-  sprite: {fileID: 21300000, guid: 7aa5fa1b6363c51428ecea222f9ffd90, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: The user attacks with an electric charge. The user may use any remaining
     electricity to raise its Sp. Atk stat.

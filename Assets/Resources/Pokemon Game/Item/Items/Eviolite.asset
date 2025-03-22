@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Eviolite
   m_EditorClassIdentifier: 
   name: Eviolite
-  sprite: {fileID: 21300000, guid: 18098f6a41a987849b11cab338022a11, type: 3}
+  sprite: {fileID: 21300000, guid: e4c24a44bcc8ba046adf0ce7f73e2fd5, type: 3}
   type: 0
   description: A mysterious Evolutionary lump. When held by a Pokemon that can still
     evolve, it raises both Defense and Sp. Def.

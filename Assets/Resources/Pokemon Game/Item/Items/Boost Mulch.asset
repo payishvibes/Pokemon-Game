@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Boost Mulch
   m_EditorClassIdentifier: 
   name: Boost Mulch
-  sprite: {fileID: 21300000, guid: 5b09c324ab6ac5442916540af0b17427, type: 3}
+  sprite: {fileID: 21300000, guid: 37e63f08891aa2f489b2bb3e9d5e892b, type: 3}
   type: 0
   description: A fertilizer for growing Berries. However, it appears to be unsuitable
     for the soil in the Hoenn region and has no effect.

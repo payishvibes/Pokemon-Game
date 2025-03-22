@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Old Charm
   m_EditorClassIdentifier: 
   name: Old Charm
-  sprite: {fileID: 21300000, guid: 622746fb3db96f64ca9226c60a80c3cf, type: 3}
+  sprite: {fileID: 21300000, guid: ff1f241ebf8b83f44ba787303ade096b, type: 3}
   type: 4
   description: An ancient good-luck charm made of Pokemon bones to be taken to the
     elder of Celestic Town.

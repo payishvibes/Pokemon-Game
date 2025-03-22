@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mega Tiara
   m_EditorClassIdentifier: 
   name: Mega Tiara
-  sprite: {fileID: 21300000, guid: 474a60f4ea9e05745b5e35660bd5a2c9, type: 3}
+  sprite: {fileID: 21300000, guid: 8bd04ba90f0b1834eb05449b542394ff, type: 3}
   type: 4
   description: This tiara contains an untold power that somehow enables Pokemon carrying
     a Mega Stone to Mega Evolve in battle.

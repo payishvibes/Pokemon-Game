@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Grepa Berry
   m_EditorClassIdentifier: 
   name: Grepa Berry
-  sprite: {fileID: 21300000, guid: a883b0a7cd8c2d042ab79b417d58bbdc, type: 3}
+  sprite: {fileID: 21300000, guid: 214dc0dcac18a3b48b16207decadaae1, type: 3}
   type: 3
   description: A Berry to be consumed by Pokemon. Using it on a Pokemon makes it
     more friendly but lowers its base Sp. Def.

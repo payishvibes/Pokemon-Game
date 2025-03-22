@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Data Card 05
   m_EditorClassIdentifier: 
   name: Data Card 05
-  sprite: {fileID: 21300000, guid: e83c818038e63ab41844295b7dd2aacb, type: 3}
+  sprite: {fileID: 21300000, guid: 56c98baeb9332014e8648cbe8efcb7d2, type: 3}
   type: 0
   description: "It holds Pokeathlon records. It is a card that shows how many times
     you won the Pokeathlon\u2019s Hurdle Dash."

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Slowpoke Tail
   m_EditorClassIdentifier: 
   name: Slowpoke Tail
-  sprite: {fileID: 21300000, guid: 2a6514ac5f2b29042a877f3684a3e151, type: 3}
+  sprite: {fileID: 21300000, guid: ba33d585a40ef7f409aaa5689bc5caf9, type: 3}
   type: 4
   description: A very tasty tail of something. It can be sold at a high price to
     shops.

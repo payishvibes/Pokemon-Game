@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Unown Report
   m_EditorClassIdentifier: 
   name: Unown Report
-  sprite: {fileID: 21300000, guid: 4d02c24c8aa041f4a98eb1f7656a876f, type: 3}
+  sprite: {fileID: 21300000, guid: eb9e2c04966929a48a0d81a2026e2d52, type: 3}
   type: 4
   description: A report of all the discovered kinds of Unown.
   cost: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: X Speed 3
   m_EditorClassIdentifier: 
   name: X Speed 3
-  sprite: {fileID: 21300000, guid: 7d821572cb53ffb479c1400a8ac450bd, type: 3}
+  sprite: {fileID: 21300000, guid: 65494e5fe9fdbe442a163fc77d1522ea, type: 3}
   type: 0
   description: It drastically raises the Speed stat of a Pokemon in battle. It wears
     off if the Pokemon is withdrawn.

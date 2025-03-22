@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Data Card 17
   m_EditorClassIdentifier: 
   name: Data Card 17
-  sprite: {fileID: 21300000, guid: d9ff956df410cee4ca5466b71ac133a4, type: 3}
+  sprite: {fileID: 21300000, guid: 8146fe3ce63ca504eabbf91a76345455, type: 3}
   type: 0
   description: "It holds Pokeathlon records. It is a card that shows how many times
     you won the Pokeathlon\u2019s Lamp Jump."

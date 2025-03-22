@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Super Rod
   m_EditorClassIdentifier: 
   name: Super Rod
-  sprite: {fileID: 21300000, guid: 6a40a1cfc4ac1274194e29d9d6b97337, type: 3}
+  sprite: {fileID: 21300000, guid: bc9e30ce470e2784a9ba851d5fef295c, type: 3}
   type: 4
   description: An awesome, high-tech fishing rod. Use it at any body of water to
     fish for wild aquatic Pokemon.

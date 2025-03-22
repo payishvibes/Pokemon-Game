@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Power Herb
   m_EditorClassIdentifier: 
   name: Power Herb
-  sprite: {fileID: 21300000, guid: 2f69985566cce904497dd0aaf0265c11, type: 3}
+  sprite: {fileID: 21300000, guid: aa5a06843d74c4347a30099821f44317, type: 3}
   type: 0
   description: A single-use item to be held by a Pokemon. It allows the holder to
     immediately use a move that normally requires a turn to charge.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dragon Gem
   m_EditorClassIdentifier: 
   name: Dragon Gem
-  sprite: {fileID: 21300000, guid: ddcbc50d5129f5f44bff4f2e6c4acd5f, type: 3}
+  sprite: {fileID: 21300000, guid: 3cd0214c8ace24a45a18dc35706795d0, type: 3}
   type: 0
   description: A gem with a draconic essence. When held, it strengthens the power
     of a Dragon-type move one time.

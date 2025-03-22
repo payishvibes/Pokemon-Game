@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ultranecrozium Z
   m_EditorClassIdentifier: 
   name: Ultranecrozium Z
-  sprite: {fileID: 21300000, guid: d42c6df3d5b6ab84496628217187b0ca, type: 3}
+  sprite: {fileID: 0}
   type: 5
   description: "It\u2019s a crystal that turns Necrozma fused with Solgaleo or Lunala
     into a new form."

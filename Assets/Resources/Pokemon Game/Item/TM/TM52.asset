@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM52
   m_EditorClassIdentifier: 
   name: TM52
-  sprite: {fileID: 21300000, guid: bac1faf0f9d7be24da49bcdbe08adce0, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: "The user heightens its mental focus and unleashes its power. This
     may also lower the target\uFFFDs Sp. Def."

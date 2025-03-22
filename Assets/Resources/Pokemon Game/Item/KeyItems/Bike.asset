@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bike
   m_EditorClassIdentifier: 
   name: Bike
-  sprite: {fileID: 21300000, guid: 593218cfaed9d8043bb2794b6ce0612b, type: 3}
+  sprite: {fileID: 0}
   type: 4
   description: A folding Bike that enables a rider to get around much faster than
     with Running Shoes.

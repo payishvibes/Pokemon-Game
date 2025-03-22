@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mimikium Z
   m_EditorClassIdentifier: 
   name: Mimikium Z
-  sprite: {fileID: 21300000, guid: ea9a9534c0a786948924c8e0f5300796, type: 3}
+  sprite: {fileID: 0}
   type: 5
   description: "It converts Z-Power into crystals that upgrade Mimikyu\u2019s Play
     Rough to an exclusive Z-Move."

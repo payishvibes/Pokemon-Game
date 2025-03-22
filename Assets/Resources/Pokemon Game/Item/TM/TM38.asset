@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM38
   m_EditorClassIdentifier: 
   name: TM38
-  sprite: {fileID: 21300000, guid: 2f3e0fb4245b3ab4ba321c105e888fc5, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: The target is attacked with an intense blast of all-consuming fire.
     This may also leave the target with a burn.

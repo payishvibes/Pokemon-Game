@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pass Orb
   m_EditorClassIdentifier: 
   name: Pass Orb
-  sprite: {fileID: 21300000, guid: 2d4000b50f887fe47a04f487f131b466, type: 3}
+  sprite: {fileID: 21300000, guid: 793f0def8980a504296367c7be816d16, type: 3}
   type: 0
   description: A mysterious orb containing the power of the Unova region, to be used
     when generating Pass Power.

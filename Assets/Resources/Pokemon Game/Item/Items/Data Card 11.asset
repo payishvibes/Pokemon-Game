@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Data Card 11
   m_EditorClassIdentifier: 
   name: Data Card 11
-  sprite: {fileID: 21300000, guid: af34ba1d07f16f442b871b8d9656080f, type: 3}
+  sprite: {fileID: 21300000, guid: 9e0539d9242d07344a5f54ebfd8ba5b5, type: 3}
   type: 0
   description: It holds Pokeathlon records. It is a card that shows how many points
     your Pokemon scored in the Pokeathlon.

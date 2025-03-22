@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cornn Berry
   m_EditorClassIdentifier: 
   name: Cornn Berry
-  sprite: {fileID: 21300000, guid: 5a12de9e54aab584e85c9483499b37b3, type: 3}
+  sprite: {fileID: 21300000, guid: d021fb41b8c849b43951493136c72cbf, type: 3}
   type: 3
   description: Used to make Pokeblocks that will enhance your Beauty, this Berry
     is rare in other regions.

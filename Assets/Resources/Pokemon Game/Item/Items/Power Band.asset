@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Power Band
   m_EditorClassIdentifier: 
   name: Power Band
-  sprite: {fileID: 21300000, guid: fb61e8ecf282e4347812a8f2f67d0b49, type: 3}
+  sprite: {fileID: 21300000, guid: 5f8d1d46ed611064a9fe3c73b92ec524, type: 3}
   type: 0
   description: "An item to be held by a Pokemon. It reduces Speed but allows the
     holder\u2019s Sp. Def stat to grow more after battling."

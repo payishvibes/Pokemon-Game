@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rock Gem
   m_EditorClassIdentifier: 
   name: Rock Gem
-  sprite: {fileID: 21300000, guid: 9f91d101d9f538e44bf43bc7a03f8a46, type: 3}
+  sprite: {fileID: 21300000, guid: ea5889680f9db9047a7486f697995109, type: 3}
   type: 0
   description: A gem with an essence of rock. When held, it strengthens the power
     of a Rock-type move one time.

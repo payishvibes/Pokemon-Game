@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Iron Plate
   m_EditorClassIdentifier: 
   name: Iron Plate
-  sprite: {fileID: 21300000, guid: 2f353fb31eae5c345aee6e5fdadf4212, type: 3}
+  sprite: {fileID: 21300000, guid: d1f46d95cc468d8479522a8ef4e21168, type: 3}
   type: 0
   description: "An item to be held by a Pokemon. It\u2019s a stone tablet that boosts
     the power of Steel-type moves."

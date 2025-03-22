@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Seal Case
   m_EditorClassIdentifier: 
   name: Seal Case
-  sprite: {fileID: 21300000, guid: c75c144e263c052489466d88f9a4abd6, type: 3}
+  sprite: {fileID: 21300000, guid: 8158513075116994b9432216b7269854, type: 3}
   type: 4
   description: A case for storing Seals that can be applied to the exteriors of Poke
     Balls.

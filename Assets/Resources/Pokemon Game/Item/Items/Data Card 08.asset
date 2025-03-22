@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Data Card 08
   m_EditorClassIdentifier: 
   name: Data Card 08
-  sprite: {fileID: 21300000, guid: dbe8936607b9fa14eb9aea611589c105, type: 3}
+  sprite: {fileID: 21300000, guid: e11c0cfe30bf1b942a254a8f8639d343, type: 3}
   type: 0
   description: "It holds Pokeathlon records. It is a card that shows how many times
     you won the Pokeathlon\u2019s Block Smash."

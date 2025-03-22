@@ -215,7 +215,10 @@ namespace PokemonGame.Battle
 
         public void DefaultMoveMethod(MoveMethodEventArgs e)
         {
-            e.damageDealt = CalculateDamage(e.move, e.attacker, e.target);
+            if (e.move.category != MoveCategory.Special)
+            {
+                e.damageDealt = CalculateDamage(e.move, e.attacker, e.target);
+            }
         }
         
         public void Toxic(MoveMethodEventArgs e)

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Toxic Orb
   m_EditorClassIdentifier: 
   name: Toxic Orb
-  sprite: {fileID: 21300000, guid: 5a750beb61a933242bd376e635cf175e, type: 3}
+  sprite: {fileID: 21300000, guid: 5ee8c0e29cb69214cb3e939a8a703019, type: 3}
   type: 0
   description: "An item to be held by a Pokemon. It\u2019s a bizarre orb that will
     badly poison the holder during battle."

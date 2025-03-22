@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Douse Drive
   m_EditorClassIdentifier: 
   name: Douse Drive
-  sprite: {fileID: 21300000, guid: 857e56b349515734e9f1e638beeff7e5, type: 3}
+  sprite: {fileID: 21300000, guid: 8fe1faee0a097a148a452aeef1364853, type: 3}
   type: 0
   description: "A cassette to be held by Genesect. It changes Genesect\u2019s Techno
     Blast move so it becomes Water type."

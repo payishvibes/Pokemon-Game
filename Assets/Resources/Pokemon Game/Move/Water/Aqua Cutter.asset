@@ -22,7 +22,6 @@ MonoBehaviour:
   priority: 0
   category: 0
   probability: 0
-  zMove: 0
   zCrystal: {fileID: 0}
   unique: 0
   uniqueBattler: {fileID: 0}

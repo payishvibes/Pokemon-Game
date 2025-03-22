@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ability Capsule
   m_EditorClassIdentifier: 
   name: Ability Capsule
-  sprite: {fileID: 21300000, guid: 372d8cee198faf54fac24a003bb29c9e, type: 3}
+  sprite: {fileID: 21300000, guid: 3141df5197c8a6d4992dd37863df23f0, type: 3}
   type: 1
   description: A capsule that allows a Pokemon with two Abilities to switch between
     these Abilities when it is used.

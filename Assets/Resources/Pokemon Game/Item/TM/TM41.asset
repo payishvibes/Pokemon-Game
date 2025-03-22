@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM41
   m_EditorClassIdentifier: 
   name: TM41
-  sprite: {fileID: 21300000, guid: 2833154e6e0477a428365ea6cf9da6d0, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: The user torments and enrages the target, making it incapable of using
     the same move twice in a row.

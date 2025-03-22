@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM70
   m_EditorClassIdentifier: 
   name: TM70
-  sprite: {fileID: 21300000, guid: 3e73c837e2af7ce42a0ee4a8a77006ff, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: This move reduces damage from physical and special moves for five
     turns. This can be used only in a hailstorm.

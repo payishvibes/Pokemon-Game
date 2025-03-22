@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pink Apricorn
   m_EditorClassIdentifier: 
   name: Pink Apricorn
-  sprite: {fileID: 21300000, guid: ef46975c5739354409354763995e8414, type: 3}
+  sprite: {fileID: 21300000, guid: 6f2d73b56ee052445919de3e984c0caf, type: 3}
   type: 0
   description: A pink Apricorn. It has a nice, sweet scent.
   cost: 0

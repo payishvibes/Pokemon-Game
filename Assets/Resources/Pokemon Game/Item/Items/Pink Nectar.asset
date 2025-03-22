@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pink Nectar
   m_EditorClassIdentifier: 
   name: Pink Nectar
-  sprite: {fileID: 21300000, guid: 6396662be69e78547a62029b44d381a9, type: 3}
+  sprite: {fileID: 21300000, guid: ba448e93ddcc6224eb5c5287238186e4, type: 3}
   type: 0
   description: The flower nectar obtained at the flowering shrubs on Royal Avenue.
     It changes the form of certain species of Pokemon.

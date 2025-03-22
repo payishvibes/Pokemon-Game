@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fighting Gem
   m_EditorClassIdentifier: 
   name: Fighting Gem
-  sprite: {fileID: 21300000, guid: ecd99fe12b156d14da24a87488f5b5f8, type: 3}
+  sprite: {fileID: 21300000, guid: f83988a432ad17c478a540abdd82c59c, type: 3}
   type: 0
   description: A gem with an essence of combat. When held, it strengthens the power
     of a Fighting-type move one time.

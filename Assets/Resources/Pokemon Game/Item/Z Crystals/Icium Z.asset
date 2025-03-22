@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Icium Z
   m_EditorClassIdentifier: 
   name: Icium Z
-  sprite: {fileID: 21300000, guid: 51523c3eee8c7ed46bfa48807515cd92, type: 3}
+  sprite: {fileID: 0}
   type: 5
   description: It converts Z-Power into crystals that upgrade Ice-type moves to Ice-type
     Z-Moves.

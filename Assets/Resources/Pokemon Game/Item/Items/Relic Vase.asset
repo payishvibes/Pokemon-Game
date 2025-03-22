@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Relic Vase
   m_EditorClassIdentifier: 
   name: Relic Vase
-  sprite: {fileID: 21300000, guid: a12b25aa90b66c24d96bbe9dabf06027, type: 3}
+  sprite: {fileID: 21300000, guid: 2f66741a3aba2794a968683513686319, type: 3}
   type: 0
   description: A fragile vase made by an ancient civilization about 3,000 years ago.
   cost: 0

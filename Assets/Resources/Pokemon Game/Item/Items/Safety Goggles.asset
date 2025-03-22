@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Safety Goggles
   m_EditorClassIdentifier: 
   name: Safety Goggles
-  sprite: {fileID: 21300000, guid: 29a836fdab6438d4aa7a5704d7602e82, type: 3}
+  sprite: {fileID: 21300000, guid: 586c9d76dbf589249a940788511fe79d, type: 3}
   type: 0
   description: An item to be held by a Pokemon. These goggles protect the holder
     from both weather-related damage and powder.

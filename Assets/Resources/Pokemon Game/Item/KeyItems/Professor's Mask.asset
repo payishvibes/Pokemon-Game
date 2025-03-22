@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Professor's Mask
   m_EditorClassIdentifier: 
   name: Professor's Mask
-  sprite: {fileID: 21300000, guid: 28bb750940c5bcb4b885bfeae1412100, type: 3}
+  sprite: {fileID: 0}
   type: 4
   description: The mask that belongs to The Masked Royal. This pro wrestler apparently
     sews his mask on a machine himself.

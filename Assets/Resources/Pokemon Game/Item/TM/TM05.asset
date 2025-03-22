@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM05
   m_EditorClassIdentifier: 
   name: TM05
-  sprite: {fileID: 21300000, guid: 537f04ec481711d469e007cd9b007f98, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: "The target is scared off, and a different Pok\uFFFDmon is dragged
     out. In the wild, this ends a battle against a single Pok\uFFFDmon."

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM81
   m_EditorClassIdentifier: 
   name: TM81
-  sprite: {fileID: 21300000, guid: b05f0b8fd9b28f44b8795f26fd06e4f5, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: The user slashes at the target by crossing its scythes or claws as
     if they were a pair of scissors.

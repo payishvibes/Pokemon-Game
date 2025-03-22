@@ -23,11 +23,9 @@ namespace PokemonGame.ScriptableObjects
         public float priority;
         public MoveCategory category;
         [Tooltip("Only used if the move has a chance to do something else")] public float probability;
-        public bool zMove;
-        [ConditionalHide("zMove")] 
-        public Item zCrystal;
+        [ConditionalHide("category", 3)] public Item zCrystal;
 
-        [ConditionalHide("zMove")] public bool unique;
+        [ConditionalHide("category", 3)] public bool unique;
         
         [ConditionalHide("unique")] public Battler uniqueBattler;
     
@@ -35,7 +33,7 @@ namespace PokemonGame.ScriptableObjects
 
         private void OnValidate()
         {
-            if (!zMove)
+            if (category != MoveCategory.ZMove)
             {
                 unique = false;
             }
@@ -52,8 +50,7 @@ namespace PokemonGame.ScriptableObjects
             if (PP > 0)
             {
                 MoveMethodEvent?.Invoke(e);
-                Debug.Log(MoveMethodEvent == null);
-                if (MoveMethodEvent == null)
+                if (MoveMethodEvent.GetPersistentEventCount() == 0)
                 {
                     Debug.Log("default move method");
                     MovesMethods.GetMoveMethods().DefaultMoveMethod(e);

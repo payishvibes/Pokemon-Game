@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Antidote
   m_EditorClassIdentifier: 
   name: Antidote
-  sprite: {fileID: 21300000, guid: 3cfedd6f7bf7f9b40901f92975ed2683, type: 3}
+  sprite: {fileID: 21300000, guid: 9e6f8543ea0c41b4aaf7a747082b602b, type: 3}
   type: 1
   description: A spray-type medicine for poisoning. It can be used once to lift the
     effects of being poisoned from a Pokemon.

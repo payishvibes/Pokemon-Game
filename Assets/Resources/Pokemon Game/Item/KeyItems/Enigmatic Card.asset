@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Enigmatic Card
   m_EditorClassIdentifier: 
   name: Enigmatic Card
-  sprite: {fileID: 21300000, guid: a6c1b331a7492b34fbdf41b004a92585, type: 3}
+  sprite: {fileID: 21300000, guid: 9bdccb376fad4754d9ccedcc5cc05415, type: 3}
   type: 4
   description: A mysterious card. Written on it is a request for you to go to a guest
     room in an Akala motel on Route 8.

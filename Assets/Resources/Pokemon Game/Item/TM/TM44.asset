@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM44
   m_EditorClassIdentifier: 
   name: TM44
-  sprite: {fileID: 21300000, guid: 3bee0bc2470c6894d93d58d38862a3e6, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: "The user goes to sleep for two turns. This fully restores the user\uFFFDs
     HP and heals any status conditions."

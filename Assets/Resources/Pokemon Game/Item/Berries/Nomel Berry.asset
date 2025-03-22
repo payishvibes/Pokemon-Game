@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Nomel Berry
   m_EditorClassIdentifier: 
   name: Nomel Berry
-  sprite: {fileID: 21300000, guid: 96c47a915c7424b4a8fa29c22d63ee23, type: 3}
+  sprite: {fileID: 21300000, guid: c317d312d13add14f8f5fdf5b32d62ce, type: 3}
   type: 3
   description: Used to make Pokeblocks that will enhance your Toughness, this Berry
     is rare in other regions.

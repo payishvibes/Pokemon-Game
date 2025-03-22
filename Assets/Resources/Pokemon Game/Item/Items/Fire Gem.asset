@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fire Gem
   m_EditorClassIdentifier: 
   name: Fire Gem
-  sprite: {fileID: 21300000, guid: e03b1bbc8d23035448abdded0e403d25, type: 3}
+  sprite: {fileID: 21300000, guid: eb185a44180c25e4babec3edcbe6fd5e, type: 3}
   type: 0
   description: A gem with an essence of fire. When held, it strengthens the power
     of a Fire-type move one time.

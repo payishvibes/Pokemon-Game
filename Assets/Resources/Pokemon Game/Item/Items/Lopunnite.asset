@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lopunnite
   m_EditorClassIdentifier: 
   name: Lopunnite
-  sprite: {fileID: 21300000, guid: 3942e42460c6d1b49871addc0944d8ec, type: 3}
+  sprite: {fileID: 21300000, guid: d7f8ee90176345e41b979d43c315f11c, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Lopunny hold it,
     and this stone will enable it to Mega Evolve during battle.

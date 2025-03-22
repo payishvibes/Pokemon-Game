@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Plume Fossil
   m_EditorClassIdentifier: 
   name: Plume Fossil
-  sprite: {fileID: 21300000, guid: cff4753b97704094b91e3b2d1e5598ad, type: 3}
+  sprite: {fileID: 21300000, guid: e6ba9162920c6db45b6aae94c47297ca, type: 3}
   type: 0
   description: A fossil from a prehistoric Pokemon that once lived in the sky. It
     looks as if it could come from part of its wing.

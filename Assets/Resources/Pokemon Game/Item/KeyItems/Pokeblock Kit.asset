@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pokeblock Kit
   m_EditorClassIdentifier: 
   name: Pokeblock Kit
-  sprite: {fileID: 21300000, guid: 2fddc3abeb501fb4dafd20c4509a56c5, type: 3}
+  sprite: {fileID: 21300000, guid: 027521ff88cf63948b53fa10510937d7, type: 3}
   type: 4
   description: A set containing a Berry Blender for making Pokeblocks and a Pokeblock
     Case for storing Pokeblocks.

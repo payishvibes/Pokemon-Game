@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gold Bottle Cap
   m_EditorClassIdentifier: 
   name: Gold Bottle Cap
-  sprite: {fileID: 21300000, guid: 491c72b301be85f449f158ebd0b2f845, type: 3}
+  sprite: {fileID: 21300000, guid: 0b03e1a5cad835347abfddcf3a429ec9, type: 3}
   type: 0
   description: A beautiful bottle cap that gives off a golden gleam. Some people
     are happy to receive one.

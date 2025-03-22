@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Roller Skates
   m_EditorClassIdentifier: 
   name: Roller Skates
-  sprite: {fileID: 21300000, guid: 8e603d3d6356af8418de9a2fb2f5cd6e, type: 3}
+  sprite: {fileID: 21300000, guid: 0c293f7b4370d434d966a75a5099bbe7, type: 3}
   type: 4
   description: Attaches roller skates to the bottom of your shoes, allowing you to
     glide quickly around and perform tricks.

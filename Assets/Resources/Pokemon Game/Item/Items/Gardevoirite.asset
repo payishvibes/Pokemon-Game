@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gardevoirite
   m_EditorClassIdentifier: 
   name: Gardevoirite
-  sprite: {fileID: 21300000, guid: 547199cc71af7c744a2ce6d800655204, type: 3}
+  sprite: {fileID: 21300000, guid: 1625bdc255328d141bb0dac6713d1eee, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Gardevoir hold it,
     and this stone will enable it to Mega Evolve during battle.

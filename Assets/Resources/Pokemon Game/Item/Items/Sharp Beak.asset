@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sharp Beak
   m_EditorClassIdentifier: 
   name: Sharp Beak
-  sprite: {fileID: 21300000, guid: 039147aca84beb24992417f48197a910, type: 3}
+  sprite: {fileID: 21300000, guid: 922f0298bf4c8c64d9e01842b2b477fc, type: 3}
   type: 0
   description: "An item to be held by a Pokemon. It\u2019s a long, sharp beak that
     boosts the power of Flying-type moves."

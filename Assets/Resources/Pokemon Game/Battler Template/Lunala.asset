@@ -26,6 +26,10 @@ MonoBehaviour:
     femaleShinyBack: {fileID: 0}
   dexNo: 792
   possibleMoves:
+    levelup:
+      keys: []
+      values: 
+    tm: []
     egg: []
     tutor: []
   evolutions:

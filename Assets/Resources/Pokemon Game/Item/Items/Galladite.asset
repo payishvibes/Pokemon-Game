@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Galladite
   m_EditorClassIdentifier: 
   name: Galladite
-  sprite: {fileID: 21300000, guid: 211240d0775fa644bbf18672214b19f8, type: 3}
+  sprite: {fileID: 21300000, guid: 00a6f2fc5ed6847488eb884e35840872, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Gallade hold it,
     and this stone will enable it to Mega Evolve during battle.

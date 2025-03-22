@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Psychium Z
   m_EditorClassIdentifier: 
   name: Psychium Z
-  sprite: {fileID: 21300000, guid: d77225ed291274b4388a50384a117639, type: 3}
+  sprite: {fileID: 0}
   type: 5
   description: It converts Z-Power into crystals that upgrade Psychic-type moves
     to Psychic-type Z-Moves.

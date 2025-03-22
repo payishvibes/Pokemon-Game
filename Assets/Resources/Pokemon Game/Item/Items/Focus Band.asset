@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Focus Band
   m_EditorClassIdentifier: 
   name: Focus Band
-  sprite: {fileID: 21300000, guid: efb846f12e81e6a4d93c5504078dc8da, type: 3}
+  sprite: {fileID: 21300000, guid: e7ed6f4de9842c24a86dca44c7787751, type: 3}
   type: 0
   description: An item to be held by a Pokemon. The holder may endure a potential
     KO attack, leaving it with just 1 HP.

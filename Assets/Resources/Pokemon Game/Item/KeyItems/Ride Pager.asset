@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ride Pager
   m_EditorClassIdentifier: 
   name: Ride Pager
-  sprite: {fileID: 21300000, guid: aa21c7aed4019d54796abad6cffc1ec8, type: 3}
+  sprite: {fileID: 21300000, guid: 6d11e6f214c085d46bb8fbf1ab063131, type: 3}
   type: 4
   description: By entering certain numbers on this pager, you can summon Ride Pokemon
     in an instant.

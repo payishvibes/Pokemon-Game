@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mewtwonite X
   m_EditorClassIdentifier: 
   name: Mewtwonite X
-  sprite: {fileID: 21300000, guid: 040f5d3729f974b44a1b0aaea262328b, type: 3}
+  sprite: {fileID: 21300000, guid: f1301c4605468bb41bd0d8b129df28fd, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Mewtwo hold it, and
     this stone will enable it to Mega Evolve during battle.

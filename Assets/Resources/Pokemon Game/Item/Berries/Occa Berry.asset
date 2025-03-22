@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Occa Berry
   m_EditorClassIdentifier: 
   name: Occa Berry
-  sprite: {fileID: 21300000, guid: a57b7c162c097034e9363ad116866595, type: 3}
+  sprite: {fileID: 21300000, guid: 3d0aaf421fe499140b0f1468bb683f7f, type: 3}
   type: 3
   description: If held by a Pokemon, this Berry will lessen the damage taken from
     one supereffective Fire-type attack.

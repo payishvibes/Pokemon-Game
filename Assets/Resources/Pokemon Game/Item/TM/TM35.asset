@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM35
   m_EditorClassIdentifier: 
   name: TM35
-  sprite: {fileID: 21300000, guid: 2f3e0fb4245b3ab4ba321c105e888fc5, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: The target is scorched with an intense blast of fire. This may also
     leave the target with a burn.

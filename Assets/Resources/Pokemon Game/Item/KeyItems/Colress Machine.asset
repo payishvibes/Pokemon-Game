@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Colress Machine
   m_EditorClassIdentifier: 
   name: Colress Machine
-  sprite: {fileID: 21300000, guid: 94ccd6147c4b169458da1bb4e38afea7, type: 3}
+  sprite: {fileID: 21300000, guid: 578d7133c8d972c44a6183622757eb2f, type: 3}
   type: 4
   description: "A special device that wrings out the potential of Pokemon. It\u2019s
     an imperfect prototype."

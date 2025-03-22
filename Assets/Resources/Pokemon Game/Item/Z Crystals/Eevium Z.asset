@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Eevium Z
   m_EditorClassIdentifier: 
   name: Eevium Z
-  sprite: {fileID: 21300000, guid: 664978b556492b848ab8dead02415364, type: 3}
+  sprite: {fileID: 0}
   type: 5
   description: "It converts Z-Power into crystals that upgrade Eevee\u2019s Last
     Resort to an exclusive Z-Move."

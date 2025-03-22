@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Medal Box
   m_EditorClassIdentifier: 
   name: Medal Box
-  sprite: {fileID: 21300000, guid: 24c892a5d4b2d7244b12e105d95debfa, type: 3}
+  sprite: {fileID: 21300000, guid: 18bd185b53fe465458b2ebc5e750e47c, type: 3}
   type: 4
   description: A box-shaped machine that stores Medals and Medal information.
   cost: 0

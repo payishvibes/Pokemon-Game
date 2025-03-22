@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM29
   m_EditorClassIdentifier: 
   name: TM29
-  sprite: {fileID: 21300000, guid: 3bee0bc2470c6894d93d58d38862a3e6, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: "The target is hit by a strong telekinetic force. This may also lower
     the target\uFFFDs Sp. Def stat."

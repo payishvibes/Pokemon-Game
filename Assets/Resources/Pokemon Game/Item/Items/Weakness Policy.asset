@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Weakness Policy
   m_EditorClassIdentifier: 
   name: Weakness Policy
-  sprite: {fileID: 21300000, guid: 15e8745e09953b1478a79faa80860b41, type: 3}
+  sprite: {fileID: 21300000, guid: d1940a4a5c0f60d45a13abc0037141e4, type: 3}
   type: 0
   description: "An item to be held by a Pokemon. Attack and Sp. Atk sharply increase
     if the holder is hit with a move it\u2019s weak to."

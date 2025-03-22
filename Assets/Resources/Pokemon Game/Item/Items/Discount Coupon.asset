@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Discount Coupon
   m_EditorClassIdentifier: 
   name: Discount Coupon
-  sprite: {fileID: 21300000, guid: f8d80cfce7a2563438ce014644716928, type: 3}
+  sprite: {fileID: 21300000, guid: 8d29160e0298b204bb46f9a1d3ff5e34, type: 3}
   type: 0
   description: This special coupon allows you to buy items at a discount when you
     are shopping at a boutique.

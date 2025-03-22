@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Grubby Hanky
   m_EditorClassIdentifier: 
   name: Grubby Hanky
-  sprite: {fileID: 21300000, guid: 63e3caad3e08e6d42b24c5aa838beec6, type: 3}
+  sprite: {fileID: 21300000, guid: d4b78b0ed6fd1124eb9d39a756a35db2, type: 3}
   type: 4
   description: A handkerchief dropped by a regular at Cafe Warehouse. It smells faintly
     like a Pokemon.

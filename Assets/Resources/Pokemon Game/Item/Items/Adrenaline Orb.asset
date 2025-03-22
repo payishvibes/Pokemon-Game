@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Adrenaline Orb
   m_EditorClassIdentifier: 
   name: Adrenaline Orb
-  sprite: {fileID: 21300000, guid: defe44fec35c3814e841111637425db9, type: 3}
+  sprite: {fileID: 21300000, guid: 3d085852972d4bf44afeb9becbcff677, type: 3}
   type: 0
   description: Using it makes wild Pokemon call for help a number of times. If held
     by a Pokemon, it boosts Speed when intimidated. It can be used only once.

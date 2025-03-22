@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: X Sp. Atk
   m_EditorClassIdentifier: 
   name: X Sp. Atk
-  sprite: {fileID: 21300000, guid: c4f4866d72201a644a49766ede30ebc8, type: 3}
+  sprite: {fileID: 0}
   type: 0
   description: An item that sharply boosts the Sp. Atk stat of a Pokemon during a
     battle. It wears off once the Pokemon is withdrawn.

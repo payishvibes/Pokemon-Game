@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Insect Plate
   m_EditorClassIdentifier: 
   name: Insect Plate
-  sprite: {fileID: 21300000, guid: cca529d6147ba204c921366ffc5ae3a5, type: 3}
+  sprite: {fileID: 21300000, guid: a3cb385641671894c8bbc909ab8cc565, type: 3}
   type: 0
   description: "An item to be held by a Pokemon. It\u2019s a stone tablet that boosts
     the power of Bug-type moves."

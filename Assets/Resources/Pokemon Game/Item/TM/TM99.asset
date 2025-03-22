@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM99
   m_EditorClassIdentifier: 
   name: TM99
-  sprite: {fileID: 21300000, guid: ecdf30aa77cc1494dadd5f9aa96bbf42, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: "The user damages opposing Pok\uFFFDmon by emitting a powerful flash."
   cost: 0

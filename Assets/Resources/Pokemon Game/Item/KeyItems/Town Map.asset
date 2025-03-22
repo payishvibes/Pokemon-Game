@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Town Map
   m_EditorClassIdentifier: 
   name: Town Map
-  sprite: {fileID: 21300000, guid: 64241c2ec7436ba459fb38a96bdc10da, type: 3}
+  sprite: {fileID: 21300000, guid: 98dafead267977849a0e4d087896905a, type: 3}
   type: 4
   description: A very convenient map that can be viewed anytime. It even shows you
     your present location in the region.

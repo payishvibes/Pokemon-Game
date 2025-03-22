@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Resist Wing
   m_EditorClassIdentifier: 
   name: Resist Wing
-  sprite: {fileID: 21300000, guid: bd8f83d31307b6044944ec16af8a5e10, type: 3}
+  sprite: {fileID: 21300000, guid: b594b5cb2537a3d47b2b981cbcb7edbe, type: 3}
   type: 1
   description: An item for use on a Pokemon. It slightly increases the base Defense
     stat of a single Pokemon.

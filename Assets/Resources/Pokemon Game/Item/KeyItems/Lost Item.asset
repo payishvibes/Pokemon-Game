@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lost Item
   m_EditorClassIdentifier: 
   name: Lost Item
-  sprite: {fileID: 21300000, guid: f97c764ed96999a4196e6a8fe739fa14, type: 3}
+  sprite: {fileID: 21300000, guid: a5fdff28ae4ac28418f217362696c7ce, type: 3}
   type: 4
   description: The Mime Jr. doll that was lost by the Copycat.
   cost: 0

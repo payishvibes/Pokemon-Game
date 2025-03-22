@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM32
   m_EditorClassIdentifier: 
   name: TM32
-  sprite: {fileID: 21300000, guid: 537f04ec481711d469e007cd9b007f98, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: By moving rapidly, the user makes illusory copies of itself to raise
     its evasiveness.

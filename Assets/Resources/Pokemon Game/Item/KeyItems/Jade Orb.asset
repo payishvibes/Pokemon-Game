@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Jade Orb
   m_EditorClassIdentifier: 
   name: Jade Orb
-  sprite: {fileID: 21300000, guid: 8816a23292b77b04881ceb1fd0c8b985, type: 3}
+  sprite: {fileID: 21300000, guid: 6fe0e089c95d34e48b707250b3ab02d8, type: 3}
   type: 4
   description: "A shiny green orb that is said to have a legend tied to it. It\u2019s
     known to have a deep connection with the Hoenn region."

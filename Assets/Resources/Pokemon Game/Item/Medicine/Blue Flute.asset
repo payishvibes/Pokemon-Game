@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Blue Flute
   m_EditorClassIdentifier: 
   name: Blue Flute
-  sprite: {fileID: 21300000, guid: 4ef44ee566cb75c4d9c1ceaf4b79b676, type: 3}
+  sprite: {fileID: 21300000, guid: 676196efbfab1e2479b40bc4da9aa048, type: 3}
   type: 1
   description: A flute made from blue glass that awakens sleeping Pokemon.
   cost: 0

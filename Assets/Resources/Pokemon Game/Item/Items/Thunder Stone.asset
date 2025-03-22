@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Thunder Stone
   m_EditorClassIdentifier: 
   name: Thunder Stone
-  sprite: {fileID: 21300000, guid: d4b783cd308a50243b1323f4a5278763, type: 3}
+  sprite: {fileID: 21300000, guid: 326e55dea28cfd9469ffe0b96ba670af, type: 3}
   type: 0
   description: A peculiar stone that can make certain species of Pokemon evolve.
     It has a distinct thunderbolt pattern.

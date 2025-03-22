@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ice Memory
   m_EditorClassIdentifier: 
   name: Ice Memory
-  sprite: {fileID: 21300000, guid: 4f48f392974d0c041ac5b15d24a3ba9c, type: 3}
+  sprite: {fileID: 21300000, guid: bd61abd2469735c4486111d02a7c1dfd, type: 3}
   type: 0
   description: A memory disc that contains Ice-type data. It changes the type of
     the holder if held by a certain species of Pokemon.

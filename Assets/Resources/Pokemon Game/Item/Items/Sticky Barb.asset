@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sticky Barb
   m_EditorClassIdentifier: 
   name: Sticky Barb
-  sprite: {fileID: 21300000, guid: 6d51390d9ce625d4aa0396dccb3c7398, type: 3}
+  sprite: {fileID: 21300000, guid: 8a09af9d6063a3b439d5c0fd50fbb265, type: 3}
   type: 0
   description: An item to be held by a Pokemon. It damages the holder every turn
     and may latch on to Pokemon that touch the holder.

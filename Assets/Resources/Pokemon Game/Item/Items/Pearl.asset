@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pearl
   m_EditorClassIdentifier: 
   name: Pearl
-  sprite: {fileID: 21300000, guid: 107b21f1fc8d00f44b350f88d3bce23a, type: 3}
+  sprite: {fileID: 21300000, guid: f172ec14e3fc3df4abede2400cd8289f, type: 3}
   type: 0
   description: A rather small pearl that has a very nice silvery sheen to it. It
     can be sold cheaply to shops.

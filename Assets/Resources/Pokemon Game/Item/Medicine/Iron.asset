@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Iron
   m_EditorClassIdentifier: 
   name: Iron
-  sprite: {fileID: 21300000, guid: 3893669ba0b41ca4185121bf759cbf05, type: 3}
+  sprite: {fileID: 21300000, guid: 391dedc866ff9724ea1da6b6cc39b035, type: 3}
   type: 1
   description: A nutritious drink for Pokemon. When consumed, it raises the base
     Defense stat of a single Pokemon.

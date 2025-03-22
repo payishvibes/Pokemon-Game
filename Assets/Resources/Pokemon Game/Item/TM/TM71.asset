@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM71
   m_EditorClassIdentifier: 
   name: TM71
-  sprite: {fileID: 21300000, guid: 4fdc2cd2fdf5b434bb3c2df379be1dad, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: The user stabs the target from below with sharpened stones. Critical
     hits land more easily.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM54
   m_EditorClassIdentifier: 
   name: TM54
-  sprite: {fileID: 21300000, guid: 537f04ec481711d469e007cd9b007f98, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: A restrained attack that prevents the target from fainting. The target
     is left with at least 1 HP.

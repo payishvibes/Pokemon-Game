@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mega Pendant
   m_EditorClassIdentifier: 
   name: Mega Pendant
-  sprite: {fileID: 21300000, guid: 75f54f8e3985a1744b0114456b644004, type: 3}
+  sprite: {fileID: 21300000, guid: 5a7fef28eed18964582d701a3df0c59e, type: 3}
   type: 4
   description: This necklace contains an untold power that somehow enables Pokemon
     carrying a Mega Stone to Mega Evolve in battle.

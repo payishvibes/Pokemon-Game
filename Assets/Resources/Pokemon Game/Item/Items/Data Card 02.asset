@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Data Card 02
   m_EditorClassIdentifier: 
   name: Data Card 02
-  sprite: {fileID: 21300000, guid: 1bd275a6a782a8847970386980554908, type: 3}
+  sprite: {fileID: 21300000, guid: 4bf574e56e34b40498f7042f86aadf88, type: 3}
   type: 0
   description: It holds Pokeathlon records. It is a card that shows how many losses
     you have had in the Pokeathlon.

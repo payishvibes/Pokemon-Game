@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shoal Shell
   m_EditorClassIdentifier: 
   name: Shoal Shell
-  sprite: {fileID: 21300000, guid: 90020a86009892949863a402d7da2f38, type: 3}
+  sprite: {fileID: 21300000, guid: 8e8e014ec37c9be4282689dbb174a0ed, type: 3}
   type: 0
   description: A seashell that you found inside Shoal Cave.
   cost: 0

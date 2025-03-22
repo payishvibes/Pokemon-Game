@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lens Case
   m_EditorClassIdentifier: 
   name: Lens Case
-  sprite: {fileID: 21300000, guid: 01ea252e72d43b54a94db88e0d6036b6, type: 3}
+  sprite: {fileID: 21300000, guid: b5519a28011caaa4889a4b6250f5fc88, type: 3}
   type: 4
   description: A rather chic-looking case for carrying contact lenses.
   cost: 0

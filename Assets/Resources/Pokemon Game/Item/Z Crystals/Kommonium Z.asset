@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Kommonium Z
   m_EditorClassIdentifier: 
   name: Kommonium Z
-  sprite: {fileID: 21300000, guid: d7864abd0cc54464090f93fa004d8938, type: 3}
+  sprite: {fileID: 0}
   type: 5
   description: "It converts Z-Power into crystals that upgrade Kommo-o\u2019s Clanging
     Scales to an exclusive Z-Move."

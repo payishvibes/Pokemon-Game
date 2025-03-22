@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Eon Flute
   m_EditorClassIdentifier: 
   name: Eon Flute
-  sprite: {fileID: 21300000, guid: dba789e4866328e498c386b2c667b0de, type: 3}
+  sprite: {fileID: 21300000, guid: 7618b3b4f1168ee488e19b5c69d7ebfb, type: 3}
   type: 4
   description: A flute that can be used to summon Latios or Latias no matter where
     you are.

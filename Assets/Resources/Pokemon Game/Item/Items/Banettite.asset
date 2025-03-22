@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Banettite
   m_EditorClassIdentifier: 
   name: Banettite
-  sprite: {fileID: 21300000, guid: 31334db2a2c02964b9cf0e42571885ea, type: 3}
+  sprite: {fileID: 21300000, guid: dcb2dd76b0487d0438ef887fd2fb2e8d, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Banette hold it,
     and this stone will enable it to Mega Evolve during battle.

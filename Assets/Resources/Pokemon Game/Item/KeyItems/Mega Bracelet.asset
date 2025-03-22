@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mega Bracelet
   m_EditorClassIdentifier: 
   name: Mega Bracelet
-  sprite: {fileID: 21300000, guid: f1e22a2f2421ee24f9f8717828edf149, type: 3}
+  sprite: {fileID: 21300000, guid: 7809cb697c5d16946946be289a2a628c, type: 3}
   type: 4
   description: This cuff contains an untold power that somehow enables Pokemon carrying
     a Mega Stone to Mega Evolve in battle.

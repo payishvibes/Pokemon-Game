@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Red Flute
   m_EditorClassIdentifier: 
   name: Red Flute
-  sprite: {fileID: 21300000, guid: dc867b218e004f64b88295f3f3f4a451, type: 3}
+  sprite: {fileID: 21300000, guid: 04cbfda6a64fd464192776c63632834b, type: 3}
   type: 1
   description: A flute made from red glass that snaps Pokemon out of infatuation.
   cost: 0

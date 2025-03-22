@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sacred Ash
   m_EditorClassIdentifier: 
   name: Sacred Ash
-  sprite: {fileID: 21300000, guid: e3535fa18a98c914db55da407d676f69, type: 3}
+  sprite: {fileID: 21300000, guid: 936573bf755c12f48bce47c8ff158bcf, type: 3}
   type: 1
   description: This rare ash can revive all fainted Pokemon in a party. In doing
     so, it also fully restores their maximum HP.

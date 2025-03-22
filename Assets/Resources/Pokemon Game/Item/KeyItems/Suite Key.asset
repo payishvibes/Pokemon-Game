@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Suite Key
   m_EditorClassIdentifier: 
   name: Suite Key
-  sprite: {fileID: 21300000, guid: 442f4c892ade4fa4192440967e34bbca, type: 3}
+  sprite: {fileID: 21300000, guid: d5f806d43fa894044b748c7bd5bd1289, type: 3}
   type: 4
   description: A key to one of the suites at a certain luxury hotel by a lake. For
     some odd reason, it often disappears.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Inquiry Mail
   m_EditorClassIdentifier: 
   name: Inquiry Mail
-  sprite: {fileID: 21300000, guid: 40dae9594100b2b4ea0b4de73c90285a, type: 3}
+  sprite: {fileID: 21300000, guid: 0bf57e5f2977e0d44b5cb6c68c409b1d, type: 3}
   type: 0
   description: Stationery designed to make it easier to pose a question about something.
     Have a Pokemon hold it for delivery.

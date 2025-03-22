@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Soothe Bell
   m_EditorClassIdentifier: 
   name: Soothe Bell
-  sprite: {fileID: 21300000, guid: cef18226e733df34f9f0e86c2b0a0044, type: 3}
+  sprite: {fileID: 21300000, guid: 1a921a925599db84eb339eabd2eeedeb, type: 3}
   type: 0
   description: An item to be held by a Pokemon. The comforting chime of this bell
     calms the holder, making it friendly.

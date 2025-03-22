@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Eject Button
   m_EditorClassIdentifier: 
   name: Eject Button
-  sprite: {fileID: 21300000, guid: 45d43452b058745469efa04490be0e57, type: 3}
+  sprite: {fileID: 21300000, guid: d89f5028c7900c3489a00df85c59e8f2, type: 3}
   type: 0
   description: An item to be held by a Pokemon. If the holder is hit by an attack,
     it will be switched out of battle.

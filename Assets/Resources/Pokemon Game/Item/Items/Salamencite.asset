@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Salamencite
   m_EditorClassIdentifier: 
   name: Salamencite
-  sprite: {fileID: 21300000, guid: 07e9cb6705625c74bb74107ee3d49e1f, type: 3}
+  sprite: {fileID: 21300000, guid: 3a00204422fd85c4c8a6463760722c96, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Salamence hold it,
     and this stone will enable it to Mega Evolve during battle.

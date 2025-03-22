@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Charizardite Y
   m_EditorClassIdentifier: 
   name: Charizardite Y
-  sprite: {fileID: 21300000, guid: a661df199ac447e43a65ce9bb380011b, type: 3}
+  sprite: {fileID: 21300000, guid: 9ab43ccd9df95ee4a85bad65ae7f311f, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Charizard hold it,
     and this stone will enable it to Mega Evolve during battle.

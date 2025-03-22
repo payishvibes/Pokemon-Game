@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Card Key
   m_EditorClassIdentifier: 
   name: Card Key
-  sprite: {fileID: 21300000, guid: ef6938ba4b3269a4199b6df993fd4260, type: 3}
+  sprite: {fileID: 21300000, guid: d9fff4624f1c0f64097e1171f6eef5cc, type: 3}
   type: 4
   description: A card key that opens a shutter in the Radio Tower.
   cost: 0

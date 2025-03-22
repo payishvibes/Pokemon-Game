@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rockium Z
   m_EditorClassIdentifier: 
   name: Rockium Z
-  sprite: {fileID: 21300000, guid: 591ee3c91113b9941b7f484e40cb6934, type: 3}
+  sprite: {fileID: 0}
   type: 5
   description: It converts Z-Power into crystals that upgrade Rock-type moves to
     Rock-type Z-Moves.

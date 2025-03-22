@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM08
   m_EditorClassIdentifier: 
   name: TM08
-  sprite: {fileID: 21300000, guid: bac1faf0f9d7be24da49bcdbe08adce0, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: The user tenses its muscles to bulk up its body, raising both its
     Attack and Defense stats.

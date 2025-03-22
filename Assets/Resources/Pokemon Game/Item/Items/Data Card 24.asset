@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Data Card 24
   m_EditorClassIdentifier: 
   name: Data Card 24
-  sprite: {fileID: 21300000, guid: 1bcbda18128dc924ea152151a197c733, type: 3}
+  sprite: {fileID: 21300000, guid: 9b885710791ce2a41aba7fd1344c372f, type: 3}
   type: 0
   description: "It holds Pokeathlon records. It is a card that shows how many times
     you won the Pokeathlon\u2019s Goal Roll."

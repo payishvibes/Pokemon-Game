@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Metal Coat
   m_EditorClassIdentifier: 
   name: Metal Coat
-  sprite: {fileID: 21300000, guid: b05c3fc11e6f2df40ad4d8c98c095ab3, type: 3}
+  sprite: {fileID: 21300000, guid: 99cf94fdfcb327f49a6a7b21577bc5df, type: 3}
   type: 0
   description: "An item to be held by a Pokemon. It\u2019s a special metallic film
     that can boost the power of Steel-type moves."

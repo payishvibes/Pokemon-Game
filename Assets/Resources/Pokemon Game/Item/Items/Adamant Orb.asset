@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Adamant Orb
   m_EditorClassIdentifier: 
   name: Adamant Orb
-  sprite: {fileID: 21300000, guid: 82e31b9a9c3773a44b8da52df8ed1f4d, type: 3}
+  sprite: {fileID: 21300000, guid: ae9686154c555dd49bcf9ed3e6265468, type: 3}
   type: 0
   description: A brightly gleaming orb to be held by Dialga. It boosts the power
     of Dragon- and Steel-type moves when it is held.

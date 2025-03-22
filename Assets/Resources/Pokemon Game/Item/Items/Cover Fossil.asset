@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cover Fossil
   m_EditorClassIdentifier: 
   name: Cover Fossil
-  sprite: {fileID: 21300000, guid: 5d953e60deff6c04eb404ebfefa4c384, type: 3}
+  sprite: {fileID: 21300000, guid: b9053db001c11b241a10b6da46128dd6, type: 3}
   type: 0
   description: A fossil from a prehistoric Pokemon that once lived in the sea. It
     appears as though it could be part of its back.

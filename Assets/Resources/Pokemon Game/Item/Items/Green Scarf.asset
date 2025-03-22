@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Green Scarf
   m_EditorClassIdentifier: 
   name: Green Scarf
-  sprite: {fileID: 21300000, guid: ea7c1b07741699947a868e472517e57f, type: 3}
+  sprite: {fileID: 21300000, guid: 830c19311282fe347a6f19ea0a81fe8e, type: 3}
   type: 0
   description: An item to be held by a Pokemon. During a contest, it raises the Clever
     aspect of the Pokemon holding it.

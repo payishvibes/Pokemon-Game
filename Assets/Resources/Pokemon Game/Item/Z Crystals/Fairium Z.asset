@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fairium Z
   m_EditorClassIdentifier: 
   name: Fairium Z
-  sprite: {fileID: 21300000, guid: 769788de893e04841b0709edd2c72af3, type: 3}
+  sprite: {fileID: 0}
   type: 5
   description: It converts Z-Power into crystals that upgrade Fairy-type moves to
     Fairy-type Z-Moves.

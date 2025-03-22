@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Whipped Dream
   m_EditorClassIdentifier: 
   name: Whipped Dream
-  sprite: {fileID: 21300000, guid: 2d4cf6bbdcbfba446beff7f205a8de06, type: 3}
+  sprite: {fileID: 21300000, guid: 7c6bed74cf0e86f419ef290b4f79e779, type: 3}
   type: 0
   description: "A soft and sweet treat made of fluffy, puffy, whipped, and whirled
     cream. It\u2019s loved by a certain Pokemon."

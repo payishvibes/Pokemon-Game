@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Storage Key
   m_EditorClassIdentifier: 
   name: Storage Key
-  sprite: {fileID: 21300000, guid: cbff3a7e6ccf7094abfe57981eefb479, type: 3}
+  sprite: {fileID: 21300000, guid: 706c727faefc04245aaad5fb187ce938, type: 3}
   type: 4
   description: A key that opens the storage hold inside Sea Mauville.
   cost: 0

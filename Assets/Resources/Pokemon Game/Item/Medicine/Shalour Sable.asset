@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shalour Sable
   m_EditorClassIdentifier: 
   name: Shalour Sable
-  sprite: {fileID: 21300000, guid: cafe0e373b9ff804d84a229aa5d6c15f, type: 3}
+  sprite: {fileID: 21300000, guid: a3883f10bc579ed4688fbdd585460f10, type: 3}
   type: 1
   description: "Shalour City\u2019s famous shortbread. It can be used once to heal
     all the status conditions of a Pokemon."

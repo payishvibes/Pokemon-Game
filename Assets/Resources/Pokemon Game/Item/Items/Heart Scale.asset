@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Heart Scale
   m_EditorClassIdentifier: 
   name: Heart Scale
-  sprite: {fileID: 21300000, guid: 9d606eff2baf04846bf556524b7ce6e5, type: 3}
+  sprite: {fileID: 21300000, guid: 4c3abbd67d8cc4740980ba970641c950, type: 3}
   type: 0
   description: A pretty, heart-shaped scale that is extremely rare. Some people are
     happy to receive one.

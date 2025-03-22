@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ampharosite
   m_EditorClassIdentifier: 
   name: Ampharosite
-  sprite: {fileID: 21300000, guid: 5aacb2efaf0f6694aa5c340a97d92eaa, type: 3}
+  sprite: {fileID: 21300000, guid: 077e727cdc73c804eb1ab3f7be37c520, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Ampharos hold it,
     and this stone will enable it to Mega Evolve during battle.

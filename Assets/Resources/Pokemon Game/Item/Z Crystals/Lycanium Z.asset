@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lycanium Z
   m_EditorClassIdentifier: 
   name: Lycanium Z
-  sprite: {fileID: 21300000, guid: 12d965f04688bde4a9b66c5cb36780f4, type: 3}
+  sprite: {fileID: 0}
   type: 5
   description: "It converts Z-Power into crystals that upgrade Lycanroc\u2019s Stone
     Edge to an exclusive Z-Move."

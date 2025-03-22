@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Exp. Share
   m_EditorClassIdentifier: 
   name: Exp. Share
-  sprite: {fileID: 21300000, guid: 7c39affafb8733a4dbc1aeebf7fd53b7, type: 3}
+  sprite: {fileID: 0}
   type: 4
   description: Turning on this special device will allow all the Pokemon on your
     team to receive Exp. Points from battles.

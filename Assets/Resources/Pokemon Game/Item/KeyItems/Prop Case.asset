@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Prop Case
   m_EditorClassIdentifier: 
   name: Prop Case
-  sprite: {fileID: 21300000, guid: df3e836b85b92b244943094d8f18e9bf, type: 3}
+  sprite: {fileID: 21300000, guid: 20e20f70d78caad4498a44276cdc0487, type: 3}
   type: 4
   description: A lovely case to store colorful Props for your Pokemon to wear in
     a musical.

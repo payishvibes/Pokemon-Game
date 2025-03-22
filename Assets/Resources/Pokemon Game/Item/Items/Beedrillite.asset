@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Beedrillite
   m_EditorClassIdentifier: 
   name: Beedrillite
-  sprite: {fileID: 21300000, guid: 82c9a94a9f19d1a49b0bf84de001cc7a, type: 3}
+  sprite: {fileID: 21300000, guid: 9b72cbba2fd060840ae923ee72efbbdb, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Beedrill hold it,
     and this stone will enable it to Mega Evolve during battle.

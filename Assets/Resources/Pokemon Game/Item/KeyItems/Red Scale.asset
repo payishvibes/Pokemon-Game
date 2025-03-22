@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Red Scale
   m_EditorClassIdentifier: 
   name: Red Scale
-  sprite: {fileID: 21300000, guid: b25b6b810c638a44fa14433396535f81, type: 3}
+  sprite: {fileID: 21300000, guid: dccd2323d937f754d845bc7c54d1dc26, type: 3}
   type: 4
   description: A scale from a red Gyarados. It glows red like a flame.
   cost: 0

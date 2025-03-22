@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Seal Bag
   m_EditorClassIdentifier: 
   name: Seal Bag
-  sprite: {fileID: 21300000, guid: 2d3e5a5bbe6e4d34ea302285178c0ad0, type: 3}
+  sprite: {fileID: 21300000, guid: 35a4b65019cb9fd47ac45fecc1755159, type: 3}
   type: 4
   description: A tiny bag that can hold 10 Seals for decorating Poke Balls.
   cost: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Strange Souvenir
   m_EditorClassIdentifier: 
   name: Strange Souvenir
-  sprite: {fileID: 21300000, guid: 555756392cd578247bacc91a2b0084af, type: 3}
+  sprite: {fileID: 21300000, guid: aa27a12139aaba84e937490247ee63cf, type: 3}
   type: 0
   description: An ornament depicting a mysterious Pokemon that has been venerated
     as a guardian deity for an extremely long time in the Alola region.

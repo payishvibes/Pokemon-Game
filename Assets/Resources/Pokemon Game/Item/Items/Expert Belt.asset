@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Expert Belt
   m_EditorClassIdentifier: 
   name: Expert Belt
-  sprite: {fileID: 21300000, guid: b9c90b203b5c7854e8176cc4e7034078, type: 3}
+  sprite: {fileID: 21300000, guid: de44c328633d22f40be58702e18b9f1b, type: 3}
   type: 0
   description: "An item to be held by a Pokemon. It\u2019s a well-worn belt that
     slightly boosts the power of supereffective moves."

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Soot Sack
   m_EditorClassIdentifier: 
   name: Soot Sack
-  sprite: {fileID: 21300000, guid: 65d309860fe39874ba6c3a3e965b53d4, type: 3}
+  sprite: {fileID: 21300000, guid: c887c9573de9ae3438cc8186b55fce60, type: 3}
   type: 4
   description: A sack used to gather and hold volcanic ash.
   cost: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Charti Berry
   m_EditorClassIdentifier: 
   name: Charti Berry
-  sprite: {fileID: 21300000, guid: beeeffbe8a94ff04fbca2a3d2f56754a, type: 3}
+  sprite: {fileID: 21300000, guid: 78c9e2c00b7fec44e8f1a32ebcddeb23, type: 3}
   type: 3
   description: If held by a Pokemon, this Berry will lessen the damage taken from
     one supereffective Rock-type attack.

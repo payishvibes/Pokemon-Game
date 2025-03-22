@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lock Capsule
   m_EditorClassIdentifier: 
   name: Lock Capsule
-  sprite: {fileID: 21300000, guid: eae2cf873c729b84ca0b02757d0b09c4, type: 3}
+  sprite: {fileID: 21300000, guid: 2f58d3579a94da044bcdad1a79ca1a0a, type: 3}
   type: 4
   description: A sturdy Capsule that can only be opened with a special key.
   cost: 0

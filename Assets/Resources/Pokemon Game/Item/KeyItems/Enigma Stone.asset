@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Enigma Stone
   m_EditorClassIdentifier: 
   name: Enigma Stone
-  sprite: {fileID: 21300000, guid: 25eb31bb63c3a8a4c8c6d5fad2f69eec, type: 3}
+  sprite: {fileID: 21300000, guid: 8704090b18a58fc43bc28c5d8e14ab4d, type: 3}
   type: 4
   description: "A crystal ball that was excavated from the ground. It\u2019s a very
     beautiful stone that is covered with bits of rock and earth."

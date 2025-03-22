@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shed Shell
   m_EditorClassIdentifier: 
   name: Shed Shell
-  sprite: {fileID: 21300000, guid: 5e20258b3e0119347b05fccb33238586, type: 3}
+  sprite: {fileID: 21300000, guid: 95509b0e32ae1d143ad37747eba7545c, type: 3}
   type: 0
   description: An item to be held by a Pokemon. This discarded carapace enables the
     holder to switch out of battle without fail.

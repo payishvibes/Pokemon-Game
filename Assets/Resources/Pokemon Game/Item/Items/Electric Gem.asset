@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Electric Gem
   m_EditorClassIdentifier: 
   name: Electric Gem
-  sprite: {fileID: 21300000, guid: 213d99847b262e446a83874b6a5d8630, type: 3}
+  sprite: {fileID: 21300000, guid: d92501cf67ee6f64fab5c0404c3a4266, type: 3}
   type: 0
   description: A gem with an essence of electricity. When held, it strengthens the
     power of an Electric-type move one time.

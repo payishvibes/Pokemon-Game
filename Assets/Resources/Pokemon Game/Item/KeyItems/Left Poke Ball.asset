@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Left Poke Ball
   m_EditorClassIdentifier: 
   name: Left Poke Ball
-  sprite: {fileID: 21300000, guid: 629d74a45731ee2408f92b5f1ad002d8, type: 3}
+  sprite: {fileID: 21300000, guid: ba48c1b2d61cc234ba8770d7c9ef6644, type: 3}
   type: 4
   description: "A Poke Ball with a Pokemon that lost its Trainer inside. It seems
     to be from Ula\u2019ula Island."

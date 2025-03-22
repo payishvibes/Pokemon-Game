@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rainbow Flower
   m_EditorClassIdentifier: 
   name: Rainbow Flower
-  sprite: {fileID: 21300000, guid: 6c48c1411a9476e40b59d8826e788bcd, type: 3}
+  sprite: {fileID: 21300000, guid: 16cbe134516af3542bfe815c8b8114e6, type: 3}
   type: 4
   description: "A flower made of the petals you received from captains. It\u2019s
     proof that your growth has been recognized by them."

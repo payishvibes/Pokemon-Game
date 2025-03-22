@@ -10,5 +10,6 @@ namespace PokemonGame.Game
         public TextMeshProUGUI NameText;
         public Image TextureImage;
         public TextMeshProUGUI DescriptionText;
+        public TextMeshProUGUI AmountText;
     }  
 }

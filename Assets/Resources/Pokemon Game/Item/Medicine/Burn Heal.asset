@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Burn Heal
   m_EditorClassIdentifier: 
   name: Burn Heal
-  sprite: {fileID: 21300000, guid: 8adb6ed85f38e3545ab2b123eab178e4, type: 3}
+  sprite: {fileID: 21300000, guid: f2896dc1236b0794ebc67b8be425abf8, type: 3}
   type: 1
   description: A spray-type medicine for treating burns. It can be used once to heal
     a Pokemon suffering from a burn.

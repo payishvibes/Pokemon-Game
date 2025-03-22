@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: X Speed
   m_EditorClassIdentifier: 
   name: X Speed
-  sprite: {fileID: 21300000, guid: b170e9af8e9992b4c86ac4150b443e8b, type: 3}
+  sprite: {fileID: 21300000, guid: ea1d4ab22c9c5414d9e76c9cacb9637d, type: 3}
   type: 0
   description: An item that sharply boosts the Speed stat of a Pokemon during a battle.
     It wears off once the Pokemon is withdrawn.

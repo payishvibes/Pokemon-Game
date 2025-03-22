@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Magmarizer
   m_EditorClassIdentifier: 
   name: Magmarizer
-  sprite: {fileID: 21300000, guid: 700b40cb1d8e7d042910b4d56fef3a0a, type: 3}
+  sprite: {fileID: 21300000, guid: 08a65637a208ad64c925cca7af447ddd, type: 3}
   type: 0
   description: "A box packed with a tremendous amount of magma energy. It\u2019s
     loved by a certain Pokemon."

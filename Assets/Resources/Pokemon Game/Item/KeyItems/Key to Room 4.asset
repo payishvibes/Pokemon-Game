@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Key to Room 4
   m_EditorClassIdentifier: 
   name: Key to Room 4
-  sprite: {fileID: 21300000, guid: 042762b1583eeda40a1d070f2ba28ea0, type: 3}
+  sprite: {fileID: 21300000, guid: b35cfa55c242457428473e8178a3e6b6, type: 3}
   type: 4
   description: A key that opens a door inside Sea Mauville.
   cost: 0

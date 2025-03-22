@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fightinium Z
   m_EditorClassIdentifier: 
   name: Fightinium Z
-  sprite: {fileID: 21300000, guid: 0bd9052a3055d0c47a17e3e3455b23f3, type: 3}
+  sprite: {fileID: 0}
   type: 5
   description: It converts Z-Power into crystals that upgrade Fighting-type moves
     to Fighting-type Z-Moves.

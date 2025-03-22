@@ -5,8 +5,7 @@ using UnityEngine.Events;
 namespace PokemonGame.ScriptableObjects
 {
     using UnityEngine;
-
-
+    
     [CreateAssetMenu(fileName = "New Item", menuName = "Pokemon Game/New Item")]
     public class Item : ScriptableObject
     {
@@ -15,8 +14,7 @@ namespace PokemonGame.ScriptableObjects
         public ItemType type;
         [TextArea] public string description;
         public int cost;
-        public bool useInBattle;
-        [ConditionalHide("useInBattle", 1)] public bool lockedTarget;
+        public bool lockedTarget;
         [ConditionalHide("lockedTarget", 1)] public bool playerParty;
         [ConditionalHide("lockedTarget", 1)] public int targetIndex;
     

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Macho Brace
   m_EditorClassIdentifier: 
   name: Macho Brace
-  sprite: {fileID: 21300000, guid: d9b8b9d2b78f7a74c856bf140dffd704, type: 3}
+  sprite: {fileID: 21300000, guid: 1aefb6234ecee434fbe79756c83f49dd, type: 3}
   type: 0
   description: An item to be held by a Pokemon. This stiff, heavy brace helps Pokemon
     grow strong but cuts Speed in battle.

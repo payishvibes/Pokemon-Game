@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Blazikenite
   m_EditorClassIdentifier: 
   name: Blazikenite
-  sprite: {fileID: 21300000, guid: d53f48d043365354c961f55f830aee3b, type: 3}
+  sprite: {fileID: 21300000, guid: c28d2a70878cf2041b6090aa85a592f9, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Blaziken hold it,
     and this stone will enable it to Mega Evolve during battle.

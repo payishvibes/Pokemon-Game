@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Blue Card
   m_EditorClassIdentifier: 
   name: Blue Card
-  sprite: {fileID: 21300000, guid: 6b139d94392755240b1ec0fb7e6ef255, type: 3}
+  sprite: {fileID: 21300000, guid: aefc7f8fd2706eb4f9bc2a43a8e39661, type: 3}
   type: 4
   description: "A card to save points for the Buena\u2019s Password show."
   cost: 0

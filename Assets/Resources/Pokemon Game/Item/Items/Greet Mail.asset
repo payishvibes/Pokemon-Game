@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Greet Mail
   m_EditorClassIdentifier: 
   name: Greet Mail
-  sprite: {fileID: 21300000, guid: d96ade31c964f804a87da86cb702738a, type: 3}
+  sprite: {fileID: 21300000, guid: 52131ede0ddd84a44aff69138cbe8acd, type: 3}
   type: 0
   description: Stationery designed to be easy to use when writing someone for the
     first time. Have a Pokemon hold it for delivery.

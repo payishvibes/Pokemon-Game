@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lucky Punch
   m_EditorClassIdentifier: 
   name: Lucky Punch
-  sprite: {fileID: 21300000, guid: dcfb9bed0b8d6e14d947406b7822e2f7, type: 3}
+  sprite: {fileID: 21300000, guid: 9c85174e308732c4699d349580ae0b36, type: 3}
   type: 0
   description: "An item to be held by Chansey. This pair of lucky boxing gloves will
     boost Chansey\u2019s critical-hit ratio."

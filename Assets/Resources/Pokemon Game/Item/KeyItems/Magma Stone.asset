@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Magma Stone
   m_EditorClassIdentifier: 
   name: Magma Stone
-  sprite: {fileID: 21300000, guid: 84f0541dbebbad749b3b5078b6fc5f7c, type: 3}
+  sprite: {fileID: 21300000, guid: 029dad41ac5896d4e943ee9dc7cf16fb, type: 3}
   type: 4
   description: A stone formed by boulders melting in intensely hot magma, then hardening.
     Magma remains sealed inside it.

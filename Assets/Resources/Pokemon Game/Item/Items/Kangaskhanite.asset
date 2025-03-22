@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Kangaskhanite
   m_EditorClassIdentifier: 
   name: Kangaskhanite
-  sprite: {fileID: 21300000, guid: c4e82eab4cf95764584aa2b260f8432e, type: 3}
+  sprite: {fileID: 21300000, guid: d69d74e354afd5647aeaeaa506a42c21, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Kangaskhan hold it,
     and this stone will enable it to Mega Evolve during battle.

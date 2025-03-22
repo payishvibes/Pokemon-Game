@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DNA Splicers
   m_EditorClassIdentifier: 
   name: DNA Splicers
-  sprite: {fileID: 21300000, guid: f9edc3c1e680548488b99c33f2445f82, type: 3}
+  sprite: {fileID: 21300000, guid: 1101c376b80f5214cb43fcf13701956f, type: 3}
   type: 4
   description: A splicer that separates Kyurem and a certain Pokemon when they have
     been fused.

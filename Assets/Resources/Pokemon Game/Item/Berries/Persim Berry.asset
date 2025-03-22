@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Persim Berry
   m_EditorClassIdentifier: 
   name: Persim Berry
-  sprite: {fileID: 21300000, guid: 1516934157acaaa4ebcaaae568bca946, type: 3}
+  sprite: {fileID: 21300000, guid: 1bc55fc070827644f9e7f747a927e41f, type: 3}
   type: 3
   description: A Berry to be consumed by Pokemon. If a Pokemon holds one, it can
     recover from confusion on its own in battle.

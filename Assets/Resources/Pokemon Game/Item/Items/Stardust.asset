@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Stardust
   m_EditorClassIdentifier: 
   name: Stardust
-  sprite: {fileID: 21300000, guid: df99d618673bf8e4d95b8d74323bc38c, type: 3}
+  sprite: {fileID: 21300000, guid: bc16b3ff7a7bc59428f84a75248d767f, type: 3}
   type: 0
   description: Lovely red sand that flows between the fingers with a loose, silky
     feel. It can be sold at a low price to shops.

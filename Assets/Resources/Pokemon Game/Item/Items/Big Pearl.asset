@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Big Pearl
   m_EditorClassIdentifier: 
   name: Big Pearl
-  sprite: {fileID: 21300000, guid: 59683e2a80955ac4188b9061aeaabae1, type: 3}
+  sprite: {fileID: 21300000, guid: ab9d428038d1c054f99744bdf55367af, type: 3}
   type: 0
   description: A rather large pearl that has a very nice silvery sheen. It can be
     sold to shops for a high price.

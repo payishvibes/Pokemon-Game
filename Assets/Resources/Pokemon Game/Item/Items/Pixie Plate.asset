@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pixie Plate
   m_EditorClassIdentifier: 
   name: Pixie Plate
-  sprite: {fileID: 21300000, guid: b69f5aed168ab92489ebcc1458905ac9, type: 3}
+  sprite: {fileID: 21300000, guid: ecdb1079e84258944bddf8fa8efa9762, type: 3}
   type: 0
   description: "An item to be held by a Pokemon. It\u2019s a stone tablet that boosts
     the power of Fairy-type moves."

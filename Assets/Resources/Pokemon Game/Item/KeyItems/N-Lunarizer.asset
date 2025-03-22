@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: N-Lunarizer
   m_EditorClassIdentifier: 
   name: N-Lunarizer
-  sprite: {fileID: 21300000, guid: 51eac8aab0af88840883f07528e02b09, type: 3}
+  sprite: {fileID: 0}
   type: 4
   description: A machine to fuse Necrozma, which needs light, and Lunala.
   cost: 0

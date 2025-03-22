@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: King's Rock
   m_EditorClassIdentifier: 
   name: King's Rock
-  sprite: {fileID: 21300000, guid: bedf21f7ecde40243b258995690990ec, type: 3}
+  sprite: {fileID: 0}
   type: 0
   description: An item to be held by a Pokemon. When the holder successfully inflicts
     damage, the target may also flinch.

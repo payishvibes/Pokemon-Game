@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Plasma Card
   m_EditorClassIdentifier: 
   name: Plasma Card
-  sprite: {fileID: 21300000, guid: 0a41936421ce70140be79120be2075b5, type: 3}
+  sprite: {fileID: 21300000, guid: 4c016165e1e283144adea51174b0b081, type: 3}
   type: 4
   description: A card key needed to enter the password inside the Plasma Frigate.
   cost: 0

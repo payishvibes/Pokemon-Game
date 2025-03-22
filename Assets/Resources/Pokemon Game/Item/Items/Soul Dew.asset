@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Soul Dew
   m_EditorClassIdentifier: 
   name: Soul Dew
-  sprite: {fileID: 21300000, guid: ecdc2ff228007164f91f07300b6523f7, type: 3}
+  sprite: {fileID: 21300000, guid: 73a4c86591dc6a340b720393d7a96618, type: 3}
   type: 0
   description: A wondrous orb to be held by either Latios or Latias. It raises the
     power of Psychic- and Dragon-type moves.

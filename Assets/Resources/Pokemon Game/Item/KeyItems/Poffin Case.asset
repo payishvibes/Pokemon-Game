@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Poffin Case
   m_EditorClassIdentifier: 
   name: Poffin Case
-  sprite: {fileID: 21300000, guid: b88550da2c41adf45a834e969ca76c30, type: 3}
+  sprite: {fileID: 21300000, guid: b711571a36a7ee84ea5ab60ce2e82011, type: 3}
   type: 4
   description: A case for storing Poffins cooked from Berries.
   cost: 0

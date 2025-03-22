@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Miracle Seed
   m_EditorClassIdentifier: 
   name: Miracle Seed
-  sprite: {fileID: 21300000, guid: bf63139da182cc24182e38a5015e0893, type: 3}
+  sprite: {fileID: 21300000, guid: 6848a9f735f60dc4782bbf9a4d712dd0, type: 3}
   type: 0
   description: "An item to be held by a Pokemon. It\u2019s a seed imbued with life
     force that boosts the power of Grass-type moves."

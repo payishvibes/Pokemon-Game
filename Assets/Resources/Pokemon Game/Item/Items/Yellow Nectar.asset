@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Yellow Nectar
   m_EditorClassIdentifier: 
   name: Yellow Nectar
-  sprite: {fileID: 21300000, guid: ccc22e2b1d858de44b06c44f5bbf003d, type: 3}
+  sprite: {fileID: 21300000, guid: 322bcc6cf1b05694694f13eb4552565b, type: 3}
   type: 0
   description: A flower nectar obtained at Melemele Meadow. It changes the form of
     certain species of Pokemon.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Odd Keystone
   m_EditorClassIdentifier: 
   name: Odd Keystone
-  sprite: {fileID: 21300000, guid: 54bdd48abf8df5145b061b072419f2be, type: 3}
+  sprite: {fileID: 21300000, guid: ff9a1b126ec2f004e92c2efc5cfb062c, type: 3}
   type: 0
   description: A vital item that is needed to keep a stone tower from collapsing.
     Voices can be heard from it occasionally.

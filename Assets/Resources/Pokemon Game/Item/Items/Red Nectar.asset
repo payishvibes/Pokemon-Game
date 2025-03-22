@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Red Nectar
   m_EditorClassIdentifier: 
   name: Red Nectar
-  sprite: {fileID: 21300000, guid: 623b55ead8c732446a070f36d19f58e4, type: 3}
+  sprite: {fileID: 21300000, guid: 410ec4af5847b364883dcf718c2fa89a, type: 3}
   type: 0
   description: "A flower nectar obtained at Ula\u2019ula Meadow. It changes the form
     of certain species of Pokemon."

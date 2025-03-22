@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: X Sp. Atk 3
   m_EditorClassIdentifier: 
   name: X Sp. Atk 3
-  sprite: {fileID: 21300000, guid: 0cd7c0cfa5e1c6f4bada366105b86712, type: 3}
+  sprite: {fileID: 0}
   type: 0
   description: It drastically raises the Sp. Atk stat of a Pokemon in battle. It
     wears off if the Pokemon is withdrawn.

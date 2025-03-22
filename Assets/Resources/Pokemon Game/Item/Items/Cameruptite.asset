@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cameruptite
   m_EditorClassIdentifier: 
   name: Cameruptite
-  sprite: {fileID: 21300000, guid: 8092f95f4e8a15c49aaa22c2095ca785, type: 3}
+  sprite: {fileID: 21300000, guid: 8ab0cd8721c65b94b8d68898332ee826, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Camerupt hold it,
     and this stone will enable it to Mega Evolve during battle.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bug Memory
   m_EditorClassIdentifier: 
   name: Bug Memory
-  sprite: {fileID: 21300000, guid: bd21844ce7ed1614a8dc9474ee5171e2, type: 3}
+  sprite: {fileID: 21300000, guid: b2cc16469d1ece648b1937489cd99740, type: 3}
   type: 0
   description: A memory disc that contains Bug-type data. It changes the type of
     the holder if held by a certain species of Pokemon.

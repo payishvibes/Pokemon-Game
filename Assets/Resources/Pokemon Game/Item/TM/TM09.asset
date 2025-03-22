@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM09
   m_EditorClassIdentifier: 
   name: TM09
-  sprite: {fileID: 21300000, guid: c5d846f1cdff502448431745bd2cfd0d, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: "The user drenches the target in a special poisonous liquid. This
     move\uFFFDs power is doubled if the target is poisoned."

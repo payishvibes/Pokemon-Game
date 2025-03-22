@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pikashunium Z
   m_EditorClassIdentifier: 
   name: Pikashunium Z
-  sprite: {fileID: 21300000, guid: 72214b17e15fa49458b80fb5f1c95b7e, type: 3}
+  sprite: {fileID: 0}
   type: 5
   description: It converts Z-Power into crystals that upgrade a Thunderbolt by Pikachu
     in a cap to an exclusive Z-Move.

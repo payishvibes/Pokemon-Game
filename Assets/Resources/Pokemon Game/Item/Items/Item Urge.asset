@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Item Urge
   m_EditorClassIdentifier: 
   name: Item Urge
-  sprite: {fileID: 21300000, guid: ac2151d324d2c054bb2f77525d3a7eab, type: 3}
+  sprite: {fileID: 21300000, guid: a4d8596087c18f94a96364e76925617a, type: 3}
   type: 0
   description: When used, it causes an ally Pokemon to use its held item.
   cost: 0

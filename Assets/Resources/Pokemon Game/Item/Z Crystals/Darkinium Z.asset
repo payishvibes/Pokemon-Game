@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Darkinium Z
   m_EditorClassIdentifier: 
   name: Darkinium Z
-  sprite: {fileID: 21300000, guid: 87d35749c6ee3f649b2018da0f62ea1b, type: 3}
+  sprite: {fileID: 0}
   type: 5
   description: It converts Z-Power into crystals that upgrade Dark-type moves to
     Dark-type Z-Moves.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Data Card 03
   m_EditorClassIdentifier: 
   name: Data Card 03
-  sprite: {fileID: 21300000, guid: 9606821de4d96b145b7d11b3331efc9a, type: 3}
+  sprite: {fileID: 21300000, guid: 05724fb163482414b94e22b6e7b29ea3, type: 3}
   type: 0
   description: It holds Pokeathlon records. It is a card that shows how many times
     your Pokemon dashed in the Pokeathlon.

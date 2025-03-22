@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wacan Berry
   m_EditorClassIdentifier: 
   name: Wacan Berry
-  sprite: {fileID: 21300000, guid: 49fc600d77d7ba14b91d82536736b3df, type: 3}
+  sprite: {fileID: 21300000, guid: cbecef05f72ce3b4ba2ba0ee6b0861b4, type: 3}
   type: 3
   description: If held by a Pokemon, this Berry will lessen the damage taken from
     one supereffective Electric-type attack.

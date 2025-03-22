@@ -11,7 +11,6 @@ namespace PokemonGame.Battle
     {
         [SerializeField] private GameObject itemDisplayHolder;
         [SerializeField] private GameObject itemDisplayGameObject;
-        [SerializeField] private Button itemUseButton;
         [SerializeField] private float useButtonXOffset;
         
         private ItemType _currentSortingType;
@@ -52,14 +51,10 @@ namespace PokemonGame.Battle
 
             for (int i = 0; i < sortedItems.Count; i++)
             {
-                if (!sortedItems[i].item.useInBattle)
-                {
-                    continue;
-                }
-                
                 ItemDisplay display = Instantiate(itemDisplayGameObject, Vector3.zero, Quaternion.identity,
                     itemDisplayHolder.transform).GetComponent<ItemDisplay>();
-                display.NameText.text = $"{sortedItems[i].item.name} x{sortedItems[i].amount}";
+                display.NameText.text = $"{sortedItems[i].item.name}";
+                display.AmountText.text = $"x{sortedItems[i].amount}";
                 display.TextureImage.sprite = sortedItems[i].item.sprite;
                 display.DescriptionText.text = sortedItems[i].item.description;
                 

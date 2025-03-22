@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Audinite
   m_EditorClassIdentifier: 
   name: Audinite
-  sprite: {fileID: 21300000, guid: 84927d9b80e741f40a804d3cfb466ddc, type: 3}
+  sprite: {fileID: 21300000, guid: d943696e006f51d458794ce40bf071d1, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Audino hold it, and
     this stone will enable it to Mega Evolve during battle.

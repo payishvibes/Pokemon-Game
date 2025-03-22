@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Letter
   m_EditorClassIdentifier: 
   name: Letter
-  sprite: {fileID: 21300000, guid: da3db479deae1df49a2c50053ebc42f6, type: 3}
+  sprite: {fileID: 21300000, guid: c4300ded593e40340a60abfdb27662fd, type: 3}
   type: 4
   description: An extremely important letter to Steven from the President of Devon
     Corporation.

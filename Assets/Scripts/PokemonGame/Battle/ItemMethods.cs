@@ -1,7 +1,6 @@
 using System;
 using System.IO;
 using System.Text.RegularExpressions;
-using PokemonGame.Global;
 using UnityEditor;
 
 namespace PokemonGame.Battle
@@ -19,7 +18,7 @@ namespace PokemonGame.Battle
         {
             DateTime start = DateTime.Now;
             StreamReader streamReader =
-                new StreamReader("C:\\Users\\Mr. Monster\\Documents\\Pokemon Gen 7 database\\tms.csv");
+                new StreamReader("C:\\Users\\Mr. Monster\\Documents\\Pokemon Gen 7 database\\pokeballs.csv");
             bool endOfFile = false;
             while (!endOfFile)
             {
@@ -33,20 +32,20 @@ namespace PokemonGame.Battle
                 // var values = Regex.Split(dataString, @",(?=[^0])", RegexOptions.None);
                 dataString = dataString.Replace("\"", "");
                 dataString = dataString.Replace("é", "e");
-                var values = Regex.Split(dataString, @",(?=[^0])(?=[^ ])", RegexOptions.None);
-
+                var values = Regex.Split(dataString, @",(?=[^ ])", RegexOptions.None);
+                
                 if (values[0] == "???")
                 {
                     continue;
                 }
                 
-                TM item = CreateInstance<TM>();
+                PokeBall item = CreateInstance<PokeBall>();
                 
-                item.type = ItemType.TM;
+                item.type = ItemType.PokeBalls;
                 item.name = values[0];
-                item.description = values[3];
-                item.sprite = Resources.Load<Sprite>($"Pokemon Game/Sprites/items/tm-{values[2].ToLower()}");
-                item.move = Registry.GetMove(values[1]);
+                item.description = values[2];
+                item.bonus = float.Parse(values[1]);
+                item.sprite = Resources.Load<Sprite>($"Pokemon Game/Sprites/items/{values[0].ToLower().Replace(" ", "-")}");
                 if (!item.sprite)
                 {
                     Debug.LogWarning("No sprite found, possible spelling difference or missing sprite");
@@ -57,7 +56,7 @@ namespace PokemonGame.Battle
                     Debug.LogWarning("More than 2 entries, possible faulty description");
                 }
                 
-                AssetDatabase.CreateAsset(item, $"Assets/Resources/Pokemon Game/Item/TM/{item.name}.asset");
+                AssetDatabase.CreateAsset(item, $"Assets/Resources/Pokemon Game/Item/PokeBalls/{item.name}.asset");
                 
                 Debug.Log($"Created Item: {item.name}");
             

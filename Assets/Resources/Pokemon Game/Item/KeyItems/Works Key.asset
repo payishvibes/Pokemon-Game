@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Works Key
   m_EditorClassIdentifier: 
   name: Works Key
-  sprite: {fileID: 21300000, guid: b0f18a8346f2dc74fa411bbb6f70eb81, type: 3}
+  sprite: {fileID: 21300000, guid: c8757caee6c1ae743b1120c9b18f44cd, type: 3}
   type: 4
   description: A large key for operating the doors of the Valley Windworks in the
     canyon. It was held by a Team Galactic Grunt.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RSVP Mail
   m_EditorClassIdentifier: 
   name: RSVP Mail
-  sprite: {fileID: 21300000, guid: b0065a08ae6dfe54899f9f3dcf114a63, type: 3}
+  sprite: {fileID: 21300000, guid: 878e380c05144f44783bca61771840bf, type: 3}
   type: 0
   description: Stationery designed to allow you to extend an invitation to the recipient.
     Have a Pokemon hold it for delivery.

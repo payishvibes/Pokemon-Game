@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ghost Gem
   m_EditorClassIdentifier: 
   name: Ghost Gem
-  sprite: {fileID: 21300000, guid: 70ab1f9d75dffa64c987d0a23cd1f3be, type: 3}
+  sprite: {fileID: 21300000, guid: 292cc7202b2702f4eb4cc1a780585b18, type: 3}
   type: 0
   description: A gem with a spectral essence. When held, it strengthens the power
     of a Ghost-type move one time.

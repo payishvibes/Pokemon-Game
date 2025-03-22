@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mewnium Z
   m_EditorClassIdentifier: 
   name: Mewnium Z
-  sprite: {fileID: 21300000, guid: 42ea1ea4f24caa94bbade05b231dc8dd, type: 3}
+  sprite: {fileID: 0}
   type: 5
   description: "It converts Z-Power into crystals that upgrade Mew\u2019s Psychic
     to an exclusive Z-Move."

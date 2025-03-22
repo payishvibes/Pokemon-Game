@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GB Sounds
   m_EditorClassIdentifier: 
   name: GB Sounds
-  sprite: {fileID: 21300000, guid: 4cde1c9623c04834b961c95f7ee04e15, type: 3}
+  sprite: {fileID: 21300000, guid: 5b6ceaffc01a60a4da2eab10024c1ecd, type: 3}
   type: 4
   description: "A music player that allows you to listen to nostalgic songs. It\u2019s
     operated with the flip of a single switch."

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fairy Gem
   m_EditorClassIdentifier: 
   name: Fairy Gem
-  sprite: {fileID: 21300000, guid: 8f4daa3c31f67fb4097a565f8297210e, type: 3}
+  sprite: {fileID: 21300000, guid: 441c966ffc5051c449171e372f19372c, type: 3}
   type: 0
   description: A gem with an essence of the fey. When held, it strengthens the power
     of a Fairy-type move one time.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Balm Mushroom
   m_EditorClassIdentifier: 
   name: Balm Mushroom
-  sprite: {fileID: 21300000, guid: 9e63e8c6116ded94daa4336a621ec4d7, type: 3}
+  sprite: {fileID: 21300000, guid: d175375692fb58a4ab6f24c67d7742bb, type: 3}
   type: 0
   description: A rare mushroom that gives off a nice fragrance. It can be sold at
     a high price to shops.

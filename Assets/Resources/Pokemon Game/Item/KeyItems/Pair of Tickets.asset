@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pair of Tickets
   m_EditorClassIdentifier: 
   name: Pair of Tickets
-  sprite: {fileID: 21300000, guid: 8e13bb243d4914643852af9a05a6b7b2, type: 3}
+  sprite: {fileID: 21300000, guid: 5e682d86ab562f24aafdef00a09e9b3d, type: 3}
   type: 4
   description: Tickets for two to the astronomical show being held at the Mossdeep
     Space Center.

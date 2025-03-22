@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Zinc
   m_EditorClassIdentifier: 
   name: Zinc
-  sprite: {fileID: 21300000, guid: 3b5077a89b0d11b43a36c3dca59e8900, type: 3}
+  sprite: {fileID: 21300000, guid: 8286b8fc62beb164898c0a79d9ff7884, type: 3}
   type: 1
   description: A nutritious drink for Pokemon. When consumed, it raises the base
     Sp. Def stat of a single Pokemon.

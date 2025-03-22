@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Journal
   m_EditorClassIdentifier: 
   name: Journal
-  sprite: {fileID: 21300000, guid: 766368901619ee84ebec2159a6f89c5c, type: 3}
+  sprite: {fileID: 21300000, guid: 78214c9dc812627469491bd30ce4a44b, type: 3}
   type: 4
   description: A notebook that keeps a day-to-day record of your adventure so far.
   cost: 0

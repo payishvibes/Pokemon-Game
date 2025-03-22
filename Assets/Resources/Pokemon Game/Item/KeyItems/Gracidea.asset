@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gracidea
   m_EditorClassIdentifier: 
   name: Gracidea
-  sprite: {fileID: 21300000, guid: 10a57ea6768ded74baef22ac0cccb012, type: 3}
+  sprite: {fileID: 21300000, guid: 9eb60d65ecf5ff04682e77a619c4072b, type: 3}
   type: 4
   description: A flower sometimes bundled in bouquets to convey gratitude on special
     occasions like birthdays.

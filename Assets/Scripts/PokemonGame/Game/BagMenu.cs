@@ -45,7 +45,8 @@ namespace PokemonGame.Game
             {
                 ItemDisplay display = Instantiate(itemDisplayGameObject, Vector3.zero, Quaternion.identity,
                     itemDisplayHolder.transform).GetComponent<ItemDisplay>();
-                display.NameText.text = $"{itemToShow.item.name} x{itemToShow.amount}";
+                display.NameText.text = $"{itemToShow.item.name}";
+                display.AmountText.text = $"x{itemToShow.amount}";
                 display.TextureImage.sprite = itemToShow.item.sprite;
                 display.DescriptionText.text = itemToShow.item.description;
             }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Soda Pop
   m_EditorClassIdentifier: 
   name: Soda Pop
-  sprite: {fileID: 21300000, guid: 31b21a5a7a91f87438dfc133831b752c, type: 3}
+  sprite: {fileID: 21300000, guid: e6d7a5491fcc9844c893468cb783d301, type: 3}
   type: 1
   description: A highly carbonated soda drink. When consumed, it restores up to 50
     HP to an injured Pokemon.

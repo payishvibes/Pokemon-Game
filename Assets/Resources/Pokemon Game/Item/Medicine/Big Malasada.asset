@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Big Malasada
   m_EditorClassIdentifier: 
   name: Big Malasada
-  sprite: {fileID: 21300000, guid: a292fa137e79abd47a13a0979d2ce54a, type: 3}
+  sprite: {fileID: 21300000, guid: cec3142bdf414824f93e23a90f81eb99, type: 3}
   type: 1
   description: "The Alola region\u2019s local specialty\u2014fried bread. It can
     be used once to heal all the status conditions of a Pokemon."

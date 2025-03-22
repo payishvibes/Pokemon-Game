@@ -119,6 +119,8 @@ namespace PokemonGame.Battle
         private bool _playerChoseToUseItem;
         
         EventHandler<BattlerTookDamageArgs> opponentBattlerDefeated = null;
+        EventHandler<int> playerBattlerLeveledUp = null;
+        EventHandler<EvolutionData> playerBattlerEvolved = null;
 
         EventHandler<BattlerTookDamageArgs> playerBattlerDefeated = null;
         
@@ -153,6 +155,9 @@ namespace PokemonGame.Battle
             opponentParty.PartyAllDefeated += OpponentPartyAllDefeated;
 
             opponentBattlerDefeated = (s, e) => BattlerFainted(e, opponentParty.party.Find(x => x == e.damaged));
+            
+            playerBattlerLeveledUp = (s, e) => BattlerLeveledUp(playerParty.party.Find(x => x == (Battler)s), e);
+            playerBattlerEvolved = (s, e) => BattlerEvolved(playerParty.party.Find(x => x == (Battler)s), e.evolution);
 
             for (int i = 0; i < opponentParty.Count; i++)
             {
@@ -172,6 +177,16 @@ namespace PokemonGame.Battle
                 playerParty[i].OnFainted += playerBattlerDefeated;
             }
             
+            for (int i = 0; i < playerParty.Count; i++)
+            {
+                playerParty[i].OnLevelUp += playerBattlerLeveledUp;
+            }
+            
+            for (int i = 0; i < playerParty.Count; i++)
+            {
+                playerParty[i].OnCanEvolve += playerBattlerEvolved;
+            }
+            
             // adds current battler to list of participating battlers
             battlersThatParticipated.Add(playerCurrentBattler);
             
@@ -188,6 +203,14 @@ namespace PokemonGame.Battle
             for (int i = 0; i < opponentParty.Count; i++)
             {
                 opponentParty[i].OnFainted -= opponentBattlerDefeated;
+            }
+            for (int i = 0; i < playerParty.Count; i++)
+            {
+                opponentParty[i].OnLevelUp -= playerBattlerLeveledUp;
+            }
+            for (int i = 0; i < playerParty.Count; i++)
+            {
+                opponentParty[i].OnCanEvolve -= playerBattlerEvolved;
             }
         }
 
@@ -206,6 +229,17 @@ namespace PokemonGame.Battle
             turnItemQueue.Clear();
         }
 
+        private void BattlerLeveledUp(Battler battlerThatLeveled, int newLevel)
+        {
+            QueDialogue($"{battlerThatLeveled.name} reached level {newLevel}!");
+        }
+
+        private void BattlerEvolved(Battler battlerThatEvolved, BattlerTemplate newTemplate)
+        {
+            battlerThatEvolved.EvolutionApproved();
+            QueDialogue($"{battlerThatEvolved.name} evolved into a {newTemplate.name}!");
+        }
+
         public void BattlerFainted(EventArgs e, Battler defeated)
         {
             uiManager.ShrinkOpponentBattler();
@@ -220,7 +254,11 @@ namespace PokemonGame.Battle
 
             foreach (Battler battler in battlersThatParticipated)
             {
-                battler.exp += exp;
+                if (!battler.isFainted)
+                {
+                    QueDialogue($"{battler.name} gained {exp} experience points");
+                    battler.GainExp(exp);
+                }
             }
 
             playerCurrentBattler.EVs[0] += defeated.source.yields[1];
@@ -527,7 +565,7 @@ namespace PokemonGame.Battle
         {
             QueDialogue($"Threw a pokeball at {opponentCurrentBattler.name}!");
 
-            if (ExperienceCalculator.Captured(opponentCurrentBattler, (PokeBall)_playerItemToUse))
+            if (ExperienceCalculator.Captured(opponentCurrentBattler, playerCurrentBattler, (PokeBall)_playerItemToUse))
             {
                 uiManager.ShrinkOpponentBattler(true);
                 QueDialogue($"Caught {opponentCurrentBattler.name}!");
@@ -786,8 +824,11 @@ namespace PokemonGame.Battle
             DialogueMoveUsed(opponentCurrentBattler.name, enemyMoveToDo.name, playerCurrentBattler.name);
             
             enemyMoveToDo.MoveMethod(e);
-            
-            playerCurrentBattler.TakeDamage(e.damageDealt, new BattlerDamageSource(opponentCurrentBattler));
+
+            if (enemyMoveToDo.category != MoveCategory.Special)
+            {
+                playerCurrentBattler.TakeDamage(e.damageDealt, new BattlerDamageSource(opponentCurrentBattler));
+            }
         }
 
         private void PlayerBattlerDied()
@@ -795,6 +836,8 @@ namespace PokemonGame.Battle
             turnItemQueue.RemoveAll(item => item == TurnItem.PlayerMove);
             
             turnItemQueue.Add(TurnItem.PlayerSwapBecauseFainted);
+
+            battlersThatParticipated.Remove(playerCurrentBattler);
         }
 
         public void RunFromBattle()

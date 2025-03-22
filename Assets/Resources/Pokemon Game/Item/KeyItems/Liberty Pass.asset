@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Liberty Pass
   m_EditorClassIdentifier: 
   name: Liberty Pass
-  sprite: {fileID: 21300000, guid: 148152bc37fa19d4ba404eb0f7a04989, type: 3}
+  sprite: {fileID: 21300000, guid: 7a8bcf6beba94ef42a51b46b3bf0a3a0, type: 3}
   type: 4
   description: A special pass to go to Liberty Garden. Board the ship in Castelia
     City.

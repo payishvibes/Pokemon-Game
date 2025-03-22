@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Watmel Berry
   m_EditorClassIdentifier: 
   name: Watmel Berry
-  sprite: {fileID: 21300000, guid: 5e976654c956477488a95113958ad80c, type: 3}
+  sprite: {fileID: 21300000, guid: 204b107ee662dbb4ea17b5df04ce6871, type: 3}
   type: 3
   description: Used to make Pokeblocks that will enhance your Cleverness, this Berry
     is rare in other regions.

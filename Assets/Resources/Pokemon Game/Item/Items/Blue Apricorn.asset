@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Blue Apricorn
   m_EditorClassIdentifier: 
   name: Blue Apricorn
-  sprite: {fileID: 21300000, guid: bcbc849042161114ab523bcae0024258, type: 3}
+  sprite: {fileID: 21300000, guid: 78da8418bb2bdfb47882d2e63e7e2290, type: 3}
   type: 0
   description: A blue Apricorn. It smells a bit like grass.
   cost: 0

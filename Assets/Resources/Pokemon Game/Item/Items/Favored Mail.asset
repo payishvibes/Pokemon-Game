@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Favored Mail
   m_EditorClassIdentifier: 
   name: Favored Mail
-  sprite: {fileID: 21300000, guid: e2627011747fe814184f3fe553931c53, type: 3}
+  sprite: {fileID: 21300000, guid: b096a92c50acfd04086322cff8d2ec2c, type: 3}
   type: 0
   description: Stationery designed to make it easier to write about your favorite
     things. Have a Pokemon hold it for delivery.

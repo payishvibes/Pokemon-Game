@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Meadow Plate
   m_EditorClassIdentifier: 
   name: Meadow Plate
-  sprite: {fileID: 21300000, guid: f66d07a49185e6048a8d1fa36aba88c0, type: 3}
+  sprite: {fileID: 21300000, guid: e4f51672f50cfd644b4cb89f46f321b3, type: 3}
   type: 0
   description: "An item to be held by a Pokemon. It\u2019s a stone tablet that boosts
     the power of Grass-type moves."

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Galactic Key
   m_EditorClassIdentifier: 
   name: Galactic Key
-  sprite: {fileID: 21300000, guid: 681af50943a44b34788a3da2d527a887, type: 3}
+  sprite: {fileID: 21300000, guid: 7899b6a1b0594ea499e49b1f9163c5e2, type: 3}
   type: 4
   description: A card key for disengaging the security systems in the Galactic HQ.
     Losing it can result in punishment, apparently.

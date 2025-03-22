@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Honor of Kalos
   m_EditorClassIdentifier: 
   name: Honor of Kalos
-  sprite: {fileID: 21300000, guid: 4714eea51cc5ce14bb3121977ccd8ed0, type: 3}
+  sprite: {fileID: 21300000, guid: 188828b9b16fae84c8fe0d986405ab4c, type: 3}
   type: 4
   description: A precious symbol that is awarded only to an individual who has done
     great things for the Kalos region.

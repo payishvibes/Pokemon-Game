@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gengarite
   m_EditorClassIdentifier: 
   name: Gengarite
-  sprite: {fileID: 21300000, guid: 197f1cd80553fcf4bb302c7f9742cdcd, type: 3}
+  sprite: {fileID: 21300000, guid: 2530684e47d092f4cabbda8e33fc1f55, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Gengar hold it, and
     this stone will enable it to Mega Evolve during battle.

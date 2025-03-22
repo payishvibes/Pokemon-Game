@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Kelpsy Berry
   m_EditorClassIdentifier: 
   name: Kelpsy Berry
-  sprite: {fileID: 21300000, guid: fff57294acd3be249a86b76bfc720096, type: 3}
+  sprite: {fileID: 21300000, guid: 54ecc9e2e63c8a140b5890ffb5f9a895, type: 3}
   type: 3
   description: A Berry to be consumed by Pokemon. Using it on a Pokemon makes it
     more friendly but lowers its base Attack.

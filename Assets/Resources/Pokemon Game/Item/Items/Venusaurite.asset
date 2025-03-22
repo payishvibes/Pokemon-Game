@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Venusaurite
   m_EditorClassIdentifier: 
   name: Venusaurite
-  sprite: {fileID: 21300000, guid: efb4687aae08a124f9b9925f2b266485, type: 3}
+  sprite: {fileID: 21300000, guid: 09c9e809f9ca883458f5c19e2780e4e6, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Venusaur hold it,
     and this stone will enable it to Mega Evolve during battle.

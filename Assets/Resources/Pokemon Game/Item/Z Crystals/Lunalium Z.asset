@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lunalium Z
   m_EditorClassIdentifier: 
   name: Lunalium Z
-  sprite: {fileID: 21300000, guid: f32223e2332402b4f92de915da0291bb, type: 3}
+  sprite: {fileID: 0}
   type: 5
   description: "It converts Z-Power into crystals that upgrade Lunala\u2019s Moongeist
     Beam to an exclusive Z-Move."

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Magnet
   m_EditorClassIdentifier: 
   name: Magnet
-  sprite: {fileID: 21300000, guid: f8c9c4afa71ee114fa595df77a9eb76c, type: 3}
+  sprite: {fileID: 21300000, guid: 5bffd10731bdcb646a1e38dd4cbc8704, type: 3}
   type: 0
   description: "An item to be held by a Pokemon. It\u2019s a powerful magnet that
     boosts the power of Electric-type moves."

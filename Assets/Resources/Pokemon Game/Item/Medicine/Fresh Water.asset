@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fresh Water
   m_EditorClassIdentifier: 
   name: Fresh Water
-  sprite: {fileID: 21300000, guid: b6d5c13b8be330b4d819214e43d9dd0c, type: 3}
+  sprite: {fileID: 21300000, guid: 73cb779a6feca154fbf448c34d53a371, type: 3}
   type: 1
   description: Water with a high mineral content. When consumed, it restores up to
     30 HP to an injured Pokemon.

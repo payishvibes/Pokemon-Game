@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Zoom Lens
   m_EditorClassIdentifier: 
   name: Zoom Lens
-  sprite: {fileID: 21300000, guid: ac9f713e27272e049822e7fb2d85bf97, type: 3}
+  sprite: {fileID: 21300000, guid: 5b770c300f0462a45950ced766739bf5, type: 3}
   type: 0
   description: An item to be held by a Pokemon. If the holder moves after its target
     moves, its accuracy will be boosted.

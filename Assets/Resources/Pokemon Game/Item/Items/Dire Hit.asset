@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dire Hit
   m_EditorClassIdentifier: 
   name: Dire Hit
-  sprite: {fileID: 21300000, guid: ec67e4f5dab7ba34d8b18efad29a3aea, type: 3}
+  sprite: {fileID: 21300000, guid: 2ed87466abe8a8744826a03d10260e61, type: 3}
   type: 0
   description: An item that raises the critical-hit ratio greatly. It can be used
     only once and wears off if the Pokemon is withdrawn.

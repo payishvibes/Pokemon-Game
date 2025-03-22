@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mega Anchor
   m_EditorClassIdentifier: 
   name: Mega Anchor
-  sprite: {fileID: 21300000, guid: 1186b27013952fb46bd3ad93185f2696, type: 3}
+  sprite: {fileID: 21300000, guid: a26ab6f294b7eed49998a1ce0a7ddeeb, type: 3}
   type: 4
   description: This anchor contains an untold power that somehow enables Pokemon
     carrying a Mega Stone to Mega Evolve in battle.

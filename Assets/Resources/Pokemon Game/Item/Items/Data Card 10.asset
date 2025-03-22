@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Data Card 10
   m_EditorClassIdentifier: 
   name: Data Card 10
-  sprite: {fileID: 21300000, guid: ff9c340c1f2f4d14c8ce4636f5804b12, type: 3}
+  sprite: {fileID: 21300000, guid: 0cfabe8453783b846ad2c011b5e7b5c4, type: 3}
   type: 0
   description: "It holds Pokeathlon records. It is a card that shows how many times
     you won the Pokeathlon\u2019s Snow Throw."

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Parcel
   m_EditorClassIdentifier: 
   name: Parcel
-  sprite: {fileID: 21300000, guid: 94b838f37a5905642bed97611c960b56, type: 3}
+  sprite: {fileID: 21300000, guid: 62fe8c2bef4194e43b52cc084527a15e, type: 3}
   type: 4
   description: "A parcel entrusted into your care. You\u2019re supposed to deliver
     it to your childhood friend who left Twinleaf Town."

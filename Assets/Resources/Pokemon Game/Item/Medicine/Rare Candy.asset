@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rare Candy
   m_EditorClassIdentifier: 
   name: Rare Candy
-  sprite: {fileID: 21300000, guid: beeb84280aae9d94e9440a705156d9b5, type: 3}
+  sprite: {fileID: 21300000, guid: 902b7990f1de66847bbefbcffdf5009f, type: 3}
   type: 1
   description: A candy that is packed with energy. When consumed, it will instantly
     raise the level of a single Pokemon by one.

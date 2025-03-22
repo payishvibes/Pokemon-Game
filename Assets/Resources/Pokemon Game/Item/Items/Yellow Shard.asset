@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Yellow Shard
   m_EditorClassIdentifier: 
   name: Yellow Shard
-  sprite: {fileID: 21300000, guid: 2a575bc5f4bdf21429faaeec9fc967ec, type: 3}
+  sprite: {fileID: 21300000, guid: 40bbf57280f074f4fa49485ac1d8a411, type: 3}
   type: 0
   description: A small yellow shard. It appears to be a fragment of some sort of
     implement made long ago.

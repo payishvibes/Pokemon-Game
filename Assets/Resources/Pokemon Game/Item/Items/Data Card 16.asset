@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Data Card 16
   m_EditorClassIdentifier: 
   name: Data Card 16
-  sprite: {fileID: 21300000, guid: 7af219fc6549bd64da12538459c67df3, type: 3}
+  sprite: {fileID: 21300000, guid: 4414df03fc00f4049a736bd837ebe469, type: 3}
   type: 0
   description: "It holds Pokeathlon records. It is a card that shows how many times
     you won the Pokeathlon\u2019s Ring Drop."

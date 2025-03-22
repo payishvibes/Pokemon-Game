@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sceptilite
   m_EditorClassIdentifier: 
   name: Sceptilite
-  sprite: {fileID: 21300000, guid: f7ea116476dabf74386cf6fef18724a8, type: 3}
+  sprite: {fileID: 21300000, guid: 5830ffdf95ec316449a7ecdce9d9f9d2, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Sceptile hold it,
     and this stone will enable it to Mega Evolve during battle.

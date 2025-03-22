@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Poison Barb
   m_EditorClassIdentifier: 
   name: Poison Barb
-  sprite: {fileID: 21300000, guid: 996cafe4b007c2e48a1e07d712733b45, type: 3}
+  sprite: {fileID: 21300000, guid: cde50fa896deb584893ce4d3245daed6, type: 3}
   type: 0
   description: An item to be held by a Pokemon. This small, poisonous barb boosts
     the power of Poison-type moves.

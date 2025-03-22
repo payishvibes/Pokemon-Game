@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM11
   m_EditorClassIdentifier: 
   name: TM11
-  sprite: {fileID: 21300000, guid: 2f3e0fb4245b3ab4ba321c105e888fc5, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: The user intensifies the sun for five turns, powering up Fire-type
     moves. This also weakens the power of Water-type moves.

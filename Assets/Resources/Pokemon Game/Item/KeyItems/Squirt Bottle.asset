@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Squirt Bottle
   m_EditorClassIdentifier: 
   name: Squirt Bottle
-  sprite: {fileID: 21300000, guid: b1fdcffd756de7e41b54906f91fafbb0, type: 3}
+  sprite: {fileID: 21300000, guid: b0f601dc4b2e36a4f81ef92f23edc500, type: 3}
   type: 4
   description: A bottle used for watering plants in the Berry Pots.
   cost: 0

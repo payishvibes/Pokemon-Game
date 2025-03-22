@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sea Incense
   m_EditorClassIdentifier: 
   name: Sea Incense
-  sprite: {fileID: 21300000, guid: 5a4dea03b70d3c94cb89ab8ab551c57c, type: 3}
+  sprite: {fileID: 21300000, guid: cf16d917e0c352544acf2e2ecad4bcc8, type: 3}
   type: 0
   description: An item to be held by a Pokemon. This incense has a curious aroma
     that boosts the power of Water-type moves.

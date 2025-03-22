@@ -145,9 +145,42 @@ namespace PokemonGame.General
             return required;
         }
 
-        public static bool Captured(Battler target, PokeBall ball)
+        public static bool Captured(Battler target, Battler playerBattler, PokeBall ball)
         {
             float statusBonus = 1;
+            float ballBonus = ball.bonus;
+
+            switch (ball.name)
+            {
+                case "Fast Ball":
+                    if (target.source.baseSpeed > 100)
+                    {
+                        ballBonus = 4;
+                    }
+                    else
+                    {
+                        ballBonus = 1;
+                    }
+                    break;
+                case "Level Ball":
+                    if (playerBattler.level >= target.level)
+                    {
+                        ballBonus = 1;
+                    }
+                    else if (playerBattler.level > target.level && playerBattler.level < 2*target.level)
+                    {
+                        ballBonus = 2;
+                    }
+                    else if (playerBattler.level > 2 * target.level && playerBattler.level < 4*target.level)
+                    {
+                        ballBonus = 4;
+                    }
+                    else if (playerBattler.level > 4 * target.level)
+                    {
+                        ballBonus = 8;
+                    }
+                    break;
+            }
 
             if (target.statusEffect.name == "Asleep" || target.statusEffect.name == "Frozen")
             {
@@ -167,7 +200,7 @@ namespace PokemonGame.General
                     break;
             }
             
-            float a = ((3f*target.maxHealth - 2f * target.currentHealth)/(3f*target.maxHealth)) * target.source.catchRate * ball.bonus * statusBonus;
+            float a = ((3f*target.maxHealth - 2f * target.currentHealth)/(3f*target.maxHealth)) * target.source.catchRate * ballBonus * statusBonus;
             
             return a <= Random.Range(0, 255);
         }

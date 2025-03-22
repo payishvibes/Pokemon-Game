@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Focus Sash
   m_EditorClassIdentifier: 
   name: Focus Sash
-  sprite: {fileID: 21300000, guid: 7c56b9edc5df8114d9bfdd6e5dbb32a1, type: 3}
+  sprite: {fileID: 21300000, guid: 802a28281ea77bf42b8483662c732a49, type: 3}
   type: 0
   description: An item to be held by a Pokemon. If the holder has full HP, it will
     endure a potential KO attack with 1 HP. The item then disappears.

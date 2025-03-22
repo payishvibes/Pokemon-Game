@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Data Card 15
   m_EditorClassIdentifier: 
   name: Data Card 15
-  sprite: {fileID: 21300000, guid: 464570c98d26f2b47bea775d0b62868e, type: 3}
+  sprite: {fileID: 21300000, guid: a8fe81b5f6aed9f47a54cef1a8dd7614, type: 3}
   type: 0
   description: It holds Pokeathlon records. It is a card that shows how many times
     your Pokemon fell down in the Pokeathlon.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Light Clay
   m_EditorClassIdentifier: 
   name: Light Clay
-  sprite: {fileID: 21300000, guid: 4ca9470f131db05469d523b4b4c3680a, type: 3}
+  sprite: {fileID: 21300000, guid: a1270ada7ff37f84992fc77b3f52b9fb, type: 3}
   type: 0
   description: An item to be held by a Pokemon. Protective moves like Light Screen
     and Reflect will be effective longer.

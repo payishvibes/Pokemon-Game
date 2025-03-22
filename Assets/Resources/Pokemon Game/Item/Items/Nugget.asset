@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Nugget
   m_EditorClassIdentifier: 
   name: Nugget
-  sprite: {fileID: 21300000, guid: 070ef85ee13148e47822c99ee94d1816, type: 3}
+  sprite: {fileID: 21300000, guid: 85e90c37b435b304780cb2ddba707c13, type: 3}
   type: 0
   description: A nugget of the purest gold that gives off a lustrous gleam in direct
     light. It can be sold at a high price to shops.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rawst Berry
   m_EditorClassIdentifier: 
   name: Rawst Berry
-  sprite: {fileID: 21300000, guid: dd0f1fe92c060a447b0042529cacc9a5, type: 3}
+  sprite: {fileID: 21300000, guid: 01cac24c647b2054c8ab00e503058d4d, type: 3}
   type: 3
   description: A Berry to be consumed by Pokemon. If a Pokemon holds one, it can
     recover from a burn on its own in battle.

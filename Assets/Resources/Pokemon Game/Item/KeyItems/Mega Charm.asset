@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mega Charm
   m_EditorClassIdentifier: 
   name: Mega Charm
-  sprite: {fileID: 21300000, guid: 6e8c7aac289628a4baf36decf2daf2c8, type: 3}
+  sprite: {fileID: 21300000, guid: e315e191bbabd74418d81b2d4443162a, type: 3}
   type: 4
   description: This charm contains an untold power that somehow enables Pokemon carrying
     Mega Stones to Mega Evolve in battle.

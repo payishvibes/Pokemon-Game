@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dusk Stone
   m_EditorClassIdentifier: 
   name: Dusk Stone
-  sprite: {fileID: 21300000, guid: d64ba6f036ec36f41851382805249086, type: 3}
+  sprite: {fileID: 21300000, guid: 134e7788a70282f4eb5e471214d85ce3, type: 3}
   type: 0
   description: A peculiar stone that can make certain species of Pokemon evolve.
     It holds shadows as dark as can be.

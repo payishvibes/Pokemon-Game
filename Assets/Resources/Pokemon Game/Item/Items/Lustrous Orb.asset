@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lustrous Orb
   m_EditorClassIdentifier: 
   name: Lustrous Orb
-  sprite: {fileID: 21300000, guid: 1261c7f3d5983954aba3dee671d8860d, type: 3}
+  sprite: {fileID: 21300000, guid: 7f45add99cdb7584890e10d21ff25cfe, type: 3}
   type: 0
   description: A beautifully glowing orb to be held by Palkia. It boosts the power
     of Dragon- and Water-type moves when it is held.

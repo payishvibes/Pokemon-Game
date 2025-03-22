@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Light Ball
   m_EditorClassIdentifier: 
   name: Light Ball
-  sprite: {fileID: 21300000, guid: d8c7b2d0c0881de4993c78836c52395e, type: 3}
+  sprite: {fileID: 21300000, guid: fcfc04bf7e0fe324a9e85df8b0cf7dea, type: 3}
   type: 0
   description: "An item to be held by Pikachu. It\u2019s a puzzling orb that boosts
     its Attack and Sp. Atk stats."

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using PokeApiNet;
+using PokemonGame.General;
 using PokemonGame.Global;
 
 namespace PokemonGame.ScriptableObjects
@@ -41,6 +42,7 @@ namespace PokemonGame.ScriptableObjects
             FillYieldInfo();
 
             FillMoveAsync();
+            FillEvolutionsAsync();
         }
 
         private void FillBasicInfo()
@@ -155,6 +157,68 @@ namespace PokemonGame.ScriptableObjects
                 yields[6] = int.Parse(stats[7]);
                 yields[7] = int.Parse(stats[8]);
             }
+        }
+
+        public async void FillEvolutionsAsync()
+        {
+            await FillEvolutions(this);
+        }
+
+        private static void FindInTree(ChainLink link, string target, out ChainLink found)
+        {
+            found = null;
+            Debug.Log(link.Species.Name);
+            Debug.Log(target);
+            Debug.Log(link.Species.Name == target);
+            if (link.Species.Name == target)
+            {
+                found = link;
+            }
+
+            if (found == null)
+            {
+                foreach (var newLink in link.EvolvesTo)
+                {
+                    FindInTree(newLink, target, out found);
+                }
+            }
+        }
+
+        private static async Task FillEvolutions(BattlerTemplate template)
+        {
+            PokemonSpecies pokemon = await pokeClient.GetResourceAsync<PokemonSpecies>(template.name.ToLower());
+
+            EvolutionChain chain = await pokeClient.GetResourceAsync<EvolutionChain>(pokemon.EvolutionChain);
+            
+            template.evolutions.possibleEvolutions.Clear();
+            
+            FindInTree(chain.Chain, pokemon.Name, out ChainLink found);
+
+            foreach (var evolvesTo in found.EvolvesTo)
+            {
+                await NewEvolution(evolvesTo, template);
+            }
+        }
+
+        private static async Task NewEvolution(ChainLink link, BattlerTemplate template)
+        {
+            string method = link.EvolutionDetails[0].Trigger.Name;
+            
+            EvolutionData data = new EvolutionData();
+            data.evolution = Registry.GetBattlerTemplate(link.Species.Name);
+
+            if (method == "level-up")
+            {
+                data.level = link.EvolutionDetails[0].MinLevel ?? 0;
+                data.triggerType = EvolutionTriggerType.Level;
+            }
+            else if (method == "use-item")
+            {
+                data.item = Registry.GetItem(link.EvolutionDetails[0].HeldItem.Name);
+                data.triggerType = EvolutionTriggerType.Item;
+            }
+            
+            template.evolutions.possibleEvolutions.Add(data);
         }
 
         public async void FillMoveAsync()

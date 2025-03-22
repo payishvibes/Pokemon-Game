@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Moon Stone
   m_EditorClassIdentifier: 
   name: Moon Stone
-  sprite: {fileID: 21300000, guid: fa3aedb783314134fa36bc7a881e0e66, type: 3}
+  sprite: {fileID: 21300000, guid: f711d8fb2bd605b489fe3f42de2034d2, type: 3}
   type: 0
   description: A peculiar stone that can make certain species of Pokemon evolve.
     It is as black as the night sky.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Berry Pots
   m_EditorClassIdentifier: 
   name: Berry Pots
-  sprite: {fileID: 21300000, guid: d2df7290496953f4991cea6276f6dce7, type: 3}
+  sprite: {fileID: 21300000, guid: fcfe395e8f6538f40840b1101c82941d, type: 3}
   type: 4
   description: Handy containers for cultivating Berries wherever you go.
   cost: 0

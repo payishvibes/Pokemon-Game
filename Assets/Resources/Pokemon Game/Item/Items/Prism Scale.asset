@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Prism Scale
   m_EditorClassIdentifier: 
   name: Prism Scale
-  sprite: {fileID: 21300000, guid: ab985b4f5f320f240a328b5e950ce5de, type: 3}
+  sprite: {fileID: 21300000, guid: 6d3447c3fec6c834699c79f6e6cbb921, type: 3}
   type: 0
   description: A mysterious scale that causes a certain Pokemon to evolve. It shines
     in rainbow colors.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: N-Solarizer
   m_EditorClassIdentifier: 
   name: N-Solarizer
-  sprite: {fileID: 21300000, guid: 7d9f7b6cee4d3a34c973960d03496e8b, type: 3}
+  sprite: {fileID: 0}
   type: 4
   description: A machine to fuse Necrozma, which needs light, and Solgaleo.
   cost: 0

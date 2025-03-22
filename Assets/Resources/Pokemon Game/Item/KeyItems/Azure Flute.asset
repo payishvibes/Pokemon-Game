@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Azure Flute
   m_EditorClassIdentifier: 
   name: Azure Flute
-  sprite: {fileID: 21300000, guid: f4c3a9035e08187459a01518fc235aa3, type: 3}
+  sprite: {fileID: 21300000, guid: 89bea2164c72e544597f7718e50da2cc, type: 3}
   type: 4
   description: A flute that puts out echoing sounds that do not seem to be of this
     world. No one knows who made it.

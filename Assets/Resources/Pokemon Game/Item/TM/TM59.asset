@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM59
   m_EditorClassIdentifier: 
   name: TM59
-  sprite: {fileID: 21300000, guid: 2833154e6e0477a428365ea6cf9da6d0, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: The user swings its body around violently to inflict damage on everything
     in its vicinity.

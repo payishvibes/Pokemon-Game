@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Big Mushroom
   m_EditorClassIdentifier: 
   name: Big Mushroom
-  sprite: {fileID: 21300000, guid: d2ff9fb701a4dfc4f9832cd0c7fa5009, type: 3}
+  sprite: {fileID: 21300000, guid: 639be9982326dbd4d860deed7044802a, type: 3}
   type: 0
   description: "A very large and rare mushroom. It\u2019s popular with a certain
     class of collectors and sought out by them."

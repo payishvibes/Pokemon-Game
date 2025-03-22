@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM16
   m_EditorClassIdentifier: 
   name: TM16
-  sprite: {fileID: 21300000, guid: 3bee0bc2470c6894d93d58d38862a3e6, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: A wondrous wall of light is put up to reduce damage from special attacks
     for five turns.

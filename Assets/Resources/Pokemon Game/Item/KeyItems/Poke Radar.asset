@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Poke Radar
   m_EditorClassIdentifier: 
   name: Poke Radar
-  sprite: {fileID: 21300000, guid: b28b74a899d803d4abb960c2d2648b48, type: 3}
+  sprite: {fileID: 21300000, guid: 394298059a774d14499c95236da54b5d, type: 3}
   type: 4
   description: A tool that can search out Pokemon that are hiding in the tall grass.
     Its battery is recharged as you walk.

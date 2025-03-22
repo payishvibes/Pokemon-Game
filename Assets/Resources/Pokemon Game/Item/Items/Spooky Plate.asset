@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Spooky Plate
   m_EditorClassIdentifier: 
   name: Spooky Plate
-  sprite: {fileID: 21300000, guid: c172885019531aa4a85729cc9993b441, type: 3}
+  sprite: {fileID: 21300000, guid: 89bac17ea57f44b44838a4ae38d97b97, type: 3}
   type: 0
   description: "An item to be held by a Pokemon. It\u2019s a stone tablet that boosts
     the power of Ghost-type moves."

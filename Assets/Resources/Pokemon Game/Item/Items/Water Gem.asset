@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Water Gem
   m_EditorClassIdentifier: 
   name: Water Gem
-  sprite: {fileID: 21300000, guid: 07fa8026ea57f824d9449a9c2ffc0cd9, type: 3}
+  sprite: {fileID: 21300000, guid: 03dec8032f91de94a8f20a79e328f3a8, type: 3}
   type: 0
   description: A gem with an essence of water. When held, it strengthens the power
     of a Water-type move one time.

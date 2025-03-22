@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Relic Copper
   m_EditorClassIdentifier: 
   name: Relic Copper
-  sprite: {fileID: 21300000, guid: c3d74cea5c8d446488e2000a708856dc, type: 3}
+  sprite: {fileID: 21300000, guid: d3ae436d0f16d7e4c99ba0fc1668053f, type: 3}
   type: 0
   description: A copper coin used by an ancient civilization about 3,000 years ago.
   cost: 0

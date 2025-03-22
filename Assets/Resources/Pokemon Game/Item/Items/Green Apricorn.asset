@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Green Apricorn
   m_EditorClassIdentifier: 
   name: Green Apricorn
-  sprite: {fileID: 21300000, guid: c3b4ad9793fbae24b9a609259b790444, type: 3}
+  sprite: {fileID: 21300000, guid: 398969c03f3eb3848ac80b7f43ccb4e5, type: 3}
   type: 0
   description: A green Apricorn. It has a mysterious, aromatic scent.
   cost: 0

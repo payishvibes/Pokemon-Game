@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mega Glasses
   m_EditorClassIdentifier: 
   name: Mega Glasses
-  sprite: {fileID: 21300000, guid: 7489774c8082576428fa5e5491de3f85, type: 3}
+  sprite: {fileID: 21300000, guid: 48f8d83d34248cc4881e0ffebdd33087, type: 3}
   type: 4
   description: These glasses contain an untold power that somehow enables Pokemon
     carrying a Mega Stone to Mega Evolve in battle.

@@ -116,6 +116,11 @@ namespace PokemonGame.General
         /// </summary>
         public event EventHandler OnHealthUpdated;
 
+        public bool wantToEvolve;
+        public EvolutionData evolutionToPerform;
+        public event EventHandler<EvolutionData> OnCanEvolve;
+        public event EventHandler<int> OnLevelUp;
+
         /// <summary>
         /// Inflict damage onto the battler
         /// </summary>
@@ -151,8 +156,54 @@ namespace PokemonGame.General
         /// <param name="amountToGain">The amount of exp to give</param>
         public void GainExp(int amountToGain)
         {
-            // TODO: all the fucking logic for carrying over exp and other shit like leveling up and evolving
             exp += amountToGain;
+            
+            HandleLevelUps();
+        }
+
+        private void HandleLevelUps()
+        {
+            int requiredForNextLevel = ExperienceCalculator.RequiredForNextLevel(this);
+
+            if (exp >= requiredForNextLevel)
+            {
+                int holdover = requiredForNextLevel - exp;
+                
+                LevelUp();
+
+                exp = holdover;
+            }
+        }
+
+        private void LevelUp()
+        {
+            level += 1;
+            
+            UpdateStats();
+            
+            OnLevelUp?.Invoke(this, level);
+            CheckIfCanEvolve();
+        }
+
+        private void CheckIfCanEvolve()
+        {
+            foreach (var evolution in source.evolutions.possibleEvolutions)
+            {
+                if (evolution.triggerType == EvolutionTriggerType.Level)
+                {
+                    if (evolution.level <= level)
+                    {
+                        wantToEvolve = true;
+                        OnCanEvolve?.Invoke(this, evolution);
+                    }
+                }
+            }
+        }
+
+        public void EvolutionApproved()
+        {
+            source = evolutionToPerform.evolution;
+            wantToEvolve = false;
         }
 
         /// <summary>
@@ -225,6 +276,8 @@ namespace PokemonGame.General
         /// </summary>
         private void OnValidate()
         {
+            Debug.Log(ExperienceCalculator.RequiredForNextLevel(this));
+            
             if (!statusEffect)
             {
                 statusEffect = StatusEffect.Healthy;
@@ -268,8 +321,6 @@ namespace PokemonGame.General
 
             for (int i = 0; i < sortedLevelUpMoves.Count; i++)
             {
-                Debug.Log($"checking move {i}");
-                
                 if (returnMoves.Count >= 4)
                 {
                     break;
@@ -278,7 +329,6 @@ namespace PokemonGame.General
                 if (sortedLevelUpMoves[i].Value <= level)
                 {
                     returnMoves.Add(sortedLevelUpMoves[i].Key);
-                    Debug.Log($"Adding {sortedLevelUpMoves[i].Key.name}");
                 }
             }
 

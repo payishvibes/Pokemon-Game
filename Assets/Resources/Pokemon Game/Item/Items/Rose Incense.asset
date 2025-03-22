@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rose Incense
   m_EditorClassIdentifier: 
   name: Rose Incense
-  sprite: {fileID: 21300000, guid: 877a202b158f30d4bbff6af0ab4e6e93, type: 3}
+  sprite: {fileID: 21300000, guid: db1900dfd0d8d3648b04e66a8bc5982c, type: 3}
   type: 0
   description: An item to be held by a Pokemon. This exotic-smelling incense boosts
     the power of Grass-type moves.

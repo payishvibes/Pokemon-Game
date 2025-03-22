@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Magost Berry
   m_EditorClassIdentifier: 
   name: Magost Berry
-  sprite: {fileID: 21300000, guid: c2d53e9f7e3a25046a3f765a0a8935e8, type: 3}
+  sprite: {fileID: 21300000, guid: 4c4245c7b1987ba4284311672ae4e520, type: 3}
   type: 3
   description: Used to make Pokeblocks that will enhance your Cuteness, this Berry
     is rare in other regions.

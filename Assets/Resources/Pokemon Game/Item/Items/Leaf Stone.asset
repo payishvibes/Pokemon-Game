@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Leaf Stone
   m_EditorClassIdentifier: 
   name: Leaf Stone
-  sprite: {fileID: 21300000, guid: 9e038239924673442971e85b76ba3128, type: 3}
+  sprite: {fileID: 21300000, guid: c18038000b9254345935a3f60d0ec45f, type: 3}
   type: 0
   description: A peculiar stone that can make certain species of Pokemon evolve.
     It has an unmistakable leaf pattern.

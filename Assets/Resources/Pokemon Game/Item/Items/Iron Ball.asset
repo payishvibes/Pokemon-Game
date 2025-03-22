@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Iron Ball
   m_EditorClassIdentifier: 
   name: Iron Ball
-  sprite: {fileID: 21300000, guid: 7204310e8626b954aaa77e0090f2ac1f, type: 3}
+  sprite: {fileID: 21300000, guid: 9c67c7df701c6e34b8bb1240d23441ce, type: 3}
   type: 0
   description: An item to be held by a Pokemon. It lowers Speed and allows Ground-type
     moves to hit Flying-type and levitating holders.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dragon Skull
   m_EditorClassIdentifier: 
   name: Dragon Skull
-  sprite: {fileID: 21300000, guid: d007ebbd9d2cf8c4187a747f8fcb8b4a, type: 3}
+  sprite: {fileID: 21300000, guid: b0824e81f171da14eba57a5b29fcde72, type: 3}
   type: 4
   description: A skull of a Pokemon that was said to have braved the angry waters
     to fly around the world.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Old Amber
   m_EditorClassIdentifier: 
   name: Old Amber
-  sprite: {fileID: 21300000, guid: 0f9c3b233acabce4c88a9a2324fa8856, type: 3}
+  sprite: {fileID: 21300000, guid: 571ebc4f3e72fb14eacc9e214880b53e, type: 3}
   type: 0
   description: "A piece of amber that still contains the genetic material of an ancient
     Pokemon. It\u2019s clear with a tawny, reddish tint."

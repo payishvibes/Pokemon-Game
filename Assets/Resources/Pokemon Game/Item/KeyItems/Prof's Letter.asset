@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Prof's Letter
   m_EditorClassIdentifier: 
   name: Prof's Letter
-  sprite: {fileID: 21300000, guid: 631407215b6f02c4299e15276e88d765, type: 3}
+  sprite: {fileID: 0}
   type: 4
   description: A letter that Professor Sycamore wrote to your mother. A faint but
     pleasant perfume seems to cling to the paper.

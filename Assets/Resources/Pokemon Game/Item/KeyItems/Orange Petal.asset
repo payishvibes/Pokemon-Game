@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Orange Petal
   m_EditorClassIdentifier: 
   name: Orange Petal
-  sprite: {fileID: 21300000, guid: 38026cec7d83f2f4eb2a86bdbd81e18b, type: 3}
+  sprite: {fileID: 21300000, guid: 5aa3fac2d8411e04fafc0666415ec52a, type: 3}
   type: 4
   description: "A pressed flower petal you receive from Ilima during Mina\u2019s
     trial. The goal is to collect seven different kinds of petals."

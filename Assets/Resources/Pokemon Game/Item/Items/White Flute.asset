@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: White Flute
   m_EditorClassIdentifier: 
   name: White Flute
-  sprite: {fileID: 21300000, guid: db28e719c4457f642b5490e5363bc0ca, type: 3}
+  sprite: {fileID: 21300000, guid: 2a5c195af88bacf45ae427d32ba1b8f1, type: 3}
   type: 0
   description: A flute made from white glass. It makes it easier to encounter weak
     Pokemon in the place you use it.

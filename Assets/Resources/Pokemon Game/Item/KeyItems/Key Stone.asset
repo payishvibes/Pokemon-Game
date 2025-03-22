@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Key Stone
   m_EditorClassIdentifier: 
   name: Key Stone
-  sprite: {fileID: 21300000, guid: b4109c132ace29546ad1b63d3552bdff, type: 3}
+  sprite: {fileID: 21300000, guid: d281db770a62a2347a33f4a982a38ced, type: 3}
   type: 4
   description: A stone filled with an unexplained power. It makes Pokemon that battle
     with a Mega Stone Mega Evolve.

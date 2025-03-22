@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Enigma Berry
   m_EditorClassIdentifier: 
   name: Enigma Berry
-  sprite: {fileID: 21300000, guid: b89a752cb517e204eacc546306a172d4, type: 3}
+  sprite: {fileID: 21300000, guid: b59b971ea75827241b55000f72f92ac0, type: 3}
   type: 3
   description: A Berry to be consumed by Pokemon. If a Pokemon holds one, being hit
     by a supereffective attack will restore its HP.

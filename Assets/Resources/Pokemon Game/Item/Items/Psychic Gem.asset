@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Psychic Gem
   m_EditorClassIdentifier: 
   name: Psychic Gem
-  sprite: {fileID: 21300000, guid: af08badfcc4f87e4bb386d643203760b, type: 3}
+  sprite: {fileID: 21300000, guid: 4bad561219f336942a2c9fcd8011c5ad, type: 3}
   type: 0
   description: A gem with an essence of the mind. When held, it strengthens the power
     of a Psychic-type move one time.

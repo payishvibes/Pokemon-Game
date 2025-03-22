@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Max Ether
   m_EditorClassIdentifier: 
   name: Max Ether
-  sprite: {fileID: 21300000, guid: f30435d8bb5ac6449a0e4ef90726f60e, type: 3}
+  sprite: {fileID: 21300000, guid: ef4bbfd69027f1b47b5969aea8108ceb, type: 3}
   type: 1
   description: This medicine can fully restore the PP of a single selected move that
     has been learned by a Pokemon.

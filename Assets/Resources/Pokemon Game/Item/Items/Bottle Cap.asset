@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bottle Cap
   m_EditorClassIdentifier: 
   name: Bottle Cap
-  sprite: {fileID: 21300000, guid: 26470dfd6b1824842b56c9b675492d12, type: 3}
+  sprite: {fileID: 21300000, guid: ea62a0f6a59e5bb4ab65fc5ebd805dd5, type: 3}
   type: 0
   description: A beautiful bottle cap that gives off a silver gleam. Some people
     are happy to receive one.

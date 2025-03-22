@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sharpedonite
   m_EditorClassIdentifier: 
   name: Sharpedonite
-  sprite: {fileID: 21300000, guid: 26ceb523e4a31cb4c9c7c0a9e68dbd77, type: 3}
+  sprite: {fileID: 21300000, guid: 44b0d1e69ed9cf349a7f3fd86d5d05dc, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Sharpedo hold it,
     and this stone will enable it to Mega Evolve during battle.

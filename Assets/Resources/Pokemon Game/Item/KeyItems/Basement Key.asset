@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Basement Key
   m_EditorClassIdentifier: 
   name: Basement Key
-  sprite: {fileID: 21300000, guid: bc7ed54c75580944fa78f755304145a1, type: 3}
+  sprite: {fileID: 21300000, guid: 9d7dcff86df12d0489e8a12ff2ccce83, type: 3}
   type: 4
   description: The key to New Mauville, which was constructed beneath Mauville City.
   cost: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Metagrossite
   m_EditorClassIdentifier: 
   name: Metagrossite
-  sprite: {fileID: 21300000, guid: d21eaf07c37147640b9c3c639d063aa1, type: 3}
+  sprite: {fileID: 21300000, guid: e85b9a7c20cd7fa4ea190c31dfa3965d, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Metagross hold it,
     and this stone will enable it to Mega Evolve during battle.

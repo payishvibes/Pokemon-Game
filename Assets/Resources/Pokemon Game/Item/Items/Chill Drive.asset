@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Chill Drive
   m_EditorClassIdentifier: 
   name: Chill Drive
-  sprite: {fileID: 21300000, guid: d36345261b571ad4694f754e01bf8abc, type: 3}
+  sprite: {fileID: 21300000, guid: f653e3c9b3e0ff2439c117b75b5e64d1, type: 3}
   type: 0
   description: "A cassette to be held by Genesect. It changes Genesect\u2019s Techno
     Blast move so it becomes Ice type."

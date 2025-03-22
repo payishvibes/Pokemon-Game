@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Data Card 21
   m_EditorClassIdentifier: 
   name: Data Card 21
-  sprite: {fileID: 21300000, guid: 8fda875df0214ff47b2c22d020cc99e5, type: 3}
+  sprite: {fileID: 21300000, guid: fc1ee4123fbbf1a45a3280c659fa6166, type: 3}
   type: 0
   description: It holds Pokeathlon records. It is a card that shows how many times
     you have won a Pokeathlon event.

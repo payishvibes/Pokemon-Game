@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bluk Berry
   m_EditorClassIdentifier: 
   name: Bluk Berry
-  sprite: {fileID: 21300000, guid: 43d3b39900ddcea409c7f34f9885329d, type: 3}
+  sprite: {fileID: 21300000, guid: 7cd7653b89d7ca24ca71e104920252d7, type: 3}
   type: 3
   description: Used to make Pokeblocks that will enhance your Beauty. Its blue flesh
     is sour when eaten.

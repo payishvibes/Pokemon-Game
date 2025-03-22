@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lunar Wing
   m_EditorClassIdentifier: 
   name: Lunar Wing
-  sprite: {fileID: 21300000, guid: 0f2ac5140ff6c0144b4c3c86e0de76a1, type: 3}
+  sprite: {fileID: 21300000, guid: fc1fc2d03b493664caa4d3f0eee70788, type: 3}
   type: 4
   description: "A feather that glows like the moon. It\u2019s said to possess the
     power to dispel nightmares."

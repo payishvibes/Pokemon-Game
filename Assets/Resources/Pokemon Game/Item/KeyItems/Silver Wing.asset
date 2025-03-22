@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Silver Wing
   m_EditorClassIdentifier: 
   name: Silver Wing
-  sprite: {fileID: 21300000, guid: 578aebb680f2ab2428e174cdbc3bafb9, type: 3}
+  sprite: {fileID: 21300000, guid: 1bbbc1a63d3283143b427fc6531925df, type: 3}
   type: 4
   description: A strange, silvery feather that sparkles.
   cost: 0

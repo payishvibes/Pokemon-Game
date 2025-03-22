@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Kebia Berry
   m_EditorClassIdentifier: 
   name: Kebia Berry
-  sprite: {fileID: 21300000, guid: 04e09fa55e6ca5649af26e0f2e8e785a, type: 3}
+  sprite: {fileID: 21300000, guid: 4c7f905ebee1f1445b07493c027e20d3, type: 3}
   type: 3
   description: If held by a Pokemon, this Berry will lessen the damage taken from
     one supereffective Poison-type attack.

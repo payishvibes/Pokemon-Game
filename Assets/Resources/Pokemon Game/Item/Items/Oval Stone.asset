@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Oval Stone
   m_EditorClassIdentifier: 
   name: Oval Stone
-  sprite: {fileID: 21300000, guid: e3e0d6726000e9b4abae72348f534110, type: 3}
+  sprite: {fileID: 21300000, guid: 836c19d5c94f1fa448ccafcad3801457, type: 3}
   type: 0
   description: "A peculiar stone that can make certain species of Pokemon evolve.
     It\u2019s as round as a Pokemon Egg."

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM86
   m_EditorClassIdentifier: 
   name: TM86
-  sprite: {fileID: 21300000, guid: a7fab24b50f286b4aa2904dd9d35c540, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: "The user snares the target with grass and trips it. The heavier the
     target, the greater the move\uFFFDs power."

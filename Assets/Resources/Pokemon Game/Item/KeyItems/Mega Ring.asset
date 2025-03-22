@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mega Ring
   m_EditorClassIdentifier: 
   name: Mega Ring
-  sprite: {fileID: 21300000, guid: eeda6e8cb0d046f45a3dcfab4119bf5e, type: 3}
+  sprite: {fileID: 21300000, guid: 1cef2f2163ee8c34bb423791dbad8669, type: 3}
   type: 4
   description: This ring contains an untold power that somehow enables Pokemon carrying
     Mega Stones to Mega Evolve in battle.

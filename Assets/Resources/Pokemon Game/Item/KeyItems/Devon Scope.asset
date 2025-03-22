@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Devon Scope
   m_EditorClassIdentifier: 
   name: Devon Scope
-  sprite: {fileID: 21300000, guid: d093d77fb451c9540afbe1e00ee9d914, type: 3}
+  sprite: {fileID: 21300000, guid: 6eda02b20424205449a469b3940812e1, type: 3}
   type: 4
   description: A special device made by Devon Corporation that signals the presence
     of any unseen Pokemon.

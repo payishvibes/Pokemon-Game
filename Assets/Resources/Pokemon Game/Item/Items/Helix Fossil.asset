@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Helix Fossil
   m_EditorClassIdentifier: 
   name: Helix Fossil
-  sprite: {fileID: 21300000, guid: 205107c4d94033d47aea5a29104fa968, type: 3}
+  sprite: {fileID: 21300000, guid: 3bca0974944f3454a90fbdd7b43747c2, type: 3}
   type: 0
   description: A fossil from a prehistoric Pokemon that once lived in the sea. It
     might be a piece of a seashell.

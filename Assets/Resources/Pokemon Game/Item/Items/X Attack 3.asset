@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: X Attack 3
   m_EditorClassIdentifier: 
   name: X Attack 3
-  sprite: {fileID: 21300000, guid: 7e61c7dab97852e45877505753926d45, type: 3}
+  sprite: {fileID: 21300000, guid: 856344746bd120a4b9f0c1af5088d09c, type: 3}
   type: 0
   description: It drastically raises the Attack stat of a Pokemon in battle. It wears
     off if the Pokemon is withdrawn.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Repel
   m_EditorClassIdentifier: 
   name: Repel
-  sprite: {fileID: 21300000, guid: 27ecf616b4fca42419a74cf8c176cbf1, type: 3}
+  sprite: {fileID: 21300000, guid: 0de570ec477589242af296897785d69c, type: 3}
   type: 0
   description: An item that prevents any low-level wild Pokemon from jumping out
     at you for a while.

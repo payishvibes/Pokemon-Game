@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HP Up
   m_EditorClassIdentifier: 
   name: HP Up
-  sprite: {fileID: 21300000, guid: d3433018c821ff044ae2758cda6ca292, type: 3}
+  sprite: {fileID: 21300000, guid: a01f452a582fd36499c5e08033352481, type: 3}
   type: 1
   description: A nutritious drink for Pokemon. When consumed, it raises the base
     HP of a single Pokemon.

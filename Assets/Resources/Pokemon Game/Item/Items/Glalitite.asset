@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Glalitite
   m_EditorClassIdentifier: 
   name: Glalitite
-  sprite: {fileID: 21300000, guid: 36f8dca09f3333f49971967d7da53352, type: 3}
+  sprite: {fileID: 21300000, guid: 6f4f82985c3dd97448e9db65a42fac50, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Glalie hold it, and
     this stone will enable it to Mega Evolve during battle.

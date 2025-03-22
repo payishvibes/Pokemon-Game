@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rindo Berry
   m_EditorClassIdentifier: 
   name: Rindo Berry
-  sprite: {fileID: 21300000, guid: 1fe0acc27773021478c5d572b6f47074, type: 3}
+  sprite: {fileID: 21300000, guid: 9639017d4d175e94c9b0cb97638b622b, type: 3}
   type: 3
   description: If held by a Pokemon, this Berry will lessen the damage taken from
     one supereffective Grass-type attack.

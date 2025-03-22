@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Electric Seed
   m_EditorClassIdentifier: 
   name: Electric Seed
-  sprite: {fileID: 21300000, guid: 77aff2084c69ccb44907f1a0344940a5, type: 3}
+  sprite: {fileID: 21300000, guid: 217101c05c7878a42884e60e14a0e282, type: 3}
   type: 0
   description: An item to be held by a Pokemon. It boosts Defense on Electric Terrain.
     It can only be used once.

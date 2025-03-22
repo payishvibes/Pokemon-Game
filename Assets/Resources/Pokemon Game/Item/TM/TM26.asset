@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM26
   m_EditorClassIdentifier: 
   name: TM26
-  sprite: {fileID: 21300000, guid: 050eaaa7be9bb77479d903b9a877b7e6, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: "The user sets off an earthquake that strikes every Pok\uFFFDmon around
     it."

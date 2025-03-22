@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Max Potion
   m_EditorClassIdentifier: 
   name: Max Potion
-  sprite: {fileID: 21300000, guid: ebabd99c02deaae41ac69eea7fa30c28, type: 3}
+  sprite: {fileID: 21300000, guid: b37c70fef038d7f4e94d22629000b890, type: 3}
   type: 1
   description: A spray-type medicine for treating wounds. It will completely restore
     the max HP of a single Pokemon.

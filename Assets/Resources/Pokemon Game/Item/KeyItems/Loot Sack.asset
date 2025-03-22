@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Loot Sack
   m_EditorClassIdentifier: 
   name: Loot Sack
-  sprite: {fileID: 21300000, guid: 20a2146211787e8428c59715a5093052, type: 3}
+  sprite: {fileID: 21300000, guid: 84fa13255f9b8d34188fd6433ad2b0ca, type: 3}
   type: 4
   description: A sturdy, spacious bag that is used to carry any treasures or loot
     obtained in the coal mine.

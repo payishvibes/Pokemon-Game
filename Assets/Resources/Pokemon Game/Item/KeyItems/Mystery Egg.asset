@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mystery Egg
   m_EditorClassIdentifier: 
   name: Mystery Egg
-  sprite: {fileID: 21300000, guid: 2d4dd41433a17d1429d78b2ed9f15e2d, type: 3}
+  sprite: {fileID: 21300000, guid: 5dad058817a0aac40b67acbc818bfc2c, type: 3}
   type: 4
   description: A mysterious Egg obtained from Mr. Pokemon. What is in the Egg is
     unknown.

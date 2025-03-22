@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Vs. Seeker
   m_EditorClassIdentifier: 
   name: Vs. Seeker
-  sprite: {fileID: 21300000, guid: d0828a0e0660b71498d755b838855c73, type: 3}
+  sprite: {fileID: 0}
   type: 4
   description: A device that indicates Trainers who want to battle. Its battery charges
     while you walk.

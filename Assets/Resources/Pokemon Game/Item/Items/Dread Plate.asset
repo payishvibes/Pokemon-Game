@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dread Plate
   m_EditorClassIdentifier: 
   name: Dread Plate
-  sprite: {fileID: 21300000, guid: fc1735a9c5ae45940b142718b8f70006, type: 3}
+  sprite: {fileID: 21300000, guid: 0a99cc1a0800368439487a4d5700bfe1, type: 3}
   type: 0
   description: "An item to be held by a Pokemon. It\u2019s a stone tablet that boosts
     the power of Dark-type moves."

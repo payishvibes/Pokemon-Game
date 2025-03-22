@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Poison Gem
   m_EditorClassIdentifier: 
   name: Poison Gem
-  sprite: {fileID: 21300000, guid: 83a578b4921b07b4987e3782f19650d0, type: 3}
+  sprite: {fileID: 21300000, guid: bb5f038fd77b10a4f840bb800cecb01f, type: 3}
   type: 0
   description: A gem with an essence of poison. When held, it strengthens the power
     of a Poison-type move one time.

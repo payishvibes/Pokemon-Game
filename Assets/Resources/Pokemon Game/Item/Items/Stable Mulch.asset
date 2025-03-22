@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Stable Mulch
   m_EditorClassIdentifier: 
   name: Stable Mulch
-  sprite: {fileID: 21300000, guid: da69be601229a42468a8797045ef2b83, type: 3}
+  sprite: {fileID: 21300000, guid: 03a66bb41b0449a489d473c24985edb5, type: 3}
   type: 0
   description: A fertilizer for growing Berries. However, it appears to be unsuitable
     for the soil in the Hoenn region and has no effect.

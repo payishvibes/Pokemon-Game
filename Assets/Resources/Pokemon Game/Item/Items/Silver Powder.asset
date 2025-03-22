@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Silver Powder
   m_EditorClassIdentifier: 
   name: Silver Powder
-  sprite: {fileID: 21300000, guid: 22bceef6d7ac2874b8f8965adef37064, type: 3}
+  sprite: {fileID: 21300000, guid: d96e54b82e262ec42b5b01081a3cb617, type: 3}
   type: 0
   description: "An item to be held by a Pokemon. It\u2019s a shiny silver powder
     that will boost the power of Bug-type moves."

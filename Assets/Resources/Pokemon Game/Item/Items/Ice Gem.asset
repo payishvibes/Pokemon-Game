@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ice Gem
   m_EditorClassIdentifier: 
   name: Ice Gem
-  sprite: {fileID: 21300000, guid: d26345416a169734db0b0068dec4074c, type: 3}
+  sprite: {fileID: 21300000, guid: edb494f7fbfdce2448c94d6b728d4e33, type: 3}
   type: 0
   description: A gem with an essence of ice. When held, it strengthens the power
     of an Ice-type move one time.

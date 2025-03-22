@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Grass Memory
   m_EditorClassIdentifier: 
   name: Grass Memory
-  sprite: {fileID: 21300000, guid: e16870a394a9eee44997aa0b3711ae36, type: 3}
+  sprite: {fileID: 21300000, guid: cf8681f3fade31b459e0765c4657d799, type: 3}
   type: 0
   description: A memory disc that contains Grass-type data. It changes the type of
     the holder if held by a certain species of Pokemon.

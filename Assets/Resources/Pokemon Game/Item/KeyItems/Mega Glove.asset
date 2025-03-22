@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mega Glove
   m_EditorClassIdentifier: 
   name: Mega Glove
-  sprite: {fileID: 21300000, guid: d8a724eaee4d3fa4787394ce58a54b10, type: 3}
+  sprite: {fileID: 21300000, guid: e396b121ade10684fa4c7dfdf359c077, type: 3}
   type: 4
   description: This glove contains an untold power that somehow enables Pokemon carrying
     Mega Stones to Mega Evolve in battle.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Red Shard
   m_EditorClassIdentifier: 
   name: Red Shard
-  sprite: {fileID: 21300000, guid: b6c9446b5a7254a4380b49e34b61c9af, type: 3}
+  sprite: {fileID: 21300000, guid: b1ca2bece33dbbd4c9312620d2f12121, type: 3}
   type: 0
   description: A small red shard. It appears to be a fragment of some sort of implement
     made long ago.

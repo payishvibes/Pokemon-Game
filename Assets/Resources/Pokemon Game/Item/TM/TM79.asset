@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM79
   m_EditorClassIdentifier: 
   name: TM79
-  sprite: {fileID: 21300000, guid: 3e73c837e2af7ce42a0ee4a8a77006ff, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: The user blows its cold breath on the target. This attack always results
     in a critical hit.

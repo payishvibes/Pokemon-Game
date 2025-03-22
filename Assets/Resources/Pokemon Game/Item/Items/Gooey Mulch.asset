@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gooey Mulch
   m_EditorClassIdentifier: 
   name: Gooey Mulch
-  sprite: {fileID: 21300000, guid: 70e39da02ece8c540b4d37b112b58445, type: 3}
+  sprite: {fileID: 21300000, guid: 834cadb9c68955d4aae1ce7fb94d0549, type: 3}
   type: 0
   description: A fertilizer for growing Berries. However, it appears to be unsuitable
     for the soil in the Hoenn region and has no effect.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Grass Gem
   m_EditorClassIdentifier: 
   name: Grass Gem
-  sprite: {fileID: 21300000, guid: fcae0988b2463e849a0a378eb04c4651, type: 3}
+  sprite: {fileID: 21300000, guid: 617a310546d04144ea21cc380917bb1e, type: 3}
   type: 0
   description: A gem with an essence of nature. When held, it strengthens the power
     of a Grass-type move one time.

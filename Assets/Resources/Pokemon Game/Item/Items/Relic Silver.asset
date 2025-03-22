@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Relic Silver
   m_EditorClassIdentifier: 
   name: Relic Silver
-  sprite: {fileID: 21300000, guid: 7d251f0571ca15b48a7a937812865c4d, type: 3}
+  sprite: {fileID: 21300000, guid: 535658c0d77f3ea42971ea1bfce5aefe, type: 3}
   type: 0
   description: A silver coin used by an ancient civilization about 3,000 years ago.
   cost: 0

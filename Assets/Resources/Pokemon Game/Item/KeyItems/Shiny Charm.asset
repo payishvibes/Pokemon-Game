@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shiny Charm
   m_EditorClassIdentifier: 
   name: Shiny Charm
-  sprite: {fileID: 21300000, guid: a95680002cf506b45952ac6f1fb6f0ad, type: 3}
+  sprite: {fileID: 21300000, guid: e48659f7423f86f4ca866a5ff2c03905, type: 3}
   type: 4
   description: A shiny charm said to increase the chance of finding a Shiny Pokemon
     in the wild.

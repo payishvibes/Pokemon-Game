@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sun Flute
   m_EditorClassIdentifier: 
   name: Sun Flute
-  sprite: {fileID: 21300000, guid: 09a5e1b4b5dd04a408d3691ad8b7d26c, type: 3}
+  sprite: {fileID: 21300000, guid: 3035d352612cdd44fb76ab237bbcc24d, type: 3}
   type: 4
   description: It is said that the tones it produces were offered up as an expression
     of gratitude to the Legendary Pokemon of the sun.

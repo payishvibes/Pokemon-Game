@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM56
   m_EditorClassIdentifier: 
   name: TM56
-  sprite: {fileID: 21300000, guid: 2833154e6e0477a428365ea6cf9da6d0, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: "The user flings its held item at the target to attack. This move\uFFFDs
     power and effects depend on the item."

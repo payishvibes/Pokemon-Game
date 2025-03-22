@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rock Incense
   m_EditorClassIdentifier: 
   name: Rock Incense
-  sprite: {fileID: 21300000, guid: 5447a6f29039f8c419e5acdcf36d0979, type: 3}
+  sprite: {fileID: 21300000, guid: ad623064e07271947b9852320c59b5b5, type: 3}
   type: 0
   description: An item to be held by a Pokemon. This exotic-smelling incense boosts
     the power of Rock-type moves.

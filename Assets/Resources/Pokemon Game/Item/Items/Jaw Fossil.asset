@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Jaw Fossil
   m_EditorClassIdentifier: 
   name: Jaw Fossil
-  sprite: {fileID: 21300000, guid: 78d1164c67ad4964081e085a69b3a300, type: 3}
+  sprite: {fileID: 21300000, guid: 44a7bf716693fe244aefb8d250fb2420, type: 3}
   type: 0
   description: A fossil from a prehistoric Pokemon that once lived on the land. It
     looks as if it could be a piece of a large jaw.

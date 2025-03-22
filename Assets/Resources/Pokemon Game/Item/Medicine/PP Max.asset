@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PP Max
   m_EditorClassIdentifier: 
   name: PP Max
-  sprite: {fileID: 21300000, guid: 16b3013ccb941524290a875cbade4b1e, type: 3}
+  sprite: {fileID: 21300000, guid: ac2e080f0683a8049972bedd7134a37a, type: 3}
   type: 1
   description: A medicine that can optimally raise the maximum PP of a single move
     that has been learned by the target Pokemon.

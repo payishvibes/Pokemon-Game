@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Go-Goggles
   m_EditorClassIdentifier: 
   name: Go-Goggles
-  sprite: {fileID: 21300000, guid: f46d9fa28eec269419b620a4c2518076, type: 3}
+  sprite: {fileID: 21300000, guid: 0fe1a046bd0fd1f46a7e914204525b8d, type: 3}
   type: 4
   description: Nifty goggles to protect eyes from desert sandstorms.
   cost: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM18
   m_EditorClassIdentifier: 
   name: TM18
-  sprite: {fileID: 21300000, guid: 160f2b9ac60d9d74f98ea8a121692420, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: The user summons a heavy rain that falls for five turns, powering
     up Water-type moves. It lowers the power of Fire-type moves.

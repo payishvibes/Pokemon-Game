@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Scizorite
   m_EditorClassIdentifier: 
   name: Scizorite
-  sprite: {fileID: 21300000, guid: d4444f3e8f91f0b47a2fa5a9277b6e1a, type: 3}
+  sprite: {fileID: 21300000, guid: 97709b9eef18d0b449c642a106a71558, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Scizor hold it, and
     this stone will enable it to Mega Evolve during battle.

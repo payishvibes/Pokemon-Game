@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Abomasite
   m_EditorClassIdentifier: 
   name: Abomasite
-  sprite: {fileID: 21300000, guid: 2b21d5d1fa42f104c8edeaf63ff52036, type: 3}
+  sprite: {fileID: 21300000, guid: 637a5da15fda01f4b80dd9c489165911, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Abomasnow hold it,
     and this stone will enable it to Mega Evolve during battle.

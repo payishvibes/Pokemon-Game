@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Scanner
   m_EditorClassIdentifier: 
   name: Scanner
-  sprite: {fileID: 21300000, guid: 2fb0fa68384125e44b85aa6b49508751, type: 3}
+  sprite: {fileID: 21300000, guid: c45a3b94ac9aaba4389de54fed4ac04c, type: 3}
   type: 4
   description: A device found inside Sea Mauville.
   cost: 0

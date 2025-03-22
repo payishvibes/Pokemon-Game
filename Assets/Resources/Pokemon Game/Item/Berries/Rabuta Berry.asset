@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rabuta Berry
   m_EditorClassIdentifier: 
   name: Rabuta Berry
-  sprite: {fileID: 21300000, guid: da90dec7a62c0664687b1d34856f647b, type: 3}
+  sprite: {fileID: 21300000, guid: 623466ba3a104e044919459470098444, type: 3}
   type: 3
   description: Used to make Pokeblocks that will enhance your Cleverness, this Berry
     is rare in other regions.

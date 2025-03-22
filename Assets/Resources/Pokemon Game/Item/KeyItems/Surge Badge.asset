@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Surge Badge
   m_EditorClassIdentifier: 
   name: Surge Badge
-  sprite: {fileID: 21300000, guid: c2ab8d544fd00534988c86f0958d48d8, type: 3}
+  sprite: {fileID: 21300000, guid: d6eb48252d9f9e649bacfc9d9d70b5b5, type: 3}
   type: 4
   description: A novelty badge that you can receive at the Kantonian Gym. Rumor has
     it that it imitates the Badge of a Gym somewhere.

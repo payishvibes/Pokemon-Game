@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM100
   m_EditorClassIdentifier: 
   name: TM100
-  sprite: {fileID: 21300000, guid: 537f04ec481711d469e007cd9b007f98, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: "The user tells the target a secret, and the target loses its ability
     to concentrate. This lowers the target\uFFFDs Sp. Atk stat."

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gram 2
   m_EditorClassIdentifier: 
   name: Gram 2
-  sprite: {fileID: 21300000, guid: d43cdffdd99cb8942a6040c83257fd94, type: 3}
+  sprite: {fileID: 21300000, guid: 52bb80d6201f6f34abbdd0ac532f79ec, type: 3}
   type: 4
   description: An important letter that Wingull delivers.
   cost: 0

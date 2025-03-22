@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Aspear Berry
   m_EditorClassIdentifier: 
   name: Aspear Berry
-  sprite: {fileID: 21300000, guid: e31fb2f6008a7004890ad119be1042a3, type: 3}
+  sprite: {fileID: 21300000, guid: c9129b68b4c2ba64294e4337110650f7, type: 3}
   type: 3
   description: A Berry to be consumed by Pokemon. If a Pokemon holds one, it can
     recover from being frozen on its own in battle.

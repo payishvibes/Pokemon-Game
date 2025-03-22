@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bridge Mail D
   m_EditorClassIdentifier: 
   name: Bridge Mail D
-  sprite: {fileID: 21300000, guid: 8e984f9b717e43d40a8b82dcfa13ee9d, type: 3}
+  sprite: {fileID: 21300000, guid: dfc398019ff88b24eb87b3c76b6f2e0b, type: 3}
   type: 0
   description: Stationery featuring an illustration of a bright-red drawbridge. Have
     a Pokemon hold it for delivery.

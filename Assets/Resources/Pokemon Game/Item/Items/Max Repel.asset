@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Max Repel
   m_EditorClassIdentifier: 
   name: Max Repel
-  sprite: {fileID: 21300000, guid: dc3b27595f5bd6f49bbbfe18e7087f2e, type: 3}
+  sprite: {fileID: 21300000, guid: 8e094382670e82447a345218dcb2d417, type: 3}
   type: 0
   description: An item that prevents any low-level wild Pokemon from jumping out
     at you for a while. It lasts longer than Super Repel.

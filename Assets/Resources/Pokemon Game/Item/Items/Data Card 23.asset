@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Data Card 23
   m_EditorClassIdentifier: 
   name: Data Card 23
-  sprite: {fileID: 21300000, guid: 55ffd8488d7151a40852110551cbea63, type: 3}
+  sprite: {fileID: 21300000, guid: 90576a2307e532b4ea43c14304e41723, type: 3}
   type: 0
   description: It holds Pokeathlon records. It is a card that shows how many times
     you switched Pokemon in the Pokeathlon.

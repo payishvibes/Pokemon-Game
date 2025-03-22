@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Green Petal
   m_EditorClassIdentifier: 
   name: Green Petal
-  sprite: {fileID: 21300000, guid: 5aa3637ef9363d14d966c80bbaf554af, type: 3}
+  sprite: {fileID: 21300000, guid: 43282f6925fb73e4f9eba212a94eda61, type: 3}
   type: 4
   description: "A pressed flower petal you receive from Mallow during Mina\u2019s
     trial. The goal is to collect seven different kinds of petals."

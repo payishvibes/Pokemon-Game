@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Heracronite
   m_EditorClassIdentifier: 
   name: Heracronite
-  sprite: {fileID: 21300000, guid: 06758cfc01f8b1e43accefd8262a78b7, type: 3}
+  sprite: {fileID: 21300000, guid: 81a76b95260f1a146b58bbf73d1b9c1d, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Heracross hold it,
     and this stone will enable it to Mega Evolve during battle.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dome Fossil
   m_EditorClassIdentifier: 
   name: Dome Fossil
-  sprite: {fileID: 21300000, guid: 7aa4cf44ce2bf494bb1bd078761f7205, type: 3}
+  sprite: {fileID: 21300000, guid: 3b0a783ab09f4824cac81cdead6f1d38, type: 3}
   type: 0
   description: A fossil from a prehistoric Pokemon that once lived in the sea. It
     could be a shell or carapace.

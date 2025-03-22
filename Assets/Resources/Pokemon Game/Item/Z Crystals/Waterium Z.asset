@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Waterium Z
   m_EditorClassIdentifier: 
   name: Waterium Z
-  sprite: {fileID: 21300000, guid: 5801857be8eaff44c97475538ae1cd9c, type: 3}
+  sprite: {fileID: 0}
   type: 5
   description: It converts Z-Power into crystals that upgrade Water-type moves to
     Water-type Z-Moves.

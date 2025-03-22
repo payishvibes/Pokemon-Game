@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pikanium Z
   m_EditorClassIdentifier: 
   name: Pikanium Z
-  sprite: {fileID: 21300000, guid: b1dd6287a88d59743967ae0a0c108602, type: 3}
+  sprite: {fileID: 0}
   type: 5
   description: "It converts Z-Power into crystals that upgrade Pikachu\u2019s Volt
     Tackle to an exclusive Z-Move."

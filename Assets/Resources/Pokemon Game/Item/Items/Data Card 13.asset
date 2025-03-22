@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Data Card 13
   m_EditorClassIdentifier: 
   name: Data Card 13
-  sprite: {fileID: 21300000, guid: 0146f2ec3fa0bce42bd477b3e81456ba, type: 3}
+  sprite: {fileID: 21300000, guid: 0ae20b7ec74e518428e9f8bddba006c7, type: 3}
   type: 0
   description: It holds Pokeathlon records. It is a card that shows how many times
     your Pokemon impeded themselves.

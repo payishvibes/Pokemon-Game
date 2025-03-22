@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Armor Fossil
   m_EditorClassIdentifier: 
   name: Armor Fossil
-  sprite: {fileID: 21300000, guid: 10d387d2a181b7d4caccdf0a582af64b, type: 3}
+  sprite: {fileID: 21300000, guid: 41d737c47b2771a43b61b97985edf3f9, type: 3}
   type: 0
   description: A fossil from a prehistoric Pokemon that once lived on the land. It
     looks to be from some kind of protective collar.

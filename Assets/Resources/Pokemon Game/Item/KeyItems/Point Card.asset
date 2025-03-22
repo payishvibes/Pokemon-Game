@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Point Card
   m_EditorClassIdentifier: 
   name: Point Card
-  sprite: {fileID: 21300000, guid: 3f6cfc1b514f3554da20409c65ac885d, type: 3}
+  sprite: {fileID: 21300000, guid: 0d03f6cbd6499554590ce9270cdcd1f6, type: 3}
   type: 4
   description: A card that lists how many Battle Points you have earned.
   cost: 0

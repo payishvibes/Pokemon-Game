@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ilima's Normalium Z
   m_EditorClassIdentifier: 
   name: Ilima's Normalium Z
-  sprite: {fileID: 21300000, guid: 0bcd5c294b08fcd49b9ef3b9b62a2070, type: 3}
+  sprite: {fileID: 0}
   type: 4
   description: The Normalium Z you were entrusted with by Ilima. You were asked to
     place it on the pedestal at the back of Verdant Cavern.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ground Memory
   m_EditorClassIdentifier: 
   name: Ground Memory
-  sprite: {fileID: 21300000, guid: 003381782b686a548b279a0dce958bb8, type: 3}
+  sprite: {fileID: 21300000, guid: 026e3d3a89ed45746984c30a869866d3, type: 3}
   type: 0
   description: A memory disc that contains Ground-type data. It changes the type
     of the holder if held by a certain species of Pokemon.

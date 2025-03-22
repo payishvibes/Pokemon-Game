@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lava Cookie
   m_EditorClassIdentifier: 
   name: Lava Cookie
-  sprite: {fileID: 21300000, guid: 1d42c83fb6efe8f4581fcb88f5e3aa83, type: 3}
+  sprite: {fileID: 21300000, guid: 6a6fc2e1dc241b04ba6daa10b06af1a0, type: 3}
   type: 1
   description: "Lavaridge Town\u2019s local specialty. It can be used once to heal
     all the status conditions of a Pokemon."

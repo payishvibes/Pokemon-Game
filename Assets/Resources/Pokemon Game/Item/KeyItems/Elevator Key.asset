@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Elevator Key
   m_EditorClassIdentifier: 
   name: Elevator Key
-  sprite: {fileID: 21300000, guid: 18414c4001daf77429ab248971fe4454, type: 3}
+  sprite: {fileID: 21300000, guid: 52ba4e4c83787a34cba4398950ef4fa1, type: 3}
   type: 4
   description: "A card key that activates the elevator in Lysandre Labs. It is emblazoned
     with Team Flare\u2019s logo."

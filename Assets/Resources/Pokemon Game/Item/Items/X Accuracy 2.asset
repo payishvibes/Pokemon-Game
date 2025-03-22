@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: X Accuracy 2
   m_EditorClassIdentifier: 
   name: X Accuracy 2
-  sprite: {fileID: 21300000, guid: aed07a3085abe7c46885cda691b0ff46, type: 3}
+  sprite: {fileID: 21300000, guid: 0110e67a0d5e77e4cb558f5a8aea884c, type: 3}
   type: 0
   description: It sharply raises the accuracy of a Pokemon in battle. It wears off
     if the Pokemon is withdrawn.

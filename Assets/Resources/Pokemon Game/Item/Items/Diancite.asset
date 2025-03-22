@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Diancite
   m_EditorClassIdentifier: 
   name: Diancite
-  sprite: {fileID: 21300000, guid: b6493173e0624f84b8a98731f16f5670, type: 3}
+  sprite: {fileID: 21300000, guid: b3190f8568f65664c96dd9e397b73a89, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Diancie hold it,
     and this stone will enable it to Mega Evolve during battle.

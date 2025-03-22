@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: White Herb
   m_EditorClassIdentifier: 
   name: White Herb
-  sprite: {fileID: 21300000, guid: 23a702db5a2a0c84f943507033ec8c84, type: 3}
+  sprite: {fileID: 21300000, guid: f15b35c36921039499e1c706b9bbcb64, type: 3}
   type: 0
   description: An item to be held by a Pokemon. It will restore any lowered stat
     in battle. It can be used only once.

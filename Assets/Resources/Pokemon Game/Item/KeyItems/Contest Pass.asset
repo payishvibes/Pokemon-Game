@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Contest Pass
   m_EditorClassIdentifier: 
   name: Contest Pass
-  sprite: {fileID: 21300000, guid: a584b7d5bbdb5d24f9d29ddcf8b30591, type: 3}
+  sprite: {fileID: 21300000, guid: b1ebe40daa5c7744685358b1e53efa55, type: 3}
   type: 4
   description: A pass required for entering Pokemon Contests. It has a drawing of
     an award ribbon on its front.

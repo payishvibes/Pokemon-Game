@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Babiri Berry
   m_EditorClassIdentifier: 
   name: Babiri Berry
-  sprite: {fileID: 21300000, guid: bbc4ccd08f2393540915f08813101bcb, type: 3}
+  sprite: {fileID: 21300000, guid: 859b871ed8fe1054d89a4bcb23fea1d4, type: 3}
   type: 3
   description: If held by a Pokemon, this Berry will lessen the damage taken from
     one supereffective Steel-type attack.

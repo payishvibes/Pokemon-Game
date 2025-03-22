@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Slowbronite
   m_EditorClassIdentifier: 
   name: Slowbronite
-  sprite: {fileID: 21300000, guid: b9d0e10a9516fd14194709df25391aec, type: 3}
+  sprite: {fileID: 21300000, guid: fbca5a11142c98f48b936033ce8cd434, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Slowbro hold it,
     and this stone will enable it to Mega Evolve during battle.

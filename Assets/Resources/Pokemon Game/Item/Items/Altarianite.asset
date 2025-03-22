@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Altarianite
   m_EditorClassIdentifier: 
   name: Altarianite
-  sprite: {fileID: 21300000, guid: 1a9461ad8be694946a8b8bb12ae5e23b, type: 3}
+  sprite: {fileID: 21300000, guid: d29be4a35c048bd4f828c369d36560b1, type: 3}
   type: 0
   description: One of a variety of mysterious Mega Stones. Have Altaria hold it,
     and this stone will enable it to Mega Evolve during battle.

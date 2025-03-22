@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Snowball
   m_EditorClassIdentifier: 
   name: Snowball
-  sprite: {fileID: 21300000, guid: 7d3c2de28a8816647aac6bbdec9b3ab6, type: 3}
+  sprite: {fileID: 21300000, guid: 683d4a0b5dc880f4c93d91e57056847a, type: 3}
   type: 0
   description: An item to be held by a Pokemon. It boosts Attack if hit with an Ice-type
     attack. It can only be used once.

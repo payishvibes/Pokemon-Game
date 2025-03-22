@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dragon Scale
   m_EditorClassIdentifier: 
   name: Dragon Scale
-  sprite: {fileID: 21300000, guid: 5e380a3ab6e654c49a9cb89d1d3971d6, type: 3}
+  sprite: {fileID: 21300000, guid: da6176a7e554c9846b3045e90cc80e9e, type: 3}
   type: 0
   description: A very tough and inflexible scale. Dragon-type Pokemon may be holding
     this item when caught.

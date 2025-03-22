@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Water Stone
   m_EditorClassIdentifier: 
   name: Water Stone
-  sprite: {fileID: 21300000, guid: 9b406d3aebfb15644a901a8587219885, type: 3}
+  sprite: {fileID: 21300000, guid: bd116e58a627ea14caa41c9df7512b14, type: 3}
   type: 0
   description: A peculiar stone that can make certain species of Pokemon evolve.
     It is the blue of a pool of clear water.

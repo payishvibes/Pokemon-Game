@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shuca Berry
   m_EditorClassIdentifier: 
   name: Shuca Berry
-  sprite: {fileID: 21300000, guid: d330a8654955ec74491111726c65a4a8, type: 3}
+  sprite: {fileID: 21300000, guid: 4a0a639b9c937ac4392b7e270e5f6aa6, type: 3}
   type: 3
   description: If held by a Pokemon, this Berry will lessen the damage taken from
     one supereffective Ground-type attack.

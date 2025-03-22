@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tamato Berry
   m_EditorClassIdentifier: 
   name: Tamato Berry
-  sprite: {fileID: 21300000, guid: 6f9b73c457cbbd44cacf6b0e138d7401, type: 3}
+  sprite: {fileID: 21300000, guid: c8ecaf22b5af04e4dbc14cf02128ece3, type: 3}
   type: 3
   description: A Berry to be consumed by Pokemon. Using it on a Pokemon makes it
     more friendly but lowers its base Speed.

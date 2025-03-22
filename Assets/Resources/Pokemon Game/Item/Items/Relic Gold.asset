@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Relic Gold
   m_EditorClassIdentifier: 
   name: Relic Gold
-  sprite: {fileID: 21300000, guid: 415bf81fc0839fd46beb0d919086967b, type: 3}
+  sprite: {fileID: 21300000, guid: dbe7d80a7a79e0b41baaa894799e8541, type: 3}
   type: 0
   description: A gold coin used by an ancient civilization about 3,000 years ago.
   cost: 0

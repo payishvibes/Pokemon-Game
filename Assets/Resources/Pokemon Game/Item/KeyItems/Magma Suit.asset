@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Magma Suit
   m_EditorClassIdentifier: 
   name: Magma Suit
-  sprite: {fileID: 21300000, guid: dfd9d5ec4d2c2bc4d8145c58c0250276, type: 3}
+  sprite: {fileID: 21300000, guid: 79209650cfe37a748b1be41253f102e6, type: 3}
   type: 4
   description: A suit made with the collective technological know-how of Team Magma.
     It can withstand any impact.

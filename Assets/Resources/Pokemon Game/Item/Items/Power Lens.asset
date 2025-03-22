@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Power Lens
   m_EditorClassIdentifier: 
   name: Power Lens
-  sprite: {fileID: 21300000, guid: 551c9acec0bd4224b82afbb87694fd5b, type: 3}
+  sprite: {fileID: 21300000, guid: 60ee62b656614194ea779dad6449193e, type: 3}
   type: 0
   description: "An item to be held by a Pokemon. It reduces Speed but allows the
     holder\u2019s Sp. Atk stat to grow more after battling."

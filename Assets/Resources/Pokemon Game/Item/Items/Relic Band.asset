@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Relic Band
   m_EditorClassIdentifier: 
   name: Relic Band
-  sprite: {fileID: 21300000, guid: 1530ec963cb8f0649a7cb08c11e816e8, type: 3}
+  sprite: {fileID: 21300000, guid: cb536c65098fd3244b2a004704994e9f, type: 3}
   type: 0
   description: A heavy bracelet made by an ancient civilization about 3,000 years
     ago.

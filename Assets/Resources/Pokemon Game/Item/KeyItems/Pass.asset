@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pass
   m_EditorClassIdentifier: 
   name: Pass
-  sprite: {fileID: 21300000, guid: 9619025701bc31741b81f6761edf28e3, type: 3}
+  sprite: {fileID: 21300000, guid: 1b384888d76c55246af4290f2646ad2a, type: 3}
   type: 4
   description: "A pass required for riding the Magnet Train. It allows you to ride
     whenever and however much you\u2019d like."

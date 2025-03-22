@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM66
   m_EditorClassIdentifier: 
   name: TM66
-  sprite: {fileID: 21300000, guid: 2833154e6e0477a428365ea6cf9da6d0, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: "The user stores power, then attacks. If the user moves after the
     target, this attack\uFFFDs power will be doubled."

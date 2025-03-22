@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Power Plant Pass
   m_EditorClassIdentifier: 
   name: Power Plant Pass
-  sprite: {fileID: 21300000, guid: 8d0192d7eda523f4c9b76caa93ec88f8, type: 3}
+  sprite: {fileID: 21300000, guid: 3468fd25a14e6e641b34348b37a6d3b7, type: 3}
   type: 4
   description: This pass serves as an ID card for gaining access to the power plant
     that lies along Route 13.

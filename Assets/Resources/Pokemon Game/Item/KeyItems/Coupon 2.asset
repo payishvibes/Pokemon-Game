@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Coupon 2
   m_EditorClassIdentifier: 
   name: Coupon 2
-  sprite: {fileID: 21300000, guid: 86ae601f6c550824e82f5f93b4b853ee, type: 3}
+  sprite: {fileID: 21300000, guid: 5c163c448a9a5cd478878310ad044fe3, type: 3}
   type: 4
   description: "A coupon to be exchanged for a Pokemon Watch\u2014 Poketch for short.
     Three coupons are needed."

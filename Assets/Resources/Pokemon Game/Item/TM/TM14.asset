@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TM14
   m_EditorClassIdentifier: 
   name: TM14
-  sprite: {fileID: 21300000, guid: 3e73c837e2af7ce42a0ee4a8a77006ff, type: 3}
+  sprite: {fileID: 0}
   type: 2
   description: "A howling blizzard is summoned to strike opposing Pok\uFFFDmon. This
     may also leave the opposing Pok\uFFFDmon frozen."

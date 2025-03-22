@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sitrus Berry
   m_EditorClassIdentifier: 
   name: Sitrus Berry
-  sprite: {fileID: 21300000, guid: 4b1939010a5d39746802215d66f9191e, type: 3}
+  sprite: {fileID: 21300000, guid: f5d9bfad2c4ceb94abd7db6c25d6b55c, type: 3}
   type: 3
   description: A Berry to be consumed by Pokemon. If a Pokemon holds one, it can
     restore its own HP by a small amount during battle.
