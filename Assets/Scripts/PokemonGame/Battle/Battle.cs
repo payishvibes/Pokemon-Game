@@ -206,11 +206,11 @@ namespace PokemonGame.Battle
             }
             for (int i = 0; i < playerParty.Count; i++)
             {
-                opponentParty[i].OnLevelUp -= playerBattlerLeveledUp;
+                playerParty[i].OnLevelUp -= playerBattlerLeveledUp;
             }
             for (int i = 0; i < playerParty.Count; i++)
             {
-                opponentParty[i].OnCanEvolve -= playerBattlerEvolved;
+                playerParty[i].OnCanEvolve -= playerBattlerEvolved;
             }
         }
 

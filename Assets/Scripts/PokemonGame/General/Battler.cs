@@ -22,10 +22,15 @@ namespace PokemonGame.General
 
         private int _oldLevel;
         /// <summary>
-        /// </summary>
         /// The level is what determines stats and if the battler respects the player
+        /// </summary>
         [Space]
         public int level;
+
+        /// <summary>
+        /// Gender of the battler
+        /// </summary>
+        public Gender gender;
         
         /// <summary>
         /// The current health of the battler
@@ -36,6 +41,11 @@ namespace PokemonGame.General
         /// The name of the battler, unlike batter templates this can be changed for nicknames
         /// </summary>
         public new string name;
+
+        /// <summary>
+        /// Is the battler shiny
+        /// </summary>
+        public bool shiny;
         
         /// <summary>
         /// The maximum health of the battler
@@ -194,6 +204,7 @@ namespace PokemonGame.General
                     if (evolution.level <= level)
                     {
                         wantToEvolve = true;
+                        evolutionToPerform = evolution;
                         OnCanEvolve?.Invoke(this, evolution);
                     }
                 }
@@ -277,6 +288,8 @@ namespace PokemonGame.General
         private void OnValidate()
         {
             Debug.Log(ExperienceCalculator.RequiredForNextLevel(this));
+            
+            UpdateStats();
             
             if (!statusEffect)
             {
@@ -471,7 +484,7 @@ namespace PokemonGame.General
         /// <returns>A battler that has been created using the parameters given</returns>
         public static Battler Init(Battler sourceBattler, bool autoAssignHealth)
         {
-            return Init(sourceBattler.source, sourceBattler.level, sourceBattler.name, sourceBattler.isFainted,
+            return Init(sourceBattler.source, sourceBattler.level, sourceBattler.name, sourceBattler.gender, sourceBattler.shiny, sourceBattler.isFainted,
                 sourceBattler.exp, sourceBattler.statusEffect, sourceBattler.EVs, sourceBattler.IVs,
                 sourceBattler.currentHealth,
                 sourceBattler.moves, autoAssignHealth);
@@ -498,14 +511,30 @@ namespace PokemonGame.General
                 UnityEngine.Random.Range(0, 32),
                 UnityEngine.Random.Range(0, 32)
             };
+
+            bool shiny = UnityEngine.Random.Range(0, 4096) == 0;
+
+            Gender gender = Gender.Female;
             
-            return Init(source, level, name, false,
+            return Init(source, level, name, gender, shiny, false,
                 0, StatusEffect.Healthy, EVs, IVs, 0,
                 moves, autoAssignHealth);
         }
 
         public Sprite GetSpriteFront()
         {
+            if (shiny)
+            {
+                if (source.texture.female != null && gender == Gender.Female)
+                {
+                    return source.texture.femaleShiny;
+                }
+                return source.texture.shiny;
+            }
+            if (source.texture.female != null && gender == Gender.Female)
+            {
+                return source.texture.female;
+            }
             return source.texture.basic;
         }
 
@@ -524,7 +553,7 @@ namespace PokemonGame.General
         /// <param name="moves">Moves that the battler has</param>
         /// <param name="autoAssignHealth">Auto assign health to the <see cref="maxHealth"/> when creating</param>
         /// <returns>A battler that has been created using the parameters given</returns>
-        public static Battler Init(BattlerTemplate source, int level, string name, bool isFainted, int exp,
+        public static Battler Init(BattlerTemplate source, int level, string name, Gender gender, bool shiny, bool isFainted, int exp,
             StatusEffect statusEffect, int[] EVs, int[] IVs, int currentHealth, List<Move> moves, bool autoAssignHealth)
         {
             Battler returnBattler = CreateInstance<Battler>();
@@ -538,6 +567,8 @@ namespace PokemonGame.General
             returnBattler.moves = new List<Move>();
             returnBattler.movePpInfos = new List<MovePPData>();
             returnBattler.EVs = EVs;
+            returnBattler.shiny = shiny;
+            returnBattler.gender = gender;
 
             foreach (var move in moves)
             {
@@ -600,5 +631,12 @@ namespace PokemonGame.General
         Sassy,
         Serious,
         Timid
+    }
+
+    public enum Gender
+    {
+        Male,
+        Female,
+        Genderless
     }
 }

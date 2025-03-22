@@ -118,6 +118,8 @@ namespace PokemonGame.ScriptableObjects
 
         private void FillYieldInfo()
         {
+            Debug.Log("getting yield info");
+            
             StreamReader streamReader =
                 new StreamReader("C:\\Users\\Mr. Monster\\Documents\\Pokemon Gen 7 database\\yield values.csv");
             bool found = false;
@@ -134,7 +136,7 @@ namespace PokemonGame.ScriptableObjects
 
                 var dataValues = Regex.Split(dataString, @"(?<=[^']),(?=[^'])", RegexOptions.None);
 
-                if (dataValues[2].Replace("\"", "") == name)
+                if (dataValues[0].Replace("\"", "") == name)
                 {
                     found = true;
                     data = dataString;

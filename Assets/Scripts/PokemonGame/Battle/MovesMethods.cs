@@ -96,6 +96,20 @@ namespace PokemonGame.Battle
             int moveMod = 1;
 
             int doubleDmg = 1;
+
+            float targets = 1;
+
+            float pb = 1;
+
+            float glaiveRush = 1;
+
+            float burn = 1;
+
+            float other = 1;
+
+            float zMove = 1;
+
+            float random = Random.Range(0.85f, 1f);
             
             if (move.category == MoveCategory.Physical)
             {
@@ -108,8 +122,8 @@ namespace PokemonGame.Battle
                 defense = battlerBeingAttacked.specialDefense;
             }
 
-            damage = Mathf.RoundToInt((((2f * level / 5 + 2) * power * ((float)attack / defense) / 50) * item * critical + 2) * TK *
-                     weather * badge * stab * type * moveMod * doubleDmg);
+            damage = Mathf.RoundToInt(((((2f * level) / 5) * move.damage * (attack / (float)defense)) / 50) + 2 * targets * pb * weather *
+                glaiveRush * critical * random * stab * type * burn * other * zMove);
 
             int randomness = Mathf.RoundToInt(Random.Range(.8f * damage, damage * 1.2f));
             damage = randomness;

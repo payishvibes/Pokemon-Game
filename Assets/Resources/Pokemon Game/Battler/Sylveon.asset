@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34c34158a6a1ace4da0180135a1a41b4, type: 3}
+  m_Name: Sylveon
+  m_EditorClassIdentifier: 
+  source: {fileID: 11400000, guid: 6364253c73312df4cb8d2134bdc7b962, type: 2}
+  level: 50
+  gender: 1
+  currentHealth: 312
+  name: Sylveon
+  shiny: 1
+  maxHealth: 312
+  attack: 216
+  defense: 197
+  specialAttack: 258
+  specialDefense: 327
+  speed: 187
+  exp: 580
+  EVs: fc000000fc000000fc000000fc000000fc000000fc000000
+  IVs: 1f0000001f0000001f0000001f0000001f0000001f000000
+  nature: 15
+  affection: 0
+  isFainted: 0
+  statusEffect: {fileID: 11400000, guid: 70a8b2171523288439f255c2f97685d9, type: 2}
+  moves:
+  - {fileID: 11400000, guid: f669409d391a9d649adabd2c9cde4b2c, type: 2}
+  - {fileID: 11400000, guid: cfc11c13c605c29488718d8dafbb8c5b, type: 2}
+  - {fileID: 11400000, guid: 2e869c1f176a61e43be51bce44640000, type: 2}
+  - {fileID: 11400000, guid: 5c24c0c9486bb5c4d86cdf4238fb3b33, type: 2}
+  movePpInfos: []
+  wantToEvolve: 0
+  evolutionToPerform:
+    triggerType: 0
+    level: 0
+    item: {fileID: 0}
+    evolution: {fileID: 0}
