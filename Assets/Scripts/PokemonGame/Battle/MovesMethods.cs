@@ -122,7 +122,7 @@ namespace PokemonGame.Battle
                 defense = battlerBeingAttacked.specialDefense;
             }
 
-            damage = Mathf.RoundToInt(((((2f * level) / 5) * move.damage * (attack / (float)defense)) / 50) + 2 * targets * pb * weather *
+            damage = Mathf.RoundToInt(((((2f * level) / 5) * power * (attack / (float)defense)) / 50) + 2 * targets * pb * weather *
                 glaiveRush * critical * random * stab * type * burn * other * zMove);
 
             int randomness = Mathf.RoundToInt(Random.Range(.8f * damage, damage * 1.2f));

@@ -91,7 +91,7 @@ namespace PokemonGame.Battle
         private Battler opponentCurrentBattler => opponentParty[opponentBattlerIndex];
 
         public List<TurnItem> turnItemQueue = new List<TurnItem>();
-        [SerializeField] private bool _currentlyRunningQueueItem = false;
+        [SerializeField] private bool currentlyRunningQueueItem = false;
 
         public List<Battler> battlersThatParticipated;
 
@@ -102,20 +102,17 @@ namespace PokemonGame.Battle
         private Vector3 _playerPos;
         private Quaternion _playerRotation;
 
-        private bool _availableToEndTurnShowing;
-        private bool _waitingToEndTurnEnding;
-
         private int _playerSwapIndex;
         
         public TurnItem playerAction;
 
-        private TurnItem currentTurnItem;
+        public TurnItem currentTurnItem;
         
-        EventHandler<BattlerTookDamageArgs> opponentBattlerDefeated = null;
-        EventHandler<int> playerBattlerLeveledUp = null;
-        EventHandler<EvolutionData> playerBattlerEvolved = null;
+        private EventHandler<BattlerTookDamageArgs> _opponentBattlerDefeated = null;
+        private EventHandler<int> _playerBattlerLeveledUp = null;
+        private EventHandler<EvolutionData> _playerBattlerEvolved = null;
 
-        EventHandler<BattlerTookDamageArgs> playerBattlerDefeated = null;
+        private EventHandler<BattlerTookDamageArgs> _playerBattlerDefeated = null;
         
         private Item _playerItemToUse;
         private int _battlerToUseItemOn;
@@ -146,17 +143,17 @@ namespace PokemonGame.Battle
             playerParty.PartyAllDefeated += PlayerPartyAllDefeated;
             opponentParty.PartyAllDefeated += OpponentPartyAllDefeated;
 
-            opponentBattlerDefeated = (s, e) => BattlerFainted(e, opponentParty.party.Find(x => x == e.damaged));
+            _opponentBattlerDefeated = (s, e) => BattlerFainted(e, opponentParty.party.Find(x => x == e.damaged));
             
-            playerBattlerLeveledUp = (s, e) => BattlerLeveledUp(playerParty.party.Find(x => x == (Battler)s), e);
-            playerBattlerEvolved = (s, e) => BattlerEvolved(playerParty.party.Find(x => x == (Battler)s), e.evolution);
+            _playerBattlerLeveledUp = (s, e) => BattlerLeveledUp(playerParty.party.Find(x => x == (Battler)s), e);
+            _playerBattlerEvolved = (s, e) => BattlerEvolved(playerParty.party.Find(x => x == (Battler)s), e.evolution);
 
             for (int i = 0; i < opponentParty.Count; i++)
             {
-                opponentParty[i].OnFainted += opponentBattlerDefeated;
+                opponentParty[i].OnFainted += _opponentBattlerDefeated;
             }
 
-            playerBattlerDefeated = (s, e) =>
+            _playerBattlerDefeated = (s, e) =>
             {
                 if (playerCurrentBattler.isFainted)
                 {
@@ -166,17 +163,17 @@ namespace PokemonGame.Battle
             
             for (int i = 0; i < playerParty.Count; i++)
             {
-                playerParty[i].OnFainted += playerBattlerDefeated;
+                playerParty[i].OnFainted += _playerBattlerDefeated;
             }
             
             for (int i = 0; i < playerParty.Count; i++)
             {
-                playerParty[i].OnLevelUp += playerBattlerLeveledUp;
+                playerParty[i].OnLevelUp += _playerBattlerLeveledUp;
             }
             
             for (int i = 0; i < playerParty.Count; i++)
             {
-                playerParty[i].OnCanEvolve += playerBattlerEvolved;
+                playerParty[i].OnCanEvolve += _playerBattlerEvolved;
             }
             
             // adds current battler to list of participating battlers
@@ -193,15 +190,15 @@ namespace PokemonGame.Battle
             
             for (int i = 0; i < opponentParty.Count; i++)
             {
-                opponentParty[i].OnFainted -= opponentBattlerDefeated;
+                opponentParty[i].OnFainted -= _opponentBattlerDefeated;
             }
             for (int i = 0; i < playerParty.Count; i++)
             {
-                playerParty[i].OnLevelUp -= playerBattlerLeveledUp;
+                playerParty[i].OnLevelUp -= _playerBattlerLeveledUp;
             }
             for (int i = 0; i < playerParty.Count; i++)
             {
-                playerParty[i].OnCanEvolve -= playerBattlerEvolved;
+                playerParty[i].OnCanEvolve -= _playerBattlerEvolved;
             }
         }
 
@@ -316,11 +313,11 @@ namespace PokemonGame.Battle
                 turnItemQueue.Add(TurnItem.EndOfTurnStatusEffects);
             }
             
-            if (!_currentlyRunningQueueItem)
+            if (!currentlyRunningQueueItem)
             {
                 if (turnItemQueue.Count > 0 && !CurrentlyEndingTheBattle())
                 {
-                    _currentlyRunningQueueItem = true;
+                    currentlyRunningQueueItem = true;
                     
                     currentTurnItem = turnItemQueue[0];
                     turnItemQueue.RemoveAt(0);
@@ -403,7 +400,7 @@ namespace PokemonGame.Battle
 
         private void TurnQueueItemEnded()
         {
-            _currentlyRunningQueueItem = false;
+            currentlyRunningQueueItem = false;
         }
 
         private void EndTurnShowing()
@@ -424,23 +421,18 @@ namespace PokemonGame.Battle
 
         private void TurnEnding()
         {
-            if (!_waitingToEndTurnEnding)
-            {
-                hasDoneChoosingUpdate = false;
-                hasSetupShowing = false;
-                playerHasChosenMove = false;
+            hasDoneChoosingUpdate = false;
+            hasSetupShowing = false;
+            playerHasChosenMove = false;
                 
-                enemyMoveToDo = null;
-                playerMoveToDo = null;
-
-                _waitingToEndTurnEnding = true;
-                EndTurnEnding();
-            }
+            enemyMoveToDo = null;
+            playerMoveToDo = null;
+            
+            EndTurnEnding();
         }
 
         private void EndTurnEnding()
         {
-            _waitingToEndTurnEnding = false;
             currentTurn = TurnStatus.Choosing;
         }
 
@@ -474,7 +466,7 @@ namespace PokemonGame.Battle
                     break;
             }
             
-            if (_currentlyRunningQueueItem && !args.moreToGo && !swappedDialogue && !CurrentlyEndingTheBattle())
+            if (currentlyRunningQueueItem && !args.moreToGo && !swappedDialogue && !CurrentlyEndingTheBattle())
             {
                 TurnQueueItemEnded();
             }
@@ -591,7 +583,7 @@ namespace PokemonGame.Battle
 
         public void ChooseToSwap(int newBattlerIndex)
         {
-            if (_currentlyRunningQueueItem) // swapping mid turn showing aka after a battler faints
+            if (currentlyRunningQueueItem) // swapping mid turn showing aka after a battler faints
             {
                 _playerSwapIndex = newBattlerIndex;
                 QueDialogue($"You sent out {playerParty[newBattlerIndex].name}", "swap", true);
@@ -731,8 +723,11 @@ namespace PokemonGame.Battle
             DialogueMoveUsed(playerCurrentBattler.name, playerMoveToDo.name, opponentCurrentBattler.name);
             
             playerMoveToDo.MoveMethod(e);
-            
-            opponentCurrentBattler.TakeDamage(e.damageDealt, new BattlerDamageSource(playerCurrentBattler));
+
+            if (playerMoveToDo.category != MoveCategory.Status)
+            {
+                opponentCurrentBattler.TakeDamage(e.damageDealt, new BattlerDamageSource(playerCurrentBattler));
+            }
         }
 
         private void QueueMoves()

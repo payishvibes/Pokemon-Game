@@ -72,7 +72,6 @@ namespace PokemonGame.Trainers
             isDefeated = true;
             
             TrainerRegister.Defeated(this);
-            Debug.Log($"Trainer is now deafeated: {TrainerRegister.IsDefeated(this)}");
             
             StartCoroutine(StartDefeatedDialogue());
         }

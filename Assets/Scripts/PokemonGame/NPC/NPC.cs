@@ -47,7 +47,6 @@ namespace PokemonGame.NPC
         {
             foreach (var interactionObject in interactionObjects)
             {
-                Debug.Log("turning it off");
                 interactionObject.SetActive(false);
             }
         }

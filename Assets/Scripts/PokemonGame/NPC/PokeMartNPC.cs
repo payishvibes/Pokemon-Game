@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using PokemonGame.Dialogue;
 using PokemonGame.Game;
