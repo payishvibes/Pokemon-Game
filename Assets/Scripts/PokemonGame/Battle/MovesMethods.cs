@@ -229,7 +229,7 @@ namespace PokemonGame.Battle
 
         public void DefaultMoveMethod(MoveMethodEventArgs e)
         {
-            if (e.move.category != MoveCategory.Special)
+            if (e.move.category != MoveCategory.Status)
             {
                 e.damageDealt = CalculateDamage(e.move, e.attacker, e.target);
             }

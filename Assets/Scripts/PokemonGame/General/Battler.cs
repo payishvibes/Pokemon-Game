@@ -287,8 +287,6 @@ namespace PokemonGame.General
         /// </summary>
         private void OnValidate()
         {
-            Debug.Log(ExperienceCalculator.RequiredForNextLevel(this));
-            
             UpdateStats();
             
             if (!statusEffect)

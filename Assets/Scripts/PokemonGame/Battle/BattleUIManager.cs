@@ -11,8 +11,9 @@ namespace PokemonGame.Battle
     public class BattleUIManager : MonoBehaviour
     {
         [SerializeField] private float healthUpdateSpeed = 0.8f;
-        
-        [Space]
+
+        [Space] 
+        [SerializeField] private LevelUpDisplay levelUpDisplay;
         [SerializeField] private GameObject playerUIHolder;
         [SerializeField] private GameObject controlUIHolder;
         [SerializeField] private GameObject moveButtons;

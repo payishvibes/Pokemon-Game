@@ -198,11 +198,11 @@ namespace PokemonGame.ScriptableObjects
 
             foreach (var evolvesTo in found.EvolvesTo)
             {
-                await NewEvolution(evolvesTo, template);
+                NewEvolution(evolvesTo, template);
             }
         }
 
-        private static async Task NewEvolution(ChainLink link, BattlerTemplate template)
+        private static void NewEvolution(ChainLink link, BattlerTemplate template)
         {
             string method = link.EvolutionDetails[0].Trigger.Name;
             
