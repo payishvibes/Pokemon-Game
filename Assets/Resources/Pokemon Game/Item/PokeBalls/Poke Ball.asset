@@ -17,7 +17,7 @@ MonoBehaviour:
   type: 6
   description: "A device for catching wild Pokemon. It\u2019s thrown like a ball
     at a Pokemon, comfortably encapsulating its target."
-  cost: 0
+  cost: 200
   lockedTarget: 1
   playerParty: 0
   targetIndex: 0

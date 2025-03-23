@@ -17,7 +17,7 @@ MonoBehaviour:
   type: 1
   description: "A medicine that can revive fainted Pokemon. It also restores half
     of a fainted Pokemon\u2019s maximum HP."
-  cost: 0
+  cost: 2000
   lockedTarget: 0
   playerParty: 0
   targetIndex: 0

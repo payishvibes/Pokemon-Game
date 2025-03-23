@@ -85,9 +85,17 @@ namespace PokemonGame.Battle
 
             currentBattlerRenderer.transform.localScale = Vector3.Lerp(currentBattlerRenderer.transform.localScale,
                 _targetPlayerBattlerScale, shrinkEffectSpeed * Time.deltaTime);
+            
+            // 1.45
+
+            currentBattlerRenderer.transform.localPosition = Vector3.Lerp(new Vector3(0, 2.3f, 4.76f), new Vector3(0, 1.45f, 4.76f),
+                1 - currentBattlerRenderer.transform.localScale.x / 3f);
 
             opponentBattlerRenderer.transform.localScale = Vector3.Lerp(opponentBattlerRenderer.transform.localScale,
                 _targetOpponentBattlerScale, shrinkEffectSpeed * Time.deltaTime);
+            
+            opponentBattlerRenderer.transform.localPosition = Vector3.Lerp(new Vector3(0, 2.3f, -4.76f), new Vector3(0, 1.45f, -4.76f),
+                1 - opponentBattlerRenderer.transform.localScale.x / 3f);
         }
 
         private void UpdateBattlerButtons()

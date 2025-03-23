@@ -17,8 +17,7 @@ MonoBehaviour:
   type: 1
   description: A spray-type medicine for treating wounds. It can be used to restore
     60 HP to an injured Pokemon.
-  cost: 0
-  useInBattle: 0
+  cost: 700
   lockedTarget: 0
   playerParty: 0
   targetIndex: 0
