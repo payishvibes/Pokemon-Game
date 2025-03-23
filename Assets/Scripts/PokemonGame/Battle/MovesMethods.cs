@@ -238,7 +238,7 @@ namespace PokemonGame.Battle
         public void Toxic(MoveMethodEventArgs e)
         {
             e.target.statusEffect = Registry.GetStatusEffect("Poisoned");
-            Battle.Singleton.QueDialogue($"{e.target.name} was poisoned!", true);
+            Battle.Singleton.QueDialogue($"{e.target.name} was poisoned!", "poisoned", true);
         }
 
         public void LeechLife(MoveMethodEventArgs e)

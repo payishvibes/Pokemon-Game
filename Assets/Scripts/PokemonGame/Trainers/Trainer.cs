@@ -80,12 +80,12 @@ namespace PokemonGame.Trainers
         private IEnumerator StartDefeatedDialogue()
         {
             yield return new WaitForEndOfFrame();
-            QueDialogue(defeatedBattleText, true);
+            QueDialogue(defeatedBattleText);
         }
 
         protected override void OnPlayerInteracted()
         {
-            QueDialogue(idleDialogue, true);
+            QueDialogue(idleDialogue);
             base.OnPlayerInteracted();
         }
 
@@ -95,7 +95,7 @@ namespace PokemonGame.Trainers
             {
                 isStartingBattle = true;
                 Player.Instance.LookAtTarget(transform.position);
-                QueDialogue(startBattleText, true);
+                QueDialogue(startBattleText);
             }
         }
 
@@ -103,7 +103,6 @@ namespace PokemonGame.Trainers
         {
             if(!isDefeated && isStartingBattle)
             {
-                Debug.Log(!isDefeated && isStartingBattle);
                 StartCoroutine(LoadBattle());
             }
             else

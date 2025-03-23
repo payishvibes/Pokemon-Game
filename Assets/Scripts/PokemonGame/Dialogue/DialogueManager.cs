@@ -25,7 +25,6 @@ namespace PokemonGame.Dialogue
         [SerializeField] private int maxCharAmount;
         [SerializeField] private float textScrollSpeed = 1;
         private Story _currentStory;
-        private TextAsset _currentTextAsset;
         [SerializeField] private TextAsset globalsInkFile;
         private TextMeshProUGUI[] _choicesText;
         // TODO: replace this god awful global variable system, like jesus christ
@@ -120,10 +119,12 @@ namespace PokemonGame.Dialogue
         /// </summary>
         /// <param name="inkJson">The TextAsset with the information about the conversation</param>
         /// <param name="trigger">The DialogueTrigger that triggered this conversation</param>
+        /// <param name="id">The id that can be used to identify the dialogue</param>
         /// <param name="autostart">Automatically start the dialogue on load, on by default</param>
-        public void QueDialogue(TextAsset inkJson, DialogueTrigger trigger, bool autostart, Dictionary<string, string> variables = null)
+        /// <param name="variables">The variables that can be loaded into the ink file</param>
+        public void QueDialogue(TextAsset inkJson, DialogueTrigger trigger, string id, bool autostart, Dictionary<string, string> variables = null)
         {
-            QueuedDialogue dialogue = new QueuedDialogue(trigger, variables, inkJson, autostart);
+            QueuedDialogue dialogue = new QueuedDialogue(trigger, variables, id, inkJson, autostart);
             if (_queue.Count > 0 || dialogueIsPlaying)
             {
                 _queue.Enqueue(dialogue);
@@ -134,16 +135,15 @@ namespace PokemonGame.Dialogue
             }
         }
         
-        
         /// <summary>
         /// Starts a new conversation
         /// </summary>
         /// <param name="text">The text of the conversation</param>
         /// <param name="trigger">The DialogueTrigger that triggered this conversation</param>
         /// <param name="autostart">Automatically start the dialogue on load, on by default</param>
-        public void QueDialogue(string text, DialogueTrigger trigger, bool autostart, Dictionary<string, string> variables = null)
+        public void QueDialogue(string text, DialogueTrigger trigger, string id, bool autostart)
         {
-            QueuedDialogue dialogue = new QueuedDialogue(trigger, text, autostart);
+            QueuedDialogue dialogue = new QueuedDialogue(trigger, id, text, autostart);
             if (_queue.Count > 0 || dialogueIsPlaying)
             {
                 _queue.Enqueue(dialogue);
@@ -169,7 +169,6 @@ namespace PokemonGame.Dialogue
             if (dialogueToLoad.ink)
             {
                 _currentStory = new Story(dialogueToLoad.textAsset.text);
-                _currentTextAsset = dialogueToLoad.textAsset;
             
                 _dialogueVariables.StartListening(_currentStory);
                 if(dialogueToLoad.variables != null)
@@ -196,11 +195,14 @@ namespace PokemonGame.Dialogue
             {
                 if (dialogueToLoad.autoStart)
                 {
-                    DialogueStarted?.Invoke(this, new DialogueStartedEventArgs(dialogueToLoad.trigger, _currentTextAsset));
+                    DialogueStarted?.Invoke(this, new DialogueStartedEventArgs(dialogueToLoad.trigger, currentQueuedDialogue.id, currentQueuedDialogue.textAsset));
                 }
+            }
+            else
+            {
                 if (dialogueToLoad.autoStart)
                 {
-                    DialogueStarted?.Invoke(this, new DialogueStartedEventArgs(dialogueToLoad.trigger, dialogueToLoad.text));
+                    DialogueStarted?.Invoke(this, new DialogueStartedEventArgs(dialogueToLoad.trigger, currentQueuedDialogue.id, currentQueuedDialogue.text));
                 }
             }
         }
@@ -217,11 +219,11 @@ namespace PokemonGame.Dialogue
                 {
                     if (currentQueuedDialogue.ink)
                     {
-                        DialogueStarted?.Invoke(this, new DialogueStartedEventArgs(trigger, _currentTextAsset));   
+                        DialogueStarted?.Invoke(this, new DialogueStartedEventArgs(trigger, currentQueuedDialogue.id, currentQueuedDialogue.textAsset));   
                     }
                     else
                     {
-                        DialogueStarted?.Invoke(this, new DialogueStartedEventArgs(trigger, currentQueuedDialogue.text));  
+                        DialogueStarted?.Invoke(this, new DialogueStartedEventArgs(trigger, currentQueuedDialogue.id, currentQueuedDialogue.text));  
                     }
                     wasToldToNotStart = false;
                     dialogueIsPlaying = true;
@@ -266,12 +268,14 @@ namespace PokemonGame.Dialogue
         {
             if (_queue.Count > 0)
             {
+                string id = currentQueuedDialogue.id;
                 LoadDialogueFromQueue(_queue.Dequeue());
-                DialogueEnded?.Invoke(this, new DialogueEndedEventArgs(currentTrigger, true));
+                DialogueEnded?.Invoke(this, new DialogueEndedEventArgs(currentTrigger, id, true));
             }
             else
             {
                 yield return new WaitForSeconds(0.2f);
+                string id = currentQueuedDialogue.id;
                 if (currentQueuedDialogue.ink)
                 {
                     _dialogueVariables.StopListening(_currentStory);
@@ -286,8 +290,7 @@ namespace PokemonGame.Dialogue
                 dialoguePanel.SetActive(false);
                 dialogueTextDisplay.text = "";
                 currentTrigger.EndDialogue();
-                Debug.Log("ending dialogue");
-                DialogueEnded?.Invoke(this, new DialogueEndedEventArgs(currentTrigger, false));
+                DialogueEnded?.Invoke(this, new DialogueEndedEventArgs(currentTrigger, id, false));
             }
         }
         
@@ -539,6 +542,10 @@ namespace PokemonGame.Dialogue
         /// </summary>
         public DialogueTrigger trigger;
         /// <summary>
+        /// Id of the dialogue that started
+        /// </summary>
+        public string id;
+        /// <summary>
         /// The text asset that was used for the dialogue
         /// </summary>
         public TextAsset textAsset;
@@ -551,17 +558,19 @@ namespace PokemonGame.Dialogue
         /// </summary>
         public string text;
     
-        public DialogueStartedEventArgs(DialogueTrigger trigger, TextAsset textAsset)
+        public DialogueStartedEventArgs(DialogueTrigger trigger, string id, TextAsset textAsset)
         {
             this.trigger = trigger;
             this.textAsset = textAsset;
+            this.id = id;
             ink = true;
         }
         
-        public DialogueStartedEventArgs(DialogueTrigger trigger, string text)
+        public DialogueStartedEventArgs(DialogueTrigger trigger, string id, string text)
         {
             this.trigger = trigger;
             this.text = text;
+            this.id = id;
             ink = false;
         }
     }
@@ -580,10 +589,15 @@ namespace PokemonGame.Dialogue
         /// Weather there is more dialogue queued
         /// </summary>
         public bool moreToGo;
+        /// <summary>
+        /// Id of the dialogue that finished
+        /// </summary>
+        public string id;
     
-        public DialogueEndedEventArgs(DialogueTrigger trigger, bool moreToGo)
+        public DialogueEndedEventArgs(DialogueTrigger trigger, string id, bool moreToGo)
         {
             this.trigger = trigger;
+            this.id = id;
             this.moreToGo = moreToGo;
         }
     }
@@ -610,6 +624,10 @@ namespace PokemonGame.Dialogue
         /// </summary>
         public DialogueTrigger trigger;
         /// <summary>
+        /// Identifying string for the dialogue
+        /// </summary>
+        public string id;
+        /// <summary>
         /// Variables to set
         /// </summary>
         public Dictionary<string, string> variables;
@@ -630,18 +648,20 @@ namespace PokemonGame.Dialogue
         /// </summary>
         public string text;
 
-        public QueuedDialogue(DialogueTrigger trigger, Dictionary<string, string> variables, TextAsset textAsset, bool autoStart = true)
+        public QueuedDialogue(DialogueTrigger trigger, Dictionary<string, string> variables, string id, TextAsset textAsset, bool autoStart = true)
         {
             this.trigger = trigger;
             this.variables = variables;
+            this.id = id;
             this.textAsset = textAsset;
             this.autoStart = autoStart;
             ink = true;
         }
         
-        public QueuedDialogue(DialogueTrigger trigger, string text, bool autoStart = true)
+        public QueuedDialogue(DialogueTrigger trigger, string id, string text, bool autoStart = true)
         {
             this.trigger = trigger;
+            this.id = id;
             this.text = text;
             this.autoStart = autoStart;
             ink = false;

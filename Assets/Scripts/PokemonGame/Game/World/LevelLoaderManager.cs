@@ -1,4 +1,3 @@
-using System.Collections;
 using PokemonGame.Global;
 using UnityEngine.SceneManagement;
 
@@ -14,12 +13,9 @@ namespace PokemonGame.Game.World
         
         private void Start()
         {
-            Debug.Log(SceneLoader.sceneLoadedFrom);
             if ((SceneLoader.sceneLoadedFrom != "Battle" && SceneLoader.sceneLoadedFrom != "Boot") || (SceneManager.GetActiveScene().name == "Poke Center" && SceneLoader.sceneLoadedFrom == "Battle"))
             {
-                Debug.Log("Loading into an actual position");
                 string loaderName = SceneLoader.GetVariable<string>("loaderName");
-                Debug.Log(loaderName);
 
                 Transform spawnPointObject;
                 
@@ -51,8 +47,6 @@ namespace PokemonGame.Game.World
 
         private void UseDefaultSpawn()
         {
-            Debug.Log("Using default spawn point");
-
             if (useDefaultRotation)
             {
                 Player.Instance.SetPosRot(spawnPoint.position, spawnPoint.rotation);

@@ -105,10 +105,8 @@ namespace PokemonGame.Battle
         private bool _availableToEndTurnShowing;
         private bool _waitingToEndTurnEnding;
 
-        private bool _playerWantsToSwap;
         private int _playerSwapIndex;
 
-        private bool _opponentDefeated;
         private bool _endingDialogueRunning;
         private bool _ending;
 
@@ -151,6 +149,7 @@ namespace PokemonGame.Battle
             ChangeOpponentBattlerIndex(0, true);
 
             DialogueManager.instance.DialogueEnded += DialogueEnded;
+            DialogueManager.instance.DialogueStarted += OnDialogueStarted;
             playerParty.PartyAllDefeated += PlayerPartyAllDefeated;
             opponentParty.PartyAllDefeated += OpponentPartyAllDefeated;
 
@@ -195,7 +194,6 @@ namespace PokemonGame.Battle
 
         private void OnDisable()
         {
-            Debug.Log("disable");
             playerParty.PartyAllDefeated -= PlayerPartyAllDefeated;
             opponentParty.PartyAllDefeated -= OpponentPartyAllDefeated;
             DialogueManager.instance.DialogueEnded -= DialogueEnded;
@@ -231,13 +229,12 @@ namespace PokemonGame.Battle
 
         private void BattlerLeveledUp(Battler battlerThatLeveled, int newLevel)
         {
-            QueDialogue($"{battlerThatLeveled.name} reached level {newLevel}!");
+            QueDialogue($"{battlerThatLeveled.name} reached level {newLevel}!", "leveledUp");
         }
 
         private void BattlerEvolved(Battler battlerThatEvolved, BattlerTemplate newTemplate)
         {
-            battlerThatEvolved.EvolutionApproved();
-            QueDialogue($"{battlerThatEvolved.name} evolved into a {newTemplate.name}!");
+            QueDialogue($"{battlerThatEvolved.name} evolved into a {newTemplate.name}!", "evolved");
         }
 
         public void BattlerFainted(EventArgs e, Battler defeated)
@@ -287,7 +284,6 @@ namespace PokemonGame.Battle
                 case TurnStatus.Choosing:
                     if (!hasDoneChoosingUpdate)
                     {
-                        Debug.Log("Begin Turn Choosing");
                         uiManager.ShowControlUI(true);
                         uiManager.ShowUI(true);
                         uiManager.UpdateBattlerMoveDisplays();
@@ -298,12 +294,10 @@ namespace PokemonGame.Battle
                         }
                         else
                         {
-                            Debug.Log("Asking wild pokemon function to run");
                             EnemyAIMethods.WildPokemon(new AIMethodEventArgs(opponentCurrentBattler, opponentParty,
                                 ExternalBattleData.Construct(this)));
                         }
                         hasDoneChoosingUpdate = true;
-                        Debug.Log("Setting swapped to false");
                         _playerSwappedThisTurn = false;
                         _playerCatchThisTurn = false;
                         _playerUsedItemThisTurn = false;                        
@@ -318,7 +312,6 @@ namespace PokemonGame.Battle
         {
             if (!hasSetupShowing)
             {
-                Debug.Log("Starting Turn Showing");
                 hasSetupShowing = true;
                 
                 uiManager.ShowControlUI(false);
@@ -343,8 +336,6 @@ namespace PokemonGame.Battle
                     turnItemQueue.Add(TurnItem.PlayerItem);
                 }
                 
-                Debug.Log(_playerWantsToSwap);
-                
                 turnItemQueue.Add(TurnItem.StartOfTurnStatusEffects);
                 QueueMoves();
                 turnItemQueue.Add(TurnItem.EndOfTurnStatusEffects);
@@ -354,8 +345,6 @@ namespace PokemonGame.Battle
             {
                 if (turnItemQueue.Count > 0 && !_ending)
                 {
-                    Debug.Log("Running a new turn item");
-                    
                     _currentlyRunningQueueItem = true;
                     
                     TurnItem nextTurnItem = turnItemQueue[0];
@@ -450,7 +439,7 @@ namespace PokemonGame.Battle
             variables.Add("moveUsed", moveUsed);
             variables.Add("battlerHit", battlerHit);
             
-            QueDialogue(battlerUsedText, true, variables);
+            QueDialogue(battlerUsedText, "moveUsed", true, variables);
         }
 
         private void TurnEnding()
@@ -488,33 +477,58 @@ namespace PokemonGame.Battle
         {
             bool swappedDialogue = false;
 
-            if (_wantToRun)
+            switch (args.id)
             {
-                // does the same stuff that we want from a run, so we just use the existing function
-                StartCoroutine(ExitBattleWin());
+                case "run":
+                    StartCoroutine(ExitBattleWin());
+                    break;
+                case "swap":
+                    swappedDialogue = true;
+                    PlayerSwappedBattler();
+                    break;
+                case "playerDefeated":
+                    StartCoroutine(ExitBattleLoss());
+                    break;
+                case "opponentDefeated":
+                    StartCoroutine(ExitBattleWin());
+                    break;
             }
             
-            if (_playerWantsToSwap) // player has swapped because their battler died
-            {
-                swappedDialogue = true;
-                PlayerSwappedBattler();
-            }
-                
             if (_currentlyRunningQueueItem && !args.moreToGo && !swappedDialogue)
             {
                 TurnQueueItemEnded();
             }
-                
-            if (_endingDialogueRunning)
+        }
+
+        private void OnDialogueStarted(object sender, DialogueStartedEventArgs e)
+        {
+            switch (e.id)
             {
-                if (!_opponentDefeated)
+                case "evolved":
+                    EvolutionEffect(e);
+                    break;
+            }
+        }
+
+        private void EvolutionEffect(DialogueStartedEventArgs e)
+        {
+            Battler evolvedBattler = playerCurrentBattler;
+            foreach (var playerBattler in playerParty.party)
+            {
+                if (e.text.Contains(playerBattler.name))
                 {
-                    StartCoroutine(ExitBattleLoss());
+                    evolvedBattler = playerBattler;
                 }
-                else
-                {
-                    StartCoroutine(ExitBattleWin());
-                }
+            }
+
+            if (evolvedBattler == playerCurrentBattler)
+            {
+                uiManager.ShrinkPlayerBattler();
+                StartCoroutine(DelayEvolution(evolvedBattler));
+            }
+            else
+            {
+                evolvedBattler.EvolutionApproved();
             }
         }
 
@@ -600,9 +614,8 @@ namespace PokemonGame.Battle
         {
             if (_currentlyRunningQueueItem) // swapping mid turn showing aka after a battler faints
             {
-                _playerWantsToSwap = true;
                 _playerSwapIndex = newBattlerIndex;
-                QueDialogue($"You sent out {playerParty[newBattlerIndex].name}", true);
+                QueDialogue($"You sent out {playerParty[newBattlerIndex].name}", "swap", true);
             }
             else // player chose to swap as their move
             {
@@ -647,6 +660,16 @@ namespace PokemonGame.Battle
             uiManager.UpdatePlayerBattlerDetails();
         }
 
+        private IEnumerator DelayEvolution(Battler battlerToEvolve)
+        {
+            yield return new WaitForSeconds(shrinkEffectDelay);
+            battlerToEvolve.EvolutionApproved();
+            Instantiate(spawnEffect, uiManager.playerBattler.transform.position, spawnEffect.transform.rotation,
+                uiManager.playerBattler);
+            uiManager.ExpandPlayerBattler();
+            uiManager.UpdatePlayerBattlerDetails();
+        }
+
         private void ChangeOpponentBattlerIndex(int index, bool skipShrink = false)
         {
             if (!skipShrink)
@@ -684,11 +707,9 @@ namespace PokemonGame.Battle
 
             uiManager.UpdatePlayerBattlerDetails();
             
-            _playerWantsToSwap = false;
-            
             _playerSwappedThisTurn = true;
             
-            QueDialogue($"Go ahead {playerParty[_playerSwapIndex].name}!", true);
+            QueDialogue($"Go ahead {playerParty[_playerSwapIndex].name}!", "sentOut", true);
         }
 
         private void OpponentSwitchBattler()
@@ -702,7 +723,7 @@ namespace PokemonGame.Battle
             
             uiManager.UpdateOpponentBattlerDetails();
             
-            QueDialogue($"Opponent sent out {opponentParty[e.newBattlerIndex].name}!", true);
+            QueDialogue($"Opponent sent out {opponentParty[e.newBattlerIndex].name}!", "opponentSentOut", true);
         }
 
         private void PlayerParalysed()
@@ -848,7 +869,7 @@ namespace PokemonGame.Battle
 
         private void RunRunAwayDialogue()
         {
-            QueDialogue("Running Away!");
+            QueDialogue("Running Away!", "run");
         }
 
         private int GetIndexOfMoveOnCurrentEnemy(Move move)
@@ -1010,13 +1031,11 @@ namespace PokemonGame.Battle
             if (_endingDialogueRunning)
                 return;
             
-            _opponentDefeated = isDefeated;
-            
             if (isDefeated)
             {
                 if (trainerBattle)
                 {
-                    QueDialogue("All opponent Pokemon defeated!", true);
+                    QueDialogue("All opponent Pokemon defeated!", "opponentDefeated", true);
                 }
                 else
                 {
@@ -1025,7 +1044,7 @@ namespace PokemonGame.Battle
             }
             else
             {
-                QueDialogue("All your Pokemon defeated!", true);
+                QueDialogue("All your Pokemon defeated!", "playerDefeated", true);
             }
 
             //TurnQueueItemEnded();

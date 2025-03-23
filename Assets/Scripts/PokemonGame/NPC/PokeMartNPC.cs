@@ -193,7 +193,7 @@ namespace PokemonGame.NPC
                 variables.Add("itemToBuy", stock[_currentlySelectedItem].name);
                 variables.Add("totalCost", totalCost.ToString());
                 
-                QueDialogue(confirmationDialogue, true, variables);
+                QueDialogue(confirmationDialogue, "buyConfirm", true, variables);
             }
             else
             {

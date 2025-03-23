@@ -30,16 +30,16 @@ namespace PokemonGame.Dialogue
         /// <param name="textAsset">The text asset that the dialogue sequence draws from</param>
         /// <param name="autostart">Automatically start the dialogue, turn off to start dialogue yourself, on by default</param>
         /// <param name="variables">Variables to pass into the dialogue when it plays</param>
-        public void QueDialogue(TextAsset textAsset, bool autostart = true, Dictionary<string, string> variables = null)
+        public void QueDialogue(TextAsset textAsset, string id = "", bool autostart = true, Dictionary<string, string> variables = null)
         {
             if (autostart)
             {
-                DialogueManager.instance.QueDialogue(textAsset, this, true, variables);
+                DialogueManager.instance.QueDialogue(textAsset, this, id, true, variables);
                 DialogueWasCalled?.Invoke(gameObject, EventArgs.Empty);
             }
             else
             {
-                DialogueManager.instance.QueDialogue(textAsset, this, false);
+                DialogueManager.instance.QueDialogue(textAsset, this, id, false);
             }
         }
         
@@ -48,17 +48,16 @@ namespace PokemonGame.Dialogue
         /// </summary>
         /// <param name="text">The text that is read out</param>
         /// <param name="autostart">Automatically start the dialogue, turn off to start dialogue yourself, on by default</param>
-        /// <param name="variables">Variables to pass into the dialogue when it plays</param>
-        public void QueDialogue(string text, bool autostart = true, Dictionary<string, string> variables = null)
+        public void QueDialogue(string text, string id = "", bool autostart = true)
         {
             if (autostart)
             {
-                DialogueManager.instance.QueDialogue(text, this, true, variables);
+                DialogueManager.instance.QueDialogue(text, this, id, true);
                 DialogueWasCalled?.Invoke(gameObject, EventArgs.Empty);
             }
             else
             {
-                DialogueManager.instance.QueDialogue(text, this, false);
+                DialogueManager.instance.QueDialogue(text, this, id, false);
             }
         }
         

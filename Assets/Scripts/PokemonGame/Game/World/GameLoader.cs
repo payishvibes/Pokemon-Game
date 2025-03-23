@@ -41,7 +41,6 @@ namespace PokemonGame.Game.World
                 GameObject.Find(trainerName).GetComponent<Trainer>().Defeated();
             }
             
-            Debug.Log(playerPos);
             Player.Instance.SetPosRot(playerPos, playerRotation);
         }
     }    

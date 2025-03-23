@@ -7,7 +7,7 @@ namespace PokemonGame.NPC
 
         protected override void OnPlayerInteracted()
         {
-            QueDialogue(textAsset, true);
+            QueDialogue(textAsset);
             base.OnPlayerInteracted();
         }
     }   

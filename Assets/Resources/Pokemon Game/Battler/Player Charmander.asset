@@ -14,15 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   source: {fileID: 11400000, guid: 4f843dafd69ae554e90f655d7e688db3, type: 2}
   level: 16
+  gender: 0
   currentHealth: 12
   name: Charmander
+  shiny: 0
   maxHealth: 50
   attack: 41
   defense: 32
   specialAttack: 38
   specialDefense: 37
   speed: 46
-  exp: 580
+  exp: 585
   EVs: 000000000000000002000000010000000000000000000000
   IVs: 000000000000000000000000000000000000000000000000
   nature: 0

@@ -20,7 +20,7 @@ namespace PokemonGame.Battle
         {
             args.battler.TakeDamage(1, new EmptyDamageSource());
 
-            Battle.Singleton.QueDialogue($"{args.battler.name} was hurt by poison!", true);
+            Battle.Singleton.QueDialogue($"{args.battler.name} was hurt by poison!", "poisonHurt");
         }
     }   
 }

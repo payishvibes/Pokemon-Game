@@ -188,8 +188,11 @@ namespace PokemonGame.General
         private void LevelUp()
         {
             level += 1;
-            
+
+            int health = maxHealth;
             UpdateStats();
+
+            currentHealth += maxHealth - health;
             
             OnLevelUp?.Invoke(this, level);
             CheckIfCanEvolve();
@@ -213,8 +216,13 @@ namespace PokemonGame.General
 
         public void EvolutionApproved()
         {
+            bool updateName = name == source.name;
+            
             source = evolutionToPerform.evolution;
             wantToEvolve = false;
+
+            if (updateName)
+                name = source.name;
         }
 
         /// <summary>
@@ -288,20 +296,11 @@ namespace PokemonGame.General
         private void OnValidate()
         {
             UpdateStats();
+            currentHealth = maxHealth;
             
             if (!statusEffect)
             {
                 statusEffect = StatusEffect.Healthy;
-            }
-            
-            if (_oldLevel != level)
-            {
-                UpdateStats();
-            }
-            
-            if (_oldSource != source)
-            {
-                UpdateStats();
             }
 
             _oldSource = source;
@@ -319,12 +318,8 @@ namespace PokemonGame.General
 
         public List<Move> GetMostRecentMoves()
         {
-            Debug.Log("getting most recent moves");
-            
             SerializableDictionary<Move, int> levelUpMoves = source.possibleMoves.levelup;
             var sortedLevelUpMoves = levelUpMoves.OrderBy(x => x.Value).ToList();
-            Debug.Log(levelUpMoves.Count);
-            Debug.Log(sortedLevelUpMoves.Count);
 
             sortedLevelUpMoves.Reverse();
 
