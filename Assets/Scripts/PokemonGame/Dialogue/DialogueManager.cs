@@ -320,8 +320,6 @@ namespace PokemonGame.Dialogue
                             if (next.Length >= maxCharAmount)
                             {
                                 string[] newNextLines = next.SplitIntoParts(maxCharAmount);
-                                
-                                Debug.Log(newNextLines[0]);
 
                                 tempNextLines = newNextLines;
                                 StartCoroutine(DisplayText(newNextLines[currentTempIndex]));
@@ -355,8 +353,6 @@ namespace PokemonGame.Dialogue
                             if (next.Length >= maxCharAmount)
                             {
                                 string[] newNextLines = next.SplitIntoParts(maxCharAmount);
-                        
-                                Debug.Log(newNextLines[0]);
 
                                 tempNextLines = newNextLines;
                                 StartCoroutine(DisplayText(newNextLines[currentTempIndex]));

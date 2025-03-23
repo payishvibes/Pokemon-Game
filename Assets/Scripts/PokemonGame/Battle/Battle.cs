@@ -120,8 +120,6 @@ namespace PokemonGame.Battle
         private Item _playerItemToUse;
         private int _battlerToUseItemOn;
         private bool _useItemOnPlayerParty;
-
-        private bool _wantToRun;
         
         private void Start()
         {
@@ -307,12 +305,10 @@ namespace PokemonGame.Battle
                 uiManager.ShowControlUI(false);
                 
                 turnItemQueue.Add(TurnItem.StartDelay);
-                
-                turnItemQueue.Add(playerAction);
 
-                if (_wantToRun)
+                if (playerAction is not TurnItem.PlayerMove)
                 {
-                    turnItemQueue.Add(TurnItem.Run);
+                    turnItemQueue.Add(playerAction);
                 }
                 
                 turnItemQueue.Add(TurnItem.StartOfTurnStatusEffects);
@@ -396,7 +392,6 @@ namespace PokemonGame.Battle
 
         private bool CurrentlyEndingTheBattle()
         {
-            Debug.Log(currentTurnItem.ToString());
             return currentTurnItem is TurnItem.EndBattleOpponentWin or TurnItem.EndBattlePlayerWin or TurnItem.Run;
         }
 
@@ -408,7 +403,6 @@ namespace PokemonGame.Battle
 
         private void TurnQueueItemEnded()
         {
-            Debug.Log("turn item ended");
             _currentlyRunningQueueItem = false;
         }
 
@@ -697,7 +691,6 @@ namespace PokemonGame.Battle
 
         private void OpponentSwitchBattler()
         {
-            Debug.Log("opponent switching battler");
             AISwitchEventArgs e =
                 new AISwitchEventArgs(opponentBattlerIndex, opponentParty, ExternalBattleData.Construct(this));
             
@@ -849,7 +842,7 @@ namespace PokemonGame.Battle
         public void RunFromBattle()
         {
             playerHasChosenMove = true;
-            _wantToRun = true;
+            playerAction = TurnItem.Run;
         }
 
         private void RunRunAwayDialogue()
@@ -955,7 +948,7 @@ namespace PokemonGame.Battle
 
         private IEnumerator ExitBattleWin()
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
             
             Dictionary<string, object> vars = new Dictionary<string, object>
             {
@@ -975,7 +968,7 @@ namespace PokemonGame.Battle
 
         private IEnumerator ExitBattleLoss()
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
             
             Dictionary<string, object> vars = new Dictionary<string, object>
             {
