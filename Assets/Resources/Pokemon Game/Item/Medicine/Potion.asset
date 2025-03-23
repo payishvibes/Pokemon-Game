@@ -18,10 +18,21 @@ MonoBehaviour:
   description: A spray-type medicine for treating wounds. It can be used to restore
     20 HP to an injured Pokemon.
   cost: 0
-  useInBattle: 0
   lockedTarget: 0
   playerParty: 0
   targetIndex: 0
   ItemMethodEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: c504bf0615e0c8b4d9dbec02633597f5, type: 2}
+        m_TargetAssemblyTypeName: PokemonGame.Battle.ItemMethods, Assembly-CSharp
+        m_MethodName: Potion
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

@@ -103,8 +103,6 @@ public class TallGrass : DialogueTrigger
         
         Party party = new Party();
         party.Add(_attacker);
-        Debug.Log(party[0].level);
-        Debug.Log(party[0].currentHealth);
             
         Dictionary<string, object> vars = new Dictionary<string, object>
         {

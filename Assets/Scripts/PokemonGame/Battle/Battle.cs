@@ -106,15 +106,10 @@ namespace PokemonGame.Battle
         private bool _waitingToEndTurnEnding;
 
         private int _playerSwapIndex;
+        
+        public TurnItem playerAction;
 
-        private bool _endingDialogueRunning;
-        private bool _ending;
-
-        private bool _playerSwappedThisTurn;
-        private bool _playerCatchThisTurn;
-        private bool _playerUsedItemThisTurn;
-        private bool _playerChoseToSwap;
-        private bool _playerChoseToUseItem;
+        private TurnItem currentTurnItem;
         
         EventHandler<BattlerTookDamageArgs> opponentBattlerDefeated = null;
         EventHandler<int> playerBattlerLeveledUp = null;
@@ -265,14 +260,14 @@ namespace PokemonGame.Battle
             playerCurrentBattler.EVs[4] += defeated.source.yields[5];
             playerCurrentBattler.EVs[5] += defeated.source.yields[6];
         }
-
+        
         private void Update()
         {
             if (playerHasChosenMove)
             {
                 currentTurn = TurnStatus.Showing;
             }
-
+            
             switch (currentTurn)
             {
                 case TurnStatus.Ending:
@@ -298,16 +293,11 @@ namespace PokemonGame.Battle
                                 ExternalBattleData.Construct(this)));
                         }
                         hasDoneChoosingUpdate = true;
-                        _playerSwappedThisTurn = false;
-                        _playerCatchThisTurn = false;
-                        _playerUsedItemThisTurn = false;                        
-                        _playerChoseToSwap = false;
-                        _playerChoseToUseItem = false;
                     }
                     break;
             }
         }
-
+        
         private void TurnShowing()
         {
             if (!hasSetupShowing)
@@ -317,40 +307,29 @@ namespace PokemonGame.Battle
                 uiManager.ShowControlUI(false);
                 
                 turnItemQueue.Add(TurnItem.StartDelay);
+                
+                turnItemQueue.Add(playerAction);
 
                 if (_wantToRun)
                 {
                     turnItemQueue.Add(TurnItem.Run);
-                }
-                else if (_playerChoseToSwap)
-                {
-                    Debug.Log("player want to swap");
-                    turnItemQueue.Add(TurnItem.PlayerSwap);
-                }
-                else if (_playerCatchThisTurn)
-                {
-                    turnItemQueue.Add(TurnItem.CatchAttempt);
-                }
-                else if (_playerChoseToUseItem)
-                {
-                    turnItemQueue.Add(TurnItem.PlayerItem);
                 }
                 
                 turnItemQueue.Add(TurnItem.StartOfTurnStatusEffects);
                 QueueMoves();
                 turnItemQueue.Add(TurnItem.EndOfTurnStatusEffects);
             }
-
+            
             if (!_currentlyRunningQueueItem)
             {
-                if (turnItemQueue.Count > 0 && !_ending)
+                if (turnItemQueue.Count > 0 && !CurrentlyEndingTheBattle())
                 {
                     _currentlyRunningQueueItem = true;
                     
-                    TurnItem nextTurnItem = turnItemQueue[0];
+                    currentTurnItem = turnItemQueue[0];
                     turnItemQueue.RemoveAt(0);
-
-                    switch (nextTurnItem)
+                    
+                    switch (currentTurnItem)
                     {
                         case TurnItem.StartDelay:
                             StartCoroutine(TurnStartDelay());
@@ -408,11 +387,17 @@ namespace PokemonGame.Battle
                     uiManager.UpdatePlayerBattlerDetails();
                     uiManager.UpdateOpponentBattlerDetails();
                 }
-                else if (!_endingDialogueRunning && !_ending)
+                else if (!CurrentlyEndingTheBattle())
                 {
                     EndTurnShowing();
                 }
             }
+        }
+
+        private bool CurrentlyEndingTheBattle()
+        {
+            Debug.Log(currentTurnItem.ToString());
+            return currentTurnItem is TurnItem.EndBattleOpponentWin or TurnItem.EndBattlePlayerWin or TurnItem.Run;
         }
 
         private IEnumerator TurnStartDelay()
@@ -423,6 +408,7 @@ namespace PokemonGame.Battle
 
         private void TurnQueueItemEnded()
         {
+            Debug.Log("turn item ended");
             _currentlyRunningQueueItem = false;
         }
 
@@ -446,7 +432,6 @@ namespace PokemonGame.Battle
         {
             if (!_waitingToEndTurnEnding)
             {
-                Debug.Log("Ending Turn");
                 hasDoneChoosingUpdate = false;
                 hasSetupShowing = false;
                 playerHasChosenMove = false;
@@ -471,6 +456,7 @@ namespace PokemonGame.Battle
             playerMoveToDo = playerCurrentBattler.moves[moveID];
             playerMoveToDoIndex = moveID;
             playerHasChosenMove = true;
+            playerAction = TurnItem.PlayerMove;
         }
 
         private void DialogueEnded(object sender, DialogueEndedEventArgs args)
@@ -494,7 +480,7 @@ namespace PokemonGame.Battle
                     break;
             }
             
-            if (_currentlyRunningQueueItem && !args.moreToGo && !swappedDialogue)
+            if (_currentlyRunningQueueItem && !args.moreToGo && !swappedDialogue && !CurrentlyEndingTheBattle())
             {
                 TurnQueueItemEnded();
             }
@@ -534,9 +520,8 @@ namespace PokemonGame.Battle
 
         public void UseItem(int battlerToUseOn, bool useOnPlayerParty)
         {
-            _playerChoseToUseItem = true;;
+            playerAction = TurnItem.PlayerItem;
             playerHasChosenMove = true;
-            _playerUsedItemThisTurn = true;
             _battlerToUseItemOn = battlerToUseOn;
             _useItemOnPlayerParty = useOnPlayerParty;
             uiManager.Back();
@@ -544,7 +529,7 @@ namespace PokemonGame.Battle
 
         public void PlayerPickedPokeBall(PokeBall ball)
         {
-            _playerCatchThisTurn = true;
+            playerAction = TurnItem.CatchAttempt;
             playerHasChosenMove = true;
             _playerItemToUse = ball;
             Bag.Used(ball);
@@ -621,7 +606,7 @@ namespace PokemonGame.Battle
             {
                 _playerSwapIndex = newBattlerIndex;
                 playerHasChosenMove = true;
-                _playerChoseToSwap = true;
+                playerAction = TurnItem.PlayerSwap;
             }
         }
 
@@ -707,13 +692,12 @@ namespace PokemonGame.Battle
 
             uiManager.UpdatePlayerBattlerDetails();
             
-            _playerSwappedThisTurn = true;
-            
             QueDialogue($"Go ahead {playerParty[_playerSwapIndex].name}!", "sentOut", true);
         }
 
         private void OpponentSwitchBattler()
         {
+            Debug.Log("opponent switching battler");
             AISwitchEventArgs e =
                 new AISwitchEventArgs(opponentBattlerIndex, opponentParty, ExternalBattleData.Construct(this));
             
@@ -760,9 +744,10 @@ namespace PokemonGame.Battle
 
         private void QueueMoves()
         {
-            if (_playerSwappedThisTurn || _playerUsedItemThisTurn || _playerCatchThisTurn || _playerChoseToSwap)
+            if (playerAction is TurnItem.CatchAttempt or TurnItem.PlayerSwap or TurnItem.PlayerItem)
             {
                 AddOpponentMoveToQueue();
+                // dont add the player move to queue because they are doing something else
 
                 return;
             }
@@ -970,9 +955,8 @@ namespace PokemonGame.Battle
 
         private IEnumerator ExitBattleWin()
         {
-            _ending = true;
-            Debug.Log("ending the battle");
-
+            yield return new WaitForSeconds(1f);
+            
             Dictionary<string, object> vars = new Dictionary<string, object>
             {
                 { "playerParty", playerParty },
@@ -985,15 +969,13 @@ namespace PokemonGame.Battle
                 
             Instantiate(Resources.Load("Pokemon Game/Transitions/SpikyClose"));
             yield return new WaitForSeconds(0.4f);
-            Debug.Log("Exit battle loss");
 
             SceneLoader.LoadScene("Game", vars);
         }
 
         private IEnumerator ExitBattleLoss()
         {
-            _ending = true;
-            Debug.Log("ending the battle");
+            yield return new WaitForSeconds(1f);
             
             Dictionary<string, object> vars = new Dictionary<string, object>
             {
@@ -1028,9 +1010,6 @@ namespace PokemonGame.Battle
         
         private void BeginEndBattleDialogue(bool isDefeated)
         {
-            if (_endingDialogueRunning)
-                return;
-            
             if (isDefeated)
             {
                 if (trainerBattle)
@@ -1044,12 +1023,11 @@ namespace PokemonGame.Battle
             }
             else
             {
-                QueDialogue("All your Pokemon defeated!", "playerDefeated", true);
+                QueDialogue("All your Pokemon fainted, running!", "playerDefeated", true);
             }
 
             //TurnQueueItemEnded();
             turnItemQueue.Clear();
-            _endingDialogueRunning = true;
         }
     }
 }

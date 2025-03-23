@@ -150,8 +150,6 @@ namespace PokemonGame.Battle
 
                     if (_playerItemToUse)
                     {
-                        Debug.Log(_playerItemToUse);
-                        Debug.Log(faintedRequiredItems.Contains(_playerItemToUse));
                         if (faintedRequiredItems.Contains(_playerItemToUse))
                         {
                             itemBattlerDisplays[i].transform.parent.GetComponent<Button>().interactable =
@@ -168,6 +166,11 @@ namespace PokemonGame.Battle
         {
             playerUIHolder.SetActive(show);
             ShowControlUI(show);
+            healthDisplays.SetActive(show);
+        }
+
+        public void ShowHealthUI(bool show)
+        {
             healthDisplays.SetActive(show);
         }
 
@@ -275,8 +278,9 @@ namespace PokemonGame.Battle
 
         public void UseItemOnBattler(int partyID)
         {
-            playerUIHolder.SetActive(false);
+            playerUIHolder.SetActive(true);
             healthDisplays.SetActive(true);
+            controlUIHolder.SetActive(false);
             moveButtons.SetActive(true);
             miscButtons.SetActive(true);
             changeBattlerDisplay.SetActive(false);

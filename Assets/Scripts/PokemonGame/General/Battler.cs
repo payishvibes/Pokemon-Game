@@ -234,7 +234,6 @@ namespace PokemonGame.General
             currentHealth = 0;
             isFainted = true;
             OnFainted?.Invoke(this, new BattlerTookDamageArgs(source, this));
-            Debug.Log("Battler Fainted");
         }
 
         /// <summary>
