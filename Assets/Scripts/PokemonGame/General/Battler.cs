@@ -48,32 +48,12 @@ namespace PokemonGame.General
         public bool shiny;
         
         /// <summary>
-        /// The maximum health of the battler
+        /// The stat information for the battler
         /// </summary>
         [Space]
         [Header("Stats")]
-        public int maxHealth;
+        public BattlerStats stats;
         
-        /// <summary>
-        /// The attack statistic for the battler
-        /// </summary>
-        public int attack;
-        /// <summary>
-        /// The defense statistic for the battler
-        /// </summary>
-        public int defense;
-        /// <summary>
-        /// The special attack statistic for the battler
-        /// </summary>
-        public int specialAttack;
-        /// <summary>
-        /// The special defence statistic for the battler
-        /// </summary>
-        public int specialDefense;
-        /// <summary>
-        /// The speed statistic for the battler
-        /// </summary>
-        public int speed;
         /// <summary>
         /// The current amount of experience points the battler has in progressing through its current level
         /// </summary>
@@ -83,8 +63,8 @@ namespace PokemonGame.General
         /// The HP EV of the battler
         /// </summary>
         [Space]
-        public int[] EVs = new int[6];
-        public int[] IVs = new int[6];
+        public BattlerStats EVs;
+        public BattlerStats IVs;
         public Nature nature;
 
         /// <summary>
@@ -129,7 +109,7 @@ namespace PokemonGame.General
         public bool wantToEvolve;
         public EvolutionData evolutionToPerform;
         public event EventHandler<EvolutionData> OnCanEvolve;
-        public event EventHandler<int> OnLevelUp;
+        public event EventHandler<OnLevelUpEventArgs> OnLevelUp;
 
         /// <summary>
         /// Inflict damage onto the battler
@@ -189,12 +169,19 @@ namespace PokemonGame.General
         {
             level += 1;
 
-            int health = maxHealth;
+            int health = stats.maxHealth;
+            
+            OnLevelUpEventArgs args = new OnLevelUpEventArgs();
+            args.oldStats = stats;
+                
             UpdateStats();
 
-            currentHealth += maxHealth - health;
+            args.newStats = stats;
+            args.newLevel = level;
+
+            currentHealth += stats.maxHealth - health;
             
-            OnLevelUp?.Invoke(this, level);
+            OnLevelUp?.Invoke(this, args);
             CheckIfCanEvolve();
         }
 
@@ -244,9 +231,9 @@ namespace PokemonGame.General
         {
             currentHealth = newHealth;
             
-            if (currentHealth > maxHealth)
+            if (currentHealth > stats.maxHealth)
             {
-                currentHealth = maxHealth;
+                currentHealth = stats.maxHealth;
             }
 
             OnHealthUpdated?.Invoke(this, EventArgs.Empty);
@@ -258,7 +245,7 @@ namespace PokemonGame.General
 
             if (full)
             {
-                UpdateHealth(maxHealth);
+                UpdateHealth(stats.maxHealth);
                 foreach (var ppInfo in movePpInfos)
                 {
                     ppInfo.CurrentPP = ppInfo.MaxPP;
@@ -266,7 +253,7 @@ namespace PokemonGame.General
             }
             else
             {
-                UpdateHealth(maxHealth/2);
+                UpdateHealth(stats.maxHealth/2);
             }
         }
 
@@ -295,7 +282,7 @@ namespace PokemonGame.General
         private void OnValidate()
         {
             UpdateStats();
-            currentHealth = maxHealth;
+            currentHealth = stats.maxHealth;
             
             if (!statusEffect)
             {
@@ -305,8 +292,8 @@ namespace PokemonGame.General
             _oldSource = source;
             _oldLevel = level;
 
-            if (currentHealth > maxHealth)
-                currentHealth = maxHealth;
+            if (currentHealth > stats.maxHealth)
+                currentHealth = stats.maxHealth;
             
             //Making sure the battler always has 4 moves
             if (moves.Count > 4)
@@ -437,35 +424,35 @@ namespace PokemonGame.General
                     break;
             }
 
-            maxHealth = Mathf.FloorToInt((((2f * source.baseHealth + IVs[0]) * 2 + Mathf.FloorToInt(EVs[0] / 4f)) *
-                                          level) / 100) + level + 10;
+            stats.maxHealth = Mathf.FloorToInt((((2f * source.baseHealth + IVs.maxHealth) * 2 + Mathf.FloorToInt(EVs.maxHealth / 4f)) *
+                                                level) / 100) + level + 10;
             
-            attack = Mathf.FloorToInt((((2f * source.baseAttack + IVs[1]) * 2 + Mathf.FloorToInt(EVs[1] / 4f)) *
+            stats.attack = Mathf.FloorToInt((((2f * source.baseAttack + IVs.attack) * 2 + Mathf.FloorToInt(EVs.attack / 4f)) *
                                           level) / 100) + 5;
-            attack = Mathf.FloorToInt(attack * attackModifier);
+            stats.attack = Mathf.FloorToInt(stats.attack * attackModifier);
             
-            defense = Mathf.FloorToInt((((2f * source.baseDefense + IVs[2]) * 2 + Mathf.FloorToInt(EVs[2] / 4f)) *
-                                       level) / 100) + 5;
-            defense = Mathf.FloorToInt(defense * defenseModifier);
+            stats.defense = Mathf.FloorToInt((((2f * source.baseDefense + IVs.defense) * 2 + Mathf.FloorToInt(EVs.defense / 4f)) *
+                                              level) / 100) + 5;
+            stats.defense = Mathf.FloorToInt(stats.defense * defenseModifier);
             
-            specialAttack = Mathf.FloorToInt((((2f * source.baseSpecialAttack + IVs[3]) * 2 + Mathf.FloorToInt(EVs[3] / 4f)) *
-                                        level) / 100) + 5;
-            specialAttack = Mathf.FloorToInt(specialAttack * specialAttackModifier);
+            stats.specialAttack = Mathf.FloorToInt((((2f * source.baseSpecialAttack + IVs.specialAttack) * 2 + Mathf.FloorToInt(EVs.specialAttack / 4f)) *
+                                                    level) / 100) + 5;
+            stats.specialAttack = Mathf.FloorToInt(stats.specialAttack * specialAttackModifier);
             
-            specialDefense = Mathf.FloorToInt((((2f * source.baseSpecialDefense + IVs[4]) * 2 + Mathf.FloorToInt(EVs[4] / 4f)) *
-                                        level) / 100) + 5;
-            specialDefense = Mathf.FloorToInt(specialDefense * specialDefenseModifier);
+            stats.specialDefense = Mathf.FloorToInt((((2f * source.baseSpecialDefense + IVs.specialDefense) * 2 + Mathf.FloorToInt(EVs.specialDefense / 4f)) *
+                                                     level) / 100) + 5;
+            stats.specialDefense = Mathf.FloorToInt(stats.specialDefense * specialDefenseModifier);
             
-            speed = Mathf.FloorToInt((((2f * source.baseSpeed + IVs[5]) * 2 + Mathf.FloorToInt(EVs[5] / 4f)) *
-                                               level) / 100) + 5;
-            speed = Mathf.FloorToInt(speed * speedModifier);
+            stats.speed = Mathf.FloorToInt((((2f * source.baseSpeed + IVs.speed) * 2 + Mathf.FloorToInt(EVs.speed / 4f)) *
+                                            level) / 100) + 5;
+            stats.speed = Mathf.FloorToInt(stats.speed * speedModifier);
         }
 
         public void UpdateLevel(int newLevel)
         {
             level = newLevel;
             UpdateStats();
-            currentHealth = maxHealth;
+            currentHealth = stats.maxHealth;
         }
 
         /// <summary>
@@ -484,25 +471,16 @@ namespace PokemonGame.General
 
         public static Battler Init(BattlerTemplate source, int level, string name, List<Move> moves, bool autoAssignHealth)
         {
-            int[] EVs = new[]
-            {
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            };
+            BattlerStats EVs = BattlerStats.zero;
             
-            int[] IVs = new[]
-            {
+            BattlerStats IVs = new BattlerStats(
                 UnityEngine.Random.Range(0, 32),
                 UnityEngine.Random.Range(0, 32),
                 UnityEngine.Random.Range(0, 32),
                 UnityEngine.Random.Range(0, 32),
                 UnityEngine.Random.Range(0, 32),
                 UnityEngine.Random.Range(0, 32)
-            };
+            );
 
             bool shiny = UnityEngine.Random.Range(0, 4096) == 0;
 
@@ -546,7 +524,7 @@ namespace PokemonGame.General
         /// <param name="autoAssignHealth">Auto assign health to the <see cref="maxHealth"/> when creating</param>
         /// <returns>A battler that has been created using the parameters given</returns>
         public static Battler Init(BattlerTemplate source, int level, string name, Gender gender, bool shiny, bool isFainted, int exp,
-            StatusEffect statusEffect, int[] EVs, int[] IVs, int currentHealth, List<Move> moves, bool autoAssignHealth)
+            StatusEffect statusEffect, BattlerStats EVs, BattlerStats IVs, int currentHealth, List<Move> moves, bool autoAssignHealth)
         {
             Battler returnBattler = CreateInstance<Battler>();
             
@@ -561,6 +539,7 @@ namespace PokemonGame.General
             returnBattler.EVs = EVs;
             returnBattler.shiny = shiny;
             returnBattler.gender = gender;
+            returnBattler.IVs = IVs;
 
             foreach (var move in moves)
             {
@@ -573,7 +552,7 @@ namespace PokemonGame.General
             returnBattler.UpdateStats();
 
             if (autoAssignHealth)
-                returnBattler.currentHealth = returnBattler.maxHealth;
+                returnBattler.currentHealth = returnBattler.stats.maxHealth;
             else
                 returnBattler.currentHealth = currentHealth;
             
@@ -594,6 +573,13 @@ namespace PokemonGame.General
             
             return returnBattler;
         }
+    }
+
+    public class OnLevelUpEventArgs
+    {
+        public BattlerStats oldStats;
+        public BattlerStats newStats;
+        public int newLevel;
     }
 
     public enum Nature
@@ -630,5 +616,28 @@ namespace PokemonGame.General
         Male,
         Female,
         Genderless
+    }
+
+    [Serializable]
+    public struct BattlerStats
+    {
+        public int maxHealth;
+        public int attack;
+        public int defense;
+        public int specialAttack;
+        public int specialDefense;
+        public int speed;
+
+        public static BattlerStats zero = new BattlerStats(0, 0, 0, 0, 0, 0);
+
+        public BattlerStats(int maxHealth, int attack, int defense, int specialAttack, int specialDefense, int speed)
+        {
+            this.maxHealth = maxHealth;
+            this.attack = attack;
+            this.defense = defense;
+            this.specialAttack = specialAttack;
+            this.specialDefense = specialDefense;
+            this.speed = speed;
+        }
     }
 }

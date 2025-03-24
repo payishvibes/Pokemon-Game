@@ -53,6 +53,7 @@ namespace PokemonGame.Battle
         [SerializeField] private TextAsset battlerUsedText;
 
         [SerializeField] private ParticleSystem spawnEffect;
+        [SerializeField] private LevelUpDisplay levelUpDisplayPrefab;
 
         [SerializeField] private float shrinkEffectDelay;
 
@@ -109,7 +110,7 @@ namespace PokemonGame.Battle
         public TurnItem currentTurnItem;
         
         private EventHandler<BattlerTookDamageArgs> _opponentBattlerDefeated = null;
-        private EventHandler<int> _playerBattlerLeveledUp = null;
+        private EventHandler<OnLevelUpEventArgs> _playerBattlerLeveledUp = null;
         private EventHandler<EvolutionData> _playerBattlerEvolved = null;
 
         private EventHandler<BattlerTookDamageArgs> _playerBattlerDefeated = null;
@@ -217,9 +218,9 @@ namespace PokemonGame.Battle
             turnItemQueue.Clear();
         }
 
-        private void BattlerLeveledUp(Battler battlerThatLeveled, int newLevel)
+        private void BattlerLeveledUp(Battler battlerThatLeveled, OnLevelUpEventArgs args)
         {
-            QueDialogue($"{battlerThatLeveled.name} reached level {newLevel}!", "leveledUp");
+            QueDialogue($"{battlerThatLeveled.name} reached level {args.newLevel}!", "leveledUp");
             DialogueManager.instance.ForceAutoStartCurrentLastQueued(true);
         }
 
@@ -230,7 +231,7 @@ namespace PokemonGame.Battle
 
         private void ShowBattlerLeveled()
         {
-            
+            LevelUpDisplay display = Instantiate(levelUpDisplayPrefab);
         }
 
         public void BattlerFainted(EventArgs e, Battler defeated)
@@ -254,12 +255,12 @@ namespace PokemonGame.Battle
                 }
             }
 
-            playerCurrentBattler.EVs[0] += defeated.source.yields[1];
-            playerCurrentBattler.EVs[1] += defeated.source.yields[2];
-            playerCurrentBattler.EVs[2] += defeated.source.yields[3];
-            playerCurrentBattler.EVs[3] += defeated.source.yields[4];
-            playerCurrentBattler.EVs[4] += defeated.source.yields[5];
-            playerCurrentBattler.EVs[5] += defeated.source.yields[6];
+            playerCurrentBattler.EVs.maxHealth += defeated.source.yields.maxHealth;
+            playerCurrentBattler.EVs.attack += defeated.source.yields.attack;
+            playerCurrentBattler.EVs.defense += defeated.source.yields.defense;
+            playerCurrentBattler.EVs.specialAttack += defeated.source.yields.specialAttack;
+            playerCurrentBattler.EVs.specialDefense += defeated.source.yields.specialDefense;
+            playerCurrentBattler.EVs.speed += defeated.source.yields.speed;
         }
         
         private void Update()
@@ -469,6 +470,9 @@ namespace PokemonGame.Battle
                     break;
                 case "opponentDefeated":
                     StartCoroutine(ExitBattleWin());
+                    break;
+                case "leveledUp":
+                    ShowBattlerLeveled();
                     break;
             }
             
@@ -746,8 +750,8 @@ namespace PokemonGame.Battle
                 return;
             }
 
-            float playerAdjustedSpeed = playerCurrentBattler.speed;
-            float opponentAdjustedSpeed = opponentCurrentBattler.speed;
+            float playerAdjustedSpeed = playerCurrentBattler.stats.speed;
+            float opponentAdjustedSpeed = opponentCurrentBattler.stats.speed;
 
             if (playerCurrentBattler.statusEffect == Registry.GetStatusEffect("Paralysed"))
             {

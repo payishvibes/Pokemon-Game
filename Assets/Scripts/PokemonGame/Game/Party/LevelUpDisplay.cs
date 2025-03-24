@@ -1,3 +1,4 @@
+using PokemonGame.General;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,25 +23,24 @@ public class LevelUpDisplay : MonoBehaviour
     [SerializeField] private TextMeshProUGUI oldSpeed;
     [SerializeField] private TextMeshProUGUI newSpeed;
 
-    public void Init(int oldHealth, int newHealth, int oldAttack, int newAttack, int oldDefense, int newDefense,
-        int oldSpAttack, int newSpAttack, int oldSpDefense, int newSpDefense, int oldSpeed, int newSpeed)
+    public void Init(BattlerStats oldStats, BattlerStats newStats)
     {
-        this.oldHealth.text = oldHealth.ToString();
-        this.newHealth.text = newHealth.ToString();
+        oldHealth.text = oldStats.maxHealth.ToString();
+        newHealth.text = newStats.maxHealth.ToString();
         
-        this.oldAttack.text = oldAttack.ToString();
-        this.newAttack.text = newAttack.ToString();
+        oldAttack.text = oldStats.attack.ToString();
+        newAttack.text = newStats.attack.ToString();
         
-        this.oldDefense.text = oldDefense.ToString();
-        this.newDefense.text = newDefense.ToString();
+        oldDefense.text = oldStats.defense.ToString();
+        newDefense.text = oldStats.defense.ToString();
         
-        oldSpecialAttack.text = oldSpAttack.ToString();
-        newSpecialAttack.text = newSpAttack.ToString();
+        oldSpecialAttack.text = oldStats.specialAttack.ToString();
+        newSpecialAttack.text = newStats.specialAttack.ToString();
         
-        oldSpecialDefense.text = oldSpDefense.ToString();
-        newSpecialDefense.text = newSpDefense.ToString();
+        oldSpecialDefense.text = oldStats.specialDefense.ToString();
+        newSpecialDefense.text = newStats.specialAttack.ToString();
         
-        this.oldSpeed.text = oldSpeed.ToString();
-        this.newSpeed.text = newSpeed.ToString();
+        oldSpeed.text = oldStats.speed.ToString();
+        newSpeed.text = newStats.speed.ToString();
     }
 }

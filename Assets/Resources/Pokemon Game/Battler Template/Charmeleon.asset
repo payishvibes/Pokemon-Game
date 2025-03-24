@@ -96,4 +96,11 @@ MonoBehaviour:
   baseSpecialAttack: 80
   baseSpecialDefense: 65
   baseSpeed: 80
-  yields: 8e00000000000000000000000000000001000000000000000100000002000000
+  expYield: 142
+  yields:
+    maxHealth: 0
+    attack: 0
+    defense: 0
+    specialAttack: 1
+    specialDefense: 0
+    speed: 1

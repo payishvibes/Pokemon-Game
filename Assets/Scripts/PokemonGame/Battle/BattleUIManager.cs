@@ -71,10 +71,10 @@ namespace PokemonGame.Battle
             UpdateBattlerTexts();
             UpdateBattlerButtons();
             
-            opponentHealthDisplay.maxValue = battle.opponentParty[battle.opponentBattlerIndex].maxHealth;
+            opponentHealthDisplay.maxValue = battle.opponentParty[battle.opponentBattlerIndex].stats.maxHealth;
             opponentHealthDisplay.value = battle.opponentParty[battle.opponentBattlerIndex].currentHealth;
 
-            currentBattlerHealthDisplay.maxValue = battle.playerParty[battle.currentBattlerIndex].maxHealth;
+            currentBattlerHealthDisplay.maxValue = battle.playerParty[battle.currentBattlerIndex].stats.maxHealth;
             currentBattlerHealthDisplay.value = battle.playerParty[battle.currentBattlerIndex].currentHealth;
 
             runButton.SetActive(!Battle.Singleton.trainerBattle);
@@ -382,10 +382,10 @@ namespace PokemonGame.Battle
         {
             float t = healthUpdateSpeed;
             
-            opponentHealthDisplay.maxValue = battle.opponentParty[battle.opponentBattlerIndex].maxHealth;
+            opponentHealthDisplay.maxValue = battle.opponentParty[battle.opponentBattlerIndex].stats.maxHealth;
             opponentHealthDisplay.value = Mathf.Lerp(opponentHealthDisplay.value, battle.opponentParty[battle.opponentBattlerIndex].currentHealth, t);
 
-            currentBattlerHealthDisplay.maxValue = battle.playerParty[battle.currentBattlerIndex].maxHealth;
+            currentBattlerHealthDisplay.maxValue = battle.playerParty[battle.currentBattlerIndex].stats.maxHealth;
             currentBattlerHealthDisplay.value = Mathf.Lerp(currentBattlerHealthDisplay.value, battle.playerParty[battle.currentBattlerIndex].currentHealth, t);
         }
     }

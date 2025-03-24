@@ -34,7 +34,8 @@ namespace PokemonGame.ScriptableObjects
         public int baseSpecialAttack;
         public int baseSpecialDefense;
         public int baseSpeed;
-        public List<int> yields;
+        public int expYield;
+        public BattlerStats yields;
 
         public void TryFillInfo()
         {
@@ -107,11 +108,6 @@ namespace PokemonGame.ScriptableObjects
                 texture.femaleBack = Resources.Load<Sprite>($"Pokemon Game/sprites/back/female/{dexNo}");
                 texture.femaleShinyBack = Resources.Load<Sprite>($"Pokemon Game/sprites/back/shiny/female/{dexNo}");
 
-                while (yields.Count < 8)
-                {
-                    yields.Add(0);
-                }
-
                 expGroup = (ExperienceGroup)Enum.Parse(typeof(ExperienceGroup), values[38].Replace(" ", ""), true);
             }
         }
@@ -150,14 +146,13 @@ namespace PokemonGame.ScriptableObjects
                 data = data.Replace("\"", "");
                 var stats = Regex.Split(data, @"(?<=[^']),(?=[^'])", RegexOptions.None);
 
-                yields[0] = int.Parse(stats[1]);
-                yields[1] = int.Parse(stats[2]);
-                yields[2] = int.Parse(stats[3]);
-                yields[3] = int.Parse(stats[4]);
-                yields[4] = int.Parse(stats[5]);
-                yields[5] = int.Parse(stats[6]);
-                yields[6] = int.Parse(stats[7]);
-                yields[7] = int.Parse(stats[8]);
+                expYield = int.Parse(stats[1]);
+                yields.maxHealth = int.Parse(stats[2]);
+                yields.attack = int.Parse(stats[3]);
+                yields.defense = int.Parse(stats[4]);
+                yields.specialAttack = int.Parse(stats[5]);
+                yields.specialDefense = int.Parse(stats[6]);
+                yields.speed = int.Parse(stats[7]);
             }
         }
 

@@ -17,7 +17,7 @@ public class PartyMenu : MonoBehaviour
             {
                 Battler currentBattler = currentPlayerParty[i];
                 MenuBattlerDisplay display = Instantiate(displayPrefab, partyDisplayPositions[i]);
-                display.Init(currentBattler.name, currentBattler.currentHealth, currentBattler.maxHealth,
+                display.Init(currentBattler.name, currentBattler.currentHealth, currentBattler.stats.maxHealth,
                     currentBattler.statusEffect, currentBattler.exp,
                     ExperienceCalculator.RequiredForNextLevel(currentBattler),
                     currentBattler.GetSpriteFront());

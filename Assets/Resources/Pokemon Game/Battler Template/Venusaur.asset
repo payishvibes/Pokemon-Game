@@ -26,8 +26,68 @@ MonoBehaviour:
     femaleShinyBack: {fileID: 21300000, guid: d15d0abb218b9f34eb698bc410cb61f1, type: 3}
   dexNo: 3
   possibleMoves:
+    levelup:
+      keys:
+      - {fileID: 11400000, guid: 7cc4a27b8b8eb124eb2b3bc5b29bf5e5, type: 2}
+      - {fileID: 11400000, guid: d4639e5cb3f782d4587a463bffb7265a, type: 2}
+      - {fileID: 11400000, guid: 767ba7c8efea931459685a7cbd96e84c, type: 2}
+      - {fileID: 11400000, guid: 16fdc677704f0b84f8a5ca647d579a0f, type: 2}
+      - {fileID: 11400000, guid: 42eba83cd8cfea242a2bc2c24fd4a595, type: 2}
+      - {fileID: 11400000, guid: 7e118ff3914fe9945a75bb8efd7a6c07, type: 2}
+      - {fileID: 11400000, guid: 6425db364a3d88d408ecad6444937b26, type: 2}
+      - {fileID: 11400000, guid: c89118671ae78da4a93d500eb430599b, type: 2}
+      - {fileID: 11400000, guid: a88dfe8ae8240754abacfb07206b6f76, type: 2}
+      - {fileID: 11400000, guid: 325cb76530a495f44880dd4057ec07ca, type: 2}
+      - {fileID: 11400000, guid: fa19635c555eb9a4487c9d812db1252c, type: 2}
+      - {fileID: 11400000, guid: 03d69487cd9118f428d7fd21f66370b7, type: 2}
+      - {fileID: 11400000, guid: 32012c95a80e77e4b8fe1345ad776384, type: 2}
+      - {fileID: 11400000, guid: b2fb5e100971f624394e39d98c8cde2c, type: 2}
+      - {fileID: 11400000, guid: 009afbe3a759a8e4abbe248d5a5fadc0, type: 2}
+      - {fileID: 11400000, guid: 514b16a6f9548b44d8f4836997bc5720, type: 2}
+      values: 01000000010000000f0000001f00000001000000010000001c00000014000000350000000d0000000d00000000000000170000002d0000002700000032000000
+    tm:
+    - {fileID: 11400000, guid: 157e90d1343feb84fa0f8050b1d26346, type: 2}
+    - {fileID: 11400000, guid: df051fd9ce2d9e143b5999b3bac23298, type: 2}
+    - {fileID: 11400000, guid: e6ba12f49c581374da9b01a290e8d8b7, type: 2}
+    - {fileID: 11400000, guid: 2f0491cb88883ae4abc00685e7dd9ebd, type: 2}
+    - {fileID: 11400000, guid: d64e418a175825643a0869689a75d087, type: 2}
+    - {fileID: 11400000, guid: 4906e02cd94083e4b9a3ff65afbaa7ae, type: 2}
+    - {fileID: 11400000, guid: 9c36c38e050d8cd43995edfdd3f9e073, type: 2}
+    - {fileID: 11400000, guid: 457b5bd9d4c0aa940bbc9d0300ec96fe, type: 2}
+    - {fileID: 11400000, guid: aca5db6d4ade2ca42b273a54a86fa2d4, type: 2}
+    - {fileID: 11400000, guid: e64daca0bb1f7d24e9da057ca41d1480, type: 2}
+    - {fileID: 11400000, guid: cb09de307859cf540bd9ee222b1f48c3, type: 2}
+    - {fileID: 11400000, guid: e242e7f9193bb1047b3c360fa47f6bc2, type: 2}
+    - {fileID: 11400000, guid: d7c74a17158a8454396d8c6107df184a, type: 2}
+    - {fileID: 11400000, guid: c2e2fe624083032449950f6ca8b43e1a, type: 2}
+    - {fileID: 11400000, guid: 910b49de4ce52c04a83339ef4081d551, type: 2}
+    - {fileID: 11400000, guid: e555b56d435cc5b47b9387c3b5c4717b, type: 2}
+    - {fileID: 11400000, guid: d92aaa68d7b800a4ba4acedd90b4d52b, type: 2}
+    - {fileID: 11400000, guid: efe6e01b327c93e41a1982d04df529ce, type: 2}
+    - {fileID: 11400000, guid: 24e65cd33fc0be1478bf29b3f2ad62cd, type: 2}
+    - {fileID: 11400000, guid: 6b6e6f426f86f7848b4a4be49594bfaf, type: 2}
+    - {fileID: 11400000, guid: 0a245a1da6c5d7c40b39e5d44774b949, type: 2}
+    - {fileID: 11400000, guid: 1f3a77eb42b2edd42b141046dee0713a, type: 2}
+    - {fileID: 11400000, guid: 0a4ac732dddc27346a8288b0acc93ecf, type: 2}
+    - {fileID: 11400000, guid: 3ff03df526532f14487aabe25c2878ba, type: 2}
+    - {fileID: 11400000, guid: d22f8436bac1692469c58f355738fd06, type: 2}
+    - {fileID: 11400000, guid: a0773b271e953a24a8e70b075d1629d1, type: 2}
+    - {fileID: 11400000, guid: 43909ec1b9d56b640aef96639d6c4419, type: 2}
+    - {fileID: 11400000, guid: 7c88d06163a37b34f96f0c5053a289da, type: 2}
+    - {fileID: 11400000, guid: 125658e3fd8654a45a19e22a8f461e57, type: 2}
+    - {fileID: 11400000, guid: a5264ad4f182e954998622e9dfd04eaf, type: 2}
     egg: []
-    tutor: []
+    tutor:
+    - {fileID: 11400000, guid: d40ad06284bfc6d43ab9c244133ad39d, type: 2}
+    - {fileID: 11400000, guid: 336eda2a3f8b3644fb6f6298c28bdf94, type: 2}
+    - {fileID: 11400000, guid: 28638333d73d8ea4a90cd3b65429bfe1, type: 2}
+    - {fileID: 11400000, guid: eaa661e3e84012d419ae44e2b8170688, type: 2}
+    - {fileID: 11400000, guid: 0b51e867242d2284d9ce9eca8298ff83, type: 2}
+    - {fileID: 11400000, guid: 8c552a9561d229a49a583e26100f91ca, type: 2}
+    - {fileID: 11400000, guid: 49b0362c2d5a3c54fa436b70963ec27c, type: 2}
+    - {fileID: 11400000, guid: 857f52bb03ed21542934e1b9090c2d39, type: 2}
+    - {fileID: 11400000, guid: c0105740b4a92854080d78d8ea26a2ed, type: 2}
+    - {fileID: 11400000, guid: a160e7bd6d59a6e489d9cda1f44f14a9, type: 2}
   evolutions:
     possibleEvolutions: []
   expGroup: 3
@@ -39,4 +99,11 @@ MonoBehaviour:
   baseSpecialAttack: 100
   baseSpecialDefense: 100
   baseSpeed: 80
-  yields: 0701000000000000000000000000000002000000010000000000000003000000
+  expYield: 263
+  yields:
+    maxHealth: 0
+    attack: 0
+    defense: 0
+    specialAttack: 2
+    specialDefense: 1
+    speed: 0

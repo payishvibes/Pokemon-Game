@@ -169,7 +169,7 @@ namespace PokemonGame.Dialogue
         /// <param name="dialogueToLoad">The queued dialogue to load</param>
         private void LoadDialogueFromQueue(QueuedDialogue dialogueToLoad)
         {
-            bool canAutoContinue = !dialogueToLoad.forceStopNext;
+            bool canAutoContinue = currentQueuedDialogue != null ? !currentQueuedDialogue.forceStopNext : true;
             
             currentTrigger = dialogueToLoad.trigger;
             currentQueuedDialogue = dialogueToLoad;
@@ -205,14 +205,14 @@ namespace PokemonGame.Dialogue
 
             if (dialogueToLoad.ink)
             {
-                if (dialogueToLoad.autoStart)
+                if (dialogueToLoad.autoStart && canAutoContinue)
                 {
                     DialogueStarted?.Invoke(this, new DialogueStartedEventArgs(dialogueToLoad.trigger, currentQueuedDialogue.id, currentQueuedDialogue.textAsset));
                 }
             }
             else
             {
-                if (dialogueToLoad.autoStart)
+                if (dialogueToLoad.autoStart && canAutoContinue)
                 {
                     DialogueStarted?.Invoke(this, new DialogueStartedEventArgs(dialogueToLoad.trigger, currentQueuedDialogue.id, currentQueuedDialogue.text));
                 }

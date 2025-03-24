@@ -91,7 +91,11 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 0b51e867242d2284d9ce9eca8298ff83, type: 2}
     - {fileID: 11400000, guid: c0105740b4a92854080d78d8ea26a2ed, type: 2}
   evolutions:
-    possibleEvolutions: []
+    possibleEvolutions:
+    - triggerType: 0
+      level: 16
+      item: {fileID: 0}
+      evolution: {fileID: 11400000, guid: 53c3fb90628b67b418e91633c1f6b979, type: 2}
   expGroup: 3
   catchRate: 45
   baseFriendship: 50
@@ -101,4 +105,11 @@ MonoBehaviour:
   baseSpecialAttack: 65
   baseSpecialDefense: 65
   baseSpeed: 45
-  yields: 4000000000000000000000000000000001000000000000000000000001000000
+  expYield: 64
+  yields:
+    maxHealth: 0
+    attack: 0
+    defense: 0
+    specialAttack: 1
+    specialDefense: 0
+    speed: 0

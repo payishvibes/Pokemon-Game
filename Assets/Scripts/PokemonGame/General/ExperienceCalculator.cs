@@ -18,7 +18,7 @@ namespace PokemonGame.General
 
             float s = noOfBattlersParticipated;
 
-            float b = defeated.source.yields[0];
+            float b = defeated.source.expYield;
 
             float L = defeated.level;
 
@@ -200,7 +200,7 @@ namespace PokemonGame.General
                     break;
             }
             
-            float a = ((3f*target.maxHealth - 2f * target.currentHealth)/(3f*target.maxHealth)) * target.source.catchRate * ballBonus * statusBonus;
+            float a = ((3f*target.stats.maxHealth - 2f * target.currentHealth)/(3f*target.stats.maxHealth)) * target.source.catchRate * ballBonus * statusBonus;
             
             return a <= Random.Range(0, 255);
         }

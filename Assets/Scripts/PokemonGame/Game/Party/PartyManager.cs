@@ -36,7 +36,7 @@ namespace PokemonGame.Game.Party
         {
             for (int i = 0; i < _playerParty.Count; i++)
             {
-                _playerParty[i].currentHealth = _playerParty[i].maxHealth;
+                _playerParty[i].currentHealth = _playerParty[i].stats.maxHealth;
                 _playerParty[i].isFainted = false;
                 _playerParty[i].statusEffect = StatusEffect.Healthy;
                 for (int j = 0; j < _playerParty[i].movePpInfos.Count; j++)

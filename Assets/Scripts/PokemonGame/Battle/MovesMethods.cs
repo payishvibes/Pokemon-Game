@@ -78,7 +78,7 @@ namespace PokemonGame.Battle
             int attack = 0;
             int defense = 0;
 
-            int level = battlerThatUsed.attack;
+            int level = battlerThatUsed.stats.attack;
 
             int power = move.damage;
 
@@ -113,13 +113,13 @@ namespace PokemonGame.Battle
             
             if (move.category == MoveCategory.Physical)
             {
-                attack = battlerThatUsed.attack;
-                defense = battlerBeingAttacked.defense;
+                attack = battlerThatUsed.stats.attack;
+                defense = battlerBeingAttacked.stats.defense;
             }
             else if (move.category == MoveCategory.Special)
             {
-                attack = battlerThatUsed.specialAttack;
-                defense = battlerBeingAttacked.specialDefense;
+                attack = battlerThatUsed.stats.specialAttack;
+                defense = battlerBeingAttacked.stats.specialDefense;
             }
 
             damage = Mathf.RoundToInt(((((2f * level) / 5) * power * (attack / (float)defense)) / 50) + 2 * targets * pb * weather *
