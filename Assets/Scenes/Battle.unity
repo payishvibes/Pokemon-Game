@@ -5540,6 +5540,8 @@ MonoBehaviour:
   battlerUsedText: {fileID: 4900000, guid: 06cf16b39212cf9468feeab7b70acc98, type: 3}
   spawnEffect: {fileID: 6386010629427674053, guid: 44a8027545fd0b0498450780f13681bf,
     type: 3}
+  levelUpDisplayPrefab: {fileID: 3980369010481717692, guid: 1ca48fdec0d66364aa586b2abc36d34a,
+    type: 3}
   shrinkEffectDelay: 1
   currentBattlerIndex: 0
   opponentBattlerIndex: 0

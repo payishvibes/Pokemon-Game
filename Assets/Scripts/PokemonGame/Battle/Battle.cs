@@ -119,6 +119,11 @@ namespace PokemonGame.Battle
         private int _battlerToUseItemOn;
         private bool _useItemOnPlayerParty;
         
+        private BattlerStats _oldLevelUpStats;
+        private BattlerStats _newLevelUpStats;
+        private string _newBattlerName;
+        private GameObject currentLevelUpObj;
+        
         private void Start()
         {
             Cursor.lockState = CursorLockMode.None;
@@ -220,6 +225,9 @@ namespace PokemonGame.Battle
 
         private void BattlerLeveledUp(Battler battlerThatLeveled, OnLevelUpEventArgs args)
         {
+            _oldLevelUpStats = args.oldStats;
+            _newLevelUpStats = args.newStats;
+            _newBattlerName = battlerThatLeveled.name;
             QueDialogue($"{battlerThatLeveled.name} reached level {args.newLevel}!", "leveledUp");
             DialogueManager.instance.ForceAutoStartCurrentLastQueued(true);
         }
@@ -231,7 +239,15 @@ namespace PokemonGame.Battle
 
         private void ShowBattlerLeveled()
         {
-            LevelUpDisplay display = Instantiate(levelUpDisplayPrefab);
+            LevelUpDisplay display = Instantiate(levelUpDisplayPrefab, FindObjectOfType<Canvas>().transform);
+            currentLevelUpObj = display.gameObject;
+            display.Init(_newBattlerName, _oldLevelUpStats, _newLevelUpStats);
+        }
+
+        public void FinishedViewingLevelUpScreen()
+        {
+            Destroy(currentLevelUpObj);
+            StartDialogue();
         }
 
         public void BattlerFainted(EventArgs e, Battler defeated)
@@ -241,7 +257,7 @@ namespace PokemonGame.Battle
             turnItemQueue.Add(TurnItem.OpponentSwapBecauseFainted);
             turnItemQueue.Remove(TurnItem.OpponentMove);
             
-            QueDialogue($"{defeated.name} Fainted!");
+            QueDialogue($"Enemy {defeated.name} Fainted!");
 
             int exp = ExperienceCalculator.GetExperienceFromDefeatingBattler(defeated, playerCurrentBattler, true,
                 battlersThatParticipated.Count);
@@ -725,6 +741,8 @@ namespace PokemonGame.Battle
 
         private void DoPlayerMove()
         {
+            uiManager.ShowHealthUI(true);
+            
             //You can add any animation calls for attacking here
             
             MoveMethodEventArgs e = new MoveMethodEventArgs(playerCurrentBattler, opponentCurrentBattler,
@@ -818,6 +836,8 @@ namespace PokemonGame.Battle
 
         private void DoEnemyMove()
         {
+            uiManager.ShowHealthUI(true);
+            
             //You can add any animation calls for attacking here
 
             int moveToDoIndex = GetIndexOfMoveOnCurrentEnemy(enemyMoveToDo);

@@ -13,20 +13,33 @@ MonoBehaviour:
   m_Name: Player Charmander
   m_EditorClassIdentifier: 
   source: {fileID: 11400000, guid: 4f843dafd69ae554e90f655d7e688db3, type: 2}
-  level: 16
+  level: 15
   gender: 0
-  currentHealth: 12
+  currentHealth: 48
   name: Charmander
   shiny: 0
-  maxHealth: 50
-  attack: 41
-  defense: 32
-  specialAttack: 38
-  specialDefense: 37
-  speed: 46
+  stats:
+    maxHealth: 48
+    attack: 39
+    defense: 30
+    specialAttack: 36
+    specialDefense: 35
+    speed: 44
   exp: 585
-  EVs: 000000000000000002000000010000000000000000000000
-  IVs: 000000000000000000000000000000000000000000000000
+  EVs:
+    maxHealth: 0
+    attack: 0
+    defense: 0
+    specialAttack: 0
+    specialDefense: 0
+    speed: 0
+  IVs:
+    maxHealth: 0
+    attack: 0
+    defense: 0
+    specialAttack: 0
+    specialDefense: 0
+    speed: 0
   nature: 0
   affection: 0
   isFainted: 0

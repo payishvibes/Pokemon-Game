@@ -563,17 +563,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53610e77ed703234b910194d9586c43e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oldHealth: {fileID: 4920807924157267939}
+  nameText: {fileID: 7794871932563789721}
+  oldHealth: {fileID: 2344978540474631855}
   newHealth: {fileID: 1209947851531119027}
-  oldAttack: {fileID: 6294675188943960753}
+  oldAttack: {fileID: 1281670947655103340}
   newAttack: {fileID: 3572485593070521766}
-  oldDefense: {fileID: 4317855466221432013}
+  oldDefense: {fileID: 5747568744667693435}
   newDefense: {fileID: 6663951239894999143}
-  oldSpecialAttack: {fileID: 734283498500985655}
+  oldSpecialAttack: {fileID: 8108829453040429627}
   newSpecialAttack: {fileID: 6067449624503356728}
-  oldSpecialDefense: {fileID: 2274012362858993248}
+  oldSpecialDefense: {fileID: 294610996771601531}
   newSpecialDefense: {fileID: 4561374086443821517}
-  oldSpeed: {fileID: 4403264256474799656}
+  oldSpeed: {fileID: 5548971885520171404}
   newSpeed: {fileID: 7099594850949271292}
 --- !u!1 &2121600771770929439
 GameObject:
@@ -817,7 +818,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -3709,8 +3710,8 @@ RectTransform:
   m_GameObject: {fileID: 9124461929896607040}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2.2, y: 2.2, z: 2.2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4331946132463408289}
   - {fileID: 2826401266419123859}
@@ -3719,6 +3720,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 189.13739, y: -2.2011}
+  m_AnchoredPosition: {x: 350, y: -61}
   m_SizeDelta: {x: 286.2746, y: 311.7047}
   m_Pivot: {x: 0.5, y: 0.5}

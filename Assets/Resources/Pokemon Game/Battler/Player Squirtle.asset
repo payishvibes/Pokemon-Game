@@ -13,25 +13,44 @@ MonoBehaviour:
   m_Name: Player Squirtle
   m_EditorClassIdentifier: 
   source: {fileID: 11400000, guid: db309f2b3aa1fb047b0aa64dcd5d8d4c, type: 2}
-  level: 5
-  currentHealth: 10
+  level: 1
+  gender: 0
+  currentHealth: 12
   name: Squirtle
-  maxHealth: 10
-  attack: 10
-  defense: 12
-  specialAttack: 6
-  specialDefense: 10
-  speed: 12
+  shiny: 0
+  stats:
+    maxHealth: 12
+    attack: 6
+    defense: 7
+    specialAttack: 6
+    specialDefense: 7
+    speed: 6
   exp: 45
-  hpEV: 0
-  attackEV: 0
-  defenseEV: 0
-  specialAttackEV: 0
-  specialDefenseEV: 0
-  speedEV: 0
+  EVs:
+    maxHealth: 0
+    attack: 0
+    defense: 0
+    specialAttack: 0
+    specialDefense: 0
+    speed: 0
+  IVs:
+    maxHealth: 0
+    attack: 0
+    defense: 0
+    specialAttack: 0
+    specialDefense: 0
+    speed: 0
+  nature: 0
+  affection: 0
   isFainted: 0
   statusEffect: {fileID: 11400000, guid: 70a8b2171523288439f255c2f97685d9, type: 2}
   moves:
   - {fileID: 11400000, guid: d4639e5cb3f782d4587a463bffb7265a, type: 2}
   - {fileID: 11400000, guid: d64e418a175825643a0869689a75d087, type: 2}
   movePpInfos: []
+  wantToEvolve: 0
+  evolutionToPerform:
+    triggerType: 0
+    level: 0
+    item: {fileID: 0}
+    evolution: {fileID: 0}

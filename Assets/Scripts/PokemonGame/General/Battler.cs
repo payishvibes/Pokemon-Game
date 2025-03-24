@@ -424,27 +424,26 @@ namespace PokemonGame.General
                     break;
             }
 
-            stats.maxHealth = Mathf.FloorToInt((((2f * source.baseHealth + IVs.maxHealth) * 2 + Mathf.FloorToInt(EVs.maxHealth / 4f)) *
-                                                level) / 100) + level + 10;
+            stats.maxHealth = Mathf.FloorToInt(((2f * source.baseHealth + IVs.maxHealth + Mathf.FloorToInt(EVs.maxHealth / 4f)) * level)/(100)) + level + 10;
             
-            stats.attack = Mathf.FloorToInt((((2f * source.baseAttack + IVs.attack) * 2 + Mathf.FloorToInt(EVs.attack / 4f)) *
-                                          level) / 100) + 5;
+            stats.attack = Mathf.FloorToInt(((2f * source.baseAttack + IVs.attack + Mathf.FloorToInt(EVs.attack / 4f)) *
+                level) / 100) + 5;
             stats.attack = Mathf.FloorToInt(stats.attack * attackModifier);
             
-            stats.defense = Mathf.FloorToInt((((2f * source.baseDefense + IVs.defense) * 2 + Mathf.FloorToInt(EVs.defense / 4f)) *
-                                              level) / 100) + 5;
+            stats.defense = Mathf.FloorToInt(((2f * source.baseDefense + IVs.attack + Mathf.FloorToInt(EVs.defense / 4f)) *
+                level) / 100) + 5;
             stats.defense = Mathf.FloorToInt(stats.defense * defenseModifier);
             
-            stats.specialAttack = Mathf.FloorToInt((((2f * source.baseSpecialAttack + IVs.specialAttack) * 2 + Mathf.FloorToInt(EVs.specialAttack / 4f)) *
-                                                    level) / 100) + 5;
+            stats.specialAttack = Mathf.FloorToInt(((2f * source.baseSpecialAttack + IVs.specialAttack + Mathf.FloorToInt(EVs.specialAttack / 4f)) *
+                level) / 100) + 5;
             stats.specialAttack = Mathf.FloorToInt(stats.specialAttack * specialAttackModifier);
             
-            stats.specialDefense = Mathf.FloorToInt((((2f * source.baseSpecialDefense + IVs.specialDefense) * 2 + Mathf.FloorToInt(EVs.specialDefense / 4f)) *
-                                                     level) / 100) + 5;
+            stats.specialDefense = Mathf.FloorToInt(((2f * source.baseSpecialDefense + IVs.specialDefense + Mathf.FloorToInt(EVs.specialDefense / 4f)) *
+                level) / 100) + 5;
             stats.specialDefense = Mathf.FloorToInt(stats.specialDefense * specialDefenseModifier);
             
-            stats.speed = Mathf.FloorToInt((((2f * source.baseSpeed + IVs.speed) * 2 + Mathf.FloorToInt(EVs.speed / 4f)) *
-                                            level) / 100) + 5;
+            stats.speed = Mathf.FloorToInt(((2f * source.baseSpeed + IVs.speed + Mathf.FloorToInt(EVs.speed / 4f)) *
+                level) / 100) + 5;
             stats.speed = Mathf.FloorToInt(stats.speed * speedModifier);
         }
 

@@ -41,6 +41,9 @@ namespace PokemonGame.Dialogue
 
         private Queue<QueuedDialogue> _queue = new Queue<QueuedDialogue>();
 
+        public const KeyCode PrimaryInteractButton = KeyCode.C;
+        public const KeyCode SecondaryInteractButton = KeyCode.C;
+
         private bool isInBattle => SceneManager.GetActiveScene().name == "Battle";
 
         private string[] tempNextLines;
@@ -91,7 +94,7 @@ namespace PokemonGame.Dialogue
                 }
             }
             
-            if ((Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)) && !hasChoices)
+            if ((Input.GetKeyDown(PrimaryInteractButton) || Input.GetKeyDown(SecondaryInteractButton) || Input.GetMouseButtonDown(0)) && !hasChoices)
             {
                 ContinueStory();
             }

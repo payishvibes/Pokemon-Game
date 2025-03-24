@@ -1,10 +1,13 @@
+using PokemonGame.Battle;
+using PokemonGame.Dialogue;
 using PokemonGame.General;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class LevelUpDisplay : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI nameText;
+    
     [SerializeField] private TextMeshProUGUI oldHealth;
     [SerializeField] private TextMeshProUGUI newHealth;
     
@@ -23,24 +26,66 @@ public class LevelUpDisplay : MonoBehaviour
     [SerializeField] private TextMeshProUGUI oldSpeed;
     [SerializeField] private TextMeshProUGUI newSpeed;
 
-    public void Init(BattlerStats oldStats, BattlerStats newStats)
+    private BattlerStats oldStats;
+    private BattlerStats newStats;
+
+    private bool updated;
+
+    public void Init(string name, BattlerStats oldStats, BattlerStats newStats)
     {
+        this.oldStats = oldStats;
+        this.newStats = newStats;
+
+        nameText.text = name;
+        
         oldHealth.text = oldStats.maxHealth.ToString();
-        newHealth.text = newStats.maxHealth.ToString();
+        newHealth.text = "";
         
         oldAttack.text = oldStats.attack.ToString();
-        newAttack.text = newStats.attack.ToString();
+        newAttack.text = "";
         
         oldDefense.text = oldStats.defense.ToString();
-        newDefense.text = oldStats.defense.ToString();
+        newDefense.text = "";
         
         oldSpecialAttack.text = oldStats.specialAttack.ToString();
-        newSpecialAttack.text = newStats.specialAttack.ToString();
+        newSpecialAttack.text = "";
         
         oldSpecialDefense.text = oldStats.specialDefense.ToString();
-        newSpecialDefense.text = newStats.specialAttack.ToString();
+        newSpecialDefense.text = "";
         
         oldSpeed.text = oldStats.speed.ToString();
-        newSpeed.text = newStats.speed.ToString();
+        newSpeed.text = "";
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(DialogueManager.PrimaryInteractButton) || Input.GetKeyDown(DialogueManager.PrimaryInteractButton) || Input.GetMouseButtonDown(0))
+        {
+            Continue();
+        }
+    }
+
+    private void Continue()
+    {
+        if (!updated)
+        {
+            newHealth.text = newStats.maxHealth.ToString();
+        
+            newAttack.text = newStats.attack.ToString();
+        
+            newDefense.text = oldStats.defense.ToString();
+        
+            newSpecialAttack.text = newStats.specialAttack.ToString();
+        
+            newSpecialDefense.text = newStats.specialAttack.ToString();
+        
+            newSpeed.text = newStats.speed.ToString();
+
+            updated = true;
+        }
+        else
+        {
+            Battle.Singleton.FinishedViewingLevelUpScreen();
+        }
     }
 }
