@@ -3096,6 +3096,7 @@ MonoBehaviour:
   NameText: {fileID: 6858147962609115666}
   TextureImage: {fileID: 6858147961973181007}
   DescriptionText: {fileID: 6858147961250952389}
+  AmountText: {fileID: 0}
 --- !u!1 &6858147962609115664
 GameObject:
   m_ObjectHideFlags: 0

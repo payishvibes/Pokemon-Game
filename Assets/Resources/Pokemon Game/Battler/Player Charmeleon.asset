@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34c34158a6a1ace4da0180135a1a41b4, type: 3}
-  m_Name: Player Charmander
+  m_Name: Player Charmeleon
   m_EditorClassIdentifier: 
-  source: {fileID: 11400000, guid: 4f843dafd69ae554e90f655d7e688db3, type: 2}
-  level: 15
+  name: Charmeleon
+  source: {fileID: 11400000, guid: 63eced4e48003204aa6d6f04f2b4efe3, type: 2}
+  level: 35
   gender: 0
-  currentHealth: 48
-  name: Charmander
+  currentHealth: 85
   shiny: 0
   stats:
-    maxHealth: 48
-    attack: 39
-    defense: 30
-    specialAttack: 36
-    specialDefense: 35
-    speed: 44
-  exp: 585
+    maxHealth: 85
+    attack: 53
+    defense: 45
+    specialAttack: 54
+    specialDefense: 50
+    speed: 61
+  exp: 4035
   EVs:
     maxHealth: 0
     attack: 0

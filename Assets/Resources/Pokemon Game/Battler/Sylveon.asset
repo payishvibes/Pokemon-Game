@@ -15,18 +15,31 @@ MonoBehaviour:
   source: {fileID: 11400000, guid: 6364253c73312df4cb8d2134bdc7b962, type: 2}
   level: 50
   gender: 1
-  currentHealth: 312
+  currentHealth: 155
   name: Sylveon
   shiny: 1
-  maxHealth: 312
-  attack: 216
-  defense: 197
-  specialAttack: 258
-  specialDefense: 327
-  speed: 187
+  stats:
+    maxHealth: 155
+    attack: 77
+    defense: 70
+    specialAttack: 103
+    specialDefense: 135
+    speed: 65
   exp: 580
-  EVs: fc000000fc000000fc000000fc000000fc000000fc000000
-  IVs: 1f0000001f0000001f0000001f0000001f0000001f000000
+  EVs:
+    maxHealth: 0
+    attack: 0
+    defense: 0
+    specialAttack: 0
+    specialDefense: 0
+    speed: 0
+  IVs:
+    maxHealth: 0
+    attack: 0
+    defense: 0
+    specialAttack: 0
+    specialDefense: 0
+    speed: 0
   nature: 15
   affection: 0
   isFainted: 0

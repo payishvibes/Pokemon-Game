@@ -90,12 +90,13 @@ MonoBehaviour:
   expGroup: 3
   catchRate: 45
   baseFriendship: 50
-  baseHealth: 58
-  baseAttack: 64
-  baseDefense: 58
-  baseSpecialAttack: 80
-  baseSpecialDefense: 65
-  baseSpeed: 80
+  baseStats:
+    maxHealth: 58
+    attack: 64
+    defense: 58
+    specialAttack: 80
+    specialDefense: 65
+    speed: 80
   expYield: 142
   yields:
     maxHealth: 0

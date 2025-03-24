@@ -153,7 +153,7 @@ namespace PokemonGame.General
             switch (ball.name)
             {
                 case "Fast Ball":
-                    if (target.source.baseSpeed > 100)
+                    if (target.source.baseStats.speed > 100)
                     {
                         ballBonus = 4;
                     }

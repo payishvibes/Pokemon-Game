@@ -28,12 +28,7 @@ namespace PokemonGame.ScriptableObjects
         public ExperienceGroup expGroup;
         [Space] [Header("Stats")] public int catchRate;
         public int baseFriendship;
-        public int baseHealth;
-        public int baseAttack;
-        public int baseDefense;
-        public int baseSpecialAttack;
-        public int baseSpecialDefense;
-        public int baseSpeed;
+        public BattlerStats baseStats;
         public int expYield;
         public BattlerStats yields;
 
@@ -88,12 +83,12 @@ namespace PokemonGame.ScriptableObjects
                 }
 
                 catchRate = int.Parse(values[37]);
-                baseHealth = int.Parse(values[23]);
-                baseAttack = int.Parse(values[24]);
-                baseDefense = int.Parse(values[25]);
-                baseSpecialAttack = int.Parse(values[26]);
-                baseSpecialDefense = int.Parse(values[27]);
-                baseSpeed = int.Parse(values[28]);
+                baseStats.maxHealth = int.Parse(values[23]);
+                baseStats.attack = int.Parse(values[24]);
+                baseStats.defense = int.Parse(values[25]);
+                baseStats.specialAttack = int.Parse(values[26]);
+                baseStats.specialDefense = int.Parse(values[27]);
+                baseStats.speed = int.Parse(values[28]);
                 baseFriendship = int.Parse(values[21]);
                 this.dexNo = dexNo;
 

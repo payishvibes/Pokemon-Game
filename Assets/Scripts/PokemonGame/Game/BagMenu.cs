@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using PokemonGame.ScriptableObjects;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace PokemonGame.Game
 {
@@ -40,7 +41,8 @@ namespace PokemonGame.Game
                     sortedItems.Add(item);
                 }
             }
-            
+
+            int index = 0;
             foreach (BagItemData itemToShow in sortedItems)
             {
                 ItemDisplay display = Instantiate(itemDisplayGameObject, Vector3.zero, Quaternion.identity,
