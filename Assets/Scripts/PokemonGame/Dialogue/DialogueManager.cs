@@ -49,6 +49,8 @@ namespace PokemonGame.Dialogue
         private bool wasToldToNotStart;
 
         private QueuedDialogue currentQueuedDialogue;
+
+        private QueuedDialogue lastQueued;
         
         private void Awake()
         {
@@ -128,6 +130,7 @@ namespace PokemonGame.Dialogue
             if (_queue.Count > 0 || dialogueIsPlaying)
             {
                 _queue.Enqueue(dialogue);
+                lastQueued = dialogue;
             }
             else
             {
@@ -147,11 +150,17 @@ namespace PokemonGame.Dialogue
             if (_queue.Count > 0 || dialogueIsPlaying)
             {
                 _queue.Enqueue(dialogue);
+                lastQueued = dialogue;
             }
             else
             {
                 LoadDialogueFromQueue(dialogue);
             }
+        }
+
+        public void ForceAutoStartCurrentLastQueued(bool forceStop)
+        {
+            lastQueued.forceStopNext = forceStop;
         }
 
         /// <summary>
@@ -160,6 +169,8 @@ namespace PokemonGame.Dialogue
         /// <param name="dialogueToLoad">The queued dialogue to load</param>
         private void LoadDialogueFromQueue(QueuedDialogue dialogueToLoad)
         {
+            bool canAutoContinue = !dialogueToLoad.forceStopNext;
+            
             currentTrigger = dialogueToLoad.trigger;
             currentQueuedDialogue = dialogueToLoad;
             
@@ -177,7 +188,7 @@ namespace PokemonGame.Dialogue
                 }
             }
             
-            if (dialogueToLoad.autoStart)
+            if (dialogueToLoad.autoStart && canAutoContinue)
             {
                 dialogueIsPlaying = true;
                 dialoguePanel.SetActive(true);
@@ -189,6 +200,7 @@ namespace PokemonGame.Dialogue
             {
                 dialogueIsPlaying = false;
                 wasToldToNotStart = true;
+                dialoguePanel.SetActive(false);
             }
 
             if (dialogueToLoad.ink)
@@ -643,6 +655,10 @@ namespace PokemonGame.Dialogue
         /// Raw dialogue, only used when
         /// </summary>
         public string text;
+        /// <summary>
+        /// Weather or not to forcibly disable auto start for the next dialogue that plays
+        /// </summary>
+        public bool forceStopNext;
 
         public QueuedDialogue(DialogueTrigger trigger, Dictionary<string, string> variables, string id, TextAsset textAsset, bool autoStart = true)
         {

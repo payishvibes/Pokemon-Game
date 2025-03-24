@@ -31,6 +31,7 @@ namespace PokemonGame.Battle
         [SerializeField] private Slider currentBattlerHealthDisplay;
         [SerializeField] private Slider opponentHealthDisplay;
         [SerializeField] private TextMeshProUGUI[] moveTexts;
+        [SerializeField] private TextMeshProUGUI[] movePpTexts;
         [SerializeField] private TextMeshProUGUI currentBattlerNameDisplay;
         [SerializeField] private TextMeshProUGUI opponentBattlerNameDisplay;
         [SerializeField] private BattleBagMenu battleBagMenu;
@@ -358,7 +359,7 @@ namespace PokemonGame.Battle
             {
                 text.transform.parent.gameObject.SetActive(false);
             }
-
+            
             for (var i = 0; i < battle.playerParty[battle.currentBattlerIndex].moves.Count; i++)
             {
                 if (battle.playerParty[battle.currentBattlerIndex].moves[i])
@@ -367,7 +368,8 @@ namespace PokemonGame.Battle
                     int maxPP = battle.playerParty[battle.currentBattlerIndex].movePpInfos[i].MaxPP;
                     
                     moveTexts[i].transform.parent.gameObject.SetActive(true);
-                    moveTexts[i].text = $"{battle.playerParty[battle.currentBattlerIndex].moves[i].name} {currentPP}/{maxPP}";
+                    moveTexts[i].text = battle.playerParty[battle.currentBattlerIndex].moves[i].name;
+                    movePpTexts[i].text = $"{currentPP}/{maxPP}";
                     if (currentPP <= 0)
                     {
                         moveTexts[i].transform.parent.GetComponent<Button>().interactable = false;

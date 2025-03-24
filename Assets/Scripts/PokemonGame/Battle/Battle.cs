@@ -220,11 +220,17 @@ namespace PokemonGame.Battle
         private void BattlerLeveledUp(Battler battlerThatLeveled, int newLevel)
         {
             QueDialogue($"{battlerThatLeveled.name} reached level {newLevel}!", "leveledUp");
+            DialogueManager.instance.ForceAutoStartCurrentLastQueued(true);
         }
 
         private void BattlerEvolved(Battler battlerThatEvolved, BattlerTemplate newTemplate)
         {
             QueDialogue($"{battlerThatEvolved.name} evolved into a {newTemplate.name}!", "evolved");
+        }
+
+        private void ShowBattlerLeveled()
+        {
+            
         }
 
         public void BattlerFainted(EventArgs e, Battler defeated)
