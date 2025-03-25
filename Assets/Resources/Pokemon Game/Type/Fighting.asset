@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Fighting
   m_EditorClassIdentifier: 
   name: Fighting
+  color: {r: 0.509434, g: 0.31479177, b: 0.31479177, a: 1}
   strongAgainst:
   - {fileID: 11400000, guid: 7d400c8d21a01854e94041f45793cbf1, type: 2}
   - {fileID: 11400000, guid: b26a9af63fede1e4982ef43c75f280ea, type: 2}

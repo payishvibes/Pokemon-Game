@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Dragon
   m_EditorClassIdentifier: 
   name: Dragon
+  color: {r: 1, g: 0.023584902, b: 0.5484503, a: 1}
   strongAgainst:
   - {fileID: 11400000}
   cantHit:

@@ -1,7 +1,10 @@
 using PokemonGame.Game.Party;
 using PokemonGame.General;
+using PokemonGame.ScriptableObjects;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UI.Extensions;
 
 public class PartyMenu : MonoBehaviour
 {
@@ -9,6 +12,18 @@ public class PartyMenu : MonoBehaviour
     [SerializeField] private Transform[] partyDisplayPositions;
     [SerializeField] private GameObject mainScreen;
     [SerializeField] private GameObject detailsScreen;
+    [SerializeField] private UIPolygon polygon;
+    [SerializeField] private TextMeshProUGUI healthStat;
+    [SerializeField] private TextMeshProUGUI attackStat;
+    [SerializeField] private TextMeshProUGUI defenseStat;
+    [SerializeField] private TextMeshProUGUI specialAttackStat;
+    [SerializeField] private TextMeshProUGUI specialDefenseStat;
+    [SerializeField] private TextMeshProUGUI speedStat;
+    [SerializeField] private GameObject type1;
+    [SerializeField] private GameObject type2;
+    [SerializeField] private TextMeshProUGUI battlerName;
+    [SerializeField] private TextMeshProUGUI battlerLevel;
+    [SerializeField] private GameObject[] moves;
 
     private void Start()
     {
@@ -31,12 +46,69 @@ public class PartyMenu : MonoBehaviour
                 }));
             }
         }
+        
+        BackToMainScreen();
     }
 
     private void OpenDetails(int i)
     {
         mainScreen.SetActive(false);
         detailsScreen.SetActive(true);
+
+        Battler currentBattler = PartyManager.GetParty()[i];
+
+        polygon.VerticesDistances[0] = Mathf.Sqrt(currentBattler.stats.maxHealth / 260f);
+        healthStat.text = $"{currentBattler.currentHealth}/{currentBattler.stats.maxHealth}";
+
+        polygon.VerticesDistances[1] = Mathf.Sqrt(currentBattler.stats.attack / 260f);
+        attackStat.text = currentBattler.stats.attack.ToString();
+
+        polygon.VerticesDistances[2] = Mathf.Sqrt(currentBattler.stats.defense / 260f);
+        defenseStat.text = currentBattler.stats.defense.ToString();
+
+        polygon.VerticesDistances[3] = Mathf.Sqrt(currentBattler.stats.specialAttack / 260f);
+        specialAttackStat.text = currentBattler.stats.specialAttack.ToString();
+
+        polygon.VerticesDistances[4] = Mathf.Sqrt(currentBattler.stats.specialDefense / 260f);
+        specialDefenseStat.text = currentBattler.stats.specialDefense.ToString();
+
+        polygon.VerticesDistances[5] = Mathf.Sqrt(currentBattler.stats.speed / 260f);
+        speedStat.text = currentBattler.stats.speed.ToString();
+
+        type1.GetComponentInChildren<Image>().color = Type.FromBasic(currentBattler.source.primaryType).color;
+        type1.GetComponentInChildren<TextMeshProUGUI>().text = currentBattler.source.primaryType.ToString();
+        if (currentBattler.source.secondaryType != BasicType.None)
+        {
+            type2.SetActive(true);
+            type2.GetComponentInChildren<Image>().color = Type.FromBasic(currentBattler.source.secondaryType).color;
+            type2.GetComponentInChildren<TextMeshProUGUI>().text = currentBattler.source.secondaryType.ToString();
+        }
+        else
+        {
+            type2.SetActive(false);
+        }
+
+        battlerName.text = currentBattler.name;
+        battlerLevel.text = $"Lv. {currentBattler.level}";
+
+        for (int j = 0; j < moves.Length; j++)
+        {
+            if (currentBattler.moves.Count <= j)
+            {
+                moves[j].SetActive(false);
+                continue;
+            }
+            if (currentBattler.moves[j] == null)
+            {
+                moves[j].SetActive(false);
+                continue;
+            }
+            moves[j].SetActive(true);
+            TextMeshProUGUI[] texts = moves[j].GetComponentsInChildren<TextMeshProUGUI>();
+            texts[0].text = currentBattler.moves[j].name;
+            texts[1].text = $"{currentBattler.movePpInfos[j].CurrentPP}/{currentBattler.movePpInfos[j].MaxPP}";
+            moves[j].GetComponentInChildren<Image>().color = currentBattler.moves[j].type.color;
+        }
     }
     
     public void BackToMainScreen()

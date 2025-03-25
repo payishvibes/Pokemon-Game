@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Psychic
   m_EditorClassIdentifier: 
   name: Psychic
+  color: {r: 0.8346275, g: 0, b: 0.8773585, a: 1}
   strongAgainst:
   - {fileID: 11400000, guid: d19a1b210053ade4ab55da13c78024fd, type: 2}
   - {fileID: 11400000, guid: a1e857e04105cf747bc8c86d4a4cc14c, type: 2}

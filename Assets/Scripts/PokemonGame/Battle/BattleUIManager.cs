@@ -369,6 +369,8 @@ namespace PokemonGame.Battle
                     
                     moveTexts[i].transform.parent.gameObject.SetActive(true);
                     moveTexts[i].text = battle.playerParty[battle.currentBattlerIndex].moves[i].name;
+                    moveTexts[i].transform.parent.GetComponent<Image>().color =
+                        battle.playerParty[battle.currentBattlerIndex].moves[i].type.color;
                     movePpTexts[i].text = $"{currentPP}/{maxPP}";
                     if (currentPP <= 0)
                     {
