@@ -703,6 +703,7 @@ namespace PokemonGame.Battle
             AddParticipatedBattler(playerParty[_playerSwapIndex]);
 
             uiManager.UpdatePlayerBattlerDetails();
+            uiManager.ForceHealthSet();
             
             QueDialogue($"Go ahead {playerParty[_playerSwapIndex].name}!", "sentOut", true);
         }
@@ -717,6 +718,7 @@ namespace PokemonGame.Battle
             ChangeOpponentBattlerIndex(e.newBattlerIndex, true);
             
             uiManager.UpdateOpponentBattlerDetails();
+            uiManager.ForceHealthSet();
             
             QueDialogue($"Opponent sent out {opponentParty[e.newBattlerIndex].name}!", "opponentSentOut", true);
         }

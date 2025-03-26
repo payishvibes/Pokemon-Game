@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 5731964}
   - component: {fileID: 5731963}
   - component: {fileID: 5731962}
+  - component: {fileID: 5731965}
   m_Layer: 5
   m_Name: Move2
   m_TagString: Untagged
@@ -255,6 +256,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5731960}
   m_CullTransparentMesh: 1
+--- !u!114 &5731965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5731960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35652b84100e2a4ea052f7a9b649916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expandWhenHover: 1
+  scale: 1.1
+  speed: 4
+  targetGraphic: {fileID: 5731961}
 --- !u!1 &15445931
 GameObject:
   m_ObjectHideFlags: 0
@@ -1946,6 +1963,7 @@ GameObject:
   - component: {fileID: 262383539}
   - component: {fileID: 262383538}
   - component: {fileID: 262383537}
+  - component: {fileID: 262383540}
   m_Layer: 5
   m_Name: Move4
   m_TagString: Untagged
@@ -2068,6 +2086,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 262383535}
   m_CullTransparentMesh: 1
+--- !u!114 &262383540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262383535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35652b84100e2a4ea052f7a9b649916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expandWhenHover: 1
+  scale: 1.1
+  speed: 4
+  targetGraphic: {fileID: 262383536}
 --- !u!1 &292107204
 GameObject:
   m_ObjectHideFlags: 0
@@ -5812,6 +5846,7 @@ GameObject:
   - component: {fileID: 1033898695}
   - component: {fileID: 1033898698}
   - component: {fileID: 1033898697}
+  - component: {fileID: 1033898699}
   - component: {fileID: 1033898696}
   m_Layer: 5
   m_Name: Move1
@@ -5842,6 +5877,60 @@ RectTransform:
   m_SizeDelta: {x: 459.667, y: 129.386}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1033898696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033898694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35652b84100e2a4ea052f7a9b649916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expandWhenHover: 1
+  scale: 1.1
+  speed: 4
+  targetGraphic: {fileID: 1033898695}
+--- !u!114 &1033898697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033898694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: ce295c376f10e5b47a114177b96e2643, type: 3}
+  m_Type: 1
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1033898698
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033898694}
+  m_CullTransparentMesh: 1
+--- !u!114 &1033898699
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5897,44 +5986,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1033898697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1033898694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ce295c376f10e5b47a114177b96e2643, type: 3}
-  m_Type: 1
-  m_PreserveAspect: 1
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1033898698
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1033898694}
-  m_CullTransparentMesh: 1
 --- !u!1 &1038033298
 GameObject:
   m_ObjectHideFlags: 0
@@ -6021,8 +6072,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04aeb2d4f80f4c644a885c70d951681a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthUpdateSpeed: 0.3
-  levelUpDisplay: {fileID: 0}
+  healthUpdateSpeed: 1
   playerUIHolder: {fileID: 583115924}
   controlUIHolder: {fileID: 1145280086}
   moveButtons: {fileID: 1313120826}
@@ -6049,8 +6099,8 @@ MonoBehaviour:
   - {fileID: 349246670}
   currentBattlerRenderer: {fileID: 1027051802}
   opponentBattlerRenderer: {fileID: 795133518}
-  currentBattlerHealthDisplay: {fileID: 0}
-  opponentHealthDisplay: {fileID: 0}
+  currentBattlerHealthDisplay: {fileID: 494993888}
+  opponentHealthDisplay: {fileID: 1199215567}
   moveTexts:
   - {fileID: 1418304265}
   - {fileID: 316355925}
@@ -6061,15 +6111,15 @@ MonoBehaviour:
   - {fileID: 837611858}
   - {fileID: 2041009218}
   - {fileID: 1718067098}
-  currentBattlerNameDisplay: {fileID: 0}
-  currentBattlerLevelDisplay: {fileID: 0}
+  currentBattlerNameDisplay: {fileID: 193294352}
+  currentBattlerLevelDisplay: {fileID: 2080427374}
   opponentBattlerNameDisplay: {fileID: 134080510}
-  opponentBattlerLevelDisplay: {fileID: 0}
+  opponentBattlerLevelDisplay: {fileID: 258520141}
   battleBagMenu: {fileID: 8053423108129935676}
   shrinkEffectSpeed: 3
   faintedRequiredItems:
-  - {fileID: 11400000, guid: 713fd127c53d4a64a9a645129272a769, type: 2}
-  - {fileID: 11400000, guid: a552bfe02db65eb478a5d7be550851dc, type: 2}
+  - {fileID: 11400000, guid: 381059925c2bf7649a377c9dbf0b9c3c, type: 2}
+  - {fileID: 11400000, guid: 1dab65d00722cfd4fae59da1209d30f0, type: 2}
   battle: {fileID: 1038033299}
   _targetPlayerBattlerScale: {x: 0, y: 0, z: 0}
   _targetOpponentBattlerScale: {x: 0, y: 0, z: 0}
@@ -9779,6 +9829,7 @@ GameObject:
   - component: {fileID: 1838204572}
   - component: {fileID: 1838204571}
   - component: {fileID: 1838204570}
+  - component: {fileID: 1838204573}
   m_Layer: 5
   m_Name: Move3
   m_TagString: Untagged
@@ -9901,6 +9952,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1838204568}
   m_CullTransparentMesh: 1
+--- !u!114 &1838204573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838204568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35652b84100e2a4ea052f7a9b649916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expandWhenHover: 1
+  scale: 1.1
+  speed: 4
+  targetGraphic: {fileID: 1838204569}
 --- !u!1 &1865855786
 GameObject:
   m_ObjectHideFlags: 0

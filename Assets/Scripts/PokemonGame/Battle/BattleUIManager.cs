@@ -12,8 +12,7 @@ namespace PokemonGame.Battle
     {
         [SerializeField] private float healthUpdateSpeed = 0.8f;
 
-        [Space] 
-        [SerializeField] private LevelUpDisplay levelUpDisplay;
+        [Space]
         [SerializeField] private GameObject playerUIHolder;
         [SerializeField] private GameObject controlUIHolder;
         [SerializeField] private GameObject moveButtons;
@@ -331,6 +330,21 @@ namespace PokemonGame.Battle
             UpdateBattlerTexts();
         }
 
+        public void ForceHealthSet()
+        {
+            float t = healthUpdateSpeed;
+
+            float opponentTarget = battle.opponentParty[battle.opponentBattlerIndex].currentHealth /
+                                   (float)battle.opponentParty[battle.opponentBattlerIndex].stats.maxHealth;
+
+            float playerTarget = battle.playerParty[battle.currentBattlerIndex].currentHealth /
+                                 (float)battle.playerParty[battle.currentBattlerIndex].stats.maxHealth;
+
+            opponentHealthDisplay.transform.localScale = new Vector3(opponentTarget, 1, 1);
+
+            currentBattlerHealthDisplay.transform.localScale = new Vector3(playerTarget, 1, 1);
+        }
+
         public void UpdateOpponentBattlerDetails()
         {
             UpdateBattlerSprites();
@@ -371,12 +385,14 @@ namespace PokemonGame.Battle
             float opponentTarget = battle.opponentParty[battle.opponentBattlerIndex].currentHealth /
                                    (float)battle.opponentParty[battle.opponentBattlerIndex].stats.maxHealth;
 
-            float playerTarget = battle.playerParty[battle.currentBattlerIndex].stats.maxHealth /
-                                 (float)battle.playerParty[battle.currentBattlerIndex].currentHealth;
-            
-            opponentHealthDisplay.transform.localScale = new Vector3(Mathf.Lerp(opponentHealthDisplay.transform.localScale.x, opponentTarget, t * Time.deltaTime), 1, 1);
+            float playerTarget = battle.playerParty[battle.currentBattlerIndex].currentHealth /
+                                 (float)battle.playerParty[battle.currentBattlerIndex].stats.maxHealth;
 
-            currentBattlerHealthDisplay.transform.localScale = new Vector3(Mathf.Lerp(currentBattlerHealthDisplay.transform.localScale.x, playerTarget, t * Time.deltaTime), 1, 1);
+            opponentHealthDisplay.transform.localScale = new Vector3(
+                Mathf.Lerp(opponentHealthDisplay.transform.localScale.x, opponentTarget, t * Time.deltaTime), 1, 1);
+
+            currentBattlerHealthDisplay.transform.localScale = new Vector3(
+                Mathf.Lerp(currentBattlerHealthDisplay.transform.localScale.x, playerTarget, t * Time.deltaTime), 1, 1);
         }
     }
 }

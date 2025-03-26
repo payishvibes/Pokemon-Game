@@ -42,7 +42,6 @@ namespace PokemonGame.Game
                 }
             }
 
-            int index = 0;
             foreach (BagItemData itemToShow in sortedItems)
             {
                 ItemDisplay display = Instantiate(itemDisplayGameObject, Vector3.zero, Quaternion.identity,
