@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using PokemonGame.ScriptableObjects;
+using UnityEngine.EventSystems;
 
 namespace PokemonGame.Battle
 {
@@ -50,16 +51,18 @@ namespace PokemonGame.Battle
         private Vector3 _initialPlayerScale;
         private Vector3 _initialOpponentScale;
 
-        [SerializeField] private Vector3 _targetPlayerBattlerScale;
-        [SerializeField] private Vector3 _targetOpponentBattlerScale;
+        [SerializeField] private Vector3 targetPlayerBattlerScale;
+        [SerializeField] private Vector3 targetOpponentBattlerScale;
 
         private void Awake()
         {
+            EventSystem.current.SetSelectedGameObject(moveTexts[0].transform.parent.gameObject);
+            
             _initialPlayerScale = currentBattlerRenderer.transform.localScale;
             _initialOpponentScale = opponentBattlerRenderer.transform.localScale;
             
-            _targetPlayerBattlerScale = _initialPlayerScale;
-            _targetOpponentBattlerScale = _initialOpponentScale;
+            targetPlayerBattlerScale = _initialPlayerScale;
+            targetOpponentBattlerScale = _initialOpponentScale;
             
             currentBattlerRenderer.transform.localScale = Vector3.zero;
             opponentBattlerRenderer.transform.localScale = Vector3.zero;
@@ -80,7 +83,7 @@ namespace PokemonGame.Battle
             UpdateHealthDisplays();
 
             currentBattlerRenderer.transform.localScale = Vector3.Lerp(currentBattlerRenderer.transform.localScale,
-                _targetPlayerBattlerScale, shrinkEffectSpeed * Time.deltaTime);
+                targetPlayerBattlerScale, shrinkEffectSpeed * Time.deltaTime);
             
             // 1.45
 
@@ -88,7 +91,7 @@ namespace PokemonGame.Battle
                 1 - currentBattlerRenderer.transform.localScale.x / 3f);
 
             opponentBattlerRenderer.transform.localScale = Vector3.Lerp(opponentBattlerRenderer.transform.localScale,
-                _targetOpponentBattlerScale, shrinkEffectSpeed * Time.deltaTime);
+                targetOpponentBattlerScale, shrinkEffectSpeed * Time.deltaTime);
             
             opponentBattlerRenderer.transform.localPosition = Vector3.Lerp(new Vector3(0, 2.3f, -4.76f), new Vector3(0, 1.45f, -4.76f),
                 1 - opponentBattlerRenderer.transform.localScale.x / 3f);
@@ -180,7 +183,7 @@ namespace PokemonGame.Battle
 
         public void ShrinkPlayerBattler(bool instant = false)
         {
-            _targetPlayerBattlerScale = Vector3.zero;
+            targetPlayerBattlerScale = Vector3.zero;
             if (instant)
             {
                 currentBattlerRenderer.transform.localScale = Vector3.zero;
@@ -189,12 +192,12 @@ namespace PokemonGame.Battle
 
         public void ExpandPlayerBattler()
         {
-            _targetPlayerBattlerScale = _initialPlayerScale;
+            targetPlayerBattlerScale = _initialPlayerScale;
         }
 
         public void ShrinkOpponentBattler(bool instant = false)
         {
-            _targetOpponentBattlerScale = Vector3.zero;
+            targetOpponentBattlerScale = Vector3.zero;
             if (instant)
             {
                 opponentBattlerRenderer.transform.localScale = Vector3.zero;
@@ -203,7 +206,7 @@ namespace PokemonGame.Battle
 
         public void ExpandOpponentBattler()
         {
-            _targetOpponentBattlerScale = _initialOpponentScale;
+            targetOpponentBattlerScale = _initialOpponentScale;
         }
 
         public void ShowControlUI(bool show)

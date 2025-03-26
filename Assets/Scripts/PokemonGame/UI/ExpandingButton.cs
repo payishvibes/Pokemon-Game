@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace PokemonGame.UI
 {
-    public class ExpandingButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    public class ExpandingButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
     {
         [SerializeField] private bool expandWhenHover = true;
         [SerializeField] private float scale = 1.1f;
@@ -11,6 +12,7 @@ namespace PokemonGame.UI
         [SerializeField] private Transform targetGraphic;
 
         private bool _hovering = false;
+        private bool _focused = false;
         private Vector3 _baseScale;
 
         protected void Awake()
@@ -20,7 +22,16 @@ namespace PokemonGame.UI
 
         private void Update()
         {
-            if (_hovering)
+            if (EventSystem.current.currentSelectedGameObject == gameObject)
+            {
+                _focused = true;
+            }
+            else
+            {
+                _focused = false;
+            }
+            
+            if (_hovering || _focused)
             {
                 targetGraphic.localScale = Vector3.Lerp(targetGraphic.localScale, _baseScale * scale, speed * Time.deltaTime);
             }
@@ -41,6 +52,20 @@ namespace PokemonGame.UI
         public void OnPointerExit(PointerEventData eventData)
         {
             _hovering = false;
+        }
+
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            if (expandWhenHover)
+            {
+                // _clicking = true;
+                targetGraphic.localScale = _baseScale;
+            }
+        }
+
+        public void OnPointerUp(PointerEventData eventData)
+        {
+            // _clicking = false;
         }
     }
 }

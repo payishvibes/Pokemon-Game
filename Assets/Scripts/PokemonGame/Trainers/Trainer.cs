@@ -122,18 +122,6 @@ namespace PokemonGame.Trainers
             }
 
             Party playerParty = PartyManager.GetParty();
-
-            Battler charmander = Registry.GetBattler("Player Charmander");
-
-            if (playerParty == null)
-            {
-                playerParty = new Party();
-                
-                playerParty.Add(Battler.CreateCopy(charmander));
-            }else if (playerParty.Count == 0)
-            {
-                playerParty.Add(Battler.CreateCopy(charmander));
-            }
             
             Dictionary<string, object> vars = new Dictionary<string, object>
             {
