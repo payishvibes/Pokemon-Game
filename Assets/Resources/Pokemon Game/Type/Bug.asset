@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bug
   m_EditorClassIdentifier: 
   name: Bug
-  color: {r: 0.46858314, g: 0.8490566, b: 0.48408562, a: 1}
+  color: {r: 0.7294118, g: 0.86274517, b: 0.34509805, a: 1}
   strongAgainst:
   - {fileID: 11400000, guid: 16677bacbe9d55246878c477b58016ba, type: 2}
   - {fileID: 11400000, guid: d43687aadbc21ff4291682914e2bc664, type: 2}

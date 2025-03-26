@@ -28,12 +28,14 @@ namespace PokemonGame.Battle
         [SerializeField] private TextMeshProUGUI[] itemBattlerDisplays;
         [SerializeField] private SpriteRenderer currentBattlerRenderer;
         [SerializeField] private SpriteRenderer opponentBattlerRenderer;
-        [SerializeField] private Slider currentBattlerHealthDisplay;
-        [SerializeField] private Slider opponentHealthDisplay;
+        [SerializeField] private Image currentBattlerHealthDisplay;
+        [SerializeField] private Image opponentHealthDisplay;
         [SerializeField] private TextMeshProUGUI[] moveTexts;
         [SerializeField] private TextMeshProUGUI[] movePpTexts;
         [SerializeField] private TextMeshProUGUI currentBattlerNameDisplay;
+        [SerializeField] private TextMeshProUGUI currentBattlerLevelDisplay;
         [SerializeField] private TextMeshProUGUI opponentBattlerNameDisplay;
+        [SerializeField] private TextMeshProUGUI opponentBattlerLevelDisplay;
         [SerializeField] private BattleBagMenu battleBagMenu;
         [SerializeField] private float shrinkEffectSpeed = 1;
 
@@ -70,12 +72,6 @@ namespace PokemonGame.Battle
             UpdateBattlerMoveDisplays();
             UpdateBattlerTexts();
             UpdateBattlerButtons();
-            
-            opponentHealthDisplay.maxValue = battle.opponentParty[battle.opponentBattlerIndex].stats.maxHealth;
-            opponentHealthDisplay.value = battle.opponentParty[battle.opponentBattlerIndex].currentHealth;
-
-            currentBattlerHealthDisplay.maxValue = battle.playerParty[battle.currentBattlerIndex].stats.maxHealth;
-            currentBattlerHealthDisplay.value = battle.playerParty[battle.currentBattlerIndex].currentHealth;
 
             runButton.SetActive(!Battle.Singleton.trainerBattle);
         }
@@ -316,21 +312,9 @@ namespace PokemonGame.Battle
         private void UpdateBattlerTexts()
         {
             currentBattlerNameDisplay.text = battle.playerParty[battle.currentBattlerIndex].name;
+            currentBattlerLevelDisplay.text = "Lv. " + battle.playerParty[battle.currentBattlerIndex].level;
             opponentBattlerNameDisplay.text = battle.opponentParty[battle.opponentBattlerIndex].name;
-            
-            currentBattlerNameDisplay.color = Color.white;
-            if (battle.playerParty[battle.currentBattlerIndex].isFainted)
-            {
-                currentBattlerNameDisplay.text = battle.playerParty[battle.currentBattlerIndex].name + " (FAINTED)";
-                currentBattlerNameDisplay.color = Color.red;
-            }
-            
-            opponentBattlerNameDisplay.color = Color.white;
-            if (battle.opponentParty[battle.opponentBattlerIndex].isFainted)
-            {
-                opponentBattlerNameDisplay.text = battle.opponentParty[battle.opponentBattlerIndex].name + " (FAINTED)";
-                opponentBattlerNameDisplay.color = Color.red;
-            }
+            opponentBattlerLevelDisplay.text = "Lv. " + battle.opponentParty[battle.opponentBattlerIndex].level;
         }
 
         private void UpdateBattlerSprites()
@@ -383,12 +367,16 @@ namespace PokemonGame.Battle
         private void UpdateHealthDisplays()
         {
             float t = healthUpdateSpeed;
-            
-            opponentHealthDisplay.maxValue = battle.opponentParty[battle.opponentBattlerIndex].stats.maxHealth;
-            opponentHealthDisplay.value = Mathf.Lerp(opponentHealthDisplay.value, battle.opponentParty[battle.opponentBattlerIndex].currentHealth, t);
 
-            currentBattlerHealthDisplay.maxValue = battle.playerParty[battle.currentBattlerIndex].stats.maxHealth;
-            currentBattlerHealthDisplay.value = Mathf.Lerp(currentBattlerHealthDisplay.value, battle.playerParty[battle.currentBattlerIndex].currentHealth, t);
+            float opponentTarget = battle.opponentParty[battle.opponentBattlerIndex].currentHealth /
+                                   (float)battle.opponentParty[battle.opponentBattlerIndex].stats.maxHealth;
+
+            float playerTarget = battle.playerParty[battle.currentBattlerIndex].stats.maxHealth /
+                                 (float)battle.playerParty[battle.currentBattlerIndex].currentHealth;
+            
+            opponentHealthDisplay.transform.localScale = new Vector3(Mathf.Lerp(opponentHealthDisplay.transform.localScale.x, opponentTarget, t * Time.deltaTime), 1, 1);
+
+            currentBattlerHealthDisplay.transform.localScale = new Vector3(Mathf.Lerp(currentBattlerHealthDisplay.transform.localScale.x, playerTarget, t * Time.deltaTime), 1, 1);
         }
     }
 }

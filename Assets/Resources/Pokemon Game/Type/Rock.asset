@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rock
   m_EditorClassIdentifier: 
   name: Rock
-  color: {r: 0.5754717, g: 0.30673727, b: 0.30673727, a: 1}
+  color: {r: 1, g: 0.74509805, b: 0.46274513, a: 1}
   strongAgainst:
   - {fileID: 11400000, guid: 6a482d51d49ba5a45bff8e1435389d3f, type: 2}
   - {fileID: 11400000, guid: bf9a294a54121aa4388e9b483a5a6612, type: 2}

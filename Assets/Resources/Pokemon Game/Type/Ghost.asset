@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ghost
   m_EditorClassIdentifier: 
   name: Ghost
-  color: {r: 0.5969047, g: 0.45923817, b: 0.754717, a: 1}
+  color: {r: 0.40784317, g: 0.427451, b: 0.87843144, a: 1}
   strongAgainst:
   - {fileID: 11400000}
   - {fileID: 11400000, guid: d43687aadbc21ff4291682914e2bc664, type: 2}

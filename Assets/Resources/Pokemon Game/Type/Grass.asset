@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Grass
   m_EditorClassIdentifier: 
   name: Grass
-  color: {r: 0.033209026, g: 0.6792453, b: 0, a: 1}
+  color: {r: 0.4156863, g: 0.6901961, b: 0.29803923, a: 1}
   strongAgainst:
   - {fileID: 11400000, guid: e96a8bed7870822469f0947b19e4e57d, type: 2}
   - {fileID: 11400000, guid: 4641dc3e5ff6ea64f8f1cea1bfaf0a9c, type: 2}

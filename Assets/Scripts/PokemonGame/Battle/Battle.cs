@@ -239,7 +239,7 @@ namespace PokemonGame.Battle
 
         private void ShowBattlerLeveled()
         {
-            LevelUpDisplay display = Instantiate(levelUpDisplayPrefab, FindObjectOfType<Canvas>().transform);
+            LevelUpDisplay display = Instantiate(levelUpDisplayPrefab, FindFirstObjectByType<Canvas>().transform);
             currentLevelUpObj = display.gameObject;
             display.Init(_newBattlerName, _oldLevelUpStats, _newLevelUpStats);
         }

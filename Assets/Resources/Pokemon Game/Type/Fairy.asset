@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fairy
   m_EditorClassIdentifier: 
   name: Fairy
-  color: {r: 0.9433962, g: 0, b: 0.88153696, a: 1}
+  color: {r: 0.87843144, g: 0.3372549, b: 0.9921569, a: 1}
   strongAgainst:
   - {fileID: 11400000, guid: d19a1b210053ade4ab55da13c78024fd, type: 2}
   - {fileID: 11400000, guid: 2a0dd581c0f039443914f076081082d8, type: 2}

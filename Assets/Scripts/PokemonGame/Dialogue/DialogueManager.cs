@@ -70,7 +70,7 @@ namespace PokemonGame.Dialogue
             string name = SceneManager.GetActiveScene().name;
             if (name != "Battle" || name == "Boot")
             {
-                movement = FindObjectOfType<PlayerMovement>();
+                movement = FindFirstObjectByType<PlayerMovement>();
             }
         }
         

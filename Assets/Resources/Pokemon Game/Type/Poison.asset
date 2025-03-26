@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Poison
   m_EditorClassIdentifier: 
   name: Poison
-  color: {r: 0.3481162, g: 0, b: 0.5471698, a: 1}
+  color: {r: 0.6252927, g: 0.34451762, b: 0.9245283, a: 1}
   strongAgainst:
   - {fileID: 11400000, guid: 16677bacbe9d55246878c477b58016ba, type: 2}
   - {fileID: 11400000, guid: f2728e728c5c1fb4db2022f5766212eb, type: 2}

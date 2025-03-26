@@ -50,7 +50,7 @@ namespace PokemonGame.Game
         {
             if (SceneManager.GetActiveScene().name != "Battle")
             {
-                movement = FindObjectOfType<PlayerMovement>();
+                movement = FindFirstObjectByType<PlayerMovement>();
             }
         }
         
