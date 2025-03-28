@@ -300,6 +300,7 @@ GameObject:
   - component: {fileID: 76501325}
   - component: {fileID: 76501327}
   - component: {fileID: 76501328}
+  - component: {fileID: 76501329}
   m_Layer: 0
   m_Name: Defult Trainer
   m_TagString: Untagged
@@ -362,6 +363,7 @@ MonoBehaviour:
   interactable: 0
   customInteractionStopHandling: 0
   interactionObjects: []
+  input: {fileID: 0}
   isDefeated: 0
   party:
     PartyList:
@@ -392,6 +394,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3, y: 3, z: 3}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &76501329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 76501319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: bafd98a51cf230a4096cab19e5d5f870,
+    type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: 
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1001 &159472900
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2180,6 +2213,7 @@ GameObject:
   - component: {fileID: 792168157}
   - component: {fileID: 792168160}
   - component: {fileID: 792168161}
+  - component: {fileID: 792168162}
   m_Layer: 0
   m_Name: CivlillianNPC
   m_TagString: Untagged
@@ -2317,7 +2351,39 @@ MonoBehaviour:
   interactable: 1
   customInteractionStopHandling: 0
   interactionObjects: []
+  input: {fileID: 792168162}
   textAsset: {fileID: 4900000, guid: 7bb25bd9963091c44a7bf2fc2a6d06e7, type: 3}
+--- !u!114 &792168162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792168154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: bafd98a51cf230a4096cab19e5d5f870,
+    type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Interactions
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &862792434
 GameObject:
   m_ObjectHideFlags: 0
@@ -2521,6 +2587,7 @@ GameObject:
   - component: {fileID: 870216835}
   - component: {fileID: 870216834}
   - component: {fileID: 870216837}
+  - component: {fileID: 870216838}
   m_Layer: 0
   m_Name: ItemNPC 2
   m_TagString: Untagged
@@ -2635,7 +2702,39 @@ MonoBehaviour:
   interactable: 1
   customInteractionStopHandling: 0
   interactionObjects: []
+  input: {fileID: 870216838}
   textAsset: {fileID: 4900000, guid: 3d6e66df359e6a747a2c7190b8c4f543, type: 3}
+--- !u!114 &870216838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870216831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: bafd98a51cf230a4096cab19e5d5f870,
+    type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Interactions
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1001 &880750502
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3223,6 +3322,7 @@ GameObject:
   - component: {fileID: 1163373107}
   - component: {fileID: 1163373105}
   - component: {fileID: 1163373104}
+  - component: {fileID: 1163373109}
   m_Layer: 0
   m_Name: Defult Trainer 2
   m_TagString: Untagged
@@ -3268,6 +3368,7 @@ MonoBehaviour:
   interactable: 0
   customInteractionStopHandling: 0
   interactionObjects: []
+  input: {fileID: 0}
   isDefeated: 0
   party:
     PartyList:
@@ -3315,6 +3416,37 @@ Transform:
   - {fileID: 426591931}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &1163373109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163373103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: bafd98a51cf230a4096cab19e5d5f870,
+    type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: 
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1190864675
 GameObject:
   m_ObjectHideFlags: 0
@@ -3328,6 +3460,7 @@ GameObject:
   - component: {fileID: 1190864677}
   - component: {fileID: 1190864681}
   - component: {fileID: 1190864682}
+  - component: {fileID: 1190864683}
   m_Layer: 0
   m_Name: ItemNPC
   m_TagString: Untagged
@@ -3442,7 +3575,39 @@ MonoBehaviour:
   interactable: 1
   customInteractionStopHandling: 0
   interactionObjects: []
+  input: {fileID: 1190864683}
   textAsset: {fileID: 4900000, guid: 53eed82a85c386f45b09201bc80520b3, type: 3}
+--- !u!114 &1190864683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190864675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: bafd98a51cf230a4096cab19e5d5f870,
+    type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Interactions
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1001 &1268558818
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3980,6 +4145,7 @@ GameObject:
   - component: {fileID: 1516847958}
   - component: {fileID: 1516847957}
   - component: {fileID: 1516847956}
+  - component: {fileID: 1516847959}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -4037,6 +4203,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1516847959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1516847955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99acb526c37ba4f4a943d881f68a41ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1520735340
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4124,6 +4302,7 @@ GameObject:
   - component: {fileID: 1553828403}
   - component: {fileID: 1553828402}
   - component: {fileID: 1553828406}
+  - component: {fileID: 1553828407}
   m_Layer: 0
   m_Name: ProffessorOak
   m_TagString: Untagged
@@ -4238,7 +4417,39 @@ MonoBehaviour:
   interactable: 1
   customInteractionStopHandling: 0
   interactionObjects: []
+  input: {fileID: 1553828407}
   textAsset: {fileID: 4900000, guid: d3400d76c0011ea4cbf02e97ef1c8a72, type: 3}
+--- !u!114 &1553828407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553828401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: bafd98a51cf230a4096cab19e5d5f870,
+    type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Interactions
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1587678843
 GameObject:
   m_ObjectHideFlags: 0

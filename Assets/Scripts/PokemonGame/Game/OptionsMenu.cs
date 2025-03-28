@@ -1,5 +1,6 @@
 using System;
 using PokemonGame.Dialogue;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 namespace PokemonGame.Game
@@ -9,8 +10,8 @@ namespace PokemonGame.Game
     public class OptionsMenu : MonoBehaviour
     {
         public static OptionsMenu instance;
-        
-        [SerializeField] private KeyCode bagKey;
+
+        [SerializeField] private PlayerInput input;
         [Space]
         [SerializeField] private PlayerMovement movement;
 
@@ -53,10 +54,34 @@ namespace PokemonGame.Game
                 movement = FindFirstObjectByType<PlayerMovement>();
             }
         }
-        
-        private void Update()
+
+        private void Start()
         {
-            if (Input.GetKeyDown(bagKey) && !DialogueManager.instance.dialogueIsPlaying && SceneManager.GetActiveScene().name != "Battle")
+            DialogueManager.instance.DialogueStarted += InstanceOnDialogueStarted;
+        }
+
+        private void InstanceOnDialogueStarted(object sender, DialogueStartedEventArgs e)
+        {
+            if (state)
+            {
+                ToggleMenu();
+            }
+        }
+
+        private void OnEnable()
+        {
+            input.actions["Bag"].performed += OnPerformed;
+        }
+
+        private void OnDisable()
+        {
+            input.actions["Bag"].performed -= OnPerformed;
+            DialogueManager.instance.DialogueStarted -= InstanceOnDialogueStarted;
+        }
+
+        private void OnPerformed(InputAction.CallbackContext obj)
+        {
+            if (!DialogueManager.instance.dialogueIsPlaying && SceneManager.GetActiveScene().name != "Battle")
             {
                 ToggleMenu();
             }

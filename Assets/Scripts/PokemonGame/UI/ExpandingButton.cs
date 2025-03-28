@@ -22,6 +22,11 @@ namespace PokemonGame.UI
 
         private void Update()
         {
+            if (!EventSystem.current)
+            {
+                return;
+            }
+            
             if (EventSystem.current.currentSelectedGameObject == gameObject)
             {
                 _focused = true;

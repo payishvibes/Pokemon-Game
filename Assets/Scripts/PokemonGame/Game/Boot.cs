@@ -10,7 +10,7 @@ namespace PokemonGame.Game
         
         private void Start()
         {
-            Application.targetFrameRate = 60;
+            // Application.targetFrameRate = 75;
             Bag.Add(Registry.GetItem("Potion"), 2);
             Bag.Add(Registry.GetItem("Revive"), 2);
             Bag.Add(Registry.GetItem("Max Revive"), 2);

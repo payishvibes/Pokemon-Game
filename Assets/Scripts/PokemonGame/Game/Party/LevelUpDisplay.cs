@@ -1,11 +1,15 @@
+using System;
 using PokemonGame.Battle;
 using PokemonGame.Dialogue;
 using PokemonGame.General;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class LevelUpDisplay : MonoBehaviour
 {
+    [SerializeField] private PlayerInput input;
+    
     [SerializeField] private TextMeshProUGUI nameText;
     
     [SerializeField] private TextMeshProUGUI oldHealth;
@@ -57,12 +61,20 @@ public class LevelUpDisplay : MonoBehaviour
         newSpeed.text = "";
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        if (Input.GetKeyDown(DialogueManager.PrimaryInteractButton) || Input.GetKeyDown(DialogueManager.PrimaryInteractButton) || Input.GetMouseButtonDown(0))
-        {
-            Continue();
-        }
+        input.actions["Interact"].performed += OnPerformed;
+    }
+
+    private void OnPerformed(InputAction.CallbackContext obj)
+    {
+        Debug.Log("pressed");
+        Continue();
+    }
+
+    private void OnDisable()
+    {
+        input.actions["Interact"].performed -= OnPerformed;
     }
 
     private void Continue()

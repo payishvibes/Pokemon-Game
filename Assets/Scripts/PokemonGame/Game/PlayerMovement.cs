@@ -1,4 +1,6 @@
+using System;
 using Cinemachine;
+using UnityEngine.InputSystem;
 
 namespace PokemonGame.Game
 {
@@ -9,6 +11,7 @@ namespace PokemonGame.Game
         [Header("Assigning")]
         public CharacterController controller;
         public CinemachineFreeLook camFreeLook;
+        public InputAction playerActions;
         public Transform cam;
         public Transform groundDetectorPos;
 
@@ -35,6 +38,16 @@ namespace PokemonGame.Game
             _camDefaultXSpeed = camFreeLook.m_XAxis.m_MaxSpeed;
         }
 
+        private void OnEnable()
+        {
+            playerActions.Enable();
+        }
+
+        private void OnDisable()
+        {
+            playerActions.Disable();
+        }
+
         private void Start()
         {
             speed = normalSpeed;
@@ -53,14 +66,12 @@ namespace PokemonGame.Game
                     
                     Cursor.lockState = CursorLockMode.Locked;
                     Cursor.visible = false;
-                
-                    float horizontal = Input.GetAxis("Horizontal");
-                    float vertical = Input.GetAxis("Vertical");
-                    Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+
+                    Vector2 direction = playerActions.ReadValue<Vector2>();
                 
                     if (direction.magnitude >= 0.1f)
                     {
-                        float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+                        float targetAngle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg + cam.eulerAngles.y;
                         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _turnSmoothVelocity, _turnSmoothTime);
                         transform.rotation = Quaternion.Euler(0f, angle, 0f);
                     

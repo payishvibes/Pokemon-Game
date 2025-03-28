@@ -1,4 +1,6 @@
 using PokemonGame.General;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace PokemonGame.Dialogue
 {
@@ -19,6 +21,7 @@ namespace PokemonGame.Dialogue
         public static DialogueManager instance;
         
         [SerializeField] private GameObject dialoguePanel;
+        [SerializeField] private GameObject choicesHolder;
         [SerializeField] private TextMeshProUGUI dialogueTextDisplay;
         [SerializeField] private GameObject[] choices;
         [SerializeField] private int currentChoicesAmount;
@@ -57,6 +60,7 @@ namespace PokemonGame.Dialogue
         
         private void Awake()
         {
+            Debug.Log("assigning");
             instance = this;
             
             SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
@@ -73,8 +77,8 @@ namespace PokemonGame.Dialogue
                 movement = FindFirstObjectByType<PlayerMovement>();
             }
         }
-        
-        private void Update()
+
+        public void PressedContinue()
         {
             if (!dialogueIsPlaying)
                 return;
@@ -94,7 +98,7 @@ namespace PokemonGame.Dialogue
                 }
             }
             
-            if ((Input.GetKeyDown(PrimaryInteractButton) || Input.GetKeyDown(SecondaryInteractButton) || Input.GetMouseButtonDown(0)) && !hasChoices)
+            if (!hasChoices)
             {
                 ContinueStory();
             }
@@ -457,6 +461,8 @@ namespace PokemonGame.Dialogue
         
         private IEnumerator DisplayText(string nextSentence)
         {
+            EventSystem.current.SetSelectedGameObject(dialoguePanel.GetComponentsInChildren<Button>()[0].gameObject);
+            
             dialogueTextDisplay.text = "";
             foreach (char letter in nextSentence)
             {

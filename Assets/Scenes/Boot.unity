@@ -587,6 +587,7 @@ GameObject:
   m_Component:
   - component: {fileID: 478677527}
   - component: {fileID: 478677528}
+  - component: {fileID: 478677529}
   m_Layer: 0
   m_Name: OptionsMenu
   m_TagString: Untagged
@@ -622,7 +623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c340bad4bef88b5478b5636ccafaa7f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bagKey: 111
+  input: {fileID: 478677529}
   movement: {fileID: 0}
   state: 0
   menuObject: {fileID: 301204409}
@@ -632,6 +633,37 @@ MonoBehaviour:
   - {fileID: 4547129373560313047, guid: 618d2fbcf50829046b350f981b3bdde9, type: 3}
   - {fileID: 1520454474192355749, guid: e277f93951e80cb408b9fc804c5f5890, type: 3}
   currentMenu: {fileID: 0}
+--- !u!114 &478677529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478677526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: bafd98a51cf230a4096cab19e5d5f870,
+    type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Interactions
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &479861691
 GameObject:
   m_ObjectHideFlags: 0
@@ -1562,6 +1594,7 @@ GameObject:
   - component: {fileID: 453293116288280157}
   - component: {fileID: 453293116288280158}
   - component: {fileID: 453293116288280159}
+  - component: {fileID: 453293116288280160}
   m_Layer: 5
   m_Name: Cloice0
   m_TagString: Untagged
@@ -1663,6 +1696,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &453293116288280160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453293116288280097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35652b84100e2a4ea052f7a9b649916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expandWhenHover: 1
+  scale: 1.1
+  speed: 4
+  targetGraphic: {fileID: 453293116288280096}
 --- !u!224 &453293116360056953
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1789,6 +1838,7 @@ GameObject:
   - component: {fileID: 453293116360056954}
   - component: {fileID: 453293116360056955}
   - component: {fileID: 453293116360056956}
+  - component: {fileID: 453293116360056958}
   m_Layer: 5
   m_Name: Cloice2
   m_TagString: Untagged
@@ -1796,6 +1846,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &453293116360056958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453293116360056957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35652b84100e2a4ea052f7a9b649916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expandWhenHover: 1
+  scale: 1.1
+  speed: 4
+  targetGraphic: {fileID: 453293116360056953}
 --- !u!222 &453293116396280547
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1939,19 +2005,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 453293116419842778}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.0000162}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 453293116288280096}
   - {fileID: 453293117388818676}
   - {fileID: 453293116360056953}
-  m_Father: {fileID: 453293117287746523}
+  m_Father: {fileID: 453293117578365662}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -370.58, y: 248}
+  m_AnchoredPosition: {x: -370.58, y: -201.59143}
   m_SizeDelta: {x: 131.75, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &453293116419842778
@@ -2062,7 +2128,7 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 1
+  m_overflowMode: 3
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
@@ -2297,7 +2363,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dffe3dec7424bf45b669c67411bd53a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialoguePanel: {fileID: 453293117287746524}
+  dialoguePanel: {fileID: 453293117578365663}
+  choicesHolder: {fileID: 0}
   dialogueTextDisplay: {fileID: 453293116552543702}
   choices:
   - {fileID: 453293116288280097}
@@ -2377,7 +2444,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 453293116552543704}
-  - {fileID: 453293116419842777}
   m_Father: {fileID: 453293117578365662}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
@@ -2396,6 +2462,8 @@ GameObject:
   - component: {fileID: 453293117287746523}
   - component: {fileID: 453293117287746521}
   - component: {fileID: 453293117287746522}
+  - component: {fileID: 453293117287746525}
+  - component: {fileID: 453293117287746526}
   m_Layer: 5
   m_Name: DialoguePanel
   m_TagString: Untagged
@@ -2403,6 +2471,78 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &453293117287746525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453293117287746524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 453293117287746522}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 453293117054167457}
+        m_TargetAssemblyTypeName: PokemonGame.Dialogue.DialogueManager, Assembly-CSharp
+        m_MethodName: PressedContinue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &453293117287746526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453293117287746524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35652b84100e2a4ea052f7a9b649916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expandWhenHover: 1
+  scale: 1.1
+  speed: 4
+  targetGraphic: {fileID: 453293117287746523}
 --- !u!222 &453293117388818673
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2529,6 +2669,7 @@ GameObject:
   - component: {fileID: 453293117388818673}
   - component: {fileID: 453293117388818674}
   - component: {fileID: 453293117388818675}
+  - component: {fileID: 453293117388818678}
   m_Layer: 5
   m_Name: Cloice1
   m_TagString: Untagged
@@ -2536,6 +2677,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &453293117388818678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453293117388818677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35652b84100e2a4ea052f7a9b649916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expandWhenHover: 1
+  scale: 1.1
+  speed: 4
+  targetGraphic: {fileID: 453293117388818676}
 --- !u!223 &453293117578365659
 Canvas:
   m_ObjectHideFlags: 0
@@ -2612,6 +2769,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 453293117287746523}
+  - {fileID: 453293116419842777}
   m_Father: {fileID: 453293117054167456}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2858,7 +3016,7 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 1
+  m_overflowMode: 3
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1

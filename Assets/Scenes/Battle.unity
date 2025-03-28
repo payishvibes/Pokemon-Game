@@ -1537,6 +1537,7 @@ GameObject:
   - component: {fileID: 212076557}
   - component: {fileID: 212076556}
   - component: {fileID: 212076555}
+  - component: {fileID: 212076558}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1594,6 +1595,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &212076558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212076554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99acb526c37ba4f4a943d881f68a41ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &215431431
 GameObject:
   m_ObjectHideFlags: 0
@@ -6223,8 +6236,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 381059925c2bf7649a377c9dbf0b9c3c, type: 2}
   - {fileID: 11400000, guid: 1dab65d00722cfd4fae59da1209d30f0, type: 2}
   battle: {fileID: 1038033299}
-  _targetPlayerBattlerScale: {x: 0, y: 0, z: 0}
-  _targetOpponentBattlerScale: {x: 0, y: 0, z: 0}
+  targetPlayerBattlerScale: {x: 0, y: 0, z: 0}
+  targetOpponentBattlerScale: {x: 0, y: 0, z: 0}
 --- !u!1 &1096175100
 GameObject:
   m_ObjectHideFlags: 0
