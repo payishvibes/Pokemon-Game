@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Bug
   m_EditorClassIdentifier: 
   name: Bug
-  color: {r: 0.7294118, g: 0.86274517, b: 0.34509805, a: 1}
+  color: {r: 0.5647059, g: 0.7568628, b: 0.17254902, a: 1}
+  sprite: {fileID: 94103456, guid: c86c30ca3e70a1a4c99f9042bf50c6aa, type: 3}
   strongAgainst:
   - {fileID: 11400000, guid: 16677bacbe9d55246878c477b58016ba, type: 2}
   - {fileID: 11400000, guid: d43687aadbc21ff4291682914e2bc664, type: 2}

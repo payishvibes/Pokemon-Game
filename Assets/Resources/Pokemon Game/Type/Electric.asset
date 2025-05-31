@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Electric
   m_EditorClassIdentifier: 
   name: Electric
-  color: {r: 0.96470594, g: 0.8980393, b: 0.5529412, a: 1}
+  color: {r: 0.95294124, g: 0.8235295, b: 0.23137257, a: 1}
+  sprite: {fileID: -534433942, guid: c86c30ca3e70a1a4c99f9042bf50c6aa, type: 3}
   strongAgainst:
   - {fileID: 11400000, guid: 6a482d51d49ba5a45bff8e1435389d3f, type: 2}
   - {fileID: 11400000, guid: e96a8bed7870822469f0947b19e4e57d, type: 2}

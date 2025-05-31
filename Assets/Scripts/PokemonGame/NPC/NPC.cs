@@ -11,7 +11,6 @@ namespace PokemonGame.NPC
     /// <summary>
     /// Base class of all NPCs, contains functionality for detecting the player nearby and having an OnPlayerInteract() override method
     /// </summary>
-    [RequireComponent(typeof(PlayerInput))]
     public class NPC : DialogueTrigger
     {
         [Header("Visual Cue")]
@@ -22,7 +21,6 @@ namespace PokemonGame.NPC
         public bool interactable = true;
         public bool customInteractionStopHandling = false;
         public List<GameObject> interactionObjects;
-        public PlayerInput input;
 
         private bool _playerInteracting = false;
 
@@ -56,8 +54,7 @@ namespace PokemonGame.NPC
 
         private void OnEnable()
         {
-            input = GetComponent<PlayerInput>();
-            input.actions["Interact"].performed += OnPerformed;
+            InputSystem.actions.FindAction("Interact").performed += OnPerformed;
             DialogueManager.instance.DialogueStarted += OnDialogueStarted;
             DialogueManager.instance.DialogueEnded += DialogueEnded;
             OverrideOnEnable();
@@ -77,7 +74,7 @@ namespace PokemonGame.NPC
         {
             DialogueManager.instance.DialogueStarted -= OnDialogueStarted;
             DialogueManager.instance.DialogueEnded -= DialogueEnded;
-            input.actions["Interact"].performed -= OnPerformed;
+            InputSystem.actions.FindAction("Interact").performed -= OnPerformed;
             OverrideOnDisable();
         }
 
@@ -96,7 +93,6 @@ namespace PokemonGame.NPC
             _playerInRange = false;
             visualCue.SetActive(false);
             DialogueFinished += StopPlayerLooking;
-            input = GetComponent<PlayerInput>();
         }
 
         private void StopPlayerLooking(object o, EventArgs e)
@@ -112,6 +108,7 @@ namespace PokemonGame.NPC
         private void Update()
         {
             visualCue.SetActive(false);
+            _canInteract = false;
             if(interactable)
             {
                 if (_playerInRange && !Player.interacting)

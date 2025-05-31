@@ -1,15 +1,18 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace PokemonGame.UI
 {
-    public class ExpandingButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
+    public class ExpandingButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
     {
         [SerializeField] private bool expandWhenHover = true;
         [SerializeField] private float scale = 1.1f;
         [SerializeField] private float speed = 4f;
         [SerializeField] private Transform targetGraphic;
+        [SerializeField] private UnityEvent onHover;
 
         private bool _hovering = false;
         private bool _focused = false;
@@ -20,11 +23,26 @@ namespace PokemonGame.UI
             _baseScale = targetGraphic.localScale;
         }
 
+        private void OnEnable()
+        {
+            targetGraphic.GetComponent<Button>().onClick.AddListener(ButtonClicked);
+        }
+
+        private void ButtonClicked()
+        {
+            targetGraphic.localScale = _baseScale;
+        }
+
         private void Update()
         {
             if (!EventSystem.current)
             {
                 return;
+            }
+
+            if (!_focused && EventSystem.current.currentSelectedGameObject == gameObject)
+            {
+                onHover?.Invoke();
             }
             
             if (EventSystem.current.currentSelectedGameObject == gameObject)
@@ -46,12 +64,19 @@ namespace PokemonGame.UI
             }
         }
 
+        private void LateUpdate()
+        {
+            _hovering = false;
+        }
+
         public void OnPointerEnter(PointerEventData eventData)
         {
             if (expandWhenHover)
             {
                 _hovering = true;
             }
+            
+            onHover?.Invoke();
         }
 
         public void OnPointerExit(PointerEventData eventData)
@@ -63,14 +88,8 @@ namespace PokemonGame.UI
         {
             if (expandWhenHover)
             {
-                // _clicking = true;
                 targetGraphic.localScale = _baseScale;
             }
-        }
-
-        public void OnPointerUp(PointerEventData eventData)
-        {
-            // _clicking = false;
         }
     }
 }

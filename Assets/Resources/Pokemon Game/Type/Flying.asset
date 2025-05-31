@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Flying
   m_EditorClassIdentifier: 
   name: Flying
-  color: {r: 0.8745099, g: 0.97647065, b: 0.9843138, a: 1}
+  color: {r: 0.57254905, g: 0.6666667, b: 0.8705883, a: 1}
+  sprite: {fileID: 172134450, guid: c86c30ca3e70a1a4c99f9042bf50c6aa, type: 3}
   strongAgainst:
   - {fileID: 11400000, guid: d19a1b210053ade4ab55da13c78024fd, type: 2}
   - {fileID: 11400000, guid: bf9a294a54121aa4388e9b483a5a6612, type: 2}

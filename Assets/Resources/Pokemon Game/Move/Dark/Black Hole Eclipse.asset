@@ -22,8 +22,7 @@ MonoBehaviour:
   priority: 0
   category: 3
   probability: 0
-  zMove: 0
-  zCrystal: {fileID: 0}
+  zCrystal: {fileID: 11400000, guid: e5f53e9e6bbc3cf47bdcbe1656783777, type: 2}
   unique: 0
   uniqueBattler: {fileID: 0}
   MoveMethodEvent:

@@ -60,7 +60,6 @@ namespace PokemonGame.Dialogue
         
         private void Awake()
         {
-            Debug.Log("assigning");
             instance = this;
             
             SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;

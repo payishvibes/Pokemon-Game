@@ -1,8 +1,10 @@
 using PokemonGame.Game.Party;
 using PokemonGame.General;
 using PokemonGame.ScriptableObjects;
+using PokemonGame.UI;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.UI.Extensions;
 
@@ -107,13 +109,19 @@ public class PartyMenu : MonoBehaviour
             TextMeshProUGUI[] texts = moves[j].GetComponentsInChildren<TextMeshProUGUI>();
             texts[0].text = currentBattler.moves[j].name;
             texts[1].text = $"{currentBattler.movePpInfos[j].CurrentPP}/{currentBattler.movePpInfos[j].MaxPP}";
-            moves[j].GetComponentInChildren<Image>().color = currentBattler.moves[j].type.color;
+            moves[j].GetComponent<Image>().color = currentBattler.moves[j].type.color;
+            moves[j].GetComponentsInChildren<Image>()[1].sprite = currentBattler.moves[j].type.sprite;
+            moves[j].GetComponent<StatsScreenMoveIcon>().move = currentBattler.moves[j];
         }
+        
+        EventSystem.current.SetSelectedGameObject(moves[0]);
     }
     
     public void BackToMainScreen()
     {
         mainScreen.SetActive(true);
         detailsScreen.SetActive(false);
+        
+        EventSystem.current.SetSelectedGameObject(partyDisplayPositions[0].GetChild(0).gameObject);
     }
 }

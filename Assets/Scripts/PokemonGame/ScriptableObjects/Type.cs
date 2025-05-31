@@ -9,6 +9,7 @@ namespace PokemonGame.ScriptableObjects
     {
         public new string name;
         public Color color;
+        public Sprite sprite;
         public Type[] strongAgainst;
         public Type[] cantHit;
         public Type[] weakAgainst;

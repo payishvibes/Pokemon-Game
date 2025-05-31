@@ -1,6 +1,4 @@
-using System;
 using PokemonGame.Battle;
-using PokemonGame.Dialogue;
 using PokemonGame.General;
 using TMPro;
 using UnityEngine;
@@ -8,10 +6,6 @@ using UnityEngine.InputSystem;
 
 public class LevelUpDisplay : MonoBehaviour
 {
-    [SerializeField] private PlayerInput input;
-    
-    [SerializeField] private TextMeshProUGUI nameText;
-    
     [SerializeField] private TextMeshProUGUI oldHealth;
     [SerializeField] private TextMeshProUGUI newHealth;
     
@@ -35,12 +29,10 @@ public class LevelUpDisplay : MonoBehaviour
 
     private bool updated;
 
-    public void Init(string name, BattlerStats oldStats, BattlerStats newStats)
+    public void Init(BattlerStats oldStats, BattlerStats newStats)
     {
         this.oldStats = oldStats;
         this.newStats = newStats;
-
-        nameText.text = name;
         
         oldHealth.text = oldStats.maxHealth.ToString();
         newHealth.text = "";
@@ -63,18 +55,17 @@ public class LevelUpDisplay : MonoBehaviour
 
     private void OnEnable()
     {
-        input.actions["Interact"].performed += OnPerformed;
+        InputSystem.actions.FindAction("Interact").performed += OnPerformed;
     }
 
     private void OnPerformed(InputAction.CallbackContext obj)
     {
-        Debug.Log("pressed");
         Continue();
     }
 
     private void OnDisable()
     {
-        input.actions["Interact"].performed -= OnPerformed;
+        InputSystem.actions.FindAction("Interact").performed -= OnPerformed;
     }
 
     private void Continue()

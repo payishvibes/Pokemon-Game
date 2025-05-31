@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Ghost
   m_EditorClassIdentifier: 
   name: Ghost
-  color: {r: 0.40784317, g: 0.427451, b: 0.87843144, a: 1}
+  color: {r: 0.32156864, g: 0.41176474, b: 0.6745098, a: 1}
+  sprite: {fileID: -459413195, guid: c86c30ca3e70a1a4c99f9042bf50c6aa, type: 3}
   strongAgainst:
   - {fileID: 11400000}
   - {fileID: 11400000, guid: d43687aadbc21ff4291682914e2bc664, type: 2}

@@ -1,0 +1,570 @@
+fileFormatVersion: 2
+guid: c86c30ca3e70a1a4c99f9042bf50c6aa
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 364
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35b50048ed6d5bb4f8fe4a3afbb2d9bc
+      internalID: -1887614931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_1
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 364
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a709e73daaa78824eaa55fb107667b5e
+      internalID: -1646184338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_2
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 364
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16071cd5ff40ef84b95487a3f8a8f88e
+      internalID: 172134450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_3
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 364
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5036b0f4dab4ea14e92d43c981fae44b
+      internalID: 132628322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_4
+      rect:
+        serializedVersion: 2
+        x: 718
+        y: 364
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c696dc26ca02e54aa9d2fe1021cd020
+      internalID: 86222010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_5
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 364
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b46d31609ab08054cb05d44bf5cf847f
+      internalID: -817136459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_6
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 186
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49ff3cbcef4f2594cbe6e0e669069fc4
+      internalID: 94103456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_7
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 186
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ed296cea168174449fc7d5d1d00d31d
+      internalID: -459413195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_8
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 186
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edd4258ae9a430e4dbeb65c1d3e51db1
+      internalID: 1157737532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_9
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 186
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b04cba69a8f79494f8723d6b1becfaf8
+      internalID: 1932489927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_10
+      rect:
+        serializedVersion: 2
+        x: 718
+        y: 186
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6daa60e7f9f4364fbfece42c25ad658
+      internalID: 1244358803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_11
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 186
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f027e654d9676a488bf0cc1b17ef10c
+      internalID: 1075569194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_12
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 8
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40e16c4aac63e584cb343ae58fcc0581
+      internalID: -534433942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_13
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 8
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a40fd1c2b142ca4abb8e3155eb5da56
+      internalID: 1693221930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_14
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 8
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f3bff40247a15b45b17a97310d27f27
+      internalID: 1722035983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_15
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 8
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f24b0b70edef434887afce4f41fa49f
+      internalID: -351573454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_16
+      rect:
+        serializedVersion: 2
+        x: 718
+        y: 8
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de8ecf3364c6ca249977f9c7b2aea11c
+      internalID: 1226470393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_17
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 8
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55eb09f5ef9367c40812f1ea6bee11ea
+      internalID: 522981425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_0: -1887614931
+      pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_1: -1646184338
+      pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_10: 1244358803
+      pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_11: 1075569194
+      pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_12: -534433942
+      pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_13: 1693221930
+      pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_14: 1722035983
+      pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_15: -351573454
+      pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_16: 1226470393
+      pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_17: 522981425
+      pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_2: 172134450
+      pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_3: 132628322
+      pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_4: 86222010
+      pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_5: -817136459
+      pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_6: 94103456
+      pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_7: -459413195
+      pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_8: 1157737532
+      pokemon_type_icons___vector_by_lugia_sea_dedsu40-fullview_9: 1932489927
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

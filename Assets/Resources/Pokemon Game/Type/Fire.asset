@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Fire
   m_EditorClassIdentifier: 
   name: Fire
-  color: {r: 0.9215687, g: 0.3019608, b: 0.29411766, a: 1}
+  color: {r: 1, g: 0.6117647, b: 0.32941177, a: 1}
+  sprite: {fileID: 1932489927, guid: c86c30ca3e70a1a4c99f9042bf50c6aa, type: 3}
   strongAgainst:
   - {fileID: 11400000, guid: 16677bacbe9d55246878c477b58016ba, type: 2}
   - {fileID: 11400000, guid: bf9a294a54121aa4388e9b483a5a6612, type: 2}

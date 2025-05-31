@@ -299,6 +299,7 @@ GameObject:
   - component: {fileID: 278660031}
   - component: {fileID: 278660030}
   - component: {fileID: 278660029}
+  - component: {fileID: 278660032}
   m_Layer: 0
   m_Name: BagButton
   m_TagString: Untagged
@@ -420,6 +421,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 278660027}
   m_CullTransparentMesh: 1
+--- !u!114 &278660032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278660027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35652b84100e2a4ea052f7a9b649916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expandWhenHover: 1
+  scale: 1.1
+  speed: 4
+  targetGraphic: {fileID: 278660028}
 --- !u!1 &301204409
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,7 +604,6 @@ GameObject:
   m_Component:
   - component: {fileID: 478677527}
   - component: {fileID: 478677528}
-  - component: {fileID: 478677529}
   m_Layer: 0
   m_Name: OptionsMenu
   m_TagString: Untagged
@@ -623,9 +639,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c340bad4bef88b5478b5636ccafaa7f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: {fileID: 478677529}
   movement: {fileID: 0}
   state: 0
+  firstSelectedButton: {fileID: 278660027}
   menuObject: {fileID: 301204409}
   defaultMenuObject: {fileID: 1175559109}
   backButton: {fileID: 1321231574}
@@ -633,37 +649,6 @@ MonoBehaviour:
   - {fileID: 4547129373560313047, guid: 618d2fbcf50829046b350f981b3bdde9, type: 3}
   - {fileID: 1520454474192355749, guid: e277f93951e80cb408b9fc804c5f5890, type: 3}
   currentMenu: {fileID: 0}
---- !u!114 &478677529
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 478677526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: bafd98a51cf230a4096cab19e5d5f870,
-    type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Interactions
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!1 &479861691
 GameObject:
   m_ObjectHideFlags: 0
@@ -818,7 +803,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -954,7 +939,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -1033,13 +1018,14 @@ GameObject:
   - component: {fileID: 1321231578}
   - component: {fileID: 1321231577}
   - component: {fileID: 1321231576}
+  - component: {fileID: 1321231579}
   m_Layer: 0
   m_Name: BackButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1321231575
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1154,6 +1140,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1321231574}
   m_CullTransparentMesh: 1
+--- !u!114 &1321231579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321231574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35652b84100e2a4ea052f7a9b649916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expandWhenHover: 1
+  scale: 1.1
+  speed: 4
+  targetGraphic: {fileID: 1321231575}
 --- !u!1 &1412801379
 GameObject:
   m_ObjectHideFlags: 0
@@ -1260,7 +1262,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -1406,6 +1408,7 @@ GameObject:
   - component: {fileID: 1501792701}
   - component: {fileID: 1501792700}
   - component: {fileID: 1501792699}
+  - component: {fileID: 1501792702}
   m_Layer: 0
   m_Name: PartyButton
   m_TagString: Untagged
@@ -1527,6 +1530,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1501792697}
   m_CullTransparentMesh: 1
+--- !u!114 &1501792702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501792697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35652b84100e2a4ea052f7a9b649916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expandWhenHover: 1
+  scale: 1.1
+  speed: 4
+  targetGraphic: {fileID: 1501792698}
 --- !u!1 &1513926239
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Dark
   m_EditorClassIdentifier: 
   name: Dark
-  color: {r: 0.3254902, g: 0.36078432, b: 0.40784317, a: 1}
+  color: {r: 0.3529412, g: 0.3254902, b: 0.40000004, a: 1}
+  sprite: {fileID: 1226470393, guid: c86c30ca3e70a1a4c99f9042bf50c6aa, type: 3}
   strongAgainst:
   - {fileID: 11400000, guid: 50da9e89bbda9c5418a62d8a5362cab0, type: 2}
   - {fileID: 11400000, guid: d43687aadbc21ff4291682914e2bc664, type: 2}

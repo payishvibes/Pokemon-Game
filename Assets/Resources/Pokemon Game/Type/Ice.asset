@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Ice
   m_EditorClassIdentifier: 
   name: Ice
-  color: {r: 0.13333334, g: 0.6509804, b: 0.7019608, a: 1}
+  color: {r: 0.454902, g: 0.8078432, b: 0.75294125, a: 1}
+  sprite: {fileID: 1722035983, guid: c86c30ca3e70a1a4c99f9042bf50c6aa, type: 3}
   strongAgainst:
   - {fileID: 11400000, guid: 6a482d51d49ba5a45bff8e1435389d3f, type: 2}
   - {fileID: 11400000, guid: 4641dc3e5ff6ea64f8f1cea1bfaf0a9c, type: 2}

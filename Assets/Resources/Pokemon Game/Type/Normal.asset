@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Normal
   m_EditorClassIdentifier: 
   name: Normal
-  color: {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 1}
+  color: {r: 0.5647059, g: 0.6, b: 0.6313726, a: 1}
+  sprite: {fileID: -1887614931, guid: c86c30ca3e70a1a4c99f9042bf50c6aa, type: 3}
   strongAgainst: []
   cantHit:
   - {fileID: 11400000, guid: 50da9e89bbda9c5418a62d8a5362cab0, type: 2}

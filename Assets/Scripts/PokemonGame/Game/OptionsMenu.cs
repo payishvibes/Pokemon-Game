@@ -1,5 +1,6 @@
 using System;
 using PokemonGame.Dialogue;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
@@ -11,13 +12,12 @@ namespace PokemonGame.Game
     {
         public static OptionsMenu instance;
 
-        [SerializeField] private PlayerInput input;
-        [Space]
         [SerializeField] private PlayerMovement movement;
 
         public bool on => state;
         
         [SerializeField] private bool state;
+        [SerializeField] private GameObject firstSelectedButton;
         [SerializeField] private GameObject menuObject;
         [SerializeField] private GameObject defaultMenuObject;
         [SerializeField] private GameObject backButton;
@@ -40,11 +40,19 @@ namespace PokemonGame.Game
 
         public void BackButton()
         {
+            if (currentMenu == null)
+            {
+                ToggleMenu();
+                return;
+            }
+            
+            EventSystem.current.SetSelectedGameObject(backButton);
+            
             defaultMenuObject.SetActive(true);
             
             Destroy(currentMenu);
             currentMenu = null;
-            backButton.SetActive(false);
+            backButton.SetActive(true);
         }
 
         private void SceneManagerOnSceneLoaded(Scene arg0, LoadSceneMode arg1)
@@ -70,12 +78,12 @@ namespace PokemonGame.Game
 
         private void OnEnable()
         {
-            input.actions["Bag"].performed += OnPerformed;
+            InputSystem.actions.FindAction("Bag").performed += OnPerformed;
         }
 
         private void OnDisable()
         {
-            input.actions["Bag"].performed -= OnPerformed;
+            InputSystem.actions.FindAction("Bag").performed -= OnPerformed;
             DialogueManager.instance.DialogueStarted -= InstanceOnDialogueStarted;
         }
 
@@ -99,6 +107,8 @@ namespace PokemonGame.Game
                 Destroy(currentMenu);
                 currentMenu = null;
             }
+            
+            EventSystem.current.SetSelectedGameObject(firstSelectedButton);
             
             movement.canMove = !state;
             menuObject.SetActive(state);

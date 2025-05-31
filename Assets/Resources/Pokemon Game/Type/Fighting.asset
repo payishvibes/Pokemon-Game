@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Fighting
   m_EditorClassIdentifier: 
   name: Fighting
-  color: {r: 0.9215687, g: 0.3019608, b: 0.29411766, a: 1}
+  color: {r: 0.8078432, g: 0.2509804, b: 0.41176474, a: 1}
+  sprite: {fileID: -1646184338, guid: c86c30ca3e70a1a4c99f9042bf50c6aa, type: 3}
   strongAgainst:
   - {fileID: 11400000, guid: 7d400c8d21a01854e94041f45793cbf1, type: 2}
   - {fileID: 11400000, guid: b26a9af63fede1e4982ef43c75f280ea, type: 2}

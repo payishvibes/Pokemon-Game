@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Psychic
   m_EditorClassIdentifier: 
   name: Psychic
-  color: {r: 0.28235295, g: 0.20392159, b: 0.8313726, a: 1}
+  color: {r: 0.97647065, g: 0.4431373, b: 0.46274513, a: 1}
+  sprite: {fileID: 1693221930, guid: c86c30ca3e70a1a4c99f9042bf50c6aa, type: 3}
   strongAgainst:
   - {fileID: 11400000, guid: d19a1b210053ade4ab55da13c78024fd, type: 2}
   - {fileID: 11400000, guid: a1e857e04105cf747bc8c86d4a4cc14c, type: 2}

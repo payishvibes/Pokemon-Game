@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Grass
   m_EditorClassIdentifier: 
   name: Grass
-  color: {r: 0.4156863, g: 0.6901961, b: 0.29803923, a: 1}
+  color: {r: 0.38823533, g: 0.73333335, b: 0.35686275, a: 1}
+  sprite: {fileID: 1075569194, guid: c86c30ca3e70a1a4c99f9042bf50c6aa, type: 3}
   strongAgainst:
   - {fileID: 11400000, guid: e96a8bed7870822469f0947b19e4e57d, type: 2}
   - {fileID: 11400000, guid: 4641dc3e5ff6ea64f8f1cea1bfaf0a9c, type: 2}

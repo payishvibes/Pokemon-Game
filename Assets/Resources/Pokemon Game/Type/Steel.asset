@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Steel
   m_EditorClassIdentifier: 
   name: Steel
-  color: {r: 0.58431375, g: 0.6862745, b: 0.75294125, a: 1}
+  color: {r: 0.3529412, g: 0.5568628, b: 0.6313726, a: 1}
+  sprite: {fileID: 1157737532, guid: c86c30ca3e70a1a4c99f9042bf50c6aa, type: 3}
   strongAgainst:
   - {fileID: 11400000, guid: b26a9af63fede1e4982ef43c75f280ea, type: 2}
   - {fileID: 11400000, guid: cc8553e72fcb59547b96efa41bfb6395, type: 2}

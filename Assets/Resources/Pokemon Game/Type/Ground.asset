@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Ground
   m_EditorClassIdentifier: 
   name: Ground
-  color: {r: 0.94117653, g: 0.5764706, b: 0.16862746, a: 1}
+  color: {r: 0.85098046, g: 0.4666667, b: 0.27450982, a: 1}
+  sprite: {fileID: 86222010, guid: c86c30ca3e70a1a4c99f9042bf50c6aa, type: 3}
   strongAgainst:
   - {fileID: 11400000, guid: a1e857e04105cf747bc8c86d4a4cc14c, type: 2}
   - {fileID: 11400000, guid: b26a9af63fede1e4982ef43c75f280ea, type: 2}

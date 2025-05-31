@@ -241,7 +241,7 @@ namespace PokemonGame.Battle
         {
             LevelUpDisplay display = Instantiate(levelUpDisplayPrefab, FindFirstObjectByType<Canvas>().transform);
             currentLevelUpObj = display.gameObject;
-            display.Init(_newBattlerName, _oldLevelUpStats, _newLevelUpStats);
+            display.Init(_oldLevelUpStats, _newLevelUpStats);
         }
 
         public void FinishedViewingLevelUpScreen()
