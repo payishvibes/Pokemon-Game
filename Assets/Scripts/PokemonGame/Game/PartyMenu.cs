@@ -1,3 +1,5 @@
+using System;
+using PokemonGame.Game;
 using PokemonGame.Game.Party;
 using PokemonGame.General;
 using PokemonGame.ScriptableObjects;
@@ -5,8 +7,10 @@ using PokemonGame.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.UI.Extensions;
+using Type = PokemonGame.ScriptableObjects.Type;
 
 public class PartyMenu : MonoBehaviour
 {
@@ -123,5 +127,32 @@ public class PartyMenu : MonoBehaviour
         detailsScreen.SetActive(false);
         
         EventSystem.current.SetSelectedGameObject(partyDisplayPositions[0].GetChild(0).gameObject);
+    }
+
+    private void Back()
+    {
+        if (detailsScreen.activeSelf)
+        {
+            BackToMainScreen();
+        }
+        else
+        {
+            OptionsMenu.instance.CloseCurrentMenu();
+        }
+    }
+
+    private void OnEnable()
+    {
+        InputSystem.actions.FindAction("Escape").performed += OnEscapePressed;
+    }
+
+    private void OnEscapePressed(InputAction.CallbackContext obj)
+    {
+        Back();
+    }
+
+    private void OnDisable()
+    {
+        InputSystem.actions.FindAction("Escape").performed -= OnEscapePressed;
     }
 }

@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 6300646993973320403}
   - component: {fileID: 2737659781950767712}
   - component: {fileID: 8575068177715294242}
+  - component: {fileID: 6712757819981414434}
+  - component: {fileID: 4702155507136324019}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -67,7 +69,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -123,6 +125,52 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4547129373560313041}
         m_TargetAssemblyTypeName: PokemonGame.Game.Bag, Assembly-CSharp
+        m_MethodName: ChangeCurrentSortingItem
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6712757819981414434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 362524435301284243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 7.6, y: -7.6}
+  m_UseGraphicAlpha: 1
+--- !u!114 &4702155507136324019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 362524435301284243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35652b84100e2a4ea052f7a9b649916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expandWhenHover: 1
+  scale: 1.1
+  speed: 4
+  targetGraphic: {fileID: 5088263438331634995}
+  onHover:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4547129373560313041}
+        m_TargetAssemblyTypeName: PokemonGame.Game.BagMenu, Assembly-CSharp
         m_MethodName: ChangeCurrentSortingItem
         m_Mode: 3
         m_Arguments:
@@ -241,15 +289,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -279,6 +329,8 @@ GameObject:
   - component: {fileID: 5994750871148214739}
   - component: {fileID: 3175754967760412752}
   - component: {fileID: 7310500585476734672}
+  - component: {fileID: 9046378962173863710}
+  - component: {fileID: 5438533992315442370}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -334,7 +386,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -400,6 +452,52 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &9046378962173863710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757690535071616110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 7.6, y: -7.6}
+  m_UseGraphicAlpha: 1
+--- !u!114 &5438533992315442370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757690535071616110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35652b84100e2a4ea052f7a9b649916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expandWhenHover: 1
+  scale: 1.1
+  speed: 4
+  targetGraphic: {fileID: 2745691047135415973}
+  onHover:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4547129373560313041}
+        m_TargetAssemblyTypeName: PokemonGame.Game.BagMenu, Assembly-CSharp
+        m_MethodName: ChangeCurrentSortingItem
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &781172205194928252
 GameObject:
   m_ObjectHideFlags: 0
@@ -412,6 +510,8 @@ GameObject:
   - component: {fileID: 8955209333834369541}
   - component: {fileID: 3316741780577311952}
   - component: {fileID: 6726988070049074254}
+  - component: {fileID: 7942561131272353905}
+  - component: {fileID: 2227107403457360257}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -467,7 +567,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -523,6 +623,52 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4547129373560313041}
         m_TargetAssemblyTypeName: PokemonGame.Game.Bag, Assembly-CSharp
+        m_MethodName: ChangeCurrentSortingItem
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7942561131272353905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781172205194928252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 7.6, y: -7.6}
+  m_UseGraphicAlpha: 1
+--- !u!114 &2227107403457360257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781172205194928252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35652b84100e2a4ea052f7a9b649916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expandWhenHover: 1
+  scale: 1.1
+  speed: 4
+  targetGraphic: {fileID: 4996032582062646678}
+  onHover:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4547129373560313041}
+        m_TargetAssemblyTypeName: PokemonGame.Game.BagMenu, Assembly-CSharp
         m_MethodName: ChangeCurrentSortingItem
         m_Mode: 3
         m_Arguments:
@@ -641,15 +787,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -775,15 +923,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -813,6 +963,8 @@ GameObject:
   - component: {fileID: 6485224611024383083}
   - component: {fileID: 1165398734667926532}
   - component: {fileID: 6548851918544962780}
+  - component: {fileID: 222890945082483925}
+  - component: {fileID: 4267566254643456176}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -868,7 +1020,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -924,6 +1076,52 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4547129373560313041}
         m_TargetAssemblyTypeName: PokemonGame.Game.Bag, Assembly-CSharp
+        m_MethodName: ChangeCurrentSortingItem
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &222890945082483925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2824027054385546825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 7.6, y: -7.6}
+  m_UseGraphicAlpha: 1
+--- !u!114 &4267566254643456176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2824027054385546825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35652b84100e2a4ea052f7a9b649916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expandWhenHover: 1
+  scale: 1.1
+  speed: 4
+  targetGraphic: {fileID: 1147978778836562522}
+  onHover:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4547129373560313041}
+        m_TargetAssemblyTypeName: PokemonGame.Game.BagMenu, Assembly-CSharp
         m_MethodName: ChangeCurrentSortingItem
         m_Mode: 3
         m_Arguments:
@@ -1042,15 +1240,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -1377,15 +1577,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -1638,6 +1840,7 @@ MonoBehaviour:
   itemDisplayHolder: {fileID: 4547129373634734816}
   itemDisplayGameObject: {fileID: 4033615252156821667, guid: 096cfda60606639498d96a0dd7c1590d,
     type: 3}
+  defaultCategoryButton: {fileID: 781172205194928252}
 --- !u!1 &4547129373579199556
 GameObject:
   m_ObjectHideFlags: 0
@@ -2036,6 +2239,8 @@ GameObject:
   - component: {fileID: 2751500846360042743}
   - component: {fileID: 8787644875325964266}
   - component: {fileID: 6538479655025011358}
+  - component: {fileID: 5226228930375147860}
+  - component: {fileID: 1551038958618129791}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -2091,7 +2296,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2147,6 +2352,52 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4547129373560313041}
         m_TargetAssemblyTypeName: PokemonGame.Game.Bag, Assembly-CSharp
+        m_MethodName: ChangeCurrentSortingItem
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5226228930375147860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5977924048845712097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 7.6, y: -7.6}
+  m_UseGraphicAlpha: 1
+--- !u!114 &1551038958618129791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5977924048845712097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35652b84100e2a4ea052f7a9b649916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expandWhenHover: 1
+  scale: 1.1
+  speed: 4
+  targetGraphic: {fileID: 5252429496236424629}
+  onHover:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4547129373560313041}
+        m_TargetAssemblyTypeName: PokemonGame.Game.BagMenu, Assembly-CSharp
         m_MethodName: ChangeCurrentSortingItem
         m_Mode: 3
         m_Arguments:
@@ -2265,15 +2516,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -2399,15 +2652,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -2437,6 +2692,8 @@ GameObject:
   - component: {fileID: 5097395878722317208}
   - component: {fileID: 6135690909067278716}
   - component: {fileID: 3796444225375585422}
+  - component: {fileID: 2656431753303849203}
+  - component: {fileID: 6629012351606854953}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -2492,7 +2749,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2558,6 +2815,52 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2656431753303849203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8167461327968948276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 7.6, y: -7.6}
+  m_UseGraphicAlpha: 1
+--- !u!114 &6629012351606854953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8167461327968948276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35652b84100e2a4ea052f7a9b649916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expandWhenHover: 1
+  scale: 1.1
+  speed: 4
+  targetGraphic: {fileID: 6151020159863042255}
+  onHover:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4547129373560313041}
+        m_TargetAssemblyTypeName: PokemonGame.Game.BagMenu, Assembly-CSharp
+        m_MethodName: ChangeCurrentSortingItem
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8451299748017675288
 GameObject:
   m_ObjectHideFlags: 0
@@ -2570,6 +2873,8 @@ GameObject:
   - component: {fileID: 8508698231751259379}
   - component: {fileID: 6647238856715172882}
   - component: {fileID: 6256793241408577224}
+  - component: {fileID: 4768045420069103824}
+  - component: {fileID: 475038107645753070}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -2625,7 +2930,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2681,6 +2986,52 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4547129373560313041}
         m_TargetAssemblyTypeName: PokemonGame.Game.Bag, Assembly-CSharp
+        m_MethodName: ChangeCurrentSortingItem
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 6
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4768045420069103824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8451299748017675288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 7.6, y: -7.6}
+  m_UseGraphicAlpha: 1
+--- !u!114 &475038107645753070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8451299748017675288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35652b84100e2a4ea052f7a9b649916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expandWhenHover: 1
+  scale: 1.1
+  speed: 4
+  targetGraphic: {fileID: 1199935386118396161}
+  onHover:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4547129373560313041}
+        m_TargetAssemblyTypeName: PokemonGame.Game.BagMenu, Assembly-CSharp
         m_MethodName: ChangeCurrentSortingItem
         m_Mode: 3
         m_Arguments:
@@ -2799,15 +3150,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0

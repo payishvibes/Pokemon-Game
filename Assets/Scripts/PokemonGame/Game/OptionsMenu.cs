@@ -20,7 +20,6 @@ namespace PokemonGame.Game
         [SerializeField] private GameObject firstSelectedButton;
         [SerializeField] private GameObject menuObject;
         [SerializeField] private GameObject defaultMenuObject;
-        [SerializeField] private GameObject backButton;
 
         [SerializeField] private GameObject[] menuObjects;
         [SerializeField] private GameObject currentMenu;
@@ -35,24 +34,22 @@ namespace PokemonGame.Game
         {
             defaultMenuObject.SetActive(false);
             currentMenu = Instantiate(menuObjects[menuIndex], transform);
-            backButton.SetActive(true);
         }
 
-        public void BackButton()
+        public void CloseCurrentMenu()
         {
-            if (currentMenu == null)
-            {
-                ToggleMenu();
-                return;
-            }
-            
-            EventSystem.current.SetSelectedGameObject(backButton);
-            
             defaultMenuObject.SetActive(true);
-            
             Destroy(currentMenu);
             currentMenu = null;
-            backButton.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(firstSelectedButton);
+        }
+
+        private void Back()
+        {
+            if (currentMenu == null && on)
+            {
+                ToggleMenu();
+            }
         }
 
         private void SceneManagerOnSceneLoaded(Scene arg0, LoadSceneMode arg1)
@@ -78,21 +75,28 @@ namespace PokemonGame.Game
 
         private void OnEnable()
         {
-            InputSystem.actions.FindAction("Bag").performed += OnPerformed;
+            InputSystem.actions.FindAction("Bag").performed += OnOptionsOpened;
+            InputSystem.actions.FindAction("Escape").performed += OnEscapePressed;
         }
 
         private void OnDisable()
         {
-            InputSystem.actions.FindAction("Bag").performed -= OnPerformed;
+            InputSystem.actions.FindAction("Bag").performed -= OnOptionsOpened;
+            InputSystem.actions.FindAction("Escape").performed -= OnEscapePressed;
             DialogueManager.instance.DialogueStarted -= InstanceOnDialogueStarted;
         }
 
-        private void OnPerformed(InputAction.CallbackContext obj)
+        private void OnOptionsOpened(InputAction.CallbackContext obj)
         {
             if (!DialogueManager.instance.dialogueIsPlaying && SceneManager.GetActiveScene().name != "Battle")
             {
                 ToggleMenu();
             }
+        }
+
+        private void OnEscapePressed(InputAction.CallbackContext obj)
+        {
+            Back();
         }
         
         private void ToggleMenu()
@@ -102,7 +106,6 @@ namespace PokemonGame.Game
             if (!state)
             {
                 defaultMenuObject.SetActive(true);
-                backButton.SetActive(false);
             
                 Destroy(currentMenu);
                 currentMenu = null;

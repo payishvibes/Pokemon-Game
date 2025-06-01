@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using PokemonGame.ScriptableObjects;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 namespace PokemonGame.Game
 {
@@ -9,12 +10,14 @@ namespace PokemonGame.Game
     {
         [SerializeField] private GameObject itemDisplayHolder;
         [SerializeField] private GameObject itemDisplayGameObject;
+        [SerializeField] private GameObject defaultCategoryButton;
         
         private ItemType _currentSortingType;
         
         private void Start()
         {
             UpdateBagUI();
+            EventSystem.current.SetSelectedGameObject(defaultCategoryButton);
         }
         
         /// <summary>
@@ -51,6 +54,21 @@ namespace PokemonGame.Game
                 display.TextureImage.sprite = itemToShow.item.sprite;
                 display.DescriptionText.text = itemToShow.item.description;
             }
+        }
+
+        private void OnEnable()
+        {
+            InputSystem.actions.FindAction("Escape").performed += OnEscapePressed;
+        }
+
+        private void OnEscapePressed(InputAction.CallbackContext obj)
+        {
+            OptionsMenu.instance.CloseCurrentMenu();
+        }
+
+        private void OnDisable()
+        {
+            InputSystem.actions.FindAction("Escape").performed -= OnEscapePressed;
         }
     }
 }

@@ -460,7 +460,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53610e77ed703234b910194d9586c43e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameText: {fileID: 0}
   oldHealth: {fileID: 2344978540474631855}
   newHealth: {fileID: 1209947851531119027}
   oldAttack: {fileID: 1281670947655103340}
@@ -2137,6 +2136,7 @@ GameObject:
   - component: {fileID: 4331946132463408289}
   - component: {fileID: 7152829398661425674}
   - component: {fileID: 1994079354283853203}
+  - component: {fileID: 4536412698272801944}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -2191,7 +2191,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ce295c376f10e5b47a114177b96e2643, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2201,6 +2201,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 2.22
+--- !u!114 &4536412698272801944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6088728136429048777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 7.6, y: -7}
+  m_UseGraphicAlpha: 1
 --- !u!1 &6241035936308261671
 GameObject:
   m_ObjectHideFlags: 0

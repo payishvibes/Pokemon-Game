@@ -377,6 +377,8 @@ namespace PokemonGame.Battle
                     {
                         moveTexts[i].transform.parent.GetComponent<Button>().interactable = false;
                     }
+                    
+                    moveTexts[i].transform.parent.GetChild(0).GetComponentInChildren<Image>().sprite = battle.playerParty[battle.currentBattlerIndex].moves[i].type.sprite;
                 }
             }
         }
