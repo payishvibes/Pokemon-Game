@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using PokemonGame.ScriptableObjects;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 namespace PokemonGame.Battle
 {
@@ -38,6 +39,7 @@ namespace PokemonGame.Battle
         [SerializeField] private TextMeshProUGUI opponentBattlerLevelDisplay;
         [SerializeField] private BattleBagMenu battleBagMenu;
         [SerializeField] private float shrinkEffectSpeed = 1;
+        [SerializeField] private Button swapBattlerButton;
 
         [SerializeField] private List<Item> faintedRequiredItems = new List<Item>();
 
@@ -54,6 +56,8 @@ namespace PokemonGame.Battle
         [SerializeField] private Vector3 targetPlayerBattlerScale;
         [SerializeField] private Vector3 targetOpponentBattlerScale;
 
+        private List<Button> moveButtonsButtons = new List<Button>();
+
         private void Awake()
         {
             EventSystem.current.SetSelectedGameObject(moveTexts[0].transform.parent.gameObject);
@@ -66,6 +70,11 @@ namespace PokemonGame.Battle
             
             currentBattlerRenderer.transform.localScale = Vector3.zero;
             opponentBattlerRenderer.transform.localScale = Vector3.zero;
+
+            foreach (var moveText in moveTexts)
+            {
+                moveButtonsButtons.Add(moveText.transform.parent.GetComponent<Button>());
+            }
         }
 
         private void Start()
@@ -122,14 +131,14 @@ namespace PokemonGame.Battle
                     if (i == battle.currentBattlerIndex)
                     {
                         battlerDisplays[i].text = battle.playerParty[i].name + " is selected";
-                        battlerDisplays[i].transform.parent.GetComponent<Button>().interactable = false;
+                        // battlerDisplays[i].transform.parent.GetComponent<Button>().interactable = false;
                         battlerDisplays[i].color = Color.blue;
                     }
 
                     if (battle.playerParty[i].isFainted)
                     {
                         battlerDisplays[i].text = battle.playerParty[i].name + " is fainted";
-                        battlerDisplays[i].transform.parent.GetComponent<Button>().interactable = false;
+                        // battlerDisplays[i].transform.parent.GetComponent<Button>().interactable = false;
                         battlerDisplays[i].color = Color.red;
                     }
                 }
@@ -212,6 +221,10 @@ namespace PokemonGame.Battle
         public void ShowControlUI(bool show)
         {
             controlUIHolder.SetActive(show);
+            if (show)
+            {
+                EventSystem.current.SetSelectedGameObject(moveTexts[0].transform.parent.gameObject);
+            }
         }
 
         public void SwitchBattler()
@@ -225,6 +238,7 @@ namespace PokemonGame.Battle
             useItemDisplay.SetActive(false);
             backButton.SetActive(true);
             UpdateBattlerButtons();
+            EventSystem.current.SetSelectedGameObject(battlerDisplays[0].transform.parent.gameObject);
         }
 
         public void OpenUseItemOnBattler(Item itemToUse)
@@ -269,6 +283,11 @@ namespace PokemonGame.Battle
 
         public void ChangeBattler(int partyID)
         {
+            if (battle.playerParty[partyID].isFainted || partyID == battle.currentBattlerIndex)
+            {
+                return;
+            }
+            
             playerUIHolder.SetActive(false);
             healthDisplays.SetActive(true);
             moveButtons.SetActive(true);
@@ -304,11 +323,20 @@ namespace PokemonGame.Battle
         {
             healthDisplays.SetActive(true);
             moveButtons.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(moveTexts[0].transform.parent.gameObject);
             miscButtons.SetActive(true);
             changeBattlerDisplay.SetActive(false);
             useItemOnBattlerDisplay.SetActive(false);
             useItemDisplay.SetActive(false);
             UpdateBattlerButtons();
+        }
+
+        private void OnEscapePressed(InputAction.CallbackContext context)
+        {
+            if (!moveButtons.activeSelf)
+            {
+                Back();
+            }
         }
 
         private void UpdateBattlerTexts()
@@ -375,11 +403,49 @@ namespace PokemonGame.Battle
                     movePpTexts[i].text = $"{currentPP}/{maxPP}";
                     if (currentPP <= 0)
                     {
-                        moveTexts[i].transform.parent.GetComponent<Button>().interactable = false;
+                        moveButtonsButtons[i].interactable = false;
                     }
                     
                     moveTexts[i].transform.parent.GetChild(0).GetComponentInChildren<Image>().sprite = battle.playerParty[battle.currentBattlerIndex].moves[i].type.sprite;
                 }
+            }
+            
+            SetMoveButtonUINavigations();
+        }
+
+        private void SetMoveButtonUINavigations()
+        {
+            List<Move> moves = battle.playerParty[battle.currentBattlerIndex].moves;
+            
+            for (int i = 0; i < moves.Count; i++)
+            {
+                Button moveButton = moveButtonsButtons[i];
+
+                Navigation nav = moveButton.navigation;
+
+                // top
+                if (i == 0)
+                {
+                    nav.selectOnUp = moveButtonsButtons[moves.Count - 1];
+                }
+                else
+                {
+                    nav.selectOnUp = moveButtonsButtons[i - 1];
+                }
+
+                // bottom
+                if (i == moves.Count - 1)
+                {
+                    nav.selectOnDown = moveButtonsButtons[0];
+                }
+                else
+                {
+                    nav.selectOnDown = moveButtonsButtons[i + 1];
+                }
+
+                nav.selectOnRight = swapBattlerButton;
+
+                moveButton.navigation = nav;
             }
         }
 
@@ -398,6 +464,16 @@ namespace PokemonGame.Battle
 
             currentBattlerHealthDisplay.transform.localScale = new Vector3(
                 Mathf.Lerp(currentBattlerHealthDisplay.transform.localScale.x, playerTarget, t * Time.deltaTime), 1, 1);
+        }
+
+        private void OnEnable()
+        {
+            InputSystem.actions.FindAction("Escape").performed += OnEscapePressed;
+        }
+
+        private void OnDisable()
+        {
+            InputSystem.actions.FindAction("Escape").performed -= OnEscapePressed;
         }
     }
 }

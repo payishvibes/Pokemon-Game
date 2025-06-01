@@ -11,7 +11,6 @@ namespace PokemonGame.Game
         [Header("Assigning")]
         public CharacterController controller;
         public CinemachineFreeLook camFreeLook;
-        public InputAction playerActions;
         public Transform cam;
         public Transform groundDetectorPos;
 
@@ -38,16 +37,6 @@ namespace PokemonGame.Game
             _camDefaultXSpeed = camFreeLook.m_XAxis.m_MaxSpeed;
         }
 
-        private void OnEnable()
-        {
-            playerActions.Enable();
-        }
-
-        private void OnDisable()
-        {
-            playerActions.Disable();
-        }
-
         private void Start()
         {
             speed = normalSpeed;
@@ -57,6 +46,8 @@ namespace PokemonGame.Game
 
         private void Update()
         {
+            Debug.Log(InputSystem.actions.FindAction("Look").ReadValue<Vector2>());
+            
             if (_frameSkips >= 2)
             {
                 if (canMove && !_player.interacting)
@@ -67,7 +58,7 @@ namespace PokemonGame.Game
                     Cursor.lockState = CursorLockMode.Locked;
                     Cursor.visible = false;
 
-                    Vector2 direction = playerActions.ReadValue<Vector2>();
+                    Vector2 direction = InputSystem.actions.FindAction("Move").ReadValue<Vector2>();
                 
                     if (direction.magnitude >= 0.1f)
                     {

@@ -11,3 +11,7 @@ Some will give you advice,
 But be warned...
 Some of them will stop at nothing to battle you
 Always keep your Pokemon ready to fight!
++[OTHER THING]
+yeah this is just a test
+dont take it seriously
+its for testing the third option on choices and how it interacts with the ui flow lol

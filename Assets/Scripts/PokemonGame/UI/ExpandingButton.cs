@@ -28,6 +28,14 @@ namespace PokemonGame.UI
             targetGraphic.GetComponent<Button>().onClick.AddListener(ButtonClicked);
         }
 
+        private void OnValidate()
+        {
+            if (targetGraphic == null)
+            {
+                targetGraphic = GetComponent<Button>().transform;
+            }
+        }
+
         private void ButtonClicked()
         {
             targetGraphic.localScale = _baseScale;

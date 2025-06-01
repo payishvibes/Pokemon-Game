@@ -44,9 +44,6 @@ namespace PokemonGame.Dialogue
 
         private Queue<QueuedDialogue> _queue = new Queue<QueuedDialogue>();
 
-        public const KeyCode PrimaryInteractButton = KeyCode.C;
-        public const KeyCode SecondaryInteractButton = KeyCode.C;
-
         private bool isInBattle => SceneManager.GetActiveScene().name == "Battle";
 
         private string[] tempNextLines;
