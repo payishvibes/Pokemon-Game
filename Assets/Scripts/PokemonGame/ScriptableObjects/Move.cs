@@ -23,11 +23,11 @@ namespace PokemonGame.ScriptableObjects
         public float priority;
         public MoveCategory category;
         [Tooltip("Only used if the move has a chance to do something else")] public float probability;
-        [ConditionalHide("category", 3)] public Item zCrystal;
+        [ConditionalHideObject("category", MoveCategory.ZMove)] public Item zCrystal;
 
-        [ConditionalHide("category", 3)] public bool unique;
+        [ConditionalHideObject("category", MoveCategory.ZMove)] public bool unique;
         
-        [ConditionalHide("unique")] public Battler uniqueBattler;
+        [ConditionalHide("unique", true)] public Battler uniqueBattler;
     
         public UnityEvent<MoveMethodEventArgs> MoveMethodEvent;
 

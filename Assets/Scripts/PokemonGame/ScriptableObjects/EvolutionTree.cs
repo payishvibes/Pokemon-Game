@@ -20,16 +20,16 @@ namespace PokemonGame.ScriptableObjects
     
         [ConditionalHide("minLevel", -1, true)] 
         public int minLevel;
-        [ConditionalHide("useItem")] 
+        [ConditionalHideObject("useItem", null, true)]
         public Item useItem;
-        [ConditionalHide("heldItem")] 
+        [ConditionalHideObject("heldItem", null, true)]
         public Item heldItem;
 
-        [ConditionalHide("gender")] 
+        [ConditionalHideObject("gender", null, true)]
         public Gender? gender;
-        [ConditionalHide("knownMove")] 
+        [ConditionalHideObject("knownMove", null, true)]
         public Move knownMove;
-        [ConditionalHide("knownMoveType")] 
+        [ConditionalHideObject("knownMoveType", null, true)]
         public Type knownMoveType;
         // public something location;
         [ConditionalHide("minAffection", -1, true)] 
@@ -38,9 +38,11 @@ namespace PokemonGame.ScriptableObjects
         public int minBeauty;
         [ConditionalHide("minHappiness", -1, true)] 
         public int minHappiness;
-        [ConditionalHide("needRain")] 
+        [ConditionalHide("needRain", true)] 
         public bool needRain;
+        [ConditionalHide("timeOfDay", "", true)] 
         public string timeOfDay;
+        [ConditionalHide("tradeSpecies", "", true)] 
         public string tradeSpecies;
     
         public BattlerTemplate evolution;

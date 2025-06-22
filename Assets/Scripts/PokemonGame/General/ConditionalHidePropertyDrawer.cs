@@ -7,6 +7,7 @@
     //Modified by Techyte
     
     [CustomPropertyDrawer(typeof(ConditionalHideAttribute))]
+    [CustomPropertyDrawer(typeof(ConditionalHideObjectAttribute))]
     public class ConditionalHidePropertyDrawer : PropertyDrawer
     {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
@@ -57,7 +58,7 @@
     
         private bool GetConditionalHideAttributeResult(ConditionalHideAttribute condHAtt, SerializedProperty property)
         {
-            bool enabled = (condHAtt.UseOrLogic) ?false :true;
+            bool enabled = true;
     
             //Handle primary property
             SerializedProperty sourcePropertyValue = null;
@@ -83,31 +84,26 @@
 
             if (sourcePropertyValue != null)
             {
-                enabled = CheckPropertyType(sourcePropertyValue);
-                if (condHAtt.InverseCondition1) enabled = !enabled;  
-            }
-            else
-            {
-                //Debug.LogWarning("Attempting to use a ConditionalHideAttribute but no matching SourcePropertyValue found in object: " + condHAtt.ConditionalSourceField);
-            }
-
-            if (condHAtt.enumCheck)
-            {
-                if (sourcePropertyValue.propertyType == SerializedPropertyType.Enum)
+                switch (sourcePropertyValue.propertyType)
                 {
-                    if (condHAtt.enumCheckIndex == sourcePropertyValue.enumValueIndex)
-                    {
-                        enabled = true;
-                    }
-                }
-            }else if (condHAtt.intCheck)
-            {
-                if (sourcePropertyValue.propertyType == SerializedPropertyType.Integer)
-                {
-                    if (condHAtt.enumCheckIndex == sourcePropertyValue.intValue)
-                    {
-                        enabled = true;
-                    }
+                    case SerializedPropertyType.Boolean:
+                        enabled = sourcePropertyValue.boolValue == condHAtt.boolValue;
+                        break;
+                    case SerializedPropertyType.String:
+                        enabled = sourcePropertyValue.stringValue == condHAtt.stringValue;
+                        break;
+                    case SerializedPropertyType.Integer:
+                        enabled = sourcePropertyValue.intValue == condHAtt.intValue;
+                        break;
+                    case SerializedPropertyType.Enum:
+                        enabled = sourcePropertyValue.enumValueIndex == condHAtt.enumValueIndex;
+                        break;
+                    case SerializedPropertyType.Float:
+                        enabled = Mathf.Approximately(sourcePropertyValue.floatValue, condHAtt.floatValue);
+                        break;
+                    case SerializedPropertyType.ObjectReference:
+                        enabled = sourcePropertyValue.objectReferenceValue == (Object)condHAtt.objectValue;
+                        break;
                 }
             }
 
@@ -115,27 +111,6 @@
             if (condHAtt.Inverse) enabled = !enabled;
     
             return enabled;
-        }
-    
-        private bool CheckPropertyType(SerializedProperty sourcePropertyValue)
-        {
-            //Note: add others for custom handling if desired
-            switch (sourcePropertyValue.propertyType)
-            {                
-                case SerializedPropertyType.Boolean:
-                    return sourcePropertyValue.boolValue;                
-                case SerializedPropertyType.ObjectReference:
-                    return sourcePropertyValue.objectReferenceValue != null;                
-                case SerializedPropertyType.Integer:
-                    // placeholder
-                    return false;
-                case SerializedPropertyType.Enum:
-                    // placeholder
-                    return false;
-                default:
-                    Debug.LogError("Data type of the property used for conditional hiding [" + sourcePropertyValue.propertyType + "] is currently not supported");
-                    return true;
-            }
         }
     }
 }

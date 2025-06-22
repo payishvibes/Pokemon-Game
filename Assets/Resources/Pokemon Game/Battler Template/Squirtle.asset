@@ -96,8 +96,17 @@ MonoBehaviour:
   evolutions:
     possibleEvolutions:
     - triggerType: 0
-      level: 16
-      item: {fileID: 0}
+      minLevel: 16
+      useItem: {fileID: 0}
+      heldItem: {fileID: 0}
+      knownMove: {fileID: 0}
+      knownMoveType: {fileID: 0}
+      minAffection: -1
+      minBeauty: -1
+      minHappiness: -1
+      needRain: 0
+      timeOfDay: 
+      tradeSpecies: 
       evolution: {fileID: 0}
   expGroup: 3
   catchRate: 45
