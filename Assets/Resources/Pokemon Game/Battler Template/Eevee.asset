@@ -86,7 +86,111 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 457f5a7b0f5ba8d41a14fffd5b9b5a1c, type: 2}
     - {fileID: 11400000, guid: d167610c787a8af47aa8df1652ea2d43, type: 2}
   evolutions:
-    possibleEvolutions: []
+    possibleEvolutions:
+    - triggerType: 1
+      minLevel: -1
+      useItem: {fileID: 11400000, guid: ba80dade2cab01948a1e9bcd2878bd3e, type: 2}
+      heldItem: {fileID: 0}
+      knownMove: {fileID: 0}
+      knownMoveType: {fileID: 0}
+      minAffection: -1
+      minBeauty: -1
+      minHappiness: -1
+      needRain: 0
+      timeOfDay: 
+      tradeSpecies: 
+      evolution: {fileID: 11400000, guid: d312a9144adabff4a8d1977abd326799, type: 2}
+    - triggerType: 1
+      minLevel: -1
+      useItem: {fileID: 11400000, guid: 2b4c672f5b010614683524754093a879, type: 2}
+      heldItem: {fileID: 0}
+      knownMove: {fileID: 0}
+      knownMoveType: {fileID: 0}
+      minAffection: -1
+      minBeauty: -1
+      minHappiness: -1
+      needRain: 0
+      timeOfDay: 
+      tradeSpecies: 
+      evolution: {fileID: 11400000, guid: 645826135a4eb534395c3e92b25068ae, type: 2}
+    - triggerType: 1
+      minLevel: -1
+      useItem: {fileID: 11400000, guid: c6029a8d08a7d7646a8ade5e02e3355e, type: 2}
+      heldItem: {fileID: 0}
+      knownMove: {fileID: 0}
+      knownMoveType: {fileID: 0}
+      minAffection: -1
+      minBeauty: -1
+      minHappiness: -1
+      needRain: 0
+      timeOfDay: 
+      tradeSpecies: 
+      evolution: {fileID: 11400000, guid: fe50831967d02844cb3aff15b02754cc, type: 2}
+    - triggerType: 0
+      minLevel: -1
+      useItem: {fileID: 0}
+      heldItem: {fileID: 0}
+      knownMove: {fileID: 0}
+      knownMoveType: {fileID: 0}
+      minAffection: -1
+      minBeauty: -1
+      minHappiness: 160
+      needRain: 0
+      timeOfDay: day
+      tradeSpecies: 
+      evolution: {fileID: 11400000, guid: 15514630bd2df4e40a8cc5d074d60e73, type: 2}
+    - triggerType: 0
+      minLevel: -1
+      useItem: {fileID: 0}
+      heldItem: {fileID: 0}
+      knownMove: {fileID: 0}
+      knownMoveType: {fileID: 0}
+      minAffection: -1
+      minBeauty: -1
+      minHappiness: 160
+      needRain: 0
+      timeOfDay: night
+      tradeSpecies: 
+      evolution: {fileID: 11400000, guid: debe86e3096767747808b2cb3ad0fac1, type: 2}
+    - triggerType: 0
+      minLevel: -1
+      useItem: {fileID: 0}
+      heldItem: {fileID: 0}
+      knownMove: {fileID: 0}
+      knownMoveType: {fileID: 0}
+      minAffection: -1
+      minBeauty: -1
+      minHappiness: -1
+      needRain: 0
+      timeOfDay: 
+      tradeSpecies: 
+      evolution: {fileID: 11400000, guid: 8c7b40a8026aaec49a83746b1dccf8ce, type: 2}
+    - triggerType: 0
+      minLevel: -1
+      useItem: {fileID: 0}
+      heldItem: {fileID: 0}
+      knownMove: {fileID: 0}
+      knownMoveType: {fileID: 0}
+      minAffection: -1
+      minBeauty: -1
+      minHappiness: -1
+      needRain: 0
+      timeOfDay: 
+      tradeSpecies: 
+      evolution: {fileID: 11400000, guid: 955ad9351aa132646b2a13a9e7ace35d, type: 2}
+    - triggerType: 0
+      minLevel: -1
+      useItem: {fileID: 0}
+      heldItem: {fileID: 0}
+      knownMove: {fileID: 0}
+      knownMoveType: {fileID: 11400000, guid: f2728e728c5c1fb4db2022f5766212eb, type: 2}
+      minAffection: 2
+      minBeauty: -1
+      minHappiness: -1
+      needRain: 0
+      timeOfDay: 
+      tradeSpecies: 
+      evolution: {fileID: 11400000, guid: 6364253c73312df4cb8d2134bdc7b962, type: 2}
   expGroup: 0
   catchRate: 45
   baseFriendship: 50

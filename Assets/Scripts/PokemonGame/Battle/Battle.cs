@@ -229,7 +229,7 @@ namespace PokemonGame.Battle
             _newLevelUpStats = args.newStats;
             _newBattlerName = battlerThatLeveled.name;
             QueDialogue($"{battlerThatLeveled.name} reached level {args.newLevel}!", "leveledUp");
-            DialogueManager.instance.ForceAutoStartCurrentLastQueued(true);
+            DialogueManager.instance.ForceStopLastQueued(true); // stops any new dialogue until the level up graphic has finished
         }
 
         private void BattlerEvolved(Battler battlerThatEvolved, BattlerTemplate newTemplate)

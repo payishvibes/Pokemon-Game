@@ -40,6 +40,7 @@ namespace PokemonGame.Battle
         [SerializeField] private BattleBagMenu battleBagMenu;
         [SerializeField] private float shrinkEffectSpeed = 1;
         [SerializeField] private Button swapBattlerButton;
+        [SerializeField] private Button defaultItemButton;
 
         [SerializeField] private List<Item> faintedRequiredItems = new List<Item>();
 
@@ -249,6 +250,7 @@ namespace PokemonGame.Battle
             miscButtons.SetActive(false);
             changeBattlerDisplay.SetActive(false);
             useItemOnBattlerDisplay.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(itemBattlerDisplays[0].transform.parent.gameObject);
             useItemDisplay.SetActive(false);
             backButton.SetActive(true);
             UpdateBattlerButtons();
@@ -263,6 +265,7 @@ namespace PokemonGame.Battle
             miscButtons.SetActive(false);
             useItemDisplay.SetActive(true);
             backButton.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(defaultItemButton.gameObject);
             UpdateBattlerButtons();
             battleBagMenu.UpdateBagUI();
         }

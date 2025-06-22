@@ -1,3 +1,6 @@
+using PokeApiNet;
+using UnityEngine;
+
 namespace PokemonGame.ScriptableObjects
 {
     using System;
@@ -15,10 +18,30 @@ namespace PokemonGame.ScriptableObjects
     {
         public EvolutionTriggerType triggerType;
     
-        [ConditionalHide("triggerType", 0)]
-        public int level;
-        [ConditionalHide("triggerType", 1)]
-        public Item item;
+        [ConditionalHide("minLevel", -1, true)] 
+        public int minLevel;
+        [ConditionalHide("useItem")] 
+        public Item useItem;
+        [ConditionalHide("heldItem")] 
+        public Item heldItem;
+
+        [ConditionalHide("gender")] 
+        public Gender? gender;
+        [ConditionalHide("knownMove")] 
+        public Move knownMove;
+        [ConditionalHide("knownMoveType")] 
+        public Type knownMoveType;
+        // public something location;
+        [ConditionalHide("minAffection", -1, true)] 
+        public int minAffection;
+        [ConditionalHide("minBeauty", -1, true)] 
+        public int minBeauty;
+        [ConditionalHide("minHappiness", -1, true)] 
+        public int minHappiness;
+        [ConditionalHide("needRain")] 
+        public bool needRain;
+        public string timeOfDay;
+        public string tradeSpecies;
     
         public BattlerTemplate evolution;
     }
@@ -26,7 +49,7 @@ namespace PokemonGame.ScriptableObjects
     public enum EvolutionTriggerType
     {
         Level,
-        Item,
+        UseItem,
     }
 
     public enum ExperienceGroup

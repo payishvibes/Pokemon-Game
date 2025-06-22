@@ -1,5 +1,6 @@
 using PokemonGame.General;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace PokemonGame.Dialogue
@@ -51,6 +52,8 @@ namespace PokemonGame.Dialogue
 
         private bool wasToldToNotStart;
 
+        public int cancelChoiceId = -1;
+
         private QueuedDialogue currentQueuedDialogue;
 
         private QueuedDialogue lastQueued;
@@ -74,11 +77,13 @@ namespace PokemonGame.Dialogue
             }
         }
 
-        public void PressedContinue()
+        public List<Choice> CurrentChoices()
         {
-            if (!dialogueIsPlaying)
-                return;
+            return _currentStory.currentChoices;
+        }
 
+        private bool HasChoices()
+        {
             var hasChoices = false;
             if (currentQueuedDialogue.ink)
             {
@@ -93,13 +98,36 @@ namespace PokemonGame.Dialogue
                     hasChoices = false;
                 }
             }
-            
-            if (!hasChoices)
+
+            return hasChoices;
+        }
+
+        public void PressedContinue()
+        {
+            if (!HasChoices())
             {
                 ContinueStory();
             }
         }
-        
+
+        private void BackPressed(InputAction.CallbackContext context)
+        {
+            if (cancelChoiceId != -1 && HasChoices() && dialogueIsPlaying)
+            {
+                MakeChoice(cancelChoiceId);
+            }
+        }
+
+        private void OnEnable()
+        {
+            InputSystem.actions.FindAction("Escape").performed += BackPressed;
+        }
+
+        private void OnDisable()
+        {
+            InputSystem.actions.FindAction("Escape").performed -= BackPressed;
+        }
+
         private void Start()
         {
             dialogueIsPlaying = false;
@@ -130,12 +158,12 @@ namespace PokemonGame.Dialogue
         public void QueDialogue(TextAsset inkJson, DialogueTrigger trigger, string id, bool autostart, Dictionary<string, string> variables = null)
         {
             QueuedDialogue dialogue = new QueuedDialogue(trigger, variables, id, inkJson, autostart);
-            if (_queue.Count > 0 || dialogueIsPlaying)
+            if (_queue.Count > 0 || dialogueIsPlaying) // if we can actually begin the dialogue or if we need to wait
             {
                 _queue.Enqueue(dialogue);
                 lastQueued = dialogue;
             }
-            else
+            else // load it now
             {
                 LoadDialogueFromQueue(dialogue);
             }
@@ -150,18 +178,18 @@ namespace PokemonGame.Dialogue
         public void QueDialogue(string text, DialogueTrigger trigger, string id, bool autostart)
         {
             QueuedDialogue dialogue = new QueuedDialogue(trigger, id, text, autostart);
-            if (_queue.Count > 0 || dialogueIsPlaying)
+            if (_queue.Count > 0 || dialogueIsPlaying) // if we can actually begin the dialogue or if we need to wait
             {
                 _queue.Enqueue(dialogue);
                 lastQueued = dialogue;
             }
-            else
+            else // load it now
             {
                 LoadDialogueFromQueue(dialogue);
             }
         }
 
-        public void ForceAutoStartCurrentLastQueued(bool forceStop)
+        public void ForceStopLastQueued(bool forceStop)
         {
             lastQueued.forceStopNext = forceStop;
         }
@@ -228,7 +256,7 @@ namespace PokemonGame.Dialogue
         /// <param name="trigger">Used to tell if you were the one that queued it</param>
         public void StartDialogue(DialogueTrigger trigger)
         {
-            if (wasToldToNotStart && currentTrigger == trigger)
+            if (wasToldToNotStart && currentQueuedDialogue != null)
             {
                 if(currentTrigger == trigger)
                 {
@@ -249,7 +277,7 @@ namespace PokemonGame.Dialogue
                 }
                 else
                 {
-                    Debug.LogWarning("The trigger to start the dialogue must be the one that queued it");
+                    Debug.LogWarning("The trigger to start the dialogue must be the one that queued it!");
                 }
             }
             else
@@ -512,6 +540,15 @@ namespace PokemonGame.Dialogue
                 Debug.LogError("More choices were given than the UI can support either add more choice buttons are take away choices. Number of choices given: "
                     + currentChoices.Count);
             }
+
+            // Change the navigation up from the dialogue panel to the lowest dialogue choice button
+            if (currentChoices.Count > 0)
+            {
+                Button dialogueNavButton = dialogueTextDisplay.transform.parent.GetComponent<Button>();
+                Navigation nav = dialogueNavButton.navigation;
+                nav.selectOnUp = _choicesText[currentChoices.Count - 1].transform.parent.GetComponent<Button>();
+                dialogueNavButton.navigation = nav;
+            }
             
             int index = 0;
             
@@ -536,6 +573,8 @@ namespace PokemonGame.Dialogue
         public void MakeChoice(int choiceIndex)
         {
             _currentStory.ChooseChoiceIndex(choiceIndex);
+
+            cancelChoiceId = -1;
 
             DialogueChoiceEventArgs args = new DialogueChoiceEventArgs(currentTrigger, choiceIndex);
 

@@ -100,6 +100,15 @@
                         enabled = true;
                     }
                 }
+            }else if (condHAtt.intCheck)
+            {
+                if (sourcePropertyValue.propertyType == SerializedPropertyType.Integer)
+                {
+                    if (condHAtt.enumCheckIndex == sourcePropertyValue.intValue)
+                    {
+                        enabled = true;
+                    }
+                }
             }
 
             //wrap it all up
@@ -116,7 +125,10 @@
                 case SerializedPropertyType.Boolean:
                     return sourcePropertyValue.boolValue;                
                 case SerializedPropertyType.ObjectReference:
-                    return sourcePropertyValue.objectReferenceValue != null;
+                    return sourcePropertyValue.objectReferenceValue != null;                
+                case SerializedPropertyType.Integer:
+                    // placeholder
+                    return false;
                 case SerializedPropertyType.Enum:
                     // placeholder
                     return false;

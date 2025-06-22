@@ -159,9 +159,6 @@ namespace PokemonGame.ScriptableObjects
         private static void FindInTree(ChainLink link, string target, out ChainLink found)
         {
             found = null;
-            Debug.Log(link.Species.Name);
-            Debug.Log(target);
-            Debug.Log(link.Species.Name == target);
             if (link.Species.Name == target)
             {
                 found = link;
@@ -178,17 +175,20 @@ namespace PokemonGame.ScriptableObjects
 
         private static async Task FillEvolutions(BattlerTemplate template)
         {
-            PokemonSpecies pokemon = await pokeClient.GetResourceAsync<PokemonSpecies>(template.name.ToLower());
+            PokemonSpecies species = await pokeClient.GetResourceAsync<PokemonSpecies>(template.name.ToLower());
 
-            EvolutionChain chain = await pokeClient.GetResourceAsync<EvolutionChain>(pokemon.EvolutionChain);
+            EvolutionChain chain = await pokeClient.GetResourceAsync<EvolutionChain>(species.EvolutionChain);
             
             template.evolutions.possibleEvolutions.Clear();
             
-            FindInTree(chain.Chain, pokemon.Name, out ChainLink found);
+            FindInTree(chain.Chain, species.Name, out ChainLink found);
 
-            foreach (var evolvesTo in found.EvolvesTo)
+            if (found != null)
             {
-                NewEvolution(evolvesTo, template);
+                foreach (var evolvesTo in found.EvolvesTo)
+                {
+                    NewEvolution(evolvesTo, template);
+                }
             }
         }
 
@@ -199,16 +199,29 @@ namespace PokemonGame.ScriptableObjects
             EvolutionData data = new EvolutionData();
             data.evolution = Registry.GetBattlerTemplate(link.Species.Name);
 
+            EvolutionDetail evoDets = link.EvolutionDetails[0];
+
             if (method == "level-up")
             {
-                data.level = link.EvolutionDetails[0].MinLevel ?? 0;
                 data.triggerType = EvolutionTriggerType.Level;
             }
             else if (method == "use-item")
             {
-                data.item = Registry.GetItem(link.EvolutionDetails[0].HeldItem.Name);
-                data.triggerType = EvolutionTriggerType.Item;
+                data.triggerType = EvolutionTriggerType.UseItem;
             }
+
+            data.minLevel = evoDets.MinLevel ?? -1;
+            data.heldItem = evoDets.HeldItem != null ? Registry.GetItem(evoDets.HeldItem.Name.Replace("-", " ")) : null;
+            data.useItem = evoDets.Item != null ? Registry.GetItem(evoDets.Item.Name.Replace("-", " ")) : null;
+            data.gender = evoDets.Gender != null ? (General.Gender)evoDets.Gender.Value : null;
+            data.knownMove = evoDets.KnownMove != null ? Registry.GetMove(evoDets.KnownMove.Name) : null;
+            data.knownMoveType = evoDets.KnownMoveType != null ? Registry.GetType(evoDets.KnownMoveType.Name) : null;
+            data.minAffection = evoDets.MinAffection ?? -1;
+            data.minBeauty = evoDets.MinBeauty ?? -1;
+            data.minHappiness = evoDets.MinHappiness ?? -1;
+            data.needRain = evoDets.NeedsOverworldRain;
+            data.timeOfDay = evoDets.TimeOfDay;
+            data.tradeSpecies = evoDets.TradeSpecies != null ? evoDets.TradeSpecies.Name : "";
             
             template.evolutions.possibleEvolutions.Add(data);
         }

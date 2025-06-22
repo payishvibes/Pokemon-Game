@@ -1,3 +1,4 @@
+using System.Collections;
 using PokemonGame.Battle;
 using PokemonGame.General;
 using TMPro;
@@ -88,7 +89,13 @@ public class LevelUpDisplay : MonoBehaviour
         }
         else
         {
-            Battle.Singleton.FinishedViewingLevelUpScreen();
+            StartCoroutine(DelayByFrame());
         }
+    }
+
+    private IEnumerator DelayByFrame()
+    {
+        yield return new WaitForEndOfFrame();
+        Battle.Singleton.FinishedViewingLevelUpScreen();
     }
 }

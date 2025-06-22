@@ -46,8 +46,6 @@ namespace PokemonGame.Game
 
         private void Update()
         {
-            Debug.Log(InputSystem.actions.FindAction("Look").ReadValue<Vector2>());
-            
             if (_frameSkips >= 2)
             {
                 if (canMove && !_player.interacting)

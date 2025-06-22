@@ -14,7 +14,9 @@
         public bool Inverse = false;
         public bool UseOrLogic = false;
         public bool enumCheck = false;
+        public bool intCheck = false;
         public int enumCheckIndex = 0;
+        public bool checkEmptyString;
     
         public bool InverseCondition1 = false;
     
@@ -38,6 +40,19 @@
         {
             this.ConditionalSourceField = conditionalSourceField;
             this.Inverse = inverse;
+        }
+
+        public ConditionalHideAttribute(string conditionalSourceField, int checkIndex, bool inverse)
+        {
+            this.ConditionalSourceField = conditionalSourceField;
+            this.enumCheckIndex = checkIndex;
+            this.Inverse = inverse;
+            intCheck = true;
+        }
+
+        public ConditionalHideAttribute()
+        {
+            
         }
     
         public ConditionalHideAttribute(bool hideInInspector = false)

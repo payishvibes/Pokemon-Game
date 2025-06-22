@@ -191,7 +191,7 @@ namespace PokemonGame.General
             {
                 if (evolution.triggerType == EvolutionTriggerType.Level)
                 {
-                    if (evolution.level <= level)
+                    if (evolution.minLevel <= level)
                     {
                         wantToEvolve = true;
                         evolutionToPerform = evolution;
@@ -610,10 +610,10 @@ namespace PokemonGame.General
         Timid
     }
 
-    public enum Gender
+    public enum Gender : int
     {
-        Male,
         Female,
+        Male,
         Genderless
     }
 
