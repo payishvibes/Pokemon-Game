@@ -24,6 +24,7 @@ namespace PokemonGame.Battle
         [SerializeField] private GameObject useItemDisplay;
         [SerializeField] private GameObject miscButtons;
         [SerializeField] private GameObject backButton;
+        [SerializeField] private GameObject useItemBackButton;
         [SerializeField] private GameObject runButton;
         [SerializeField] private TextMeshProUGUI[] battlerDisplays;
         [SerializeField] private TextMeshProUGUI[] itemBattlerDisplays;
@@ -153,6 +154,9 @@ namespace PokemonGame.Battle
                 text.transform.parent.gameObject.SetActive(false);
             }
 
+            int unUsable = 0;
+            int total = 0;
+
             for (int i = 0; i < battle.playerParty.Count; i++)
             {
                 if (!battle.playerParty[i])
@@ -161,6 +165,7 @@ namespace PokemonGame.Battle
                 }
                 else
                 {
+                    total++;
                     itemBattlerDisplays[i].transform.parent.gameObject.SetActive(true);
                     itemBattlerDisplays[i].text = battle.playerParty[i].name;
                     itemBattlerDisplays[i].transform.parent.GetComponent<Button>().interactable = !battle.playerParty[i].isFainted;
@@ -173,9 +178,22 @@ namespace PokemonGame.Battle
                                 battle.playerParty[i].isFainted;
                         }
                     }
+
+                    if (!itemBattlerDisplays[i].transform.parent.GetComponent<Button>().interactable)
+                    {
+                        unUsable++;
+                    }
                     
                     itemBattlerDisplays[i].color = Color.black;
                 }
+            }
+            
+            Debug.Log(unUsable);
+            Debug.Log(total);
+
+            if (unUsable == total)
+            {
+                EventSystem.current.SetSelectedGameObject(useItemBackButton);
             }
         }
 

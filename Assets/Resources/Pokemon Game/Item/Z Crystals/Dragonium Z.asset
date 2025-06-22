@@ -18,7 +18,6 @@ MonoBehaviour:
   description: It converts Z-Power into crystals that upgrade Dragon-type moves to
     Dragon-type Z-Moves.
   cost: 0
-  useInBattle: 0
   lockedTarget: 0
   playerParty: 0
   targetIndex: 0

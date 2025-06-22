@@ -1838,7 +1838,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemDisplayHolder: {fileID: 4547129373634734816}
-  itemDisplayGameObject: {fileID: 4033615252156821667, guid: 096cfda60606639498d96a0dd7c1590d,
+  itemDisplayGameObject: {fileID: 4033615252156821667, guid: 7c60fb9e4add2d24a8fb218da1f1ddaa,
     type: 3}
   defaultCategoryButton: {fileID: 781172205194928252}
 --- !u!1 &4547129373579199556

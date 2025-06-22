@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2862214420542196430}
   - component: {fileID: 3701188882989572515}
   - component: {fileID: 822797762381835501}
+  - component: {fileID: 8839147262667897853}
   m_Layer: 5
   m_Name: ItemUseButton
   m_TagString: Untagged
@@ -119,6 +120,25 @@ MonoBehaviour:
   m_Interactable: 1
   m_TargetGraphic: {fileID: 3701188882989572515}
   m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &8839147262667897853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781795564178128245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35652b84100e2a4ea052f7a9b649916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expandWhenHover: 1
+  scale: 1.1
+  speed: 4
+  targetGraphic: {fileID: 693196541344058593}
+  onHover:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &5032795619974237970
@@ -229,15 +249,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0

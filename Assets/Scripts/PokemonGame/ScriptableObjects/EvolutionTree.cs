@@ -52,6 +52,7 @@ namespace PokemonGame.ScriptableObjects
     {
         Level,
         UseItem,
+        Trade
     }
 
     public enum ExperienceGroup

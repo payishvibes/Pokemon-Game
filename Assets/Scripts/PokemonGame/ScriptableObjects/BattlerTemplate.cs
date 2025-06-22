@@ -209,6 +209,10 @@ namespace PokemonGame.ScriptableObjects
             {
                 data.triggerType = EvolutionTriggerType.UseItem;
             }
+            else if (method == "trade")
+            {
+                data.triggerType = EvolutionTriggerType.Trade;
+            }
 
             data.minLevel = evoDets.MinLevel ?? -1;
             data.heldItem = evoDets.HeldItem != null ? Registry.GetItem(evoDets.HeldItem.Name.Replace("-", " ")) : null;

@@ -15,8 +15,8 @@ namespace PokemonGame.ScriptableObjects
         [TextArea] public string description;
         public int cost;
         public bool lockedTarget;
-        [ConditionalHide("lockedTarget", 1)] public bool playerParty;
-        [ConditionalHide("lockedTarget", 1)] public int targetIndex;
+        [ConditionalHide("lockedTarget", true)] public bool playerParty;
+        [ConditionalHide("lockedTarget", true)] public int targetIndex;
     
         public UnityEvent<ItemMethodEventArgs> ItemMethodEvent;
 

@@ -72,13 +72,13 @@
                 //if the find failed->fall back to the old system
                 if(sourcePropertyValue==null)
                 {
-                    //original implementation (doens't work with nested serializedObjects)
+                    //original implementation (doesn't work with nested serializedObjects)
                     sourcePropertyValue = property.serializedObject.FindProperty(condHAtt.ConditionalSourceField);
                 }
             }
             else
             {
-                //original implementation (doens't work with nested serializedObjects)
+                //original implementation (doesn't work with nested serializedObjects)
                 sourcePropertyValue = property.serializedObject.FindProperty(condHAtt.ConditionalSourceField);
             }
 
@@ -102,6 +102,7 @@
                         enabled = Mathf.Approximately(sourcePropertyValue.floatValue, condHAtt.floatValue);
                         break;
                     case SerializedPropertyType.ObjectReference:
+                        // realistically, this could actually be used for everything i just don't think it would be quite as fast
                         enabled = sourcePropertyValue.objectReferenceValue == (Object)condHAtt.objectValue;
                         break;
                 }

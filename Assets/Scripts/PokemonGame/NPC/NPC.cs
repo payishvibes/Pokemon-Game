@@ -113,7 +113,7 @@ namespace PokemonGame.NPC
             {
                 if (_playerInRange && !Player.interacting)
                 {
-                    if (!DialogueManager.instance.dialogueIsPlaying)
+                    if (!DialogueManager.instance.dialogueIsPlaying && !OptionsMenu.instance.on)
                     {
                         _canInteract = true;
                         visualCue.SetActive(true);

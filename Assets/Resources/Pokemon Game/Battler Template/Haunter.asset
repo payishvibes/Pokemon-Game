@@ -1,0 +1,133 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d18b0702c76df542a3a20fe8e6205e9, type: 3}
+  m_Name: Haunter
+  m_EditorClassIdentifier: 
+  name: Haunter
+  primaryType: 9
+  secondaryType: 14
+  texture:
+    basic: {fileID: 21300000, guid: 0b071c1715f600e40adf872b5be64ab4, type: 3}
+    female: {fileID: 0}
+    basicBack: {fileID: 21300000, guid: 70f63580d1640e940849d72047f8ee52, type: 3}
+    femaleBack: {fileID: 0}
+    shiny: {fileID: 21300000, guid: c64edc579243520439d08ef0adfb3ebe, type: 3}
+    femaleShiny: {fileID: 0}
+    shinyBack: {fileID: 21300000, guid: a5f08a4f5c3629b49b1c29b213936119, type: 3}
+    femaleShinyBack: {fileID: 0}
+  dexNo: 93
+  possibleMoves:
+    levelup:
+      keys:
+      - {fileID: 11400000, guid: 681d3cc3c1387034eb3e8a9692f8051a, type: 2}
+      - {fileID: 11400000, guid: c64cb8b8ca1e837408376a7432fe6606, type: 2}
+      - {fileID: 11400000, guid: 185d68d3ffdc3eb4a8d8781520047a3e, type: 2}
+      - {fileID: 11400000, guid: bcf2d3a701b7c894891de138a8f8914b, type: 2}
+      - {fileID: 11400000, guid: 339d923eeccf3db4288ceda8f2373a04, type: 2}
+      - {fileID: 11400000, guid: 90c5151ae2e39d541a306f722ecaf009, type: 2}
+      - {fileID: 11400000, guid: 866b621bacbf15d448aa65f1bf412b6a, type: 2}
+      - {fileID: 11400000, guid: e6a3aa8344fe01847b6f6213f9adf458, type: 2}
+      - {fileID: 11400000, guid: ba69f2a49fe555244bcdf6166b9c707a, type: 2}
+      - {fileID: 11400000, guid: 6c301b3f09eec3740a2a6fb5b6938c54, type: 2}
+      - {fileID: 11400000, guid: 6aeb95e38cb84564fac51948836cd476, type: 2}
+      - {fileID: 11400000, guid: 1c0f373b4724c314b8823e072bc4ffb5, type: 2}
+      - {fileID: 11400000, guid: bd715e1194aea574cb14cfb821585d3f, type: 2}
+      - {fileID: 11400000, guid: e82e16b35ec367c4b984eccce5cc6da1, type: 2}
+      - {fileID: 11400000, guid: c8791301a32707f4c90798f461919d4e, type: 2}
+      - {fileID: 11400000, guid: efd8a36b5e773e64ebc9ff7bcde921dc, type: 2}
+      values: 010000000f0000001300000001000000270000003d0000000c00000001000000320000000800000021000000000000001c000000160000002c00000037000000
+    tm:
+    - {fileID: 11400000, guid: 7f5d3ea75158ce442b5cca9d9448cb16, type: 2}
+    - {fileID: 11400000, guid: d64e418a175825643a0869689a75d087, type: 2}
+    - {fileID: 11400000, guid: 895e70098e777ef4ebbdf7d0418db2ba, type: 2}
+    - {fileID: 11400000, guid: 4906e02cd94083e4b9a3ff65afbaa7ae, type: 2}
+    - {fileID: 11400000, guid: 3827395ea54706c498121d6307295629, type: 2}
+    - {fileID: 11400000, guid: 457b5bd9d4c0aa940bbc9d0300ec96fe, type: 2}
+    - {fileID: 11400000, guid: aca5db6d4ade2ca42b273a54a86fa2d4, type: 2}
+    - {fileID: 11400000, guid: 01890b387bfab1a42838233525dc7e25, type: 2}
+    - {fileID: 11400000, guid: e64daca0bb1f7d24e9da057ca41d1480, type: 2}
+    - {fileID: 11400000, guid: cb09de307859cf540bd9ee222b1f48c3, type: 2}
+    - {fileID: 11400000, guid: e242e7f9193bb1047b3c360fa47f6bc2, type: 2}
+    - {fileID: 11400000, guid: d7c74a17158a8454396d8c6107df184a, type: 2}
+    - {fileID: 11400000, guid: c2e2fe624083032449950f6ca8b43e1a, type: 2}
+    - {fileID: 11400000, guid: 910b49de4ce52c04a83339ef4081d551, type: 2}
+    - {fileID: 11400000, guid: e555b56d435cc5b47b9387c3b5c4717b, type: 2}
+    - {fileID: 11400000, guid: efe6e01b327c93e41a1982d04df529ce, type: 2}
+    - {fileID: 11400000, guid: 9c96ec7791b665b438ccc68b9f504537, type: 2}
+    - {fileID: 11400000, guid: 24e65cd33fc0be1478bf29b3f2ad62cd, type: 2}
+    - {fileID: 11400000, guid: 108cc065cd2f91b41beafb564a7fa85d, type: 2}
+    - {fileID: 11400000, guid: 73a7149baa7067c40adfd38d55765297, type: 2}
+    - {fileID: 11400000, guid: 3eaa7fdc38582b24ebd2cf887d3d4d39, type: 2}
+    - {fileID: 11400000, guid: 6b6e6f426f86f7848b4a4be49594bfaf, type: 2}
+    - {fileID: 11400000, guid: 245077e7ec5282f4cac095fc34404240, type: 2}
+    - {fileID: 11400000, guid: aeed82d3054e99642ae3ab5a70ddea5b, type: 2}
+    - {fileID: 11400000, guid: b28d84d0564542d448c7ef8bb277f869, type: 2}
+    - {fileID: 11400000, guid: 8ac320225f2e5ce44b1f23e3cd4a51a4, type: 2}
+    - {fileID: 11400000, guid: 1f3a77eb42b2edd42b141046dee0713a, type: 2}
+    - {fileID: 11400000, guid: ffc5c3629a0d6ef45b09b5836444dde0, type: 2}
+    - {fileID: 11400000, guid: a87ff9f216232e74ebf07536db8fc8fe, type: 2}
+    - {fileID: 11400000, guid: d22f8436bac1692469c58f355738fd06, type: 2}
+    - {fileID: 11400000, guid: a0773b271e953a24a8e70b075d1629d1, type: 2}
+    - {fileID: 11400000, guid: a5264ad4f182e954998622e9dfd04eaf, type: 2}
+    - {fileID: 11400000, guid: a9b593904fbe6db45993619e409fbfb6, type: 2}
+    - {fileID: 11400000, guid: 3916efbccbc65d7468dfcb16e0a9e18c, type: 2}
+    egg: []
+    tutor:
+    - {fileID: 11400000, guid: 5b6cc3aa5734ce443a448d3cd1524685, type: 2}
+    - {fileID: 11400000, guid: 9e7582cc43a04294d93748f5b0470625, type: 2}
+    - {fileID: 11400000, guid: 88595a9c89c9c234fb39496c66a49395, type: 2}
+    - {fileID: 11400000, guid: 336eda2a3f8b3644fb6f6298c28bdf94, type: 2}
+    - {fileID: 11400000, guid: 5222e37dbc4b5a94da7582b73b82d3c0, type: 2}
+    - {fileID: 11400000, guid: eaa661e3e84012d419ae44e2b8170688, type: 2}
+    - {fileID: 11400000, guid: 7fd6fe0ae28c9944eb5c14e529d852ec, type: 2}
+    - {fileID: 11400000, guid: 6f769ae15e2d97f4cb6f86fe37fd92fc, type: 2}
+    - {fileID: 11400000, guid: 3192fba739e22654392968b41552142a, type: 2}
+    - {fileID: 11400000, guid: 0b51e867242d2284d9ce9eca8298ff83, type: 2}
+    - {fileID: 11400000, guid: 5e65817aacd720b4f9ab3e44d790a3ba, type: 2}
+    - {fileID: 11400000, guid: 47c47ea3865939a45b86a936fbeb62aa, type: 2}
+    - {fileID: 11400000, guid: ed14c289763fedc4d80b12e52e9f6b82, type: 2}
+    - {fileID: 11400000, guid: 539c45d5e7c7072449a96ff19e1a326e, type: 2}
+    - {fileID: 11400000, guid: 4113858664b7ca44aa938db414070fc0, type: 2}
+    - {fileID: 11400000, guid: e222f25d7ae68dd4b8738850bf2cc879, type: 2}
+  evolutions:
+    possibleEvolutions:
+    - triggerType: 2
+      minLevel: -1
+      useItem: {fileID: 0}
+      heldItem: {fileID: 0}
+      knownMove: {fileID: 0}
+      knownMoveType: {fileID: 0}
+      minAffection: -1
+      minBeauty: -1
+      minHappiness: -1
+      needRain: 0
+      timeOfDay: 
+      tradeSpecies: 
+      evolution: {fileID: 11400000, guid: 2584fe65c2245eb4a87f0f34502cdaa1, type: 2}
+  expGroup: 3
+  catchRate: 90
+  baseFriendship: 50
+  baseStats:
+    maxHealth: 45
+    attack: 50
+    defense: 45
+    specialAttack: 115
+    specialDefense: 55
+    speed: 95
+  expYield: 142
+  yields:
+    maxHealth: 0
+    attack: 0
+    defense: 0
+    specialAttack: 2
+    specialDefense: 0
+    speed: 0
