@@ -104,7 +104,6 @@ namespace PokemonGame.Dialogue
 
         public void PressedContinue()
         {
-            Debug.Log("pressed continue");
             if (!HasChoices())
             {
                 ContinueStory();
@@ -257,7 +256,7 @@ namespace PokemonGame.Dialogue
         /// <param name="trigger">Used to tell if you were the one that queued it</param>
         public void StartDialogue(DialogueTrigger trigger)
         {
-            if (wasToldToNotStart && currentQueuedDialogue != null)
+            if (wasToldToNotStart)
             {
                 if(currentTrigger == trigger)
                 {

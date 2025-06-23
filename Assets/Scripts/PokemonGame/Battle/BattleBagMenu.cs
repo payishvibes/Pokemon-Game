@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using PokemonGame.Game;
 using PokemonGame.ScriptableObjects;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -14,6 +13,7 @@ namespace PokemonGame.Battle
         [SerializeField] private GameObject itemDisplayHolder;
         [SerializeField] private GameObject itemDisplayGameObject;
         [SerializeField] private float useButtonXOffset;
+        [SerializeField] private List<GameObject> sortingButtons;
         
         private ItemType _currentSortingType;
 
@@ -22,6 +22,30 @@ namespace PokemonGame.Battle
         private void Start()
         {
             UpdateBagUI();
+        }
+
+        private GameObject _lastSelectedUIObj;
+        private ItemType _lastSelectedType;
+
+        private void Update()
+        {
+            // just switched to a new obj
+            if (_lastSelectedUIObj != EventSystem.current.currentSelectedGameObject)
+            {
+                // switched from a item button back to a category button
+                if (!sortingButtons.Contains(_lastSelectedUIObj) &&
+                    sortingButtons.Contains(EventSystem.current.currentSelectedGameObject))
+                {
+                    if (sortingButtons[(int)_lastSelectedType] != EventSystem.current.currentSelectedGameObject)
+                    {
+                        // swaped back to the wrong one
+                        EventSystem.current.SetSelectedGameObject(sortingButtons[(int)_lastSelectedType]);
+                    }
+                }
+            }
+            
+            _lastSelectedUIObj = EventSystem.current.currentSelectedGameObject;
+            _lastSelectedType = _currentSortingType;
         }
         
         /// <summary>

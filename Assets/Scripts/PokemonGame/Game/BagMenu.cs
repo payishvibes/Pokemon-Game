@@ -38,7 +38,6 @@ namespace PokemonGame.Game
                 {
                     if (sortingButtons[(int)_lastSelectedType] != EventSystem.current.currentSelectedGameObject)
                     {
-                        Debug.Log("wrong category");
                         // swaped back to the wrong one
                         EventSystem.current.SetSelectedGameObject(sortingButtons[(int)_lastSelectedType]);
                     }
@@ -56,7 +55,6 @@ namespace PokemonGame.Game
         public void ChangeCurrentSortingItem(int newType)
         {
             _currentSortingType = (ItemType)newType;
-            Debug.Log("switching");
             UpdateBagUI();
         }
 
