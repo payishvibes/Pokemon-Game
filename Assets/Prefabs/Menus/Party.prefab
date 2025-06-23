@@ -942,6 +942,7 @@ MonoBehaviour:
   - {fileID: 5012103891837118098}
   mainScreen: {fileID: 3207373034152325820}
   detailsScreen: {fileID: 833906159027460656}
+  detailsBackButton: {fileID: 4634191502261917061}
   polygon: {fileID: 8738123010791363766}
   healthStat: {fileID: 4782800364475884422}
   attackStat: {fileID: 8104635894737442632}

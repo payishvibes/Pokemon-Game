@@ -104,6 +104,7 @@ namespace PokemonGame.Dialogue
 
         public void PressedContinue()
         {
+            Debug.Log("pressed continue");
             if (!HasChoices())
             {
                 ContinueStory();

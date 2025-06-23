@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 
@@ -84,8 +85,14 @@ namespace PokemonGame.NPC
         {
             if (_canInteract)
             {
-                OnPlayerInteracted();
+                StartCoroutine(PerformedInteract());
             }
+        }
+
+        private IEnumerator PerformedInteract()
+        {
+            yield return new WaitForEndOfFrame();
+            OnPlayerInteracted();
         }
 
         private void Awake()

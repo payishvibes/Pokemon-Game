@@ -1,8 +1,10 @@
 using System.Collections.Generic;
+using System.Linq;
 using PokemonGame.Game;
 using PokemonGame.ScriptableObjects;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace PokemonGame.Battle
@@ -30,6 +32,16 @@ namespace PokemonGame.Battle
         {
             _currentSortingType = (ItemType)newType;
             UpdateBagUI();
+        }
+
+        public void SelectTopItem()
+        {
+            List<ItemDisplay> items = itemDisplayHolder.transform.GetComponentsInChildren<ItemDisplay>().ToList();
+            
+            if (items.Count > 0)
+            {
+                EventSystem.current.SetSelectedGameObject(items[0].gameObject);
+            }
         }
 
         public void UpdateBagUI()
@@ -60,7 +72,7 @@ namespace PokemonGame.Battle
                 
                 _currentlyDisplayedItems.Add(sortedItems[i].item);
 
-                Button useButton = display.GetComponentInChildren<Button>();
+                Button useButton = display.GetComponent<Button>();
                 int index = i;
                 
                 if (Battle.Singleton.trainerBattle && sortedItems[i].item.type == ItemType.PokeBalls)

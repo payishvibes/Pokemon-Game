@@ -18,6 +18,7 @@ public class PartyMenu : MonoBehaviour
     [SerializeField] private Transform[] partyDisplayPositions;
     [SerializeField] private GameObject mainScreen;
     [SerializeField] private GameObject detailsScreen;
+    [SerializeField] private GameObject detailsBackButton;
     [SerializeField] private UIPolygon polygon;
     [SerializeField] private TextMeshProUGUI healthStat;
     [SerializeField] private TextMeshProUGUI attackStat;
@@ -117,8 +118,15 @@ public class PartyMenu : MonoBehaviour
             moves[j].GetComponentsInChildren<Image>()[1].sprite = currentBattler.moves[j].type.sprite;
             moves[j].GetComponent<StatsScreenMoveIcon>().move = currentBattler.moves[j];
         }
-        
-        EventSystem.current.SetSelectedGameObject(moves[0]);
+
+        if (currentBattler.moves.Count > 0)
+        {
+            EventSystem.current.SetSelectedGameObject(moves[0]);
+        }
+        else
+        {
+            EventSystem.current.SetSelectedGameObject(detailsBackButton);
+        }
     }
     
     public void BackToMainScreen()

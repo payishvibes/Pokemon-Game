@@ -187,11 +187,8 @@ namespace PokemonGame.Battle
                     itemBattlerDisplays[i].color = Color.black;
                 }
             }
-            
-            Debug.Log(unUsable);
-            Debug.Log(total);
 
-            if (unUsable == total)
+            if (unUsable == total && useItemOnBattlerDisplay.activeSelf)
             {
                 EventSystem.current.SetSelectedGameObject(useItemBackButton);
             }

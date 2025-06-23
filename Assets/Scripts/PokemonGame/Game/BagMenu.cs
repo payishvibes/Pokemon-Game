@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using PokemonGame.ScriptableObjects;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -28,6 +29,16 @@ namespace PokemonGame.Game
         {
             _currentSortingType = (ItemType)newType;
             UpdateBagUI();
+        }
+
+        public void SelectTopItem()
+        {
+            List<ItemDisplay> items = itemDisplayHolder.transform.GetComponentsInChildren<ItemDisplay>().ToList();
+            
+            if (items.Count > 0)
+            {
+                EventSystem.current.SetSelectedGameObject(items[0].gameObject);
+            }
         }
 
         private void UpdateBagUI()

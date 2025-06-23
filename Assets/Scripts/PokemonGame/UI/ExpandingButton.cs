@@ -28,6 +28,11 @@ namespace PokemonGame.UI
             targetGraphic.GetComponent<Button>().onClick.AddListener(ButtonClicked);
         }
 
+        private void OnDisable()
+        {
+            targetGraphic.GetComponent<Button>().onClick.RemoveListener(ButtonClicked);
+        }
+
         private void OnValidate()
         {
             if (targetGraphic == null)
