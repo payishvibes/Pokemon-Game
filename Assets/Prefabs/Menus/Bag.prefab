@@ -1841,6 +1841,14 @@ MonoBehaviour:
   itemDisplayGameObject: {fileID: 4033615252156821667, guid: 7c60fb9e4add2d24a8fb218da1f1ddaa,
     type: 3}
   defaultCategoryButton: {fileID: 781172205194928252}
+  sortingButtons:
+  - {fileID: 781172205194928252}
+  - {fileID: 362524435301284243}
+  - {fileID: 5977924048845712097}
+  - {fileID: 8167461327968948276}
+  - {fileID: 2824027054385546825}
+  - {fileID: 757690535071616110}
+  - {fileID: 8451299748017675288}
 --- !u!1 &4547129373579199556
 GameObject:
   m_ObjectHideFlags: 0
@@ -2221,7 +2229,7 @@ MonoBehaviour:
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 4547129373579199558}
   m_HorizontalScrollbarVisibility: 2
-  m_VerticalScrollbarVisibility: 0
+  m_VerticalScrollbarVisibility: 1
   m_HorizontalScrollbarSpacing: -3
   m_VerticalScrollbarSpacing: -3
   m_OnValueChanged:

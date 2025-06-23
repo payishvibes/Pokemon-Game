@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using PokemonGame.ScriptableObjects;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace PokemonGame.Game
 {
@@ -12,15 +14,41 @@ namespace PokemonGame.Game
         [SerializeField] private GameObject itemDisplayHolder;
         [SerializeField] private GameObject itemDisplayGameObject;
         [SerializeField] private GameObject defaultCategoryButton;
+        [SerializeField] private List<GameObject> sortingButtons;
         
-        private ItemType _currentSortingType;
+        public ItemType _currentSortingType;
         
         private void Start()
         {
             UpdateBagUI();
             EventSystem.current.SetSelectedGameObject(defaultCategoryButton);
         }
-        
+
+        private GameObject _lastSelectedUIObj;
+        private ItemType _lastSelectedType;
+
+        private void Update()
+        {
+            // just switched to a new obj
+            if (_lastSelectedUIObj != EventSystem.current.currentSelectedGameObject)
+            {
+                // switched from a item button back to a category button
+                if (!sortingButtons.Contains(_lastSelectedUIObj) &&
+                    sortingButtons.Contains(EventSystem.current.currentSelectedGameObject))
+                {
+                    if (sortingButtons[(int)_lastSelectedType] != EventSystem.current.currentSelectedGameObject)
+                    {
+                        Debug.Log("wrong category");
+                        // swaped back to the wrong one
+                        EventSystem.current.SetSelectedGameObject(sortingButtons[(int)_lastSelectedType]);
+                    }
+                }
+            }
+            
+            _lastSelectedUIObj = EventSystem.current.currentSelectedGameObject;
+            _lastSelectedType = _currentSortingType;
+        }
+
         /// <summary>
         /// Changes the item type that the player wants to look at
         /// </summary>
@@ -28,6 +56,7 @@ namespace PokemonGame.Game
         public void ChangeCurrentSortingItem(int newType)
         {
             _currentSortingType = (ItemType)newType;
+            Debug.Log("switching");
             UpdateBagUI();
         }
 
@@ -74,7 +103,15 @@ namespace PokemonGame.Game
 
         private void OnEscapePressed(InputAction.CallbackContext obj)
         {
-            OptionsMenu.instance.CloseCurrentMenu();
+            if (!sortingButtons.Contains(EventSystem.current.currentSelectedGameObject))
+            {
+                // on item button
+                EventSystem.current.SetSelectedGameObject(sortingButtons[(int)_lastSelectedType]);
+            }
+            else
+            {
+                OptionsMenu.instance.CloseCurrentMenu();
+            }
         }
 
         private void OnDisable()
