@@ -884,8 +884,13 @@ namespace PokemonGame.Battle
         private void PlayerBattlerDied()
         {
             turnItemQueue.RemoveAll(item => item == TurnItem.PlayerMove);
-            
-            turnItemQueue.Add(TurnItem.PlayerSwapBecauseFainted);
+
+            playerParty.CheckDefeatedStatus();
+
+            if (!playerParty.defeated)
+            {
+                turnItemQueue.Add(TurnItem.PlayerSwapBecauseFainted);
+            }
 
             battlersThatParticipated.Remove(playerCurrentBattler);
         }
@@ -1048,7 +1053,7 @@ namespace PokemonGame.Battle
             else
             {
                 // turnItemQueue.Clear();
-                turnItemQueue.Add(TurnItem.EndBattlePlayerWin);
+                turnItemQueue.Add(TurnItem.EndBattleOpponentWin);
             }
         }
         

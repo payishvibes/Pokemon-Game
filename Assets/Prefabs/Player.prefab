@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 583212358}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GroundDetectorPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 570391499622089317}
   - component: {fileID: 3578229648906528152}
   - component: {fileID: 2262617635431392483}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Quad (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 8097080610501817697}
   - component: {fileID: 5998228083977057556}
   - component: {fileID: 1674262992125153321}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -258,7 +258,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7329654792115581586}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ GameObject:
   - component: {fileID: 7329654792165724541}
   - component: {fileID: 7329654792165724540}
   - component: {fileID: 7329654792165724543}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -421,7 +421,7 @@ GameObject:
   - component: {fileID: 7329654792169805890}
   - component: {fileID: 7329654792169805901}
   - component: {fileID: 7329654792169805900}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -547,7 +547,7 @@ GameObject:
   - component: {fileID: 7329654792183242843}
   - component: {fileID: 7329654792183242846}
   - component: {fileID: 7329654792183242841}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -632,7 +632,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7329654792191553234}
   - component: {fileID: 7329654792191553235}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MiddleRig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -647,7 +647,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7329654792191553245}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.22778462, y: -0.000000053377352, z: 0.000000008178689, w: 0.97371155}
+  m_LocalRotation: {x: 0.22778462, y: 0.000000053277923, z: -0.000000008163461, w: 0.97371155}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -713,7 +713,7 @@ GameObject:
   - component: {fileID: 7329654792254486353}
   - component: {fileID: 7329654792254486352}
   - component: {fileID: 7329654792254486355}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -842,7 +842,7 @@ GameObject:
   - component: {fileID: 7329654792430254040}
   - component: {fileID: 7329654792430254041}
   - component: {fileID: 1462910827243907967}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -950,6 +950,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   look: 0
+  freeLook: {fileID: 7329654793326322050}
   interacting: 0
   movement: {fileID: 0}
 --- !u!114 &1462910827243907967
@@ -996,7 +997,7 @@ GameObject:
   - component: {fileID: 7329654792492178587}
   - component: {fileID: 7329654792492178590}
   - component: {fileID: 7329654792492178591}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -1011,8 +1012,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7329654792492178586}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.18976389, y: 0.00000004138103, z: -0.00000000799795, w: 0.98182976}
-  m_LocalPosition: {x: 0, y: 2.6666667, z: -9}
+  m_LocalRotation: {x: 0.18976393, y: -0.000000050857775, z: 0.000000009829578, w: 0.98182976}
+  m_LocalPosition: {x: -23.92, y: 2.6666667, z: 26.779999}
   m_LocalScale: {x: 1, y: 0.45564398, z: 1.45399}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1168,7 +1169,7 @@ GameObject:
   - component: {fileID: 7329654793326322050}
   - component: {fileID: 7209843701189540117}
   - component: {fileID: 8783643796644081506}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CM FreeLook1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1184,7 +1185,7 @@ Transform:
   m_GameObject: {fileID: 7329654793326322060}
   serializedVersion: 2
   m_LocalRotation: {x: -0.2277846, y: -0, z: -0, w: 0.97371155}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 23.919996, y: -29.261364, z: -22.835852}
   m_LocalScale: {x: 1, y: 0.9104253, z: 1.0701958}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1355,7 +1356,7 @@ GameObject:
   - component: {fileID: 7329654793505199529}
   - component: {fileID: 7329654793505199532}
   - component: {fileID: 7329654793505199535}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Glasses
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1440,7 +1441,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7329654793761545742}
   - component: {fileID: 7329654793761545743}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BottomRig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1455,7 +1456,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7329654793761545737}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.21008259, y: -0.00000004240408, z: 0.000000005712041, w: 0.9776837}
+  m_LocalRotation: {x: 0.21008258, y: 0.00000005341725, z: -0.0000000071955775, w: 0.97768366}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1519,7 +1520,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7329654794048219145}
   - component: {fileID: 7329654794048219150}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TopRig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1534,7 +1535,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7329654794048219144}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2454582, y: 0.000000042574026, z: -0.000000009326346, w: 0.96940726}
+  m_LocalRotation: {x: 0.24545825, y: 0.00000005312062, z: -0.000000009131209, w: 0.9694072}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
