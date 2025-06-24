@@ -121,6 +121,7 @@ namespace PokemonGame.Battle
         
         private BattlerStats _oldLevelUpStats;
         private BattlerStats _newLevelUpStats;
+        private int _newLevel;
         private string _newBattlerName;
         private GameObject currentLevelUpObj;
         
@@ -141,7 +142,15 @@ namespace PokemonGame.Battle
                 _opponentName = SceneLoader.GetVariable<string>("opponentName");
             }
 
-            ChangePlayerBattlerIndex(0, true);
+            for (int i = 0; i < playerParty.Count; i++)
+            {
+                if (!playerParty[i].isFainted)
+                {
+                    ChangePlayerBattlerIndex(i, true);
+                    break;
+                }
+            }
+
             ChangeOpponentBattlerIndex(0, true);
 
             DialogueManager.instance.DialogueEnded += DialogueEnded;
@@ -223,13 +232,19 @@ namespace PokemonGame.Battle
             turnItemQueue.Clear();
         }
 
+        private void BattlerLevelUpEvent()
+        {
+            QueDialogue($"{_newBattlerName} reached level {_newLevel}!", "leveledUp");
+            DialogueManager.instance.ForceStopLastQueued(true); // stops any new dialogue until the level up graphic has finished
+        }
+
         private void BattlerLeveledUp(Battler battlerThatLeveled, OnLevelUpEventArgs args)
         {
             _oldLevelUpStats = args.oldStats;
             _newLevelUpStats = args.newStats;
             _newBattlerName = battlerThatLeveled.name;
-            QueDialogue($"{battlerThatLeveled.name} reached level {args.newLevel}!", "leveledUp");
-            DialogueManager.instance.ForceStopLastQueued(true); // stops any new dialogue until the level up graphic has finished
+            _newLevel = args.newLevel;
+            turnItemQueue.Add(TurnItem.PlayerLevelUp);
         }
 
         private void BattlerEvolved(Battler battlerThatEvolved, BattlerTemplate newTemplate)
@@ -247,15 +262,13 @@ namespace PokemonGame.Battle
         public void FinishedViewingLevelUpScreen()
         {
             Destroy(currentLevelUpObj);
+            TurnQueueItemEnded();
             StartDialogue();
         }
 
         public void BattlerFainted(EventArgs e, Battler defeated)
         {
             uiManager.ShrinkOpponentBattler();
-            
-            turnItemQueue.Add(TurnItem.OpponentSwapBecauseFainted);
-            turnItemQueue.Remove(TurnItem.OpponentMove);
             
             QueDialogue($"Enemy {defeated.name} Fainted!");
 
@@ -270,6 +283,14 @@ namespace PokemonGame.Battle
                     battler.GainExp(exp);
                 }
             }
+            
+            opponentParty.CheckDefeatedStatus();
+
+            if (!opponentParty.defeated)
+            {
+                turnItemQueue.Add(TurnItem.OpponentSwapBecauseFainted);
+            }
+            turnItemQueue.Remove(TurnItem.OpponentMove);
 
             playerCurrentBattler.EVs.maxHealth += defeated.source.yields.maxHealth;
             playerCurrentBattler.EVs.attack += defeated.source.yields.attack;
@@ -370,6 +391,9 @@ namespace PokemonGame.Battle
                             break;
                         case TurnItem.PlayerItem:
                             PlayerUseItem(_battlerToUseItemOn, _useItemOnPlayerParty);
+                            break;
+                        case TurnItem.PlayerLevelUp:
+                            BattlerLevelUpEvent();
                             break;
                         case TurnItem.OpponentSwap:
                             OpponentSwitchBattler();
@@ -492,7 +516,7 @@ namespace PokemonGame.Battle
                     break;
             }
             
-            if (currentlyRunningQueueItem && !args.moreToGo && !swappedDialogue && !CurrentlyEndingTheBattle())
+            if (currentlyRunningQueueItem && !args.moreToGo && !swappedDialogue && !CurrentlyEndingTheBattle() && currentLevelUpObj == null)
             {
                 TurnQueueItemEnded();
             }
@@ -1018,12 +1042,12 @@ namespace PokemonGame.Battle
         {
             if (isDefeated)
             {
-                turnItemQueue.Clear();
+                // turnItemQueue.Clear();
                 turnItemQueue.Add(TurnItem.EndBattlePlayerWin);
             }
             else
             {
-                turnItemQueue.Clear();
+                // turnItemQueue.Clear();
                 turnItemQueue.Add(TurnItem.EndBattlePlayerWin);
             }
         }

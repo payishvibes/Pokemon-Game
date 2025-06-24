@@ -282,6 +282,7 @@ namespace PokemonGame.Dialogue
             }
             else
             {
+                wasToldToNotStart = false;
                 Debug.LogWarning("There is nothing to start!");
             }
         }

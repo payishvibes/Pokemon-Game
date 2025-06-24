@@ -9,13 +9,16 @@ namespace PokemonGame.Game.Party
     {
         public event EventHandler PartyAllDefeated;
 
+        public bool defeated;
+
         /// <summary>
         /// Check if the battle party is defeated, calls defeated event
         /// </summary>
         public void CheckDefeatedStatus()
         {
-            if (DefeatedCount() >= Count)
+            if (DefeatedCount() >= Count && !defeated)
             {
+                defeated = true;
                 PartyAllDefeated?.Invoke(this, EventArgs.Empty);
             }
         }

@@ -133,7 +133,7 @@ namespace PokemonGame.Battle
                 {
                     battlerDisplays[i].transform.parent.gameObject.SetActive(true);
                     battlerDisplays[i].text = battle.playerParty[i].name;
-                    battlerDisplays[i].transform.parent.GetComponent<Button>().interactable = !battle.playerParty[i].isFainted;
+                    // battlerDisplays[i].transform.parent.GetComponent<Button>().interactable = !battle.playerParty[i].isFainted;
                     battlerDisplays[i].color = Color.black;
 
                     if (i == battle.currentBattlerIndex)
@@ -271,11 +271,11 @@ namespace PokemonGame.Battle
             miscButtons.SetActive(false);
             changeBattlerDisplay.SetActive(false);
             useItemOnBattlerDisplay.SetActive(true);
-            EventSystem.current.SetSelectedGameObject(itemBattlerDisplays[0].transform.parent.gameObject);
             useItemDisplay.SetActive(false);
             backButton.SetActive(true);
             UpdateBattlerButtons();
             _playerItemToUse = itemToUse;
+            EventSystem.current.SetSelectedGameObject(itemBattlerDisplays[0].transform.parent.gameObject);
         }
 
         public void UseItem()
@@ -286,9 +286,9 @@ namespace PokemonGame.Battle
             miscButtons.SetActive(false);
             useItemDisplay.SetActive(true);
             backButton.SetActive(true);
-            EventSystem.current.SetSelectedGameObject(defaultItemButton.gameObject);
             UpdateBattlerButtons();
             battleBagMenu.UpdateBagUI();
+            EventSystem.current.SetSelectedGameObject(defaultItemButton.gameObject);
         }
 
         public void SwitchBattlerBecauseOfDeath()
@@ -303,6 +303,7 @@ namespace PokemonGame.Battle
             backButton.SetActive(false);
             useItemDisplay.SetActive(false);
             UpdateBattlerButtons();
+            EventSystem.current.SetSelectedGameObject(battlerDisplays[0].transform.parent.gameObject);
         }
 
         public void ChangeBattler(int partyID)
@@ -320,10 +321,10 @@ namespace PokemonGame.Battle
             useItemOnBattlerDisplay.SetActive(false);
             useItemDisplay.SetActive(false);
             
+            Back();
             battle.ChooseToSwap(partyID);
             
             battle.AddParticipatedBattler(battle.playerParty[partyID]);
-            Back();
         }
 
         public void UseItemOnBattler(int partyID)
