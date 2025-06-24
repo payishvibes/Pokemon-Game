@@ -410,8 +410,14 @@ namespace PokemonGame.Battle
                         case TurnItem.OpponentParalysed:
                             OpponentParalysed();
                             break;
+                        case TurnItem.OpponentAsleep:
+                            OpponentAsleep();
+                            break;
                         case TurnItem.PlayerParalysed:
                             PlayerParalysed();
+                            break;
+                        case TurnItem.PlayerAsleep:
+                            PlayerAsleep();
                             break;
                         case TurnItem.CatchAttempt:
                             CatchAttempt();
@@ -445,7 +451,7 @@ namespace PokemonGame.Battle
             TurnQueueItemEnded();
         }
 
-        private void TurnQueueItemEnded()
+        public void TurnQueueItemEnded()
         {
             currentlyRunningQueueItem = false;
         }
@@ -490,6 +496,11 @@ namespace PokemonGame.Battle
             playerMoveToDoIndex = moveID;
             playerHasChosenMove = true;
             playerAction = TurnItem.PlayerMove;
+        }
+
+        public void RemoveTurnItem(TurnItem turnItemToRemove)
+        {
+            turnItemQueue.RemoveAll(item => item == turnItemToRemove);
         }
 
         private void DialogueEnded(object sender, DialogueEndedEventArgs args)
@@ -757,6 +768,16 @@ namespace PokemonGame.Battle
             QueDialogue($"The opponent {opponentCurrentBattler.name} is Paralysed! It is unable to move!");
         }
 
+        private void PlayerAsleep()
+        {
+            QueDialogue($"The opponent {opponentCurrentBattler.name} is Asleep");
+        }
+
+        private void OpponentAsleep()
+        {
+            QueDialogue($"The opponent {opponentCurrentBattler.name} is Asleep");
+        }
+
         public void AddParticipatedBattler(Battler battlerToParticipate)
         {
             if (!battlersThatParticipated.Contains(battlerToParticipate))
@@ -767,6 +788,27 @@ namespace PokemonGame.Battle
 
         private void DoPlayerMove()
         {
+            bool able = true;
+            
+            if (playerCurrentBattler.statusEffect == Registry.GetStatusEffect("Paralysed"))
+            {
+                if (Random.Range(0, 4) == 0)
+                {
+                    turnItemQueue.Insert(0, TurnItem.PlayerParalysed);
+                    able = false;
+                }
+            }else if (playerCurrentBattler.statusEffect == Registry.GetStatusEffect("Asleep"))
+            {
+                turnItemQueue.Insert(0, TurnItem.OpponentParalysed);
+                able = false;
+            }
+
+            if (!able)
+            {
+                TurnQueueItemEnded();
+                return;
+            }
+            
             uiManager.ShowHealthUI(true);
             
             //You can add any animation calls for attacking here
@@ -824,44 +866,37 @@ namespace PokemonGame.Battle
         
         private void AddPlayerMoveToQueue()
         {
-            if (playerCurrentBattler.statusEffect == Registry.GetStatusEffect("Paralysed"))
-            {
-                if (Random.Range(0, 4) == 0)
-                {
-                    turnItemQueue.Add(TurnItem.PlayerParalysed);
-                }
-                else
-                {
-                    turnItemQueue.Add(TurnItem.PlayerMove);
-                }
-            }
-            else
-            {
-                turnItemQueue.Add(TurnItem.PlayerMove);
-            }
+            turnItemQueue.Add(TurnItem.PlayerMove);
         }
 
         private void AddOpponentMoveToQueue()
         {
-            if (opponentCurrentBattler.statusEffect == Registry.GetStatusEffect("Paralysed"))
-            {
-                if (Random.Range(0, 4) == 0)
-                {
-                    turnItemQueue.Add(TurnItem.OpponentParalysed);
-                }
-                else
-                {
-                    turnItemQueue.Add(TurnItem.OpponentMove);
-                }
-            }
-            else
-            {
-                turnItemQueue.Add(TurnItem.OpponentMove);
-            }
+            turnItemQueue.Add(TurnItem.OpponentMove);
         }
 
         private void DoEnemyMove()
         {
+            bool able = true;
+            
+            if (opponentCurrentBattler.statusEffect == Registry.GetStatusEffect("Paralysed"))
+            {
+                if (Random.Range(0, 4) == 0)
+                {
+                    turnItemQueue.Insert(0, TurnItem.OpponentParalysed);
+                    able = false;
+                }
+            }else if (opponentCurrentBattler.statusEffect == Registry.GetStatusEffect("Asleep"))
+            {
+                turnItemQueue.Insert(0, TurnItem.OpponentAsleep);
+                able = false;
+            }
+
+            if (!able)
+            {
+                TurnQueueItemEnded();
+                return;
+            }
+            
             uiManager.ShowHealthUI(true);
             
             //You can add any animation calls for attacking here
@@ -874,7 +909,7 @@ namespace PokemonGame.Battle
             DialogueMoveUsed(opponentCurrentBattler.name, enemyMoveToDo.name, playerCurrentBattler.name);
             
             enemyMoveToDo.MoveMethod(e);
-
+            
             if (enemyMoveToDo.category != MoveCategory.Special)
             {
                 playerCurrentBattler.TakeDamage(e.damageDealt, new BattlerDamageSource(opponentCurrentBattler));

@@ -105,6 +105,11 @@ namespace PokemonGame.General
         /// Invoked when the battlers health updates (includes taking damage)
         /// </summary>
         public event EventHandler OnHealthUpdated;
+        
+        /// <summary>
+        /// The number of turns the battler will be asleep for
+        /// </summary>
+        public int sleepTurns = 0;
 
         [HideInInspector] public bool wantToEvolve;
         [HideInInspector] public EvolutionData evolutionToPerform;

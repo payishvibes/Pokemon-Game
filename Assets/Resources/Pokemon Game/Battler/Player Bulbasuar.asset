@@ -12,28 +12,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34c34158a6a1ace4da0180135a1a41b4, type: 3}
   m_Name: Player Bulbasuar
   m_EditorClassIdentifier: 
+  name: Bulbasaur
   source: {fileID: 11400000, guid: f98dd2fa32827594da82f4b72db0840f, type: 2}
   level: 5
-  currentHealth: 10
-  name: Bulbasaur
-  maxHealth: 10
-  attack: 10
-  defense: 10
-  specialAttack: 6
-  specialDefense: 12
-  speed: 12
+  gender: 0
+  currentHealth: 19
+  shiny: 0
+  stats:
+    maxHealth: 19
+    attack: 9
+    defense: 9
+    specialAttack: 9
+    specialDefense: 11
+    speed: 9
   exp: 12
-  hpEV: 0
-  attackEV: 0
-  defenseEV: 0
-  specialAttackEV: 0
-  specialDefenseEV: 0
-  speedEV: 0
+  EVs:
+    maxHealth: 0
+    attack: 0
+    defense: 0
+    specialAttack: 0
+    specialDefense: 0
+    speed: 0
+  IVs:
+    maxHealth: 0
+    attack: 0
+    defense: 0
+    specialAttack: 0
+    specialDefense: 0
+    speed: 0
+  nature: 0
+  affection: 0
   isFainted: 0
   statusEffect: {fileID: 11400000, guid: 70a8b2171523288439f255c2f97685d9, type: 2}
   moves:
   - {fileID: 11400000, guid: d64e418a175825643a0869689a75d087, type: 2}
   - {fileID: 11400000, guid: c89118671ae78da4a93d500eb430599b, type: 2}
-  - {fileID: 11400000, guid: d4639e5cb3f782d4587a463bffb7265a, type: 2}
+  - {fileID: 11400000, guid: fa19635c555eb9a4487c9d812db1252c, type: 2}
   - {fileID: 11400000, guid: f3783e25e6746824db8d1881a50ee7c9, type: 2}
   movePpInfos: []
+  sleepTurns: 0
+  wantToEvolve: 0
+  evolutionToPerform:
+    triggerType: 0
+    minLevel: 0
+    useItem: {fileID: 0}
+    heldItem: {fileID: 0}
+    knownMove: {fileID: 0}
+    knownMoveType: {fileID: 0}
+    minAffection: 0
+    minBeauty: 0
+    minHappiness: 0
+    needRain: 0
+    timeOfDay: 
+    tradeSpecies: 
+    evolution: {fileID: 0}

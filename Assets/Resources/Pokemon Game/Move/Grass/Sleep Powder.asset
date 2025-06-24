@@ -22,10 +22,21 @@ MonoBehaviour:
   priority: 0
   category: 2
   probability: 0
-  zMove: 0
   zCrystal: {fileID: 0}
   unique: 0
   uniqueBattler: {fileID: 0}
   MoveMethodEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: ee56544da0af2c645bc77ec1f3ce7123, type: 2}
+        m_TargetAssemblyTypeName: PokemonGame.Battle.MovesMethods, Assembly-CSharp
+        m_MethodName: SleepPowder
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

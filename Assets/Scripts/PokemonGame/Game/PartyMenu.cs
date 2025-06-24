@@ -96,6 +96,7 @@ public class PartyMenu : MonoBehaviour
         }
 
         battlerName.text = currentBattler.name;
+        battlerName.color = currentBattler.currentHealth == 0 ? Color.red : Color.black;
         battlerLevel.text = $"Lv. {currentBattler.level}";
 
         for (int j = 0; j < moves.Length; j++)

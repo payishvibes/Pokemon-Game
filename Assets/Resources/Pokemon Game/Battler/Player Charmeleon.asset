@@ -48,7 +48,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 71e65ff655656454b8becbb1cc1b57b4, type: 2}
   - {fileID: 11400000, guid: d4639e5cb3f782d4587a463bffb7265a, type: 2}
   - {fileID: 11400000, guid: e0df000a1310e9844b7f013852d70c5d, type: 2}
+  - {fileID: 11400000, guid: 3eaa7fdc38582b24ebd2cf887d3d4d39, type: 2}
   movePpInfos: []
+  sleepTurns: 0
   wantToEvolve: 0
   evolutionToPerform:
     triggerType: 0

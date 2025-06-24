@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53a3ecee5adf23c42af052e4246e08d2, type: 3}
-  m_Name: Asleep
+  m_Name: Burn
   m_EditorClassIdentifier: 
-  name: Asleep
-  colour: {r: 0.6650944, g: 0.7733735, b: 1, a: 1}
+  name: Burn
+  colour: {r: 1, g: 0, b: 0, a: 1}
   triggers:
-  - trigger: 1
+  - trigger: 2
     EffectEvent:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 11400000, guid: 7901990cb4a4dd54280eac087b8d9b9c, type: 2}
           m_TargetAssemblyTypeName: PokemonGame.Battle.StatusEffectsMethods, Assembly-CSharp
-          m_MethodName: Asleep
+          m_MethodName: Burn
           m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

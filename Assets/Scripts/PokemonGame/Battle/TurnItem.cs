@@ -17,7 +17,9 @@ namespace PokemonGame.Battle
         StartOfTurnStatusEffects,
         EndOfTurnStatusEffects,
         PlayerParalysed,
+        PlayerAsleep,
         OpponentParalysed,
+        OpponentAsleep,
         CatchAttempt,
         Run,
     }   

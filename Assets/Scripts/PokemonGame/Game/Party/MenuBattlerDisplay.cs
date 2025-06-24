@@ -19,8 +19,8 @@ public class MenuBattlerDisplay : MonoBehaviour
         battlerNameText.text = name;
         battlerHealthText.text = $"{health}/{maxHealth}";
         battlerSpriteImage.sprite = sprite;
-        statusDisplay.text = effect.name;
-        statusDisplay.color = effect.colour;
+        statusDisplay.text = health != 0 ? effect.name : "Fainted";
+        statusDisplay.color = health != 0 ? effect.colour : Color.white;
         expDisplay.padding = new Vector4(0, 0, 282 - (float)exp/(float)maxExp * 282f, 0);
         background.color = health == 0 ? defeatedColour : aliveColour;
     }

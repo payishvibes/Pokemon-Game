@@ -248,5 +248,18 @@ namespace PokemonGame.Battle
             Battle.Singleton.QueDialogue($"{e.attacker.name} healed {damage/2} health!");
             e.attacker.Heal(damage/2);
         }
-    }   
+
+        public void SleepPowder(MoveMethodEventArgs e)
+        {
+            e.target.statusEffect = Registry.GetStatusEffect("Asleep");
+            e.target.sleepTurns = Random.Range(1, 4);
+            Battle.Singleton.QueDialogue($"{e.target.name} was put to sleep!", "putToSleep");
+        }
+
+        public void WillOWisp(MoveMethodEventArgs e)
+        {
+            e.target.statusEffect = Registry.GetStatusEffect("Burn");
+            Battle.Singleton.QueDialogue($"{e.target.name} was burned!", "burned");
+        }
+    }
 }

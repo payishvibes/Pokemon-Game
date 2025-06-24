@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using PokemonGame.General;
+using PokemonGame.ScriptableObjects;
 
 namespace PokemonGame.Battle
 {
@@ -10,6 +11,16 @@ namespace PokemonGame.Battle
         public BattlerDamageSource(Battler sourceBattler)
         {
             this.sourceBattler = sourceBattler;
+        }
+    }
+
+    public class StatusEffectDamageSource : DamageSource
+    {
+        public StatusEffect statusEffect;
+
+        public StatusEffectDamageSource(StatusEffect statusEffect)
+        {
+            this.statusEffect = statusEffect;
         }
     }
 }
