@@ -234,7 +234,7 @@ namespace PokemonGame.Battle
 
         private void BattlerLevelUpEvent()
         {
-            QueDialogue($"{_newBattlerName} reached level {_newLevel}!", "leveledUp");
+            QueDialogue($"{_newBattlerName} reached level {_newLevel}!", DialogueBoxType.Narration, "leveledUp");
             DialogueManager.instance.ForceStopLastQueued(true); // stops any new dialogue until the level up graphic has finished
         }
 
@@ -244,12 +244,12 @@ namespace PokemonGame.Battle
             _newLevelUpStats = args.newStats;
             _newBattlerName = battlerThatLeveled.name;
             _newLevel = args.newLevel;
-            turnItemQueue.Add(TurnItem.PlayerLevelUp);
+            turnItemQueue.Insert(0, TurnItem.PlayerLevelUp);
         }
 
         private void BattlerEvolved(Battler battlerThatEvolved, BattlerTemplate newTemplate)
         {
-            QueDialogue($"{battlerThatEvolved.name} evolved into a {newTemplate.name}!", "evolved");
+            QueDialogue($"{battlerThatEvolved.name} evolved into a {newTemplate.name}!", DialogueBoxType.Narration, "evolved");
         }
 
         private void ShowBattlerLeveled()
@@ -270,7 +270,7 @@ namespace PokemonGame.Battle
         {
             uiManager.ShrinkOpponentBattler();
             
-            QueDialogue($"Enemy {defeated.name} Fainted!");
+            QueDialogue($"Enemy {defeated.name} Fainted!", DialogueBoxType.Event);
 
             int exp = ExperienceCalculator.GetExperienceFromDefeatingBattler(defeated, playerCurrentBattler, true,
                 battlersThatParticipated.Count);
@@ -279,7 +279,7 @@ namespace PokemonGame.Battle
             {
                 if (!battler.isFainted)
                 {
-                    QueDialogue($"{battler.name} gained {exp} experience points");
+                    QueDialogue($"{battler.name} gained {exp} experience points", DialogueBoxType.Event);
                     battler.GainExp(exp);
                 }
             }
@@ -469,7 +469,23 @@ namespace PokemonGame.Battle
             variables.Add("moveUsed", moveUsed);
             variables.Add("battlerHit", battlerHit);
             
-            QueDialogue(battlerUsedText, "moveUsed", true, variables);
+            QueDialogue(battlerUsedText, DialogueBoxType.Event, "moveUsed", true, variables);
+        }
+
+        private void DialogueMoveEffectiveness(string battlerUsed, string moveUsed, string battlerHit, int effectiveIndex)
+        {
+            switch (effectiveIndex)
+            {
+                case 1:
+                    QueDialogue("Its Not Very Effective...", DialogueBoxType.Event);
+                    break;
+                case 2:
+                    QueDialogue("Its Super Effective!", DialogueBoxType.Event);
+                    break;
+                case 3:
+                    QueDialogue($"{battlerHit} is immune!", DialogueBoxType.Event);
+                    break;
+            }
         }
 
         private void TurnEnding()
@@ -609,18 +625,18 @@ namespace PokemonGame.Battle
 
         private void CatchAttempt()
         {
-            QueDialogue($"Threw a pokeball at {opponentCurrentBattler.name}!");
+            QueDialogue($"Threw a pokeball at {opponentCurrentBattler.name}!", DialogueBoxType.Event);
 
             if (ExperienceCalculator.Captured(opponentCurrentBattler, playerCurrentBattler, (PokeBall)_playerItemToUse))
             {
                 uiManager.ShrinkOpponentBattler(true);
-                QueDialogue($"Caught {opponentCurrentBattler.name}!");
+                QueDialogue($"Caught {opponentCurrentBattler.name}!", DialogueBoxType.Event);
                 PartyManager.AddBattler(opponentCurrentBattler);
                 turnItemQueue.Insert(0, TurnItem.EndBattlePlayerWin);
             }
             else
             {
-                QueDialogue($"Failed to catch {opponentCurrentBattler.name}!");
+                QueDialogue($"Failed to catch {opponentCurrentBattler.name}!", DialogueBoxType.Event);
             }
         }
 
@@ -634,11 +650,11 @@ namespace PokemonGame.Battle
             
             Bag.Used(_playerItemToUse);
             
-            QueDialogue($"You used {_playerItemToUse.name} on {battleBeingUsedOn.name}!");
+            QueDialogue($"You used {_playerItemToUse.name} on {battleBeingUsedOn.name}!", DialogueBoxType.Event);
 
             if (!e.success)
             {
-                QueDialogue("But it failed!");
+                QueDialogue("But it failed!", DialogueBoxType.Event);
             }
         }
 
@@ -647,7 +663,7 @@ namespace PokemonGame.Battle
             if (currentlyRunningQueueItem) // swapping mid turn showing aka after a battler faints
             {
                 _playerSwapIndex = newBattlerIndex;
-                QueDialogue($"You sent out {playerParty[newBattlerIndex].name}", "swap", true);
+                QueDialogue($"You sent out {playerParty[newBattlerIndex].name}", DialogueBoxType.Event, "swap", true);
             }
             else // player chose to swap as their move
             {
@@ -740,7 +756,7 @@ namespace PokemonGame.Battle
             uiManager.UpdatePlayerBattlerDetails();
             uiManager.ForceHealthSet();
             
-            QueDialogue($"Go ahead {playerParty[_playerSwapIndex].name}!", "sentOut", true);
+            QueDialogue($"Go ahead {playerParty[_playerSwapIndex].name}!", DialogueBoxType.Event, "sentOut", true);
         }
 
         private void OpponentSwitchBattler()
@@ -755,27 +771,27 @@ namespace PokemonGame.Battle
             uiManager.UpdateOpponentBattlerDetails();
             uiManager.ForceHealthSet();
             
-            QueDialogue($"Opponent sent out {opponentParty[e.newBattlerIndex].name}!", "opponentSentOut", true);
+            QueDialogue($"Opponent sent out {opponentParty[e.newBattlerIndex].name}!", DialogueBoxType.Event, "opponentSentOut", true);
         }
 
         private void PlayerParalysed()
         {
-            QueDialogue($"{playerCurrentBattler.name} is Paralysed! It is unable to move!");
+            QueDialogue($"{playerCurrentBattler.name} is Paralysed! It is unable to move!", DialogueBoxType.Event);
         }
 
         private void OpponentParalysed()
         {
-            QueDialogue($"The opponent {opponentCurrentBattler.name} is Paralysed! It is unable to move!");
+            QueDialogue($"The opponent {opponentCurrentBattler.name} is Paralysed! It is unable to move!", DialogueBoxType.Event);
         }
 
         private void PlayerAsleep()
         {
-            QueDialogue($"The opponent {opponentCurrentBattler.name} is Asleep");
+            QueDialogue($"The opponent {opponentCurrentBattler.name} is Asleep", DialogueBoxType.Event);
         }
 
         private void OpponentAsleep()
         {
-            QueDialogue($"The opponent {opponentCurrentBattler.name} is Asleep");
+            QueDialogue($"The opponent {opponentCurrentBattler.name} is Asleep", DialogueBoxType.Event);
         }
 
         public void AddParticipatedBattler(Battler battlerToParticipate)
@@ -815,10 +831,13 @@ namespace PokemonGame.Battle
             
             MoveMethodEventArgs e = new MoveMethodEventArgs(playerCurrentBattler, opponentCurrentBattler,
                 playerMoveToDoIndex, playerMoveToDo, ExternalBattleData.Construct(this));
-            
+
             DialogueMoveUsed(playerCurrentBattler.name, playerMoveToDo.name, opponentCurrentBattler.name);
             
             playerMoveToDo.MoveMethod(e);
+
+            DialogueMoveEffectiveness(playerCurrentBattler.name, playerMoveToDo.name, opponentCurrentBattler.name,
+                e.effectiveIndex);
 
             if (playerMoveToDo.category != MoveCategory.Status)
             {
@@ -910,6 +929,9 @@ namespace PokemonGame.Battle
             
             enemyMoveToDo.MoveMethod(e);
             
+            DialogueMoveEffectiveness(playerCurrentBattler.name, playerMoveToDo.name, opponentCurrentBattler.name,
+                e.effectiveIndex);
+            
             if (enemyMoveToDo.category != MoveCategory.Special)
             {
                 playerCurrentBattler.TakeDamage(e.damageDealt, new BattlerDamageSource(opponentCurrentBattler));
@@ -938,7 +960,7 @@ namespace PokemonGame.Battle
 
         private void RunRunAwayDialogue()
         {
-            QueDialogue("Running Away!", "run");
+            QueDialogue("Running Away!", DialogueBoxType.Event, "run");
         }
 
         private int GetIndexOfMoveOnCurrentEnemy(Move move)
@@ -1098,7 +1120,7 @@ namespace PokemonGame.Battle
             {
                 if (trainerBattle)
                 {
-                    QueDialogue("All opponent Pokemon defeated!", "opponentDefeated", true);
+                    QueDialogue("All opponent Pokemon defeated!", DialogueBoxType.Event, "opponentDefeated", true);
                 }
                 else
                 {
@@ -1107,7 +1129,7 @@ namespace PokemonGame.Battle
             }
             else
             {
-                QueDialogue("All your Pokemon fainted, running!", "playerDefeated", true);
+                QueDialogue("All your Pokemon fainted, running!", DialogueBoxType.Event, "playerDefeated", true);
             }
 
             //TurnQueueItemEnded();

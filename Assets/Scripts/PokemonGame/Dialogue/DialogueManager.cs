@@ -21,9 +21,12 @@ namespace PokemonGame.Dialogue
     { 
         public static DialogueManager instance;
         
+        [Header("Dialogue Panels")]
         [SerializeField] private GameObject dialoguePanel;
+        [SerializeField] private List<GameObject> dialoguePanels;
+        
+        [Space]
         [SerializeField] private GameObject choicesHolder;
-        [SerializeField] private TextMeshProUGUI dialogueTextDisplay;
         [SerializeField] private GameObject[] choices;
         [SerializeField] private int currentChoicesAmount;
         [SerializeField] private int maxCharAmount;
@@ -49,6 +52,8 @@ namespace PokemonGame.Dialogue
 
         private string[] tempNextLines;
         private int currentTempIndex;
+        
+        private DialogueBoxType currentDialogueBoxType;
 
         private bool wasToldToNotStart;
 
@@ -155,9 +160,9 @@ namespace PokemonGame.Dialogue
         /// <param name="id">The id that can be used to identify the dialogue</param>
         /// <param name="autostart">Automatically start the dialogue on load, on by default</param>
         /// <param name="variables">The variables that can be loaded into the ink file</param>
-        public void QueDialogue(TextAsset inkJson, DialogueTrigger trigger, string id, bool autostart, Dictionary<string, string> variables = null)
+        public void QueDialogue(TextAsset inkJson, DialogueTrigger trigger, string id, bool autostart, DialogueBoxType boxType, Dictionary<string, string> variables = null)
         {
-            QueuedDialogue dialogue = new QueuedDialogue(trigger, variables, id, inkJson, autostart);
+            QueuedDialogue dialogue = new QueuedDialogue(trigger, variables, id, inkJson, boxType, autostart);
             if (_queue.Count > 0 || dialogueIsPlaying) // if we can actually begin the dialogue or if we need to wait
             {
                 _queue.Enqueue(dialogue);
@@ -175,9 +180,9 @@ namespace PokemonGame.Dialogue
         /// <param name="text">The text of the conversation</param>
         /// <param name="trigger">The DialogueTrigger that triggered this conversation</param>
         /// <param name="autostart">Automatically start the dialogue on load, on by default</param>
-        public void QueDialogue(string text, DialogueTrigger trigger, string id, bool autostart)
+        public void QueDialogue(string text, DialogueTrigger trigger, string id, bool autostart, DialogueBoxType boxType)
         {
-            QueuedDialogue dialogue = new QueuedDialogue(trigger, id, text, autostart);
+            QueuedDialogue dialogue = new QueuedDialogue(trigger, id, text, boxType, autostart);
             if (_queue.Count > 0 || dialogueIsPlaying) // if we can actually begin the dialogue or if we need to wait
             {
                 _queue.Enqueue(dialogue);
@@ -283,7 +288,6 @@ namespace PokemonGame.Dialogue
             else
             {
                 wasToldToNotStart = false;
-                Debug.LogWarning("There is nothing to start!");
             }
         }
 
@@ -332,7 +336,6 @@ namespace PokemonGame.Dialogue
                 }
                 dialogueIsPlaying = false;
                 dialoguePanel.SetActive(false);
-                dialogueTextDisplay.text = "";
                 currentTrigger.EndDialogue();
                 DialogueEnded?.Invoke(this, new DialogueEndedEventArgs(currentTrigger, id, false));
             }
@@ -366,12 +369,12 @@ namespace PokemonGame.Dialogue
                                 string[] newNextLines = next.SplitIntoParts(maxCharAmount);
 
                                 tempNextLines = newNextLines;
-                                StartCoroutine(DisplayText(newNextLines[currentTempIndex]));
+                                StartCoroutine(DisplayText(newNextLines[currentTempIndex], currentQueuedDialogue.boxType));
                                 HandleTags(_currentStory.currentTags);
                             }
                             else
                             {
-                                StartCoroutine(DisplayText(next));
+                                StartCoroutine(DisplayText(next, currentQueuedDialogue.boxType));
                                 StartCoroutine(DisplayChoices());
                                 HandleTags(_currentStory.currentTags);
                             }
@@ -399,11 +402,11 @@ namespace PokemonGame.Dialogue
                                 string[] newNextLines = next.SplitIntoParts(maxCharAmount);
 
                                 tempNextLines = newNextLines;
-                                StartCoroutine(DisplayText(newNextLines[currentTempIndex]));
+                                StartCoroutine(DisplayText(newNextLines[currentTempIndex], currentQueuedDialogue.boxType));
                             }
                             else
                             {
-                                StartCoroutine(DisplayText(next));
+                                StartCoroutine(DisplayText(next, currentQueuedDialogue.boxType));
                             }
 
                             currentQueuedDialogue.text = string.Empty;
@@ -427,7 +430,7 @@ namespace PokemonGame.Dialogue
                     
                         if(_currentStory.canContinue)
                         {
-                            StartCoroutine(DisplayText(_currentStory.Continue()));
+                            StartCoroutine(DisplayText(_currentStory.Continue(), currentQueuedDialogue.boxType));
                             StartCoroutine(DisplayChoices());
                             HandleTags(_currentStory.currentTags);
                         }
@@ -439,7 +442,7 @@ namespace PokemonGame.Dialogue
                     else
                     {
                         currentTempIndex++;
-                        StartCoroutine(DisplayText(tempNextLines[currentTempIndex]));
+                        StartCoroutine(DisplayText(tempNextLines[currentTempIndex], currentQueuedDialogue.boxType));
                         if(currentTempIndex == tempNextLines.Length-1)
                         {
                             StartCoroutine(DisplayChoices());
@@ -456,7 +459,7 @@ namespace PokemonGame.Dialogue
                     
                         if(string.IsNullOrEmpty(currentQueuedDialogue.text))
                         {
-                            StartCoroutine(DisplayText(_currentStory.Continue()));
+                            StartCoroutine(DisplayText(_currentStory.Continue(), currentQueuedDialogue.boxType));
                         }
                         else
                         {
@@ -466,7 +469,7 @@ namespace PokemonGame.Dialogue
                     else
                     {
                         currentTempIndex++;
-                        StartCoroutine(DisplayText(tempNextLines[currentTempIndex]));
+                        StartCoroutine(DisplayText(tempNextLines[currentTempIndex], currentQueuedDialogue.boxType));
                         if(currentTempIndex == tempNextLines.Length-1)
                         {
                             StartCoroutine(DisplayChoices());
@@ -484,14 +487,42 @@ namespace PokemonGame.Dialogue
             }
         }
         
-        private IEnumerator DisplayText(string nextSentence)
+        private IEnumerator DisplayText(string nextSentence, DialogueBoxType boxType)
         {
             EventSystem.current.SetSelectedGameObject(dialoguePanel.GetComponentsInChildren<Button>()[0].gameObject);
+
+            currentDialogueBoxType = boxType;
+
+            foreach (var panel in dialoguePanels)
+            {
+                panel.SetActive(false);
+            }
+
+            TextMeshProUGUI textToUse = dialoguePanels[0].GetComponentInChildren<TextMeshProUGUI>();;
+
+            switch (boxType)
+            {
+                case DialogueBoxType.Dialogue:
+                    dialoguePanels[0].SetActive(true);
+                    EventSystem.current.SetSelectedGameObject(dialoguePanels[0].gameObject);
+                    textToUse = dialoguePanels[0].GetComponentInChildren<TextMeshProUGUI>();
+                    break;
+                case DialogueBoxType.Narration:
+                    dialoguePanels[1].SetActive(true);
+                    EventSystem.current.SetSelectedGameObject(dialoguePanels[1].gameObject);
+                    textToUse = dialoguePanels[1].GetComponentInChildren<TextMeshProUGUI>();
+                    break;
+                case DialogueBoxType.Event:
+                    dialoguePanels[2].SetActive(true);
+                    EventSystem.current.SetSelectedGameObject(dialoguePanels[2].gameObject);
+                    textToUse = dialoguePanels[2].GetComponentInChildren<TextMeshProUGUI>();
+                    break;
+            }
             
-            dialogueTextDisplay.text = "";
+            textToUse.text = "";
             foreach (char letter in nextSentence)
             {
-                dialogueTextDisplay.text += letter;
+                textToUse.text += letter;
                 yield return new WaitForSeconds(0.025f * textScrollSpeed);
             }
         }
@@ -545,7 +576,21 @@ namespace PokemonGame.Dialogue
             // Change the navigation up from the dialogue panel to the lowest dialogue choice button
             if (currentChoices.Count > 0)
             {
-                Button dialogueNavButton = dialogueTextDisplay.transform.parent.GetComponent<Button>();
+                Button dialogueNavButton = dialoguePanels[0].GetComponent<Button>();
+                
+                switch (currentDialogueBoxType)
+                {
+                    case DialogueBoxType.Dialogue:
+                        dialogueNavButton = dialoguePanels[0].GetComponent<Button>(); 
+                        break;
+                    case DialogueBoxType.Narration:
+                        dialogueNavButton = dialoguePanels[1].GetComponent<Button>();
+                        break;
+                    case DialogueBoxType.Event:
+                        dialogueNavButton = dialoguePanels[2].GetComponent<Button>();
+                        break;
+                }
+                
                 Navigation nav = dialogueNavButton.navigation;
                 nav.selectOnUp = _choicesText[currentChoices.Count - 1].transform.parent.GetComponent<Button>();
                 dialogueNavButton.navigation = nav;
@@ -701,27 +746,40 @@ namespace PokemonGame.Dialogue
         /// </summary>
         public string text;
         /// <summary>
+        /// The type of box the dialogue will be displayed in
+        /// </summary>
+        public DialogueBoxType boxType;
+        /// <summary>
         /// Weather or not to forcibly disable auto start for the next dialogue that plays
         /// </summary>
         public bool forceStopNext;
 
-        public QueuedDialogue(DialogueTrigger trigger, Dictionary<string, string> variables, string id, TextAsset textAsset, bool autoStart = true)
+        public QueuedDialogue(DialogueTrigger trigger, Dictionary<string, string> variables, string id, TextAsset textAsset, DialogueBoxType boxType, bool autoStart = true)
         {
             this.trigger = trigger;
             this.variables = variables;
             this.id = id;
             this.textAsset = textAsset;
             this.autoStart = autoStart;
+            this.boxType = boxType;
             ink = true;
         }
         
-        public QueuedDialogue(DialogueTrigger trigger, string id, string text, bool autoStart = true)
+        public QueuedDialogue(DialogueTrigger trigger, string id, string text, DialogueBoxType boxType, bool autoStart = true)
         {
             this.trigger = trigger;
             this.id = id;
             this.text = text;
             this.autoStart = autoStart;
+            this.boxType = boxType;
             ink = false;
         }
+    }
+
+    public enum DialogueBoxType
+    {
+        Dialogue,
+        Narration,
+        Event
     }
 }

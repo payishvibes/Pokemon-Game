@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using PokemonGame.General;
 using UnityEditor;
+using PokemonGame.Dialogue;
 
 namespace PokemonGame.Battle
 {
@@ -18,11 +19,13 @@ namespace PokemonGame.Battle
     [CreateAssetMenu(fileName = "New Moves Methods", menuName = "All/New Moves Methods")]
     public class MovesMethods : ScriptableObject
     {
-        private int CalculateDamage(Move move, Battler battlerThatUsed, Battler battlerBeingAttacked)
+        private int CalculateDamage(Move move, Battler battlerThatUsed, Battler battlerBeingAttacked, out int effectiveIndex)
         {
             //Damage calculation equation from: https://bulbapedia.bulbagarden.net/wiki/Damage#Generation_II
             
             int damage = 0;
+
+            effectiveIndex = 0;
             
             //Checking to see if the move is capable of hitting the opponent battler
             foreach (var hType in move.type.cantHit)
@@ -30,6 +33,7 @@ namespace PokemonGame.Battle
                 if (hType == Type.FromBasic(battlerBeingAttacked.source.primaryType) || hType == Type.FromBasic(battlerBeingAttacked.source.secondaryType))
                 {
                     Debug.Log(move.type + " can't hit that battler");
+                    effectiveIndex = 3;
                     return 0;
                 }
             }
@@ -120,6 +124,18 @@ namespace PokemonGame.Battle
             {
                 attack = battlerThatUsed.stats.specialAttack;
                 defense = battlerBeingAttacked.stats.specialDefense;
+            }
+
+            if (type > 1)
+            {
+                effectiveIndex = 2;
+            }else if (type < 1)
+            {
+                effectiveIndex = 1;
+            }
+            else if (Mathf.Approximately(type, 1))
+            {
+                effectiveIndex = 0;
             }
 
             damage = Mathf.RoundToInt(((((2f * level) / 5) * power * (attack / (float)defense)) / 50) + 2 * targets * pb * weather *
@@ -224,28 +240,31 @@ namespace PokemonGame.Battle
 
         private int CalculateDamage(MoveMethodEventArgs e)
         {
-            return CalculateDamage(e.move, e.attacker, e.target);
+            int dmg = CalculateDamage(e.move, e.attacker, e.target, out int effectiveIndex);
+            e.effectiveIndex =  effectiveIndex;
+            return dmg;
         }
 
         public void DefaultMoveMethod(MoveMethodEventArgs e)
         {
             if (e.move.category != MoveCategory.Status)
             {
-                e.damageDealt = CalculateDamage(e.move, e.attacker, e.target);
+                e.damageDealt = CalculateDamage(e.move, e.attacker, e.target, out int effectiveIndex);
+                e.effectiveIndex = effectiveIndex;
             }
         }
         
         public void Toxic(MoveMethodEventArgs e)
         {
             e.target.statusEffect = Registry.GetStatusEffect("Poisoned");
-            Battle.Singleton.QueDialogue($"{e.target.name} was poisoned!", "poisoned", true);
+            Battle.Singleton.QueDialogue($"{e.target.name} was poisoned!", DialogueBoxType.Event, "poisoned", true);
         }
 
         public void LeechLife(MoveMethodEventArgs e)
         {
             int damage = CalculateDamage(e);
             e.damageDealt = damage;
-            Battle.Singleton.QueDialogue($"{e.attacker.name} healed {damage/2} health!");
+            Battle.Singleton.QueDialogue($"{e.attacker.name} healed {damage/2} health!", DialogueBoxType.Event);
             e.attacker.Heal(damage/2);
         }
 
@@ -253,13 +272,13 @@ namespace PokemonGame.Battle
         {
             e.target.statusEffect = Registry.GetStatusEffect("Asleep");
             e.target.sleepTurns = Random.Range(1, 4);
-            Battle.Singleton.QueDialogue($"{e.target.name} was put to sleep!", "putToSleep");
+            Battle.Singleton.QueDialogue($"{e.target.name} was put to sleep!", DialogueBoxType.Event, "putToSleep");
         }
 
         public void WillOWisp(MoveMethodEventArgs e)
         {
             e.target.statusEffect = Registry.GetStatusEffect("Burn");
-            Battle.Singleton.QueDialogue($"{e.target.name} was burned!", "burned");
+            Battle.Singleton.QueDialogue($"{e.target.name} was burned!", DialogueBoxType.Event, "burned");
         }
     }
 }

@@ -1,3 +1,5 @@
+using PokemonGame.Dialogue;
+
 namespace PokemonGame.NPC
 {
     using UnityEngine;
@@ -8,7 +10,7 @@ namespace PokemonGame.NPC
         protected override void OnPlayerInteracted()
         {
             Debug.Log("queued dialogue");
-            QueDialogue(textAsset);
+            QueDialogue(textAsset, DialogueBoxType.Dialogue);
             base.OnPlayerInteracted();
         }
     }   

@@ -92,7 +92,7 @@ public class TallGrass : DialogueTrigger
         _attacker = attacker;
         _waitingForStartBattle = true;
         
-        QueDialogue($"{attacker.name} appeared?!");
+        QueDialogue($"{attacker.name} appeared?!", DialogueBoxType.Event);
     }
 
     private IEnumerator StartBattle()

@@ -1,3 +1,4 @@
+using PokemonGame.Dialogue;
 using PokemonGame.ScriptableObjects;
 
 namespace PokemonGame.Trainers
@@ -79,12 +80,12 @@ namespace PokemonGame.Trainers
         private IEnumerator StartDefeatedDialogue()
         {
             yield return new WaitForEndOfFrame();
-            QueDialogue(defeatedBattleText);
+            QueDialogue(defeatedBattleText, DialogueBoxType.Dialogue);
         }
 
         protected override void OnPlayerInteracted()
         {
-            QueDialogue(idleDialogue);
+            QueDialogue(idleDialogue, DialogueBoxType.Dialogue);
             base.OnPlayerInteracted();
         }
 
@@ -94,7 +95,7 @@ namespace PokemonGame.Trainers
             {
                 isStartingBattle = true;
                 Player.Instance.LookAtTarget(transform.position);
-                QueDialogue(startBattleText);
+                QueDialogue(startBattleText, DialogueBoxType.Dialogue);
             }
         }
 

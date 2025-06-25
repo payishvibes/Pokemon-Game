@@ -1,3 +1,4 @@
+using PokemonGame.Dialogue;
 using UnityEngine;
 
 namespace PokemonGame.NPC
@@ -8,7 +9,7 @@ namespace PokemonGame.NPC
 
         public void ForceHealDialogue()
         {
-            QueDialogue(forcedHealDialogue);
+            QueDialogue(forcedHealDialogue, DialogueBoxType.Dialogue);
         }
     }
 }

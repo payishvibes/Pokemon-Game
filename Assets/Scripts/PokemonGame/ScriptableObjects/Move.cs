@@ -86,6 +86,7 @@ namespace PokemonGame.ScriptableObjects
         public Move move;
         public ExternalBattleData battleData;
         public int damageDealt = 0;
+        public int effectiveIndex = 0;
 
         public MoveMethodEventArgs(Battler attacker, Battler target, int moveIndex, Move move, ExternalBattleData battleData)
         {
@@ -94,6 +95,7 @@ namespace PokemonGame.ScriptableObjects
             this.moveIndex = moveIndex;
             this.move = move;
             this.battleData = battleData;
+            effectiveIndex = 0;
         }
     }
 

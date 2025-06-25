@@ -45,7 +45,7 @@ namespace PokemonGame.NPC
 
         protected override void OnPlayerInteracted()
         {
-            QueDialogue(startPokeMartDialogue);
+            QueDialogue(startPokeMartDialogue, DialogueBoxType.Dialogue);
             base.OnPlayerInteracted();
         }
 
@@ -192,11 +192,11 @@ namespace PokemonGame.NPC
                 variables.Add("itemToBuy", stock[_currentlySelectedItem].name);
                 variables.Add("totalCost", totalCost.ToString());
                 
-                QueDialogue(confirmationDialogue, "buyConfirm", true, variables);
+                QueDialogue(confirmationDialogue, DialogueBoxType.Dialogue, "buyConfirm", true, variables);
             }
             else
             {
-                QueDialogue("Not enough money to buy this");
+                QueDialogue("Not enough money to buy this", DialogueBoxType.Dialogue);
                 backToBuyButton.interactable = false;
                 buyButton.interactable = false;
                 _waitingToGoBackToBuy = true;
@@ -235,7 +235,7 @@ namespace PokemonGame.NPC
             sellUI.SetActive(false);
             selectAmountToBuyUI.SetActive(false);
             buttonHolder.parent.parent.GetComponent<ScrollRect>().enabled = true;
-            QueDialogue("Thank you for visiting!");
+            QueDialogue("Thank you for visiting!", DialogueBoxType.Dialogue);
             Player.interacting = false;
         }
     }
