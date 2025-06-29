@@ -124,6 +124,8 @@ namespace PokemonGame.Battle
         private int _newLevel;
         private string _newBattlerName;
         private GameObject currentLevelUpObj;
+
+        private bool _displayingAttackAnimation;
         
         private void Start()
         {
@@ -257,6 +259,57 @@ namespace PokemonGame.Battle
             LevelUpDisplay display = Instantiate(levelUpDisplayPrefab, FindFirstObjectByType<Canvas>().transform);
             currentLevelUpObj = display.gameObject;
             display.Init(_oldLevelUpStats, _newLevelUpStats);
+        }
+
+        private MoveMethodEventArgs _currentArgs;
+
+        private IEnumerator ShowPlayerMove()
+        {
+            if (_currentArgs.missed)
+            {
+                yield return null;
+            }
+            
+            _displayingAttackAnimation = true;
+            if (playerMoveToDo.category != MoveCategory.Status && !_currentArgs.missed)
+            {
+                opponentCurrentBattler.TakeDamage(_currentArgs.damageDealt, new BattlerDamageSource(playerCurrentBattler));
+            }
+            
+            yield return new WaitForSeconds(1);
+            
+            _displayingAttackAnimation = false;
+            StartDialogue();
+            
+            if (_currentArgs.effectiveIndex == 0 && !_currentArgs.crit)
+            {
+                TurnQueueItemEnded();
+            }
+        }
+
+        private IEnumerator ShowOpponentMove()
+        {
+            if (_currentArgs.missed)
+            {
+                yield return null;
+            }
+            
+            _displayingAttackAnimation = true;
+            if (enemyMoveToDo.category != MoveCategory.Status && !_currentArgs.missed)
+            {
+                playerCurrentBattler.TakeDamage(_currentArgs.damageDealt, new BattlerDamageSource(opponentCurrentBattler));
+            }
+            
+            yield return new WaitForSeconds(1);
+            
+            _displayingAttackAnimation = false;
+            StartDialogue();
+            
+            // make sure there will be no more dialogue regarding the opponentsturn
+            if (_currentArgs.effectiveIndex == 0 && !_currentArgs.crit)
+            {
+                TurnQueueItemEnded();
+            }
         }
 
         public void FinishedViewingLevelUpScreen()
@@ -425,6 +478,12 @@ namespace PokemonGame.Battle
                         case TurnItem.Run:
                             RunRunAwayDialogue();
                             break;
+                        case TurnItem.PlayerMissed:
+                            MoveMissed();
+                            break;
+                        case TurnItem.OpponentMissed:
+                            MoveMissed();
+                            break;
                     }
                     
                     playerParty.CheckDefeatedStatus();
@@ -462,14 +521,21 @@ namespace PokemonGame.Battle
             currentTurn = TurnStatus.Ending;
         }
 
-        private void DialogueMoveUsed(MoveMethodEventArgs e)
+        private void DialogueMoveUsed(MoveMethodEventArgs e, bool player)
         {
             Dictionary<string, string> variables = new Dictionary<string, string>();
             variables.Add("battlerUsed", e.attacker.name);
             variables.Add("moveUsed", e.move.name);
             variables.Add("battlerHit", e.target.name);
-            
-            QueDialogue(battlerUsedText, DialogueBoxType.Event, "moveUsed", true, variables);
+
+            if (player)
+            {
+                QueDialogue(battlerUsedText, DialogueBoxType.Event, "playerMoveUsed", true, variables);
+            }
+            else
+            {
+                QueDialogue(battlerUsedText, DialogueBoxType.Event, "opponentMoveUsed", true, variables);
+            }
         }
 
         private void DialogueMoveEffectiveness(MoveMethodEventArgs e)
@@ -546,9 +612,19 @@ namespace PokemonGame.Battle
                 case "leveledUp":
                     ShowBattlerLeveled();
                     break;
+                case "playerMoveUsed":
+                    StartCoroutine(ShowPlayerMove());
+                    break;
+                case "opponentMoveUsed":
+                    StartCoroutine(ShowOpponentMove());
+                    break;
+                case "playerFainted":
+                    uiManager.SwitchBattlerBecauseOfDeath();
+                    swappedDialogue = true;
+                    break;
             }
             
-            if (currentlyRunningQueueItem && !args.moreToGo && !swappedDialogue && !CurrentlyEndingTheBattle() && currentLevelUpObj == null)
+            if (currentlyRunningQueueItem && !args.moreToGo && !swappedDialogue && !CurrentlyEndingTheBattle() && currentLevelUpObj == null && !_displayingAttackAnimation)
             {
                 TurnQueueItemEnded();
             }
@@ -560,6 +636,9 @@ namespace PokemonGame.Battle
             {
                 case "evolved":
                     EvolutionEffect(e);
+                    break;
+                case "playerFainted":
+                    uiManager.ShrinkPlayerBattler();
                     break;
             }
         }
@@ -680,6 +759,11 @@ namespace PokemonGame.Battle
 
         private void BeginSwapPlayerBattler()
         {
+            QueDialogue($"{playerCurrentBattler.name} Fainted!", DialogueBoxType.Event, "playerFainted");
+        }
+
+        private void ShowSwapPlayerBattler()
+        {
             uiManager.ShrinkPlayerBattler();
             uiManager.SwitchBattlerBecauseOfDeath();
         }
@@ -799,6 +883,11 @@ namespace PokemonGame.Battle
             QueDialogue($"The opponent {opponentCurrentBattler.name} is Asleep", DialogueBoxType.Event);
         }
 
+        private void MoveMissed()
+        {
+            QueDialogue($"But it missed!", DialogueBoxType.Event);
+        }
+
         public void AddParticipatedBattler(Battler battlerToParticipate)
         {
             if (!battlersThatParticipated.Contains(battlerToParticipate))
@@ -810,6 +899,7 @@ namespace PokemonGame.Battle
         private void DoPlayerMove()
         {
             bool able = true;
+            bool missed = false;
             
             if (playerCurrentBattler.statusEffect == Registry.GetStatusEffect("Paralysed"))
             {
@@ -820,14 +910,19 @@ namespace PokemonGame.Battle
                 }
             }else if (playerCurrentBattler.statusEffect == Registry.GetStatusEffect("Asleep"))
             {
-                turnItemQueue.Insert(0, TurnItem.OpponentParalysed);
+                turnItemQueue.Insert(0, TurnItem.PlayerAsleep);
                 able = false;
             }
 
             if (!able)
             {
-                TurnQueueItemEnded();
                 return;
+            }
+
+            if (playerMoveToDo.accuracy != 0 && !Mathf.Approximately(playerMoveToDo.accuracy, 1))
+            {
+                // actually has like a usable accuracy
+                missed = Random.Range(1, 101) > playerMoveToDo.accuracy * 100;
             }
             
             uiManager.ShowHealthUI(true);
@@ -837,16 +932,21 @@ namespace PokemonGame.Battle
             MoveMethodEventArgs e = new MoveMethodEventArgs(playerCurrentBattler, opponentCurrentBattler,
                 playerMoveToDoIndex, playerMoveToDo, ExternalBattleData.Construct(this));
 
-            DialogueMoveUsed(e);
+            DialogueMoveUsed(e, true);
+            DialogueManager.instance.ForceStopLastQueued(true); // stops any new dialogue until the animations and such
+            
+            _currentArgs = e;
+            
+            if (missed)
+            {
+                turnItemQueue.Insert(0, TurnItem.PlayerMissed);
+                e.missed = true;
+                return;
+            }
             
             playerMoveToDo.MoveMethod(e);
 
             DialogueMoveEffectiveness(e);
-
-            if (playerMoveToDo.category != MoveCategory.Status)
-            {
-                opponentCurrentBattler.TakeDamage(e.damageDealt, new BattlerDamageSource(playerCurrentBattler));
-            }
         }
 
         private void QueueMoves()
@@ -900,6 +1000,7 @@ namespace PokemonGame.Battle
         private void DoEnemyMove()
         {
             bool able = true;
+            bool missed = false;
             
             if (opponentCurrentBattler.statusEffect == Registry.GetStatusEffect("Paralysed"))
             {
@@ -916,8 +1017,13 @@ namespace PokemonGame.Battle
 
             if (!able)
             {
-                TurnQueueItemEnded();
                 return;
+            }
+
+            if (enemyMoveToDo.accuracy != 0 && !Mathf.Approximately(enemyMoveToDo.accuracy, 1))
+            {
+                // actually has like a usable accuracy
+                missed = Random.Range(1, 101) > enemyMoveToDo.accuracy * 100;
             }
             
             uiManager.ShowHealthUI(true);
@@ -929,16 +1035,21 @@ namespace PokemonGame.Battle
             MoveMethodEventArgs e = new MoveMethodEventArgs(opponentCurrentBattler, playerCurrentBattler, moveToDoIndex,
                 enemyMoveToDo, ExternalBattleData.Construct(this));
             
-            DialogueMoveUsed(e);
+            DialogueMoveUsed(e, false);
+            DialogueManager.instance.ForceStopLastQueued(true); // stops any new dialogue until the level up graphic has finished
+
+            _currentArgs = e;
+            
+            if (missed)
+            {
+                turnItemQueue.Insert(0, TurnItem.OpponentMissed);
+                e.missed = true;
+                return;
+            }
             
             enemyMoveToDo.MoveMethod(e);
             
             DialogueMoveEffectiveness(e);
-            
-            if (enemyMoveToDo.category != MoveCategory.Special)
-            {
-                playerCurrentBattler.TakeDamage(e.damageDealt, new BattlerDamageSource(opponentCurrentBattler));
-            }
         }
 
         private void PlayerBattlerDied()
@@ -951,7 +1062,7 @@ namespace PokemonGame.Battle
             {
                 turnItemQueue.Add(TurnItem.PlayerSwapBecauseFainted);
             }
-
+            
             battlersThatParticipated.Remove(playerCurrentBattler);
         }
 

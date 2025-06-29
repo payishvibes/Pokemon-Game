@@ -4,7 +4,9 @@ namespace PokemonGame.Battle
     {
         StartDelay,
         PlayerMove,
+        PlayerMissed,
         OpponentMove,
+        OpponentMissed,
         PlayerSwapBecauseFainted,
         PlayerSwap,
         OpponentSwap,

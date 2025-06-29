@@ -2864,11 +2864,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   party:
     PartyList:
-    - {fileID: 11400000, guid: 9a16348fd39446c4eaacb2b8e94be54b, type: 2}
     - {fileID: 11400000, guid: 40eaa6905a489264cbadb3aaa3b0d0ae, type: 2}
     - {fileID: 11400000, guid: cb25a92c6016d894b81e4a69af23e7c6, type: 2}
     - {fileID: 11400000, guid: 49b49b8f02dfba1419de8114ed75d43a, type: 2}
     - {fileID: 11400000, guid: deb5abf0f82e25c439b24bcb8d176209, type: 2}
+    - {fileID: 11400000, guid: 9a16348fd39446c4eaacb2b8e94be54b, type: 2}
 --- !u!4 &960600134
 Transform:
   m_ObjectHideFlags: 0

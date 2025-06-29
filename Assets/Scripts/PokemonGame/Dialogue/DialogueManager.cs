@@ -176,6 +176,7 @@ namespace PokemonGame.Dialogue
             else // load it now
             {
                 LoadDialogueFromQueue(dialogue);
+                lastQueued = dialogue;
             }
         }
         
@@ -196,6 +197,7 @@ namespace PokemonGame.Dialogue
             else // load it now
             {
                 LoadDialogueFromQueue(dialogue);
+                lastQueued = dialogue;
             }
         }
 
@@ -293,6 +295,7 @@ namespace PokemonGame.Dialogue
             else
             {
                 wasToldToNotStart = false;
+                currentQueuedDialogue.forceStopNext = false;
             }
         }
 
