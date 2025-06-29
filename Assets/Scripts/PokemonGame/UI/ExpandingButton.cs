@@ -43,8 +43,11 @@ namespace PokemonGame.UI
 
         private void ButtonClicked()
         {
+            _previousScale = targetGraphic.localScale;
             targetGraphic.localScale = _baseScale;
         }
+
+        private Vector3 _previousScale;
 
         private void Update()
         {
@@ -101,8 +104,14 @@ namespace PokemonGame.UI
         {
             if (expandWhenHover)
             {
+                _previousScale = targetGraphic.localScale;
                 targetGraphic.localScale = _baseScale;
             }
+        }
+
+        public void SetPreviousScale()
+        {
+            targetGraphic.localScale = _previousScale;
         }
     }
 }

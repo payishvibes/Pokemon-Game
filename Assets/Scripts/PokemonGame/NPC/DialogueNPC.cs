@@ -9,7 +9,6 @@ namespace PokemonGame.NPC
 
         protected override void OnPlayerInteracted()
         {
-            Debug.Log("queued dialogue");
             QueDialogue(textAsset, DialogueBoxType.Dialogue);
             base.OnPlayerInteracted();
         }

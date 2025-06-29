@@ -462,19 +462,19 @@ namespace PokemonGame.Battle
             currentTurn = TurnStatus.Ending;
         }
 
-        private void DialogueMoveUsed(string battlerUsed, string moveUsed, string battlerHit)
+        private void DialogueMoveUsed(MoveMethodEventArgs e)
         {
             Dictionary<string, string> variables = new Dictionary<string, string>();
-            variables.Add("battlerUsed", battlerUsed);
-            variables.Add("moveUsed", moveUsed);
-            variables.Add("battlerHit", battlerHit);
+            variables.Add("battlerUsed", e.attacker.name);
+            variables.Add("moveUsed", e.move.name);
+            variables.Add("battlerHit", e.target.name);
             
             QueDialogue(battlerUsedText, DialogueBoxType.Event, "moveUsed", true, variables);
         }
 
-        private void DialogueMoveEffectiveness(string battlerUsed, string moveUsed, string battlerHit, int effectiveIndex)
+        private void DialogueMoveEffectiveness(MoveMethodEventArgs e)
         {
-            switch (effectiveIndex)
+            switch (e.effectiveIndex)
             {
                 case 1:
                     QueDialogue("Its Not Very Effective...", DialogueBoxType.Event);
@@ -483,8 +483,13 @@ namespace PokemonGame.Battle
                     QueDialogue("Its Super Effective!", DialogueBoxType.Event);
                     break;
                 case 3:
-                    QueDialogue($"{battlerHit} is immune!", DialogueBoxType.Event);
+                    QueDialogue($"{e.target.name} is immune!", DialogueBoxType.Event);
                     break;
+            }
+
+            if (e.crit)
+            {
+                QueDialogue("A Critical Hit!", DialogueBoxType.Event);
             }
         }
 
@@ -832,12 +837,11 @@ namespace PokemonGame.Battle
             MoveMethodEventArgs e = new MoveMethodEventArgs(playerCurrentBattler, opponentCurrentBattler,
                 playerMoveToDoIndex, playerMoveToDo, ExternalBattleData.Construct(this));
 
-            DialogueMoveUsed(playerCurrentBattler.name, playerMoveToDo.name, opponentCurrentBattler.name);
+            DialogueMoveUsed(e);
             
             playerMoveToDo.MoveMethod(e);
 
-            DialogueMoveEffectiveness(playerCurrentBattler.name, playerMoveToDo.name, opponentCurrentBattler.name,
-                e.effectiveIndex);
+            DialogueMoveEffectiveness(e);
 
             if (playerMoveToDo.category != MoveCategory.Status)
             {
@@ -925,12 +929,11 @@ namespace PokemonGame.Battle
             MoveMethodEventArgs e = new MoveMethodEventArgs(opponentCurrentBattler, playerCurrentBattler, moveToDoIndex,
                 enemyMoveToDo, ExternalBattleData.Construct(this));
             
-            DialogueMoveUsed(opponentCurrentBattler.name, enemyMoveToDo.name, playerCurrentBattler.name);
+            DialogueMoveUsed(e);
             
             enemyMoveToDo.MoveMethod(e);
             
-            DialogueMoveEffectiveness(playerCurrentBattler.name, playerMoveToDo.name, opponentCurrentBattler.name,
-                e.effectiveIndex);
+            DialogueMoveEffectiveness(e);
             
             if (enemyMoveToDo.category != MoveCategory.Special)
             {

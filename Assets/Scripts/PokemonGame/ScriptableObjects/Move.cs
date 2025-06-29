@@ -21,6 +21,7 @@ namespace PokemonGame.ScriptableObjects
         public int basePP;
         public float accuracy;
         public float priority;
+        public bool increasedCritChance;
         public MoveCategory category;
         [Tooltip("Only used if the move has a chance to do something else")] public float probability;
         [ConditionalHideObject("category", MoveCategory.ZMove)] public Item zCrystal;
@@ -87,6 +88,7 @@ namespace PokemonGame.ScriptableObjects
         public ExternalBattleData battleData;
         public int damageDealt = 0;
         public int effectiveIndex = 0;
+        public bool crit;
 
         public MoveMethodEventArgs(Battler attacker, Battler target, int moveIndex, Move move, ExternalBattleData battleData)
         {

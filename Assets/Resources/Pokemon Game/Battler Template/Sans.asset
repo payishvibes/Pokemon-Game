@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d18b0702c76df542a3a20fe8e6205e9, type: 3}
+  m_Name: Sans
+  m_EditorClassIdentifier: 
+  name: Sans
+  primaryType: 5
+  secondaryType: 2
+  texture:
+    basic: {fileID: 21300000, guid: 828fb9d2a577fea45b01ecfafa722317, type: 3}
+    female: {fileID: 0}
+    basicBack: {fileID: 21300000, guid: 828fb9d2a577fea45b01ecfafa722317, type: 3}
+    femaleBack: {fileID: 0}
+    shiny: {fileID: 21300000, guid: 828fb9d2a577fea45b01ecfafa722317, type: 3}
+    femaleShiny: {fileID: 0}
+    shinyBack: {fileID: 21300000, guid: 828fb9d2a577fea45b01ecfafa722317, type: 3}
+    femaleShinyBack: {fileID: 0}
+  dexNo: 1111111
+  possibleMoves:
+    levelup:
+      keys: []
+      values: 
+    tm: []
+    egg: []
+    tutor: []
+  evolutions:
+    possibleEvolutions: []
+  expGroup: 0
+  catchRate: 45
+  baseFriendship: 50
+  baseStats:
+    maxHealth: 97
+    attack: 107
+    defense: 101
+    specialAttack: 127
+    specialDefense: 89
+    speed: 79
+  expYield: 270
+  yields:
+    maxHealth: 0
+    attack: 0
+    defense: 0
+    specialAttack: 0
+    specialDefense: 0
+    speed: 0

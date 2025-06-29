@@ -19,12 +19,13 @@ namespace PokemonGame.Battle
     [CreateAssetMenu(fileName = "New Moves Methods", menuName = "All/New Moves Methods")]
     public class MovesMethods : ScriptableObject
     {
-        private int CalculateDamage(Move move, Battler battlerThatUsed, Battler battlerBeingAttacked, out int effectiveIndex)
+        private int CalculateDamage(Move move, Battler battlerThatUsed, Battler battlerBeingAttacked, out int effectiveIndex, out bool hitCrit)
         {
             //Damage calculation equation from: https://bulbapedia.bulbagarden.net/wiki/Damage#Generation_II
             
             int damage = 0;
-
+            
+            hitCrit = false;
             effectiveIndex = 0;
             
             //Checking to see if the move is capable of hitting the opponent battler
@@ -88,7 +89,7 @@ namespace PokemonGame.Battle
 
             int item = 1;
 
-            int critical = 1;
+            float critical = 1;
 
             int TK = 1;
 
@@ -109,6 +110,11 @@ namespace PokemonGame.Battle
 
             float burn = 1;
 
+            if (move.category == MoveCategory.Physical && battlerThatUsed.statusEffect == Registry.GetStatusEffect("Burn"))
+            {
+                burn = 0.5f;
+            }
+
             float other = 1;
 
             float zMove = 1;
@@ -124,6 +130,38 @@ namespace PokemonGame.Battle
             {
                 attack = battlerThatUsed.stats.specialAttack;
                 defense = battlerBeingAttacked.stats.specialDefense;
+            }
+            
+            // critical hit calc
+
+            int critStage = 1;
+            
+            if (move.increasedCritChance)
+            {
+                critStage += 1;
+            }
+
+            switch (critStage)
+            {
+                case 1:
+                    hitCrit = Random.Range(1, 25) == 1;
+                    break;
+                case 2:
+                    hitCrit = Random.Range(1, 9) == 1;
+                    break;
+                case 3:
+                    hitCrit = Random.Range(1, 3) == 1;
+                    break;
+            }
+
+            if (critStage >= 4)
+            {
+                hitCrit = true;
+            }
+
+            if (hitCrit)
+            {
+                critical = 1.5f;
             }
 
             if (type > 1)
@@ -240,8 +278,9 @@ namespace PokemonGame.Battle
 
         private int CalculateDamage(MoveMethodEventArgs e)
         {
-            int dmg = CalculateDamage(e.move, e.attacker, e.target, out int effectiveIndex);
+            int dmg = CalculateDamage(e.move, e.attacker, e.target, out int effectiveIndex, out bool crit);
             e.effectiveIndex =  effectiveIndex;
+            e.crit = crit;
             return dmg;
         }
 
@@ -249,15 +288,14 @@ namespace PokemonGame.Battle
         {
             if (e.move.category != MoveCategory.Status)
             {
-                e.damageDealt = CalculateDamage(e.move, e.attacker, e.target, out int effectiveIndex);
-                e.effectiveIndex = effectiveIndex;
+                e.damageDealt = CalculateDamage(e);
             }
         }
         
         public void Toxic(MoveMethodEventArgs e)
         {
             e.target.statusEffect = Registry.GetStatusEffect("Poisoned");
-            Battle.Singleton.QueDialogue($"{e.target.name} was poisoned!", DialogueBoxType.Event, "poisoned", true);
+            Battle.Singleton.QueDialogue($"{e.target.name} was poisoned!", DialogueBoxType.Event);
         }
 
         public void LeechLife(MoveMethodEventArgs e)
@@ -272,13 +310,19 @@ namespace PokemonGame.Battle
         {
             e.target.statusEffect = Registry.GetStatusEffect("Asleep");
             e.target.sleepTurns = Random.Range(1, 4);
-            Battle.Singleton.QueDialogue($"{e.target.name} was put to sleep!", DialogueBoxType.Event, "putToSleep");
+            Battle.Singleton.QueDialogue($"{e.target.name} was put to sleep!", DialogueBoxType.Event);
         }
 
         public void WillOWisp(MoveMethodEventArgs e)
         {
             e.target.statusEffect = Registry.GetStatusEffect("Burn");
-            Battle.Singleton.QueDialogue($"{e.target.name} was burned!", DialogueBoxType.Event, "burned");
+            Battle.Singleton.QueDialogue($"{e.target.name} was burned!", DialogueBoxType.Event);
+        }
+
+        public void BadTime(MoveMethodEventArgs e)
+        {
+            e.damageDealt = CalculateDamage(e);
+            Battle.Singleton.QueDialogue($"{e.target.name} is going to have a very Bad Time", DialogueBoxType.Event);
         }
     }
 }

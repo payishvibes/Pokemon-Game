@@ -4,28 +4,16 @@ using UnityEngine;
 namespace PokemonGame.Editor
 {
     using UnityEditor;
-    using ScriptableObjects;
+    using General;
     
-    [CustomEditor(typeof(BattlerTemplate))]
-    public class BattlerTemplateEditor : Editor
+    [CustomEditor(typeof(Battler))]
+    public class BattlerEditor : Editor
     {
-        public override void OnInspectorGUI()
-        {
-            base.OnInspectorGUI();
-            BattlerTemplate battlerTemplate = (BattlerTemplate)target;
-            
-            EditorUtility.SetDirty(battlerTemplate);
-            if (GUILayout.Button("Try fill info"))
-            {
-                battlerTemplate.TryFillInfo();
-            }
-        }
-        
         public override Texture2D RenderStaticPreview(string assetPath,Object[] subAssets,int width,int height)
         {
-            BattlerTemplate battlerTemplate = (BattlerTemplate)target;
+            Battler battlerTemplate = (Battler)target;
             
-            if(battlerTemplate.texture.basic!=null)
+            if(battlerTemplate.GetSpriteFront()!=null)
             {
                 System.Type t = GetType("UnityEditor.SpriteUtility");
                 if(t!=null)
@@ -33,7 +21,7 @@ namespace PokemonGame.Editor
                     MethodInfo method = t.GetMethod("RenderStaticPreview",new System.Type[] { typeof(Sprite),typeof(Color),typeof(int),typeof(int) });
                     if(method!=null)
                     {
-                        object ret = method.Invoke("RenderStaticPreview",new object[] { battlerTemplate.texture.basic,Color.white,width,height });
+                        object ret = method.Invoke("RenderStaticPreview",new object[] { battlerTemplate.GetSpriteFront(),Color.white,width,height });
                         if(ret is Texture2D)
                             return ret as Texture2D;
                     }

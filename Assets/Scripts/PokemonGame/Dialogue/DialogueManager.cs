@@ -1,7 +1,9 @@
 using PokemonGame.General;
+using PokemonGame.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.UI.Extensions;
 
 namespace PokemonGame.Dialogue
 {
@@ -26,7 +28,6 @@ namespace PokemonGame.Dialogue
         [SerializeField] private List<GameObject> dialoguePanels;
         
         [Space]
-        [SerializeField] private GameObject choicesHolder;
         [SerializeField] private GameObject[] choices;
         [SerializeField] private int currentChoicesAmount;
         [SerializeField] private int maxCharAmount;
@@ -109,7 +110,11 @@ namespace PokemonGame.Dialogue
 
         public void PressedContinue()
         {
-            if (!HasChoices())
+            if (_textAnimPlaying)
+            {
+                _textAnimPlaying = false;
+            }
+            else if (!HasChoices())
             {
                 ContinueStory();
             }
@@ -369,14 +374,11 @@ namespace PokemonGame.Dialogue
                                 string[] newNextLines = next.SplitIntoParts(maxCharAmount);
 
                                 tempNextLines = newNextLines;
-                                StartCoroutine(DisplayText(newNextLines[currentTempIndex], currentQueuedDialogue.boxType));
-                                HandleTags(_currentStory.currentTags);
+                                StartCoroutine(DisplayText(newNextLines[currentTempIndex], currentQueuedDialogue.boxType, false, true));
                             }
                             else
                             {
-                                StartCoroutine(DisplayText(next, currentQueuedDialogue.boxType));
-                                StartCoroutine(DisplayChoices());
-                                HandleTags(_currentStory.currentTags);
+                                StartCoroutine(DisplayText(next, currentQueuedDialogue.boxType, true, true));
                             }
                         }
                     }
@@ -402,11 +404,11 @@ namespace PokemonGame.Dialogue
                                 string[] newNextLines = next.SplitIntoParts(maxCharAmount);
 
                                 tempNextLines = newNextLines;
-                                StartCoroutine(DisplayText(newNextLines[currentTempIndex], currentQueuedDialogue.boxType));
+                                StartCoroutine(DisplayText(newNextLines[currentTempIndex], currentQueuedDialogue.boxType, false, false));
                             }
                             else
                             {
-                                StartCoroutine(DisplayText(next, currentQueuedDialogue.boxType));
+                                StartCoroutine(DisplayText(next, currentQueuedDialogue.boxType, false, false));
                             }
 
                             currentQueuedDialogue.text = string.Empty;
@@ -430,9 +432,7 @@ namespace PokemonGame.Dialogue
                     
                         if(_currentStory.canContinue)
                         {
-                            StartCoroutine(DisplayText(_currentStory.Continue(), currentQueuedDialogue.boxType));
-                            StartCoroutine(DisplayChoices());
-                            HandleTags(_currentStory.currentTags);
+                            StartCoroutine(DisplayText(_currentStory.Continue(), currentQueuedDialogue.boxType, true, true));
                         }
                         else
                         {
@@ -442,11 +442,8 @@ namespace PokemonGame.Dialogue
                     else
                     {
                         currentTempIndex++;
-                        StartCoroutine(DisplayText(tempNextLines[currentTempIndex], currentQueuedDialogue.boxType));
-                        if(currentTempIndex == tempNextLines.Length-1)
-                        {
-                            StartCoroutine(DisplayChoices());
-                        }
+                        StartCoroutine(DisplayText(tempNextLines[currentTempIndex], currentQueuedDialogue.boxType,
+                            currentTempIndex == tempNextLines.Length - 1, false));
                     }   
                 }
                 else
@@ -459,7 +456,7 @@ namespace PokemonGame.Dialogue
                     
                         if(string.IsNullOrEmpty(currentQueuedDialogue.text))
                         {
-                            StartCoroutine(DisplayText(_currentStory.Continue(), currentQueuedDialogue.boxType));
+                            StartCoroutine(DisplayText(_currentStory.Continue(), currentQueuedDialogue.boxType, false, false));
                         }
                         else
                         {
@@ -469,11 +466,8 @@ namespace PokemonGame.Dialogue
                     else
                     {
                         currentTempIndex++;
-                        StartCoroutine(DisplayText(tempNextLines[currentTempIndex], currentQueuedDialogue.boxType));
-                        if(currentTempIndex == tempNextLines.Length-1)
-                        {
-                            StartCoroutine(DisplayChoices());
-                        }
+                        StartCoroutine(DisplayText(tempNextLines[currentTempIndex], currentQueuedDialogue.boxType,
+                            currentTempIndex == tempNextLines.Length - 1, false));
                     }  
                 }
             }
@@ -485,10 +479,15 @@ namespace PokemonGame.Dialogue
             {
                 choiceButton.gameObject.SetActive(false);
             }
+            currentChoicesAmount = 0;
         }
+
+        private bool _textAnimPlaying = false;
         
-        private IEnumerator DisplayText(string nextSentence, DialogueBoxType boxType)
+        private IEnumerator DisplayText(string nextSentence, DialogueBoxType boxType, bool showChoices, bool handleTags)
         {
+            _textAnimPlaying = true;
+            
             EventSystem.current.SetSelectedGameObject(dialoguePanel.GetComponentsInChildren<Button>()[0].gameObject);
 
             currentDialogueBoxType = boxType;
@@ -498,32 +497,51 @@ namespace PokemonGame.Dialogue
                 panel.SetActive(false);
             }
 
-            TextMeshProUGUI textToUse = dialoguePanels[0].GetComponentInChildren<TextMeshProUGUI>();;
+            int boxTypeIndex = (int)boxType;
 
-            switch (boxType)
-            {
-                case DialogueBoxType.Dialogue:
-                    dialoguePanels[0].SetActive(true);
-                    EventSystem.current.SetSelectedGameObject(dialoguePanels[0].gameObject);
-                    textToUse = dialoguePanels[0].GetComponentInChildren<TextMeshProUGUI>();
-                    break;
-                case DialogueBoxType.Narration:
-                    dialoguePanels[1].SetActive(true);
-                    EventSystem.current.SetSelectedGameObject(dialoguePanels[1].gameObject);
-                    textToUse = dialoguePanels[1].GetComponentInChildren<TextMeshProUGUI>();
-                    break;
-                case DialogueBoxType.Event:
-                    dialoguePanels[2].SetActive(true);
-                    EventSystem.current.SetSelectedGameObject(dialoguePanels[2].gameObject);
-                    textToUse = dialoguePanels[2].GetComponentInChildren<TextMeshProUGUI>();
-                    break;
-            }
+            dialoguePanels[boxTypeIndex].SetActive(true);
+            EventSystem.current.SetSelectedGameObject(dialoguePanels[boxTypeIndex].gameObject);
+            TextMeshProUGUI textToUse = dialoguePanels[boxTypeIndex].GetComponentInChildren<TextMeshProUGUI>();;
+            ExpandingButton buttonToUse = dialoguePanels[boxTypeIndex].GetComponent<ExpandingButton>();
+            GameObject indicatorToUse = dialoguePanels[boxTypeIndex].transform.GetChild(1).GetChild(0).gameObject;
             
+            indicatorToUse.SetActive(false);
+
+            bool interupted = false;
+            
+            // actually display text lol, everything else is just additional stuff
             textToUse.text = "";
             foreach (char letter in nextSentence)
             {
+                if (!_textAnimPlaying)
+                {
+                    interupted = true;
+                    break;
+                }
                 textToUse.text += letter;
                 yield return new WaitForSeconds(0.025f * textScrollSpeed);
+            }
+
+            textToUse.text = nextSentence;
+            if (interupted)
+            {
+                buttonToUse.SetPreviousScale();
+            }
+            _textAnimPlaying = false;
+
+            if (showChoices)
+            {
+                StartCoroutine(DisplayChoices());
+            }
+            
+            if (currentChoicesAmount == 0)
+            {
+                indicatorToUse.SetActive(true);
+            }
+
+            if (handleTags)
+            {
+                HandleTags(_currentStory.currentTags);
             }
         }
         
@@ -566,6 +584,7 @@ namespace PokemonGame.Dialogue
         private IEnumerator DisplayChoices()
         {
             List<Choice> currentChoices = _currentStory.currentChoices;
+            currentChoicesAmount = currentChoices.Count;
             
             if (currentChoices.Count > choices.Length)
             {
@@ -778,7 +797,7 @@ namespace PokemonGame.Dialogue
 
     public enum DialogueBoxType
     {
-        Dialogue,
+        Dialogue = 0,
         Narration,
         Event
     }
