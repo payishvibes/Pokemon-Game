@@ -46,88 +46,144 @@ namespace PokemonGame.Battle
 
         [Header("UI:")]
         [SerializeField] private BattleUIManager uiManager;
-
-        [Space] 
         
+        [Space]
         [Header("Assignments")] 
         [SerializeField] private TextAsset battlerUsedText;
-
         [SerializeField] private ParticleSystem spawnEffect;
         [SerializeField] private LevelUpDisplay levelUpDisplayPrefab;
-
         [SerializeField] private float shrinkEffectDelay;
 
         [Space]
-        [Header("Main Readouts")]
+        [Header("Readouts")]
         public int currentBattlerIndex;
-
         public int opponentBattlerIndex;
-
+        [SerializeField] public TurnStatus currentTurn = TurnStatus.Choosing;
+        public BattleParty playerParty;
+        public BattleParty opponentParty;
+        [SerializeField] private EnemyAI enemyAI;
+        [SerializeField] private Move playerMoveToDo;
+        
+        
         [HideInInspector] public int currentDisplayBattlerIndex;
         [HideInInspector] public int opponentDisplayBattlerIndex;
-
-        [Space]
-        [Header("Other Readouts")]
-        [SerializeField] public TurnStatus currentTurn = TurnStatus.Choosing;
         
-        public BattleParty playerParty;
-        
-        public BattleParty opponentParty;
-        
-        [SerializeField] private EnemyAI enemyAI;
-        
-        [SerializeField] private Move playerMoveToDo;
+        /// <summary>
+        /// the index for the move the player intends to use
+        /// </summary>
         private int playerMoveToDoIndex;
         
+        /// <summary>
+        /// the move the enemy intends to use
+        /// </summary>
         public Move enemyMoveToDo;
         
-        [SerializeField] private bool playerHasChosenMove;
+        /// <summary>
+        /// making sure we don't run the inital chosen logic more than once
+        /// </summary>
+        private bool playerHasChosenMove;
         
-        [SerializeField] private bool hasDoneChoosingUpdate;
+        /// <summary>
+        /// making sure we don't run the inital choosing logic more than once
+        /// </summary>
+        private bool hasDoneChoosingUpdate;
         
-        [SerializeField] private bool hasSetupShowing;
-
+        /// <summary>
+        /// making sure we don't run the inital showing logic more than once
+        /// </summary>
+        private bool hasSetupShowing;
+        
+        /// <summary>
+        /// the players current battler
+        /// </summary>
         private Battler playerCurrentBattler => playerParty[currentBattlerIndex];
-
+        
+        /// <summary>
+        /// the opponents current battler
+        /// </summary>
         private Battler opponentCurrentBattler => opponentParty[opponentBattlerIndex];
 
+        /// <summary>
+        /// the active queue of turn items
+        /// </summary>
         public List<TurnItem> turnItemQueue = new List<TurnItem>();
-        [SerializeField] private bool currentlyRunningQueueItem = false;
-
+        
+        /// <summary>
+        /// are we currently running a turn item or are we waiting
+        /// </summary>
+        private bool _currentlyRunningQueueItem = false;
+        
+        /// <summary>
+        /// the list of battlers that participated on the players team during this battle
+        /// </summary>
         public List<Battler> battlersThatParticipated;
-
+        
+        // is this battle a trainer or wild battle
         public bool trainerBattle;
-
+        
         private string _opponentName;
-
+        
+        // temporary stored variables about where the player is standing back in the main game
         private Vector3 _playerPos;
         private Quaternion _playerRotation;
-
-        private int _playerSwapIndex;
         
+        // the action the player has chosen to perform
         public TurnItem playerAction;
-
+        
+        /// <summary>
+        /// the current turn item
+        /// </summary>
         public TurnItem currentTurnItem;
         
+        // events
         private EventHandler<BattlerTookDamageArgs> _opponentBattlerDefeated = null;
         private EventHandler<OnLevelUpEventArgs> _playerBattlerLeveledUp = null;
         private EventHandler<EvolutionData> _playerBattlerEvolved = null;
-
         private EventHandler<BattlerTookDamageArgs> _playerBattlerDefeated = null;
         
+        // temporary stored variables for using items
         private Item _playerItemToUse;
         private int _battlerToUseItemOn;
         private bool _useItemOnPlayerParty;
         
+        // temporary stored variables for level up screen
         private BattlerStats _oldLevelUpStats;
         private BattlerStats _newLevelUpStats;
         private int _newLevel;
         private string _newBattlerName;
-        private GameObject currentLevelUpObj;
+        private GameObject _currentLevelUpObj;
+        
+        /// <summary>
+        /// the index of the battler the player has chosen to swap to
+        /// </summary>
+        private int _playerSwapIndex;
 
         private bool _displayingAttackAnimation;
         
         private void Start()
+        {
+            LoadStartingVariables();
+            
+            for (int i = 0; i < playerParty.Count; i++)
+            {
+                if (!playerParty[i].isFainted)
+                {
+                    ChangePlayerBattlerIndex(i, true);
+                    break;
+                }
+            }
+
+            ChangeOpponentBattlerIndex(0, true);
+            
+            HookEvents();
+            
+            // adds current battler to list of participating battlers
+            battlersThatParticipated.Add(playerCurrentBattler);
+            
+            Instantiate(Resources.Load("Pokemon Game/Transitions/SpikyOpen"));
+        }
+
+        private void LoadStartingVariables()
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -144,17 +200,10 @@ namespace PokemonGame.Battle
                 _opponentName = SceneLoader.GetVariable<string>("opponentName");
             }
 
-            for (int i = 0; i < playerParty.Count; i++)
-            {
-                if (!playerParty[i].isFainted)
-                {
-                    ChangePlayerBattlerIndex(i, true);
-                    break;
-                }
-            }
+        }
 
-            ChangeOpponentBattlerIndex(0, true);
-
+        private void HookEvents()
+        {
             DialogueManager.instance.DialogueEnded += DialogueEnded;
             DialogueManager.instance.DialogueStarted += OnDialogueStarted;
             playerParty.PartyAllDefeated += PlayerPartyAllDefeated;
@@ -192,11 +241,6 @@ namespace PokemonGame.Battle
             {
                 playerParty[i].OnCanEvolve += _playerBattlerEvolved;
             }
-            
-            // adds current battler to list of participating battlers
-            battlersThatParticipated.Add(playerCurrentBattler);
-            
-            Instantiate(Resources.Load("Pokemon Game/Transitions/SpikyOpen"));
         }
 
         private void OnDisable()
@@ -257,7 +301,7 @@ namespace PokemonGame.Battle
         private void ShowBattlerLeveled()
         {
             LevelUpDisplay display = Instantiate(levelUpDisplayPrefab, FindFirstObjectByType<Canvas>().transform);
-            currentLevelUpObj = display.gameObject;
+            _currentLevelUpObj = display.gameObject;
             display.Init(_oldLevelUpStats, _newLevelUpStats);
         }
 
@@ -319,7 +363,7 @@ namespace PokemonGame.Battle
 
         public void FinishedViewingLevelUpScreen()
         {
-            Destroy(currentLevelUpObj);
+            Destroy(_currentLevelUpObj);
             TurnQueueItemEnded();
         }
 
@@ -373,24 +417,29 @@ namespace PokemonGame.Battle
                     TurnShowing();
                     break;
                 case TurnStatus.Choosing:
-                    if (!hasDoneChoosingUpdate)
-                    {
-                        uiManager.ShowControlUI(true);
-                        uiManager.ShowUI(true);
-                        uiManager.UpdateBattlerMoveDisplays();
-                        if (trainerBattle)
-                        {
-                            enemyAI.AIMethod(new AIMethodEventArgs(opponentCurrentBattler, opponentParty,
-                                ExternalBattleData.Construct(this)));
-                        }
-                        else
-                        {
-                            EnemyAIMethods.WildPokemon(new AIMethodEventArgs(opponentCurrentBattler, opponentParty,
-                                ExternalBattleData.Construct(this)));
-                        }
-                        hasDoneChoosingUpdate = true;
-                    }
+                    TurnChoosing();
                     break;
+            }
+        }
+
+        private void TurnChoosing()
+        {
+            if (!hasDoneChoosingUpdate)
+            {
+                uiManager.ShowControlUI(true);
+                uiManager.ShowUI(true);
+                uiManager.UpdateBattlerMoveDisplays();
+                if (trainerBattle)
+                {
+                    enemyAI.AIMethod(new AIMethodEventArgs(opponentCurrentBattler, opponentParty,
+                        ExternalBattleData.Construct(this)));
+                }
+                else
+                {
+                    EnemyAIMethods.WildPokemon(new AIMethodEventArgs(opponentCurrentBattler, opponentParty,
+                        ExternalBattleData.Construct(this)));
+                }
+                hasDoneChoosingUpdate = true;
             }
         }
         
@@ -399,11 +448,9 @@ namespace PokemonGame.Battle
             if (!hasSetupShowing)
             {
                 hasSetupShowing = true;
-                
                 uiManager.ShowControlUI(false);
-                
                 turnItemQueue.Add(TurnItem.StartDelay);
-
+                
                 if (playerAction is not TurnItem.PlayerMove)
                 {
                     turnItemQueue.Add(playerAction);
@@ -414,92 +461,97 @@ namespace PokemonGame.Battle
                 turnItemQueue.Add(TurnItem.EndOfTurnStatusEffects);
             }
             
-            if (!currentlyRunningQueueItem)
+            if (!_currentlyRunningQueueItem)
             {
                 if (turnItemQueue.Count > 0 && !CurrentlyEndingTheBattle())
                 {
-                    currentlyRunningQueueItem = true;
-                    
-                    currentTurnItem = turnItemQueue[0];
-                    turnItemQueue.RemoveAt(0);
-                    
-                    Debug.Log($"Starting turn item: {currentTurnItem}");
-                    
-                    switch (currentTurnItem)
-                    {
-                        case TurnItem.StartDelay:
-                            StartCoroutine(TurnStartDelay());
-                            break;
-                        case TurnItem.PlayerMove:
-                            DoPlayerMove();
-                            break;
-                        case TurnItem.OpponentMove:
-                            DoEnemyMove();
-                            break;
-                        case TurnItem.EndBattlePlayerWin:
-                            BeginEndBattleDialogue(true);
-                            break;
-                        case TurnItem.EndBattleOpponentWin:
-                            BeginEndBattleDialogue(false);
-                            break;
-                        case TurnItem.PlayerSwapBecauseFainted:
-                            BeginSwapPlayerBattler();
-                            break;
-                        case TurnItem.PlayerSwap:
-                            PlayerSwappedBattler();
-                            break;
-                        case TurnItem.PlayerItem:
-                            PlayerUseItem(_battlerToUseItemOn, _useItemOnPlayerParty);
-                            break;
-                        case TurnItem.PlayerLevelUp:
-                            BattlerLevelUpEvent();
-                            break;
-                        case TurnItem.OpponentSwap:
-                            OpponentSwitchBattler();
-                            break;
-                        case TurnItem.OpponentSwapBecauseFainted:
-                            OpponentSwitchBattler();
-                            break;
-                        case TurnItem.StartOfTurnStatusEffects:
-                            RunStartOfTurnStatusEffects();
-                            break;
-                        case TurnItem.EndOfTurnStatusEffects:
-                            RunEndOfTurnStatusEffects();
-                            break;
-                        case TurnItem.OpponentParalysed:
-                            OpponentParalysed();
-                            break;
-                        case TurnItem.OpponentAsleep:
-                            OpponentAsleep();
-                            break;
-                        case TurnItem.PlayerParalysed:
-                            PlayerParalysed();
-                            break;
-                        case TurnItem.PlayerAsleep:
-                            PlayerAsleep();
-                            break;
-                        case TurnItem.CatchAttempt:
-                            CatchAttempt();
-                            break;
-                        case TurnItem.Run:
-                            RunRunAwayDialogue();
-                            break;
-                        case TurnItem.PlayerMissed:
-                            MoveMissed();
-                            break;
-                        case TurnItem.OpponentMissed:
-                            MoveMissed();
-                            break;
-                    }
-                    
-                    uiManager.UpdatePlayerBattlerDetails();
-                    uiManager.UpdateOpponentBattlerDetails();
+                    NewTurnItem();
                 }
                 else if (!CurrentlyEndingTheBattle())
                 {
                     EndTurnShowing();
                 }
             }
+        }
+
+        private void NewTurnItem()
+        {
+            _currentlyRunningQueueItem = true;
+
+            currentTurnItem = turnItemQueue[0];
+            turnItemQueue.RemoveAt(0);
+
+            Debug.Log($"Starting turn item: {currentTurnItem}");
+
+            switch (currentTurnItem)
+            {
+                case TurnItem.StartDelay:
+                    StartCoroutine(TurnStartDelay());
+                    break;
+                case TurnItem.PlayerMove:
+                    DoPlayerMove();
+                    break;
+                case TurnItem.OpponentMove:
+                    DoEnemyMove();
+                    break;
+                case TurnItem.EndBattlePlayerWin:
+                    BeginEndBattleDialogue(true);
+                    break;
+                case TurnItem.EndBattleOpponentWin:
+                    BeginEndBattleDialogue(false);
+                    break;
+                case TurnItem.PlayerSwapBecauseFainted:
+                    BeginSwapPlayerBattler();
+                    break;
+                case TurnItem.PlayerSwap:
+                    PlayerSwappedBattler();
+                    break;
+                case TurnItem.PlayerItem:
+                    PlayerUseItem(_battlerToUseItemOn, _useItemOnPlayerParty);
+                    break;
+                case TurnItem.PlayerLevelUp:
+                    BattlerLevelUpEvent();
+                    break;
+                case TurnItem.OpponentSwap:
+                    OpponentSwitchBattler();
+                    break;
+                case TurnItem.OpponentSwapBecauseFainted:
+                    OpponentSwitchBattler();
+                    break;
+                case TurnItem.StartOfTurnStatusEffects:
+                    RunStartOfTurnStatusEffects();
+                    break;
+                case TurnItem.EndOfTurnStatusEffects:
+                    RunEndOfTurnStatusEffects();
+                    break;
+                case TurnItem.OpponentParalysed:
+                    OpponentParalysed();
+                    break;
+                case TurnItem.OpponentAsleep:
+                    OpponentAsleep();
+                    break;
+                case TurnItem.PlayerParalysed:
+                    PlayerParalysed();
+                    break;
+                case TurnItem.PlayerAsleep:
+                    PlayerAsleep();
+                    break;
+                case TurnItem.CatchAttempt:
+                    CatchAttempt();
+                    break;
+                case TurnItem.Run:
+                    RunRunAwayDialogue();
+                    break;
+                case TurnItem.PlayerMissed:
+                    MoveMissed();
+                    break;
+                case TurnItem.OpponentMissed:
+                    MoveMissed();
+                    break;
+            }
+
+            uiManager.UpdatePlayerBattlerDetails();
+            uiManager.UpdateOpponentBattlerDetails();
         }
 
         private bool CurrentlyEndingTheBattle()
@@ -516,7 +568,7 @@ namespace PokemonGame.Battle
         public void TurnQueueItemEnded()
         {
             Debug.Log($"Ending turn item: {currentTurnItem}");
-            currentlyRunningQueueItem = false;
+            _currentlyRunningQueueItem = false;
         }
 
         private void EndTurnShowing()
@@ -760,7 +812,7 @@ namespace PokemonGame.Battle
 
         public void ChooseToSwap(int newBattlerIndex)
         {
-            if (currentlyRunningQueueItem) // swapping mid turn showing aka after a battler faints
+            if (_currentlyRunningQueueItem) // swapping mid turn showing aka after a battler faints
             {
                 _playerSwapIndex = newBattlerIndex;
                 QueDialogue($"You sent out {playerParty[newBattlerIndex].name}", DialogueBoxType.Event, "swap", true);
