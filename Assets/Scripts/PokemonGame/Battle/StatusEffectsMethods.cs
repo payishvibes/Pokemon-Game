@@ -26,7 +26,7 @@ namespace PokemonGame.Battle
                 args.battler.sleepTurns = 0;
                 args.battler.statusEffect = StatusEffect.Healthy;
                 
-                Battle.Singleton.QueDialogue($"{args.battler.name} woke up!", DialogueBoxType.Event, "wokeUp");
+                Battle.Singleton.QueDialogue($"{args.battler.name} woke up!", DialogueBoxType.Event, "statusEffect");
             }
             else
             {
@@ -39,14 +39,14 @@ namespace PokemonGame.Battle
         {
             args.battler.TakeDamage(Mathf.CeilToInt(args.battler.stats.maxHealth/8f), new StatusEffectDamageSource(args.battler.statusEffect));
 
-            Battle.Singleton.QueDialogue($"{args.battler.name} was hurt by poison!", DialogueBoxType.Event, "poisonHurt");
+            Battle.Singleton.QueDialogue($"{args.battler.name} was hurt by poison!", DialogueBoxType.Event, "statusEffect");
         }
 
         public void Burn(StatusEffectEventArgs args)
         {
             args.battler.TakeDamage(Mathf.CeilToInt(args.battler.stats.maxHealth/8f), new StatusEffectDamageSource(args.battler.statusEffect));
 
-            Battle.Singleton.QueDialogue($"{args.battler.name} was burned!", DialogueBoxType.Event, "burnHurt");
+            Battle.Singleton.QueDialogue($"{args.battler.name} was burned!", DialogueBoxType.Event, "statusEffect");
         }
     }   
 }

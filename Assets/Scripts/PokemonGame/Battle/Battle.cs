@@ -237,7 +237,6 @@ namespace PokemonGame.Battle
         private void BattlerLevelUpEvent()
         {
             QueDialogue($"{_newBattlerName} reached level {_newLevel}!", DialogueBoxType.Narration, "leveledUp");
-            DialogueManager.instance.ForceStopLastQueued(true); // stops any new dialogue until the level up graphic has finished
         }
 
         private void BattlerLeveledUp(Battler battlerThatLeveled, OnLevelUpEventArgs args)
@@ -246,6 +245,7 @@ namespace PokemonGame.Battle
             _newLevelUpStats = args.newStats;
             _newBattlerName = battlerThatLeveled.name;
             _newLevel = args.newLevel;
+            Debug.Log("Queuing player level up");
             turnItemQueue.Insert(0, TurnItem.PlayerLevelUp);
         }
 
@@ -276,13 +276,16 @@ namespace PokemonGame.Battle
                 opponentCurrentBattler.TakeDamage(_currentArgs.damageDealt, new BattlerDamageSource(playerCurrentBattler));
             }
             
+            MoveMethodEventArgs args = _currentArgs;
+            
             yield return new WaitForSeconds(1);
             
             _displayingAttackAnimation = false;
             StartDialogue();
             
-            if (_currentArgs.effectiveIndex == 0 && !_currentArgs.crit)
+            if (args.effectiveIndex == 0 && !args.crit)
             {
+                Debug.Log("HEY IM ENDING THE PLAYERS TURN NOW");
                 TurnQueueItemEnded();
             }
         }
@@ -299,6 +302,8 @@ namespace PokemonGame.Battle
             {
                 playerCurrentBattler.TakeDamage(_currentArgs.damageDealt, new BattlerDamageSource(opponentCurrentBattler));
             }
+
+            MoveMethodEventArgs args = _currentArgs;
             
             yield return new WaitForSeconds(1);
             
@@ -306,7 +311,7 @@ namespace PokemonGame.Battle
             StartDialogue();
             
             // make sure there will be no more dialogue regarding the opponentsturn
-            if (_currentArgs.effectiveIndex == 0 && !_currentArgs.crit)
+            if (args.effectiveIndex == 0 && !args.crit)
             {
                 TurnQueueItemEnded();
             }
@@ -316,7 +321,6 @@ namespace PokemonGame.Battle
         {
             Destroy(currentLevelUpObj);
             TurnQueueItemEnded();
-            StartDialogue();
         }
 
         public void BattlerFainted(EventArgs e, Battler defeated)
@@ -332,7 +336,7 @@ namespace PokemonGame.Battle
             {
                 if (!battler.isFainted)
                 {
-                    QueDialogue($"{battler.name} gained {exp} experience points", DialogueBoxType.Event);
+                    QueDialogue($"{battler.name} gained {exp} experience points", DialogueBoxType.Event, "expGained");
                     battler.GainExp(exp);
                 }
             }
@@ -419,6 +423,8 @@ namespace PokemonGame.Battle
                     currentTurnItem = turnItemQueue[0];
                     turnItemQueue.RemoveAt(0);
                     
+                    Debug.Log($"Starting turn item: {currentTurnItem}");
+                    
                     switch (currentTurnItem)
                     {
                         case TurnItem.StartDelay:
@@ -486,9 +492,6 @@ namespace PokemonGame.Battle
                             break;
                     }
                     
-                    playerParty.CheckDefeatedStatus();
-                    opponentParty.CheckDefeatedStatus();
-                    
                     uiManager.UpdatePlayerBattlerDetails();
                     uiManager.UpdateOpponentBattlerDetails();
                 }
@@ -512,6 +515,7 @@ namespace PokemonGame.Battle
 
         public void TurnQueueItemEnded()
         {
+            Debug.Log($"Ending turn item: {currentTurnItem}");
             currentlyRunningQueueItem = false;
         }
 
@@ -543,19 +547,19 @@ namespace PokemonGame.Battle
             switch (e.effectiveIndex)
             {
                 case 1:
-                    QueDialogue("Its Not Very Effective...", DialogueBoxType.Event);
+                    QueDialogue("Its Not Very Effective...", DialogueBoxType.Event, "moveEffectiveness");
                     break;
                 case 2:
-                    QueDialogue("Its Super Effective!", DialogueBoxType.Event);
+                    QueDialogue("Its Super Effective!", DialogueBoxType.Event, "moveEffectiveness");
                     break;
                 case 3:
-                    QueDialogue($"{e.target.name} is immune!", DialogueBoxType.Event);
+                    QueDialogue($"{e.target.name} is immune!", DialogueBoxType.Event, "moveEffectiveness");
                     break;
             }
 
             if (e.crit)
             {
-                QueDialogue("A Critical Hit!", DialogueBoxType.Event);
+                QueDialogue("A Critical Hit!", DialogueBoxType.Event, "moveEffectiveness");
             }
         }
 
@@ -592,15 +596,12 @@ namespace PokemonGame.Battle
 
         private void DialogueEnded(object sender, DialogueEndedEventArgs args)
         {
-            bool swappedDialogue = false;
-
             switch (args.id)
             {
                 case "run":
                     StartCoroutine(ExitBattleWin());
                     break;
                 case "swap":
-                    swappedDialogue = true;
                     PlayerSwappedBattler();
                     break;
                 case "playerDefeated":
@@ -620,13 +621,28 @@ namespace PokemonGame.Battle
                     break;
                 case "playerFainted":
                     uiManager.SwitchBattlerBecauseOfDeath();
-                    swappedDialogue = true;
                     break;
-            }
-            
-            if (currentlyRunningQueueItem && !args.moreToGo && !swappedDialogue && !CurrentlyEndingTheBattle() && currentLevelUpObj == null && !_displayingAttackAnimation)
-            {
-                TurnQueueItemEnded();
+                case "moveEffectiveness":
+                    if (!args.moreToGo)
+                    {
+                        TurnQueueItemEnded();
+                    }
+                    break;
+                case "moveMissed":
+                    TurnQueueItemEnded();
+                    break;
+                case "statusEffect":
+                    TurnQueueItemEnded();
+                    break;
+                case "sentOut":
+                    TurnQueueItemEnded();
+                    break;
+                case "expGained":
+                    if (!args.moreToGo)
+                    {
+                        TurnQueueItemEnded();
+                    }
+                    break;
             }
         }
 
@@ -860,7 +876,7 @@ namespace PokemonGame.Battle
             uiManager.UpdateOpponentBattlerDetails();
             uiManager.ForceHealthSet();
             
-            QueDialogue($"Opponent sent out {opponentParty[e.newBattlerIndex].name}!", DialogueBoxType.Event, "opponentSentOut", true);
+            QueDialogue($"Opponent sent out {opponentParty[e.newBattlerIndex].name}!", DialogueBoxType.Event, "sentOut", true);
         }
 
         private void PlayerParalysed()
@@ -885,7 +901,7 @@ namespace PokemonGame.Battle
 
         private void MoveMissed()
         {
-            QueDialogue($"But it missed!", DialogueBoxType.Event);
+            QueDialogue($"But it missed!", DialogueBoxType.Event, "moveMissed");
         }
 
         public void AddParticipatedBattler(Battler battlerToParticipate)
@@ -933,8 +949,6 @@ namespace PokemonGame.Battle
                 playerMoveToDoIndex, playerMoveToDo, ExternalBattleData.Construct(this));
 
             DialogueMoveUsed(e, true);
-            DialogueManager.instance.ForceStopLastQueued(true); // stops any new dialogue until the animations and such
-            
             _currentArgs = e;
             
             if (missed)
@@ -971,19 +985,36 @@ namespace PokemonGame.Battle
             {
                 opponentAdjustedSpeed /= 2;
             }
-            
-            
-            if(playerAdjustedSpeed > opponentAdjustedSpeed)
+
+            if (playerMoveToDo.priority == enemyMoveToDo.priority)
             {
-                //Player is faster
-                AddPlayerMoveToQueue();
-                AddOpponentMoveToQueue();
+                if(playerAdjustedSpeed > opponentAdjustedSpeed)
+                {
+                    //Player BATTLER is faster
+                    AddPlayerMoveToQueue();
+                    AddOpponentMoveToQueue();
+                }
+                else
+                {
+                    //Enemy BATTLER is faster
+                    AddOpponentMoveToQueue();
+                    AddPlayerMoveToQueue();
+                }
             }
             else
             {
-                //Enemy is faster
-                AddOpponentMoveToQueue();
-                AddPlayerMoveToQueue();
+                if(playerMoveToDo.priority > enemyMoveToDo.priority)
+                {
+                    //Player MOVE is faster
+                    AddPlayerMoveToQueue();
+                    AddOpponentMoveToQueue();
+                }
+                else
+                {
+                    //Enemy MOVE is faster
+                    AddOpponentMoveToQueue();
+                    AddPlayerMoveToQueue();
+                }
             }
         }
         
@@ -1036,8 +1067,6 @@ namespace PokemonGame.Battle
                 enemyMoveToDo, ExternalBattleData.Construct(this));
             
             DialogueMoveUsed(e, false);
-            DialogueManager.instance.ForceStopLastQueued(true); // stops any new dialogue until the level up graphic has finished
-
             _currentArgs = e;
             
             if (missed)
@@ -1133,6 +1162,9 @@ namespace PokemonGame.Battle
                 }
             }
             
+            playerParty.CheckDefeatedStatus();
+            opponentParty.CheckDefeatedStatus();
+            
             if (!anyEffects)
             {
                 TurnQueueItemEnded();
@@ -1166,6 +1198,9 @@ namespace PokemonGame.Battle
                     }
                 }
             }
+            
+            playerParty.CheckDefeatedStatus();
+            opponentParty.CheckDefeatedStatus();
 
             if (!anyEffects)
             {
@@ -1219,6 +1254,7 @@ namespace PokemonGame.Battle
             if (isDefeated)
             {
                 // turnItemQueue.Clear();
+                Debug.Log("Queuing ending battle player win");
                 turnItemQueue.Add(TurnItem.EndBattlePlayerWin);
             }
             else

@@ -1,5 +1,8 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace PokemonGame.General
 {
@@ -16,9 +19,17 @@ namespace PokemonGame.General
 
         private void Update()
         {
-            if (_system.currentSelectedGameObject == null)
+            if (!_system.currentSelectedGameObject && _lastSelected)
             {
-                _system.SetSelectedGameObject(_lastSelected);
+                if (_lastSelected.activeInHierarchy)
+                {
+                    _system.SetSelectedGameObject(_lastSelected);
+                }
+                else
+                {
+                    Button button = FindAnyObjectByType<Button>(FindObjectsInactive.Exclude);
+                    _system.SetSelectedGameObject(button.gameObject);
+                }
             }
 
             _lastSelected = _system.currentSelectedGameObject;

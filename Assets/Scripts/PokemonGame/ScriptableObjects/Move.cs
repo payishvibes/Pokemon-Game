@@ -20,7 +20,7 @@ namespace PokemonGame.ScriptableObjects
         public int damage;
         public int basePP;
         public float accuracy;
-        public float priority;
+        public int priority;
         public bool increasedCritChance;
         public MoveCategory category;
         [Tooltip("Only used if the move has a chance to do something else")] public float probability;

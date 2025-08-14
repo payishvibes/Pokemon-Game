@@ -125,22 +125,27 @@ namespace PokemonGame.Battle
 
             for (int i = 0; i < battle.playerParty.Count; i++)
             {
+                Button buttonParent = battlerDisplays[i].transform.parent.GetComponent<Button>();
+                
                 if (!battle.playerParty[i])
                 {
-                    battlerDisplays[i].transform.parent.gameObject.SetActive(false);
+                    buttonParent.gameObject.SetActive(false);
                 }
                 else
                 {
-                    battlerDisplays[i].transform.parent.gameObject.SetActive(true);
+                    buttonParent.gameObject.SetActive(true);
                     battlerDisplays[i].text = battle.playerParty[i].name;
                     // battlerDisplays[i].transform.parent.GetComponent<Button>().interactable = !battle.playerParty[i].isFainted;
                     battlerDisplays[i].color = Color.black;
+                    Color newColour = buttonParent.targetGraphic.color;
+                    newColour.a = 1;
 
                     if (i == battle.currentBattlerIndex)
                     {
                         battlerDisplays[i].text = battle.playerParty[i].name + " is selected";
                         // battlerDisplays[i].transform.parent.GetComponent<Button>().interactable = false;
                         battlerDisplays[i].color = Color.blue;
+                        newColour.a = .5f;
                     }
 
                     if (battle.playerParty[i].isFainted)
@@ -148,7 +153,10 @@ namespace PokemonGame.Battle
                         battlerDisplays[i].text = battle.playerParty[i].name + " is fainted";
                         // battlerDisplays[i].transform.parent.GetComponent<Button>().interactable = false;
                         battlerDisplays[i].color = Color.red;
+                        newColour.a = .5f;
                     }
+                    buttonParent.targetGraphic.color = newColour;
+                    
                 }
             }
         }
