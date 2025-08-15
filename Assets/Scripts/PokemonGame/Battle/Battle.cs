@@ -349,6 +349,8 @@ namespace PokemonGame.Battle
 
             MoveMethodEventArgs args = _currentArgs;
             
+            Debug.Log("about to start the waiting period for the opponent move");
+            
             yield return new WaitForSeconds(1);
             
             _displayingAttackAnimation = false;
@@ -681,13 +683,22 @@ namespace PokemonGame.Battle
                     }
                     break;
                 case "moveMissed":
-                    TurnQueueItemEnded();
+                    if (!args.moreToGo)
+                    {
+                        TurnQueueItemEnded();
+                    }
                     break;
                 case "statusEffect":
-                    TurnQueueItemEnded();
+                    if (!args.moreToGo)
+                    {
+                        TurnQueueItemEnded();
+                    }
                     break;
                 case "sentOut":
-                    TurnQueueItemEnded();
+                    if (!args.moreToGo)
+                    {
+                        TurnQueueItemEnded();
+                    }
                     break;
                 case "expGained":
                     if (!args.moreToGo)

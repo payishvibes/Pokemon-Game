@@ -321,7 +321,7 @@ namespace PokemonGame.Battle
                 return;
             }
             
-            playerUIHolder.SetActive(false);
+            // playerUIHolder.SetActive(false);
             healthDisplays.SetActive(true);
             moveButtons.SetActive(true);
             miscButtons.SetActive(true);
