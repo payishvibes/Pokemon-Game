@@ -106,12 +106,13 @@ public class TallGrass : DialogueTrigger
             
         Dictionary<string, object> vars = new Dictionary<string, object>
         {
-            { "playerParty", PartyManager.GetParty()},
-            { "opponentParty", party },
-            { "playerPosition", Player.Instance.transform.position },
-            { "playerRotation", Player.Instance.targetRot },
+            { "partyOne", PartyManager.GetParty()},
+            { "partyTwo", party },
             { "trainerBattle", false}
         };
+
+        Player.globalPlayerPos = Player.Instance.transform.position;
+        Player.globalPlayerRot = Player.Instance.transform.rotation;
 
         SceneLoader.LoadScene("Battle", vars);
     }

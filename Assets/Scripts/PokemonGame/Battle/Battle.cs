@@ -59,8 +59,10 @@ namespace PokemonGame.Battle
         public int playerOneBattlerIndex;
         public int playerTwoBattlerIndex;
         [SerializeField] public TurnStatus currentTurn = TurnStatus.Choosing;
+        
         public BattleParty partyOne;
         public BattleParty partyTwo;
+        
         [SerializeField] private EnemyAI enemyAI;
         
         [HideInInspector] public int currentDisplayBattlerIndex;
@@ -274,23 +276,22 @@ namespace PokemonGame.Battle
             _currentLevelUpObj = display.gameObject;
             display.Init(((OnLevelUpEventArgs)currentTurnItem.Variables[1]).oldStats, ((OnLevelUpEventArgs)currentTurnItem.Variables[1]).newStats);
         }
-
-        private MoveMethodEventArgs _currentArgs;
-
-        private IEnumerator ShowPlayerOneMove()
+        
+        private IEnumerator ShowPlayerOneMove(MoveMethodEventArgs args)
         {
-            if (_currentArgs.missed)
+            if (args.missed)
             {
                 yield return null;
             }
             
             _displayingAttackAnimation = true;
-            if (((Move)currentTurnItem.Variables[0]).category != MoveCategory.Status && !_currentArgs.missed)
+            Debug.Log(currentTurnItem.Type);
+            Debug.Log(currentTurnItem.Variables);
+            Debug.Log(currentTurnItem.Variables[0]);
+            if (((Move)currentTurnItem.Variables[0]).category != MoveCategory.Status && !args.missed)
             {
-                playerTwoCurrentBattler.TakeDamage(_currentArgs.damageDealt, new BattlerDamageSource(playerOneCurrentBattler));
+                playerTwoCurrentBattler.TakeDamage(args.damageDealt, new BattlerDamageSource(playerOneCurrentBattler));
             }
-            
-            MoveMethodEventArgs args = _currentArgs;
             
             yield return new WaitForSeconds(1);
             
@@ -304,20 +305,21 @@ namespace PokemonGame.Battle
             }
         }
 
-        private IEnumerator ShowPlayerTwoMove()
+        private IEnumerator ShowPlayerTwoMove(MoveMethodEventArgs args)
         {
-            if (_currentArgs.missed)
+            if (args.missed)
             {
                 yield return null;
             }
             
             _displayingAttackAnimation = true;
-            if (((Move)playerTwoAction.Variables[0]).category != MoveCategory.Status && !_currentArgs.missed)
+            Debug.Log(currentTurnItem.Type);
+            Debug.Log(currentTurnItem.Variables);
+            Debug.Log(currentTurnItem.Variables[0]);
+            if (((Move)playerTwoAction.Variables[0]).category != MoveCategory.Status && !args.missed)
             {
-                playerOneCurrentBattler.TakeDamage(_currentArgs.damageDealt, new BattlerDamageSource(playerTwoCurrentBattler));
+                playerOneCurrentBattler.TakeDamage(args.damageDealt, new BattlerDamageSource(playerTwoCurrentBattler));
             }
-
-            MoveMethodEventArgs args = _currentArgs;
             
             Debug.Log("about to start the waiting period for the playerTwo move");
             
@@ -434,6 +436,11 @@ namespace PokemonGame.Battle
                     turnItemQueue.Add(playerOneAction);
                 }
                 
+                if (playerTwoAction.Type is not TurnItemType.PlayerTwoMove)
+                {
+                    turnItemQueue.Add(playerTwoAction);
+                }
+                
                 QueueTurnItem(TurnItemType.StartOfTurnStatusEffects);
                 QueueMoves();
                 QueueTurnItem(TurnItemType.EndOfTurnStatusEffects);
@@ -537,7 +544,7 @@ namespace PokemonGame.Battle
 
         private bool CurrentlyEndingTheBattle()
         {
-            return currentTurnItem.Type is TurnItemType.EndBattlePlayerTwoWin or TurnItemType.EndBattlePlayerOneWin or TurnItemType.Run;
+            return currentTurnItem?.Type is TurnItemType.EndBattlePlayerTwoWin or TurnItemType.EndBattlePlayerOneWin or TurnItemType.Run;
         }
 
         private IEnumerator TurnStartDelay()
@@ -548,19 +555,13 @@ namespace PokemonGame.Battle
 
         public void QueueTurnItem(TurnItemType type, List<object> variables)
         {
-            TurnItem item = new TurnItem();
-            item.Type = type;
-            item.Variables = variables;
-            
+            TurnItem item = new TurnItem(type, variables);
             turnItemQueue.Add(item);
         }
 
         public void QueueTurnItem(TurnItemType type)
         {
-            TurnItem item = new TurnItem();
-            item.Type = type;
-            item.Variables = null;
-            
+            TurnItem item = new TurnItem(type);
             turnItemQueue.Add(item);
         }
 
@@ -663,10 +664,10 @@ namespace PokemonGame.Battle
                     ShowBattlerLeveled();
                     break;
                 case "playerMoveUsed":
-                    StartCoroutine(ShowPlayerOneMove());
+                    StartCoroutine(ShowPlayerOneMove((MoveMethodEventArgs)currentTurnItem.Variables[^1]));
                     break;
                 case "playerTwoMoveUsed":
-                    StartCoroutine(ShowPlayerTwoMove());
+                    StartCoroutine(ShowPlayerTwoMove((MoveMethodEventArgs)currentTurnItem.Variables[^1]));
                     break;
                 case "playerFainted":
                     uiManager.SwitchBattlerBecauseOfDeath();
@@ -696,6 +697,18 @@ namespace PokemonGame.Battle
                     }
                     break;
                 case "expGained":
+                    if (!args.moreToGo)
+                    {
+                        TurnQueueItemEnded();
+                    }
+                    break;
+                case "catchFail":
+                    if (!args.moreToGo)
+                    {
+                        TurnQueueItemEnded();
+                    }
+                    break;
+                case "catchSuccess":
                     if (!args.moreToGo)
                     {
                         TurnQueueItemEnded();
@@ -780,13 +793,13 @@ namespace PokemonGame.Battle
             if (ExperienceCalculator.Captured(playerTwoCurrentBattler, playerOneCurrentBattler, (PokeBall)playerOneAction.Variables[0]))
             {
                 uiManager.ShrinkPlayerTwoBattler(true);
-                QueDialogue($"Caught {playerTwoCurrentBattler.name}!", DialogueBoxType.Event);
+                QueDialogue($"Caught {playerTwoCurrentBattler.name}!", DialogueBoxType.Event, "catchSuccess");
                 PartyManager.AddBattler(playerTwoCurrentBattler);
-                turnItemQueue.Insert(0, new TurnItem(TurnItemType.EndBattlePlayerOneWin, null));
+                turnItemQueue.Insert(0, new TurnItem(TurnItemType.EndBattlePlayerOneWin));
             }
             else
             {
-                QueDialogue($"Failed to catch {playerTwoCurrentBattler.name}!", DialogueBoxType.Event);
+                QueDialogue($"Failed to catch {playerTwoCurrentBattler.name}!", DialogueBoxType.Event, "catchFail");
             }
         }
 
@@ -978,12 +991,12 @@ namespace PokemonGame.Battle
             {
                 if (Random.Range(0, 4) == 0)
                 {
-                    turnItemQueue.Insert(0, new TurnItem(TurnItemType.PlayerOneParalysed, null));
+                    turnItemQueue.Insert(0, new TurnItem(TurnItemType.PlayerOneParalysed));
                     able = false;
                 }
             }else if (playerOneCurrentBattler.statusEffect == Registry.GetStatusEffect("Asleep"))
             {
-                turnItemQueue.Insert(0, new TurnItem(TurnItemType.PlayerOneAsleep, null));
+                turnItemQueue.Insert(0, new TurnItem(TurnItemType.PlayerOneAsleep));
                 able = false;
             }
 
@@ -1008,11 +1021,12 @@ namespace PokemonGame.Battle
                 playerOneCurrentBattler.movePpInfos[moveToDoIndex], ExternalBattleData.Construct(this));
 
             DialogueMoveUsed(e, true);
-            _currentArgs = e;
+            Debug.Log($"when we added the args the variables list had: {currentTurnItem.Variables.Count} items");
+            currentTurnItem.Variables.Add(e);
             
             if (missed)
             {
-                turnItemQueue.Insert(0, new TurnItem(TurnItemType.PlayerOneMissed, null));
+                turnItemQueue.Insert(0, new TurnItem(TurnItemType.PlayerOneMissed));
                 e.missed = true;
                 return;
             }
@@ -1082,12 +1096,12 @@ namespace PokemonGame.Battle
         
         private void AddPlayerOneMoveToQueue()
         {
-            QueueTurnItem(TurnItemType.PlayerOneMove);
+            turnItemQueue.Add(playerOneAction);
         }
 
         private void AddPlayerTwoMoveToQueue()
         {
-            QueueTurnItem(TurnItemType.PlayerTwoMove);
+            turnItemQueue.Add(playerTwoAction);
         }
 
         private void DoPlayerTwoMove(Move playerTwoMoveToDo)
@@ -1099,12 +1113,12 @@ namespace PokemonGame.Battle
             {
                 if (Random.Range(0, 4) == 0)
                 {
-                    turnItemQueue.Insert(0, new TurnItem(TurnItemType.PlayerTwoParalysed, null));
+                    turnItemQueue.Insert(0, new TurnItem(TurnItemType.PlayerTwoParalysed));
                     able = false;
                 }
             }else if (playerTwoCurrentBattler.statusEffect == Registry.GetStatusEffect("Asleep"))
             {
-                turnItemQueue.Insert(0, new TurnItem(TurnItemType.PlayerTwoAsleep, null));
+                turnItemQueue.Insert(0, new TurnItem(TurnItemType.PlayerTwoAsleep));
                 able = false;
             }
 
@@ -1129,11 +1143,11 @@ namespace PokemonGame.Battle
                 playerTwoMoveToDo, playerTwoCurrentBattler.movePpInfos[moveToDoIndex], ExternalBattleData.Construct(this));
             
             DialogueMoveUsed(e, false);
-            _currentArgs = e;
+            currentTurnItem.Variables.Add(e);
             
             if (missed)
             {
-                turnItemQueue.Insert(0, new TurnItem(TurnItemType.PlayerTwoMissed, null));
+                turnItemQueue.Insert(0, new TurnItem(TurnItemType.PlayerTwoMissed));
                 e.missed = true;
                 return;
             }
@@ -1163,7 +1177,7 @@ namespace PokemonGame.Battle
         public void RunFromBattle()
         {
             playerHasChosenMove = true;
-            playerOneAction = new TurnItem(TurnItemType.Run, null);
+            playerOneAction = new TurnItem(TurnItemType.Run);
         }
 
         private void RunRunAwayDialogue()

@@ -12,10 +12,16 @@ namespace PokemonGame.Battle
             Type = type;
             Variables = variables;
         }
+        
+        public TurnItem(TurnItemType type)
+        {
+            Type = type;
+            Variables = new List<object>();
+        }
 
         public TurnItem()
         {
-            
+            Variables = new List<object>();
         }
     }
     
