@@ -356,7 +356,7 @@ namespace PokemonGame.Battle
                 {
                     if (!battler.isFainted)
                     {
-                        QueDialogue($"{battler.name} gained {exp} experience points", DialogueBoxType.Event, "expGained");
+                        QueDialogue($"{battler.name} gained {exp} experience points", DialogueBoxType.Event, "generalFinishing");
                         battler.GainExp(exp);
                     }
                 }
@@ -599,19 +599,19 @@ namespace PokemonGame.Battle
             switch (e.effectiveIndex)
             {
                 case 1:
-                    QueDialogue("Its Not Very Effective...", DialogueBoxType.Event, "moveEffectiveness");
+                    QueDialogue("Its Not Very Effective...", DialogueBoxType.Event, "generalFinishing");
                     break;
                 case 2:
-                    QueDialogue("Its Super Effective!", DialogueBoxType.Event, "moveEffectiveness");
+                    QueDialogue("Its Super Effective!", DialogueBoxType.Event, "generalFinishing");
                     break;
                 case 3:
-                    QueDialogue($"{e.target.name} is immune!", DialogueBoxType.Event, "moveEffectiveness");
+                    QueDialogue($"{e.target.name} is immune!", DialogueBoxType.Event, "generalFinishing");
                     break;
             }
 
             if (e.crit)
             {
-                QueDialogue("A Critical Hit!", DialogueBoxType.Event, "moveEffectiveness");
+                QueDialogue("A Critical Hit!", DialogueBoxType.Event, "generalFinishing");
             }
         }
 
@@ -672,43 +672,7 @@ namespace PokemonGame.Battle
                 case "playerFainted":
                     uiManager.SwitchBattlerBecauseOfDeath();
                     break;
-                case "moveEffectiveness":
-                    if (!args.moreToGo)
-                    {
-                        TurnQueueItemEnded();
-                    }
-                    break;
-                case "moveMissed":
-                    if (!args.moreToGo)
-                    {
-                        TurnQueueItemEnded();
-                    }
-                    break;
-                case "statusEffect":
-                    if (!args.moreToGo)
-                    {
-                        TurnQueueItemEnded();
-                    }
-                    break;
-                case "sentOut":
-                    if (!args.moreToGo)
-                    {
-                        TurnQueueItemEnded();
-                    }
-                    break;
-                case "expGained":
-                    if (!args.moreToGo)
-                    {
-                        TurnQueueItemEnded();
-                    }
-                    break;
-                case "catchFail":
-                    if (!args.moreToGo)
-                    {
-                        TurnQueueItemEnded();
-                    }
-                    break;
-                case "catchSuccess":
+                case "generalFinishing":
                     if (!args.moreToGo)
                     {
                         TurnQueueItemEnded();
@@ -793,13 +757,13 @@ namespace PokemonGame.Battle
             if (ExperienceCalculator.Captured(playerTwoCurrentBattler, playerOneCurrentBattler, (PokeBall)playerOneAction.Variables[0]))
             {
                 uiManager.ShrinkPlayerTwoBattler(true);
-                QueDialogue($"Caught {playerTwoCurrentBattler.name}!", DialogueBoxType.Event, "catchSuccess");
+                QueDialogue($"Caught {playerTwoCurrentBattler.name}!", DialogueBoxType.Event, "generalFinishing");
                 PartyManager.AddBattler(playerTwoCurrentBattler);
                 turnItemQueue.Insert(0, new TurnItem(TurnItemType.EndBattlePlayerOneWin));
             }
             else
             {
-                QueDialogue($"Failed to catch {playerTwoCurrentBattler.name}!", DialogueBoxType.Event, "catchFail");
+                QueDialogue($"Failed to catch {playerTwoCurrentBattler.name}!", DialogueBoxType.Event, "generalFinishing");
             }
         }
 
@@ -928,7 +892,7 @@ namespace PokemonGame.Battle
             uiManager.UpdatePlayerOneBattlerDetails();
             uiManager.ForceHealthSet();
             
-            QueDialogue($"Go ahead {partyOne[playerOneSwapIndex].name}!", DialogueBoxType.Event, "sentOut", true);
+            QueDialogue($"Go ahead {partyOne[playerOneSwapIndex].name}!", DialogueBoxType.Event, "generalFinishing", true);
         }
 
         private void PlayerTwoSwitchBattler()
@@ -943,7 +907,7 @@ namespace PokemonGame.Battle
             uiManager.UpdatePlayerTwoBattlerDetails();
             uiManager.ForceHealthSet();
             
-            QueDialogue($"PlayerTwo sent out {partyTwo[e.newBattlerIndex].name}!", DialogueBoxType.Event, "sentOut", true);
+            QueDialogue($"PlayerTwo sent out {partyTwo[e.newBattlerIndex].name}!", DialogueBoxType.Event, "generalFinishing", true);
         }
 
         private void PlayerOneParalysed()
@@ -968,7 +932,7 @@ namespace PokemonGame.Battle
 
         private void MoveMissed()
         {
-            QueDialogue($"But it missed!", DialogueBoxType.Event, "moveMissed");
+            QueDialogue($"But it missed!", DialogueBoxType.Event, "generalFinishing");
         }
 
         public void AddParticipatedBattler(Battler battlerToParticipate)
