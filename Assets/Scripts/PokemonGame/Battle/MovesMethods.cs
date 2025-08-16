@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using PokeApiNet;
 using PokemonGame.General;
 using UnityEditor;
 using PokemonGame.Dialogue;
@@ -185,90 +187,40 @@ namespace PokemonGame.Battle
             return damage;
         }
 
-        public void CreateMoves()
+        public void UpdateMoves()
         {
-            DateTime start = DateTime.Now;
-            StreamReader streamReader =
-                new StreamReader("C:\\Users\\Mr. Monster\\Documents\\Pokemon Gen 7 database\\all moves.csv");
-            bool endOfFile = false;
-            while (!endOfFile)
-            {
-                string dataString = streamReader.ReadLine();
-                if (string.IsNullOrEmpty(dataString))
-                {
-                    endOfFile = true;
-                    break;
-                }
-                
-                dataString = dataString.Replace("—", "-1");
-                dataString = dataString.Replace("%", "");
-                dataString = dataString.Replace("∞", "-2");
-                dataString = dataString.Replace("\"", "");
-                List<string> values = Regex.Split(dataString, @",(?=[^0])(?=[^ ])", RegexOptions.None).ToList();
-
-                values[0] = values[0].Replace(",", "");
-
-                values[2] = values[2].Replace("https://img.pokemondb.net/images/icons/move-special.png", "Special");
-                values[2] = values[2].Replace("https://img.pokemondb.net/images/icons/move-physical.png", "Physical");
-                values[2] = values[2].Replace("https://img.pokemondb.net/images/icons/move-status.png", "Status");
-                
-                Move move = CreateInstance<Move>();
-                
-                move.type = Type.FromBasic((BasicType)Enum.Parse(typeof(BasicType), values[1], true));
-                if (values[6].ToLower().Contains("z-"))
-                {
-                    move.category = MoveCategory.ZMove;
-                }
-                else
-                {
-                    move.category = (MoveCategory)Enum.Parse(typeof(MoveCategory), values[2], true);
-                }
-                move.name = values[0];
-                move.basePP = int.Parse(values[5]);
-                move.description = values[6];
-                if (values[7] == "-1")
-                {
-                    move.probability = 0;
-                }
-                else
-                {
-                    move.probability = int.Parse(values[7]);
-                }
-                
-                if (values[3] == "-2")
-                {
-                    move.damage = Int32.MaxValue;
-                }
-                else if (values[3] == "-1")
-                {
-                    move.damage = 0;
-                }
-                else
-                {
-                    move.damage = int.Parse(values[3]);
-                }
-                
-                if (values[4] == "-2")
-                {
-                    move.accuracy = Int32.MaxValue;
-                }
-                else if (values[4] == "-1")
-                {
-                    move.accuracy = 0;
-                }
-                else
-                {
-                    move.accuracy = int.Parse(values[4])/100f;
-                }
-                
-                AssetDatabase.CreateAsset(move, $"Assets/Resources/Pokemon Game/Move/{move.type.name}/{move.name}.asset");
-                
-                Debug.Log($"Created Move: {move.name}");
-            }
-            
-            streamReader.Close();
+            UpdateMovesInfo();
             
             AssetDatabase.SaveAssets();
+        }
+
+        private async void UpdateMovesInfo()
+        {
+            await UpdateMovesInfoTask();
+        }
+
+        private static async Task UpdateMovesInfoTask()
+        {
+            PokeApiClient pokeClient = new PokeApiClient();
+            
+            List<Move> moves = Resources.FindObjectsOfTypeAll<Move>().ToList();
+            
+            foreach (var pokeMove in moves)
+            {
+                Debug.Log($"setting the priority of the move {pokeMove.name}");
+
+                try
+                {
+                    PokeApiNet.Move move =
+                        await pokeClient.GetResourceAsync<PokeApiNet.Move>(pokeMove.name.ToLower());
+                    
+                    pokeMove.priority = move.Priority;
+                }
+                catch (Exception e)
+                {
+                    Debug.LogWarning($"Could not find an entry for move: {pokeMove.name}");
+                }
+            }
         }
 
         public static MovesMethods GetMoveMethods()

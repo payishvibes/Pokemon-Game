@@ -117,7 +117,7 @@ namespace PokemonGame.Battle
                     {
                         useButton.onClick.AddListener(() =>
                         {
-                            Battle.Singleton.UseItem(sortedItems[index].item.targetIndex, sortedItems[index].item.playerParty);
+                            Battle.Singleton.UseItem(sortedItems[index].item.targetIndex, sortedItems[index].item.userParty);
                         });
                     }
                 }

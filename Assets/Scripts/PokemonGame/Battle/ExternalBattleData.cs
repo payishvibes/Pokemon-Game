@@ -18,7 +18,7 @@ namespace PokemonGame.Battle
         public static ExternalBattleData Construct(Battle battle)
         {
             ExternalBattleData data = new ExternalBattleData(battle.currentBattlerIndex, battle.opponentBattlerIndex,
-                battle.currentTurn, battle.playerParty, battle.opponentParty, battle.battlersThatParticipated);
+                battle.currentTurn, battle.partyOne, battle.partyTwo, battle.battlersThatParticipated);
             return data;
         }
         

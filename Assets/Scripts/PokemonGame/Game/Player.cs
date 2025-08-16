@@ -7,6 +7,9 @@ namespace PokemonGame.Game
 
     public class Player : MonoBehaviour
     {
+        public static Vector3 globalPlayerPos;
+        public static Quaternion globalPlayerRot;
+        
         public static Player Instance;
         
         private Quaternion _target;

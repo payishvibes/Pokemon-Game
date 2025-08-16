@@ -46,7 +46,7 @@ namespace PokemonGame.ScriptableObjects
         /// <param name="e">The MoveMethodArgs that can be used to store additional information to be parsed onto the method</param>
         public void MoveMethod(MoveMethodEventArgs e)
         {
-            int PP = e.attacker.movePpInfos[e.moveIndex].CurrentPP;
+            int PP = e.movePPData.CurrentPP;
 
             if (PP > 0)
             {
@@ -56,7 +56,7 @@ namespace PokemonGame.ScriptableObjects
                     MovesMethods.GetMoveMethods().DefaultMoveMethod(e);
                 }
                 
-                e.attacker.movePpInfos[e.moveIndex].MoveWasUsed();
+                e.movePPData.MoveWasUsed();
             }
             else
             {
@@ -83,20 +83,20 @@ namespace PokemonGame.ScriptableObjects
     {
         public Battler target;
         public Battler attacker;
-        public int moveIndex;
         public Move move;
+        public MovePPData movePPData;
         public ExternalBattleData battleData;
         public int damageDealt = 0;
         public int effectiveIndex = 0;
         public bool crit;
         public bool missed = false;
 
-        public MoveMethodEventArgs(Battler attacker, Battler target, int moveIndex, Move move, ExternalBattleData battleData)
+        public MoveMethodEventArgs(Battler attacker, Battler target, Move move, MovePPData movePPData, ExternalBattleData battleData)
         {
             this.target = target;
             this.attacker = attacker;
-            this.moveIndex = moveIndex;
             this.move = move;
+            this.movePPData = movePPData;
             this.battleData = battleData;
             effectiveIndex = 0;
         }

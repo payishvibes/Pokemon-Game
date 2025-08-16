@@ -126,14 +126,15 @@ namespace PokemonGame.Trainers
             
             Dictionary<string, object> vars = new Dictionary<string, object>
             {
-                { "playerParty", playerParty},
-                { "opponentParty", party },
+                { "partyOne", playerParty},
+                { "partyTwo", party },
                 { "enemyAI", ai },
                 { "opponentName", gameObject.name },
-                { "playerPosition", Player.Instance.transform.position },
-                { "playerRotation", Player.Instance.targetRot },
                 { "trainerBattle", true}
             };
+
+            Player.globalPlayerPos = Player.Instance.transform.position;
+            Player.globalPlayerRot = Player.Instance.transform.rotation;
             
             Instantiate(Resources.Load("Pokemon Game/Transitions/SpikyClose"));
 

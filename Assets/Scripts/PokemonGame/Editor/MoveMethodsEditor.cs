@@ -14,9 +14,9 @@ namespace PokemonGame.Editor
             MovesMethods battlerTemplate = (MovesMethods)target;
             
             EditorUtility.SetDirty(battlerTemplate);
-            if (GUILayout.Button("Try fill info"))
+            if (GUILayout.Button("Update Moves"))
             {
-                battlerTemplate.CreateMoves();
+                battlerTemplate.UpdateMoves();
             }
         }
     }
