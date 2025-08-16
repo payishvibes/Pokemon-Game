@@ -125,8 +125,7 @@ namespace PokemonGame.Battle
                 {
                     useButton.onClick.AddListener(() =>
                     {
-                        Battle.Singleton.PlayerOnePickedItemToUse(_currentlyDisplayedItems[index]);
-                        Battle.Singleton.StartPickingBattlerToUseItemOn();
+                        Battle.Singleton.StartPickingBattlerToUseItemOn(sortedItems[index].item);
                     });
                 }
             }

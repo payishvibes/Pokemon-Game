@@ -1,16 +1,36 @@
+using System.Collections.Generic;
+
 namespace PokemonGame.Battle
 {
-    public enum TurnItem
+    public class TurnItem
+    {
+        public TurnItemType Type;
+        public List<object> Variables;
+
+        public TurnItem(TurnItemType type, List<object> variables)
+        {
+            Type = type;
+            Variables = variables;
+        }
+
+        public TurnItem()
+        {
+            
+        }
+    }
+    
+    
+    public enum TurnItemType
     {
         StartDelay,
         PlayerOneMove,
-        PlayerOneMissed,
         PlayerTwoMove,
+        PlayerOneMissed,
         PlayerTwoMissed,
         PlayerOneSwapBecauseFainted,
+        PlayerTwoSwapBecauseFainted,
         PlayerOneSwap,
         PlayerTwoSwap,
-        PlayerTwoSwapBecauseFainted,
         PlayerOneLevelUp,
         PlayerOneItem,
         PlayerTwoItem,
@@ -19,8 +39,8 @@ namespace PokemonGame.Battle
         StartOfTurnStatusEffects,
         EndOfTurnStatusEffects,
         PlayerOneParalysed,
-        PlayerOneAsleep,
         PlayerTwoParalysed,
+        PlayerOneAsleep,
         PlayerTwoAsleep,
         CatchAttempt,
         Run,

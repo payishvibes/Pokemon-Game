@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace PokemonGame.Battle
 {
     using UnityEngine;
@@ -27,7 +29,10 @@ namespace PokemonGame.Battle
         {
             int moveToDo = Random.Range(0, e.battlerToUse.moves.Count);
             
-            Battle.Singleton.playerTwoMoveToDo = e.battlerToUse.moves[moveToDo];
+            Battle.Singleton.playerTwoAction = new TurnItem(TurnItemType.PlayerTwoMove, new List<object>()
+            {
+                e.battlerToUse.moves[moveToDo],
+            });
         }
         
         public void DefaultAI(AIMethodEventArgs e)
@@ -40,7 +45,10 @@ namespace PokemonGame.Battle
 
             int moveToDo = Random.Range(0, e.battlerToUse.moves.Count);
 
-            Battle.Singleton.playerTwoMoveToDo = e.battlerToUse.moves[moveToDo];
+            Battle.Singleton.playerTwoAction = new TurnItem(TurnItemType.PlayerTwoMove, new List<object>()
+            {
+                e.battlerToUse.moves[moveToDo],
+            });
         }
     }   
 }

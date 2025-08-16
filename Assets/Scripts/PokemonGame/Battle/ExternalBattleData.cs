@@ -13,23 +13,24 @@ namespace PokemonGame.Battle
         public Party playerTwoParty;
         public Battler playerOneCurrentBattler => playerOneParty[playerOneBattlerIndex];
         public Battler playerTwoCurrentBattler => playerTwoParty[playerTwoBattlerIndex];
-        public List<Battler> battlersThatParticipated;
+        public List<Battler> playerOneBattlersThatParticipated;
 
         public static ExternalBattleData Construct(Battle battle)
         {
             ExternalBattleData data = new ExternalBattleData(battle.playerOneBattlerIndex, battle.playerTwoBattlerIndex,
-                battle.currentTurn, battle.partyOne, battle.partyTwo, battle.battlersThatParticipated);
+                battle.currentTurn, battle.partyOne, battle.partyTwo, battle.playerOneBattlersThatParticipated);
             return data;
         }
         
-        public ExternalBattleData(int playerOneBattlerIndex, int playerTwoBattlerIndex, TurnStatus currentTurn, Party playerOneParty, Party playerTwoParty, List<Battler> battlersThatParticipated)
+        public ExternalBattleData(int playerOneBattlerIndex, int playerTwoBattlerIndex, TurnStatus currentTurn,
+            Party playerOneParty, Party playerTwoParty, List<Battler> playerOneBattlersThatParticipated)
         {
             this.playerOneBattlerIndex = playerOneBattlerIndex;
             this.playerTwoBattlerIndex = playerTwoBattlerIndex;
             this.currentTurn = currentTurn;
             this.playerOneParty = playerOneParty;
             this.playerTwoParty = playerTwoParty;
-            this.battlersThatParticipated = battlersThatParticipated;
+            this.playerOneBattlersThatParticipated = playerOneBattlersThatParticipated;
         }
     }
 }
