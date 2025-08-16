@@ -330,7 +330,7 @@ namespace PokemonGame.Battle
             useItemDisplay.SetActive(false);
             
             Back();
-            battle.ChooseToSwap(partyID);
+            battle.PlayerOneChooseToSwap(partyID);
             
             battle.AddParticipatedBattler(battle.partyOne[partyID]);
         }

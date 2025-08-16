@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Charmeleon
   source: {fileID: 11400000, guid: 4f843dafd69ae554e90f655d7e688db3, type: 2}
-  level: 3
+  level: 7
   gender: 0
-  currentHealth: 15
+  currentHealth: 22
   shiny: 0
   stats:
-    maxHealth: 15
-    attack: 8
-    defense: 7
-    specialAttack: 7
-    specialDefense: 8
-    speed: 8
+    maxHealth: 22
+    attack: 13
+    defense: 11
+    specialAttack: 11
+    specialDefense: 12
+    speed: 14
   exp: 4035
   EVs:
     maxHealth: 0
