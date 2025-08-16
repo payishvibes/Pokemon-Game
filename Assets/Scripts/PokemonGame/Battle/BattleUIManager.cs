@@ -28,22 +28,22 @@ namespace PokemonGame.Battle
         [SerializeField] private GameObject runButton;
         [SerializeField] private TextMeshProUGUI[] battlerDisplays;
         [SerializeField] private TextMeshProUGUI[] itemBattlerDisplays;
-        [SerializeField] private SpriteRenderer currentBattlerRenderer;
-        [SerializeField] private SpriteRenderer opponentBattlerRenderer;
-        [SerializeField] private Image currentBattlerHealthDisplay;
-        [SerializeField] private RectTransform currentBattlerSideBorder;
-        [SerializeField] private RectTransform currentBattlerSideBorderLimitLeft;
-        [SerializeField] private RectTransform currentBattlerSideBorderLimitRight;
-        [SerializeField] private Image opponentHealthDisplay;
-        [SerializeField] private RectTransform opponentSideBorder;
-        [SerializeField] private RectTransform opponentSideBorderLimitLeft;
-        [SerializeField] private RectTransform opponentSideBorderLimitRight;
+        [SerializeField] private SpriteRenderer playerOneRenderer;
+        [SerializeField] private SpriteRenderer playerTwoBattlerRenderer;
+        [SerializeField] private Image playerOneHealthDisplay;
+        [SerializeField] private RectTransform playerOneSideBorder;
+        [SerializeField] private RectTransform playerOneSideBorderLimitLeft;
+        [SerializeField] private RectTransform playerOneSideBorderLimitRight;
+        [SerializeField] private Image playerTwoHealthDisplay;
+        [SerializeField] private RectTransform playerTwoSideBorder;
+        [SerializeField] private RectTransform playerTwoSideBorderLimitLeft;
+        [SerializeField] private RectTransform playerTwoSideBorderLimitRight;
         [SerializeField] private TextMeshProUGUI[] moveTexts;
         [SerializeField] private TextMeshProUGUI[] movePpTexts;
-        [SerializeField] private TextMeshProUGUI currentBattlerNameDisplay;
-        [SerializeField] private TextMeshProUGUI currentBattlerLevelDisplay;
-        [SerializeField] private TextMeshProUGUI opponentBattlerNameDisplay;
-        [SerializeField] private TextMeshProUGUI opponentBattlerLevelDisplay;
+        [SerializeField] private TextMeshProUGUI playerOneNameDisplay;
+        [SerializeField] private TextMeshProUGUI playerOneLevelDisplay;
+        [SerializeField] private TextMeshProUGUI playerTwoBattlerNameDisplay;
+        [SerializeField] private TextMeshProUGUI playerTwoBattlerLevelDisplay;
         [SerializeField] private BattleBagMenu battleBagMenu;
         [SerializeField] private float shrinkEffectSpeed = 1;
         [SerializeField] private Button swapBattlerButton;
@@ -51,18 +51,18 @@ namespace PokemonGame.Battle
 
         [SerializeField] private List<Item> faintedRequiredItems = new List<Item>();
 
-        public Transform playerBattler => currentBattlerRenderer.transform;
-        public Transform opponentBattler => opponentBattlerRenderer.transform;
+        public Transform playerBattler => playerOneRenderer.transform;
+        public Transform playerTwoBattler => playerTwoBattlerRenderer.transform;
         
         public Battle battle;
 
         private Item _playerItemToUse;
 
-        private Vector3 _initialPlayerScale;
-        private Vector3 _initialOpponentScale;
+        private Vector3 _initialPlayerOneScale;
+        private Vector3 _initialPlayerTwoScale;
 
-        [SerializeField] private Vector3 targetPlayerBattlerScale;
-        [SerializeField] private Vector3 targetOpponentBattlerScale;
+        [SerializeField] private Vector3 targetPlayerOneBattlerScale;
+        [SerializeField] private Vector3 targetPlayerTwoBattlerScale;
 
         private List<Button> moveButtonsButtons = new List<Button>();
 
@@ -70,14 +70,14 @@ namespace PokemonGame.Battle
         {
             EventSystem.current.SetSelectedGameObject(moveTexts[0].transform.parent.gameObject);
             
-            _initialPlayerScale = currentBattlerRenderer.transform.localScale;
-            _initialOpponentScale = opponentBattlerRenderer.transform.localScale;
+            _initialPlayerOneScale = playerOneRenderer.transform.localScale;
+            _initialPlayerTwoScale = playerTwoBattlerRenderer.transform.localScale;
             
-            targetPlayerBattlerScale = _initialPlayerScale;
-            targetOpponentBattlerScale = _initialOpponentScale;
+            targetPlayerOneBattlerScale = _initialPlayerOneScale;
+            targetPlayerTwoBattlerScale = _initialPlayerTwoScale;
             
-            currentBattlerRenderer.transform.localScale = Vector3.zero;
-            opponentBattlerRenderer.transform.localScale = Vector3.zero;
+            playerOneRenderer.transform.localScale = Vector3.zero;
+            playerTwoBattlerRenderer.transform.localScale = Vector3.zero;
 
             foreach (var moveText in moveTexts)
             {
@@ -99,19 +99,19 @@ namespace PokemonGame.Battle
         {
             UpdateHealthDisplays();
 
-            currentBattlerRenderer.transform.localScale = Vector3.Lerp(currentBattlerRenderer.transform.localScale,
-                targetPlayerBattlerScale, shrinkEffectSpeed * Time.deltaTime);
+            playerOneRenderer.transform.localScale = Vector3.Lerp(playerOneRenderer.transform.localScale,
+                targetPlayerOneBattlerScale, shrinkEffectSpeed * Time.deltaTime);
             
             // 1.45
 
-            currentBattlerRenderer.transform.localPosition = Vector3.Lerp(new Vector3(0, 2.3f, 4.76f), new Vector3(0, 1.45f, 4.76f),
-                1 - currentBattlerRenderer.transform.localScale.x / 3f);
+            playerOneRenderer.transform.localPosition = Vector3.Lerp(new Vector3(0, 2.3f, 4.76f), new Vector3(0, 1.45f, 4.76f),
+                1 - playerOneRenderer.transform.localScale.x / 3f);
 
-            opponentBattlerRenderer.transform.localScale = Vector3.Lerp(opponentBattlerRenderer.transform.localScale,
-                targetOpponentBattlerScale, shrinkEffectSpeed * Time.deltaTime);
+            playerTwoBattlerRenderer.transform.localScale = Vector3.Lerp(playerTwoBattlerRenderer.transform.localScale,
+                targetPlayerTwoBattlerScale, shrinkEffectSpeed * Time.deltaTime);
             
-            opponentBattlerRenderer.transform.localPosition = Vector3.Lerp(new Vector3(0, 2.3f, -4.76f), new Vector3(0, 1.45f, -4.76f),
-                1 - opponentBattlerRenderer.transform.localScale.x / 3f);
+            playerTwoBattlerRenderer.transform.localPosition = Vector3.Lerp(new Vector3(0, 2.3f, -4.76f), new Vector3(0, 1.45f, -4.76f),
+                1 - playerTwoBattlerRenderer.transform.localScale.x / 3f);
         }
 
         private void UpdateBattlerButtons()
@@ -140,7 +140,7 @@ namespace PokemonGame.Battle
                     Color newColour = buttonParent.targetGraphic.color;
                     newColour.a = 1;
 
-                    if (i == battle.currentBattlerIndex)
+                    if (i == battle.playerOneBattlerIndex)
                     {
                         battlerDisplays[i].text = battle.partyOne[i].name + " is selected";
                         // battlerDisplays[i].transform.parent.GetComponent<Button>().interactable = false;
@@ -220,32 +220,32 @@ namespace PokemonGame.Battle
             healthDisplays.SetActive(show);
         }
 
-        public void ShrinkPlayerBattler(bool instant = false)
+        public void ShrinkPlayerOneBattler(bool instant = false)
         {
-            targetPlayerBattlerScale = Vector3.zero;
+            targetPlayerOneBattlerScale = Vector3.zero;
             if (instant)
             {
-                currentBattlerRenderer.transform.localScale = Vector3.zero;
+                playerOneRenderer.transform.localScale = Vector3.zero;
             }
         }
 
-        public void ExpandPlayerBattler()
+        public void ExpandPlayerOneBattler()
         {
-            targetPlayerBattlerScale = _initialPlayerScale;
+            targetPlayerOneBattlerScale = _initialPlayerOneScale;
         }
 
-        public void ShrinkOpponentBattler(bool instant = false)
+        public void ShrinkPlayerTwoBattler(bool instant = false)
         {
-            targetOpponentBattlerScale = Vector3.zero;
+            targetPlayerTwoBattlerScale = Vector3.zero;
             if (instant)
             {
-                opponentBattlerRenderer.transform.localScale = Vector3.zero;
+                playerTwoBattlerRenderer.transform.localScale = Vector3.zero;
             }
         }
 
-        public void ExpandOpponentBattler()
+        public void ExpandPlayerTwoBattler()
         {
-            targetOpponentBattlerScale = _initialOpponentScale;
+            targetPlayerTwoBattlerScale = _initialPlayerTwoScale;
         }
 
         public void ShowControlUI(bool show)
@@ -316,7 +316,7 @@ namespace PokemonGame.Battle
 
         public void ChangeBattler(int partyID)
         {
-            if (battle.partyOne[partyID].isFainted || partyID == battle.currentBattlerIndex)
+            if (battle.partyOne[partyID].isFainted || partyID == battle.playerOneBattlerIndex)
             {
                 return;
             }
@@ -374,19 +374,19 @@ namespace PokemonGame.Battle
 
         private void UpdateBattlerTexts()
         {
-            currentBattlerNameDisplay.text = battle.partyOne[battle.currentBattlerIndex].name;
-            currentBattlerLevelDisplay.text = "Lv. " + battle.partyOne[battle.currentBattlerIndex].level;
-            opponentBattlerNameDisplay.text = battle.partyTwo[battle.opponentBattlerIndex].name;
-            opponentBattlerLevelDisplay.text = "Lv. " + battle.partyTwo[battle.opponentBattlerIndex].level;
+            playerOneNameDisplay.text = battle.partyOne[battle.playerOneBattlerIndex].name;
+            playerOneLevelDisplay.text = "Lv. " + battle.partyOne[battle.playerOneBattlerIndex].level;
+            playerTwoBattlerNameDisplay.text = battle.partyTwo[battle.playerTwoBattlerIndex].name;
+            playerTwoBattlerLevelDisplay.text = "Lv. " + battle.partyTwo[battle.playerTwoBattlerIndex].level;
         }
 
         private void UpdateBattlerSprites()
         {
-            currentBattlerRenderer.sprite = battle.partyOne[battle.currentDisplayBattlerIndex].GetSpriteFront();
-            opponentBattlerRenderer.sprite = battle.partyTwo[battle.opponentDisplayBattlerIndex].GetSpriteFront();
+            playerOneRenderer.sprite = battle.partyOne[battle.currentDisplayBattlerIndex].GetSpriteFront();
+            playerTwoBattlerRenderer.sprite = battle.partyTwo[battle.playerTwoDisplayBattlerIndex].GetSpriteFront();
         }
 
-        public void UpdatePlayerBattlerDetails()
+        public void UpdatePlayerOneBattlerDetails()
         {
             UpdateBattlerButtons();
             UpdateBattlerSprites();
@@ -398,22 +398,22 @@ namespace PokemonGame.Battle
         {
             float t = healthUpdateSpeed;
 
-            float opponentTarget = battle.partyTwo[battle.opponentBattlerIndex].currentHealth /
-                                   (float)battle.partyTwo[battle.opponentBattlerIndex].stats.maxHealth;
+            float playerTwoTarget = battle.partyTwo[battle.playerTwoBattlerIndex].currentHealth /
+                                   (float)battle.partyTwo[battle.playerTwoBattlerIndex].stats.maxHealth;
 
-            float playerTarget = battle.partyOne[battle.currentBattlerIndex].currentHealth /
-                                 (float)battle.partyOne[battle.currentBattlerIndex].stats.maxHealth;
+            float playerTarget = battle.partyOne[battle.playerOneBattlerIndex].currentHealth /
+                                 (float)battle.partyOne[battle.playerOneBattlerIndex].stats.maxHealth;
 
-            opponentHealthDisplay.transform.localScale = new Vector3(opponentTarget, 1, 1);
-            opponentSideBorder.position = Vector3.Lerp(opponentSideBorderLimitRight.position,
-                opponentSideBorderLimitLeft.position, opponentTarget);
+            playerTwoHealthDisplay.transform.localScale = new Vector3(playerTwoTarget, 1, 1);
+            playerTwoSideBorder.position = Vector3.Lerp(playerTwoSideBorderLimitRight.position,
+                playerTwoSideBorderLimitLeft.position, playerTwoTarget);
 
-            currentBattlerHealthDisplay.transform.localScale = new Vector3(playerTarget, 1, 1);
-            currentBattlerSideBorder.position = Vector3.Lerp(currentBattlerSideBorderLimitLeft.position,
-                currentBattlerSideBorderLimitRight.position, playerTarget);
+            playerOneHealthDisplay.transform.localScale = new Vector3(playerTarget, 1, 1);
+            playerOneSideBorder.position = Vector3.Lerp(playerOneSideBorderLimitLeft.position,
+                playerOneSideBorderLimitRight.position, playerTarget);
         }
 
-        public void UpdateOpponentBattlerDetails()
+        public void UpdatePlayerTwoBattlerDetails()
         {
             UpdateBattlerSprites();
             UpdateBattlerTexts();
@@ -426,24 +426,24 @@ namespace PokemonGame.Battle
                 text.transform.parent.gameObject.SetActive(false);
             }
             
-            for (var i = 0; i < battle.partyOne[battle.currentBattlerIndex].moves.Count; i++)
+            for (var i = 0; i < battle.partyOne[battle.playerOneBattlerIndex].moves.Count; i++)
             {
-                if (battle.partyOne[battle.currentBattlerIndex].moves[i])
+                if (battle.partyOne[battle.playerOneBattlerIndex].moves[i])
                 {
-                    int currentPP = battle.partyOne[battle.currentBattlerIndex].movePpInfos[i].CurrentPP;
-                    int maxPP = battle.partyOne[battle.currentBattlerIndex].movePpInfos[i].MaxPP;
+                    int currentPP = battle.partyOne[battle.playerOneBattlerIndex].movePpInfos[i].CurrentPP;
+                    int maxPP = battle.partyOne[battle.playerOneBattlerIndex].movePpInfos[i].MaxPP;
                     
                     moveTexts[i].transform.parent.gameObject.SetActive(true);
-                    moveTexts[i].text = battle.partyOne[battle.currentBattlerIndex].moves[i].name;
+                    moveTexts[i].text = battle.partyOne[battle.playerOneBattlerIndex].moves[i].name;
                     moveTexts[i].transform.parent.GetComponent<Image>().color =
-                        battle.partyOne[battle.currentBattlerIndex].moves[i].type.color;
+                        battle.partyOne[battle.playerOneBattlerIndex].moves[i].type.color;
                     movePpTexts[i].text = $"{currentPP}/{maxPP}";
                     if (currentPP <= 0)
                     {
                         moveButtonsButtons[i].interactable = false;
                     }
                     
-                    moveTexts[i].transform.parent.GetChild(0).GetComponentInChildren<Image>().sprite = battle.partyOne[battle.currentBattlerIndex].moves[i].type.sprite;
+                    moveTexts[i].transform.parent.GetChild(0).GetComponentInChildren<Image>().sprite = battle.partyOne[battle.playerOneBattlerIndex].moves[i].type.sprite;
                 }
             }
             
@@ -452,7 +452,7 @@ namespace PokemonGame.Battle
 
         private void SetMoveButtonUINavigations()
         {
-            List<Move> moves = battle.partyOne[battle.currentBattlerIndex].moves;
+            List<Move> moves = battle.partyOne[battle.playerOneBattlerIndex].moves;
             
             for (int i = 0; i < moves.Count; i++)
             {
@@ -490,39 +490,39 @@ namespace PokemonGame.Battle
         {
             float t = healthUpdateSpeed * Time.deltaTime;
 
-            float opponentTarget = battle.partyTwo[battle.opponentBattlerIndex].currentHealth /
-                                   (float)battle.partyTwo[battle.opponentBattlerIndex].stats.maxHealth;
-            float opponentCurrent = opponentHealthDisplay.transform.localScale.x;
+            float playerTwoTarget = battle.partyTwo[battle.playerTwoBattlerIndex].currentHealth /
+                                   (float)battle.partyTwo[battle.playerTwoBattlerIndex].stats.maxHealth;
+            float playerTwoCurrent = playerTwoHealthDisplay.transform.localScale.x;
             
-            float opponentDifference = opponentCurrent - opponentTarget;
-            float absDifference = opponentDifference > 0 ? opponentDifference : -opponentDifference;
+            float playerTwoDifference = playerTwoCurrent - playerTwoTarget;
+            float absDifference = playerTwoDifference > 0 ? playerTwoDifference : -playerTwoDifference;
 
             if (absDifference < t)
             {
-                opponentCurrent = opponentTarget;
+                playerTwoCurrent = playerTwoTarget;
             }
             else
             {
-                if (opponentDifference > 0)
+                if (playerTwoDifference > 0)
                 {
                     // need to decrease
-                    opponentCurrent -= t;
+                    playerTwoCurrent -= t;
                 }
                 else
                 {
                     // need to increase
-                    opponentCurrent += t;
+                    playerTwoCurrent += t;
                 }
             }
 
-            float playerTarget = battle.partyOne[battle.currentBattlerIndex].currentHealth /
-                                 (float)battle.partyOne[battle.currentBattlerIndex].stats.maxHealth;
-            float playerCurrent = currentBattlerHealthDisplay.transform.localScale.x;
+            float playerTarget = battle.partyOne[battle.playerOneBattlerIndex].currentHealth /
+                                 (float)battle.partyOne[battle.playerOneBattlerIndex].stats.maxHealth;
+            float playerCurrent = playerOneHealthDisplay.transform.localScale.x;
             
             float playerDifference = playerCurrent - playerTarget;
-            float absPlayerDifference = playerDifference > 0 ? playerDifference : -playerDifference;
+            float absPlayerOneDifference = playerDifference > 0 ? playerDifference : -playerDifference;
             
-            if (absPlayerDifference < t)
+            if (absPlayerOneDifference < t)
             {
                 playerCurrent = playerTarget;
             }
@@ -540,13 +540,13 @@ namespace PokemonGame.Battle
                 }
             }
 
-            opponentHealthDisplay.transform.localScale = new Vector3(opponentCurrent, 1, 1);
-            opponentSideBorder.position = Vector3.Lerp(opponentSideBorderLimitRight.position,
-                opponentSideBorderLimitLeft.position, opponentCurrent);
+            playerTwoHealthDisplay.transform.localScale = new Vector3(playerTwoCurrent, 1, 1);
+            playerTwoSideBorder.position = Vector3.Lerp(playerTwoSideBorderLimitRight.position,
+                playerTwoSideBorderLimitLeft.position, playerTwoCurrent);
 
-            currentBattlerHealthDisplay.transform.localScale = new Vector3(playerCurrent, 1, 1);
-            currentBattlerSideBorder.position = Vector3.Lerp(currentBattlerSideBorderLimitLeft.position,
-                currentBattlerSideBorderLimitRight.position, playerCurrent);
+            playerOneHealthDisplay.transform.localScale = new Vector3(playerCurrent, 1, 1);
+            playerOneSideBorder.position = Vector3.Lerp(playerOneSideBorderLimitLeft.position,
+                playerOneSideBorderLimitRight.position, playerCurrent);
         }
 
         private void OnEnable()

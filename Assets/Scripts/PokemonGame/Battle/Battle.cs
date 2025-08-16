@@ -56,22 +56,22 @@ namespace PokemonGame.Battle
 
         [Space]
         [Header("Readouts")]
-        public int currentBattlerIndex;
-        public int opponentBattlerIndex;
+        public int playerOneBattlerIndex;
+        public int playerTwoBattlerIndex;
         [SerializeField] public TurnStatus currentTurn = TurnStatus.Choosing;
         public BattleParty partyOne;
         public BattleParty partyTwo;
         [SerializeField] private EnemyAI enemyAI;
-        [SerializeField] private Move playerMoveToDo;
+        [SerializeField] private Move playerOneMoveToDo;
         
         
         [HideInInspector] public int currentDisplayBattlerIndex;
-        [HideInInspector] public int opponentDisplayBattlerIndex;
+        [HideInInspector] public int playerTwoDisplayBattlerIndex;
         
         /// <summary>
         /// the move the enemy intends to use
         /// </summary>
-        public Move enemyMoveToDo;
+        public Move playerTwoMoveToDo;
         
         /// <summary>
         /// making sure we don't run the inital chosen logic more than once
@@ -91,12 +91,12 @@ namespace PokemonGame.Battle
         /// <summary>
         /// the players current battler
         /// </summary>
-        private Battler playerCurrentBattler => partyOne[currentBattlerIndex];
+        private Battler playerOneCurrentBattler => partyOne[playerOneBattlerIndex];
         
         /// <summary>
-        /// the opponents current battler
+        /// the playerTwos current battler
         /// </summary>
-        private Battler opponentCurrentBattler => partyTwo[opponentBattlerIndex];
+        private Battler playerTwoCurrentBattler => partyTwo[playerTwoBattlerIndex];
 
         /// <summary>
         /// the active queue of turn items
@@ -111,12 +111,12 @@ namespace PokemonGame.Battle
         /// <summary>
         /// the list of battlers that participated on the players team during this battle
         /// </summary>
-        public List<Battler> battlersThatParticipated;
+        public List<Battler> playerOneBattlersThatParticipated;
         
         // is this battle a trainer or wild battle
         public bool trainerBattle;
         
-        private string _opponentName;
+        private string _playerTwoName;
         
         // the action the player has chosen to perform
         public TurnItem playerAction;
@@ -127,7 +127,7 @@ namespace PokemonGame.Battle
         public TurnItem currentTurnItem;
         
         // events
-        private EventHandler<BattlerTookDamageArgs> _opponentBattlerDefeated = null;
+        private EventHandler<BattlerTookDamageArgs> _playerTwoBattlerDefeated = null;
         private EventHandler<OnLevelUpEventArgs> _playerBattlerLeveledUp = null;
         private EventHandler<EvolutionData> _playerBattlerEvolved = null;
         private EventHandler<BattlerTookDamageArgs> _playerBattlerDefeated = null;
@@ -159,17 +159,17 @@ namespace PokemonGame.Battle
             {
                 if (!partyOne[i].isFainted)
                 {
-                    ChangePlayerBattlerIndex(i, true);
+                    ChangePlayerOneBattlerIndex(i, true);
                     break;
                 }
             }
 
-            ChangeOpponentBattlerIndex(0, true);
+            ChangePlayerTwoBattlerIndex(0, true);
             
             HookEvents();
             
             // adds current battler to list of participating battlers
-            battlersThatParticipated.Add(playerCurrentBattler);
+            playerOneBattlersThatParticipated.Add(playerOneCurrentBattler);
             
             Instantiate(Resources.Load("Pokemon Game/Transitions/SpikyOpen"));
         }
@@ -179,14 +179,14 @@ namespace PokemonGame.Battle
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
 
-            //Loads relevant info like the opponent and player party
+            //Loads relevant info like the playerTwo and player party
             trainerBattle = SceneLoader.GetVariable<bool>("trainerBattle");
             partyOne = new BattleParty(SceneLoader.GetVariable<Party>("partyOne"));
             partyTwo = new BattleParty(SceneLoader.GetVariable<Party>("partyTwo"));
             if (trainerBattle)
             {
                 enemyAI = SceneLoader.GetVariable<EnemyAI>("enemyAI");
-                _opponentName = SceneLoader.GetVariable<string>("opponentName");
+                _playerTwoName = SceneLoader.GetVariable<string>("playerTwoName");
             }
         }
 
@@ -194,24 +194,24 @@ namespace PokemonGame.Battle
         {
             DialogueManager.instance.DialogueEnded += DialogueEnded;
             DialogueManager.instance.DialogueStarted += OnDialogueStarted;
-            partyOne.PartyAllDefeated += PlayerPartyAllDefeated;
-            partyTwo.PartyAllDefeated += OpponentPartyAllDefeated;
+            partyOne.PartyAllDefeated += PlayerOnePartyAllDefeated;
+            partyTwo.PartyAllDefeated += PlayerTwoPartyAllDefeated;
 
-            _opponentBattlerDefeated = (s, e) => BattlerFainted(e, partyTwo.party.Find(x => x == e.damaged));
+            _playerTwoBattlerDefeated = (s, e) => BattlerFainted(e, partyTwo.party.Find(x => x == e.damaged));
             
             _playerBattlerLeveledUp = (s, e) => BattlerLeveledUp(partyOne.party.Find(x => x == (Battler)s), e);
             _playerBattlerEvolved = (s, e) => BattlerEvolved(partyOne.party.Find(x => x == (Battler)s), e.evolution);
 
             for (int i = 0; i < partyTwo.Count; i++)
             {
-                partyTwo[i].OnFainted += _opponentBattlerDefeated;
+                partyTwo[i].OnFainted += _playerTwoBattlerDefeated;
             }
 
             _playerBattlerDefeated = (s, e) =>
             {
-                if (playerCurrentBattler.isFainted)
+                if (playerOneCurrentBattler.isFainted)
                 {
-                    PlayerBattlerDied();
+                    PlayerOneBattlerDied();
                 }
             };
             
@@ -233,13 +233,13 @@ namespace PokemonGame.Battle
 
         private void OnDisable()
         {
-            partyOne.PartyAllDefeated -= PlayerPartyAllDefeated;
-            partyTwo.PartyAllDefeated -= OpponentPartyAllDefeated;
+            partyOne.PartyAllDefeated -= PlayerOnePartyAllDefeated;
+            partyTwo.PartyAllDefeated -= PlayerTwoPartyAllDefeated;
             DialogueManager.instance.DialogueEnded -= DialogueEnded;
             
             for (int i = 0; i < partyTwo.Count; i++)
             {
-                partyTwo[i].OnFainted -= _opponentBattlerDefeated;
+                partyTwo[i].OnFainted -= _playerTwoBattlerDefeated;
             }
             for (int i = 0; i < partyOne.Count; i++)
             {
@@ -251,12 +251,12 @@ namespace PokemonGame.Battle
             }
         }
 
-        private void PlayerPartyAllDefeated(object sender, EventArgs e)
+        private void PlayerOnePartyAllDefeated(object sender, EventArgs e)
         {
             SomeoneDefeated(false);
         }
 
-        private void OpponentPartyAllDefeated(object sender, EventArgs e)
+        private void PlayerTwoPartyAllDefeated(object sender, EventArgs e)
         {
             SomeoneDefeated(true);
         }
@@ -278,7 +278,7 @@ namespace PokemonGame.Battle
             _newBattlerName = battlerThatLeveled.name;
             _newLevel = args.newLevel;
             Debug.Log("Queuing player level up");
-            turnItemQueue.Insert(0, TurnItem.PlayerLevelUp);
+            turnItemQueue.Insert(0, TurnItem.PlayerOneLevelUp);
         }
 
         private void BattlerEvolved(Battler battlerThatEvolved, BattlerTemplate newTemplate)
@@ -295,7 +295,7 @@ namespace PokemonGame.Battle
 
         private MoveMethodEventArgs _currentArgs;
 
-        private IEnumerator ShowPlayerMove()
+        private IEnumerator ShowPlayerOneMove()
         {
             if (_currentArgs.missed)
             {
@@ -303,9 +303,9 @@ namespace PokemonGame.Battle
             }
             
             _displayingAttackAnimation = true;
-            if (playerMoveToDo.category != MoveCategory.Status && !_currentArgs.missed)
+            if (playerOneMoveToDo.category != MoveCategory.Status && !_currentArgs.missed)
             {
-                opponentCurrentBattler.TakeDamage(_currentArgs.damageDealt, new BattlerDamageSource(playerCurrentBattler));
+                playerTwoCurrentBattler.TakeDamage(_currentArgs.damageDealt, new BattlerDamageSource(playerOneCurrentBattler));
             }
             
             MoveMethodEventArgs args = _currentArgs;
@@ -322,7 +322,7 @@ namespace PokemonGame.Battle
             }
         }
 
-        private IEnumerator ShowOpponentMove()
+        private IEnumerator ShowPlayerTwoMove()
         {
             if (_currentArgs.missed)
             {
@@ -330,21 +330,21 @@ namespace PokemonGame.Battle
             }
             
             _displayingAttackAnimation = true;
-            if (enemyMoveToDo.category != MoveCategory.Status && !_currentArgs.missed)
+            if (playerTwoMoveToDo.category != MoveCategory.Status && !_currentArgs.missed)
             {
-                playerCurrentBattler.TakeDamage(_currentArgs.damageDealt, new BattlerDamageSource(opponentCurrentBattler));
+                playerOneCurrentBattler.TakeDamage(_currentArgs.damageDealt, new BattlerDamageSource(playerTwoCurrentBattler));
             }
 
             MoveMethodEventArgs args = _currentArgs;
             
-            Debug.Log("about to start the waiting period for the opponent move");
+            Debug.Log("about to start the waiting period for the playerTwo move");
             
             yield return new WaitForSeconds(1);
             
             _displayingAttackAnimation = false;
             StartDialogue();
             
-            // make sure there will be no more dialogue regarding the opponentsturn
+            // make sure there will be no more dialogue regarding the playerTwosturn
             if (args.effectiveIndex == 0 && !args.crit)
             {
                 TurnQueueItemEnded();
@@ -359,14 +359,14 @@ namespace PokemonGame.Battle
 
         public void BattlerFainted(EventArgs e, Battler defeated)
         {
-            uiManager.ShrinkOpponentBattler();
+            uiManager.ShrinkPlayerTwoBattler();
             
             QueDialogue($"Enemy {defeated.name} Fainted!", DialogueBoxType.Event);
 
-            int exp = ExperienceCalculator.GetExperienceFromDefeatingBattler(defeated, playerCurrentBattler, true,
-                battlersThatParticipated.Count);
+            int exp = ExperienceCalculator.GetExperienceFromDefeatingBattler(defeated, playerOneCurrentBattler, true,
+                playerOneBattlersThatParticipated.Count);
 
-            foreach (Battler battler in battlersThatParticipated)
+            foreach (Battler battler in playerOneBattlersThatParticipated)
             {
                 if (!battler.isFainted)
                 {
@@ -379,16 +379,16 @@ namespace PokemonGame.Battle
 
             if (!partyTwo.defeated)
             {
-                turnItemQueue.Add(TurnItem.OpponentSwapBecauseFainted);
+                turnItemQueue.Add(TurnItem.PlayerTwoSwapBecauseFainted);
             }
-            turnItemQueue.Remove(TurnItem.OpponentMove);
+            turnItemQueue.Remove(TurnItem.PlayerTwoMove);
 
-            playerCurrentBattler.EVs.maxHealth += defeated.source.yields.maxHealth;
-            playerCurrentBattler.EVs.attack += defeated.source.yields.attack;
-            playerCurrentBattler.EVs.defense += defeated.source.yields.defense;
-            playerCurrentBattler.EVs.specialAttack += defeated.source.yields.specialAttack;
-            playerCurrentBattler.EVs.specialDefense += defeated.source.yields.specialDefense;
-            playerCurrentBattler.EVs.speed += defeated.source.yields.speed;
+            playerOneCurrentBattler.EVs.maxHealth += defeated.source.yields.maxHealth;
+            playerOneCurrentBattler.EVs.attack += defeated.source.yields.attack;
+            playerOneCurrentBattler.EVs.defense += defeated.source.yields.defense;
+            playerOneCurrentBattler.EVs.specialAttack += defeated.source.yields.specialAttack;
+            playerOneCurrentBattler.EVs.specialDefense += defeated.source.yields.specialDefense;
+            playerOneCurrentBattler.EVs.speed += defeated.source.yields.speed;
         }
         
         private void Update()
@@ -421,12 +421,12 @@ namespace PokemonGame.Battle
                 uiManager.UpdateBattlerMoveDisplays();
                 if (trainerBattle)
                 {
-                    enemyAI.AIMethod(new AIMethodEventArgs(opponentCurrentBattler, partyTwo,
+                    enemyAI.AIMethod(new AIMethodEventArgs(playerTwoCurrentBattler, partyTwo,
                         ExternalBattleData.Construct(this)));
                 }
                 else
                 {
-                    EnemyAIMethods.WildPokemon(new AIMethodEventArgs(opponentCurrentBattler, partyTwo,
+                    EnemyAIMethods.WildPokemon(new AIMethodEventArgs(playerTwoCurrentBattler, partyTwo,
                         ExternalBattleData.Construct(this)));
                 }
                 hasDoneChoosingUpdate = true;
@@ -441,7 +441,7 @@ namespace PokemonGame.Battle
                 uiManager.ShowControlUI(false);
                 turnItemQueue.Add(TurnItem.StartDelay);
                 
-                if (playerAction is not TurnItem.PlayerMove)
+                if (playerAction is not TurnItem.PlayerOneMove)
                 {
                     turnItemQueue.Add(playerAction);
                 }
@@ -478,35 +478,35 @@ namespace PokemonGame.Battle
                 case TurnItem.StartDelay:
                     StartCoroutine(TurnStartDelay());
                     break;
-                case TurnItem.PlayerMove:
-                    DoPlayerMove();
+                case TurnItem.PlayerOneMove:
+                    DoPlayerOneOneMove();
                     break;
-                case TurnItem.OpponentMove:
-                    DoEnemyMove();
+                case TurnItem.PlayerTwoMove:
+                    DoPlayerTwoMove();
                     break;
-                case TurnItem.EndBattlePlayerWin:
+                case TurnItem.EndBattlePlayerOneWin:
                     BeginEndBattleDialogue(true);
                     break;
-                case TurnItem.EndBattleOpponentWin:
+                case TurnItem.EndBattlePlayerTwoWin:
                     BeginEndBattleDialogue(false);
                     break;
-                case TurnItem.PlayerSwapBecauseFainted:
-                    BeginSwapPlayerBattler();
+                case TurnItem.PlayerOneSwapBecauseFainted:
+                    BeginSwapPlayerOneBattler();
                     break;
-                case TurnItem.PlayerSwap:
-                    PlayerSwappedBattler();
+                case TurnItem.PlayerOneSwap:
+                    PlayerOneOneSwappedBattler();
                     break;
-                case TurnItem.PlayerItem:
-                    PlayerUseItem(_battlerToUseItemOn, _useItemOnPartyOne);
+                case TurnItem.PlayerOneItem:
+                    PlayerOneOneUseItem(_battlerToUseItemOn, _useItemOnPartyOne);
                     break;
-                case TurnItem.PlayerLevelUp:
+                case TurnItem.PlayerOneLevelUp:
                     BattlerLevelUpEvent();
                     break;
-                case TurnItem.OpponentSwap:
-                    OpponentSwitchBattler();
+                case TurnItem.PlayerTwoSwap:
+                    PlayerTwoSwitchBattler();
                     break;
-                case TurnItem.OpponentSwapBecauseFainted:
-                    OpponentSwitchBattler();
+                case TurnItem.PlayerTwoSwapBecauseFainted:
+                    PlayerTwoSwitchBattler();
                     break;
                 case TurnItem.StartOfTurnStatusEffects:
                     RunStartOfTurnStatusEffects();
@@ -514,17 +514,17 @@ namespace PokemonGame.Battle
                 case TurnItem.EndOfTurnStatusEffects:
                     RunEndOfTurnStatusEffects();
                     break;
-                case TurnItem.OpponentParalysed:
-                    OpponentParalysed();
+                case TurnItem.PlayerTwoParalysed:
+                    PlayerTwoParalysed();
                     break;
-                case TurnItem.OpponentAsleep:
-                    OpponentAsleep();
+                case TurnItem.PlayerTwoAsleep:
+                    PlayerTwoAsleep();
                     break;
-                case TurnItem.PlayerParalysed:
-                    PlayerParalysed();
+                case TurnItem.PlayerOneParalysed:
+                    PlayerOneParalysed();
                     break;
-                case TurnItem.PlayerAsleep:
-                    PlayerAsleep();
+                case TurnItem.PlayerOneAsleep:
+                    PlayerOneAsleep();
                     break;
                 case TurnItem.CatchAttempt:
                     CatchAttempt();
@@ -532,21 +532,21 @@ namespace PokemonGame.Battle
                 case TurnItem.Run:
                     RunRunAwayDialogue();
                     break;
-                case TurnItem.PlayerMissed:
+                case TurnItem.PlayerOneMissed:
                     MoveMissed();
                     break;
-                case TurnItem.OpponentMissed:
+                case TurnItem.PlayerTwoMissed:
                     MoveMissed();
                     break;
             }
 
-            uiManager.UpdatePlayerBattlerDetails();
-            uiManager.UpdateOpponentBattlerDetails();
+            uiManager.UpdatePlayerOneBattlerDetails();
+            uiManager.UpdatePlayerTwoBattlerDetails();
         }
 
         private bool CurrentlyEndingTheBattle()
         {
-            return currentTurnItem is TurnItem.EndBattleOpponentWin or TurnItem.EndBattlePlayerWin or TurnItem.Run;
+            return currentTurnItem is TurnItem.EndBattlePlayerTwoWin or TurnItem.EndBattlePlayerOneWin or TurnItem.Run;
         }
 
         private IEnumerator TurnStartDelay()
@@ -580,7 +580,7 @@ namespace PokemonGame.Battle
             }
             else
             {
-                QueDialogue(battlerUsedText, DialogueBoxType.Event, "opponentMoveUsed", true, variables);
+                QueDialogue(battlerUsedText, DialogueBoxType.Event, "playerTwoMoveUsed", true, variables);
             }
         }
 
@@ -611,8 +611,8 @@ namespace PokemonGame.Battle
             hasSetupShowing = false;
             playerHasChosenMove = false;
                 
-            enemyMoveToDo = null;
-            playerMoveToDo = null;
+            playerTwoMoveToDo = null;
+            playerOneMoveToDo = null;
             
             EndTurnEnding();
         }
@@ -625,9 +625,9 @@ namespace PokemonGame.Battle
         //Public method used by the move UI buttons
         public void ChooseMove(int moveID)
         {
-            playerMoveToDo = playerCurrentBattler.moves[moveID];
+            playerOneMoveToDo = playerOneCurrentBattler.moves[moveID];
             playerHasChosenMove = true;
-            playerAction = TurnItem.PlayerMove;
+            playerAction = TurnItem.PlayerOneMove;
         }
 
         public void RemoveTurnItem(TurnItem turnItemToRemove)
@@ -643,22 +643,22 @@ namespace PokemonGame.Battle
                     StartCoroutine(ExitBattleWin());
                     break;
                 case "swap":
-                    PlayerSwappedBattler();
+                    PlayerOneOneSwappedBattler();
                     break;
                 case "playerDefeated":
                     StartCoroutine(ExitBattleLoss());
                     break;
-                case "opponentDefeated":
+                case "playerTwoDefeated":
                     StartCoroutine(ExitBattleWin());
                     break;
                 case "leveledUp":
                     ShowBattlerLeveled();
                     break;
                 case "playerMoveUsed":
-                    StartCoroutine(ShowPlayerMove());
+                    StartCoroutine(ShowPlayerOneMove());
                     break;
-                case "opponentMoveUsed":
-                    StartCoroutine(ShowOpponentMove());
+                case "playerTwoMoveUsed":
+                    StartCoroutine(ShowPlayerTwoMove());
                     break;
                 case "playerFainted":
                     uiManager.SwitchBattlerBecauseOfDeath();
@@ -704,14 +704,14 @@ namespace PokemonGame.Battle
                     EvolutionEffect(e);
                     break;
                 case "playerFainted":
-                    uiManager.ShrinkPlayerBattler();
+                    uiManager.ShrinkPlayerOneBattler();
                     break;
             }
         }
 
         private void EvolutionEffect(DialogueStartedEventArgs e)
         {
-            Battler evolvedBattler = playerCurrentBattler;
+            Battler evolvedBattler = playerOneCurrentBattler;
             foreach (var playerBattler in partyOne.party)
             {
                 if (e.text.Contains(playerBattler.name))
@@ -720,9 +720,9 @@ namespace PokemonGame.Battle
                 }
             }
 
-            if (evolvedBattler == playerCurrentBattler)
+            if (evolvedBattler == playerOneCurrentBattler)
             {
-                uiManager.ShrinkPlayerBattler();
+                uiManager.ShrinkPlayerOneBattler();
                 StartCoroutine(DelayEvolution(evolvedBattler));
             }
             else
@@ -731,16 +731,16 @@ namespace PokemonGame.Battle
             }
         }
 
-        public void UseItem(int battlerToUseOn, bool useOnPlayerOne)
+        public void UseItem(int battlerToUseOn, bool useOnPlayerOneOne)
         {
-            playerAction = TurnItem.PlayerItem;
+            playerAction = TurnItem.PlayerOneItem;
             playerHasChosenMove = true;
             _battlerToUseItemOn = battlerToUseOn;
-            _useItemOnPartyOne = useOnPlayerOne;
+            _useItemOnPartyOne = useOnPlayerOneOne;
             uiManager.Back();
         }
 
-        public void PlayerPickedPokeBall(PokeBall ball)
+        public void PlayerOnePickedPokeBall(PokeBall ball)
         {
             playerAction = TurnItem.CatchAttempt;
             playerHasChosenMove = true;
@@ -748,7 +748,7 @@ namespace PokemonGame.Battle
             Bag.Used(ball);
         }
 
-        public void PlayerPickedItemToUse(Item item)
+        public void PlayerOnePickedItemToUse(Item item)
         {
             _playerItemToUse = item;
         }
@@ -768,24 +768,24 @@ namespace PokemonGame.Battle
 
         private void CatchAttempt()
         {
-            QueDialogue($"Threw a pokeball at {opponentCurrentBattler.name}!", DialogueBoxType.Event);
+            QueDialogue($"Threw a pokeball at {playerTwoCurrentBattler.name}!", DialogueBoxType.Event);
 
-            if (ExperienceCalculator.Captured(opponentCurrentBattler, playerCurrentBattler, (PokeBall)_playerItemToUse))
+            if (ExperienceCalculator.Captured(playerTwoCurrentBattler, playerOneCurrentBattler, (PokeBall)_playerItemToUse))
             {
-                uiManager.ShrinkOpponentBattler(true);
-                QueDialogue($"Caught {opponentCurrentBattler.name}!", DialogueBoxType.Event);
-                PartyManager.AddBattler(opponentCurrentBattler);
-                turnItemQueue.Insert(0, TurnItem.EndBattlePlayerWin);
+                uiManager.ShrinkPlayerTwoBattler(true);
+                QueDialogue($"Caught {playerTwoCurrentBattler.name}!", DialogueBoxType.Event);
+                PartyManager.AddBattler(playerTwoCurrentBattler);
+                turnItemQueue.Insert(0, TurnItem.EndBattlePlayerOneWin);
             }
             else
             {
-                QueDialogue($"Failed to catch {opponentCurrentBattler.name}!", DialogueBoxType.Event);
+                QueDialogue($"Failed to catch {playerTwoCurrentBattler.name}!", DialogueBoxType.Event);
             }
         }
 
-        private void PlayerUseItem(int battlerToUseOn, bool useOnPlayerParty)
+        private void PlayerOneOneUseItem(int battlerToUseOn, bool useOnUserParty)
         {
-            Battler battleBeingUsedOn = useOnPlayerParty ? partyOne[battlerToUseOn] : partyTwo[battlerToUseOn];
+            Battler battleBeingUsedOn = useOnUserParty ? partyOne[battlerToUseOn] : partyTwo[battlerToUseOn];
             
             ItemMethodEventArgs e = new ItemMethodEventArgs(battleBeingUsedOn, _playerItemToUse);
             
@@ -812,37 +812,37 @@ namespace PokemonGame.Battle
             {
                 _playerSwapIndex = newBattlerIndex;
                 playerHasChosenMove = true;
-                playerAction = TurnItem.PlayerSwap;
+                playerAction = TurnItem.PlayerOneSwap;
             }
         }
 
-        private void BeginSwapPlayerBattler()
+        private void BeginSwapPlayerOneBattler()
         {
-            QueDialogue($"{playerCurrentBattler.name} Fainted!", DialogueBoxType.Event, "playerFainted");
+            QueDialogue($"{playerOneCurrentBattler.name} Fainted!", DialogueBoxType.Event, "playerFainted");
         }
 
-        private void ShowSwapPlayerBattler()
+        private void ShowSwapPlayerOneBattler()
         {
-            uiManager.ShrinkPlayerBattler();
+            uiManager.ShrinkPlayerOneBattler();
             uiManager.SwitchBattlerBecauseOfDeath();
         }
 
-        private void ChangePlayerBattlerIndex(int index, bool skipShrink = false)
+        private void ChangePlayerOneBattlerIndex(int index, bool skipShrink = false)
         {
             if (!skipShrink)
             {
-                uiManager.ShrinkPlayerBattler();
-                currentBattlerIndex = index;
+                uiManager.ShrinkPlayerOneBattler();
+                playerOneBattlerIndex = index;
                 StartCoroutine(DelayChangeBattlerIndex(index));
             }
             else
             {
-                currentBattlerIndex = index;
+                playerOneBattlerIndex = index;
                 currentDisplayBattlerIndex = index;
                 Instantiate(spawnEffect, uiManager.playerBattler.transform.position, spawnEffect.transform.rotation,
                     uiManager.playerBattler);
-                uiManager.ExpandPlayerBattler();
-                uiManager.UpdatePlayerBattlerDetails();
+                uiManager.ExpandPlayerOneBattler();
+                uiManager.UpdatePlayerOneBattlerDetails();
             }
         }
 
@@ -852,8 +852,8 @@ namespace PokemonGame.Battle
             currentDisplayBattlerIndex = index;
             Instantiate(spawnEffect, uiManager.playerBattler.transform.position, spawnEffect.transform.rotation,
                 uiManager.playerBattler);
-            uiManager.ExpandPlayerBattler();
-            uiManager.UpdatePlayerBattlerDetails();
+            uiManager.ExpandPlayerOneBattler();
+            uiManager.UpdatePlayerOneBattlerDetails();
         }
 
         private IEnumerator DelayEvolution(Battler battlerToEvolve)
@@ -862,84 +862,84 @@ namespace PokemonGame.Battle
             battlerToEvolve.EvolutionApproved();
             Instantiate(spawnEffect, uiManager.playerBattler.transform.position, spawnEffect.transform.rotation,
                 uiManager.playerBattler);
-            uiManager.ExpandPlayerBattler();
-            uiManager.UpdatePlayerBattlerDetails();
+            uiManager.ExpandPlayerOneBattler();
+            uiManager.UpdatePlayerOneBattlerDetails();
         }
 
-        private void ChangeOpponentBattlerIndex(int index, bool skipShrink = false)
+        private void ChangePlayerTwoBattlerIndex(int index, bool skipShrink = false)
         {
             if (!skipShrink)
             {
-                uiManager.ShrinkOpponentBattler();
-                opponentBattlerIndex = index;
-                StartCoroutine(DelayChangeOpponentBattlerIndex(index));
+                uiManager.ShrinkPlayerTwoBattler();
+                playerTwoBattlerIndex = index;
+                StartCoroutine(DelayChangePlayerTwoBattlerIndex(index));
             }
             else
             {
-                opponentBattlerIndex = index;
-                opponentDisplayBattlerIndex = index;
-                Instantiate(spawnEffect, uiManager.opponentBattler.transform.position, spawnEffect.transform.rotation,
-                    uiManager.opponentBattler);
-                uiManager.ExpandOpponentBattler();
-                uiManager.UpdateOpponentBattlerDetails();
+                playerTwoBattlerIndex = index;
+                playerTwoDisplayBattlerIndex = index;
+                Instantiate(spawnEffect, uiManager.playerTwoBattler.transform.position, spawnEffect.transform.rotation,
+                    uiManager.playerTwoBattler);
+                uiManager.ExpandPlayerTwoBattler();
+                uiManager.UpdatePlayerTwoBattlerDetails();
             }
         }
 
-        private IEnumerator DelayChangeOpponentBattlerIndex(int index)
+        private IEnumerator DelayChangePlayerTwoBattlerIndex(int index)
         {
             yield return new WaitForSeconds(shrinkEffectDelay);
-            opponentDisplayBattlerIndex = index;
-            Instantiate(spawnEffect, uiManager.opponentBattler.transform.position, spawnEffect.transform.rotation,
-                uiManager.opponentBattler);
-            uiManager.ExpandOpponentBattler();
-            uiManager.UpdateOpponentBattlerDetails();
+            playerTwoDisplayBattlerIndex = index;
+            Instantiate(spawnEffect, uiManager.playerTwoBattler.transform.position, spawnEffect.transform.rotation,
+                uiManager.playerTwoBattler);
+            uiManager.ExpandPlayerTwoBattler();
+            uiManager.UpdatePlayerTwoBattlerDetails();
         }
 
-        private void PlayerSwappedBattler()
+        private void PlayerOneOneSwappedBattler()
         {
-            ChangePlayerBattlerIndex(_playerSwapIndex);
+            ChangePlayerOneBattlerIndex(_playerSwapIndex);
             
             AddParticipatedBattler(partyOne[_playerSwapIndex]);
 
-            uiManager.UpdatePlayerBattlerDetails();
+            uiManager.UpdatePlayerOneBattlerDetails();
             uiManager.ForceHealthSet();
             
             QueDialogue($"Go ahead {partyOne[_playerSwapIndex].name}!", DialogueBoxType.Event, "sentOut", true);
         }
 
-        private void OpponentSwitchBattler()
+        private void PlayerTwoSwitchBattler()
         {
             AISwitchEventArgs e =
-                new AISwitchEventArgs(opponentBattlerIndex, partyTwo, ExternalBattleData.Construct(this));
+                new AISwitchEventArgs(playerTwoBattlerIndex, partyTwo, ExternalBattleData.Construct(this));
             
             enemyAI.AISwitchMethod(e);
 
-            ChangeOpponentBattlerIndex(e.newBattlerIndex, true);
+            ChangePlayerTwoBattlerIndex(e.newBattlerIndex, true);
             
-            uiManager.UpdateOpponentBattlerDetails();
+            uiManager.UpdatePlayerTwoBattlerDetails();
             uiManager.ForceHealthSet();
             
-            QueDialogue($"Opponent sent out {partyTwo[e.newBattlerIndex].name}!", DialogueBoxType.Event, "sentOut", true);
+            QueDialogue($"PlayerTwo sent out {partyTwo[e.newBattlerIndex].name}!", DialogueBoxType.Event, "sentOut", true);
         }
 
-        private void PlayerParalysed()
+        private void PlayerOneParalysed()
         {
-            QueDialogue($"{playerCurrentBattler.name} is Paralysed! It is unable to move!", DialogueBoxType.Event);
+            QueDialogue($"{playerOneCurrentBattler.name} is Paralysed! It is unable to move!", DialogueBoxType.Event);
         }
 
-        private void OpponentParalysed()
+        private void PlayerTwoParalysed()
         {
-            QueDialogue($"The opponent {opponentCurrentBattler.name} is Paralysed! It is unable to move!", DialogueBoxType.Event);
+            QueDialogue($"The playerTwo {playerTwoCurrentBattler.name} is Paralysed! It is unable to move!", DialogueBoxType.Event);
         }
 
-        private void PlayerAsleep()
+        private void PlayerOneAsleep()
         {
-            QueDialogue($"The opponent {opponentCurrentBattler.name} is Asleep", DialogueBoxType.Event);
+            QueDialogue($"The playerTwo {playerTwoCurrentBattler.name} is Asleep", DialogueBoxType.Event);
         }
 
-        private void OpponentAsleep()
+        private void PlayerTwoAsleep()
         {
-            QueDialogue($"The opponent {opponentCurrentBattler.name} is Asleep", DialogueBoxType.Event);
+            QueDialogue($"The playerTwo {playerTwoCurrentBattler.name} is Asleep", DialogueBoxType.Event);
         }
 
         private void MoveMissed()
@@ -949,27 +949,27 @@ namespace PokemonGame.Battle
 
         public void AddParticipatedBattler(Battler battlerToParticipate)
         {
-            if (!battlersThatParticipated.Contains(battlerToParticipate))
+            if (!playerOneBattlersThatParticipated.Contains(battlerToParticipate))
             {
-                battlersThatParticipated.Add(battlerToParticipate);
+                playerOneBattlersThatParticipated.Add(battlerToParticipate);
             }
         }
 
-        private void DoPlayerMove()
+        private void DoPlayerOneOneMove()
         {
             bool able = true;
             bool missed = false;
             
-            if (playerCurrentBattler.statusEffect == Registry.GetStatusEffect("Paralysed"))
+            if (playerOneCurrentBattler.statusEffect == Registry.GetStatusEffect("Paralysed"))
             {
                 if (Random.Range(0, 4) == 0)
                 {
-                    turnItemQueue.Insert(0, TurnItem.PlayerParalysed);
+                    turnItemQueue.Insert(0, TurnItem.PlayerOneParalysed);
                     able = false;
                 }
-            }else if (playerCurrentBattler.statusEffect == Registry.GetStatusEffect("Asleep"))
+            }else if (playerOneCurrentBattler.statusEffect == Registry.GetStatusEffect("Asleep"))
             {
-                turnItemQueue.Insert(0, TurnItem.PlayerAsleep);
+                turnItemQueue.Insert(0, TurnItem.PlayerOneAsleep);
                 able = false;
             }
 
@@ -978,116 +978,116 @@ namespace PokemonGame.Battle
                 return;
             }
 
-            if (playerMoveToDo.accuracy != 0 && !Mathf.Approximately(playerMoveToDo.accuracy, 1))
+            if (playerOneMoveToDo.accuracy != 0 && !Mathf.Approximately(playerOneMoveToDo.accuracy, 1))
             {
                 // actually has like a usable accuracy
-                missed = Random.Range(1, 101) > playerMoveToDo.accuracy * 100;
+                missed = Random.Range(1, 101) > playerOneMoveToDo.accuracy * 100;
             }
             
             uiManager.ShowHealthUI(true);
             
             //You can add any animation calls for attacking here
             
-            int moveToDoIndex = GetIndexOfMoveOnCurrentPlayer(playerMoveToDo);
+            int moveToDoIndex = GetIndexOfMoveOnCurrentPlayerOne(playerOneMoveToDo);
             
-            MoveMethodEventArgs e = new MoveMethodEventArgs(playerCurrentBattler, opponentCurrentBattler, playerMoveToDo, 
-                playerCurrentBattler.movePpInfos[moveToDoIndex], ExternalBattleData.Construct(this));
+            MoveMethodEventArgs e = new MoveMethodEventArgs(playerOneCurrentBattler, playerTwoCurrentBattler, playerOneMoveToDo, 
+                playerOneCurrentBattler.movePpInfos[moveToDoIndex], ExternalBattleData.Construct(this));
 
             DialogueMoveUsed(e, true);
             _currentArgs = e;
             
             if (missed)
             {
-                turnItemQueue.Insert(0, TurnItem.PlayerMissed);
+                turnItemQueue.Insert(0, TurnItem.PlayerOneMissed);
                 e.missed = true;
                 return;
             }
             
-            playerMoveToDo.MoveMethod(e);
+            playerOneMoveToDo.MoveMethod(e);
 
             DialogueMoveEffectiveness(e);
         }
 
         private void QueueMoves()
         {
-            if (playerAction is TurnItem.CatchAttempt or TurnItem.PlayerSwap or TurnItem.PlayerItem)
+            if (playerAction is TurnItem.CatchAttempt or TurnItem.PlayerOneSwap or TurnItem.PlayerOneItem)
             {
-                AddOpponentMoveToQueue();
+                AddPlayerTwoMoveToQueue();
                 // dont add the player move to queue because they are doing something else
 
                 return;
             }
 
-            float playerAdjustedSpeed = playerCurrentBattler.stats.speed;
-            float opponentAdjustedSpeed = opponentCurrentBattler.stats.speed;
+            float playerAdjustedSpeed = playerOneCurrentBattler.stats.speed;
+            float playerTwoAdjustedSpeed = playerTwoCurrentBattler.stats.speed;
 
-            if (playerCurrentBattler.statusEffect == Registry.GetStatusEffect("Paralysed"))
+            if (playerOneCurrentBattler.statusEffect == Registry.GetStatusEffect("Paralysed"))
             {
                 playerAdjustedSpeed /= 2;
             }
             
-            if (opponentCurrentBattler.statusEffect == Registry.GetStatusEffect("Paralysed"))
+            if (playerTwoCurrentBattler.statusEffect == Registry.GetStatusEffect("Paralysed"))
             {
-                opponentAdjustedSpeed /= 2;
+                playerTwoAdjustedSpeed /= 2;
             }
             
-            if (playerMoveToDo.priority == enemyMoveToDo.priority)
+            if (playerOneMoveToDo.priority == playerTwoMoveToDo.priority)
             {
-                if(playerAdjustedSpeed > opponentAdjustedSpeed)
+                if(playerAdjustedSpeed > playerTwoAdjustedSpeed)
                 {
-                    //Player BATTLER is faster
-                    AddPlayerMoveToQueue();
-                    AddOpponentMoveToQueue();
+                    //PlayerOne BATTLER is faster
+                    AddPlayerOneMoveToQueue();
+                    AddPlayerTwoMoveToQueue();
                 }
                 else
                 {
                     //Enemy BATTLER is faster
-                    AddOpponentMoveToQueue();
-                    AddPlayerMoveToQueue();
+                    AddPlayerTwoMoveToQueue();
+                    AddPlayerOneMoveToQueue();
                 }
             }
             else
             {
-                if(playerMoveToDo.priority > enemyMoveToDo.priority)
+                if(playerOneMoveToDo.priority > playerTwoMoveToDo.priority)
                 {
-                    //Player MOVE is faster
-                    AddPlayerMoveToQueue();
-                    AddOpponentMoveToQueue();
+                    //PlayerOne MOVE is faster
+                    AddPlayerOneMoveToQueue();
+                    AddPlayerTwoMoveToQueue();
                 }
                 else
                 {
                     //Enemy MOVE is faster
-                    AddOpponentMoveToQueue();
-                    AddPlayerMoveToQueue();
+                    AddPlayerTwoMoveToQueue();
+                    AddPlayerOneMoveToQueue();
                 }
             }
         }
         
-        private void AddPlayerMoveToQueue()
+        private void AddPlayerOneMoveToQueue()
         {
-            turnItemQueue.Add(TurnItem.PlayerMove);
+            turnItemQueue.Add(TurnItem.PlayerOneMove);
         }
 
-        private void AddOpponentMoveToQueue()
+        private void AddPlayerTwoMoveToQueue()
         {
-            turnItemQueue.Add(TurnItem.OpponentMove);
+            turnItemQueue.Add(TurnItem.PlayerTwoMove);
         }
 
-        private void DoEnemyMove()
+        private void DoPlayerTwoMove()
         {
             bool able = true;
             bool missed = false;
             
-            if (opponentCurrentBattler.statusEffect == Registry.GetStatusEffect("Paralysed"))
+            if (playerTwoCurrentBattler.statusEffect == Registry.GetStatusEffect("Paralysed"))
             {
                 if (Random.Range(0, 4) == 0)
                 {
-                    turnItemQueue.Insert(0, TurnItem.OpponentParalysed);
+                    turnItemQueue.Insert(0, TurnItem.PlayerTwoParalysed);
                     able = false;
                 }
-            }else if (opponentCurrentBattler.statusEffect == Registry.GetStatusEffect("Asleep"))
+            }else if (playerTwoCurrentBattler.statusEffect == Registry.GetStatusEffect("Asleep"))
             {
-                turnItemQueue.Insert(0, TurnItem.OpponentAsleep);
+                turnItemQueue.Insert(0, TurnItem.PlayerTwoAsleep);
                 able = false;
             }
 
@@ -1096,48 +1096,48 @@ namespace PokemonGame.Battle
                 return;
             }
 
-            if (enemyMoveToDo.accuracy != 0 && !Mathf.Approximately(enemyMoveToDo.accuracy, 1))
+            if (playerTwoMoveToDo.accuracy != 0 && !Mathf.Approximately(playerTwoMoveToDo.accuracy, 1))
             {
                 // actually has like a usable accuracy
-                missed = Random.Range(1, 101) > enemyMoveToDo.accuracy * 100;
+                missed = Random.Range(1, 101) > playerTwoMoveToDo.accuracy * 100;
             }
             
             uiManager.ShowHealthUI(true);
             
             //You can add any animation calls for attacking here
 
-            int moveToDoIndex = GetIndexOfMoveOnCurrentEnemy(enemyMoveToDo);
+            int moveToDoIndex = GetIndexOfMoveOnCurrentEnemy(playerTwoMoveToDo);
 
-            MoveMethodEventArgs e = new MoveMethodEventArgs(opponentCurrentBattler, playerCurrentBattler,
-                enemyMoveToDo, opponentCurrentBattler.movePpInfos[moveToDoIndex], ExternalBattleData.Construct(this));
+            MoveMethodEventArgs e = new MoveMethodEventArgs(playerTwoCurrentBattler, playerOneCurrentBattler,
+                playerTwoMoveToDo, playerTwoCurrentBattler.movePpInfos[moveToDoIndex], ExternalBattleData.Construct(this));
             
             DialogueMoveUsed(e, false);
             _currentArgs = e;
             
             if (missed)
             {
-                turnItemQueue.Insert(0, TurnItem.OpponentMissed);
+                turnItemQueue.Insert(0, TurnItem.PlayerTwoMissed);
                 e.missed = true;
                 return;
             }
             
-            enemyMoveToDo.MoveMethod(e);
+            playerTwoMoveToDo.MoveMethod(e);
             
             DialogueMoveEffectiveness(e);
         }
 
-        private void PlayerBattlerDied()
+        private void PlayerOneBattlerDied()
         {
-            turnItemQueue.RemoveAll(item => item == TurnItem.PlayerMove);
+            turnItemQueue.RemoveAll(item => item == TurnItem.PlayerOneMove);
 
             partyOne.CheckDefeatedStatus();
 
             if (!partyOne.defeated)
             {
-                turnItemQueue.Add(TurnItem.PlayerSwapBecauseFainted);
+                turnItemQueue.Add(TurnItem.PlayerOneSwapBecauseFainted);
             }
             
-            battlersThatParticipated.Remove(playerCurrentBattler);
+            playerOneBattlersThatParticipated.Remove(playerOneCurrentBattler);
         }
 
         public void RunFromBattle()
@@ -1153,23 +1153,23 @@ namespace PokemonGame.Battle
 
         private int GetIndexOfMoveOnCurrentEnemy(Move move)
         {
-            for (int i = 0; i < opponentCurrentBattler.moves.Count; i++)
+            for (int i = 0; i < playerTwoCurrentBattler.moves.Count; i++)
             {
-                if (opponentCurrentBattler.moves[i] == move)
+                if (playerTwoCurrentBattler.moves[i] == move)
                 {
                     return i;
                 }
             }
 
-            Debug.LogWarning($"Could not find move {move.name} on the current opponent battler");
+            Debug.LogWarning($"Could not find move {move.name} on the current playerTwo battler");
             return -1;
         }
         
-        private int GetIndexOfMoveOnCurrentPlayer(Move move)
+        private int GetIndexOfMoveOnCurrentPlayerOne(Move move)
         {
-            for (int i = 0; i < playerCurrentBattler.moves.Count; i++)
+            for (int i = 0; i < playerOneCurrentBattler.moves.Count; i++)
             {
-                if (playerCurrentBattler.moves[i] == move)
+                if (playerOneCurrentBattler.moves[i] == move)
                 {
                     return i;
                 }
@@ -1183,25 +1183,25 @@ namespace PokemonGame.Battle
         {
             bool anyEffects = false;
             
-            if (!playerCurrentBattler.isFainted)
+            if (!playerOneCurrentBattler.isFainted)
             {
-                foreach (var trigger in playerCurrentBattler.statusEffect.triggers)
+                foreach (var trigger in playerOneCurrentBattler.statusEffect.triggers)
                 {
                     if (trigger.trigger == StatusEffectCaller.EndOfTurn)
                     {
-                        trigger.EffectEvent.Invoke(new StatusEffectEventArgs(playerCurrentBattler));
+                        trigger.EffectEvent.Invoke(new StatusEffectEventArgs(playerOneCurrentBattler));
                         anyEffects = true;
                     }
                 }
             }
             
-            if (!opponentCurrentBattler.isFainted)
+            if (!playerTwoCurrentBattler.isFainted)
             {
-                foreach (var trigger in opponentCurrentBattler.statusEffect.triggers)
+                foreach (var trigger in playerTwoCurrentBattler.statusEffect.triggers)
                 {
                     if (trigger.trigger == StatusEffectCaller.EndOfTurn)
                     {
-                        trigger.EffectEvent.Invoke(new StatusEffectEventArgs(opponentCurrentBattler));
+                        trigger.EffectEvent.Invoke(new StatusEffectEventArgs(playerTwoCurrentBattler));
                         anyEffects = true;
                     }
                 }
@@ -1220,25 +1220,25 @@ namespace PokemonGame.Battle
         {
             bool anyEffects = false;
 
-            if (!playerCurrentBattler.isFainted)
+            if (!playerOneCurrentBattler.isFainted)
             {
-                foreach (var trigger in playerCurrentBattler.statusEffect.triggers)
+                foreach (var trigger in playerOneCurrentBattler.statusEffect.triggers)
                 {
                     if (trigger.trigger == StatusEffectCaller.StartOfTurn)
                     {
-                        trigger.EffectEvent.Invoke(new StatusEffectEventArgs(playerCurrentBattler));
+                        trigger.EffectEvent.Invoke(new StatusEffectEventArgs(playerOneCurrentBattler));
                         anyEffects = true;
                     }
                 }
             }
             
-            if (!opponentCurrentBattler.isFainted)
+            if (!playerTwoCurrentBattler.isFainted)
             {
-                foreach (var trigger in opponentCurrentBattler.statusEffect.triggers)
+                foreach (var trigger in playerTwoCurrentBattler.statusEffect.triggers)
                 {
                     if (trigger.trigger == StatusEffectCaller.StartOfTurn)
                     {
-                        trigger.EffectEvent.Invoke(new StatusEffectEventArgs(opponentCurrentBattler));
+                        trigger.EffectEvent.Invoke(new StatusEffectEventArgs(playerTwoCurrentBattler));
                         anyEffects = true;
                     }
                 }
@@ -1260,7 +1260,7 @@ namespace PokemonGame.Battle
             Dictionary<string, object> vars = new Dictionary<string, object>
             {
                 { "partyOne", partyOne },
-                { "trainerName", _opponentName },
+                { "trainerName", _playerTwoName },
                 { "isDefeated", true },
                 { "trainerBattle", trainerBattle}
             };
@@ -1278,7 +1278,7 @@ namespace PokemonGame.Battle
             Dictionary<string, object> vars = new Dictionary<string, object>
             {
                 { "partyOne", partyOne },
-                { "trainerName", _opponentName },
+                { "trainerName", _playerTwoName },
                 { "isDefeated", false },
                 { "loaderName", "ForcedHealPoint" },
                 { "trainerBattle", trainerBattle}
@@ -1294,11 +1294,11 @@ namespace PokemonGame.Battle
         {
             if (isDefeated)
             {
-                turnItemQueue.Add(TurnItem.EndBattlePlayerWin);
+                turnItemQueue.Add(TurnItem.EndBattlePlayerOneWin);
             }
             else
             {
-                turnItemQueue.Add(TurnItem.EndBattleOpponentWin);
+                turnItemQueue.Add(TurnItem.EndBattlePlayerTwoWin);
             }
         }
         
@@ -1308,7 +1308,7 @@ namespace PokemonGame.Battle
             {
                 if (trainerBattle)
                 {
-                    QueDialogue("All opponent Pokemon defeated!", DialogueBoxType.Event, "opponentDefeated", true);
+                    QueDialogue("All playerTwo Pokemon defeated!", DialogueBoxType.Event, "playerTwoDefeated", true);
                 }
                 else
                 {

@@ -27,7 +27,7 @@ namespace PokemonGame.Battle
         {
             int moveToDo = Random.Range(0, e.battlerToUse.moves.Count);
             
-            Battle.Singleton.enemyMoveToDo = e.battlerToUse.moves[moveToDo];
+            Battle.Singleton.playerTwoMoveToDo = e.battlerToUse.moves[moveToDo];
         }
         
         public void DefaultAI(AIMethodEventArgs e)
@@ -40,7 +40,7 @@ namespace PokemonGame.Battle
 
             int moveToDo = Random.Range(0, e.battlerToUse.moves.Count);
 
-            Battle.Singleton.enemyMoveToDo = e.battlerToUse.moves[moveToDo];
+            Battle.Singleton.playerTwoMoveToDo = e.battlerToUse.moves[moveToDo];
         }
     }   
 }

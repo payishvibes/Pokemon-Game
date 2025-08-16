@@ -110,7 +110,7 @@ namespace PokemonGame.Battle
                     {
                         useButton.onClick.AddListener(() =>
                         {
-                            Battle.Singleton.PlayerPickedPokeBall((PokeBall)sortedItems[index].item);
+                            Battle.Singleton.PlayerOnePickedPokeBall((PokeBall)sortedItems[index].item);
                         });
                     }
                     else
@@ -125,7 +125,7 @@ namespace PokemonGame.Battle
                 {
                     useButton.onClick.AddListener(() =>
                     {
-                        Battle.Singleton.PlayerPickedItemToUse(_currentlyDisplayedItems[index]);
+                        Battle.Singleton.PlayerOnePickedItemToUse(_currentlyDisplayedItems[index]);
                         Battle.Singleton.StartPickingBattlerToUseItemOn();
                     });
                 }
