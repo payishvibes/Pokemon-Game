@@ -210,8 +210,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1038033299}
-        m_TargetAssemblyTypeName: PokemonGame.Battle.Battle, Assembly-CSharp
+      - m_Target: {fileID: 1038033302}
+        m_TargetAssemblyTypeName: PokemonGame.Battle.PlayerBattleController, Assembly-CSharp
         m_MethodName: ChooseMove
         m_Mode: 3
         m_Arguments:
@@ -2517,8 +2517,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1038033299}
-        m_TargetAssemblyTypeName: PokemonGame.Battle.Battle, Assembly-CSharp
+      - m_Target: {fileID: 1038033302}
+        m_TargetAssemblyTypeName: PokemonGame.Battle.PlayerBattleController, Assembly-CSharp
         m_MethodName: ChooseMove
         m_Mode: 3
         m_Arguments:
@@ -7114,8 +7114,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1038033299}
-        m_TargetAssemblyTypeName: PokemonGame.Battle.Battle, Assembly-CSharp
+      - m_Target: {fileID: 1038033302}
+        m_TargetAssemblyTypeName: PokemonGame.Battle.PlayerBattleController, Assembly-CSharp
         m_MethodName: ChooseMove
         m_Mode: 3
         m_Arguments:
@@ -7167,6 +7167,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1038033300}
   - component: {fileID: 1038033299}
+  - component: {fileID: 1038033302}
   - component: {fileID: 1038033301}
   m_Layer: 0
   m_Name: Battle
@@ -7189,10 +7190,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allowsGlobalTags: 1
   uiManager: {fileID: 1038033301}
+  playerBattleController: {fileID: 1038033302}
   battlerUsedText: {fileID: 4900000, guid: 06cf16b39212cf9468feeab7b70acc98, type: 3}
   spawnEffect: {fileID: 6386010629427674053, guid: 44a8027545fd0b0498450780f13681bf,
-    type: 3}
-  levelUpDisplayPrefab: {fileID: 3980369010481717692, guid: 1ca48fdec0d66364aa586b2abc36d34a,
     type: 3}
   shrinkEffectDelay: 1
   playerOneBattlerIndex: 0
@@ -7205,15 +7205,11 @@ MonoBehaviour:
     PartyList: []
     defeated: 0
   enemyAI: {fileID: 0}
-  playerMoveToDo: {fileID: 0}
   currentDisplayBattlerIndex: 0
   playerTwoDisplayBattlerIndex: 0
-  playerTwoMoveToDo: {fileID: 0}
-  turnItemQueue: 
-  battlersThatParticipated: []
+  playerOneBattlersThatParticipated: []
   trainerBattle: 0
-  playerAction: 0
-  currentTurnItem: 0
+  onlineBattle: 1
 --- !u!4 &1038033300
 Transform:
   m_ObjectHideFlags: 0
@@ -7299,8 +7295,25 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 381059925c2bf7649a377c9dbf0b9c3c, type: 2}
   - {fileID: 11400000, guid: 1dab65d00722cfd4fae59da1209d30f0, type: 2}
   battle: {fileID: 1038033299}
+  playerBattleController: {fileID: 1038033302}
   targetPlayerOneBattlerScale: {x: 0, y: 0, z: 0}
   targetPlayerTwoBattlerScale: {x: 0, y: 0, z: 0}
+--- !u!114 &1038033302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038033298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1370e933d705404499b3d8cf7dbe123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battle: {fileID: 1038033299}
+  uiManager: {fileID: 1038033301}
+  levelUpDisplayPrefab: {fileID: 3980369010481717692, guid: 1ca48fdec0d66364aa586b2abc36d34a,
+    type: 3}
 --- !u!1 &1096175100
 GameObject:
   m_ObjectHideFlags: 0
@@ -11710,8 +11723,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1038033299}
-        m_TargetAssemblyTypeName: PokemonGame.Battle.Battle, Assembly-CSharp
+      - m_Target: {fileID: 1038033302}
+        m_TargetAssemblyTypeName: PokemonGame.Battle.PlayerBattleController, Assembly-CSharp
         m_MethodName: ChooseMove
         m_Mode: 3
         m_Arguments:

@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using PokeApiNet;
 using PokemonGame.General;
@@ -275,6 +273,11 @@ namespace PokemonGame.Battle
         {
             e.damageDealt = CalculateDamage(e);
             Battle.Singleton.QueDialogue($"{e.target.name} is going to have a very Bad Time", DialogueBoxType.Event);
+        }
+
+        public void SelfDestruct(MoveMethodEventArgs e)
+        {
+            e.damageDealt = CalculateDamage(e);
         }
     }
 }

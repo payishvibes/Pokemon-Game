@@ -60,6 +60,14 @@ namespace PokemonGame.Dialogue
                 DialogueManager.instance.QueDialogue(text, this, id, false, boxType);
             }
         }
+
+        /// <summary>
+        /// Forcibly stops the next dialogue queued from autoplaying
+        /// </summary>
+        protected void ForceStopNextQueued()
+        {
+            DialogueManager.instance.ForceStopNextQueued();
+        }
         
         /// <summary>
         /// Starts an INK Dialogue sequence only if we queued one and told it not to autostart

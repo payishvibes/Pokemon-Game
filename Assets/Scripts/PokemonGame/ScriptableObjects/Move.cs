@@ -55,8 +55,6 @@ namespace PokemonGame.ScriptableObjects
                 {
                     MovesMethods.GetMoveMethods().DefaultMoveMethod(e);
                 }
-                
-                e.movePPData.MoveWasUsed();
             }
             else
             {

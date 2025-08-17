@@ -29,10 +29,7 @@ namespace PokemonGame.Battle
         {
             int moveToDo = Random.Range(0, e.battlerToUse.moves.Count);
             
-            Battle.Singleton.playerTwoAction = new TurnItem(TurnItemType.PlayerTwoMove, new List<object>()
-            {
-                e.battlerToUse.moves[moveToDo],
-            });
+            Battle.Singleton.PlayerTwoChooseMove(moveToDo);
         }
         
         public void DefaultAI(AIMethodEventArgs e)
@@ -45,10 +42,7 @@ namespace PokemonGame.Battle
 
             int moveToDo = Random.Range(0, e.battlerToUse.moves.Count);
 
-            Battle.Singleton.playerTwoAction = new TurnItem(TurnItemType.PlayerTwoMove, new List<object>()
-            {
-                e.battlerToUse.moves[moveToDo],
-            });
+            Battle.Singleton.PlayerTwoChooseMove(moveToDo);
         }
     }   
 }

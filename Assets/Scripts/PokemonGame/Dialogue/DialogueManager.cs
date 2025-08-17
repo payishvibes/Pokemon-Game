@@ -56,13 +56,11 @@ namespace PokemonGame.Dialogue
         
         private DialogueBoxType currentDialogueBoxType;
 
-        private bool wasToldToNotStart;
-
         public int cancelChoiceId = -1;
 
         private QueuedDialogue currentQueuedDialogue;
 
-        private QueuedDialogue lastQueued;
+        private bool _forceStopNextQueued;
         
         private void Awake()
         {
@@ -167,17 +165,16 @@ namespace PokemonGame.Dialogue
         /// <param name="variables">The variables that can be loaded into the ink file</param>
         public void QueDialogue(TextAsset inkJson, DialogueTrigger trigger, string id, bool autostart, DialogueBoxType boxType, Dictionary<string, string> variables = null)
         {
-            QueuedDialogue dialogue = new QueuedDialogue(trigger, variables, id, inkJson, boxType, autostart);
+            QueuedDialogue dialogue = new QueuedDialogue(trigger, variables, id, inkJson, boxType, autostart && !_forceStopNextQueued);
             if (_queue.Count > 0 || dialogueIsPlaying) // if we can actually begin the dialogue or if we need to wait
             {
                 _queue.Enqueue(dialogue);
-                lastQueued = dialogue;
             }
             else // load it now
             {
                 LoadDialogueFromQueue(dialogue);
-                lastQueued = dialogue;
             }
+            _forceStopNextQueued = false;
         }
         
         /// <summary>
@@ -188,22 +185,21 @@ namespace PokemonGame.Dialogue
         /// <param name="autostart">Automatically start the dialogue on load, on by default</param>
         public void QueDialogue(string text, DialogueTrigger trigger, string id, bool autostart, DialogueBoxType boxType)
         {
-            QueuedDialogue dialogue = new QueuedDialogue(trigger, id, text, boxType, autostart);
+            QueuedDialogue dialogue = new QueuedDialogue(trigger, id, text, boxType, autostart && !_forceStopNextQueued);
             if (_queue.Count > 0 || dialogueIsPlaying) // if we can actually begin the dialogue or if we need to wait
             {
                 _queue.Enqueue(dialogue);
-                lastQueued = dialogue;
             }
             else // load it now
             {
                 LoadDialogueFromQueue(dialogue);
-                lastQueued = dialogue;
             }
+            _forceStopNextQueued = false;
         }
 
-        public void ForceStopLastQueued(bool forceStop)
+        public void ForceStopNextQueued()
         {
-            lastQueued.forceStopNext = forceStop;
+            _forceStopNextQueued = true;
         }
 
         /// <summary>
@@ -212,8 +208,6 @@ namespace PokemonGame.Dialogue
         /// <param name="dialogueToLoad">The queued dialogue to load</param>
         private void LoadDialogueFromQueue(QueuedDialogue dialogueToLoad)
         {
-            bool canAutoContinue = currentQueuedDialogue != null ? !currentQueuedDialogue.forceStopNext : true;
-            
             currentTrigger = dialogueToLoad.trigger;
             currentQueuedDialogue = dialogueToLoad;
             
@@ -231,34 +225,14 @@ namespace PokemonGame.Dialogue
                 }
             }
             
-            if (dialogueToLoad.autoStart && canAutoContinue)
+            if (dialogueToLoad.autoStart)
             {
-                dialogueIsPlaying = true;
-                dialoguePanel.SetActive(true);
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-                ContinueStory();
+                StartLoadedDialogue(dialogueToLoad);
             }
             else
             {
                 dialogueIsPlaying = false;
-                wasToldToNotStart = true;
                 dialoguePanel.SetActive(false);
-            }
-
-            if (dialogueToLoad.ink)
-            {
-                if (dialogueToLoad.autoStart && canAutoContinue)
-                {
-                    DialogueStarted?.Invoke(this, new DialogueStartedEventArgs(dialogueToLoad.trigger, currentQueuedDialogue.id, currentQueuedDialogue.textAsset));
-                }
-            }
-            else
-            {
-                if (dialogueToLoad.autoStart && canAutoContinue)
-                {
-                    DialogueStarted?.Invoke(this, new DialogueStartedEventArgs(dialogueToLoad.trigger, currentQueuedDialogue.id, currentQueuedDialogue.text));
-                }
             }
         }
 
@@ -268,24 +242,12 @@ namespace PokemonGame.Dialogue
         /// <param name="trigger">Used to tell if you were the one that queued it</param>
         public void StartDialogue(DialogueTrigger trigger)
         {
-            if (wasToldToNotStart)
+            if (!currentQueuedDialogue.autoStart)
             {
                 if(currentTrigger == trigger)
                 {
-                    if (currentQueuedDialogue.ink)
-                    {
-                        DialogueStarted?.Invoke(this, new DialogueStartedEventArgs(trigger, currentQueuedDialogue.id, currentQueuedDialogue.textAsset));   
-                    }
-                    else
-                    {
-                        DialogueStarted?.Invoke(this, new DialogueStartedEventArgs(trigger, currentQueuedDialogue.id, currentQueuedDialogue.text));  
-                    }
-                    wasToldToNotStart = false;
-                    dialogueIsPlaying = true;
-                    dialoguePanel.SetActive(true);
-                    Cursor.lockState = CursorLockMode.None;
-                    Cursor.visible = true;
-                    ContinueStory();
+                    StartLoadedDialogue(currentQueuedDialogue);
+                    _forceStopNextQueued = false;
                 }
                 else
                 {
@@ -294,9 +256,29 @@ namespace PokemonGame.Dialogue
             }
             else
             {
-                wasToldToNotStart = false;
-                currentQueuedDialogue.forceStopNext = false;
+                _forceStopNextQueued = false;
             }
+        }
+
+        private void StartLoadedDialogue(QueuedDialogue dialogueToLoad)
+        {
+            if (dialogueToLoad.autoStart)
+            {
+                DialogueStarted?.Invoke(this,
+                    new DialogueStartedEventArgs(dialogueToLoad.trigger, currentQueuedDialogue.id,
+                        currentQueuedDialogue.textAsset));
+            }
+            else
+            {
+                DialogueStarted?.Invoke(this,
+                    new DialogueStartedEventArgs(dialogueToLoad.trigger, currentQueuedDialogue.id,
+                        currentQueuedDialogue.text));
+            }
+            dialogueIsPlaying = true;
+            dialoguePanel.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            ContinueStory();
         }
 
         public void ClearQueue()
@@ -776,10 +758,6 @@ namespace PokemonGame.Dialogue
         /// The type of box the dialogue will be displayed in
         /// </summary>
         public DialogueBoxType boxType;
-        /// <summary>
-        /// Weather or not to forcibly disable auto start for the next dialogue that plays
-        /// </summary>
-        public bool forceStopNext;
 
         public QueuedDialogue(DialogueTrigger trigger, Dictionary<string, string> variables, string id, TextAsset textAsset, DialogueBoxType boxType, bool autoStart = true)
         {

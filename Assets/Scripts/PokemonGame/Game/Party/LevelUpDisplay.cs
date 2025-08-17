@@ -96,6 +96,6 @@ public class LevelUpDisplay : MonoBehaviour
     private IEnumerator DelayByFrame()
     {
         yield return new WaitForEndOfFrame();
-        Battle.Singleton.FinishedViewingLevelUpScreen();
+        PlayerBattleController.Instance.FinishedViewingLevelUpScreen();
     }
 }

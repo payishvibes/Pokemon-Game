@@ -110,14 +110,14 @@ namespace PokemonGame.Battle
                     {
                         useButton.onClick.AddListener(() =>
                         {
-                            Battle.Singleton.PlayerOnePickedPokeBall((PokeBall)sortedItems[index].item);
+                            PlayerBattleController.Instance.PlayerPickedPokeBall((PokeBall)sortedItems[index].item);
                         });
                     }
                     else
                     {
                         useButton.onClick.AddListener(() =>
                         {
-                            Battle.Singleton.UseItem(sortedItems[index].item, sortedItems[index].item.targetIndex, sortedItems[index].item.userParty);
+                            PlayerBattleController.Instance.PlayerUseItem(sortedItems[index].item, sortedItems[index].item.targetIndex, sortedItems[index].item.userParty);
                         });
                     }
                 }
@@ -125,7 +125,7 @@ namespace PokemonGame.Battle
                 {
                     useButton.onClick.AddListener(() =>
                     {
-                        Battle.Singleton.StartPickingBattlerToUseItemOn(sortedItems[index].item);
+                        PlayerBattleController.Instance.StartPickingBattlerToUseItemOn(sortedItems[index].item);
                     });
                 }
             }

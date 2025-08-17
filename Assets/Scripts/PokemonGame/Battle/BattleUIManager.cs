@@ -55,6 +55,7 @@ namespace PokemonGame.Battle
         public Transform playerTwoBattler => playerTwoBattlerRenderer.transform;
         
         public Battle battle;
+        public PlayerBattleController playerBattleController;
 
         private Item _playerItemToUse;
 
@@ -329,7 +330,7 @@ namespace PokemonGame.Battle
             useItemDisplay.SetActive(false);
             
             Back();
-            battle.PlayerOneChooseToSwap(partyID);
+            playerBattleController.PlayerChooseToSwap(partyID);
         }
 
         public void UseItemOnBattler(int partyID)
@@ -343,9 +344,8 @@ namespace PokemonGame.Battle
             useItemOnBattlerDisplay.SetActive(false);
             useItemDisplay.SetActive(false);
             
-            battle.UseItem(_playerItemToUse, partyID, true);
+            playerBattleController.PlayerUseItem(_playerItemToUse, partyID, true);
             
-            battle.AddParticipatedBattler(battle.partyOne[partyID]);
             Back();
         }
 

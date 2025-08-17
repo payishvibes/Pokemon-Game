@@ -44,14 +44,14 @@ namespace PokemonGame.Battle
             Singleton = this;
         }
 
-        [Header("UI:")]
+        [Header("Battle Components:")]
         [SerializeField] private BattleUIManager uiManager;
+        [SerializeField] private PlayerBattleController playerBattleController;
         
         [Space]
         [Header("Assignments")] 
         [SerializeField] private TextAsset battlerUsedText;
         [SerializeField] private ParticleSystem spawnEffect;
-        [SerializeField] private LevelUpDisplay levelUpDisplayPrefab;
         [SerializeField] private float shrinkEffectDelay;
 
         [Space]
@@ -123,11 +123,6 @@ namespace PokemonGame.Battle
         private EventHandler<BattlerTookDamageArgs> _playerTwoBattlerDefeated = null;
         private EventHandler<OnLevelUpEventArgs> _playerOneBattlerLeveledUp = null;
         private EventHandler<EvolutionData> _playerOneBattlerEvolved = null;
-        
-        // temporary stored variables for level up screen
-        private GameObject _currentLevelUpObj;
-
-        private bool _displayingAttackAnimation;
 
         public bool onlineBattle;
         
@@ -253,26 +248,17 @@ namespace PokemonGame.Battle
         private void BattlerLeveledUp(Battler battlerThatLeveled, OnLevelUpEventArgs args)
         {
             Debug.Log("Queuing player level up");
-            turnItemQueue.Insert(0, new(TurnItemType.PlayerOneLevelUp, new List<object>()
+            
+            InsertTurnItem(TurnItemType.PlayerOneLevelUp, new List<object>()
             {
                 battlerThatLeveled,
                 args
-            }));
+            });
         }
 
         private void BattlerEvolved(Battler battlerThatEvolved, BattlerTemplate newTemplate)
         {
             QueDialogue($"{battlerThatEvolved.name} evolved into a {newTemplate.name}!", DialogueBoxType.Narration, "evolved");
-        }
-
-        private void ShowBattlerLeveled()
-        {
-            LevelUpDisplay display = Instantiate(levelUpDisplayPrefab, FindFirstObjectByType<Canvas>().transform);
-            _currentLevelUpObj = display.gameObject;
-            Debug.Log(currentTurnItem.Type);
-            Debug.Log(currentTurnItem.Variables);
-            Debug.Log(currentTurnItem.Variables[1]);
-            display.Init(((OnLevelUpEventArgs)currentTurnItem.Variables[1]).oldStats, ((OnLevelUpEventArgs)currentTurnItem.Variables[1]).newStats);
         }
         
         private IEnumerator ShowPlayerOneMove(MoveMethodEventArgs args)
@@ -282,7 +268,6 @@ namespace PokemonGame.Battle
                 yield return null;
             }
             
-            _displayingAttackAnimation = true;
             if (((Move)currentTurnItem.Variables[0]).category != MoveCategory.Status && !args.missed)
             {
                 playerTwoCurrentBattler.TakeDamage(args.damageDealt, new BattlerDamageSource(playerOneCurrentBattler));
@@ -290,7 +275,6 @@ namespace PokemonGame.Battle
             
             yield return new WaitForSeconds(1);
             
-            _displayingAttackAnimation = false;
             StartDialogue();
             
             if (args.effectiveIndex == 0 && !args.crit)
@@ -306,7 +290,6 @@ namespace PokemonGame.Battle
                 yield return null;
             }
             
-            _displayingAttackAnimation = true;
             if (((Move)playerTwoAction.Variables[0]).category != MoveCategory.Status && !args.missed)
             {
                 playerOneCurrentBattler.TakeDamage(args.damageDealt, new BattlerDamageSource(playerTwoCurrentBattler));
@@ -314,20 +297,12 @@ namespace PokemonGame.Battle
             
             yield return new WaitForSeconds(1);
             
-            _displayingAttackAnimation = false;
             StartDialogue();
             
-            // make sure there will be no more dialogue regarding the playerTwosturn
             if (args.effectiveIndex == 0 && !args.crit)
             {
                 TurnQueueItemEnded();
             }
-        }
-
-        public void FinishedViewingLevelUpScreen()
-        {
-            Destroy(_currentLevelUpObj);
-            TurnQueueItemEnded();
         }
 
         private void Update()
@@ -441,10 +416,10 @@ namespace PokemonGame.Battle
                     BeginSwapPlayerOneBattler();
                     break;
                 case TurnItemType.PlayerOneItem:
-                    PlayerOneOneUseItem((Item)currentTurnItem.Variables[0], (int)currentTurnItem.Variables[1], (bool)currentTurnItem.Variables[2]);
+                    PlayerOneUseItemEvent((Item)currentTurnItem.Variables[0], (int)currentTurnItem.Variables[1], (bool)currentTurnItem.Variables[2]);
                     break;
                 case TurnItemType.PlayerTwoItem:
-                    // PlayerTwoUseItem(_battlerToUseItemOn, _useItemOnPartyTwo);
+                    PlayerTwoUseItemEvent((Item)currentTurnItem.Variables[0], (int)currentTurnItem.Variables[1], (bool)currentTurnItem.Variables[2]);
                     break;
                 case TurnItemType.PlayerOneLevelUp:
                     BattlerLevelUpEvent(((Battler)currentTurnItem.Variables[0]).name, ((OnLevelUpEventArgs)currentTurnItem.Variables[1]).newLevel);
@@ -477,7 +452,7 @@ namespace PokemonGame.Battle
                     CatchAttempt();
                     break;
                 case TurnItemType.Run:
-                    RunRunAwayDialogue();
+                    RunAwayDialogue();
                     break;
                 case TurnItemType.PlayerOneMissed:
                     MoveMissed();
@@ -514,11 +489,24 @@ namespace PokemonGame.Battle
             turnItemQueue.Add(item);
         }
 
+        public void InsertTurnItem(TurnItemType type)
+        {
+            TurnItem item = new TurnItem(type);
+            turnItemQueue.Insert(0, item);
+        }
+
+        public void InsertTurnItem(TurnItemType type, List<object> variables)
+        {
+            TurnItem item = new TurnItem(type, variables);
+            turnItemQueue.Insert(0, item);
+        }
+        
         public void TurnQueueItemEnded()
         {
             Debug.Log($"Ending turn item: {currentTurnItem.Type}");
             _currentlyRunningQueueItem = false;
         }
+
 
         private void EndTurnShowing()
         {
@@ -542,6 +530,8 @@ namespace PokemonGame.Battle
             {
                 QueDialogue(battlerUsedText, DialogueBoxType.Event, "playerTwoMoveUsed", true, variables);
             }
+            
+            ForceStopNextQueued();
         }
 
         private void DialogueMoveEffectiveness(MoveMethodEventArgs e)
@@ -578,12 +568,19 @@ namespace PokemonGame.Battle
             currentTurn = TurnStatus.Choosing;
         }
 
-        //Public method used by the move UI buttons
-        public void ChooseMove(int moveID)
+        public void PlayerOneChooseMove(int moveID)
         {
             playerOneAction = new TurnItem(TurnItemType.PlayerOneMove, new List<object>()
             {
                 playerOneCurrentBattler.moves[moveID],
+            });
+        }
+
+        public void PlayerTwoChooseMove(int moveID)
+        {
+            playerTwoAction = new TurnItem(TurnItemType.PlayerTwoMove, new List<object>()
+            {
+                playerTwoCurrentBattler.moves[moveID],
             });
         }
 
@@ -612,7 +609,7 @@ namespace PokemonGame.Battle
                     StartCoroutine(ExitBattleWin());
                     break;
                 case "leveledUp":
-                    ShowBattlerLeveled();
+                    playerBattleController.ShowBattlerLeveled((OnLevelUpEventArgs)currentTurnItem.Variables[1]);
                     break;
                 case "playerMoveUsed":
                     StartCoroutine(ShowPlayerOneMove((MoveMethodEventArgs)currentTurnItem.Variables[^1]));
@@ -675,13 +672,24 @@ namespace PokemonGame.Battle
             }
         }
         
-        public void UseItem(Item item, int battlerToUseOn, bool useOnPlayerOne)
+        public void PlayerOneUseItem(Item item, int battlerToUseOn, bool useOnUserParty)
         {
             playerOneAction = new TurnItem(TurnItemType.PlayerOneItem, new List<object>()
             {
                 item,
                 battlerToUseOn,
-                useOnPlayerOne
+                useOnUserParty
+            });
+            uiManager.Back();
+        }
+        
+        public void PlayerTwoUseItem(Item item, int battlerToUseOn, bool useOnUserParty)
+        {
+            playerTwoAction = new TurnItem(TurnItemType.PlayerTwoItem, new List<object>()
+            {
+                item,
+                battlerToUseOn,
+                useOnUserParty
             });
             uiManager.Back();
         }
@@ -694,19 +702,6 @@ namespace PokemonGame.Battle
             });
             Bag.Used(ball);
         }
-        
-        public void StartPickingBattlerToUseItemOn(Item item)
-        {
-            if (item.lockedTarget)
-            {
-                UseItem(item, item.targetIndex, item.userParty);
-            }
-            else
-            {
-                uiManager.OpenUseItemOnBattler(item);
-                uiManager.UpdateItemBattlerButtons();
-            }
-        }
 
         private void CatchAttempt()
         {
@@ -717,7 +712,7 @@ namespace PokemonGame.Battle
                 uiManager.ShrinkPlayerTwoBattler(true);
                 QueDialogue($"Caught {playerTwoCurrentBattler.name}!", DialogueBoxType.Event, "generalFinishing");
                 PartyManager.AddBattler(playerTwoCurrentBattler);
-                turnItemQueue.Insert(0, new TurnItem(TurnItemType.EndBattlePlayerOneWin));
+                InsertTurnItem(TurnItemType.EndBattlePlayerOneWin);
             }
             else
             {
@@ -725,17 +720,35 @@ namespace PokemonGame.Battle
             }
         }
 
-        private void PlayerOneOneUseItem(Item itemToUse, int battlerToUseOn, bool useOnUserParty)
+        private void PlayerOneUseItemEvent(Item itemToUse, int battlerToUseOn, bool useOnUserParty)
         {
-            Battler battleBeingUsedOn = useOnUserParty ? partyOne[battlerToUseOn] : partyTwo[battlerToUseOn];
+            Battler battlerBeingUsedOn = useOnUserParty ? partyOne[battlerToUseOn] : partyTwo[battlerToUseOn];
             
-            ItemMethodEventArgs e = new ItemMethodEventArgs(battleBeingUsedOn, itemToUse);
+            ItemMethodEventArgs e = new ItemMethodEventArgs(battlerBeingUsedOn, itemToUse);
             
             itemToUse.ItemMethod(e);
             
             Bag.Used(itemToUse);
             
-            QueDialogue($"You used {itemToUse.name} on {battleBeingUsedOn.name}!", DialogueBoxType.Event, "generalFinishing");
+            QueDialogue($"Player One used {itemToUse.name} on {battlerBeingUsedOn.name}!", DialogueBoxType.Event, "generalFinishing");
+
+            if (!e.success)
+            {
+                QueDialogue("But it failed!", DialogueBoxType.Event, "generalFinishing");
+            }
+        }
+
+        private void PlayerTwoUseItemEvent(Item itemToUse, int battlerToUseOn, bool useOnUserParty)
+        {
+            Battler battlerBeingUsedOn = useOnUserParty ? partyTwo[battlerToUseOn] : partyOne[battlerToUseOn];
+            
+            ItemMethodEventArgs e = new ItemMethodEventArgs(battlerBeingUsedOn, itemToUse);
+            
+            itemToUse.ItemMethod(e);
+            
+            Bag.Used(itemToUse);
+            
+            QueDialogue($"Player Two used {itemToUse.name} on {battlerBeingUsedOn.name}!", DialogueBoxType.Event, "generalFinishing");
 
             if (!e.success)
             {
@@ -781,18 +794,17 @@ namespace PokemonGame.Battle
 
         private void BeginSwapPlayerOneBattler()
         {
-            QueDialogue($"{playerOneCurrentBattler.name} Fainted!", DialogueBoxType.Event, "playerOneFainted");
+            uiManager.SwitchBattlerBecauseOfDeath();
         }
 
         private void BeginSwapPlayerTwoBattler()
         {
-            QueDialogue($"{playerTwoCurrentBattler.name} Fainted!", DialogueBoxType.Event, "playerTwoFainted");
-        }
-
-        private void ShowSwapPlayerOneBattler()
-        {
-            uiManager.ShrinkPlayerOneBattler();
-            uiManager.SwitchBattlerBecauseOfDeath();
+            AISwitchEventArgs e =
+                new AISwitchEventArgs(playerTwoBattlerIndex, partyTwo, ExternalBattleData.Construct(this));
+            
+            enemyAI.AISwitchMethod(e);
+                    
+            PlayerTwoChooseToSwap(e.newBattlerIndex);
         }
 
         private void ChangePlayerOneBattlerIndex(int index, bool skipShrink = false)
@@ -933,12 +945,12 @@ namespace PokemonGame.Battle
             {
                 if (Random.Range(0, 4) == 0)
                 {
-                    turnItemQueue.Insert(0, new TurnItem(TurnItemType.PlayerOneParalysed));
+                    InsertTurnItem(TurnItemType.PlayerOneParalysed);
                     able = false;
                 }
             }else if (playerOneCurrentBattler.statusEffect == Registry.GetStatusEffect("Asleep"))
             {
-                turnItemQueue.Insert(0, new TurnItem(TurnItemType.PlayerOneAsleep));
+                InsertTurnItem(TurnItemType.PlayerOneAsleep);
                 able = false;
             }
 
@@ -967,12 +979,13 @@ namespace PokemonGame.Battle
             
             if (missed)
             {
-                turnItemQueue.Insert(0, new TurnItem(TurnItemType.PlayerOneMissed));
+                InsertTurnItem(TurnItemType.PlayerOneMissed);
                 e.missed = true;
                 return;
             }
             
             playerOneMoveToDo.MoveMethod(e);
+            e.movePPData.MoveWasUsed();
 
             DialogueMoveEffectiveness(e);
         }
@@ -986,14 +999,16 @@ namespace PokemonGame.Battle
             {
                 if (Random.Range(0, 4) == 0)
                 {
-                    turnItemQueue.Insert(0, new TurnItem(TurnItemType.PlayerTwoParalysed));
+                    InsertTurnItem(TurnItemType.PlayerTwoParalysed);
                     able = false;
                 }
             }else if (playerTwoCurrentBattler.statusEffect == Registry.GetStatusEffect("Asleep"))
             {
-                turnItemQueue.Insert(0, new TurnItem(TurnItemType.PlayerTwoAsleep));
+                InsertTurnItem(TurnItemType.PlayerTwoAsleep);
                 able = false;
             }
+            
+            Debug.Log("doing player two move");
 
             if (!able)
             {
@@ -1020,12 +1035,13 @@ namespace PokemonGame.Battle
             
             if (missed)
             {
-                turnItemQueue.Insert(0, new TurnItem(TurnItemType.PlayerTwoMissed));
+                InsertTurnItem(TurnItemType.PlayerTwoMissed);
                 e.missed = true;
                 return;
             }
             
             playerTwoMoveToDo.MoveMethod(e);
+            e.movePPData.MoveWasUsed();
             
             DialogueMoveEffectiveness(e);
         }
@@ -1100,11 +1116,13 @@ namespace PokemonGame.Battle
 
         private void PlayerOneBattlerFainted()
         {
+            QueDialogue($"{playerOneCurrentBattler.name} Fainted!", DialogueBoxType.Event, "generalFinishing");
+            
             partyOne.CheckDefeatedStatus();
 
             if (!partyOne.defeated)
             {
-                turnItemQueue.Insert(0, new TurnItem(TurnItemType.PlayerOneSwapBecauseFainted));
+                InsertTurnItem(TurnItemType.PlayerOneSwapBecauseFainted);
             }
             
             turnItemQueue.RemoveAll(item => item.Type == TurnItemType.PlayerOneMove);
@@ -1132,11 +1150,13 @@ namespace PokemonGame.Battle
                 }
             }
             
+            QueDialogue($"{playerTwoCurrentBattler.name} Fainted!", DialogueBoxType.Event, "generalFinishing");
+            
             partyTwo.CheckDefeatedStatus();
 
             if (!partyTwo.defeated)
             {
-                turnItemQueue.Insert(0, new TurnItem(TurnItemType.PlayerTwoSwapBecauseFainted));
+                InsertTurnItem(TurnItemType.PlayerTwoSwapBecauseFainted);
             }
             turnItemQueue.RemoveAll(item => item.Type == TurnItemType.PlayerTwoMove);
 
@@ -1156,7 +1176,7 @@ namespace PokemonGame.Battle
             playerOneAction = new TurnItem(TurnItemType.Run);
         }
 
-        private void RunRunAwayDialogue()
+        private void RunAwayDialogue()
         {
             QueDialogue("Running Away!", DialogueBoxType.Event, "run");
         }
