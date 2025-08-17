@@ -323,16 +323,13 @@ namespace PokemonGame.Battle
             
             // playerUIHolder.SetActive(false);
             healthDisplays.SetActive(true);
-            moveButtons.SetActive(true);
-            miscButtons.SetActive(true);
+            controlUIHolder.SetActive(false);
             changeBattlerDisplay.SetActive(false);
             useItemOnBattlerDisplay.SetActive(false);
             useItemDisplay.SetActive(false);
             
             Back();
             battle.PlayerOneChooseToSwap(partyID);
-            
-            battle.AddParticipatedBattler(battle.partyOne[partyID]);
         }
 
         public void UseItemOnBattler(int partyID)
@@ -346,7 +343,7 @@ namespace PokemonGame.Battle
             useItemOnBattlerDisplay.SetActive(false);
             useItemDisplay.SetActive(false);
             
-            battle.UseItem(partyID, true);
+            battle.UseItem(_playerItemToUse, partyID, true);
             
             battle.AddParticipatedBattler(battle.partyOne[partyID]);
             Back();

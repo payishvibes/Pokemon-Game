@@ -326,7 +326,7 @@ namespace PokemonGame.Dialogue
             {
                 string id = currentQueuedDialogue.id;
                 LoadDialogueFromQueue(_queue.Dequeue());
-                DialogueEnded?.Invoke(this, new DialogueEndedEventArgs(currentTrigger, id, true));
+                DialogueEnded?.Invoke(this, new DialogueEndedEventArgs(currentTrigger, currentQueuedDialogue, id, true));
             }
             else
             {
@@ -345,7 +345,7 @@ namespace PokemonGame.Dialogue
                 dialogueIsPlaying = false;
                 dialoguePanel.SetActive(false);
                 currentTrigger.EndDialogue();
-                DialogueEnded?.Invoke(this, new DialogueEndedEventArgs(currentTrigger, id, false));
+                DialogueEnded?.Invoke(this, new DialogueEndedEventArgs(currentTrigger, currentQueuedDialogue, id, false));
             }
         }
         
@@ -706,6 +706,10 @@ namespace PokemonGame.Dialogue
         /// </summary>
         public DialogueTrigger trigger;
         /// <summary>
+        /// The dialogue item that just ended
+        /// </summary>
+        public QueuedDialogue queuedDialogue;
+        /// <summary>
         /// Weather there is more dialogue queued
         /// </summary>
         public bool moreToGo;
@@ -714,9 +718,10 @@ namespace PokemonGame.Dialogue
         /// </summary>
         public string id;
     
-        public DialogueEndedEventArgs(DialogueTrigger trigger, string id, bool moreToGo)
+        public DialogueEndedEventArgs(DialogueTrigger trigger, QueuedDialogue queuedDialogue, string id, bool moreToGo)
         {
             this.trigger = trigger;
+            this.queuedDialogue = queuedDialogue;
             this.id = id;
             this.moreToGo = moreToGo;
         }
@@ -764,7 +769,7 @@ namespace PokemonGame.Dialogue
         /// </summary>
         public bool ink;
         /// <summary>
-        /// Raw dialogue, only used when
+        /// Raw dialogue, only used when not an ink file
         /// </summary>
         public string text;
         /// <summary>
