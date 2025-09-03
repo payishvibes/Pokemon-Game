@@ -334,7 +334,7 @@ namespace PokemonGame.Battle
                 uiManager.ShowControlUI(true);
                 uiManager.ShowUI(true);
                 uiManager.UpdateBattlerMoveDisplays();
-                if (trainerBattle)
+                if (trainerBattle && !onlineBattle)
                 {
                     enemyAI.AIMethod(new AIMethodEventArgs(playerTwoCurrentBattler, partyTwo,
                         ExternalBattleData.Construct(this)));
@@ -622,12 +622,15 @@ namespace PokemonGame.Battle
                     uiManager.SwitchBattlerBecauseOfDeath();
                     break;
                 case "playerTwoFainted":
-                    AISwitchEventArgs e =
-                        new AISwitchEventArgs(playerTwoBattlerIndex, partyTwo, ExternalBattleData.Construct(this));
+                    if (!onlineBattle)
+                    {
+                        AISwitchEventArgs e =
+                            new AISwitchEventArgs(playerTwoBattlerIndex, partyTwo, ExternalBattleData.Construct(this));
             
-                    enemyAI.AISwitchMethod(e);
+                        enemyAI.AISwitchMethod(e);
                     
-                    PlayerTwoChooseToSwap(e.newBattlerIndex);
+                        PlayerTwoChooseToSwap(e.newBattlerIndex);
+                    }
                     break;
                 case "generalFinishing":
                     if (!args.moreToGo)
@@ -797,12 +800,15 @@ namespace PokemonGame.Battle
 
         private void BeginSwapPlayerTwoBattler()
         {
-            AISwitchEventArgs e =
-                new AISwitchEventArgs(playerTwoBattlerIndex, partyTwo, ExternalBattleData.Construct(this));
+            if (!onlineBattle)
+            {
+                AISwitchEventArgs e =
+                    new AISwitchEventArgs(playerTwoBattlerIndex, partyTwo, ExternalBattleData.Construct(this));
             
-            enemyAI.AISwitchMethod(e);
+                enemyAI.AISwitchMethod(e);
                     
-            PlayerTwoChooseToSwap(e.newBattlerIndex);
+                PlayerTwoChooseToSwap(e.newBattlerIndex);
+            }
         }
 
         private void ChangePlayerOneBattlerIndex(int index, bool skipShrink = false)

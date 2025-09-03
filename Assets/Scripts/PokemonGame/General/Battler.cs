@@ -335,7 +335,7 @@ namespace PokemonGame.General
         /// <summary>
         /// Updates the stats of the battler
         /// </summary>
-        private void UpdateStats()
+        public void UpdateStats()
         {
             if(!source) return;
 
