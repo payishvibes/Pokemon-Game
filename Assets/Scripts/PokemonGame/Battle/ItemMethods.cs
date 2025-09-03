@@ -55,15 +55,16 @@ namespace PokemonGame.Battle
                 {
                     Debug.LogWarning("More than 2 entries, possible faulty description");
                 }
-                
+#if UNITY_EDITOR
                 AssetDatabase.CreateAsset(item, $"Assets/Resources/Pokemon Game/Item/PokeBalls/{item.name}.asset");
-                
+#endif
                 Debug.Log($"Created Item: {item.name}");
             
             }
             streamReader.Close();
-            
+#if UNITY_EDITOR
             AssetDatabase.SaveAssets();
+#endif
         }
         
         public void Potion(ItemMethodEventArgs e)

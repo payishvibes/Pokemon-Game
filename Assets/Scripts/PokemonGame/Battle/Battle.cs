@@ -161,6 +161,7 @@ namespace PokemonGame.Battle
             trainerBattle = SceneLoader.GetVariable<bool>("trainerBattle");
             partyOne = new BattleParty(SceneLoader.GetVariable<Party>("partyOne"));
             partyTwo = new BattleParty(SceneLoader.GetVariable<Party>("partyTwo"));
+            onlineBattle = SceneLoader.GetVariable<bool>("online");
             if (trainerBattle)
             {
                 enemyAI = SceneLoader.GetVariable<EnemyAI>("enemyAI");
@@ -268,10 +269,10 @@ namespace PokemonGame.Battle
                 yield return null;
             }
             
-            if (((Move)currentTurnItem.Variables[0]).category != MoveCategory.Status && !args.missed)
-            {
-                playerTwoCurrentBattler.TakeDamage(args.damageDealt, new BattlerDamageSource(playerOneCurrentBattler));
-            }
+            args.move.MoveMethod(args);
+            args.movePPData.MoveWasUsed();
+            
+            DialogueMoveEffectiveness(args);
             
             yield return new WaitForSeconds(1);
             
@@ -282,7 +283,7 @@ namespace PokemonGame.Battle
                 TurnQueueItemEnded();
             }
         }
-
+        
         private IEnumerator ShowPlayerTwoMove(MoveMethodEventArgs args)
         {
             if (args.missed)
@@ -290,10 +291,10 @@ namespace PokemonGame.Battle
                 yield return null;
             }
             
-            if (((Move)playerTwoAction.Variables[0]).category != MoveCategory.Status && !args.missed)
-            {
-                playerOneCurrentBattler.TakeDamage(args.damageDealt, new BattlerDamageSource(playerTwoCurrentBattler));
-            }
+            args.move.MoveMethod(args);
+            args.movePPData.MoveWasUsed();
+            
+            DialogueMoveEffectiveness(args);
             
             yield return new WaitForSeconds(1);
             
@@ -644,9 +645,6 @@ namespace PokemonGame.Battle
                 case "evolved":
                     EvolutionEffect(e);
                     break;
-                case "playerFainted":
-                    uiManager.ShrinkPlayerOneBattler();
-                    break;
             }
         }
         
@@ -973,7 +971,7 @@ namespace PokemonGame.Battle
             
             MoveMethodEventArgs e = new MoveMethodEventArgs(playerOneCurrentBattler, playerTwoCurrentBattler, playerOneMoveToDo, 
                 playerOneCurrentBattler.movePpInfos[moveToDoIndex], ExternalBattleData.Construct(this));
-
+            
             DialogueMoveUsed(e, true);
             currentTurnItem.Variables.Add(e);
             
@@ -981,13 +979,7 @@ namespace PokemonGame.Battle
             {
                 InsertTurnItem(TurnItemType.PlayerOneMissed);
                 e.missed = true;
-                return;
             }
-            
-            playerOneMoveToDo.MoveMethod(e);
-            e.movePPData.MoveWasUsed();
-
-            DialogueMoveEffectiveness(e);
         }
         
         private void DoPlayerTwoMove(Move playerTwoMoveToDo)
@@ -1007,8 +999,6 @@ namespace PokemonGame.Battle
                 InsertTurnItem(TurnItemType.PlayerTwoAsleep);
                 able = false;
             }
-            
-            Debug.Log("doing player two move");
 
             if (!able)
             {
@@ -1037,13 +1027,7 @@ namespace PokemonGame.Battle
             {
                 InsertTurnItem(TurnItemType.PlayerTwoMissed);
                 e.missed = true;
-                return;
             }
-            
-            playerTwoMoveToDo.MoveMethod(e);
-            e.movePPData.MoveWasUsed();
-            
-            DialogueMoveEffectiveness(e);
         }
 
         private void QueueMoves()
@@ -1119,14 +1103,14 @@ namespace PokemonGame.Battle
             QueDialogue($"{playerOneCurrentBattler.name} Fainted!", DialogueBoxType.Event, "generalFinishing");
             
             partyOne.CheckDefeatedStatus();
-
+            
             if (!partyOne.defeated)
             {
                 InsertTurnItem(TurnItemType.PlayerOneSwapBecauseFainted);
             }
             
             turnItemQueue.RemoveAll(item => item.Type == TurnItemType.PlayerOneMove);
-
+            
             if (!onlineBattle)
             {
                 playerOneBattlersThatParticipated.Remove(playerOneCurrentBattler);
@@ -1153,13 +1137,13 @@ namespace PokemonGame.Battle
             QueDialogue($"{playerTwoCurrentBattler.name} Fainted!", DialogueBoxType.Event, "generalFinishing");
             
             partyTwo.CheckDefeatedStatus();
-
+            
             if (!partyTwo.defeated)
             {
                 InsertTurnItem(TurnItemType.PlayerTwoSwapBecauseFainted);
             }
             turnItemQueue.RemoveAll(item => item.Type == TurnItemType.PlayerTwoMove);
-
+            
             if (!onlineBattle)
             {
                 playerOneCurrentBattler.EVs.maxHealth += playerTwoCurrentBattler.source.yields.maxHealth;

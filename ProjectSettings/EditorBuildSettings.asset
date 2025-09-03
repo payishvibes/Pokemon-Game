@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Multiplayer.unity
+    guid: e5a1b22155c23d54abad009914eb6915
+  - enabled: 1
     path: Assets/Scenes/Boot.unity
     guid: a2e38c6ec24362a4a88fd7b38330325a
   - enabled: 1
@@ -17,7 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Poke Center.unity
     guid: ea7a392eeb6588547a17bcd54ba61df3
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Shop.unity
     guid: aafe9f6b15750a44a8417466fd4e51aa
   m_configObjects:

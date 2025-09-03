@@ -84,7 +84,6 @@ namespace PokemonGame.ScriptableObjects
         public Move move;
         public MovePPData movePPData;
         public ExternalBattleData battleData;
-        public int damageDealt = 0;
         public int effectiveIndex = 0;
         public bool crit;
         public bool missed = false;

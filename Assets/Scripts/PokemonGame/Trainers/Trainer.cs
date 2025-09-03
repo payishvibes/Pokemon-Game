@@ -128,6 +128,7 @@ namespace PokemonGame.Trainers
             {
                 { "partyOne", playerParty},
                 { "partyTwo", party },
+                { "online", false },
                 { "enemyAI", ai },
                 { "opponentName", gameObject.name },
                 { "trainerBattle", true}

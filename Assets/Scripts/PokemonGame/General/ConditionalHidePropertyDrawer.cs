@@ -1,8 +1,8 @@
-﻿namespace PokemonGame.General
+﻿#if UNITY_EDITOR
+namespace PokemonGame.General
 {
     using UnityEngine;
     using UnityEditor;
-
     //Original version of the ConditionalHideAttribute created by Brecht Lecluyse (www.brechtos.com)
     //Modified by Techyte
     
@@ -115,3 +115,4 @@
         }
     }
 }
+#endif

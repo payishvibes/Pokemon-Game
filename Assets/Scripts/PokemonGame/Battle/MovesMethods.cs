@@ -188,8 +188,10 @@ namespace PokemonGame.Battle
         public void UpdateMoves()
         {
             UpdateMovesInfo();
-            
+
+#if UNITY_EDITOR
             AssetDatabase.SaveAssets();
+#endif
         }
 
         private async void UpdateMovesInfo()
@@ -238,7 +240,7 @@ namespace PokemonGame.Battle
         {
             if (e.move.category != MoveCategory.Status)
             {
-                e.damageDealt = CalculateDamage(e);
+                e.target.TakeDamage(CalculateDamage(e), new BattlerDamageSource(e.attacker));
             }
         }
         
@@ -251,7 +253,7 @@ namespace PokemonGame.Battle
         public void LeechLife(MoveMethodEventArgs e)
         {
             int damage = CalculateDamage(e);
-            e.damageDealt = damage;
+            e.target.TakeDamage(damage, new BattlerDamageSource(e.attacker));
             Battle.Singleton.QueDialogue($"{e.attacker.name} healed {damage/2} health!", DialogueBoxType.Event);
             e.attacker.Heal(damage/2);
         }
@@ -271,13 +273,15 @@ namespace PokemonGame.Battle
 
         public void BadTime(MoveMethodEventArgs e)
         {
-            e.damageDealt = CalculateDamage(e);
+            int damageDealt = CalculateDamage(e);
+            e.target.TakeDamage(damageDealt, new BattlerDamageSource(e.attacker));
             Battle.Singleton.QueDialogue($"{e.target.name} is going to have a very Bad Time", DialogueBoxType.Event);
         }
 
         public void SelfDestruct(MoveMethodEventArgs e)
         {
-            e.damageDealt = CalculateDamage(e);
+            int damageDealt = CalculateDamage(e);
+            e.target.TakeDamage(damageDealt, new BattlerDamageSource(e.attacker));
         }
     }
 }

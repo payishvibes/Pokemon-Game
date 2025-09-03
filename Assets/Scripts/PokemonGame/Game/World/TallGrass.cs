@@ -108,6 +108,7 @@ public class TallGrass : DialogueTrigger
         {
             { "partyOne", PartyManager.GetParty()},
             { "partyTwo", party },
+            { "online", false },
             { "trainerBattle", false}
         };
 
