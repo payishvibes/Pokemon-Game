@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using PokemonGame.Game.Party;
 using PokemonGame.General;
 using PokemonGame.Global;
@@ -15,12 +16,15 @@ namespace PokemonGame.Networking
 {
     public enum ClientToServerMessageId : ushort
     {
-        ConnectionInfo
+        ConnectionInfo,
+        AllPartiesReceived
     }
     
     public enum ServerToClientMessageId : ushort
     {
-        UpdatePlayerInfo
+        UpdatePlayerInfo,
+        PartyInfo,
+        StartBattle
     }
     
     public class BattleNetworkManager : MonoBehaviour
@@ -33,8 +37,14 @@ namespace PokemonGame.Networking
         public Dictionary<ushort, NetworkPlayer> Players = new Dictionary<ushort, NetworkPlayer>();
         public int MaxPlayerCount;
         public bool IsHost;
+
+        private int _acknowledgedPartyCount;
         
         public event EventHandler OnUpdatePlayerInfo;
+        public event EventHandler OnStartedGeneratingParties;
+        public event EventHandler OnFinishedGeneratingParties;
+        public event EventHandler OnSentPartiesInfo;
+        public event EventHandler OnReadyToStartGame;
         
         private void Awake()
         {
@@ -76,16 +86,7 @@ namespace PokemonGame.Networking
         
         private void ClientOnConnected(object sender, EventArgs e)
         {
-            if (Players.TryGetValue(0, out NetworkPlayer player))
-            {
-                Message message = Message.Create(MessageSendMode.Reliable, ClientToServerMessageId.ConnectionInfo);
-                message.AddString(player.Username);
-                message.AddInt(player.Pfp);
-                
-                Client.Send(message);
-            }
-            
-            Players.Clear();
+            ClientSendBasicInfo();
         }
 
         private void ClientOnDisconnected(object sender, DisconnectedEventArgs e)
@@ -102,7 +103,7 @@ namespace PokemonGame.Networking
         
         public void StartHosting()
         {
-            Server.Start(7777, 1);
+            Server.Start(7777, 2);
             MaxPlayerCount = Server.MaxClientCount;
             IsHost = true;
         }
@@ -126,14 +127,46 @@ namespace PokemonGame.Networking
 
         public void StartGame()
         {
-            foreach (var player in Players.Values)
-            {
-                player.Party = GenerateParty(50);
-            }
-            
-            ServerSendPlayersInfo();
+            OnStartedGeneratingParties?.Invoke(this,  EventArgs.Empty);
+            List<BattlerTemplate> potentialBattlers = 
+                Resources.LoadAll<BattlerTemplate>("Pokemon Game/Battler Template").ToList();
+            GenerateParty(potentialBattlers);
         }
 
+        private void GenerateParty(List<BattlerTemplate> potentialBattlers)
+        {
+            Debug.Log($"Doing party generation");
+            int start = DateTime.UtcNow.Millisecond;
+            
+            foreach (var player in Players.Values)
+            {
+                Debug.Log($"Generating party {player.Id}");
+                player.Party = GenerateParty(50, potentialBattlers);
+                Debug.Log($"Generated party {player.Id}");
+            }
+            
+            int end = DateTime.UtcNow.Millisecond;
+            
+            Debug.Log($"Doing party generation took {end-start}ms");
+            OnFinishedGeneratingParties?.Invoke(this,  EventArgs.Empty);
+            // we don't send it to the host so they have already "acknowledged" the party generation
+            _acknowledgedPartyCount = 1;
+            
+            if (_acknowledgedPartyCount >= MaxPlayerCount)
+            {
+                StartCoroutine(StartBattle());
+                OnReadyToStartGame?.Invoke(this, EventArgs.Empty);
+                ServerSendStartBattle();
+            }
+            
+            foreach (var player in Players.Values)
+            {
+                ServerSendPartyInfoFor(player);
+            }
+            
+            OnSentPartiesInfo?.Invoke(this, EventArgs.Empty);
+        }
+        
         private IEnumerator StartBattle()
         {
             Dictionary<string, object> vars = new Dictionary<string, object>
@@ -151,25 +184,33 @@ namespace PokemonGame.Networking
             SceneLoader.LoadScene("Battle", vars);
         }
         
-        private Party GenerateParty(int level)
+        private Party GenerateParty(int level, List<BattlerTemplate> potential)
         {
             Party partyToReturn = new Party();
             
+            Debug.Log("created new party obj");
+            
             for (int i = 0; i < 6; i++)
             {
-                List<BattlerTemplate> potential = Resources.LoadAll<BattlerTemplate>("Pokemon Game/Battler Template").ToList();
-                
                 BattlerTemplate template = potential[UnityEngine.Random.Range(0, potential.Count)];
                 
+                Debug.Log($"{i} picked template");
+                
                 Battler attacker = Battler.Init(template, level, template.name, new List<Move>(), true);
+                Debug.Log($"{i} initialised");
                 List<Move> moves = attacker.GetMostRecentMoves();
+                Debug.Log($"{i} picked moves");
                 
                 for (int j = 0; j < moves.Count; j++)
                 {
                     attacker.LearnMove(moves[j]);
                 }
                 
+                Debug.Log($"{i} learnt moves");
+                
                 partyToReturn.Add(attacker);
+                
+                Debug.Log($"{i} added to party");
             }
 
             return partyToReturn;
@@ -186,16 +227,48 @@ namespace PokemonGame.Networking
                 message.AddUShort(playerInfoBeingSent.Id);
                 message.AddString(playerInfoBeingSent.Username);
                 message.AddInt(playerInfoBeingSent.Pfp);
-                message.AddBool(playerInfoBeingSent.Party != null);
-                
-                if (playerInfoBeingSent.Party != null)
-                {
-                    message.AddParty(playerInfoBeingSent.Party);
-                }
             }
             
             Server.SendToAll(message, Client.Id);
             OnUpdatePlayerInfo?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void ServerSendPartyInfoFor(NetworkPlayer player)
+        {
+            Message message = Message.Create(MessageSendMode.Reliable, ServerToClientMessageId.PartyInfo);
+            message.AddUShort(player.Id);
+            message.AddParty(player.Party);
+            
+            Server.SendToAll(message, Client.Id);
+        }
+
+        private void ServerSendStartBattle()
+        {
+            Message message = Message.Create(MessageSendMode.Reliable, ServerToClientMessageId.StartBattle);
+            
+            Server.SendToAll(message, Client.Id);
+        }
+        
+        private void ClientSendBasicInfo()
+        {
+            if (Players.TryGetValue(0, out NetworkPlayer player))
+            {
+                Message message = Message.Create(MessageSendMode.Reliable, ClientToServerMessageId.ConnectionInfo);
+                message.AddString(player.Username);
+                message.AddInt(player.Pfp);
+                
+                Client.Send(message);
+            }
+            
+            Players.Clear();
+        }
+
+        private void ClientSendAllPartiesReceived()
+        {
+            _acknowledgedPartyCount = 0;
+            Message message = Message.Create(MessageSendMode.Reliable, ClientToServerMessageId.AllPartiesReceived);
+
+            Client.Send(message);
         }
         
         private void FixedUpdate()
@@ -223,6 +296,18 @@ namespace PokemonGame.Networking
             Players.Add(player.Id, player);
             ServerSendPlayersInfo();
         }
+        
+        public void ServerAllPartiesReceived()
+        {
+            _acknowledgedPartyCount++;
+            
+            if (_acknowledgedPartyCount >= MaxPlayerCount)
+            {
+                StartCoroutine(StartBattle());
+                OnReadyToStartGame?.Invoke(this, EventArgs.Empty);
+                ServerSendStartBattle();
+            }
+        }
 
         public void ClientUpdatePlayerInfo(Message message)
         {
@@ -234,15 +319,10 @@ namespace PokemonGame.Networking
                 ushort id = message.GetUShort();
                 string username = message.GetString();
                 int pfp = message.GetInt();
-                bool hasParty = message.GetBool();
                 if (Players.TryGetValue(id, out NetworkPlayer player))
                 {
                     player.Username = username;
                     player.Pfp = pfp;
-                    if (hasParty)
-                    {
-                        player.Party = message.GetParty();
-                    }
                 }
                 else
                 {
@@ -250,16 +330,31 @@ namespace PokemonGame.Networking
                     player.Id = id;
                     player.Username = username;
                     player.Pfp = pfp;
-                    if (hasParty)
-                    {
-                        player.Party = message.GetParty();
-                    }
                     
                     Players.Add(player.Id, player);
                 }
             }
 
             OnUpdatePlayerInfo?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void ClientPartyInfo(ushort player, Party party)
+        {
+            if (Players.TryGetValue(player, out NetworkPlayer playerInfo))
+            {
+                playerInfo.Party = party;
+            }
+
+            _acknowledgedPartyCount++;
+            if (_acknowledgedPartyCount == MaxPlayerCount)
+            {
+                ClientSendAllPartiesReceived();
+            }
+        }
+
+        public void ClientStartBattle()
+        {
+            StartCoroutine(StartBattle());
         }
     }
     

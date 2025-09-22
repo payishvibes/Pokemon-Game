@@ -9,11 +9,11 @@ using UnityEngine;
 public static class MessageExtensions
 {
    public static Message Add(this Message message, Party value) => AddParty(message, value);
-
+   
     public static Message AddParty(this Message message, Party value)
     {
         message.AddInt(value.Count);
-
+        
         for (int i = 0; i < value.Count; i++)
         {
             message.AddBattler(value[i]);
@@ -21,7 +21,7 @@ public static class MessageExtensions
         
         return message;
     }
-
+    
     public static Party GetParty(this Message message)
     {
         Debug.Log(message.BytesInUse);
@@ -43,28 +43,20 @@ public static class MessageExtensions
     {
         message.AddString(value.source.name);
         message.AddInt(value.level);
-        message.AddString(value.name);
-        message.AddBool(value.isFainted);
-        message.AddInt(value.exp);
-        message.AddString(value.statusEffect.name);
+        message.AddInt((int)value.gender);
+        message.AddBattlerStats(value.IVs);
+        message.AddInt((int)value.nature);
 
-        message.AddVarULong((ulong)value.moves.Count);
-        for (int i = 0; i < value.moves.Count; i++)
+        message.AddInt(value.moves.Count);
+        for (int i =0; i < value.moves.Count; i++)
         {
             message.AddString(value.moves[i].type.name);
         }
-
-        message.AddVarULong((ulong)value.moves.Count);
-        for (int i = 0; i < value.moves.Count; i++)
+        
+        for (int i =0; i < value.moves.Count; i++)
         {
             message.AddString(value.moves[i].name);
         }
-        
-        message.AddBattlerStats(value.EVs);
-        message.AddBool(value.shiny);
-        message.AddInt((int)value.gender);
-        message.AddBattlerStats(value.IVs);
-        message.AddInt(value.currentHealth);
         
         return message;
     }
@@ -75,30 +67,34 @@ public static class MessageExtensions
         
         string sourceName = message.GetString();
         int level = message.GetInt();
-        string name = message.GetString();
-        bool fainted = message.GetBool();
-        int exp = message.GetInt();
-        string statusName = message.GetString();
-        List<string> moveTypes = message.GetStrings().ToList();
-        List<string> moveNames = message.GetStrings().ToList();
-        BattlerStats EVs = message.GetBattlerStats();
-        bool shiny = message.GetBool();
-        int gender = message.GetInt();
+        Gender gender = (Gender)message.GetInt();
         BattlerStats IVs = message.GetBattlerStats();
-        int currentHealth = message.GetInt();
+        Nature nature = (Nature)message.GetInt();
+        int length = message.GetInt();
+        List<string> moveTypes = new List<string>();
+        for (int i = 0; i < length; i++)
+        {
+            moveTypes.Add(message.GetString());
+        }
+        List<string> moveNames = new List<string>();
+        for (int i = 0; i < length; i++)
+        {
+            moveNames.Add(message.GetString());
+        }
         
         returnBattler.source = Resources.Load<BattlerTemplate>($"Pokemon Game/Battler Template/{sourceName}");
         returnBattler.UpdateLevel(level);
-        returnBattler.name = name;
-        returnBattler.isFainted = fainted;
-        returnBattler.exp = exp;
-        returnBattler.statusEffect = Resources.Load<StatusEffect>($"Pokemon Game/Status Effect/{statusName}");
+        returnBattler.name = sourceName;
+        returnBattler.isFainted = false;
+        returnBattler.exp = 0;
+        returnBattler.statusEffect = StatusEffect.Healthy;
         returnBattler.moves = new List<Move>();
         returnBattler.movePpInfos = new List<MovePPData>();
-        returnBattler.EVs = EVs;
-        returnBattler.shiny = shiny;
-        returnBattler.gender = (Gender)gender;
+        returnBattler.EVs = BattlerStats.zero;
+        returnBattler.shiny = false;
+        returnBattler.gender = gender;
         returnBattler.IVs = IVs;
+        returnBattler.nature = nature;
 
         for (int i = 0; i < moveNames.Count; i++)
         {
@@ -107,7 +103,7 @@ public static class MessageExtensions
         
         returnBattler.UpdateStats();
 
-        returnBattler.currentHealth = currentHealth;
+        returnBattler.currentHealth = returnBattler.stats.maxHealth;
         
         return returnBattler;
     }

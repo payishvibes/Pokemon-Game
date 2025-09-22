@@ -13,6 +13,7 @@ namespace PokemonGame.Networking
         [SerializeField] private TMP_InputField usernameInput;
         [SerializeField] private List<GameObject> playerDisplays;
         [SerializeField] private TextMeshProUGUI playerCountText;
+        [SerializeField] private TextMeshProUGUI statusText;
         [SerializeField] private Button startButton;
         
         private void Awake()
@@ -22,20 +23,28 @@ namespace PokemonGame.Networking
         
         private void Start()
         {
-            OnOnUpdatePlayerInfo(this, EventArgs.Empty);
+            OnUpdatePlayerInfo(this, EventArgs.Empty);
         }
         
         private void HookNetworkEvents()
         {
-            BattleNetworkManager.Instance.OnUpdatePlayerInfo += OnOnUpdatePlayerInfo;
+            BattleNetworkManager.Instance.OnUpdatePlayerInfo += OnUpdatePlayerInfo;
+            BattleNetworkManager.Instance.OnStartedGeneratingParties += OnStartedGeneratingParties;
+            BattleNetworkManager.Instance.OnFinishedGeneratingParties += OnFinishedGeneratingParties;
+            BattleNetworkManager.Instance.OnSentPartiesInfo += OnSentPartiesInfo;
+            BattleNetworkManager.Instance.OnReadyToStartGame += OnReadyToStartGame;
         }
         
         private void UnHookNetworkEvents()
         {
-            BattleNetworkManager.Instance.OnUpdatePlayerInfo -= OnOnUpdatePlayerInfo;
+            BattleNetworkManager.Instance.OnUpdatePlayerInfo -= OnUpdatePlayerInfo;
+            BattleNetworkManager.Instance.OnStartedGeneratingParties -= OnStartedGeneratingParties;
+            BattleNetworkManager.Instance.OnFinishedGeneratingParties -= OnFinishedGeneratingParties;
+            BattleNetworkManager.Instance.OnSentPartiesInfo -= OnSentPartiesInfo;
+            BattleNetworkManager.Instance.OnReadyToStartGame -= OnReadyToStartGame;
         }
         
-        private void OnOnUpdatePlayerInfo(object sender, EventArgs e)
+        private void OnUpdatePlayerInfo(object sender, EventArgs e)
         {
             foreach (var playerDisplay in playerDisplays)
             {
@@ -59,6 +68,26 @@ namespace PokemonGame.Networking
             playerCountText.text = $"{players.Count}/{BattleNetworkManager.Instance.MaxPlayerCount}";
             startButton.gameObject.SetActive(BattleNetworkManager.Instance.IsHost);
             startButton.interactable = players.Count == BattleNetworkManager.Instance.MaxPlayerCount;
+        }
+        
+        private void OnStartedGeneratingParties(object sender, EventArgs e)
+        {
+            statusText.text = "Generating parties, please wait...";
+        }
+        
+        private void OnFinishedGeneratingParties(object sender, EventArgs e)
+        {
+            statusText.text = "Finished generating parties, sending party info...";
+        }
+        
+        private void OnSentPartiesInfo(object sender, EventArgs e)
+        {
+            statusText.text = "Sent all party info...";
+        }
+        
+        private void OnReadyToStartGame(object sender, EventArgs e)
+        {
+            statusText.text = "Ready to start game!";
         }
         
         private Sprite GetSpriteFromPokemonName(int dexNo)

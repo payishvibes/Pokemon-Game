@@ -93,7 +93,7 @@ namespace PokemonGame.Battle
             UpdateBattlerTexts();
             UpdateBattlerButtons();
 
-            runButton.SetActive(!Battle.Singleton.trainerBattle);
+            runButton.SetActive(!Battle.Singleton.trainerBattle && !Battle.Singleton.onlineBattle);
         }
 
         private void Update()

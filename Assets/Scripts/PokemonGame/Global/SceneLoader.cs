@@ -1,4 +1,5 @@
 using PokemonGame.Game;
+using PokemonGame.Networking;
 
 namespace PokemonGame.Global
 {
@@ -31,7 +32,8 @@ namespace PokemonGame.Global
             ClearLoader();
             _vars = newVars;
             sceneLoadedFrom = SceneManager.GetActiveScene().name;
-            OptionsMenu.instance.CloseMenu();
+            if (!BattleNetworkManager.Instance)
+                OptionsMenu.instance.CloseMenu();
             SceneManager.LoadScene(sceneToLoadIndex);   
         }
 
@@ -43,7 +45,8 @@ namespace PokemonGame.Global
         {
             ClearLoader();
             sceneLoadedFrom = SceneManager.GetActiveScene().name;
-            OptionsMenu.instance.CloseMenu();
+            if (!BattleNetworkManager.Instance)
+                OptionsMenu.instance.CloseMenu();
             SceneManager.LoadScene(sceneToLoadIndex); 
         }
 
@@ -55,7 +58,8 @@ namespace PokemonGame.Global
         {
             ClearLoader();
             sceneLoadedFrom = SceneManager.GetActiveScene().name;
-            OptionsMenu.instance.CloseMenu();
+            if (!BattleNetworkManager.Instance)
+                OptionsMenu.instance.CloseMenu();
             SceneManager.LoadScene(sceneToLoadName);   
         }
     
@@ -69,7 +73,8 @@ namespace PokemonGame.Global
             ClearLoader();
             _vars = newVars;
             sceneLoadedFrom = SceneManager.GetActiveScene().name;
-            OptionsMenu.instance.CloseMenu();
+            if (!BattleNetworkManager.Instance)
+                OptionsMenu.instance.CloseMenu();
             SceneManager.LoadScene(sceneToLoadName);
         }
     

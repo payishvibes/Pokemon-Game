@@ -468,7 +468,7 @@ namespace PokemonGame.General
         public static Battler Init(Battler sourceBattler, bool autoAssignHealth)
         {
             return Init(sourceBattler.source, sourceBattler.level, sourceBattler.name, sourceBattler.gender, sourceBattler.shiny, sourceBattler.isFainted,
-                sourceBattler.exp, sourceBattler.statusEffect, sourceBattler.EVs, sourceBattler.IVs,
+                sourceBattler.exp, sourceBattler.statusEffect, sourceBattler.EVs, sourceBattler.IVs, sourceBattler.nature,
                 sourceBattler.currentHealth,
                 sourceBattler.moves, autoAssignHealth);
         }
@@ -485,13 +485,15 @@ namespace PokemonGame.General
                 UnityEngine.Random.Range(0, 32),
                 UnityEngine.Random.Range(0, 32)
             );
+            
+            Nature nature = (Nature)UnityEngine.Random.Range(0, (int)Nature.Timid);
 
             bool shiny = UnityEngine.Random.Range(0, 4096) == 0;
 
             Gender gender = Gender.Female;
             
             return Init(source, level, name, gender, shiny, false,
-                0, StatusEffect.Healthy, EVs, IVs, 0,
+                0, StatusEffect.Healthy, EVs, IVs, nature, 0,
                 moves, autoAssignHealth);
         }
 
@@ -528,7 +530,7 @@ namespace PokemonGame.General
         /// <param name="autoAssignHealth">Auto assign health to the <see cref="maxHealth"/> when creating</param>
         /// <returns>A battler that has been created using the parameters given</returns>
         public static Battler Init(BattlerTemplate source, int level, string name, Gender gender, bool shiny, bool isFainted, int exp,
-            StatusEffect statusEffect, BattlerStats EVs, BattlerStats IVs, int currentHealth, List<Move> moves, bool autoAssignHealth)
+            StatusEffect statusEffect, BattlerStats EVs, BattlerStats IVs, Nature nature, int currentHealth, List<Move> moves, bool autoAssignHealth)
         {
             Battler returnBattler = CreateInstance<Battler>();
             
@@ -544,6 +546,7 @@ namespace PokemonGame.General
             returnBattler.shiny = shiny;
             returnBattler.gender = gender;
             returnBattler.IVs = IVs;
+            returnBattler.nature = nature;
 
             foreach (var move in moves)
             {
@@ -586,7 +589,7 @@ namespace PokemonGame.General
         public int newLevel;
     }
 
-    public enum Nature
+    public enum Nature : int
     {
         Adamant,
         Bashful,
