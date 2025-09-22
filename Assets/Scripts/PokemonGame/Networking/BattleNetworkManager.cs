@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using PokemonGame.Game.Party;
 using PokemonGame.General;
 using PokemonGame.Global;
@@ -14,17 +13,32 @@ using UnityEngine.SceneManagement;
 
 namespace PokemonGame.Networking
 {
+    using Battle;
+    
     public enum ClientToServerMessageId : ushort
     {
         ConnectionInfo,
-        AllPartiesReceived
+        AllPartiesReceived,
+        TurnItemEnd,
+        MoveSelected,
+        SwapSelected,
     }
     
     public enum ServerToClientMessageId : ushort
     {
         UpdatePlayerInfo,
         PartyInfo,
-        StartBattle
+        StartBattle,
+        // turn item messages here:
+        TurnPlayerMove,
+        TurnPlayerMissed,
+        TurnPlayerSwapBecauseFainted,
+        TurnPlayerSwap,
+        TurnEndBattle,
+        TurnStartOfTurnStatusEffects,
+        TurnEndOfTurnStatusEffects,
+        TurnPlayerParalysed,
+        TurnPlayerAsleep,
     }
     
     public class BattleNetworkManager : MonoBehaviour
@@ -171,8 +185,6 @@ namespace PokemonGame.Networking
         {
             Dictionary<string, object> vars = new Dictionary<string, object>
             {
-                { "partyOne", Players.Values.ToList()[0].Party},
-                { "partyTwo", Players.Values.ToList()[1].Party },
                 { "online", true },
                 { "trainerBattle", false}
             };
@@ -356,6 +368,138 @@ namespace PokemonGame.Networking
         {
             StartCoroutine(StartBattle());
         }
+
+        #region TurnSendingLogic
+
+        #region ServerSending
+
+        public void ServerSendTurnPlayerMove(bool playerOne, int moveIndex)
+        {
+            Message message =  Message.Create(MessageSendMode.Reliable, ServerToClientMessageId.TurnPlayerMove);
+            message.AddBool(playerOne);
+            message.AddInt(moveIndex);
+            Server.SendToAll(message, Client.Id);
+        }
+        public void ServerSendTurnPlayerMissed()
+        {
+            Message message =  Message.Create(MessageSendMode.Reliable, ServerToClientMessageId.TurnPlayerMissed);
+            Server.SendToAll(message, Client.Id);
+        }
+        public void ServerSendTurnPlayerSwapBecauseFainted(bool playerOne)
+        {
+            Message message =  Message.Create(MessageSendMode.Reliable, ServerToClientMessageId.TurnPlayerSwapBecauseFainted);
+            message.AddBool(playerOne);
+            Server.SendToAll(message, Client.Id);
+        }
+        public void ServerSendTurnPlayerSwap(bool playerOne, int targetBattlerIndex)
+        {
+            Message message =  Message.Create(MessageSendMode.Reliable, ServerToClientMessageId.TurnPlayerSwap);
+            message.AddBool(playerOne);
+            message.AddInt(targetBattlerIndex);
+            Server.SendToAll(message, Client.Id);
+        }
+        public void ServerSendTurnEndBattle(bool playerTwoDefeated)
+        {
+            Message message =  Message.Create(MessageSendMode.Reliable, ServerToClientMessageId.TurnEndBattle);
+            message.AddBool(playerTwoDefeated);
+            Server.SendToAll(message, Client.Id);
+        }
+        public void ServerSendTurnStartOfTurnStatusEffects()
+        {
+            Message message =  Message.Create(MessageSendMode.Reliable, ServerToClientMessageId.TurnStartOfTurnStatusEffects);
+            Server.SendToAll(message, Client.Id);
+        }
+        public void ServerSendTurnEndOfTurnStatusEffects()
+        {
+            Message message =  Message.Create(MessageSendMode.Reliable, ServerToClientMessageId.TurnEndOfTurnStatusEffects);
+            Server.SendToAll(message, Client.Id);
+        }
+        public void ServerSendTurnPlayerParalysed(bool playerOne)
+        {
+            Message message =  Message.Create(MessageSendMode.Reliable, ServerToClientMessageId.TurnPlayerParalysed);
+            message.AddBool(playerOne);
+            Server.SendToAll(message, Client.Id);
+        }
+        public void ServerSendTurnPlayerAsleep(bool playerOne)
+        {
+            Message message =  Message.Create(MessageSendMode.Reliable, ServerToClientMessageId.TurnPlayerAsleep);
+            message.AddBool(playerOne);
+            Server.SendToAll(message, Client.Id);
+        }
+
+        #endregion
+        
+        #region ClientReceiving
+
+        public void ClientGotTurnPlayerMove(Message message)
+        {
+            bool playerOne = message.GetBool();
+            int index = message.GetInt();
+            
+            if (playerOne)
+                Battle.Singleton.DoPlayerOneMove(Battle.Singleton.PlayerOneBattler.moves[index]);
+            else
+                Battle.Singleton.DoPlayerTwoMove(Battle.Singleton.PlayerTwoBattler.moves[index]);
+        }
+        public void ClientGotTurnPlayerMissed()
+        {
+            Battle.Singleton.MoveMissed();
+        }
+        public void ClientGotTurnPlayerSwapBecauseFainted(Message message)
+        {
+            bool playerOne = message.GetBool();
+            
+            if (playerOne)
+                Battle.Singleton.BeginSwapPlayerOneBattler();
+            else
+                Battle.Singleton.BeginSwapPlayerTwoBattler();
+        }
+        public void ClientGotTurnPlayerSwap(Message message)
+        {
+            bool playerOne = message.GetBool();
+            int targetBattlerIndex = message.GetInt();
+
+            if (playerOne)
+                Battle.Singleton.PlayerOneSwappedBattler(targetBattlerIndex);
+            else
+                Battle.Singleton.PlayerTwoSwappedBattler(targetBattlerIndex);
+        }
+        public void ClientGotTurnEndBattle(Message message)
+        {
+            bool playerTwoDefeated = message.GetBool();
+            
+            Battle.Singleton.BeginEndBattleDialogue(playerTwoDefeated);
+        }
+        public void ClientGotTurnStartOfTurnStatusEffects()
+        {
+            Battle.Singleton.RunStartOfTurnStatusEffects();
+        }
+        public void ClientGotTurnEndOfTurnStatusEffects()
+        {
+            Battle.Singleton.RunEndOfTurnStatusEffects();
+        }
+        public void ClientGotTurnPlayerParalysed(Message message)
+        {
+            bool playerOne = message.GetBool();
+            
+            if (playerOne)
+                Battle.Singleton.PlayerOneParalysed();
+            else
+                Battle.Singleton.PlayerTwoParalysed();
+        }
+        public void ClientGotTurnPlayerAsleep(Message message)
+        {
+            bool playerOne = message.GetBool();
+            
+            if (playerOne)
+                Battle.Singleton.PlayerOneAsleep();
+            else
+                Battle.Singleton.PlayerTwoAsleep();
+        }
+
+        #endregion
+
+        #endregion
     }
     
     public class NetworkPlayer

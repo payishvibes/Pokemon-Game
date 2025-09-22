@@ -7198,6 +7198,7 @@ MonoBehaviour:
   playerOneBattlerIndex: 0
   playerTwoBattlerIndex: 0
   currentTurn: 0
+  localPlayerOne: 0
   partyOne:
     PartyList: []
     defeated: 0
@@ -7249,6 +7250,7 @@ MonoBehaviour:
   backButton: {fileID: 1208924946}
   useItemBackButton: {fileID: 926478501}
   runButton: {fileID: 99341039}
+  itemButton: {fileID: 1890642312}
   battlerDisplays:
   - {fileID: 2060876510}
   - {fileID: 1222545123}

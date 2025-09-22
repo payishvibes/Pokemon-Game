@@ -1,5 +1,6 @@
-using System;
+using Riptide;
 using PokemonGame.General;
+using PokemonGame.Networking;
 using PokemonGame.ScriptableObjects;
 using UnityEngine;
 
@@ -37,7 +38,14 @@ namespace PokemonGame.Battle
         //Public method used by the move UI buttons
         public void ChooseMove(int moveID)
         {
-            battle.PlayerOneChooseMove(moveID);
+            if (battle.localPlayerOne)
+            {
+                battle.PlayerOneChooseMove(moveID);
+            }
+            else
+            {
+                ClientSendPlayerMoveSelected(moveID);
+            }
         }
         
         public void StartPickingBattlerToUseItemOn(Item item)
@@ -63,9 +71,32 @@ namespace PokemonGame.Battle
             battle.PlayerOnePickedPokeBall(ball);
         }
 
-        public void PlayerChooseToSwap(int partyID)
+        public void PlayerChooseToSwap(int battlerIndex)
         {
-            battle.PlayerOneChooseToSwap(partyID);
+            if (battle.localPlayerOne)
+            {
+                battle.PlayerOneChooseToSwap(battlerIndex);
+            }
+            else
+            {
+                ClientSendPlayerSwapSelected(battlerIndex);
+            }
+        }
+
+        private void ClientSendPlayerMoveSelected(int moveIndex)
+        {
+            Message message = Message.Create(MessageSendMode.Reliable, ClientToServerMessageId.MoveSelected);
+            message.AddInt(moveIndex);
+
+            BattleNetworkManager.Instance.Client.Send(message);
+        }
+
+        private void ClientSendPlayerSwapSelected(int battlerIndex)
+        {
+            Message message = Message.Create(MessageSendMode.Reliable, ClientToServerMessageId.MoveSelected);
+            message.AddInt(battlerIndex);
+
+            BattleNetworkManager.Instance.Client.Send(message);
         }
     }
 }

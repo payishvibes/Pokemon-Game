@@ -46,6 +46,7 @@ public static class MessageExtensions
         message.AddInt((int)value.gender);
         message.AddBattlerStats(value.IVs);
         message.AddInt((int)value.nature);
+        message.AddBool(value.shiny);
 
         message.AddInt(value.moves.Count);
         for (int i =0; i < value.moves.Count; i++)
@@ -70,6 +71,7 @@ public static class MessageExtensions
         Gender gender = (Gender)message.GetInt();
         BattlerStats IVs = message.GetBattlerStats();
         Nature nature = (Nature)message.GetInt();
+        bool shiny = message.GetBool();
         int length = message.GetInt();
         List<string> moveTypes = new List<string>();
         for (int i = 0; i < length; i++)
@@ -95,6 +97,7 @@ public static class MessageExtensions
         returnBattler.gender = gender;
         returnBattler.IVs = IVs;
         returnBattler.nature = nature;
+        returnBattler.shiny = shiny;
 
         for (int i = 0; i < moveNames.Count; i++)
         {
