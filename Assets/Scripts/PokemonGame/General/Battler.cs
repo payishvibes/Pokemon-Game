@@ -220,14 +220,14 @@ namespace PokemonGame.General
         /// <summary>
         /// Handle fainting
         /// </summary>
-        /// <param name="source">Source of damage that caused the battler to faint</param>
-        private void Fainted(DamageSource source)
+        /// <param name="dSource">Source of damage that caused the battler to faint</param>
+        private void Fainted(DamageSource dSource)
         {
             currentHealth = 0;
             isFainted = true;
-            OnFainted?.Invoke(this, new BattlerTookDamageArgs(source, this));
+            OnFainted?.Invoke(this, new BattlerTookDamageArgs(dSource, this));
         }
-
+        
         /// <summary>
         /// Used to change the battlers current health without inflicting damage
         /// </summary>

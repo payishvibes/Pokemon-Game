@@ -127,8 +127,6 @@ namespace PokemonGame.Battle
         public TurnItem currentTurnItem;
         
         // events
-        private EventHandler<BattlerTookDamageArgs> _playerOneBattlerDefeated = null;
-        private EventHandler<BattlerTookDamageArgs> _playerTwoBattlerDefeated = null;
         private EventHandler<OnLevelUpEventArgs> _playerOneBattlerLeveledUp = null;
         private EventHandler<EvolutionData> _playerOneBattlerEvolved = null;
 
@@ -196,23 +194,10 @@ namespace PokemonGame.Battle
             partyOne.PartyAllDefeated += PlayerOnePartyAllDefeated;
             partyTwo.PartyAllDefeated += PlayerTwoPartyAllDefeated;
 
-            _playerOneBattlerDefeated = (s, e) => PlayerOneBattlerFainted();
-            _playerTwoBattlerDefeated = (s, e) => PlayerTwoBattlerFainted();
-
             if (!onlineBattle)
             {
                 _playerOneBattlerLeveledUp = (s, e) => BattlerLeveledUp(partyOne.party.Find(x => x == (Battler)s), e);
                 _playerOneBattlerEvolved = (s, e) => BattlerEvolved(partyOne.party.Find(x => x == (Battler)s), e.evolution);
-            }
-            
-            for (int i = 0; i < partyTwo.Count; i++)
-            {
-                partyTwo[i].OnFainted += _playerTwoBattlerDefeated;
-            }
-            
-            for (int i = 0; i < partyOne.Count; i++)
-            {
-                partyOne[i].OnFainted += _playerOneBattlerDefeated;
             }
             
             for (int i = 0; i < partyOne.Count; i++)
@@ -232,10 +217,6 @@ namespace PokemonGame.Battle
             partyTwo.PartyAllDefeated -= PlayerTwoPartyAllDefeated;
             DialogueManager.instance.DialogueEnded -= DialogueEnded;
             
-            for (int i = 0; i < partyTwo.Count; i++)
-            {
-                partyTwo[i].OnFainted -= _playerTwoBattlerDefeated;
-            }
             for (int i = 0; i < partyOne.Count; i++)
             {
                 partyOne[i].OnLevelUp -= _playerOneBattlerLeveledUp;
@@ -294,6 +275,8 @@ namespace PokemonGame.Battle
             
             DialogueMoveEffectiveness(args);
             
+            CheckFaintedBattlers();
+            
             yield return new WaitForSeconds(1);
             
             StartDialogue();
@@ -301,6 +284,19 @@ namespace PokemonGame.Battle
             if (args.effectiveIndex == 0 && !args.crit)
             {
                 TurnQueueItemEnded();
+            }
+        }
+
+        private void CheckFaintedBattlers()
+        {
+            if (playerOneCurrentBattler.isFainted)
+            {
+                PlayerOneBattlerFainted();
+            }
+            
+            if (playerTwoCurrentBattler.isFainted)
+            {
+                PlayerTwoBattlerFainted();
             }
         }
 
@@ -714,22 +710,22 @@ namespace PokemonGame.Battle
                 case "moveUsed":
                     StartCoroutine(ShowMove((MoveMethodEventArgs)currentTurnItem.Variables[^1]));
                     break;
-                case "playerOneFainted":
-                    uiManager.SwitchBattlerBecauseOfDeath();
-                    break;
                 case "playerTwoFainted":
-                    if (!onlineBattle)
+                    Debug.Log("finished fainted dialogue");
+                    if (!args.moreToGo || !DialogueManager.instance.dialogueIsPlaying)
                     {
-                        AISwitchEventArgs e =
-                            new AISwitchEventArgs(playerTwoBattlerIndex, partyTwo, ExternalBattleData.Construct(this));
-            
-                        enemyAI.AISwitchMethod(e);
-                    
-                        PlayerTwoChooseToSwap(e.newBattlerIndex);
+                        TurnQueueItemEnded();
+                    }
+                    break;
+                case "playerOneFainted":
+                    Debug.Log("finished fainted dialogue");
+                    if (!args.moreToGo || !DialogueManager.instance.dialogueIsPlaying)
+                    {
+                        TurnQueueItemEnded();
                     }
                     break;
                 case "generalFinishing":
-                    if (!args.moreToGo)
+                    if (!args.moreToGo || !DialogueManager.instance.dialogueIsPlaying)
                     {
                         TurnQueueItemEnded();
                     }
@@ -743,6 +739,12 @@ namespace PokemonGame.Battle
             {
                 case "evolved":
                     EvolutionEffect(e);
+                    break;
+                case "playerOneFainted":
+                    uiManager.ShrinkPlayerOneBattler();
+                    break;
+                case "playerTwoFainted":
+                    uiManager.ShrinkPlayerTwoBattler();
                     break;
             }
         }
@@ -1263,7 +1265,8 @@ namespace PokemonGame.Battle
 
         private void PlayerOneBattlerFainted()
         {
-            QueDialogue($"{playerOneCurrentBattler.name} Fainted!", DialogueBoxType.Event, "generalFinishing");
+            Debug.Log("Player One Fainted");
+            QueDialogue($"{playerOneCurrentBattler.name} Fainted!", DialogueBoxType.Event, "playerOneFainted");
             
             partyOne.CheckDefeatedStatus();
             
@@ -1297,7 +1300,8 @@ namespace PokemonGame.Battle
                 }
             }
             
-            QueDialogue($"{playerTwoCurrentBattler.name} Fainted!", DialogueBoxType.Event, "generalFinishing");
+            Debug.Log("Player Two Fainted");
+            QueDialogue($"{playerTwoCurrentBattler.name} Fainted!", DialogueBoxType.Event, "playerTwoFainted");
             
             partyTwo.CheckDefeatedStatus();
             

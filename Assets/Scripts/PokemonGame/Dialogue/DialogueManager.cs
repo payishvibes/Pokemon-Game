@@ -49,7 +49,7 @@ namespace PokemonGame.Dialogue
 
         private Queue<QueuedDialogue> _queue = new Queue<QueuedDialogue>();
 
-        private bool isInBattle => SceneManager.GetActiveScene().name == "Battle";
+        private bool isInGame => SceneManager.GetActiveScene().name == "Game";
 
         private string[] tempNextLines;
         private int currentTempIndex;
@@ -211,7 +211,7 @@ namespace PokemonGame.Dialogue
             currentTrigger = dialogueToLoad.trigger;
             currentQueuedDialogue = dialogueToLoad;
             
-            if(!isInBattle)
+            if(isInGame)
                 movement.canMove = false;
             
             if (dialogueToLoad.ink)
@@ -318,7 +318,7 @@ namespace PokemonGame.Dialogue
                 {
                     _dialogueVariables.StopListening(_currentStory);
                 }
-                if(!isInBattle)
+                if(isInGame)
                 {
                     movement.canMove = true;
                     Cursor.lockState = CursorLockMode.Locked;
