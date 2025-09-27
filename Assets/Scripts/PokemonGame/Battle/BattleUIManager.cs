@@ -422,8 +422,7 @@ namespace PokemonGame.Battle
 
         public void ForceHealthSet()
         {
-            float t = healthUpdateSpeed;
-
+            Debug.LogError("forcing player health");
             float playerTwoTarget = battle.PlayerTwoBattler.currentHealth /
                                    (float)battle.PlayerTwoBattler.stats.maxHealth;
 
@@ -447,6 +446,7 @@ namespace PokemonGame.Battle
                     playerTwoSideBorderLimitLeft.position, playerTarget);
 
                 playerOneHealthDisplay.transform.localScale = new Vector3(playerTwoTarget, 1, 1);
+                Debug.Log(playerTwoTarget);
                 playerOneSideBorder.position = Vector3.Lerp(playerOneSideBorderLimitLeft.position,
                     playerOneSideBorderLimitRight.position, playerTwoTarget);
             }
@@ -528,79 +528,101 @@ namespace PokemonGame.Battle
             }
         }
 
+        private float _playerOneCurrent = 1;
+        private float _playerTwoCurrent = 1;
+
         private void UpdateHealthDisplays()
         {
             float t = healthUpdateSpeed * Time.deltaTime;
 
-            float playerTwoTarget = battle.PlayerTwoBattler.currentHealth /
-                                   (float)battle.PlayerTwoBattler.stats.maxHealth;
-            float playerTwoCurrent = playerTwoHealthDisplay.transform.localScale.x;
+            float playerTwoTarget = 0;
+
+            if (battle.localPlayerOne)
+            {
+                playerTwoTarget = battle.PlayerTwoBattler.currentHealth /
+                                        (float)battle.PlayerTwoBattler.stats.maxHealth;
+            }
+            else
+            {
+                playerTwoTarget = battle.PlayerOneBattler.currentHealth /
+                                  (float)battle.PlayerOneBattler.stats.maxHealth;
+            }
             
-            float playerTwoDifference = playerTwoCurrent - playerTwoTarget;
+            float playerTwoDifference = _playerTwoCurrent - playerTwoTarget;
             float absDifference = playerTwoDifference > 0 ? playerTwoDifference : -playerTwoDifference;
 
             if (absDifference < t)
             {
-                playerTwoCurrent = playerTwoTarget;
+                _playerTwoCurrent = playerTwoTarget;
             }
             else
             {
                 if (playerTwoDifference > 0)
                 {
                     // need to decrease
-                    playerTwoCurrent -= t;
+                    _playerTwoCurrent -= t;
                 }
                 else
                 {
                     // need to increase
-                    playerTwoCurrent += t;
+                    _playerTwoCurrent += t;
                 }
             }
 
-            float playerTarget = battle.PlayerOneBattler.currentHealth /
-                                 (float)battle.PlayerOneBattler.stats.maxHealth;
-            float playerCurrent = playerOneHealthDisplay.transform.localScale.x;
+            float playerTarget = 0;
+            if (battle.localPlayerOne)
+            {
+                playerTarget = battle.PlayerOneBattler.currentHealth /
+                                     (float)battle.PlayerOneBattler.stats.maxHealth;
+            }
+            else
+            {
+                playerTarget = battle.PlayerTwoBattler.currentHealth /
+                               (float)battle.PlayerTwoBattler.stats.maxHealth;
+            }
             
-            float playerDifference = playerCurrent - playerTarget;
+            float playerDifference = _playerOneCurrent - playerTarget;
             float absPlayerOneDifference = playerDifference > 0 ? playerDifference : -playerDifference;
             
             if (absPlayerOneDifference < t)
             {
-                playerCurrent = playerTarget;
+                _playerOneCurrent = playerTarget;
             }
             else
             {
                 if (playerDifference > 0)
                 {
                     // need to decrease
-                    playerCurrent -= t;
+                    _playerOneCurrent -= t;
                 }
                 else
                 {
                     // need to increase
-                    playerCurrent += t;
+                    _playerOneCurrent += t;
                 }
             }
 
             if (battle.localPlayerOne)
             {
-                playerTwoHealthDisplay.transform.localScale = new Vector3(playerTwoCurrent, 1, 1);
+                playerTwoHealthDisplay.transform.localScale = new Vector3(_playerTwoCurrent, 1, 1);
                 playerTwoSideBorder.position = Vector3.Lerp(playerTwoSideBorderLimitRight.position,
-                    playerTwoSideBorderLimitLeft.position, playerTwoCurrent);
-
-                playerOneHealthDisplay.transform.localScale = new Vector3(playerCurrent, 1, 1);
+                    playerTwoSideBorderLimitLeft.position, _playerTwoCurrent);
+                
+                playerOneHealthDisplay.transform.localScale = new Vector3(_playerOneCurrent, 1, 1);
                 playerOneSideBorder.position = Vector3.Lerp(playerOneSideBorderLimitLeft.position,
-                    playerOneSideBorderLimitRight.position, playerCurrent);
+                    playerOneSideBorderLimitRight.position, _playerOneCurrent);
             }
             else
             {
-                playerTwoHealthDisplay.transform.localScale = new Vector3(playerCurrent, 1, 1);
+                playerTwoHealthDisplay.transform.localScale = new Vector3(_playerTwoCurrent, 1, 1);
+                // Debug.LogError(playerCurrent);
                 playerTwoSideBorder.position = Vector3.Lerp(playerTwoSideBorderLimitRight.position,
-                    playerTwoSideBorderLimitLeft.position, playerCurrent);
-
-                playerOneHealthDisplay.transform.localScale = new Vector3(playerTwoCurrent, 1, 1);
+                    playerTwoSideBorderLimitLeft.position, _playerTwoCurrent);
+                
+                playerOneHealthDisplay.transform.localScale = new Vector3(_playerOneCurrent, 1, 1);
+                // Debug.LogError(_playerTwoCurrent);
                 playerOneSideBorder.position = Vector3.Lerp(playerOneSideBorderLimitLeft.position,
-                    playerOneSideBorderLimitRight.position, playerTwoCurrent);
+                    playerOneSideBorderLimitRight.position, _playerOneCurrent);
             }
         }
 

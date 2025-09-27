@@ -378,53 +378,53 @@ namespace PokemonGame.Networking
             Message message =  Message.Create(MessageSendMode.Reliable, ServerToClientMessageId.TurnPlayerMove);
             message.AddBool(playerOne);
             message.AddInt(moveIndex);
-            Server.SendToAll(message, Client.Id);
+            Server.SendToAll(message);
         }
         public void ServerSendTurnPlayerMissed()
         {
             Message message =  Message.Create(MessageSendMode.Reliable, ServerToClientMessageId.TurnPlayerMissed);
-            Server.SendToAll(message, Client.Id);
+            Server.SendToAll(message);
         }
         public void ServerSendTurnPlayerSwapBecauseFainted(bool playerOne)
         {
             Message message =  Message.Create(MessageSendMode.Reliable, ServerToClientMessageId.TurnPlayerSwapBecauseFainted);
             message.AddBool(playerOne);
-            Server.SendToAll(message, Client.Id);
+            Server.SendToAll(message);
         }
         public void ServerSendTurnPlayerSwap(bool playerOne, int targetBattlerIndex)
         {
             Message message =  Message.Create(MessageSendMode.Reliable, ServerToClientMessageId.TurnPlayerSwap);
             message.AddBool(playerOne);
             message.AddInt(targetBattlerIndex);
-            Server.SendToAll(message, Client.Id);
+            Server.SendToAll(message);
         }
         public void ServerSendTurnEndBattle(bool playerTwoDefeated)
         {
             Message message =  Message.Create(MessageSendMode.Reliable, ServerToClientMessageId.TurnEndBattle);
             message.AddBool(playerTwoDefeated);
-            Server.SendToAll(message, Client.Id);
+            Server.SendToAll(message);
         }
         public void ServerSendTurnStartOfTurnStatusEffects()
         {
             Message message =  Message.Create(MessageSendMode.Reliable, ServerToClientMessageId.TurnStartOfTurnStatusEffects);
-            Server.SendToAll(message, Client.Id);
+            Server.SendToAll(message);
         }
         public void ServerSendTurnEndOfTurnStatusEffects()
         {
             Message message =  Message.Create(MessageSendMode.Reliable, ServerToClientMessageId.TurnEndOfTurnStatusEffects);
-            Server.SendToAll(message, Client.Id);
+            Server.SendToAll(message);
         }
         public void ServerSendTurnPlayerParalysed(bool playerOne)
         {
             Message message =  Message.Create(MessageSendMode.Reliable, ServerToClientMessageId.TurnPlayerParalysed);
             message.AddBool(playerOne);
-            Server.SendToAll(message, Client.Id);
+            Server.SendToAll(message);
         }
         public void ServerSendTurnPlayerAsleep(bool playerOne)
         {
             Message message =  Message.Create(MessageSendMode.Reliable, ServerToClientMessageId.TurnPlayerAsleep);
             message.AddBool(playerOne);
-            Server.SendToAll(message, Client.Id);
+            Server.SendToAll(message);
         }
 
         #endregion

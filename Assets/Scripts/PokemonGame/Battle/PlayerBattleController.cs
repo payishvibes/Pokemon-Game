@@ -46,6 +46,7 @@ namespace PokemonGame.Battle
             {
                 ClientSendPlayerMoveSelected(moveID);
             }
+            uiManager.ShowControlUI(false);
         }
         
         public void StartPickingBattlerToUseItemOn(Item item)
@@ -81,6 +82,7 @@ namespace PokemonGame.Battle
             {
                 ClientSendPlayerSwapSelected(battlerIndex);
             }
+            uiManager.ShowControlUI(false);
         }
 
         private void ClientSendPlayerMoveSelected(int moveIndex)

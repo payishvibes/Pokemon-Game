@@ -179,7 +179,7 @@ namespace PokemonGame.Battle
                 localPlayerOne = BattleNetworkManager.Instance.IsHost;
                 List<NetworkPlayer> players = BattleNetworkManager.Instance.Players.Values.ToList();
                 partyOne = new BattleParty(players[0].Party);
-                partyOne = new BattleParty(players[1].Party);
+                partyTwo = new BattleParty(players[1].Party);
             }
             else
             {
@@ -359,7 +359,7 @@ namespace PokemonGame.Battle
                     enemyAI.AIMethod(new AIMethodEventArgs(playerTwoCurrentBattler, partyTwo,
                         ExternalBattleData.Construct(this)));
                 }
-                else
+                else if(!onlineBattle)
                 {
                     EnemyAIMethods.WildPokemon(new AIMethodEventArgs(playerTwoCurrentBattler, partyTwo,
                         ExternalBattleData.Construct(this)));
@@ -375,12 +375,9 @@ namespace PokemonGame.Battle
                 hasSetupShowing = true;
                 uiManager.ShowControlUI(false);
 
-                if (onlineBattle)
+                if (IsNotOnlineHost())
                 {
-                    if (!BattleNetworkManager.Instance.IsHost)
-                    {
-                        return;
-                    }
+                    return;
                 }
                 
                 QueueTurnItem(TurnItemType.StartDelay);
@@ -400,12 +397,9 @@ namespace PokemonGame.Battle
                 QueueTurnItem(TurnItemType.EndOfTurnStatusEffects);
             }
             
-            if (onlineBattle)
+            if (IsNotOnlineHost())
             {
-                if (!BattleNetworkManager.Instance.IsHost)
-                {
-                    return;
-                }
+                return;
             }
             
             if (!_currentlyRunningQueueItem)
@@ -558,7 +552,7 @@ namespace PokemonGame.Battle
         private IEnumerator TurnStartDelay()
         {
             yield return new WaitForSeconds(1);
-            TurnQueueItemEnded();
+            EndTurnItem();
         }
 
         public void QueueTurnItem(TurnItemType type, List<object> variables)
@@ -569,12 +563,9 @@ namespace PokemonGame.Battle
 
         public void QueueTurnItem(TurnItemType type)
         {
-            if (onlineBattle)
+            if (IsNotOnlineHost())
             {
-                if (!BattleNetworkManager.Instance.IsHost)
-                {
-                    return;
-                }
+                return;
             }
             TurnItem item = new TurnItem(type);
             turnItemQueue.Add(item);
@@ -582,12 +573,9 @@ namespace PokemonGame.Battle
 
         public void InsertTurnItem(TurnItemType type)
         {
-            if (onlineBattle)
+            if (IsNotOnlineHost())
             {
-                if (!BattleNetworkManager.Instance.IsHost)
-                {
-                    return;
-                }
+                return;
             }
             TurnItem item = new TurnItem(type);
             turnItemQueue.Insert(0, item);
@@ -595,12 +583,9 @@ namespace PokemonGame.Battle
 
         public void InsertTurnItem(TurnItemType type, List<object> variables)
         {
-            if (onlineBattle)
+            if (IsNotOnlineHost())
             {
-                if (!BattleNetworkManager.Instance.IsHost)
-                {
-                    return;
-                }
+                return;
             }
             TurnItem item = new TurnItem(type, variables);
             turnItemQueue.Insert(0, item);
@@ -1073,6 +1058,11 @@ namespace PokemonGame.Battle
 
         public void DoPlayerOneMove(Move playerOneMoveToDo)
         {
+            if (IsNotOnlineHost())
+            {
+                currentTurnItem = new TurnItem(TurnItemType.PlayerOneMove);
+            }
+            
             bool able = true;
             bool missed = false;
             
@@ -1121,6 +1111,11 @@ namespace PokemonGame.Battle
         
         public void DoPlayerTwoMove(Move playerTwoMoveToDo)
         {
+            if (IsNotOnlineHost())
+            {
+                currentTurnItem = new TurnItem(TurnItemType.PlayerTwoMove);
+            }
+            
             bool able = true;
             bool missed = false;
             
@@ -1486,6 +1481,16 @@ namespace PokemonGame.Battle
             }
             
             turnItemQueue.Clear();
+        }
+
+        private bool IsNotOnlineHost()
+        {
+            if (onlineBattle)
+            {
+                return !BattleNetworkManager.Instance.IsHost;
+            }
+
+            return false;
         }
     }
 }

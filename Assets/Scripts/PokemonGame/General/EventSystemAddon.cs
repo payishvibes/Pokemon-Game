@@ -28,7 +28,10 @@ namespace PokemonGame.General
                 else
                 {
                     Button button = FindAnyObjectByType<Button>(FindObjectsInactive.Exclude);
-                    _system.SetSelectedGameObject(button.gameObject);
+                    if (button)
+                    {
+                        _system.SetSelectedGameObject(button.gameObject);
+                    }
                 }
             }
 
