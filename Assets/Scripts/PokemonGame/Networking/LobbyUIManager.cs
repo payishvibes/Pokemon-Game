@@ -108,7 +108,6 @@ namespace PokemonGame.Networking
         public void HostLobby()
         {
             BattleNetworkManager.Instance.StartHosting();
-            BattleNetworkManager.Instance.JoinGame("127.0.0.1:7777", usernameInput.text,700);
         }
 
         public void StartGame()

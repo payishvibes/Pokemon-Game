@@ -8,8 +8,11 @@ using PokemonGame.Global;
 using PokemonGame.ScriptableObjects;
 using UnityEngine;
 using Riptide;
+using Riptide.Transports.Steam;
 using Riptide.Utils;
+using Steamworks;
 using UnityEngine.SceneManagement;
+using SteamClient = Riptide.Transports.Steam.SteamClient;
 
 namespace PokemonGame.Networking
 {
@@ -53,6 +56,8 @@ namespace PokemonGame.Networking
         public int MaxPlayerCount;
         public bool IsHost;
 
+        private bool _useSteam = true;
+
         private int _acknowledgedPartyCount;
         
         public event EventHandler OnUpdatePlayerInfo;
@@ -60,6 +65,10 @@ namespace PokemonGame.Networking
         public event EventHandler OnFinishedGeneratingParties;
         public event EventHandler OnSentPartiesInfo;
         public event EventHandler OnReadyToStartGame;
+        
+        protected Callback<LobbyEnter_t> LobbyEnter;
+        protected Callback<GameLobbyJoinRequested_t> LobbyJoinRequested;
+        protected CSteamID LobbyID;
         
         private void Awake()
         {
@@ -70,11 +79,8 @@ namespace PokemonGame.Networking
             RiptideLogger.Initialize(Debug.Log, true);
 #endif
             
-            Server = new Server();
-            Client = new Client();
-            
-            SubscribeToClientEvents();
-            SubscribeToServerEvents();
+            LobbyEnter = Callback<LobbyEnter_t>.Create(OnLobbyEnter);
+            LobbyJoinRequested = Callback<GameLobbyJoinRequested_t>.Create(OnLobbyJoinRequested);
         }
         
         private void SubscribeToClientEvents()
@@ -85,6 +91,10 @@ namespace PokemonGame.Networking
 
         private void UnSubscribeToClientEvents()
         {
+            if (Client == null)
+            {
+                return;
+            }
             Client.Connected -= ClientOnConnected;
             Client.Disconnected -= ClientOnDisconnected;
         }
@@ -96,6 +106,10 @@ namespace PokemonGame.Networking
 
         private void UnSubscribeToServerEvents()
         {
+            if (Server == null)
+            {
+                return;
+            }
             Server.ClientDisconnected -= ServerOnClientDisconnected;
         }
         
@@ -118,14 +132,51 @@ namespace PokemonGame.Networking
         
         public void StartHosting()
         {
-            Server.Start(7777, 2);
-            MaxPlayerCount = Server.MaxClientCount;
-            IsHost = true;
+            if (_useSteam)
+            {
+                SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, 2);
+                IsHost = true;
+            }
+            else
+            {
+                Server = new Server();
+                SubscribeToServerEvents();
+                Server.Start(7777, 2);
+                MaxPlayerCount = Server.MaxClientCount;
+                IsHost = true;
+            }
+        }
+        
+        private void OnLobbyEnter(LobbyEnter_t callback)
+        {
+            SteamServer steamServer = new SteamServer();
+            if (IsHost)
+            {
+                Server = new Server(steamServer);
+                SubscribeToServerEvents();
+                Server.Start(0, 2);
+            }
+
+            LobbyID = (CSteamID)callback.m_ulSteamIDLobby;
+            
+            CSteamID hostId = SteamMatchmaking.GetLobbyOwner(LobbyID);
+
+            SteamClient steamClient = new SteamClient(steamServer);
+            Client = new Client(steamClient);
+            
+            JoinGame(hostId.ToString(), SteamFriends.GetPersonaName(), 700);
+        }
+
+        private void OnLobbyJoinRequested(GameLobbyJoinRequested_t callback)
+        {
+            SteamMatchmaking.JoinLobby(callback.m_steamIDLobby);
         }
         
         public void JoinGame(string address, string username, int pfp)
         {
-            if (Client.IsConnected || Client.IsConnecting)
+            SubscribeToClientEvents();
+
+            if (Client.IsConnected)
             {
                 return;
             }
@@ -267,20 +318,39 @@ namespace PokemonGame.Networking
         {
             _acknowledgedPartyCount = 0;
             Message message = Message.Create(MessageSendMode.Reliable, ClientToServerMessageId.AllPartiesReceived);
-
+            
             Client.Send(message);
         }
         
         private void FixedUpdate()
         {
-            Server.Update();
-            Client.Update();
+            if (_useSteam && !SteamManager.Initialized)
+            {
+                return;
+            }
+            
+            if (Server != null)
+            {
+                Server.Update();
+            }
+
+            if (Client != null)
+            {
+                Client.Update();
+            }
         }
         
         private void OnDisable()
         {
-            Server.Stop();
-            Client.Disconnect();
+            if (Server != null)
+            {
+                Server.Stop();
+            }
+            
+            if (Client != null)
+            {
+                Client.Disconnect();
+            }
             
             UnSubscribeToClientEvents();
             UnSubscribeToServerEvents();
