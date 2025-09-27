@@ -95,7 +95,7 @@ namespace PokemonGame.Battle
 
         private void ClientSendPlayerSwapSelected(int battlerIndex)
         {
-            Message message = Message.Create(MessageSendMode.Reliable, ClientToServerMessageId.MoveSelected);
+            Message message = Message.Create(MessageSendMode.Reliable, ClientToServerMessageId.SwapSelected);
             message.AddInt(battlerIndex);
 
             BattleNetworkManager.Instance.Client.Send(message);

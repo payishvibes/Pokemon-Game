@@ -105,6 +105,23 @@ namespace PokemonGame.Game.Party
         {
             party.Add(battlerToAdd);
         }
+
+        /// <summary>
+        /// Gets the index of a battler if its in the party
+        /// </summary>
+        /// <param name="battler">Battler to search for</param>
+        public int GetIndexFromBattler(Battler battler)
+        {
+            for (int i = 0; i < party.Count; i++)
+            {
+                if (party[i] == battler)
+                {
+                    return i;
+                }
+            }
+
+            return 0;
+        }
         
         public virtual Battler this[int i]
         {

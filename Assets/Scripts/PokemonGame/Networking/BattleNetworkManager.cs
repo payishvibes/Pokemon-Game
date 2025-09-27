@@ -39,6 +39,7 @@ namespace PokemonGame.Networking
         TurnEndOfTurnStatusEffects,
         TurnPlayerParalysed,
         TurnPlayerAsleep,
+        TurnSequenceEnded,
     }
     
     public class BattleNetworkManager : MonoBehaviour
@@ -149,14 +150,11 @@ namespace PokemonGame.Networking
 
         private void GenerateParty(List<BattlerTemplate> potentialBattlers)
         {
-            Debug.Log($"Doing party generation");
             int start = DateTime.UtcNow.Millisecond;
             
             foreach (var player in Players.Values)
             {
-                Debug.Log($"Generating party {player.Id}");
                 player.Party = GenerateParty(50, potentialBattlers);
-                Debug.Log($"Generated party {player.Id}");
             }
             
             int end = DateTime.UtcNow.Millisecond;
@@ -200,29 +198,19 @@ namespace PokemonGame.Networking
         {
             Party partyToReturn = new Party();
             
-            Debug.Log("created new party obj");
-            
             for (int i = 0; i < 6; i++)
             {
                 BattlerTemplate template = potential[UnityEngine.Random.Range(0, potential.Count)];
                 
-                Debug.Log($"{i} picked template");
-                
                 Battler attacker = Battler.Init(template, level, template.name, new List<Move>(), true);
-                Debug.Log($"{i} initialised");
                 List<Move> moves = attacker.GetMostRecentMoves();
-                Debug.Log($"{i} picked moves");
                 
                 for (int j = 0; j < moves.Count; j++)
                 {
                     attacker.LearnMove(moves[j]);
                 }
                 
-                Debug.Log($"{i} learnt moves");
-                
                 partyToReturn.Add(attacker);
-                
-                Debug.Log($"{i} added to party");
             }
 
             return partyToReturn;
@@ -373,12 +361,12 @@ namespace PokemonGame.Networking
 
         #region ServerSending
 
-        public void ServerSendTurnPlayerMove(bool playerOne, int moveIndex)
+        public void ServerSendTurnPlayerMove(bool playerOne, MoveMethodEventArgs e)
         {
             Message message =  Message.Create(MessageSendMode.Reliable, ServerToClientMessageId.TurnPlayerMove);
             message.AddBool(playerOne);
-            message.AddInt(moveIndex);
-            Server.SendToAll(message);
+            message.AddMoveEventArgs(e);
+            Server.SendToAll(message, Client.Id);
         }
         public void ServerSendTurnPlayerMissed()
         {
@@ -391,12 +379,19 @@ namespace PokemonGame.Networking
             message.AddBool(playerOne);
             Server.SendToAll(message);
         }
-        public void ServerSendTurnPlayerSwap(bool playerOne, int targetBattlerIndex)
+        public void ServerSendTurnPlayerSwap(bool playerOne, int targetBattlerIndex, bool dontSendToLocal = false)
         {
             Message message =  Message.Create(MessageSendMode.Reliable, ServerToClientMessageId.TurnPlayerSwap);
             message.AddBool(playerOne);
             message.AddInt(targetBattlerIndex);
-            Server.SendToAll(message);
+            if (dontSendToLocal)
+            {
+                Server.SendToAll(message, Client.Id);
+            }
+            else
+            {
+                Server.SendToAll(message);
+            }
         }
         public void ServerSendTurnEndBattle(bool playerTwoDefeated)
         {
@@ -427,6 +422,12 @@ namespace PokemonGame.Networking
             Server.SendToAll(message);
         }
 
+        public void ServerSendTurnSequenceEnded()
+        {
+            Message message =  Message.Create(MessageSendMode.Reliable, ServerToClientMessageId.TurnSequenceEnded);
+            Server.SendToAll(message, Client.Id);
+        }
+
         #endregion
         
         #region ClientReceiving
@@ -434,12 +435,12 @@ namespace PokemonGame.Networking
         public void ClientGotTurnPlayerMove(Message message)
         {
             bool playerOne = message.GetBool();
-            int index = message.GetInt();
+            MoveMethodEventArgs e = message.GetMoveEventArgs();
             
             if (playerOne)
-                Battle.Singleton.DoPlayerOneMove(Battle.Singleton.PlayerOneBattler.moves[index]);
+                Battle.Singleton.PlayAuthoritativeMove(e, true);
             else
-                Battle.Singleton.DoPlayerTwoMove(Battle.Singleton.PlayerTwoBattler.moves[index]);
+                Battle.Singleton.PlayAuthoritativeMove(e, false);
         }
         public void ClientGotTurnPlayerMissed()
         {
@@ -495,6 +496,11 @@ namespace PokemonGame.Networking
                 Battle.Singleton.PlayerOneAsleep();
             else
                 Battle.Singleton.PlayerTwoAsleep();
+        }
+        
+        public void ClientGotTurnSequenceEnded(Message message)
+        {
+            Battle.Singleton.EndTurnShowing();
         }
 
         #endregion

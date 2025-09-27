@@ -519,6 +519,19 @@ namespace PokemonGame.General
             return source.texture.basicBack;
         }
 
+        public int GetIndexOfMove(Move move)
+        {
+            for (int i = 0; i < moves.Count; i++)
+            {
+                if (moves[i] == move)
+                {
+                    return i;
+                }
+            }
+
+            return 0;
+        }
+
         /// <summary>
         /// Returns a battler that has been created using the parameters given
         /// </summary>

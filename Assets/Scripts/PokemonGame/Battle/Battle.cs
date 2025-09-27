@@ -282,29 +282,7 @@ namespace PokemonGame.Battle
             QueDialogue($"{battlerThatEvolved.name} evolved into a {newTemplate.name}!", DialogueBoxType.Narration, "evolved");
         }
         
-        private IEnumerator ShowPlayerOneMove(MoveMethodEventArgs args)
-        {
-            if (args.missed)
-            {
-                yield return null;
-            }
-            
-            args.move.MoveMethod(args);
-            args.movePPData.MoveWasUsed();
-            
-            DialogueMoveEffectiveness(args);
-            
-            yield return new WaitForSeconds(1);
-            
-            StartDialogue();
-            
-            if (args.effectiveIndex == 0 && !args.crit)
-            {
-                TurnQueueItemEnded();
-            }
-        }
-        
-        private IEnumerator ShowPlayerTwoMove(MoveMethodEventArgs args)
+        private IEnumerator ShowMove(MoveMethodEventArgs args)
         {
             if (args.missed)
             {
@@ -417,6 +395,10 @@ namespace PokemonGame.Battle
 
         private void NewTurnItem()
         {
+            if (onlineBattle)
+            {
+                _acknowledgedPlayers = new List<ushort>();
+            }
             _currentlyRunningQueueItem = true;
 
             currentTurnItem = turnItemQueue[0];
@@ -430,16 +412,10 @@ namespace PokemonGame.Battle
                     StartCoroutine(TurnStartDelay());
                     break;
                 case TurnItemType.PlayerOneMove:
-                    if (onlineBattle)
-                        BattleNetworkManager.Instance.ServerSendTurnPlayerMove(true, (int)playerOneAction.Variables[0]);
-                    else
-                        DoPlayerOneMove(playerOneCurrentBattler.moves[(int)playerOneAction.Variables[0]]);
+                    DoPlayerOneMove(playerOneCurrentBattler.moves[(int)playerOneAction.Variables[0]]);
                     break;
                 case TurnItemType.PlayerTwoMove:
-                    if (onlineBattle)
-                        BattleNetworkManager.Instance.ServerSendTurnPlayerMove(false, (int)playerTwoAction.Variables[0]);
-                    else
-                        DoPlayerTwoMove(playerTwoCurrentBattler.moves[(int)playerTwoAction.Variables[0]]);
+                    DoPlayerTwoMove(playerTwoCurrentBattler.moves[(int)playerTwoAction.Variables[0]]);
                     break;
                 case TurnItemType.EndBattlePlayerOneWin:
                     if (onlineBattle)
@@ -476,7 +452,10 @@ namespace PokemonGame.Battle
                     BattlerLevelUpEvent(((Battler)currentTurnItem.Variables[0]).name, ((OnLevelUpEventArgs)currentTurnItem.Variables[1]).newLevel);
                     break;
                 case TurnItemType.PlayerTwoSwap:
-                    PlayerTwoSwappedBattler((int)currentTurnItem.Variables[^1]);
+                    if (onlineBattle)
+                        BattleNetworkManager.Instance.ServerSendTurnPlayerSwap(false, (int)currentTurnItem.Variables[^1]);
+                    else
+                        PlayerTwoSwappedBattler((int)currentTurnItem.Variables[^1]);
                     break;
                 case TurnItemType.PlayerTwoSwapBecauseFainted:
                     if (onlineBattle)
@@ -526,13 +505,7 @@ namespace PokemonGame.Battle
                 case TurnItemType.Run:
                     RunAwayDialogue();
                     break;
-                case TurnItemType.PlayerOneMissed:
-                    if (onlineBattle)
-                        BattleNetworkManager.Instance.ServerSendTurnPlayerMissed();
-                    else
-                        MoveMissed();
-                    break;
-                case TurnItemType.PlayerTwoMissed:
+                case TurnItemType.PlayerMissed:
                     if (onlineBattle)
                         BattleNetworkManager.Instance.ServerSendTurnPlayerMissed();
                     else
@@ -561,7 +534,7 @@ namespace PokemonGame.Battle
             turnItemQueue.Add(item);
         }
 
-        public void QueueTurnItem(TurnItemType type)
+        private void QueueTurnItem(TurnItemType type)
         {
             if (IsNotOnlineHost())
             {
@@ -571,7 +544,7 @@ namespace PokemonGame.Battle
             turnItemQueue.Add(item);
         }
 
-        public void InsertTurnItem(TurnItemType type)
+        private void InsertTurnItem(TurnItemType type)
         {
             if (IsNotOnlineHost())
             {
@@ -581,7 +554,7 @@ namespace PokemonGame.Battle
             turnItemQueue.Insert(0, item);
         }
 
-        public void InsertTurnItem(TurnItemType type, List<object> variables)
+        private void InsertTurnItem(TurnItemType type, List<object> variables)
         {
             if (IsNotOnlineHost())
             {
@@ -590,8 +563,6 @@ namespace PokemonGame.Battle
             TurnItem item = new TurnItem(type, variables);
             turnItemQueue.Insert(0, item);
         }
-
-        private int _playersReadyToContinue = 0;
         
         public void TurnQueueItemEnded()
         {
@@ -611,10 +582,16 @@ namespace PokemonGame.Battle
             BattleNetworkManager.Instance.Client.Send(message);
         }
 
-        public void ServerTurnItemEnd()
+        private List<ushort> _acknowledgedPlayers = new List<ushort>();
+
+        public void ServerTurnItemEnd(ushort id)
         {
-            _playersReadyToContinue++;
-            if (_playersReadyToContinue == BattleNetworkManager.Instance.MaxPlayerCount)
+            if (!_acknowledgedPlayers.Contains(id))
+            {
+                _acknowledgedPlayers.Add(id);
+            }
+            
+            if (_acknowledgedPlayers.Count >= BattleNetworkManager.Instance.MaxPlayerCount)
             {
                 EndTurnItem();
             }
@@ -622,14 +599,20 @@ namespace PokemonGame.Battle
         
         private void EndTurnItem()
         {
+            Debug.Log("ending turn item");
             _currentlyRunningQueueItem = false;
         }
         
-        private void EndTurnShowing()
+        public void EndTurnShowing()
         {
             playerOneAction = null;
             playerTwoAction = null;
             currentTurn = TurnStatus.Ending;
+            
+            if (IsOnlineHost())
+            {
+                BattleNetworkManager.Instance.ServerSendTurnSequenceEnded();
+            }
         }
 
         private void DialogueMoveUsed(MoveMethodEventArgs e, bool player)
@@ -641,11 +624,11 @@ namespace PokemonGame.Battle
 
             if (player)
             {
-                QueDialogue(battlerUsedText, DialogueBoxType.Event, "playerMoveUsed", true, variables);
+                QueDialogue(battlerUsedText, DialogueBoxType.Event, "moveUsed", true, variables);
             }
             else
             {
-                QueDialogue(battlerUsedText, DialogueBoxType.Event, "playerTwoMoveUsed", true, variables);
+                QueDialogue(battlerUsedText, DialogueBoxType.Event, "moveUsed", true, variables);
             }
             
             ForceStopNextQueued();
@@ -728,11 +711,8 @@ namespace PokemonGame.Battle
                 case "leveledUp":
                     playerBattleController.ShowBattlerLeveled((OnLevelUpEventArgs)currentTurnItem.Variables[1]);
                     break;
-                case "playerMoveUsed":
-                    StartCoroutine(ShowPlayerOneMove((MoveMethodEventArgs)currentTurnItem.Variables[^1]));
-                    break;
-                case "playerTwoMoveUsed":
-                    StartCoroutine(ShowPlayerTwoMove((MoveMethodEventArgs)currentTurnItem.Variables[^1]));
+                case "moveUsed":
+                    StartCoroutine(ShowMove((MoveMethodEventArgs)currentTurnItem.Variables[^1]));
                     break;
                 case "playerOneFainted":
                     uiManager.SwitchBattlerBecauseOfDeath();
@@ -883,6 +863,11 @@ namespace PokemonGame.Battle
                     AddParticipatedBattler(partyOne[newBattlerIndex]);
                 }
                 QueDialogue($"Player One sent out {partyOne[newBattlerIndex].name}", DialogueBoxType.Event, "playerOneSwap");
+            
+                if (IsOnlineHost())
+                {
+                    BattleNetworkManager.Instance.ServerSendTurnPlayerSwap(true, newBattlerIndex, true);
+                }
             }
             else // player chose to swap as their move
             {
@@ -899,6 +884,11 @@ namespace PokemonGame.Battle
             {
                 currentTurnItem.Variables.Add(newBattlerIndex);
                 QueDialogue($"Player Two sent out {partyTwo[newBattlerIndex].name}", DialogueBoxType.Event, "playerTwoSwap");
+                
+                if (IsOnlineHost())
+                {
+                    BattleNetworkManager.Instance.ServerSendTurnPlayerSwap(false, newBattlerIndex, true);
+                }
             }
             else // player chose to swap as their move
             {
@@ -911,7 +901,10 @@ namespace PokemonGame.Battle
 
         public void BeginSwapPlayerOneBattler()
         {
-            uiManager.SwitchBattlerBecauseOfDeath();
+            if (localPlayerOne)
+            {
+                uiManager.SwitchBattlerBecauseOfDeath();
+            }
         }
 
         public void BeginSwapPlayerTwoBattler()
@@ -924,6 +917,10 @@ namespace PokemonGame.Battle
                 enemyAI.AISwitchMethod(e);
                     
                 PlayerTwoChooseToSwap(e.newBattlerIndex);
+            }
+            else if (!localPlayerOne)
+            {
+                uiManager.SwitchBattlerBecauseOfDeath();
             }
         }
 
@@ -1058,11 +1055,6 @@ namespace PokemonGame.Battle
 
         public void DoPlayerOneMove(Move playerOneMoveToDo)
         {
-            if (IsNotOnlineHost())
-            {
-                currentTurnItem = new TurnItem(TurnItemType.PlayerOneMove);
-            }
-            
             bool able = true;
             bool missed = false;
             
@@ -1084,38 +1076,39 @@ namespace PokemonGame.Battle
                 return;
             }
 
+            // actually has like a usable accuracy
             if (playerOneMoveToDo.accuracy != 0 && !Mathf.Approximately(playerOneMoveToDo.accuracy, 1))
             {
-                // actually has like a usable accuracy
                 missed = Random.Range(1, 101) > playerOneMoveToDo.accuracy * 100;
             }
             
             uiManager.ShowHealthUI(true);
             
-            //You can add any animation calls for attacking here
-            
             int moveToDoIndex = GetIndexOfMovePlayerOne(playerOneMoveToDo);
             
             MoveMethodEventArgs e = new MoveMethodEventArgs(playerOneCurrentBattler, playerTwoCurrentBattler, playerOneMoveToDo, 
                 playerOneCurrentBattler.movePpInfos[moveToDoIndex], ExternalBattleData.Construct(this));
+
+            e.damageDealt = MovesMethods.CalculateDamage(playerOneMoveToDo, PlayerOneBattler, PlayerTwoBattler,
+                out e.effectiveIndex, out e.crit);
+
+            e.missed = missed;
             
-            DialogueMoveUsed(e, true);
-            currentTurnItem.Variables.Add(e);
-            
+            if (onlineBattle)
+            {
+                BattleNetworkManager.Instance.ServerSendTurnPlayerMove(true, e);
+            }
+            PlayAuthoritativeMove(e, true);
+
             if (missed)
             {
-                InsertTurnItem(TurnItemType.PlayerOneMissed);
-                e.missed = true;
+                Debug.Log("Missed");
+                InsertTurnItem(TurnItemType.PlayerMissed);
             }
         }
         
         public void DoPlayerTwoMove(Move playerTwoMoveToDo)
         {
-            if (IsNotOnlineHost())
-            {
-                currentTurnItem = new TurnItem(TurnItemType.PlayerTwoMove);
-            }
-            
             bool able = true;
             bool missed = false;
             
@@ -1137,29 +1130,53 @@ namespace PokemonGame.Battle
                 return;
             }
 
+            // actually has like a usable accuracy
             if (playerTwoMoveToDo.accuracy != 0 && !Mathf.Approximately(playerTwoMoveToDo.accuracy, 1))
             {
-                // actually has like a usable accuracy
                 missed = Random.Range(1, 101) > playerTwoMoveToDo.accuracy * 100;
             }
             
             uiManager.ShowHealthUI(true);
             
-            //You can add any animation calls for attacking here
-
             int moveToDoIndex = GetIndexOfMovePlayerTwo(playerTwoMoveToDo);
-
+            
             MoveMethodEventArgs e = new MoveMethodEventArgs(playerTwoCurrentBattler, playerOneCurrentBattler,
                 playerTwoMoveToDo, playerTwoCurrentBattler.movePpInfos[moveToDoIndex], ExternalBattleData.Construct(this));
             
-            DialogueMoveUsed(e, false);
-            currentTurnItem.Variables.Add(e);
+            e.damageDealt = MovesMethods.CalculateDamage(playerTwoMoveToDo, PlayerTwoBattler, PlayerOneBattler,
+                out e.effectiveIndex, out e.crit);
+            
+            e.missed = missed;
+            
+            if (onlineBattle)
+            {
+                BattleNetworkManager.Instance.ServerSendTurnPlayerMove(false, e);
+            }
+            PlayAuthoritativeMove(e, false);
             
             if (missed)
             {
-                InsertTurnItem(TurnItemType.PlayerTwoMissed);
-                e.missed = true;
+                Debug.Log("Missed");
+                InsertTurnItem(TurnItemType.PlayerMissed);
             }
+        }
+
+        public void PlayAuthoritativeMove(MoveMethodEventArgs e, bool player)
+        {
+            if (IsNotOnlineHost())
+            {
+                if (player)
+                {
+                    currentTurnItem = new TurnItem(TurnItemType.PlayerOneMove);
+                }
+                else
+                {
+                    currentTurnItem = new TurnItem(TurnItemType.PlayerTwoMove);
+                }
+            }
+            
+            DialogueMoveUsed(e, player);
+            currentTurnItem.Variables.Add(e);
         }
 
         private void QueueMoves()
@@ -1311,7 +1328,7 @@ namespace PokemonGame.Battle
             QueDialogue("Running Away!", DialogueBoxType.Event, "run");
         }
 
-        private int GetIndexOfMovePlayerTwo(Move move)
+        public int GetIndexOfMovePlayerTwo(Move move)
         {
             for (int i = 0; i < playerTwoCurrentBattler.moves.Count; i++)
             {
@@ -1325,7 +1342,7 @@ namespace PokemonGame.Battle
             return -1;
         }
         
-        private int GetIndexOfMovePlayerOne(Move move)
+        public int GetIndexOfMovePlayerOne(Move move)
         {
             for (int i = 0; i < playerOneCurrentBattler.moves.Count; i++)
             {
@@ -1488,6 +1505,16 @@ namespace PokemonGame.Battle
             if (onlineBattle)
             {
                 return !BattleNetworkManager.Instance.IsHost;
+            }
+
+            return false;
+        }
+
+        private bool IsOnlineHost()
+        {
+            if (onlineBattle)
+            {
+                return BattleNetworkManager.Instance.IsHost;
             }
 
             return false;

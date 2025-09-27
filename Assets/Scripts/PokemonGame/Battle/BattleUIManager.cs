@@ -422,7 +422,6 @@ namespace PokemonGame.Battle
 
         public void ForceHealthSet()
         {
-            Debug.LogError("forcing player health");
             float playerTwoTarget = battle.PlayerTwoBattler.currentHealth /
                                    (float)battle.PlayerTwoBattler.stats.maxHealth;
 

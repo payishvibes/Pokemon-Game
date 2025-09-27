@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using PokemonGame.Battle;
 using PokemonGame.Game.Party;
 using Riptide;
 using PokemonGame.General;
@@ -31,7 +32,6 @@ public static class MessageExtensions
         
         for (int i = 0; i < size; i++)
         {
-            Debug.Log(i);
             Battler battler = message.GetBattler();
             party.Add(battler);
         }
@@ -134,5 +134,55 @@ public static class MessageExtensions
         returnBattlerStats.speed = message.GetInt();
 
         return returnBattlerStats;
+    }
+    
+    public static Message AddMoveEventArgs(this Message message, MoveMethodEventArgs value)
+    {
+        bool playerOneAttack = Battle.Singleton.partyOne.party.Contains(value.attacker);
+        message.AddBool(playerOneAttack);
+        if (playerOneAttack)
+        {
+            message.AddInt(Battle.Singleton.partyOne.GetIndexFromBattler(value.attacker));
+            message.AddInt(Battle.Singleton.partyTwo.GetIndexFromBattler(value.target));
+        }
+        else
+        {
+            message.AddInt(Battle.Singleton.partyTwo.GetIndexFromBattler(value.attacker));
+            message.AddInt(Battle.Singleton.partyOne.GetIndexFromBattler(value.target));
+        }
+
+        message.AddInt(value.attacker.GetIndexOfMove(value.move));
+        message.AddInt(value.effectiveIndex);
+        message.AddBool(value.crit);
+        message.AddBool(value.missed);
+        message.AddInt(value.damageDealt);
+        
+        return message;
+    }
+    
+    public static MoveMethodEventArgs GetMoveEventArgs(this Message message)
+    {
+        MoveMethodEventArgs e = new MoveMethodEventArgs();
+        bool playerOneAttack = message.GetBool();
+        if (playerOneAttack)
+        {
+            e.attacker = Battle.Singleton.partyOne[message.GetInt()];
+            e.target = Battle.Singleton.partyTwo[message.GetInt()];
+        }
+        else
+        {
+            e.attacker = Battle.Singleton.partyTwo[message.GetInt()];
+            e.target = Battle.Singleton.partyOne[message.GetInt()];
+        }
+
+        int moveIndex = message.GetInt();
+        e.move = e.attacker.moves[moveIndex];
+        e.movePPData = e.attacker.movePpInfos[moveIndex];
+        e.effectiveIndex = message.GetInt();
+        e.crit = message.GetBool();
+        e.missed = message.GetBool();
+        e.damageDealt = message.GetInt();
+        
+        return e;
     }
 }

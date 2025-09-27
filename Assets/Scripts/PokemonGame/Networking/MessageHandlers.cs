@@ -22,7 +22,7 @@ namespace PokemonGame.Networking
         [MessageHandler((ushort)ClientToServerMessageId.TurnItemEnd)]
         private static void ServerTurnItemEnd(ushort fromPlayerId, Message message)
         {
-            Battle.Singleton.ServerTurnItemEnd();
+            Battle.Singleton.ServerTurnItemEnd(fromPlayerId);
         }
 
         [MessageHandler((ushort)ClientToServerMessageId.MoveSelected)]
@@ -101,6 +101,12 @@ namespace PokemonGame.Networking
         private static void ClientTurnPlayerAsleep(Message message)
         {
             BattleNetworkManager.Instance.ClientGotTurnPlayerAsleep(message);
+        }
+        
+        [MessageHandler((ushort)ServerToClientMessageId.TurnSequenceEnded)]
+        private static void ClientTurnSequenceEnded(Message message)
+        {
+            BattleNetworkManager.Instance.ClientGotTurnSequenceEnded(message);
         }
     }
 }

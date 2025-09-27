@@ -19,7 +19,7 @@ namespace PokemonGame.Battle
     [CreateAssetMenu(fileName = "New Moves Methods", menuName = "All/New Moves Methods")]
     public class MovesMethods : ScriptableObject
     {
-        private int CalculateDamage(Move move, Battler battlerThatUsed, Battler battlerBeingAttacked, out int effectiveIndex, out bool hitCrit)
+        public static int CalculateDamage(Move move, Battler battlerThatUsed, Battler battlerBeingAttacked, out int effectiveIndex, out bool hitCrit)
         {
             //Damage calculation equation from: https://bulbapedia.bulbagarden.net/wiki/Damage#Generation_II
             
@@ -228,19 +228,11 @@ namespace PokemonGame.Battle
             return Resources.Load<MovesMethods>("Pokemon Game/Move/Move Methods");
         }
 
-        private int CalculateDamage(MoveMethodEventArgs e)
-        {
-            int dmg = CalculateDamage(e.move, e.attacker, e.target, out int effectiveIndex, out bool crit);
-            e.effectiveIndex =  effectiveIndex;
-            e.crit = crit;
-            return dmg;
-        }
-
         public void DefaultMoveMethod(MoveMethodEventArgs e)
         {
             if (e.move.category != MoveCategory.Status)
             {
-                e.target.TakeDamage(CalculateDamage(e), new BattlerDamageSource(e.attacker));
+                e.target.TakeDamage(e.damageDealt, new BattlerDamageSource(e.attacker));
             }
         }
         
@@ -252,7 +244,7 @@ namespace PokemonGame.Battle
 
         public void LeechLife(MoveMethodEventArgs e)
         {
-            int damage = CalculateDamage(e);
+            int damage = e.damageDealt;
             e.target.TakeDamage(damage, new BattlerDamageSource(e.attacker));
             Battle.Singleton.QueDialogue($"{e.attacker.name} healed {damage/2} health!", DialogueBoxType.Event);
             e.attacker.Heal(damage/2);
@@ -273,14 +265,14 @@ namespace PokemonGame.Battle
 
         public void BadTime(MoveMethodEventArgs e)
         {
-            int damageDealt = CalculateDamage(e);
+            int damageDealt = e.damageDealt;
             e.target.TakeDamage(damageDealt, new BattlerDamageSource(e.attacker));
             Battle.Singleton.QueDialogue($"{e.target.name} is going to have a very Bad Time", DialogueBoxType.Event);
         }
 
         public void SelfDestruct(MoveMethodEventArgs e)
         {
-            int damageDealt = CalculateDamage(e);
+            int damageDealt = e.damageDealt;
             e.target.TakeDamage(damageDealt, new BattlerDamageSource(e.attacker));
         }
     }
