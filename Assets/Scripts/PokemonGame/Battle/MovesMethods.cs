@@ -82,32 +82,19 @@ namespace PokemonGame.Battle
 
             int attack = 0;
             int defense = 0;
-
             int level = battlerThatUsed.stats.attack;
-
             int power = move.damage;
-
             int item = 1;
-
             float critical = 1;
-
             int TK = 1;
-
             int weather = 1;
-
             // requires implementation of badges and gyms
             int badge = 1;
-
             int moveMod = 1;
-
             int doubleDmg = 1;
-
             float targets = 1;
-
             float pb = 1;
-
             float glaiveRush = 1;
-
             float burn = 1;
 
             if (move.category == MoveCategory.Physical && battlerThatUsed.statusEffect == Registry.GetStatusEffect("Burn"))
@@ -172,6 +159,11 @@ namespace PokemonGame.Battle
                 effectiveIndex = 1;
             }
             else if (Mathf.Approximately(type, 1))
+            {
+                effectiveIndex = 0;
+            }
+
+            if (move.category == MoveCategory.Special)
             {
                 effectiveIndex = 0;
             }
