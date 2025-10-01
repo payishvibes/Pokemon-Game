@@ -12,6 +12,7 @@ using Riptide.Transports.Steam;
 using Riptide.Utils;
 using Steamworks;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 using SteamClient = Riptide.Transports.Steam.SteamClient;
 
 namespace PokemonGame.Networking
@@ -56,7 +57,7 @@ namespace PokemonGame.Networking
         public int MaxPlayerCount;
         public bool IsHost;
 
-        private bool _useSteam = true;
+        public bool UseSteam = false;
 
         private int _acknowledgedPartyCount;
         
@@ -132,7 +133,7 @@ namespace PokemonGame.Networking
         
         public void StartHosting()
         {
-            if (_useSteam)
+            if (UseSteam)
             {
                 SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, 2);
                 IsHost = true;
@@ -155,6 +156,7 @@ namespace PokemonGame.Networking
                 Server = new Server(steamServer);
                 SubscribeToServerEvents();
                 Server.Start(0, 2);
+                MaxPlayerCount = Server.MaxClientCount;
             }
 
             LobbyID = (CSteamID)callback.m_ulSteamIDLobby;
@@ -164,16 +166,25 @@ namespace PokemonGame.Networking
             SteamClient steamClient = new SteamClient(steamServer);
             Client = new Client(steamClient);
             
-            JoinGame(hostId.ToString(), SteamFriends.GetPersonaName(), 700);
+            JoinGame(hostId.ToString(), SteamFriends.GetPersonaName());
         }
 
         private void OnLobbyJoinRequested(GameLobbyJoinRequested_t callback)
         {
-            SteamMatchmaking.JoinLobby(callback.m_steamIDLobby);
+            Debug.Log("On lobby join requested");
+            if (!IsHost)
+            {
+                SteamMatchmaking.JoinLobby(callback.m_steamIDLobby);
+            }
         }
         
-        public void JoinGame(string address, string username, int pfp)
+        public void JoinGame(string address, string username)
         {
+            if (Client == null)
+            {
+                Client = new Client();
+            }
+            
             SubscribeToClientEvents();
 
             if (Client.IsConnected)
@@ -184,7 +195,7 @@ namespace PokemonGame.Networking
             NetworkPlayer player = new NetworkPlayer();
             player.Id = 0;
             player.Username = username;
-            player.Pfp = pfp;
+            player.Pfp = Random.Range(1, 810);
             
             Players.Add(player.Id, player);
             
@@ -269,6 +280,7 @@ namespace PokemonGame.Networking
         
         private void ServerSendPlayersInfo()
         {
+            Debug.Log("Server broadcasting new basic info");
             Message message = Message.Create(MessageSendMode.Reliable, ServerToClientMessageId.UpdatePlayerInfo);
             message.AddInt(MaxPlayerCount);
             message.AddInt(Players.Count);
@@ -302,6 +314,7 @@ namespace PokemonGame.Networking
         
         private void ClientSendBasicInfo()
         {
+            Debug.Log("Client sending basic info");
             if (Players.TryGetValue(0, out NetworkPlayer player))
             {
                 Message message = Message.Create(MessageSendMode.Reliable, ClientToServerMessageId.ConnectionInfo);
@@ -324,7 +337,7 @@ namespace PokemonGame.Networking
         
         private void FixedUpdate()
         {
-            if (_useSteam && !SteamManager.Initialized)
+            if (UseSteam && !SteamManager.Initialized)
             {
                 return;
             }
@@ -358,6 +371,8 @@ namespace PokemonGame.Networking
         
         public void ServerConnectionInfo(ushort messageId, string username, int pfp)
         {
+            Debug.Log("Server received basic info");
+            
             NetworkPlayer player = new NetworkPlayer();
             player.Id = messageId;
             player.Username = username;

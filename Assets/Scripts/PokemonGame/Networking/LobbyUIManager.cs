@@ -102,12 +102,16 @@ namespace PokemonGame.Networking
         
         public void JoinLobby()
         {
-            BattleNetworkManager.Instance.JoinGame(addressInput.text, usernameInput.text, 700);
+            BattleNetworkManager.Instance.JoinGame(addressInput.text, usernameInput.text);
         }
         
         public void HostLobby()
         {
             BattleNetworkManager.Instance.StartHosting();
+            if (!BattleNetworkManager.Instance.UseSteam)
+            {
+                JoinLobby();
+            }
         }
 
         public void StartGame()

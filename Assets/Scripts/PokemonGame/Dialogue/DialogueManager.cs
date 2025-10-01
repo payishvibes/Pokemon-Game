@@ -61,6 +61,7 @@ namespace PokemonGame.Dialogue
         private QueuedDialogue currentQueuedDialogue;
 
         private bool _forceStopNextQueued;
+        private bool _didntAutoStartCurrentLoaded;
         
         private void Awake()
         {
@@ -162,11 +163,13 @@ namespace PokemonGame.Dialogue
         /// <param name="trigger">The DialogueTrigger that triggered this conversation</param>
         /// <param name="id">The id that can be used to identify the dialogue</param>
         /// <param name="autostart">Automatically start the dialogue on load, on by default</param>
+        /// <param name="boxType">The type of dialogue box the dialogue will use</param>
         /// <param name="variables">The variables that can be loaded into the ink file</param>
         public void QueDialogue(TextAsset inkJson, DialogueTrigger trigger, string id, bool autostart, DialogueBoxType boxType, Dictionary<string, string> variables = null)
         {
+            Debug.Log("inkjson dialogue");
             QueuedDialogue dialogue = new QueuedDialogue(trigger, variables, id, inkJson, boxType, autostart && !_forceStopNextQueued);
-            if (_queue.Count > 0 || dialogueIsPlaying) // if we can actually begin the dialogue or if we need to wait
+            if (_queue.Count > 0 || dialogueIsPlaying || _didntAutoStartCurrentLoaded) // if we can actually begin the dialogue or if we need to wait
             {
                 _queue.Enqueue(dialogue);
             }
@@ -182,11 +185,14 @@ namespace PokemonGame.Dialogue
         /// </summary>
         /// <param name="text">The text of the conversation</param>
         /// <param name="trigger">The DialogueTrigger that triggered this conversation</param>
+        /// <param name="id">The id of the dialogue that can be used to identify it</param>
         /// <param name="autostart">Automatically start the dialogue on load, on by default</param>
+        /// <param name="boxType">The type of dialogue box the dialogue will use</param>
         public void QueDialogue(string text, DialogueTrigger trigger, string id, bool autostart, DialogueBoxType boxType)
         {
+            Debug.Log(text);
             QueuedDialogue dialogue = new QueuedDialogue(trigger, id, text, boxType, autostart && !_forceStopNextQueued);
-            if (_queue.Count > 0 || dialogueIsPlaying) // if we can actually begin the dialogue or if we need to wait
+            if (_queue.Count > 0 || dialogueIsPlaying || _didntAutoStartCurrentLoaded) // if we can actually begin the dialogue or if we need to wait
             {
                 _queue.Enqueue(dialogue);
             }
@@ -233,6 +239,7 @@ namespace PokemonGame.Dialogue
             {
                 dialogueIsPlaying = false;
                 dialoguePanel.SetActive(false);
+                _didntAutoStartCurrentLoaded = true;
             }
         }
 
@@ -274,6 +281,7 @@ namespace PokemonGame.Dialogue
                     new DialogueStartedEventArgs(dialogueToLoad.trigger, currentQueuedDialogue.id,
                         currentQueuedDialogue.text));
             }
+            _didntAutoStartCurrentLoaded = false;
             dialogueIsPlaying = true;
             dialoguePanel.SetActive(true);
             Cursor.lockState = CursorLockMode.None;

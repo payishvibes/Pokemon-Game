@@ -28,6 +28,8 @@ namespace PokemonGame.Dialogue
         /// Queue dialogue to play
         /// </summary>
         /// <param name="textAsset">The text asset that the dialogue sequence draws from</param>
+        /// <param name="boxType">The type of dialogue box the dialogue will use</param>
+        /// <param name="id">The id of the dialogue that can be used to identify it</param>
         /// <param name="autostart">Automatically start the dialogue, turn off to start dialogue yourself, on by default</param>
         /// <param name="variables">Variables to pass into the dialogue when it plays</param>
         public void QueDialogue(TextAsset textAsset, DialogueBoxType boxType, string id = "", bool autostart = true, Dictionary<string, string> variables = null)
@@ -47,6 +49,8 @@ namespace PokemonGame.Dialogue
         /// Queue dialogue to play
         /// </summary>
         /// <param name="text">The text that is read out</param>
+        /// <param name="boxType">The type of dialogue box the dialogue will use</param>
+        /// <param name="id">The id of the dialogue that can be used to identify it</param>
         /// <param name="autostart">Automatically start the dialogue, turn off to start dialogue yourself, on by default</param>
         public void QueDialogue(string text, DialogueBoxType boxType, string id = "", bool autostart = true)
         {

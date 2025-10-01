@@ -203,11 +203,13 @@ namespace PokemonGame.Battle
             for (int i = 0; i < partyOne.Count; i++)
             {
                 partyOne[i].OnLevelUp += _playerOneBattlerLeveledUp;
+                partyOne[i].OnFainted += PlayerOneBattlerFainted;
+                partyOne[i].OnCanEvolve += _playerOneBattlerEvolved;
             }
             
-            for (int i = 0; i < partyOne.Count; i++)
+            for (int i = 0; i < partyTwo.Count; i++)
             {
-                partyOne[i].OnCanEvolve += _playerOneBattlerEvolved;
+                partyTwo[i].OnFainted += PlayerTwoBattlerFainted;
             }
         }
 
@@ -217,13 +219,17 @@ namespace PokemonGame.Battle
             partyTwo.PartyAllDefeated -= PlayerTwoPartyAllDefeated;
             DialogueManager.instance.DialogueEnded -= DialogueEnded;
             
+            
             for (int i = 0; i < partyOne.Count; i++)
             {
                 partyOne[i].OnLevelUp -= _playerOneBattlerLeveledUp;
-            }
-            for (int i = 0; i < partyOne.Count; i++)
-            {
+                partyOne[i].OnFainted -= PlayerOneBattlerFainted;
                 partyOne[i].OnCanEvolve -= _playerOneBattlerEvolved;
+            }
+            
+            for (int i = 0; i < partyTwo.Count; i++)
+            {
+                partyTwo[i].OnFainted -= PlayerTwoBattlerFainted;
             }
         }
 
@@ -267,37 +273,38 @@ namespace PokemonGame.Battle
         {
             if (args.missed)
             {
+                Debug.Log("Missed");
                 yield return null;
             }
+            
+            DialogueMoveEffectiveness(args);
             
             args.move.MoveMethod(args);
             args.movePPData.MoveWasUsed();
             
-            DialogueMoveEffectiveness(args);
-            
-            CheckFaintedBattlers();
-            
+            Debug.Log("Start of delay");
             yield return new WaitForSeconds(1);
             
+            Debug.Log("End of delay");
             StartDialogue();
             
-            if (args.effectiveIndex == 0 && !args.crit)
+            if (args.effectiveIndex == 0 && !args.crit && !args.target.isFainted)
             {
                 TurnQueueItemEnded();
             }
         }
-
-        private void CheckFaintedBattlers()
+        
+        private bool TurnItemQueueContains(TurnItemType type)
         {
-            if (playerOneCurrentBattler.isFainted)
+            foreach (var turnItem in turnItemQueue)
             {
-                PlayerOneBattlerFainted();
+                if (turnItem.Type == type)
+                {
+                    return true;
+                }
             }
             
-            if (playerTwoCurrentBattler.isFainted)
-            {
-                PlayerTwoBattlerFainted();
-            }
+            return false;
         }
 
         private void Update()
@@ -526,6 +533,10 @@ namespace PokemonGame.Battle
 
         public void QueueTurnItem(TurnItemType type, List<object> variables)
         {
+            if (IsNotOnlineHost())
+            {
+                return;
+            }
             TurnItem item = new TurnItem(type, variables);
             turnItemQueue.Add(item);
         }
@@ -597,6 +608,7 @@ namespace PokemonGame.Battle
         {
             Debug.Log("ending turn item");
             _currentlyRunningQueueItem = false;
+            TurnShowing();
         }
         
         public void EndTurnShowing()
@@ -610,26 +622,19 @@ namespace PokemonGame.Battle
                 BattleNetworkManager.Instance.ServerSendTurnSequenceEnded();
             }
         }
-
-        private void DialogueMoveUsed(MoveMethodEventArgs e, bool player)
+        
+        private void DialogueMoveUsed(MoveMethodEventArgs e)
         {
             Dictionary<string, string> variables = new Dictionary<string, string>();
             variables.Add("battlerUsed", e.attacker.name);
             variables.Add("moveUsed", e.move.name);
             variables.Add("battlerHit", e.target.name);
-
-            if (player)
-            {
-                QueDialogue(battlerUsedText, DialogueBoxType.Event, "moveUsed", true, variables);
-            }
-            else
-            {
-                QueDialogue(battlerUsedText, DialogueBoxType.Event, "moveUsed", true, variables);
-            }
+            
+            QueDialogue(battlerUsedText, DialogueBoxType.Event, "moveUsed", true, variables);
             
             ForceStopNextQueued();
         }
-
+        
         private void DialogueMoveEffectiveness(MoveMethodEventArgs e)
         {
             switch (e.effectiveIndex)
@@ -1101,12 +1106,6 @@ namespace PokemonGame.Battle
                 BattleNetworkManager.Instance.ServerSendTurnPlayerMove(true, e);
             }
             PlayAuthoritativeMove(e, true);
-
-            if (missed)
-            {
-                Debug.Log("Missed");
-                InsertTurnItem(TurnItemType.PlayerMissed);
-            }
         }
         
         public void DoPlayerTwoMove(Move playerTwoMoveToDo)
@@ -1155,12 +1154,6 @@ namespace PokemonGame.Battle
                 BattleNetworkManager.Instance.ServerSendTurnPlayerMove(false, e);
             }
             PlayAuthoritativeMove(e, false);
-            
-            if (missed)
-            {
-                Debug.Log("Missed");
-                InsertTurnItem(TurnItemType.PlayerMissed);
-            }
         }
 
         public void PlayAuthoritativeMove(MoveMethodEventArgs e, bool player)
@@ -1177,7 +1170,12 @@ namespace PokemonGame.Battle
                 }
             }
             
-            DialogueMoveUsed(e, player);
+            if (e.missed)
+            {
+                InsertTurnItem(TurnItemType.PlayerMissed);
+            }
+            
+            DialogueMoveUsed(e);
             currentTurnItem.Variables.Add(e);
         }
 
@@ -1263,7 +1261,7 @@ namespace PokemonGame.Battle
             turnItemQueue.Add(playerTwoAction);
         }
 
-        private void PlayerOneBattlerFainted()
+        private void PlayerOneBattlerFainted(object sender, BattlerTookDamageArgs args)
         {
             Debug.Log("Player One Fainted");
             QueDialogue($"{playerOneCurrentBattler.name} Fainted!", DialogueBoxType.Event, "playerOneFainted");
@@ -1272,7 +1270,7 @@ namespace PokemonGame.Battle
             
             if (!partyOne.defeated)
             {
-                InsertTurnItem(TurnItemType.PlayerOneSwapBecauseFainted);
+                QueueTurnItem(TurnItemType.PlayerOneSwapBecauseFainted);
             }
             
             turnItemQueue.RemoveAll(item => item.Type == TurnItemType.PlayerOneMove);
@@ -1283,8 +1281,11 @@ namespace PokemonGame.Battle
             }
         }
         
-        public void PlayerTwoBattlerFainted()
+        public void PlayerTwoBattlerFainted(object sender, BattlerTookDamageArgs args)
         {
+            Debug.Log("Player Two Fainted");
+            QueDialogue($"{playerTwoCurrentBattler.name} Fainted!", DialogueBoxType.Event, "playerTwoFainted");
+            
             if (!onlineBattle)
             {
                 int exp = ExperienceCalculator.GetExperienceFromDefeatingBattler(playerTwoCurrentBattler, playerOneCurrentBattler, true,
@@ -1300,14 +1301,11 @@ namespace PokemonGame.Battle
                 }
             }
             
-            Debug.Log("Player Two Fainted");
-            QueDialogue($"{playerTwoCurrentBattler.name} Fainted!", DialogueBoxType.Event, "playerTwoFainted");
-            
             partyTwo.CheckDefeatedStatus();
             
             if (!partyTwo.defeated)
             {
-                InsertTurnItem(TurnItemType.PlayerTwoSwapBecauseFainted);
+                QueueTurnItem(TurnItemType.PlayerTwoSwapBecauseFainted);
             }
             turnItemQueue.RemoveAll(item => item.Type == TurnItemType.PlayerTwoMove);
             

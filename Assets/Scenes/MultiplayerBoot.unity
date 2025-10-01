@@ -1321,6 +1321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxPlayerCount: 0
   IsHost: 0
+  UseSteam: 0
 --- !u!224 &453293116288280096
 RectTransform:
   m_ObjectHideFlags: 0
