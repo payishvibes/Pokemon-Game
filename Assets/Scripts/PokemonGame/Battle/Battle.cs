@@ -156,6 +156,8 @@ namespace PokemonGame.Battle
             }
             
             Instantiate(Resources.Load("Pokemon Game/Transitions/SpikyOpen"));
+            
+            uiManager.UpdatePartyIndicators();
         }
 
         private void LoadStartingVariables()
@@ -740,6 +742,7 @@ namespace PokemonGame.Battle
         
         private void OnDialogueStarted(object sender, DialogueStartedEventArgs e)
         {
+            uiManager.UpdatePartyIndicators();
             switch (e.id)
             {
                 case "evolved":

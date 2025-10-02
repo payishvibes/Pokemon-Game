@@ -50,6 +50,10 @@ namespace PokemonGame.Battle
         [SerializeField] private float shrinkEffectSpeed = 1;
         [SerializeField] private Button swapBattlerButton;
         [SerializeField] private Button defaultItemButton;
+        [SerializeField] private List<Image> playerOnePartyIndicators;
+        [SerializeField] private List<Image> playerTwoPartyIndicators;
+        [SerializeField] private Sprite partyAliveImage;
+        [SerializeField] private Sprite partyFaintedImage;
 
         [SerializeField] private List<Item> faintedRequiredItems = new List<Item>();
 
@@ -622,6 +626,45 @@ namespace PokemonGame.Battle
                 // Debug.LogError(_playerTwoCurrent);
                 playerOneSideBorder.position = Vector3.Lerp(playerOneSideBorderLimitLeft.position,
                     playerOneSideBorderLimitRight.position, _playerOneCurrent);
+            }
+        }
+
+        public void UpdatePartyIndicators()
+        {
+            foreach (var indicator in playerOnePartyIndicators)
+            {
+                indicator.gameObject.SetActive(false);
+            }
+            
+            for (int i = 0; i < battle.partyOne.Count; i++)
+            {
+                playerOnePartyIndicators[i].gameObject.SetActive(true);
+                if (battle.partyOne[i].isFainted)
+                {
+                    playerOnePartyIndicators[i].sprite = partyFaintedImage;
+                }
+                else
+                {
+                    playerOnePartyIndicators[i].sprite = partyAliveImage;
+                }
+            }
+            
+            foreach (var indicator in playerTwoPartyIndicators)
+            {
+                indicator.gameObject.SetActive(false);
+            }
+            
+            for (int i = 0; i < battle.partyTwo.Count; i++)
+            {
+                playerTwoPartyIndicators[i].gameObject.SetActive(true);
+                if (battle.partyTwo[i].isFainted)
+                {
+                    playerTwoPartyIndicators[i].sprite = partyFaintedImage;
+                }
+                else
+                {
+                    playerTwoPartyIndicators[i].sprite = partyAliveImage;
+                }
             }
         }
 
