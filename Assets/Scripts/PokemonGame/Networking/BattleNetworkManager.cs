@@ -2,10 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using PokemonGame.Game.Party;
-using PokemonGame.General;
-using PokemonGame.Global;
-using PokemonGame.ScriptableObjects;
 using UnityEngine;
 using Riptide;
 using Riptide.Transports.Steam;
@@ -18,6 +14,10 @@ using SteamClient = Riptide.Transports.Steam.SteamClient;
 namespace PokemonGame.Networking
 {
     using Battle;
+    using Game.Party;
+    using General;
+    using Global;
+    using ScriptableObjects;
     
     public enum ClientToServerMessageId : ushort
     {
@@ -205,9 +205,33 @@ namespace PokemonGame.Networking
         public void StartGame()
         {
             OnStartedGeneratingParties?.Invoke(this,  EventArgs.Empty);
-            List<BattlerTemplate> potentialBattlers = 
+            GenerateParty(GetPotentialBattlers());
+        }
+
+        private List<BattlerTemplate> GetPotentialBattlers()
+        {
+            List<BattlerTemplate> allTemplates = 
                 Resources.LoadAll<BattlerTemplate>("Pokemon Game/Battler Template").ToList();
-            GenerateParty(potentialBattlers);
+
+            List<BattlerTemplate> potentialBattlers = new List<BattlerTemplate>();
+
+            foreach (var potentialBattler in allTemplates)
+            {
+                bool valid = potentialBattler.evolutions.possibleEvolutions.Count == 0;
+                
+                // no more funny man :(
+                if (potentialBattler.name == "Sans")
+                {
+                    valid = false;
+                }
+                
+                if (valid)
+                {
+                    potentialBattlers.Add(potentialBattler);
+                }
+            }
+
+            return potentialBattlers;
         }
 
         private void GenerateParty(List<BattlerTemplate> potentialBattlers)
@@ -264,15 +288,15 @@ namespace PokemonGame.Networking
             {
                 BattlerTemplate template = potential[UnityEngine.Random.Range(0, potential.Count)];
                 
-                Battler attacker = Battler.Init(template, level, template.name, new List<Move>(), true);
-                List<Move> moves = attacker.GetMostRecentMoves();
+                Battler battler = Battler.Init(template, level, template.name, new List<Move>(), true);
+                List<Move> moves = battler.source.possibleMoves.levelup.Keys.ToList();
                 
-                for (int j = 0; j < moves.Count; j++)
+                for (int j = 0; j < 4; j++)
                 {
-                    attacker.LearnMove(moves[j]);
+                    battler.LearnMove(moves[Random.Range(0, moves.Count)]);
                 }
                 
-                partyToReturn.Add(attacker);
+                partyToReturn.Add(battler);
             }
 
             return partyToReturn;

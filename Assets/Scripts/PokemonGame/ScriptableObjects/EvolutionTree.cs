@@ -1,6 +1,3 @@
-using PokeApiNet;
-using UnityEngine;
-
 namespace PokemonGame.ScriptableObjects
 {
     using System;
