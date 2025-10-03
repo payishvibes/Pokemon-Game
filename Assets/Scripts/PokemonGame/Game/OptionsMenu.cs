@@ -62,7 +62,7 @@ namespace PokemonGame.Game
 
         private void Start()
         {
-            DialogueManager.instance.DialogueStarted += InstanceOnDialogueStarted;
+            DialogueManager.instance.OnDialogueStarted += InstanceOnDialogueStarted;
         }
 
         private void InstanceOnDialogueStarted(object sender, DialogueStartedEventArgs e)
@@ -83,7 +83,7 @@ namespace PokemonGame.Game
         {
             InputSystem.actions.FindAction("Bag").performed -= OnOptionsOpened;
             InputSystem.actions.FindAction("Escape").performed -= OnEscapePressed;
-            DialogueManager.instance.DialogueStarted -= InstanceOnDialogueStarted;
+            DialogueManager.instance.OnDialogueStarted -= InstanceOnDialogueStarted;
         }
 
         private void OnOptionsOpened(InputAction.CallbackContext obj)

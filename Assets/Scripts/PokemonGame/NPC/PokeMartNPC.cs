@@ -51,8 +51,8 @@ namespace PokemonGame.NPC
 
         protected override void OverrideOnEnable()
         {
-            DialogueManager.instance.DialogueChoice += OnDialogueChoice;
-            DialogueManager.instance.DialogueEnded += OnDialogueEnded;
+            DialogueManager.instance.OnDialogueChoice += OnDialogueChoice;
+            DialogueManager.instance.OnDialogueEnded += OnDialogueEnded;
         }
 
         private void FixedUpdate()
@@ -213,7 +213,7 @@ namespace PokemonGame.NPC
 
         protected override void OverrideOnDisable()
         {
-            DialogueManager.instance.DialogueChoice -= OnDialogueChoice;
+            DialogueManager.instance.OnDialogueChoice -= OnDialogueChoice;
         }
 
         private void OnDialogueChoice(object sender, DialogueChoiceEventArgs e)

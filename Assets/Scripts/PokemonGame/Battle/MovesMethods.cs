@@ -197,21 +197,36 @@ namespace PokemonGame.Battle
             
             List<Move> moves = Resources.FindObjectsOfTypeAll<Move>().ToList();
             
+            List<Move> movesToDelete = new List<Move>();
+            
             foreach (var pokeMove in moves)
             {
-                Debug.Log($"setting the priority of the move {pokeMove.name}");
+                Debug.Log($"updating {pokeMove.name}");
 
                 try
                 {
                     PokeApiNet.Move move =
                         await pokeClient.GetResourceAsync<PokeApiNet.Move>(pokeMove.name.ToLower());
-                    
-                    pokeMove.priority = move.Priority;
+
+                    switch (move.Generation.Name)
+                    {
+                        case "generation-viii":
+                            movesToDelete.Add(pokeMove);
+                            break;
+                        case "generation-ix":
+                            movesToDelete.Add(pokeMove);
+                            break;
+                    }
                 }
                 catch (Exception e)
                 {
                     Debug.LogWarning($"Could not find an entry for move: {pokeMove.name}");
                 }
+            }
+
+            foreach (var move in movesToDelete)
+            {
+                AssetDatabase.DeleteAsset($"Assets/Resources/Pokemon Game/Move/{move.type.name}/{move.name}");
             }
         }
 

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using PokemonGame.Dialogue;
 using PokemonGame.Game.Party;
 using PokemonGame.ScriptableObjects;
 using UnityEngine.EventSystems;
@@ -54,6 +55,7 @@ namespace PokemonGame.Battle
         [SerializeField] private List<Image> playerTwoPartyIndicators;
         [SerializeField] private Sprite partyAliveImage;
         [SerializeField] private Sprite partyFaintedImage;
+        [SerializeField] private ParticleSystem spawnEffect;
 
         [SerializeField] private List<Item> faintedRequiredItems = new List<Item>();
 
@@ -71,7 +73,7 @@ namespace PokemonGame.Battle
         [SerializeField] private Vector3 targetPlayerOneBattlerScale;
         [SerializeField] private Vector3 targetPlayerTwoBattlerScale;
 
-        private List<Button> moveButtonsButtons = new List<Button>();
+        private List<Button> _moveButtonsButtons = new List<Button>();
 
         private void Awake()
         {
@@ -88,7 +90,149 @@ namespace PokemonGame.Battle
 
             foreach (var moveText in moveTexts)
             {
-                moveButtonsButtons.Add(moveText.transform.parent.GetComponent<Button>());
+                _moveButtonsButtons.Add(moveText.transform.parent.GetComponent<Button>());
+            }
+        }
+
+        private void HookEvents()
+        {
+            InputSystem.actions.FindAction("Escape").performed += OnEscapePressed;
+            battle.OnNewTurnState += OnNewTurnState;
+            battle.OnNewTurnItem += OnNewTurnItem;
+            battle.OnBattlerEvolved += OnBattlerEvolved;
+            battle.OnPlayerPickedAction += OnPlayerPickedAction;
+            battle.OnCatchAttempt += OnCatchAttempt;
+            battle.OnSwapBecauseFainted += OnSwapBecauseFainted;
+            battle.OnChangeBattler += OnChangeBattler;
+            battle.OnStartChangeBattlerIndex += OnStartChangeBattlerIndex;
+            battle.OnPlayerMove += OnPlayerMove;
+            DialogueManager.instance.OnDialogueStarted += OnDialogueStarted;
+        }
+        private void UnhookEvents()
+        {
+            InputSystem.actions.FindAction("Escape").performed -= OnEscapePressed;
+            battle.OnNewTurnState -= OnNewTurnState;
+            battle.OnNewTurnItem -= OnNewTurnItem;
+            battle.OnBattlerEvolved -= OnBattlerEvolved;
+            battle.OnPlayerPickedAction -= OnPlayerPickedAction;
+            battle.OnCatchAttempt -= OnCatchAttempt;
+            battle.OnSwapBecauseFainted -= OnSwapBecauseFainted;
+            battle.OnChangeBattler -= OnChangeBattler;
+            battle.OnStartChangeBattlerIndex -= OnStartChangeBattlerIndex;
+            battle.OnPlayerMove -= OnPlayerMove;
+            DialogueManager.instance.OnDialogueStarted -= OnDialogueStarted;
+        }
+
+        private void OnNewTurnState(object sender, int e)
+        {
+            switch (e)
+            {
+                case 0:
+                    // choosing
+                    ShowControlUI(true);
+                    ShowUI(true);
+                    UpdateBattlerMoveDisplays();
+                    break;
+                case 1:
+                    // showing
+                    ShowControlUI(false);
+                    break;
+                case 2:
+                    // ending
+                    break;
+            }
+        }
+
+        private void OnNewTurnItem(object sender, EventArgs e)
+        {
+            UpdatePlayerOneBattlerDetails();
+            UpdatePlayerTwoBattlerDetails();
+        }
+
+        private void OnBattlerEvolved(object sender, EventArgs e)
+        {
+            ShrinkPlayerOneBattler();
+        }
+
+        private void OnPlayerPickedAction(object sender, int e)
+        {
+            Back();
+        }
+
+        private void OnCatchAttempt(object sender, bool e)
+        {
+            ShrinkPlayerTwoBattler(true);
+        }
+
+        private void OnSwapBecauseFainted(object sender, int e)
+        {
+            switch (e)
+            {
+                case 0:
+                    if (battle.localPlayerOne)
+                    {
+                        SwitchBattlerBecauseOfDeath();
+                    }
+                    break;
+                case 1:
+                    if (!battle.localPlayerOne)
+                    {
+                        SwitchBattlerBecauseOfDeath();
+                    }
+                    break;
+            }
+        }
+
+        private void OnChangeBattler(object sender, int e)
+        {
+            switch (e)
+            {
+                case 0:
+                    Instantiate(spawnEffect, playerBattler.transform.position, spawnEffect.transform.rotation,
+                        playerBattler);
+                    ExpandPlayerOneBattler();
+                    UpdatePlayerOneBattlerDetails();
+                    ForceHealthSet();
+                    break;
+                case 1:
+                    Instantiate(spawnEffect, playerTwoBattler.transform.position, spawnEffect.transform.rotation,
+                        playerTwoBattler);
+                    ExpandPlayerTwoBattler();
+                    UpdatePlayerTwoBattlerDetails();
+                    ForceHealthSet();
+                    break;
+            }
+        }
+
+        private void OnStartChangeBattlerIndex(object sender, int e)
+        {
+            switch (e)
+            {
+                case 0:
+                    ShrinkPlayerOneBattler();
+                    break;
+                case 1:
+                    ShrinkPlayerTwoBattler();
+                    break;
+            }
+        }
+
+        private void OnPlayerMove(object sender, int e)
+        {
+            ShowHealthUI(true);
+        }
+
+        private void OnDialogueStarted(object sender, DialogueStartedEventArgs e)
+        {
+            UpdatePartyIndicators();
+            switch (e.id)
+            {
+                case "playerOneFainted":
+                    ShrinkPlayerOneBattler();
+                    break;
+                case "playerTwoFainted":
+                    ShrinkPlayerTwoBattler();
+                    break;
             }
         }
 
@@ -98,9 +242,10 @@ namespace PokemonGame.Battle
             UpdateBattlerMoveDisplays();
             UpdateBattlerTexts();
             UpdateBattlerButtons();
+            UpdatePartyIndicators();
 
-            runButton.SetActive(!Battle.Singleton.trainerBattle && !Battle.Singleton.onlineBattle);
-            itemButton.SetActive(!Battle.Singleton.onlineBattle);
+            runButton.SetActive(!battle.trainerBattle && !battle.onlineBattle);
+            itemButton.SetActive(!battle.onlineBattle);
         }
 
         private void Update()
@@ -485,7 +630,7 @@ namespace PokemonGame.Battle
                     movePpTexts[i].text = $"{currentPP}/{maxPP}";
                     if (currentPP <= 0)
                     {
-                        moveButtonsButtons[i].interactable = false;
+                        _moveButtonsButtons[i].interactable = false;
                     }
                     
                     moveTexts[i].transform.parent.GetChild(0).GetComponentInChildren<Image>().sprite = moves[i].type.sprite;
@@ -501,28 +646,28 @@ namespace PokemonGame.Battle
             
             for (int i = 0; i < moves.Count; i++)
             {
-                Button moveButton = moveButtonsButtons[i];
+                Button moveButton = _moveButtonsButtons[i];
 
                 Navigation nav = moveButton.navigation;
 
                 // top
                 if (i == 0)
                 {
-                    nav.selectOnUp = moveButtonsButtons[moves.Count - 1];
+                    nav.selectOnUp = _moveButtonsButtons[moves.Count - 1];
                 }
                 else
                 {
-                    nav.selectOnUp = moveButtonsButtons[i - 1];
+                    nav.selectOnUp = _moveButtonsButtons[i - 1];
                 }
 
                 // bottom
                 if (i == moves.Count - 1)
                 {
-                    nav.selectOnDown = moveButtonsButtons[0];
+                    nav.selectOnDown = _moveButtonsButtons[0];
                 }
                 else
                 {
-                    nav.selectOnDown = moveButtonsButtons[i + 1];
+                    nav.selectOnDown = _moveButtonsButtons[i + 1];
                 }
 
                 nav.selectOnRight = swapBattlerButton;
@@ -631,15 +776,28 @@ namespace PokemonGame.Battle
 
         public void UpdatePartyIndicators()
         {
+            BattleParty partyOne = battle.partyOne;
+            BattleParty partyTwo = battle.partyTwo;
+
+            if (battle.localPlayerOne)
+            {
+                (partyOne, partyTwo) = (partyTwo, partyOne);
+            }
+            
             foreach (var indicator in playerOnePartyIndicators)
             {
                 indicator.gameObject.SetActive(false);
             }
             
-            for (int i = 0; i < battle.partyOne.Count; i++)
+            foreach (var indicator in playerTwoPartyIndicators)
+            {
+                indicator.gameObject.SetActive(false);
+            }
+            
+            for (int i = 0; i < partyOne.Count; i++)
             {
                 playerOnePartyIndicators[i].gameObject.SetActive(true);
-                if (battle.partyOne[i].isFainted)
+                if (partyOne[i].isFainted)
                 {
                     playerOnePartyIndicators[i].sprite = partyFaintedImage;
                 }
@@ -649,15 +807,10 @@ namespace PokemonGame.Battle
                 }
             }
             
-            foreach (var indicator in playerTwoPartyIndicators)
-            {
-                indicator.gameObject.SetActive(false);
-            }
-            
-            for (int i = 0; i < battle.partyTwo.Count; i++)
+            for (int i = 0; i < partyTwo.Count; i++)
             {
                 playerTwoPartyIndicators[i].gameObject.SetActive(true);
-                if (battle.partyTwo[i].isFainted)
+                if (partyTwo[i].isFainted)
                 {
                     playerTwoPartyIndicators[i].sprite = partyFaintedImage;
                 }
@@ -670,12 +823,12 @@ namespace PokemonGame.Battle
 
         private void OnEnable()
         {
-            InputSystem.actions.FindAction("Escape").performed += OnEscapePressed;
+            HookEvents();
         }
 
         private void OnDisable()
         {
-            InputSystem.actions.FindAction("Escape").performed -= OnEscapePressed;
+            UnhookEvents();
         }
     }
 }

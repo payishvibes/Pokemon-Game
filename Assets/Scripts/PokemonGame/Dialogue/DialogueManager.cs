@@ -43,9 +43,9 @@ namespace PokemonGame.Dialogue
         public DialogueTrigger currentTrigger;
         [SerializeField] private PlayerMovement movement;
         
-        public event EventHandler<DialogueStartedEventArgs> DialogueStarted;
-        public event EventHandler<DialogueEndedEventArgs> DialogueEnded;
-        public event EventHandler<DialogueChoiceEventArgs> DialogueChoice;
+        public event EventHandler<DialogueStartedEventArgs> OnDialogueStarted;
+        public event EventHandler<DialogueEndedEventArgs> OnDialogueEnded;
+        public event EventHandler<DialogueChoiceEventArgs> OnDialogueChoice;
 
         private Queue<QueuedDialogue> _queue = new Queue<QueuedDialogue>();
 
@@ -167,7 +167,6 @@ namespace PokemonGame.Dialogue
         /// <param name="variables">The variables that can be loaded into the ink file</param>
         public void QueDialogue(TextAsset inkJson, DialogueTrigger trigger, string id, bool autostart, DialogueBoxType boxType, Dictionary<string, string> variables = null)
         {
-            Debug.Log("inkjson dialogue");
             QueuedDialogue dialogue = new QueuedDialogue(trigger, variables, id, inkJson, boxType, autostart && !_forceStopNextQueued);
             if (_queue.Count > 0 || dialogueIsPlaying || _didntAutoStartCurrentLoaded) // if we can actually begin the dialogue or if we need to wait
             {
@@ -190,7 +189,6 @@ namespace PokemonGame.Dialogue
         /// <param name="boxType">The type of dialogue box the dialogue will use</param>
         public void QueDialogue(string text, DialogueTrigger trigger, string id, bool autostart, DialogueBoxType boxType)
         {
-            Debug.Log(text);
             QueuedDialogue dialogue = new QueuedDialogue(trigger, id, text, boxType, autostart && !_forceStopNextQueued);
             if (_queue.Count > 0 || dialogueIsPlaying || _didntAutoStartCurrentLoaded) // if we can actually begin the dialogue or if we need to wait
             {
@@ -271,13 +269,13 @@ namespace PokemonGame.Dialogue
         {
             if (dialogueToLoad.autoStart)
             {
-                DialogueStarted?.Invoke(this,
+                OnDialogueStarted?.Invoke(this,
                     new DialogueStartedEventArgs(dialogueToLoad.trigger, currentQueuedDialogue.id,
                         currentQueuedDialogue.textAsset));
             }
             else
             {
-                DialogueStarted?.Invoke(this,
+                OnDialogueStarted?.Invoke(this,
                     new DialogueStartedEventArgs(dialogueToLoad.trigger, currentQueuedDialogue.id,
                         currentQueuedDialogue.text));
             }
@@ -316,7 +314,7 @@ namespace PokemonGame.Dialogue
             {
                 string id = currentQueuedDialogue.id;
                 LoadDialogueFromQueue(_queue.Dequeue());
-                DialogueEnded?.Invoke(this, new DialogueEndedEventArgs(currentTrigger, currentQueuedDialogue, id, true));
+                OnDialogueEnded?.Invoke(this, new DialogueEndedEventArgs(currentTrigger, currentQueuedDialogue, id, true));
             }
             else
             {
@@ -335,7 +333,7 @@ namespace PokemonGame.Dialogue
                 dialogueIsPlaying = false;
                 dialoguePanel.SetActive(false);
                 currentTrigger.EndDialogue();
-                DialogueEnded?.Invoke(this, new DialogueEndedEventArgs(currentTrigger, currentQueuedDialogue, id, false));
+                OnDialogueEnded?.Invoke(this, new DialogueEndedEventArgs(currentTrigger, currentQueuedDialogue, id, false));
             }
         }
         
@@ -636,7 +634,7 @@ namespace PokemonGame.Dialogue
 
             DialogueChoiceEventArgs args = new DialogueChoiceEventArgs(currentTrigger, choiceIndex);
 
-            DialogueChoice?.Invoke(this, args);
+            OnDialogueChoice?.Invoke(this, args);
             
             ContinueStory();
         }

@@ -45,16 +45,12 @@ namespace PokemonGame.Battle
         private void Awake()
         {
             Singleton = this;
+            Initialise();
         }
-
-        [Header("Battle Components:")]
-        [SerializeField] private BattleUIManager uiManager;
-        [SerializeField] private PlayerBattleController playerBattleController;
         
         [Space]
         [Header("Assignments")] 
         [SerializeField] private TextAsset battlerUsedText;
-        [SerializeField] private ParticleSystem spawnEffect;
         [SerializeField] private float shrinkEffectDelay;
 
         [Space]
@@ -126,13 +122,24 @@ namespace PokemonGame.Battle
         /// </summary>
         public TurnItem currentTurnItem;
         
+        // public events
+        public EventHandler<int> OnNewTurnState;
+        public EventHandler OnNewTurnItem;
+        public EventHandler OnBattlerEvolved;
+        public EventHandler<int> OnPlayerPickedAction;
+        public EventHandler<bool> OnCatchAttempt;
+        public EventHandler<int> OnSwapBecauseFainted;
+        public EventHandler<int> OnChangeBattler;
+        public EventHandler<int> OnStartChangeBattlerIndex;
+        public EventHandler<int> OnPlayerMove;
+        
         // events
         private EventHandler<OnLevelUpEventArgs> _playerOneBattlerLeveledUp = null;
         private EventHandler<EvolutionData> _playerOneBattlerEvolved = null;
 
         public bool onlineBattle;
-        
-        private void Start()
+
+        private void Initialise()
         {
             LoadStartingVariables();
             
@@ -156,8 +163,6 @@ namespace PokemonGame.Battle
             }
             
             Instantiate(Resources.Load("Pokemon Game/Transitions/SpikyOpen"));
-            
-            uiManager.UpdatePartyIndicators();
         }
 
         private void LoadStartingVariables()
@@ -191,8 +196,8 @@ namespace PokemonGame.Battle
 
         private void HookEvents()
         {
-            DialogueManager.instance.DialogueStarted += OnDialogueStarted;
-            DialogueManager.instance.DialogueEnded += DialogueEnded;
+            DialogueManager.instance.OnDialogueStarted += OnDialogueStarted;
+            DialogueManager.instance.OnDialogueEnded += DialogueEnded;
             partyOne.PartyAllDefeated += PlayerOnePartyAllDefeated;
             partyTwo.PartyAllDefeated += PlayerTwoPartyAllDefeated;
 
@@ -219,7 +224,7 @@ namespace PokemonGame.Battle
         {
             partyOne.PartyAllDefeated -= PlayerOnePartyAllDefeated;
             partyTwo.PartyAllDefeated -= PlayerTwoPartyAllDefeated;
-            DialogueManager.instance.DialogueEnded -= DialogueEnded;
+            DialogueManager.instance.OnDialogueEnded -= DialogueEnded;
             
             
             for (int i = 0; i < partyOne.Count; i++)
@@ -275,8 +280,7 @@ namespace PokemonGame.Battle
         {
             if (args.missed)
             {
-                Debug.Log("Missed");
-                yield return null;
+                yield break;
             }
             
             DialogueMoveEffectiveness(args);
@@ -284,10 +288,8 @@ namespace PokemonGame.Battle
             args.move.MoveMethod(args);
             args.movePPData.MoveWasUsed();
             
-            Debug.Log("Start of delay");
             yield return new WaitForSeconds(1);
             
-            Debug.Log("End of delay");
             StartDialogue();
             
             if (args.effectiveIndex == 0 && !args.crit && !args.target.isFainted)
@@ -334,9 +336,7 @@ namespace PokemonGame.Battle
         {
             if (!hasDoneChoosingUpdate)
             {
-                uiManager.ShowControlUI(true);
-                uiManager.ShowUI(true);
-                uiManager.UpdateBattlerMoveDisplays();
+                OnNewTurnState?.Invoke(this, 0);
                 if (trainerBattle && !onlineBattle)
                 {
                     enemyAI.AIMethod(new AIMethodEventArgs(playerTwoCurrentBattler, partyTwo,
@@ -356,7 +356,7 @@ namespace PokemonGame.Battle
             if (!hasSetupShowing)
             {
                 hasSetupShowing = true;
-                uiManager.ShowControlUI(false);
+                OnNewTurnState?.Invoke(this, 1);
 
                 if (IsNotOnlineHost())
                 {
@@ -517,9 +517,8 @@ namespace PokemonGame.Battle
                         MoveMissed();
                     break;
             }
-
-            uiManager.UpdatePlayerOneBattlerDetails();
-            uiManager.UpdatePlayerTwoBattlerDetails();
+            
+            OnNewTurnItem?.Invoke(this, EventArgs.Empty);
         }
 
         private bool CurrentlyEndingTheBattle()
@@ -660,6 +659,7 @@ namespace PokemonGame.Battle
 
         private void TurnEnding()
         {
+            OnNewTurnState?.Invoke(this, 2);
             hasDoneChoosingUpdate = false;
             hasSetupShowing = false;
             
@@ -671,20 +671,32 @@ namespace PokemonGame.Battle
             currentTurn = TurnStatus.Choosing;
         }
 
+        private void PickPlayerOneAction(TurnItem action)
+        {
+            playerOneAction = action;
+            OnPlayerPickedAction?.Invoke(this, 0);
+        }
+
+        private void PickPlayerTwoAction(TurnItem action)
+        {
+            playerTwoAction = action;
+            OnPlayerPickedAction?.Invoke(this, 1);
+        }
+
         public void PlayerOneChooseMove(int moveID)
         {
-            playerOneAction = new TurnItem(TurnItemType.PlayerOneMove, new List<object>()
+            PickPlayerOneAction(new TurnItem(TurnItemType.PlayerOneMove, new List<object>()
             {
                 moveID,
-            });
+            }));
         }
 
         public void PlayerTwoChooseMove(int moveID)
         {
-            playerTwoAction = new TurnItem(TurnItemType.PlayerTwoMove, new List<object>()
+            PickPlayerTwoAction(new TurnItem(TurnItemType.PlayerTwoMove, new List<object>()
             {
                 moveID,
-            });
+            }));
         }
 
         public void RemoveTurnItemType(TurnItemType turnItemToRemove)
@@ -710,9 +722,6 @@ namespace PokemonGame.Battle
                     break;
                 case "playerTwoDefeated":
                     StartCoroutine(ExitBattleWin());
-                    break;
-                case "leveledUp":
-                    playerBattleController.ShowBattlerLeveled((OnLevelUpEventArgs)currentTurnItem.Variables[1]);
                     break;
                 case "moveUsed":
                     StartCoroutine(ShowMove((MoveMethodEventArgs)currentTurnItem.Variables[^1]));
@@ -742,17 +751,10 @@ namespace PokemonGame.Battle
         
         private void OnDialogueStarted(object sender, DialogueStartedEventArgs e)
         {
-            uiManager.UpdatePartyIndicators();
             switch (e.id)
             {
                 case "evolved":
                     EvolutionEffect(e);
-                    break;
-                case "playerOneFainted":
-                    uiManager.ShrinkPlayerOneBattler();
-                    break;
-                case "playerTwoFainted":
-                    uiManager.ShrinkPlayerTwoBattler();
                     break;
             }
         }
@@ -770,7 +772,7 @@ namespace PokemonGame.Battle
 
             if (evolvedBattler == playerOneCurrentBattler)
             {
-                uiManager.ShrinkPlayerOneBattler();
+                OnBattlerEvolved?.Invoke(this, EventArgs.Empty);
                 StartCoroutine(DelayEvolution(evolvedBattler));
             }
             else
@@ -781,32 +783,30 @@ namespace PokemonGame.Battle
         
         public void PlayerOneUseItem(Item item, int battlerToUseOn, bool useOnUserParty)
         {
-            playerOneAction = new TurnItem(TurnItemType.PlayerOneItem, new List<object>()
+            PickPlayerOneAction(new TurnItem(TurnItemType.PlayerOneItem, new List<object>()
             {
                 item,
                 battlerToUseOn,
                 useOnUserParty
-            });
-            uiManager.Back();
+            }));
         }
         
         public void PlayerTwoUseItem(Item item, int battlerToUseOn, bool useOnUserParty)
         {
-            playerTwoAction = new TurnItem(TurnItemType.PlayerTwoItem, new List<object>()
+            PickPlayerTwoAction(new TurnItem(TurnItemType.PlayerTwoItem, new List<object>()
             {
                 item,
                 battlerToUseOn,
                 useOnUserParty
-            });
-            uiManager.Back();
+            }));
         }
         
         public void PlayerOnePickedPokeBall(PokeBall ball)
         {
-            playerOneAction = new TurnItem(TurnItemType.CatchAttempt, new List<object>()
+            PickPlayerOneAction(new TurnItem(TurnItemType.CatchAttempt, new List<object>()
             {
                 ball
-            });
+            }));
             Bag.Used(ball);
         }
 
@@ -816,14 +816,15 @@ namespace PokemonGame.Battle
 
             if (ExperienceCalculator.Captured(playerTwoCurrentBattler, playerOneCurrentBattler, (PokeBall)playerOneAction.Variables[0]))
             {
-                uiManager.ShrinkPlayerTwoBattler(true);
                 QueDialogue($"Caught {playerTwoCurrentBattler.name}!", DialogueBoxType.Event, "generalFinishing");
                 PartyManager.AddBattler(playerTwoCurrentBattler);
                 InsertTurnItem(TurnItemType.EndBattlePlayerOneWin);
+                OnCatchAttempt?.Invoke(this, true);
             }
             else
             {
                 QueDialogue($"Failed to catch {playerTwoCurrentBattler.name}!", DialogueBoxType.Event, "generalFinishing");
+                OnCatchAttempt?.Invoke(this, false);
             }
         }
 
@@ -881,10 +882,10 @@ namespace PokemonGame.Battle
             }
             else // player chose to swap as their move
             {
-                playerOneAction = new TurnItem(TurnItemType.PlayerOneSwap, new List<object>()
+                PickPlayerOneAction(new TurnItem(TurnItemType.PlayerOneSwap, new List<object>()
                 {
                     newBattlerIndex
-                });
+                }));
             }
         }
         
@@ -902,19 +903,16 @@ namespace PokemonGame.Battle
             }
             else // player chose to swap as their move
             {
-                playerTwoAction = new TurnItem(TurnItemType.PlayerTwoSwap, new List<object>()
+                PickPlayerTwoAction(new TurnItem(TurnItemType.PlayerTwoSwap, new List<object>()
                 {
                     newBattlerIndex
-                });
+                }));
             }
         }
 
         public void BeginSwapPlayerOneBattler()
         {
-            if (localPlayerOne)
-            {
-                uiManager.SwitchBattlerBecauseOfDeath();
-            }
+            OnSwapBecauseFainted?.Invoke(this, 0);
         }
 
         public void BeginSwapPlayerTwoBattler()
@@ -928,28 +926,22 @@ namespace PokemonGame.Battle
                     
                 PlayerTwoChooseToSwap(e.newBattlerIndex);
             }
-            else if (!localPlayerOne)
-            {
-                uiManager.SwitchBattlerBecauseOfDeath();
-            }
+            OnSwapBecauseFainted?.Invoke(this, 1);
         }
 
         private void ChangePlayerOneBattlerIndex(int index, bool skipShrink = false)
         {
             if (!skipShrink)
             {
-                uiManager.ShrinkPlayerOneBattler();
                 playerOneBattlerIndex = index;
                 StartCoroutine(DelayChangeBattlerIndex(index));
+                OnStartChangeBattlerIndex?.Invoke(this, 0);
             }
             else
             {
                 playerOneBattlerIndex = index;
                 currentDisplayBattlerIndex = index;
-                Instantiate(spawnEffect, uiManager.playerBattler.transform.position, spawnEffect.transform.rotation,
-                    uiManager.playerBattler);
-                uiManager.ExpandPlayerOneBattler();
-                uiManager.UpdatePlayerOneBattlerDetails();
+                OnChangeBattler?.Invoke(this, 0);
             }
         }
 
@@ -957,38 +949,29 @@ namespace PokemonGame.Battle
         {
             yield return new WaitForSeconds(shrinkEffectDelay);
             currentDisplayBattlerIndex = index;
-            Instantiate(spawnEffect, uiManager.playerBattler.transform.position, spawnEffect.transform.rotation,
-                uiManager.playerBattler);
-            uiManager.ExpandPlayerOneBattler();
-            uiManager.UpdatePlayerOneBattlerDetails();
+            OnChangeBattler?.Invoke(this, 0);
         }
 
         private IEnumerator DelayEvolution(Battler battlerToEvolve)
         {
             yield return new WaitForSeconds(shrinkEffectDelay);
             battlerToEvolve.EvolutionApproved();
-            Instantiate(spawnEffect, uiManager.playerBattler.transform.position, spawnEffect.transform.rotation,
-                uiManager.playerBattler);
-            uiManager.ExpandPlayerOneBattler();
-            uiManager.UpdatePlayerOneBattlerDetails();
+            OnChangeBattler?.Invoke(this, 0);
         }
 
         private void ChangePlayerTwoBattlerIndex(int index, bool skipShrink = false)
         {
             if (!skipShrink)
             {
-                uiManager.ShrinkPlayerTwoBattler();
                 playerTwoBattlerIndex = index;
                 StartCoroutine(DelayChangePlayerTwoBattlerIndex(index));
+                OnStartChangeBattlerIndex?.Invoke(this, 0);
             }
             else
             {
                 playerTwoBattlerIndex = index;
                 playerTwoDisplayBattlerIndex = index;
-                Instantiate(spawnEffect, uiManager.playerTwoBattler.transform.position, spawnEffect.transform.rotation,
-                    uiManager.playerTwoBattler);
-                uiManager.ExpandPlayerTwoBattler();
-                uiManager.UpdatePlayerTwoBattlerDetails();
+                OnChangeBattler?.Invoke(this, 1);
             }
         }
 
@@ -996,10 +979,7 @@ namespace PokemonGame.Battle
         {
             yield return new WaitForSeconds(shrinkEffectDelay);
             playerTwoDisplayBattlerIndex = index;
-            Instantiate(spawnEffect, uiManager.playerTwoBattler.transform.position, spawnEffect.transform.rotation,
-                uiManager.playerTwoBattler);
-            uiManager.ExpandPlayerTwoBattler();
-            uiManager.UpdatePlayerTwoBattlerDetails();
+            OnChangeBattler?.Invoke(this, 1);
         }
 
         public void PlayerOneSwappedBattler(int playerOneSwapIndex)
@@ -1010,9 +990,6 @@ namespace PokemonGame.Battle
             {
                 AddParticipatedBattler(partyOne[playerOneSwapIndex]);
             }
-
-            uiManager.UpdatePlayerOneBattlerDetails();
-            uiManager.ForceHealthSet();
             
             QueDialogue($"Go ahead {partyOne[playerOneSwapIndex].name}!", DialogueBoxType.Event, "generalFinishing", true);
         }
@@ -1020,9 +997,6 @@ namespace PokemonGame.Battle
         public void PlayerTwoSwappedBattler(int playerTwoSwapIndex)
         {
             ChangePlayerTwoBattlerIndex(playerTwoSwapIndex);
-            
-            uiManager.UpdatePlayerTwoBattlerDetails();
-            uiManager.ForceHealthSet();
             
             QueDialogue($"Go ahead {partyTwo[playerTwoSwapIndex].name}!", DialogueBoxType.Event, "generalFinishing", true);
         }
@@ -1092,8 +1066,6 @@ namespace PokemonGame.Battle
                 missed = Random.Range(1, 101) > playerOneMoveToDo.accuracy * 100;
             }
             
-            uiManager.ShowHealthUI(true);
-            
             int moveToDoIndex = GetIndexOfMovePlayerOne(playerOneMoveToDo);
             
             MoveMethodEventArgs e = new MoveMethodEventArgs(playerOneCurrentBattler, playerTwoCurrentBattler, playerOneMoveToDo, 
@@ -1109,6 +1081,8 @@ namespace PokemonGame.Battle
                 BattleNetworkManager.Instance.ServerSendTurnPlayerMove(true, e);
             }
             PlayAuthoritativeMove(e, true);
+            
+            OnPlayerMove?.Invoke(this, 0);
         }
         
         public void DoPlayerTwoMove(Move playerTwoMoveToDo)
@@ -1140,8 +1114,6 @@ namespace PokemonGame.Battle
                 missed = Random.Range(1, 101) > playerTwoMoveToDo.accuracy * 100;
             }
             
-            uiManager.ShowHealthUI(true);
-            
             int moveToDoIndex = GetIndexOfMovePlayerTwo(playerTwoMoveToDo);
             
             MoveMethodEventArgs e = new MoveMethodEventArgs(playerTwoCurrentBattler, playerOneCurrentBattler,
@@ -1157,6 +1129,8 @@ namespace PokemonGame.Battle
                 BattleNetworkManager.Instance.ServerSendTurnPlayerMove(false, e);
             }
             PlayAuthoritativeMove(e, false);
+            
+            OnPlayerMove?.Invoke(this, 1);
         }
 
         public void PlayAuthoritativeMove(MoveMethodEventArgs e, bool player)
@@ -1325,7 +1299,7 @@ namespace PokemonGame.Battle
         
         public void RunFromBattle()
         {
-            playerOneAction = new TurnItem(TurnItemType.Run);
+            PickPlayerOneAction(new TurnItem(TurnItemType.Run));
         }
 
         private void RunAwayDialogue()

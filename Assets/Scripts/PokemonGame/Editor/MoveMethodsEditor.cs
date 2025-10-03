@@ -11,12 +11,11 @@ namespace PokemonGame.Editor
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
-            MovesMethods battlerTemplate = (MovesMethods)target;
+            MovesMethods moveMethods = (MovesMethods)target;
             
-            EditorUtility.SetDirty(battlerTemplate);
             if (GUILayout.Button("Update Moves"))
             {
-                battlerTemplate.UpdateMoves();
+                moveMethods.UpdateMoves();
             }
         }
     }

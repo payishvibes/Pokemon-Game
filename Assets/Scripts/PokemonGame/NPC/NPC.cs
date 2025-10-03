@@ -56,8 +56,8 @@ namespace PokemonGame.NPC
         private void OnEnable()
         {
             InputSystem.actions.FindAction("Interact").performed += OnPerformed;
-            DialogueManager.instance.DialogueStarted += OnDialogueStarted;
-            DialogueManager.instance.DialogueEnded += DialogueEnded;
+            DialogueManager.instance.OnDialogueStarted += OnDialogueStarted;
+            DialogueManager.instance.OnDialogueEnded += DialogueEnded;
             OverrideOnEnable();
         }
 
@@ -73,8 +73,8 @@ namespace PokemonGame.NPC
 
         private void OnDisable()
         {
-            DialogueManager.instance.DialogueStarted -= OnDialogueStarted;
-            DialogueManager.instance.DialogueEnded -= DialogueEnded;
+            DialogueManager.instance.OnDialogueStarted -= OnDialogueStarted;
+            DialogueManager.instance.OnDialogueEnded -= DialogueEnded;
             InputSystem.actions.FindAction("Interact").performed -= OnPerformed;
             OverrideOnDisable();
         }

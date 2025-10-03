@@ -101,6 +101,7 @@ public static class MessageExtensions
 
         for (int i = 0; i < moveNames.Count; i++)
         {
+            Debug.Log($"Pokemon Game/Move/{moveTypes[i]}/{moveNames[i]}");
             returnBattler.LearnMove(Resources.Load<Move>($"Pokemon Game/Move/{moveTypes[i]}/{moveNames[i]}"));
         }
         

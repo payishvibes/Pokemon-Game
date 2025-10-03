@@ -25,12 +25,12 @@ public class TallGrass : DialogueTrigger
 
     private void OnEnable()
     {
-        DialogueManager.instance.DialogueEnded += DialogueEnded;
+        DialogueManager.instance.OnDialogueEnded += DialogueEnded;
     }
 
     private void OnDisable()
     {
-        DialogueManager.instance.DialogueEnded -= DialogueEnded;
+        DialogueManager.instance.OnDialogueEnded -= DialogueEnded;
     }
 
     private void DialogueEnded(object sender, DialogueEndedEventArgs e)

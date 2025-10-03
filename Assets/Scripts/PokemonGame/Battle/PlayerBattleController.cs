@@ -1,3 +1,5 @@
+using System;
+using PokemonGame.Dialogue;
 using Riptide;
 using PokemonGame.General;
 using PokemonGame.Networking;
@@ -22,13 +24,33 @@ namespace PokemonGame.Battle
         private GameObject _currentLevelUpObj;
         [SerializeField] private LevelUpDisplay levelUpDisplayPrefab;
 
-        public void ShowBattlerLeveled(OnLevelUpEventArgs args)
+        private void ShowBattlerLeveled(OnLevelUpEventArgs args)
         {
             LevelUpDisplay display = Instantiate(levelUpDisplayPrefab, FindFirstObjectByType<Canvas>().transform);
             _currentLevelUpObj = display.gameObject;
             display.Init(args.oldStats, args.newStats);
         }
-        
+
+        private void OnEnable()
+        {
+            DialogueManager.instance.OnDialogueEnded += InstanceOnOnDialogueEnded;
+        }
+
+        private void InstanceOnOnDialogueEnded(object sender, DialogueEndedEventArgs e)
+        {
+            switch (e.id)
+            {
+                case "leveledUp":
+                    ShowBattlerLeveled((OnLevelUpEventArgs)battle.currentTurnItem.Variables[1]);
+                    break;
+            }
+        }
+
+        private void OnDisable()
+        {
+            DialogueManager.instance.OnDialogueEnded -= InstanceOnOnDialogueEnded;
+        }
+
         public void FinishedViewingLevelUpScreen()
         {
             Destroy(_currentLevelUpObj);
