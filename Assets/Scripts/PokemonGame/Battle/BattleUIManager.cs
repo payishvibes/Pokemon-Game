@@ -779,7 +779,7 @@ namespace PokemonGame.Battle
             BattleParty partyOne = battle.partyOne;
             BattleParty partyTwo = battle.partyTwo;
 
-            if (battle.localPlayerOne)
+            if (!battle.localPlayerOne)
             {
                 (partyOne, partyTwo) = (partyTwo, partyOne);
             }

@@ -1,5 +1,5 @@
 using System;
-using Cinemachine;
+using Unity.Cinemachine;
 using UnityEngine.InputSystem;
 
 namespace PokemonGame.Game
@@ -10,7 +10,6 @@ namespace PokemonGame.Game
     {
         [Header("Assigning")]
         public CharacterController controller;
-        public CinemachineFreeLook camFreeLook;
         public Transform cam;
         public Transform groundDetectorPos;
 
@@ -33,8 +32,8 @@ namespace PokemonGame.Game
         private void Awake()
         {
             _player = GetComponent<Player>();
-            _camDefaultYSpeed = camFreeLook.m_YAxis.m_MaxSpeed;
-            _camDefaultXSpeed = camFreeLook.m_XAxis.m_MaxSpeed;
+            // _camDefaultYSpeed = camFreeLook.m_YAxis.m_MaxSpeed;
+            // _camDefaultXSpeed = camFreeLook.m_XAxis.m_MaxSpeed;
         }
 
         private void Start()
@@ -50,8 +49,8 @@ namespace PokemonGame.Game
             {
                 if (canMove && !_player.interacting)
                 {
-                    camFreeLook.m_XAxis.m_MaxSpeed = _camDefaultXSpeed;
-                    camFreeLook.m_YAxis.m_MaxSpeed = _camDefaultYSpeed;
+                    // camFreeLook.m_XAxis.m_MaxSpeed = _camDefaultXSpeed;
+                    // camFreeLook.m_YAxis.m_MaxSpeed = _camDefaultYSpeed;
                     
                     Cursor.lockState = CursorLockMode.Locked;
                     Cursor.visible = false;
@@ -70,8 +69,8 @@ namespace PokemonGame.Game
                 }
                 else
                 {
-                    camFreeLook.m_XAxis.m_MaxSpeed = 0;
-                    camFreeLook.m_YAxis.m_MaxSpeed = 0;
+                    // camFreeLook.m_XAxis.m_MaxSpeed = 0;
+                    // camFreeLook.m_YAxis.m_MaxSpeed = 0;
                     
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;

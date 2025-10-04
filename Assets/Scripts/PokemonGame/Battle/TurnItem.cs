@@ -31,7 +31,6 @@ namespace PokemonGame.Battle
         StartDelay,
         PlayerOneMove,
         PlayerTwoMove,
-        PlayerMissed,
         PlayerOneSwapBecauseFainted,
         PlayerTwoSwapBecauseFainted,
         PlayerOneSwap,

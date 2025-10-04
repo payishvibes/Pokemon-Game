@@ -278,21 +278,19 @@ namespace PokemonGame.Battle
         
         private IEnumerator ShowMove(MoveMethodEventArgs args)
         {
-            if (args.missed)
-            {
-                yield break;
-            }
-            
             DialogueMoveEffectiveness(args);
-            
-            args.move.MoveMethod(args);
-            args.movePPData.MoveWasUsed();
+
+            if (!args.missed)
+            {
+                args.move.MoveMethod(args);
+                args.movePPData.MoveWasUsed();
+            }
             
             yield return new WaitForSeconds(1);
             
             StartDialogue();
             
-            if (args.effectiveIndex == 0 && !args.crit && !args.target.isFainted)
+            if (args.effectiveIndex == 0 && !args.crit && !args.target.isFainted && !args.missed)
             {
                 TurnQueueItemEnded();
             }
@@ -510,12 +508,6 @@ namespace PokemonGame.Battle
                 case TurnItemType.Run:
                     RunAwayDialogue();
                     break;
-                case TurnItemType.PlayerMissed:
-                    if (onlineBattle)
-                        BattleNetworkManager.Instance.ServerSendTurnPlayerMissed();
-                    else
-                        MoveMissed();
-                    break;
             }
             
             OnNewTurnItem?.Invoke(this, EventArgs.Empty);
@@ -654,6 +646,11 @@ namespace PokemonGame.Battle
             if (e.crit)
             {
                 QueDialogue("A Critical Hit!", DialogueBoxType.Event, "generalFinishing");
+            }
+
+            if (e.missed)
+            {
+                QueDialogue($"But it missed!", DialogueBoxType.Event, "generalFinishing");
             }
         }
 
@@ -1071,8 +1068,11 @@ namespace PokemonGame.Battle
             MoveMethodEventArgs e = new MoveMethodEventArgs(playerOneCurrentBattler, playerTwoCurrentBattler, playerOneMoveToDo, 
                 playerOneCurrentBattler.movePpInfos[moveToDoIndex], ExternalBattleData.Construct(this));
 
-            e.damageDealt = MovesMethods.CalculateDamage(playerOneMoveToDo, PlayerOneBattler, PlayerTwoBattler,
-                out e.effectiveIndex, out e.crit);
+            if (!missed)
+            {
+                e.damageDealt = MovesMethods.CalculateDamage(playerOneMoveToDo, PlayerOneBattler, PlayerTwoBattler,
+                    out e.effectiveIndex, out e.crit);
+            }
 
             e.missed = missed;
             
@@ -1118,9 +1118,12 @@ namespace PokemonGame.Battle
             
             MoveMethodEventArgs e = new MoveMethodEventArgs(playerTwoCurrentBattler, playerOneCurrentBattler,
                 playerTwoMoveToDo, playerTwoCurrentBattler.movePpInfos[moveToDoIndex], ExternalBattleData.Construct(this));
-            
-            e.damageDealt = MovesMethods.CalculateDamage(playerTwoMoveToDo, PlayerTwoBattler, PlayerOneBattler,
-                out e.effectiveIndex, out e.crit);
+
+            if (!missed)
+            {
+                e.damageDealt = MovesMethods.CalculateDamage(playerTwoMoveToDo, PlayerTwoBattler, PlayerOneBattler,
+                    out e.effectiveIndex, out e.crit);
+            }
             
             e.missed = missed;
             
@@ -1145,11 +1148,6 @@ namespace PokemonGame.Battle
                 {
                     currentTurnItem = new TurnItem(TurnItemType.PlayerTwoMove);
                 }
-            }
-            
-            if (e.missed)
-            {
-                InsertTurnItem(TurnItemType.PlayerMissed);
             }
             
             DialogueMoveUsed(e);

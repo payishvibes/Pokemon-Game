@@ -1,4 +1,4 @@
-using Cinemachine;
+using Unity.Cinemachine;
 using PokemonGame.Dialogue;
 
 namespace PokemonGame.Game
@@ -14,7 +14,7 @@ namespace PokemonGame.Game
         
         private Quaternion _target;
         [SerializeField] private bool look;
-        [SerializeField] private CinemachineFreeLook freeLook;
+        // [SerializeField] private CinemachineFreeLook freeLook;
 
         public Quaternion targetRot => _target;
 
@@ -69,7 +69,7 @@ namespace PokemonGame.Game
 
             if (setCam)
             {
-                freeLook.m_XAxis.Value = rotation.eulerAngles.y;
+                // freeLook.m_XAxis.Value = rotation.eulerAngles.y;
             }
         }
     }
