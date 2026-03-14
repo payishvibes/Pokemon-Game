@@ -41,7 +41,9 @@ namespace PokemonGame.Battle
             switch (e.id)
             {
                 case "leveledUp":
-                    ShowBattlerLeveled((OnLevelUpEventArgs)battle.currentTurnItem.Variables[1]);
+                    OnLevelUpEventArgs args = battle.PlayerOneBattler.InitiateLevelUp();
+                    ShowBattlerLeveled(args);
+                    uiManager.UpdatePlayerOneBattlerDetails();
                     break;
             }
         }

@@ -224,10 +224,12 @@ namespace PokemonGame.Battle
                 }
             }
 
+#if UNITY_EDITOR
             foreach (var move in movesToDelete)
             {
                 AssetDatabase.DeleteAsset($"Assets/Resources/Pokemon Game/Move/{move.type.name}/{move.name}");
             }
+#endif
         }
 
         public static MovesMethods GetMoveMethods()

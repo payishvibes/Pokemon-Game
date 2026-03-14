@@ -7,6 +7,7 @@ namespace PokemonGame.Game
     public class Boot : MonoBehaviour
     {
         [SerializeField] private GameObject[] DontDestroyObjects;
+        [SerializeField] private string sceneName;
         
         private void Start()
         {
@@ -21,7 +22,7 @@ namespace PokemonGame.Game
             {
                 DontDestroyOnLoad(objectToNotDestroy);
             }
-            SceneLoader.LoadScene(1);
+            SceneLoader.LoadScene(sceneName);
         }
     }
 }

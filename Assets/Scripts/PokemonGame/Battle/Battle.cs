@@ -84,14 +84,14 @@ namespace PokemonGame.Battle
         /// </summary>
         private Battler playerOneCurrentBattler => partyOne[playerOneBattlerIndex];
 
-        public Battler PlayerOneBattler => playerOneCurrentBattler;
+        public Battler PlayerOneBattler => partyOne[currentDisplayBattlerIndex];
         
         /// <summary>
         /// the playerTwos current battler
         /// </summary>
         private Battler playerTwoCurrentBattler => partyTwo[playerTwoBattlerIndex];
 
-        public Battler PlayerTwoBattler => playerTwoCurrentBattler;
+        public Battler PlayerTwoBattler => partyTwo[playerTwoDisplayBattlerIndex];
         /// <summary>
         /// the active queue of turn items
         /// </summary>
@@ -134,7 +134,7 @@ namespace PokemonGame.Battle
         public EventHandler<int> OnPlayerMove;
         
         // events
-        private EventHandler<OnLevelUpEventArgs> _playerOneBattlerLeveledUp = null;
+        private EventHandler<int> _playerOneBattlerLeveledUp = null;
         private EventHandler<EvolutionData> _playerOneBattlerEvolved = null;
 
         public bool onlineBattle;
@@ -209,7 +209,7 @@ namespace PokemonGame.Battle
             
             for (int i = 0; i < partyOne.Count; i++)
             {
-                partyOne[i].OnLevelUp += _playerOneBattlerLeveledUp;
+                partyOne[i].OnCanLevelUp += _playerOneBattlerLeveledUp;
                 partyOne[i].OnFainted += PlayerOneBattlerFainted;
                 partyOne[i].OnCanEvolve += _playerOneBattlerEvolved;
             }
@@ -229,7 +229,7 @@ namespace PokemonGame.Battle
             
             for (int i = 0; i < partyOne.Count; i++)
             {
-                partyOne[i].OnLevelUp -= _playerOneBattlerLeveledUp;
+                partyOne[i].OnCanLevelUp -= _playerOneBattlerLeveledUp;
                 partyOne[i].OnFainted -= PlayerOneBattlerFainted;
                 partyOne[i].OnCanEvolve -= _playerOneBattlerEvolved;
             }
@@ -260,14 +260,14 @@ namespace PokemonGame.Battle
             QueDialogue($"{newBattlerName} reached level {newLevel}!", DialogueBoxType.Narration, "leveledUp");
         }
 
-        private void BattlerLeveledUp(Battler battlerThatLeveled, OnLevelUpEventArgs args)
+        private void BattlerLeveledUp(Battler battlerThatLeveled, int newLevel)
         {
             Debug.Log("Queuing player level up");
             
             InsertTurnItem(TurnItemType.PlayerOneLevelUp, new List<object>()
             {
                 battlerThatLeveled,
-                args
+                newLevel
             });
         }
 
@@ -451,7 +451,7 @@ namespace PokemonGame.Battle
                     PlayerTwoUseItemEvent((Item)currentTurnItem.Variables[0], (int)currentTurnItem.Variables[1], (bool)currentTurnItem.Variables[2]);
                     break;
                 case TurnItemType.PlayerOneLevelUp:
-                    BattlerLevelUpEvent(((Battler)currentTurnItem.Variables[0]).name, ((OnLevelUpEventArgs)currentTurnItem.Variables[1]).newLevel);
+                    BattlerLevelUpEvent(((Battler)currentTurnItem.Variables[0]).name, (int)currentTurnItem.Variables[1]);
                     break;
                 case TurnItemType.PlayerTwoSwap:
                     if (onlineBattle)
@@ -927,24 +927,27 @@ namespace PokemonGame.Battle
 
         private void ChangePlayerOneBattlerIndex(int index, bool skipShrink = false)
         {
+            playerOneBattlerIndex = index;
             if (!skipShrink)
             {
-                playerOneBattlerIndex = index;
                 StartCoroutine(DelayChangeBattlerIndex(index));
-                OnStartChangeBattlerIndex?.Invoke(this, 0);
             }
             else
             {
-                playerOneBattlerIndex = index;
-                currentDisplayBattlerIndex = index;
-                OnChangeBattler?.Invoke(this, 0);
+                FinishedChangingPlayerOneBattler(index);
             }
+            OnStartChangeBattlerIndex?.Invoke(this, 0);
         }
 
         private IEnumerator DelayChangeBattlerIndex(int index)
         {
             yield return new WaitForSeconds(shrinkEffectDelay);
-            currentDisplayBattlerIndex = index;
+            FinishedChangingPlayerOneBattler(index);
+        }
+
+        private void FinishedChangingPlayerOneBattler(int newIndex)
+        {
+            currentDisplayBattlerIndex = newIndex;
             OnChangeBattler?.Invoke(this, 0);
         }
 
@@ -957,25 +960,28 @@ namespace PokemonGame.Battle
 
         private void ChangePlayerTwoBattlerIndex(int index, bool skipShrink = false)
         {
+            playerTwoBattlerIndex = index;
             if (!skipShrink)
             {
-                playerTwoBattlerIndex = index;
                 StartCoroutine(DelayChangePlayerTwoBattlerIndex(index));
-                OnStartChangeBattlerIndex?.Invoke(this, 1);
             }
             else
             {
-                playerTwoBattlerIndex = index;
-                playerTwoDisplayBattlerIndex = index;
-                OnChangeBattler?.Invoke(this, 1);
+                FinishedChangingPlayerTwoBattler(index);
             }
+            OnStartChangeBattlerIndex?.Invoke(this, 1);
         }
 
         private IEnumerator DelayChangePlayerTwoBattlerIndex(int index)
         {
             yield return new WaitForSeconds(shrinkEffectDelay);
-            playerTwoDisplayBattlerIndex = index;
-            OnChangeBattler?.Invoke(this, 1);
+            FinishedChangingPlayerTwoBattler(index);
+        }
+
+        private void FinishedChangingPlayerTwoBattler(int newIndex)
+        {
+            playerTwoDisplayBattlerIndex = newIndex;
+            OnStartChangeBattlerIndex?.Invoke(this, 1);
         }
 
         public void PlayerOneSwappedBattler(int playerOneSwapIndex)

@@ -15,9 +15,9 @@ MonoBehaviour:
   name: Sans
   source: {fileID: 11400000, guid: e2a2c8dbb1bf8a04b952cf70cf6a0482, type: 2}
   level: 50
-  gender: 1
+  gender: 0
   currentHealth: 157
-  shiny: 1
+  shiny: 0
   stats:
     maxHealth: 157
     attack: 123

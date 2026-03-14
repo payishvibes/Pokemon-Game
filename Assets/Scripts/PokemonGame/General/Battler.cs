@@ -114,6 +114,7 @@ namespace PokemonGame.General
         [HideInInspector] public bool wantToEvolve;
         [HideInInspector] public EvolutionData evolutionToPerform;
         public event EventHandler<EvolutionData> OnCanEvolve;
+        public event EventHandler<int> OnCanLevelUp;
         public event EventHandler<OnLevelUpEventArgs> OnLevelUp;
 
         /// <summary>
@@ -158,20 +159,32 @@ namespace PokemonGame.General
 
         private void HandleLevelUps()
         {
-            int requiredForNextLevel = ExperienceCalculator.RequiredForNextLevel(this);
-
-            if (exp >= requiredForNextLevel)
+            if (exp >= ExperienceCalculator.RequiredForNextLevel(this))
             {
-                int holdover = requiredForNextLevel - exp;
-                
-                LevelUp();
-
-                exp = holdover;
+                CanLevelUp();
             }
         }
 
-        private void LevelUp()
+        private void CanLevelUp()
         {
+            OnCanLevelUp?.Invoke(this, level+1);
+        }
+
+        public OnLevelUpEventArgs InitiateLevelUp()
+        {
+            if (exp >= ExperienceCalculator.RequiredForNextLevel(this))
+            {
+                return LevelUp();
+            }
+            
+            Debug.LogWarning("No level up to initiate");
+            return null;
+        }
+
+        private OnLevelUpEventArgs LevelUp()
+        {
+            int holdover = ExperienceCalculator.RequiredForNextLevel(this) - exp;
+
             level += 1;
 
             int health = stats.maxHealth;
@@ -186,8 +199,10 @@ namespace PokemonGame.General
 
             currentHealth += stats.maxHealth - health;
             
+            exp = holdover;
             OnLevelUp?.Invoke(this, args);
             CheckIfCanEvolve();
+            return args;
         }
 
         private void CheckIfCanEvolve()

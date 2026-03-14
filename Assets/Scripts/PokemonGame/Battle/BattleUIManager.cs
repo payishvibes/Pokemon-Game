@@ -572,33 +572,11 @@ namespace PokemonGame.Battle
 
         public void ForceHealthSet()
         {
-            float playerTwoTarget = battle.PlayerTwoBattler.currentHealth /
+            _playerTwoCurrent = battle.PlayerTwoBattler.currentHealth /
                                    (float)battle.PlayerTwoBattler.stats.maxHealth;
 
-            float playerTarget = battle.PlayerOneBattler.currentHealth /
-                                 (float)battle.PlayerOneBattler.stats.maxHealth;
-
-            if (battle.localPlayerOne)
-            {
-                playerTwoHealthDisplay.transform.localScale = new Vector3(playerTwoTarget, 1, 1);
-                playerTwoSideBorder.position = Vector3.Lerp(playerTwoSideBorderLimitRight.position,
-                    playerTwoSideBorderLimitLeft.position, playerTwoTarget);
-
-                playerOneHealthDisplay.transform.localScale = new Vector3(playerTarget, 1, 1);
-                playerOneSideBorder.position = Vector3.Lerp(playerOneSideBorderLimitLeft.position,
-                    playerOneSideBorderLimitRight.position, playerTarget);
-            }
-            else
-            {
-                playerTwoHealthDisplay.transform.localScale = new Vector3(playerTarget, 1, 1);
-                playerTwoSideBorder.position = Vector3.Lerp(playerTwoSideBorderLimitRight.position,
-                    playerTwoSideBorderLimitLeft.position, playerTarget);
-
-                playerOneHealthDisplay.transform.localScale = new Vector3(playerTwoTarget, 1, 1);
-                Debug.Log(playerTwoTarget);
-                playerOneSideBorder.position = Vector3.Lerp(playerOneSideBorderLimitLeft.position,
-                    playerOneSideBorderLimitRight.position, playerTwoTarget);
-            }
+            _playerOneCurrent = battle.PlayerOneBattler.currentHealth /
+                                      (float)battle.PlayerOneBattler.stats.maxHealth;
         }
 
         public void UpdatePlayerTwoBattlerDetails()

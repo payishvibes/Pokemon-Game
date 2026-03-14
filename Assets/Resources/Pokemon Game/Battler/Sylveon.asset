@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34c34158a6a1ace4da0180135a1a41b4, type: 3}
   m_Name: Sylveon
   m_EditorClassIdentifier: 
+  name: Sylveon
   source: {fileID: 11400000, guid: 6364253c73312df4cb8d2134bdc7b962, type: 2}
   level: 50
   gender: 1
   currentHealth: 155
-  name: Sylveon
-  shiny: 1
+  shiny: 0
   stats:
     maxHealth: 155
     attack: 77
@@ -50,9 +50,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2e869c1f176a61e43be51bce44640000, type: 2}
   - {fileID: 11400000, guid: 5c24c0c9486bb5c4d86cdf4238fb3b33, type: 2}
   movePpInfos: []
+  sleepTurns: 0
   wantToEvolve: 0
   evolutionToPerform:
     triggerType: 0
-    level: 0
-    item: {fileID: 0}
+    minLevel: 0
+    useItem: {fileID: 0}
+    heldItem: {fileID: 0}
+    knownMove: {fileID: 0}
+    knownMoveType: {fileID: 0}
+    minAffection: 0
+    minBeauty: 0
+    minHappiness: 0
+    needRain: 0
+    timeOfDay: 
+    tradeSpecies: 
     evolution: {fileID: 0}
