@@ -61,7 +61,7 @@ Transform:
   m_GameObject: {fileID: 1082714034313900392}
   serializedVersion: 2
   m_LocalRotation: {x: 0.15212339, y: -0.000000028787916, z: 0.0000000018138056, w: 0.98836154}
-  m_LocalPosition: {x: 0, y: 1.4032938, z: -6.6760187}
+  m_LocalPosition: {x: 0, y: 1.403294, z: -6.6760187}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -265,8 +265,6 @@ MonoBehaviour:
         InputAction: {fileID: -5630151704836100654, guid: 1d6e640e716dc4ff6989b73d02023f2b,
           type: 3}
         Gain: 1
-        LegacyInput: 
-        LegacyGain: 1
         CancelDeltaTime: 0
       InputValue: 0
       Driver:
@@ -279,8 +277,6 @@ MonoBehaviour:
         InputAction: {fileID: -5630151704836100654, guid: 1d6e640e716dc4ff6989b73d02023f2b,
           type: 3}
         Gain: -1
-        LegacyInput: 
-        LegacyGain: 1
         CancelDeltaTime: 0
       InputValue: 0
       Driver:
@@ -293,8 +289,6 @@ MonoBehaviour:
         InputAction: {fileID: 5082991133974614888, guid: 1d6e640e716dc4ff6989b73d02023f2b,
           type: 3}
         Gain: -1
-        LegacyInput: 
-        LegacyGain: 1
         CancelDeltaTime: 0
       InputValue: 0
       Driver:
@@ -391,6 +385,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &2262617635431392483
 MeshCollider:
@@ -478,6 +473,7 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 64
+  cameraInputController: {fileID: 3660672560557585624}
 --- !u!114 &3447788588245448123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -522,6 +518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   look: 0
+  orbitalFollow: {fileID: 4227796093565093587}
   interacting: 0
   movement: {fileID: 1916173862130229166}
 --- !u!65 &2837327218410976352
@@ -659,6 +656,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &1674262992125153321
 MeshCollider:
@@ -801,6 +799,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &7329654792430254048
 GameObject:
@@ -864,7 +863,7 @@ Transform:
   m_GameObject: {fileID: 7329654792492178586}
   serializedVersion: 2
   m_LocalRotation: {x: 0.15212339, y: -0.000000029200498, z: 0.0000000044943866, w: 0.98836154}
-  m_LocalPosition: {x: 0, y: 1.4032938, z: -6.6760187}
+  m_LocalPosition: {x: 0, y: 1.4032938, z: -6.6760178}
   m_LocalScale: {x: 1, y: 0.45564404, z: 1.4539899}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1093,4 +1092,5 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}

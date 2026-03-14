@@ -23,17 +23,13 @@ namespace PokemonGame.Game
         public bool canMove = true;
         [SerializeField] float speed;
         [SerializeField] private LayerMask ground;
+        [SerializeField] private CinemachineInputAxisController cameraInputController;
 
         private int _frameSkips = 0;
-
-        private float _camDefaultYSpeed = 0;
-        private float _camDefaultXSpeed = 0;
 
         private void Awake()
         {
             _player = GetComponent<Player>();
-            // _camDefaultYSpeed = camFreeLook.m_YAxis.m_MaxSpeed;
-            // _camDefaultXSpeed = camFreeLook.m_XAxis.m_MaxSpeed;
         }
 
         private void Start()
@@ -49,8 +45,8 @@ namespace PokemonGame.Game
             {
                 if (canMove && !_player.interacting)
                 {
-                    // camFreeLook.m_XAxis.m_MaxSpeed = _camDefaultXSpeed;
-                    // camFreeLook.m_YAxis.m_MaxSpeed = _camDefaultYSpeed;
+                    cameraInputController.Controllers[0].Enabled = true;
+                    cameraInputController.Controllers[1].Enabled = true;
                     
                     Cursor.lockState = CursorLockMode.Locked;
                     Cursor.visible = false;
@@ -69,8 +65,8 @@ namespace PokemonGame.Game
                 }
                 else
                 {
-                    // camFreeLook.m_XAxis.m_MaxSpeed = 0;
-                    // camFreeLook.m_YAxis.m_MaxSpeed = 0;
+                    cameraInputController.Controllers[0].Enabled = false;
+                    cameraInputController.Controllers[1].Enabled = false;
                     
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;

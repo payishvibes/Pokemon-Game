@@ -1,3 +1,4 @@
+using System;
 using Unity.Cinemachine;
 using PokemonGame.Dialogue;
 
@@ -14,9 +15,7 @@ namespace PokemonGame.Game
         
         private Quaternion _target;
         [SerializeField] private bool look;
-        // [SerializeField] private CinemachineFreeLook freeLook;
-
-        public Quaternion targetRot => _target;
+        [SerializeField] private CinemachineOrbitalFollow orbitalFollow;
 
         public bool interacting;
 
@@ -69,7 +68,8 @@ namespace PokemonGame.Game
 
             if (setCam)
             {
-                // freeLook.m_XAxis.Value = rotation.eulerAngles.y;
+                orbitalFollow.HorizontalAxis.Value = rotation.eulerAngles.x;
+                Debug.Log("Setting orbital follow position");
             }
         }
     }

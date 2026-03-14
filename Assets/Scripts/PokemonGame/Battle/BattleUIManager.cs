@@ -381,6 +381,7 @@ namespace PokemonGame.Battle
 
         public void ShrinkPlayerOneBattler(bool instant = false)
         {
+            Debug.Log("shrinking player one");
             targetPlayerOneBattlerScale = Vector3.zero;
             if (instant)
             {

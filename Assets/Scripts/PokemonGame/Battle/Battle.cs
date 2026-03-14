@@ -425,7 +425,6 @@ namespace PokemonGame.Battle
                         BattleNetworkManager.Instance.ServerSendTurnEndBattle(true);
                     else
                         BeginEndBattleDialogue(true);
-                    BeginEndBattleDialogue(true);
                     break;
                 case TurnItemType.EndBattlePlayerTwoWin:
                     if (onlineBattle)
@@ -962,7 +961,7 @@ namespace PokemonGame.Battle
             {
                 playerTwoBattlerIndex = index;
                 StartCoroutine(DelayChangePlayerTwoBattlerIndex(index));
-                OnStartChangeBattlerIndex?.Invoke(this, 0);
+                OnStartChangeBattlerIndex?.Invoke(this, 1);
             }
             else
             {
@@ -1462,7 +1461,7 @@ namespace PokemonGame.Battle
             {
                 if (trainerBattle)
                 {
-                    QueDialogue("All playerTwo Pokemon defeated!", DialogueBoxType.Event, "playerTwoDefeated", true);
+                    QueDialogue("All playerTwo Pokemon defeated!", DialogueBoxType.Event, "playerTwoDefeated");
                 }
                 else
                 {
@@ -1471,7 +1470,7 @@ namespace PokemonGame.Battle
             }
             else
             {
-                QueDialogue("All your Pokemon fainted, running!", DialogueBoxType.Event, "playerDefeated", true);
+                QueDialogue("All your Pokemon fainted, running!", DialogueBoxType.Event, "playerDefeated");
             }
             
             turnItemQueue.Clear();
