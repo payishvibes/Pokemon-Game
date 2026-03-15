@@ -20,6 +20,7 @@ MonoBehaviour:
   basePP: 15
   accuracy: 0.75
   priority: 0
+  increasedCritChance: 0
   category: 2
   probability: 0
   zCrystal: {fileID: 0}

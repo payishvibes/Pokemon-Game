@@ -13,23 +13,65 @@ namespace PokemonGame.ScriptableObjects
 {
     using UnityEngine;
 
+    /// <summary>
+    /// The basic information about a battler, informs a <see cref="Battler"/> instance
+    /// </summary>
     [CreateAssetMenu(order = 1, fileName = "New Battler Template", menuName = "Pokemon Game/New Battler Template")]
     public class BattlerTemplate : ScriptableObject
     {
         public static PokeApiClient pokeClient;
 
+        /// <summary>
+        /// The name of the battler species
+        /// </summary>
         public new string name;
+        /// <summary>
+        /// The primary type of the battler species
+        /// </summary>
         public BasicType primaryType;
+        /// <summary>
+        /// The secondary type of the battler species
+        /// </summary>
         public BasicType secondaryType;
+        /// <summary>
+        /// The <see cref="Sprites"/> information for the battler species
+        /// </summary>
         public Sprites texture;
+        /// <summary>
+        /// The pokedex number of the battler
+        /// </summary>
         public int dexNo;
+        /// <summary>
+        /// The possible moves the battler can learn
+        /// </summary>
         public PossibleMoves possibleMoves;
+        /// <summary>
+        /// The evolutions the battler can have
+        /// </summary>
         public Evolution evolutions;
+        /// <summary>
+        /// The <see cref="ExperienceGroup"/> of the battler
+        /// </summary>
         public ExperienceGroup expGroup;
+        /// <summary>
+        /// The catch rate of the battler
+        /// </summary>
         [Space] [Header("Stats")] public int catchRate;
+        /// <summary>
+        /// The base friendship of the battler
+        /// </summary>
         public int baseFriendship;
+        /// <summary>
+        /// The base stats of the battler
+        /// </summary>
         public BattlerStats baseStats;
+        /// <summary>
+        /// The exp yield of the battler
+        /// </summary>
         public int expYield;
+        /// <summary>
+        /// The IV yields of the battler
+        /// </summary>
         public BattlerStats yields;
 
         public void TryFillInfo()
@@ -308,6 +350,9 @@ namespace PokemonGame.ScriptableObjects
         }
     }
 
+    /// <summary>
+    /// The possible moves a battler can have
+    /// </summary>
     [Serializable]
     public class PossibleMoves
     {
@@ -317,6 +362,9 @@ namespace PokemonGame.ScriptableObjects
         public List<Move> tutor = new List<Move>();
     }
 
+    /// <summary>
+    /// References to relevant sprites of a battler
+    /// </summary>
     [Serializable]
     public class Sprites
     {

@@ -248,35 +248,49 @@ namespace PokemonGame.Battle
         public void Toxic(MoveMethodEventArgs e)
         {
             e.target.statusEffect = Registry.GetStatusEffect("Poisoned");
-            Battle.Singleton.QueDialogue($"{e.target.name} was poisoned!", DialogueBoxType.Event);
+            Battle.Singleton.QueDialogue($"{e.target.name} was poisoned!", DialogueBoxType.Event, "generalFinishing");
         }
 
         public void LeechLife(MoveMethodEventArgs e)
         {
             int damage = e.damageDealt;
             e.target.TakeDamage(damage, new BattlerDamageSource(e.attacker));
-            Battle.Singleton.QueDialogue($"{e.attacker.name} healed {damage/2} health!", DialogueBoxType.Event);
+            Battle.Singleton.QueDialogue($"{e.attacker.name} healed {damage/2} health!", DialogueBoxType.Event, "generalFinishing");
             e.attacker.Heal(damage/2);
         }
 
         public void SleepPowder(MoveMethodEventArgs e)
         {
-            e.target.statusEffect = Registry.GetStatusEffect("Asleep");
-            e.target.sleepTurns = Random.Range(1, 4);
-            Battle.Singleton.QueDialogue($"{e.target.name} was put to sleep!", DialogueBoxType.Event);
+            StatusEffect sleep = Registry.GetStatusEffect("Asleep");
+            if (e.target.BecomeAffectedBy(sleep))
+            {
+                e.target.sleepTurns = Random.Range(1, 4);
+                Battle.Singleton.QueDialogue($"{e.target.name} was put to sleep!", DialogueBoxType.Event, "generalFinishing");
+            }
+            else
+            {
+                e.success = false;
+            }
         }
 
         public void WillOWisp(MoveMethodEventArgs e)
         {
-            e.target.statusEffect = Registry.GetStatusEffect("Burn");
-            Battle.Singleton.QueDialogue($"{e.target.name} was burned!", DialogueBoxType.Event);
+            StatusEffect burn = Registry.GetStatusEffect("Burn");
+            if (e.target.statusEffect == burn)
+            {
+                e.success = false;
+            }
+            else
+            {
+                e.target.statusEffect = Registry.GetStatusEffect("Burn");
+                Battle.Singleton.QueDialogue($"{e.target.name} was burned!", DialogueBoxType.Event, "generalFinishing");
+            }
         }
 
         public void BadTime(MoveMethodEventArgs e)
         {
-            int damageDealt = e.damageDealt;
-            e.target.TakeDamage(damageDealt, new BattlerDamageSource(e.attacker));
-            Battle.Singleton.QueDialogue($"{e.target.name} is going to have a very Bad Time", DialogueBoxType.Event);
+            Battle.Singleton.QueDialogue($"{e.target.name} is going to have a very Bad Time", DialogueBoxType.Event, "generalFinishing");
+            DefaultMoveMethod(e);
         }
 
         public void SelfDestruct(MoveMethodEventArgs e)

@@ -50,7 +50,6 @@ namespace PokemonGame.Battle
         
         [Space]
         [Header("Assignments")] 
-        [SerializeField] private TextAsset battlerUsedText;
         [SerializeField] private float shrinkEffectDelay;
 
         [Space]
@@ -278,6 +277,14 @@ namespace PokemonGame.Battle
         
         private IEnumerator ShowMove(MoveMethodEventArgs args)
         {
+            bool queuedDialogue = false;
+            EventHandler<DialogueQueuedEventArgs> dialogueQueued = (sender, eventArgs) =>
+            {
+                queuedDialogue = true;
+            };
+
+            DialogueManager.instance.OnDialogueQueued += dialogueQueued;
+            
             DialogueMoveEffectiveness(args);
 
             if (!args.missed)
@@ -285,15 +292,24 @@ namespace PokemonGame.Battle
                 args.move.MoveMethod(args);
                 args.movePPData.MoveWasUsed();
             }
+
+            if (!args.success)
+            {
+                QueDialogue("But it failed!", DialogueBoxType.Event, "generalFinishing");
+            }
             
             yield return new WaitForSeconds(1);
             
+            // call anyway because it clears the force stop condition
             StartDialogue();
             
-            if (args.effectiveIndex == 0 && !args.crit && !args.target.isFainted && !args.missed)
+            // if during the showing we need to display some more dialogue
+            if (!queuedDialogue)
             {
                 TurnQueueItemEnded();
             }
+            
+            DialogueManager.instance.OnDialogueQueued -= dialogueQueued;
         }
         
         private bool TurnItemQueueContains(TurnItemType type)
@@ -615,31 +631,36 @@ namespace PokemonGame.Battle
             }
         }
         
-        private void DialogueMoveUsed(MoveMethodEventArgs e)
+        private void DialogueMoveUsed(MoveMethodEventArgs e, bool playerOne)
         {
-            Dictionary<string, string> variables = new Dictionary<string, string>();
-            variables.Add("battlerUsed", e.attacker.name);
-            variables.Add("moveUsed", e.move.name);
-            variables.Add("battlerHit", e.target.name);
-            
-            QueDialogue(battlerUsedText, DialogueBoxType.Event, "moveUsed", true, variables);
+            if (playerOne)
+            {
+                QueDialogue($"{GetPlayerOneName()} {e.attacker.name} used {e.move.name}", DialogueBoxType.Event, "moveUsed");
+            }
+            else
+            {
+                QueDialogue($"{GetPlayerTwoName()} {e.attacker.name} used {e.move.name}", DialogueBoxType.Event, "moveUsed");
+            }
             
             ForceStopNextQueued();
         }
         
         private void DialogueMoveEffectiveness(MoveMethodEventArgs e)
         {
-            switch (e.effectiveIndex)
+            if (e.move.category != MoveCategory.Status)
             {
-                case 1:
-                    QueDialogue("Its Not Very Effective...", DialogueBoxType.Event, "generalFinishing");
-                    break;
-                case 2:
-                    QueDialogue("Its Super Effective!", DialogueBoxType.Event, "generalFinishing");
-                    break;
-                case 3:
-                    QueDialogue($"{e.target.name} is immune!", DialogueBoxType.Event, "generalFinishing");
-                    break;
+                switch (e.effectiveIndex)
+                {
+                    case 1:
+                        QueDialogue("Its Not Very Effective...", DialogueBoxType.Event, "generalFinishing");
+                        break;
+                    case 2:
+                        QueDialogue("Its Super Effective!", DialogueBoxType.Event, "generalFinishing");
+                        break;
+                    case 3:
+                        QueDialogue($"{e.target.name} is immune!", DialogueBoxType.Event, "generalFinishing");
+                        break;
+                }
             }
 
             if (e.crit)
@@ -834,7 +855,7 @@ namespace PokemonGame.Battle
             
             Bag.Used(itemToUse);
             
-            QueDialogue($"Player One used {itemToUse.name} on {battlerBeingUsedOn.name}!", DialogueBoxType.Event, "generalFinishing");
+            QueDialogue($"{GetPlayerOneName()} used {itemToUse.name} on {battlerBeingUsedOn.name}!", DialogueBoxType.Event, "generalFinishing");
 
             if (!e.success)
             {
@@ -852,7 +873,7 @@ namespace PokemonGame.Battle
             
             Bag.Used(itemToUse);
             
-            QueDialogue($"Player Two used {itemToUse.name} on {battlerBeingUsedOn.name}!", DialogueBoxType.Event, "generalFinishing");
+            QueDialogue($"{GetPlayerTwoName()} used {itemToUse.name} on {battlerBeingUsedOn.name}!", DialogueBoxType.Event, "generalFinishing");
 
             if (!e.success)
             {
@@ -869,7 +890,7 @@ namespace PokemonGame.Battle
                 {
                     AddParticipatedBattler(partyOne[newBattlerIndex]);
                 }
-                QueDialogue($"Player One sent out {partyOne[newBattlerIndex].name}", DialogueBoxType.Event, "playerOneSwap");
+                QueDialogue($"{GetPlayerOneName()} sent out {partyOne[newBattlerIndex].name}", DialogueBoxType.Event, "playerOneSwap");
             
                 if (IsOnlineHost())
                 {
@@ -890,7 +911,7 @@ namespace PokemonGame.Battle
             if (_currentlyRunningQueueItem) // swapping mid turn showing aka after a battler faints
             {
                 currentTurnItem.Variables.Add(newBattlerIndex);
-                QueDialogue($"Player Two sent out {partyTwo[newBattlerIndex].name}", DialogueBoxType.Event, "playerTwoSwap");
+                QueDialogue($"{GetPlayerTwoName()} sent out {partyTwo[newBattlerIndex].name}", DialogueBoxType.Event, "playerTwoSwap");
                 
                 if (IsOnlineHost())
                 {
@@ -981,7 +1002,7 @@ namespace PokemonGame.Battle
         private void FinishedChangingPlayerTwoBattler(int newIndex)
         {
             playerTwoDisplayBattlerIndex = newIndex;
-            OnStartChangeBattlerIndex?.Invoke(this, 1);
+            OnChangeBattler?.Invoke(this, 1);
         }
 
         public void PlayerOneSwappedBattler(int playerOneSwapIndex)
@@ -993,34 +1014,34 @@ namespace PokemonGame.Battle
                 AddParticipatedBattler(partyOne[playerOneSwapIndex]);
             }
             
-            QueDialogue($"Go ahead {partyOne[playerOneSwapIndex].name}!", DialogueBoxType.Event, "generalFinishing", true);
+            QueDialogue($"Go ahead {partyOne[playerOneSwapIndex].name}!", DialogueBoxType.Event, "generalFinishing");
         }
 
         public void PlayerTwoSwappedBattler(int playerTwoSwapIndex)
         {
             ChangePlayerTwoBattlerIndex(playerTwoSwapIndex);
             
-            QueDialogue($"Go ahead {partyTwo[playerTwoSwapIndex].name}!", DialogueBoxType.Event, "generalFinishing", true);
+            QueDialogue($"Go ahead {partyTwo[playerTwoSwapIndex].name}!", DialogueBoxType.Event, "generalFinishing");
         }
 
         public void PlayerOneParalysed()
         {
-            QueDialogue($"{playerOneCurrentBattler.name} is Paralysed! It is unable to move!", DialogueBoxType.Event);
+            QueDialogue($"{GetPlayerOneName()} {playerOneCurrentBattler.name} is Paralysed! It is unable to move!", DialogueBoxType.Event, "generalFinishing");
         }
 
         public void PlayerTwoParalysed()
         {
-            QueDialogue($"The playerTwo {playerTwoCurrentBattler.name} is Paralysed! It is unable to move!", DialogueBoxType.Event);
+            QueDialogue($"The {GetPlayerTwoName()} {playerTwoCurrentBattler.name} is Paralysed! It is unable to move!", DialogueBoxType.Event, "generalFinishing");
         }
 
         public void PlayerOneAsleep()
         {
-            QueDialogue($"The playerTwo {playerTwoCurrentBattler.name} is Asleep", DialogueBoxType.Event);
+            QueDialogue($"The {GetPlayerTwoName()} {playerTwoCurrentBattler.name} is Asleep", DialogueBoxType.Event, "generalFinishing");
         }
 
         public void PlayerTwoAsleep()
         {
-            QueDialogue($"The playerTwo {playerTwoCurrentBattler.name} is Asleep", DialogueBoxType.Event);
+            QueDialogue($"The {GetPlayerTwoName()} {playerTwoCurrentBattler.name} is Asleep", DialogueBoxType.Event, "generalFinishing");
         }
 
         public void MoveMissed()
@@ -1059,6 +1080,7 @@ namespace PokemonGame.Battle
 
             if (!able)
             {
+                EndTurnItem();
                 return;
             }
 
@@ -1110,6 +1132,7 @@ namespace PokemonGame.Battle
 
             if (!able)
             {
+                EndTurnItem();
                 return;
             }
 
@@ -1155,7 +1178,7 @@ namespace PokemonGame.Battle
                 }
             }
             
-            DialogueMoveUsed(e);
+            DialogueMoveUsed(e, player);
             currentTurnItem.Variables.Add(e);
         }
 
@@ -1244,7 +1267,7 @@ namespace PokemonGame.Battle
         private void PlayerOneBattlerFainted(object sender, BattlerTookDamageArgs args)
         {
             Debug.Log("Player One Fainted");
-            QueDialogue($"{playerOneCurrentBattler.name} Fainted!", DialogueBoxType.Event, "playerOneFainted");
+            QueDialogue($"{GetPlayerOneName()} {playerOneCurrentBattler.name} Fainted!", DialogueBoxType.Event, "playerOneFainted");
             
             partyOne.CheckDefeatedStatus();
             
@@ -1264,7 +1287,7 @@ namespace PokemonGame.Battle
         public void PlayerTwoBattlerFainted(object sender, BattlerTookDamageArgs args)
         {
             Debug.Log("Player Two Fainted");
-            QueDialogue($"{playerTwoCurrentBattler.name} Fainted!", DialogueBoxType.Event, "playerTwoFainted");
+            QueDialogue($"{GetPlayerTwoName()} {playerTwoCurrentBattler.name} Fainted!", DialogueBoxType.Event, "playerTwoFainted");
             
             if (!onlineBattle)
             {
@@ -1467,7 +1490,7 @@ namespace PokemonGame.Battle
             {
                 if (trainerBattle)
                 {
-                    QueDialogue("All playerTwo Pokemon defeated!", DialogueBoxType.Event, "playerTwoDefeated");
+                    QueDialogue($"All {GetPlayerTwoName()} Pokemon defeated!", DialogueBoxType.Event, "playerTwoDefeated");
                 }
                 else
                 {
@@ -1476,11 +1499,30 @@ namespace PokemonGame.Battle
             }
             else
             {
-                QueDialogue("All your Pokemon fainted, running!", DialogueBoxType.Event, "playerDefeated");
+                QueDialogue($"All {GetPlayerOneName()} Pokemon fainted, running!", DialogueBoxType.Event, "playerDefeated");
             }
             
             turnItemQueue.Clear();
         }
+
+        private string GetPlayerOneName()
+        {
+            if (IsNotOnlineHost())
+            {
+                return "Opponent";
+            }
+            return "Your";
+        }
+
+        private string GetPlayerTwoName()
+        {
+            if (IsNotOnlineHost())
+            {
+                return "Your";
+            }
+            return "Opponent";
+        }
+
 
         private bool IsNotOnlineHost()
         {

@@ -1,4 +1,5 @@
 using System.Linq;
+using PokemonGame.Global;
 
 namespace PokemonGame.General
 {
@@ -8,7 +9,7 @@ namespace PokemonGame.General
     using UnityEngine;
 
     /// <summary>
-    /// The class that contains all the information for a battler
+    /// Base class of all Battlers, draws from a <see cref="BattlerTemplate"/> for much functionality
     /// </summary>
     [CreateAssetMenu(order = 7, fileName = "New Battler Prefab", menuName = "Pokemon Game/New Battler Prefab")]
     public class Battler : ScriptableObject
@@ -81,6 +82,11 @@ namespace PokemonGame.General
         /// The current status effect that the batter has
         /// </summary>
         public StatusEffect statusEffect;
+
+        /// <summary>
+        /// The severity level of the battlers status effect
+        /// </summary>
+        public int statusEffectSeverity = 0;
         
         /// <summary>
         /// The list of moves that the battler has
@@ -157,6 +163,32 @@ namespace PokemonGame.General
             HandleLevelUps();
         }
 
+        /// <summary>
+        /// Change the status effect of the battler
+        /// </summary>
+        /// <param name="newEffect">The status effect to change to</param>
+        /// <returns>If the change was a success</returns>
+        public bool BecomeAffectedBy(StatusEffect newEffect)
+        {
+            StatusEffect poison = Registry.GetStatusEffect("Poisoned");
+            if (statusEffect == poison && newEffect == poison)
+            {
+                statusEffectSeverity = 1;
+                return true;
+            }
+            else
+            {
+                // dont need to increase severity
+                statusEffectSeverity = 0;
+                if (newEffect == statusEffect)
+                {
+                    return false;
+                }
+                statusEffect = newEffect;
+                return true;
+            }
+        }
+
         private void HandleLevelUps()
         {
             if (exp >= ExperienceCalculator.RequiredForNextLevel(this))
@@ -170,6 +202,10 @@ namespace PokemonGame.General
             OnCanLevelUp?.Invoke(this, level+1);
         }
 
+        /// <summary>
+        /// Initiates a banked level up, handles stat changes
+        /// </summary>
+        /// <returns>The level up event args for this level up</returns>
         public OnLevelUpEventArgs InitiateLevelUp()
         {
             if (exp >= ExperienceCalculator.RequiredForNextLevel(this))
@@ -196,8 +232,8 @@ namespace PokemonGame.General
 
             args.newStats = stats;
             args.newLevel = level;
-
-            currentHealth += stats.maxHealth - health;
+            
+            Heal(stats.maxHealth - health);
             
             exp = holdover;
             OnLevelUp?.Invoke(this, args);
@@ -221,6 +257,9 @@ namespace PokemonGame.General
             }
         }
 
+        /// <summary>
+        /// Trigger an evolution
+        /// </summary>
         public void EvolutionApproved()
         {
             bool updateName = name == source.name;
@@ -259,6 +298,10 @@ namespace PokemonGame.General
             OnHealthUpdated?.Invoke(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Revive a battler from a fainted state, default behaviour returns battler to half health
+        /// </summary>
+        /// <param name="full">Return battler to full health</param>
         public void Revive(bool full)
         {
             isFainted = false;
@@ -322,6 +365,10 @@ namespace PokemonGame.General
             }
         }
 
+        /// <summary>
+        /// Get the most recent moves the battler should have learnt
+        /// </summary>
+        /// <returns>The list of moves</returns>
         public List<Move> GetMostRecentMoves()
         {
             SerializableDictionary<Move, int> levelUpMoves = source.possibleMoves.levelup;
@@ -467,6 +514,10 @@ namespace PokemonGame.General
             stats.speed = Mathf.FloorToInt(stats.speed * speedModifier);
         }
 
+        /// <summary>
+        /// Change the level of the battler
+        /// </summary>
+        /// <param name="newLevel">The new level of the battler</param>
         public void UpdateLevel(int newLevel)
         {
             level = newLevel;
@@ -483,14 +534,23 @@ namespace PokemonGame.General
         public static Battler Init(Battler sourceBattler, bool autoAssignHealth)
         {
             return Init(sourceBattler.source, sourceBattler.level, sourceBattler.name, sourceBattler.gender, sourceBattler.shiny, sourceBattler.isFainted,
-                sourceBattler.exp, sourceBattler.statusEffect, sourceBattler.EVs, sourceBattler.IVs, sourceBattler.nature,
+                sourceBattler.exp, sourceBattler.statusEffect, sourceBattler.sleepTurns, sourceBattler.statusEffectSeverity, sourceBattler.EVs, sourceBattler.IVs, sourceBattler.nature,
                 sourceBattler.currentHealth,
                 sourceBattler.moves, autoAssignHealth);
         }
 
-        public static Battler Init(BattlerTemplate source, int level, string name, List<Move> moves, bool autoAssignHealth)
+        /// <summary>
+        /// Creates a basic battler
+        /// </summary>
+        /// <param name="source">Template to draw from</param>
+        /// <param name="level">Level of the battler</param>
+        /// <param name="name">Name of the battler</param>
+        /// <param name="moves">Moves the battler has</param>
+        /// <param name="autoAssignHealth">Automatically set the battlers health to max</param>
+        /// <returns>The created battler</returns>
+        public static Battler Init(BattlerTemplate source, int level, string name, List<Move> moves, bool autoAssignHealth = true)
         {
-            BattlerStats EVs = BattlerStats.zero;
+            BattlerStats EVs = BattlerStats.Zero;
             
             BattlerStats IVs = new BattlerStats(
                 UnityEngine.Random.Range(0, 32),
@@ -508,10 +568,14 @@ namespace PokemonGame.General
             Gender gender = Gender.Female;
             
             return Init(source, level, name, gender, shiny, false,
-                0, StatusEffect.Healthy, EVs, IVs, nature, 0,
+                0, StatusEffect.Healthy, 0, 0, EVs, IVs, nature, 0,
                 moves, autoAssignHealth);
         }
 
+        /// <summary>
+        /// Gets the best front sprite for the battler
+        /// </summary>
+        /// <returns>The best front sprite</returns>
         public Sprite GetSpriteFront()
         {
             if (shiny)
@@ -529,11 +593,20 @@ namespace PokemonGame.General
             return source.texture.basic;
         }
 
+        /// <summary>
+        /// Gets the best back sprite for the battler
+        /// </summary>
+        /// <returns>The best back sprite</returns>
         public Sprite GetSpriteBack()
         {
             return source.texture.basicBack;
         }
 
+        /// <summary>
+        /// Gets the index of a move in the battlers move list
+        /// </summary>
+        /// <param name="move">The move to search for</param>
+        /// <returns>0 if not found, the index of the move if it is found</returns>
         public int GetIndexOfMove(Move move)
         {
             for (int i = 0; i < moves.Count; i++)
@@ -550,15 +623,23 @@ namespace PokemonGame.General
         /// <summary>
         /// Returns a battler that has been created using the parameters given
         /// </summary>
-        /// <param name="source">The Battler Template that the new battler will use to calculate stats</param>
-        /// <param name="level">The <see cref="level"/> of the new battler</param>
-        /// <param name="statusEffect">The status effect that the new battler will have</param>
+        /// <param name="source">The Battler Template that the new battler will use</param>
+        /// <param name="level">The level of the new battler</param>
         /// <param name="name">The nickname of the new battler</param>
-        /// <param name="moves">Moves that the battler has</param>
-        /// <param name="autoAssignHealth">Auto assign health to the <see cref="maxHealth"/> when creating</param>
-        /// <returns>A battler that has been created using the parameters given</returns>
+        /// <param name="gender">The gender of the new battler</param>
+        /// <param name="shiny">Weather the new battler is a shiny</param>
+        /// <param name="isFainted">Is the new battler fainted</param>
+        /// <param name="exp">The current exp level of the battler</param>
+        /// <param name="statusEffect">The active status effect of the battler</param>
+        /// <param name="EVs">The EV values of the battler</param>
+        /// <param name="IVs">The IV values of the battler</param>
+        /// <param name="nature">The nature of the battler</param>
+        /// <param name="currentHealth">The current health of the battler</param>
+        /// <param name="moves">The move list of the battler</param>
+        /// <param name="autoAssignHealth">Weather to automatically set the current health to the max health</param>
+        /// <returns>The created battler</returns>
         public static Battler Init(BattlerTemplate source, int level, string name, Gender gender, bool shiny, bool isFainted, int exp,
-            StatusEffect statusEffect, BattlerStats EVs, BattlerStats IVs, Nature nature, int currentHealth, List<Move> moves, bool autoAssignHealth)
+            StatusEffect statusEffect, int sleepTurns, int statusEffectSeverity, BattlerStats EVs, BattlerStats IVs, Nature nature, int currentHealth, List<Move> moves, bool autoAssignHealth)
         {
             Battler returnBattler = CreateInstance<Battler>();
             
@@ -568,6 +649,8 @@ namespace PokemonGame.General
             returnBattler.isFainted = isFainted;
             returnBattler.exp = exp;
             returnBattler.statusEffect = statusEffect;
+            returnBattler.sleepTurns = sleepTurns;
+            returnBattler.statusEffectSeverity = statusEffectSeverity;
             returnBattler.moves = new List<Move>();
             returnBattler.movePpInfos = new List<MovePPData>();
             returnBattler.EVs = EVs;
@@ -610,6 +693,9 @@ namespace PokemonGame.General
         }
     }
 
+    /// <summary>
+    /// Information and arguments pertaining to the level up of a battler
+    /// </summary>
     public class OnLevelUpEventArgs
     {
         public BattlerStats oldStats;
@@ -617,6 +703,9 @@ namespace PokemonGame.General
         public int newLevel;
     }
 
+    /// <summary>
+    /// The nature of a battler, affects stat changes
+    /// </summary>
     public enum Nature : int
     {
         Adamant,
@@ -646,6 +735,9 @@ namespace PokemonGame.General
         Timid
     }
 
+    /// <summary>
+    /// Gender of a battler
+    /// </summary>
     public enum Gender : int
     {
         Female,
@@ -653,6 +745,9 @@ namespace PokemonGame.General
         Genderless
     }
 
+    /// <summary>
+    /// Container for the stats associated with a battler
+    /// </summary>
     [Serializable]
     public struct BattlerStats
     {
@@ -663,7 +758,7 @@ namespace PokemonGame.General
         public int specialDefense;
         public int speed;
 
-        public static BattlerStats zero = new BattlerStats(0, 0, 0, 0, 0, 0);
+        public static BattlerStats Zero = new BattlerStats(0, 0, 0, 0, 0, 0);
 
         public BattlerStats(int maxHealth, int attack, int defense, int specialAttack, int specialDefense, int speed)
         {

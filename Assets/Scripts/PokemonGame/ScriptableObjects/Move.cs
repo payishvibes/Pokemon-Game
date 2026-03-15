@@ -87,6 +87,7 @@ namespace PokemonGame.ScriptableObjects
         public bool crit;
         public bool missed = false;
         public int damageDealt;
+        public bool success = true;
 
         public MoveMethodEventArgs(Battler attacker, Battler target, Move move, MovePPData movePPData, ExternalBattleData battleData)
         {

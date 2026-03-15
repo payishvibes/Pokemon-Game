@@ -46,6 +46,7 @@ namespace PokemonGame.Dialogue
         public event EventHandler<DialogueStartedEventArgs> OnDialogueStarted;
         public event EventHandler<DialogueEndedEventArgs> OnDialogueEnded;
         public event EventHandler<DialogueChoiceEventArgs> OnDialogueChoice;
+        public event EventHandler<DialogueQueuedEventArgs> OnDialogueQueued;
 
         private Queue<QueuedDialogue> _queue = new Queue<QueuedDialogue>();
 
@@ -170,10 +171,12 @@ namespace PokemonGame.Dialogue
             QueuedDialogue dialogue = new QueuedDialogue(trigger, variables, id, inkJson, boxType, autostart && !_forceStopNextQueued);
             if (_queue.Count > 0 || dialogueIsPlaying || _didntAutoStartCurrentLoaded) // if we can actually begin the dialogue or if we need to wait
             {
+                OnDialogueQueued?.Invoke(this, new DialogueQueuedEventArgs(trigger, dialogue));
                 _queue.Enqueue(dialogue);
             }
             else // load it now
             {
+                OnDialogueQueued?.Invoke(this, new DialogueQueuedEventArgs(trigger, dialogue));
                 LoadDialogueFromQueue(dialogue);
             }
             _forceStopNextQueued = false;
@@ -192,10 +195,12 @@ namespace PokemonGame.Dialogue
             QueuedDialogue dialogue = new QueuedDialogue(trigger, id, text, boxType, autostart && !_forceStopNextQueued);
             if (_queue.Count > 0 || dialogueIsPlaying || _didntAutoStartCurrentLoaded) // if we can actually begin the dialogue or if we need to wait
             {
+                OnDialogueQueued?.Invoke(this, new DialogueQueuedEventArgs(trigger, dialogue));
                 _queue.Enqueue(dialogue);
             }
             else // load it now
             {
+                OnDialogueQueued?.Invoke(this, new DialogueQueuedEventArgs(trigger, dialogue));
                 LoadDialogueFromQueue(dialogue);
             }
             _forceStopNextQueued = false;
@@ -724,6 +729,18 @@ namespace PokemonGame.Dialogue
         {
             this.trigger = trigger;
             this.choiceIndex = choiceIndex;
+        }
+    }
+
+    public class DialogueQueuedEventArgs : EventArgs
+    {
+        public DialogueTrigger trigger;
+        public QueuedDialogue queuedDialogue;
+
+        public DialogueQueuedEventArgs(DialogueTrigger trigger, QueuedDialogue queuedDialogue)
+        {
+            this.trigger = trigger;
+            this.queuedDialogue = queuedDialogue;
         }
     }
 

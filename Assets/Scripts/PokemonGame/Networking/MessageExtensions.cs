@@ -92,7 +92,7 @@ public static class MessageExtensions
         returnBattler.statusEffect = StatusEffect.Healthy;
         returnBattler.moves = new List<Move>();
         returnBattler.movePpInfos = new List<MovePPData>();
-        returnBattler.EVs = BattlerStats.zero;
+        returnBattler.EVs = BattlerStats.Zero;
         returnBattler.shiny = false;
         returnBattler.gender = gender;
         returnBattler.IVs = IVs;
