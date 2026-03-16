@@ -269,7 +269,9 @@ namespace PokemonGame.Battle
 
         private void BattlerEvolved(Battler battlerThatEvolved, BattlerTemplate newTemplate)
         {
-            QueueTurnItem(TurnItemType.PlayerOneEvolved, new List<object>()
+            int location = PlanningOnEndingTheBattle() ? turnItemQueue.Count - 1 : turnItemQueue.Count;
+            
+            InsertTurnItem(TurnItemType.PlayerOneEvolved, location, new List<object>()
             {
                 battlerThatEvolved,
                 newTemplate
@@ -543,50 +545,60 @@ namespace PokemonGame.Battle
             return currentTurnItem?.Type is TurnItemType.EndBattlePlayerTwoWin or TurnItemType.EndBattlePlayerOneWin or TurnItemType.Run;
         }
 
+        private bool PlanningOnEndingTheBattle()
+        {
+            return turnItemQueue.Find(x => x.Type is TurnItemType.EndBattlePlayerTwoWin or TurnItemType.EndBattlePlayerOneWin or TurnItemType.Run) != null;
+        }
+
         private IEnumerator TurnStartDelay()
         {
             yield return new WaitForSeconds(1);
             EndTurnItem();
         }
 
-        public void QueueTurnItem(TurnItemType type, List<object> variables)
+        private void QueueTurnItem(TurnItemType type, List<object> variables = null)
         {
             if (IsNotOnlineHost())
             {
                 return;
+            }
+            
+            if (variables == null)
+            {
+                variables = new List<object>();
             }
             TurnItem item = new TurnItem(type, variables);
             turnItemQueue.Add(item);
         }
 
-        private void QueueTurnItem(TurnItemType type)
+        private void InsertTurnItem(TurnItemType type, List<object> variables = null)
         {
             if (IsNotOnlineHost())
             {
                 return;
             }
-            TurnItem item = new TurnItem(type);
-            turnItemQueue.Add(item);
-        }
-
-        private void InsertTurnItem(TurnItemType type)
-        {
-            if (IsNotOnlineHost())
+            
+            if (variables == null)
             {
-                return;
-            }
-            TurnItem item = new TurnItem(type);
-            turnItemQueue.Insert(0, item);
-        }
-
-        private void InsertTurnItem(TurnItemType type, List<object> variables)
-        {
-            if (IsNotOnlineHost())
-            {
-                return;
+                variables = new List<object>();
             }
             TurnItem item = new TurnItem(type, variables);
             turnItemQueue.Insert(0, item);
+        }
+
+        private void InsertTurnItem(TurnItemType type, int index, List<object> variables = null)
+        {
+            if (IsNotOnlineHost())
+            {
+                return;
+            }
+
+            if (variables == null)
+            {
+                variables = new List<object>();
+            }
+            TurnItem item = new TurnItem(type, variables);
+            turnItemQueue.Insert(index, item);
         }
         
         public void TurnQueueItemEnded()

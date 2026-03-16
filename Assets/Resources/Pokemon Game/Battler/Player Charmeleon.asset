@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34c34158a6a1ace4da0180135a1a41b4, type: 3}
   m_Name: Player Charmeleon
   m_EditorClassIdentifier: 
-  name: Charmeleon
+  name: Charmander
   source: {fileID: 11400000, guid: 4f843dafd69ae554e90f655d7e688db3, type: 2}
   level: 15
   gender: 0
