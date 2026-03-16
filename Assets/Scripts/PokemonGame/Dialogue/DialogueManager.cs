@@ -272,7 +272,7 @@ namespace PokemonGame.Dialogue
 
         private void StartLoadedDialogue(QueuedDialogue dialogueToLoad)
         {
-            if (dialogueToLoad.autoStart)
+            if (dialogueToLoad.ink)
             {
                 OnDialogueStarted?.Invoke(this,
                     new DialogueStartedEventArgs(dialogueToLoad.trigger, currentQueuedDialogue.id,

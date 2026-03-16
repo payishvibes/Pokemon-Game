@@ -36,6 +36,7 @@ namespace PokemonGame.Battle
         PlayerOneSwap,
         PlayerTwoSwap,
         PlayerOneLevelUp,
+        PlayerOneEvolved,
         PlayerOneItem,
         PlayerTwoItem,
         EndBattlePlayerOneWin,

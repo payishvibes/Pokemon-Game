@@ -194,7 +194,6 @@ namespace PokemonGame.Battle
 
         private void HookEvents()
         {
-            DialogueManager.instance.OnDialogueStarted += OnDialogueStarted;
             DialogueManager.instance.OnDialogueEnded += DialogueEnded;
             partyOne.PartyAllDefeated += PlayerOnePartyAllDefeated;
             partyTwo.PartyAllDefeated += PlayerTwoPartyAllDefeated;
@@ -223,7 +222,6 @@ namespace PokemonGame.Battle
             partyOne.PartyAllDefeated -= PlayerOnePartyAllDefeated;
             partyTwo.PartyAllDefeated -= PlayerTwoPartyAllDefeated;
             DialogueManager.instance.OnDialogueEnded -= DialogueEnded;
-            
             
             for (int i = 0; i < partyOne.Count; i++)
             {
@@ -271,7 +269,17 @@ namespace PokemonGame.Battle
 
         private void BattlerEvolved(Battler battlerThatEvolved, BattlerTemplate newTemplate)
         {
-            QueDialogue($"{battlerThatEvolved.name} evolved into a {newTemplate.name}!", DialogueBoxType.Narration, "evolved");
+            QueueTurnItem(TurnItemType.PlayerOneEvolved, new List<object>()
+            {
+                battlerThatEvolved,
+                newTemplate
+            });
+        }
+
+        private void BattlerEvolvedEvent(Battler battlerThatEvolved, BattlerTemplate newTemplate)
+        {
+            QueDialogue($"{battlerThatEvolved.name} wants to evolve!", DialogueBoxType.Narration, "evolved");
+            QueDialogue($"{battlerThatEvolved.name} evolved into a {newTemplate.name}!", DialogueBoxType.Narration, "generalFinishing");
         }
         
         private IEnumerator ShowMove(MoveMethodEventArgs args)
@@ -467,6 +475,9 @@ namespace PokemonGame.Battle
                     break;
                 case TurnItemType.PlayerOneLevelUp:
                     BattlerLevelUpEvent(((Battler)currentTurnItem.Variables[0]).name, (int)currentTurnItem.Variables[1]);
+                    break;
+                case TurnItemType.PlayerOneEvolved:
+                    BattlerEvolvedEvent((Battler)currentTurnItem.Variables[0], (BattlerTemplate)currentTurnItem.Variables[1]);
                     break;
                 case TurnItemType.PlayerTwoSwap:
                     if (onlineBattle)
@@ -742,6 +753,9 @@ namespace PokemonGame.Battle
                 case "moveUsed":
                     StartCoroutine(ShowMove((MoveMethodEventArgs)currentTurnItem.Variables[^1]));
                     break;
+                case "evolved":
+                    EvolutionEffect((Battler)currentTurnItem.Variables[0]);
+                    break;
                 case "playerTwoFainted":
                     Debug.Log("finished fainted dialogue");
                     if (!args.moreToGo || !DialogueManager.instance.dialogueIsPlaying)
@@ -765,27 +779,8 @@ namespace PokemonGame.Battle
             }
         }
         
-        private void OnDialogueStarted(object sender, DialogueStartedEventArgs e)
+        private void EvolutionEffect(Battler evolvedBattler)
         {
-            switch (e.id)
-            {
-                case "evolved":
-                    EvolutionEffect(e);
-                    break;
-            }
-        }
-        
-        private void EvolutionEffect(DialogueStartedEventArgs e)
-        {
-            Battler evolvedBattler = playerOneCurrentBattler;
-            foreach (var playerBattler in partyOne.party)
-            {
-                if (e.text.Contains(playerBattler.name))
-                {
-                    evolvedBattler = playerBattler;
-                }
-            }
-
             if (evolvedBattler == playerOneCurrentBattler)
             {
                 OnBattlerEvolved?.Invoke(this, EventArgs.Empty);
