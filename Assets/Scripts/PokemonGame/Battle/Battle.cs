@@ -153,13 +153,12 @@ namespace PokemonGame.Battle
 
             ChangePlayerTwoBattlerIndex(0, true);
             
-            HookEvents();
-
             if (!onlineBattle)
             {
-                // adds current battler to list of participating battlers
-                playerOneBattlersThatParticipated.Add(playerOneCurrentBattler);
+                ResetParticipatingBattlers();
             }
+            
+            HookEvents();
             
             Instantiate(Resources.Load("Pokemon Game/Transitions/SpikyOpen"));
         }
@@ -450,9 +449,9 @@ namespace PokemonGame.Battle
                     break;
                 case TurnItemType.PlayerOneSwap:
                     if (onlineBattle)
-                        BattleNetworkManager.Instance.ServerSendTurnPlayerSwap(true, (int)currentTurnItem.Variables[^1]);
+                        BattleNetworkManager.Instance.ServerSendTurnPlayerSwap(true, (int)currentTurnItem.Variables[^2], (bool)currentTurnItem.Variables[^1]);
                     else
-                        PlayerOneSwappedBattler((int)currentTurnItem.Variables[^1]);
+                        PlayerOneSwappedBattler((int)currentTurnItem.Variables[^2], (bool)currentTurnItem.Variables[^1]);
                     break;
                 case TurnItemType.PlayerOneSwapBecauseFainted:
                     if (onlineBattle)
@@ -471,9 +470,9 @@ namespace PokemonGame.Battle
                     break;
                 case TurnItemType.PlayerTwoSwap:
                     if (onlineBattle)
-                        BattleNetworkManager.Instance.ServerSendTurnPlayerSwap(false, (int)currentTurnItem.Variables[^1]);
+                        BattleNetworkManager.Instance.ServerSendTurnPlayerSwap(false, (int)currentTurnItem.Variables[^2], (bool)currentTurnItem.Variables[^1]);
                     else
-                        PlayerTwoSwappedBattler((int)currentTurnItem.Variables[^1]);
+                        PlayerTwoSwappedBattler((int)currentTurnItem.Variables[^2], (bool)currentTurnItem.Variables[^1]);
                     break;
                 case TurnItemType.PlayerTwoSwapBecauseFainted:
                     if (onlineBattle)
@@ -729,10 +728,10 @@ namespace PokemonGame.Battle
                     StartCoroutine(ExitBattleWin());
                     break;
                 case "playerOneSwap":
-                    PlayerOneSwappedBattler((int)currentTurnItem.Variables[^1]);
+                    PlayerOneSwappedBattler((int)currentTurnItem.Variables[^2], (bool)currentTurnItem.Variables[^1]);
                     break;
                 case "playerTwoSwap":
-                    PlayerTwoSwappedBattler((int)currentTurnItem.Variables[^1]);
+                    PlayerTwoSwappedBattler((int)currentTurnItem.Variables[^2], (bool)currentTurnItem.Variables[^1]);
                     break;
                 case "playerDefeated":
                     StartCoroutine(ExitBattleLoss());
@@ -886,6 +885,7 @@ namespace PokemonGame.Battle
             if (_currentlyRunningQueueItem) // swapping mid turn showing aka after a battler faints
             {
                 currentTurnItem.Variables.Add(newBattlerIndex);
+                currentTurnItem.Variables.Add(true); // swaped because of fainted
                 if (!onlineBattle)
                 {
                     AddParticipatedBattler(partyOne[newBattlerIndex]);
@@ -894,14 +894,15 @@ namespace PokemonGame.Battle
             
                 if (IsOnlineHost())
                 {
-                    BattleNetworkManager.Instance.ServerSendTurnPlayerSwap(true, newBattlerIndex, true);
+                    BattleNetworkManager.Instance.ServerSendTurnPlayerSwap(true, newBattlerIndex, true, true);
                 }
             }
             else // player chose to swap as their move
             {
                 PickPlayerOneAction(new TurnItem(TurnItemType.PlayerOneSwap, new List<object>()
                 {
-                    newBattlerIndex
+                    newBattlerIndex,
+                    false // not because of fainted
                 }));
             }
         }
@@ -911,18 +912,20 @@ namespace PokemonGame.Battle
             if (_currentlyRunningQueueItem) // swapping mid turn showing aka after a battler faints
             {
                 currentTurnItem.Variables.Add(newBattlerIndex);
+                currentTurnItem.Variables.Add(true); // swapped because of fainted
                 QueDialogue($"{GetPlayerTwoName()} sent out {partyTwo[newBattlerIndex].name}", DialogueBoxType.Event, "playerTwoSwap");
                 
                 if (IsOnlineHost())
                 {
-                    BattleNetworkManager.Instance.ServerSendTurnPlayerSwap(false, newBattlerIndex, true);
+                    BattleNetworkManager.Instance.ServerSendTurnPlayerSwap(false, newBattlerIndex, true, true);
                 }
             }
             else // player chose to swap as their move
             {
                 PickPlayerTwoAction(new TurnItem(TurnItemType.PlayerTwoSwap, new List<object>()
                 {
-                    newBattlerIndex
+                    newBattlerIndex,
+                    false // not because of fainted
                 }));
             }
         }
@@ -953,11 +956,13 @@ namespace PokemonGame.Battle
             {
                 StartCoroutine(DelayChangeBattlerIndex(index));
             }
-            else
+            
+            OnStartChangeBattlerIndex?.Invoke(this, 0);
+            
+            if (skipShrink)
             {
                 FinishedChangingPlayerOneBattler(index);
             }
-            OnStartChangeBattlerIndex?.Invoke(this, 0);
         }
 
         private IEnumerator DelayChangeBattlerIndex(int index)
@@ -986,11 +991,13 @@ namespace PokemonGame.Battle
             {
                 StartCoroutine(DelayChangePlayerTwoBattlerIndex(index));
             }
-            else
+            
+            OnStartChangeBattlerIndex?.Invoke(this, 1);
+            
+            if (skipShrink)
             {
                 FinishedChangingPlayerTwoBattler(index);
             }
-            OnStartChangeBattlerIndex?.Invoke(this, 1);
         }
 
         private IEnumerator DelayChangePlayerTwoBattlerIndex(int index)
@@ -1002,25 +1009,44 @@ namespace PokemonGame.Battle
         private void FinishedChangingPlayerTwoBattler(int newIndex)
         {
             playerTwoDisplayBattlerIndex = newIndex;
+            if (!onlineBattle)
+            {
+                ResetParticipatingBattlers();
+            }
             OnChangeBattler?.Invoke(this, 1);
         }
 
-        public void PlayerOneSwappedBattler(int playerOneSwapIndex)
+        private void ResetParticipatingBattlers()
         {
-            ChangePlayerOneBattlerIndex(playerOneSwapIndex);
+            playerOneBattlersThatParticipated.Clear();
+            Debug.Log($"Resetting participating battlers to {playerOneBattlersThatParticipated.Count}");
+            AddParticipatedBattler(playerOneCurrentBattler);
+        }
+
+        public void PlayerOneSwappedBattler(int playerOneSwapIndex, bool becauseFainted)
+        {
+            ChangePlayerOneBattlerIndex(playerOneSwapIndex, becauseFainted);
             
             if (!onlineBattle)
             {
                 AddParticipatedBattler(partyOne[playerOneSwapIndex]);
             }
-            
+
+            if (!becauseFainted)
+            {
+                QueDialogue($"{GetPlayerOneName()} sent out {partyOne[playerOneSwapIndex].name}", DialogueBoxType.Event);
+            }
             QueDialogue($"Go ahead {partyOne[playerOneSwapIndex].name}!", DialogueBoxType.Event, "generalFinishing");
         }
 
-        public void PlayerTwoSwappedBattler(int playerTwoSwapIndex)
+        public void PlayerTwoSwappedBattler(int playerTwoSwapIndex, bool becauseFainted)
         {
-            ChangePlayerTwoBattlerIndex(playerTwoSwapIndex);
-            
+            ChangePlayerTwoBattlerIndex(playerTwoSwapIndex, becauseFainted);
+
+            if (!becauseFainted)
+            {
+                QueDialogue($"{GetPlayerTwoName()} sent out {partyTwo[playerTwoSwapIndex].name}", DialogueBoxType.Event);
+            }
             QueDialogue($"Go ahead {partyTwo[playerTwoSwapIndex].name}!", DialogueBoxType.Event, "generalFinishing");
         }
 

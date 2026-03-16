@@ -488,11 +488,12 @@ namespace PokemonGame.Networking
             message.AddBool(playerOne);
             Server.SendToAll(message);
         }
-        public void ServerSendTurnPlayerSwap(bool playerOne, int targetBattlerIndex, bool dontSendToLocal = false)
+        public void ServerSendTurnPlayerSwap(bool playerOne, int targetBattlerIndex, bool becauseFainted, bool dontSendToLocal = false)
         {
             Message message =  Message.Create(MessageSendMode.Reliable, ServerToClientMessageId.TurnPlayerSwap);
             message.AddBool(playerOne);
             message.AddInt(targetBattlerIndex);
+            message.AddBool(becauseFainted);
             if (dontSendToLocal)
             {
                 Server.SendToAll(message, Client.Id);
@@ -568,11 +569,12 @@ namespace PokemonGame.Networking
         {
             bool playerOne = message.GetBool();
             int targetBattlerIndex = message.GetInt();
+            bool becauseFainted = message.GetBool();
 
             if (playerOne)
-                Battle.Singleton.PlayerOneSwappedBattler(targetBattlerIndex);
+                Battle.Singleton.PlayerOneSwappedBattler(targetBattlerIndex, becauseFainted);
             else
-                Battle.Singleton.PlayerTwoSwappedBattler(targetBattlerIndex);
+                Battle.Singleton.PlayerTwoSwappedBattler(targetBattlerIndex, becauseFainted);
         }
         public void ClientGotTurnEndBattle(Message message)
         {

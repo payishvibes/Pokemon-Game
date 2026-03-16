@@ -405,6 +405,7 @@ namespace PokemonGame.Battle
 
         public void ExpandPlayerTwoBattler()
         {
+            Debug.Log("Expanding player two battler");
             targetPlayerTwoBattlerScale = _initialPlayerTwoScale;
         }
 
