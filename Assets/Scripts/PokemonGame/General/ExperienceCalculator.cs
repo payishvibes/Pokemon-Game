@@ -43,22 +43,22 @@ namespace PokemonGame.General
 
             switch (battler.source.expGroup)
             {
-                case ExperienceGroup.Erratic:
-                    required = ErraticGrowth(battler.level+1) - ErraticGrowth(battler.level);
+                case ExperienceGroup.Slow:
+                    required = SlowGrowth(battler.level+1) - SlowGrowth(battler.level);
                     break;
-                case ExperienceGroup.Fast:
+                case ExperienceGroup.Medium:
                     required = FastGrowth(battler.level+1) - FastGrowth(battler.level);
                     break;
-                case ExperienceGroup.MediumFast:
+                case ExperienceGroup.Fast:
                     required = MediumFastGrowth(battler.level+1) - MediumFastGrowth(battler.level);
                     break;
                 case ExperienceGroup.MediumSlow:
                     required = MediumSlowGrowth(battler.level+1) - MediumSlowGrowth(battler.level);
                     break;
-                case ExperienceGroup.Slow:
-                    required = SlowGrowth(battler.level+1) - SlowGrowth(battler.level);
+                case ExperienceGroup.SlowThenVeryFast:
+                    required = ErraticGrowth(battler.level+1) - SlowGrowth(battler.level);
                     break;
-                case ExperienceGroup.Fluctuating:
+                case ExperienceGroup.FastThenVerySlow:
                     required = FluctuatingGrowth(battler.level+1) - FluctuatingGrowth(battler.level);
                     break;
             }

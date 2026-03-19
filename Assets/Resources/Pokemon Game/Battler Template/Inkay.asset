@@ -1,0 +1,128 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d18b0702c76df542a3a20fe8e6205e9, type: 3}
+  m_Name: Inkay
+  m_EditorClassIdentifier: Assembly-CSharp::PokemonGame.ScriptableObjects.BattlerTemplate
+  name: Inkay
+  primaryType: 2
+  secondaryType: 2
+  texture:
+    basic: {fileID: 0}
+    female: {fileID: 0}
+    basicBack: {fileID: 0}
+    femaleBack: {fileID: 0}
+    shiny: {fileID: 0}
+    femaleShiny: {fileID: 0}
+    shinyBack: {fileID: 0}
+    femaleShinyBack: {fileID: 0}
+  dexNo: 686
+  possibleMoves:
+    levelup:
+      keys:
+      - {fileID: 11400000, guid: d4639e5cb3f782d4587a463bffb7265a, type: 2}
+      - {fileID: 11400000, guid: 4399994f7607aeb4ca80dc9e556ae281, type: 2}
+      - {fileID: 11400000, guid: adbb3b0e5ae0155438a6c3b64aafe965, type: 2}
+      - {fileID: 11400000, guid: 681d3cc3c1387034eb3e8a9692f8051a, type: 2}
+      - {fileID: 11400000, guid: 9c36c38e050d8cd43995edfdd3f9e073, type: 2}
+      - {fileID: 11400000, guid: 49fad8f4416facc47a14ddba14852f4d, type: 2}
+      - {fileID: 11400000, guid: a0676617c8f3cf94f9501a9a2bc60aa3, type: 2}
+      - {fileID: 11400000, guid: 0132c79b6cfcaae42a802ce356902595, type: 2}
+      - {fileID: 11400000, guid: f9b81ff65ece41d4b9fb329a585db887, type: 2}
+      - {fileID: 11400000, guid: e242e7f9193bb1047b3c360fa47f6bc2, type: 2}
+      - {fileID: 11400000, guid: 988a5b3a745ae574cb8044c55933d244, type: 2}
+      - {fileID: 11400000, guid: b11a9e576decbe6408249c135ff6acee, type: 2}
+      - {fileID: 11400000, guid: bd715e1194aea574cb14cfb821585d3f, type: 2}
+      - {fileID: 11400000, guid: 9e25375f15a6afb4d9cd04b9b8e3cc4a, type: 2}
+      - {fileID: 11400000, guid: 2c74fa1945c0a534f91cfadff0756783, type: 2}
+      - {fileID: 11400000, guid: b4321c4aca876cc418d329a9c9529213, type: 2}
+      - {fileID: 11400000, guid: 4113858664b7ca44aa938db414070fc0, type: 2}
+      - {fileID: 11400000, guid: 152277e841f21d148a0c28f3a1732807, type: 2}
+      values: 010000001500000001000000120000001f00000004000000010000000d0000002b0000000c00000030000000230000001b0000002e0000001700000027000000080000000f000000
+    tm:
+    - {fileID: 11400000, guid: b0cb5ddc202d57e4297df613100629dc, type: 2}
+    - {fileID: 11400000, guid: 7f5d3ea75158ce442b5cca9d9448cb16, type: 2}
+    - {fileID: 11400000, guid: d64e418a175825643a0869689a75d087, type: 2}
+    - {fileID: 11400000, guid: 895e70098e777ef4ebbdf7d0418db2ba, type: 2}
+    - {fileID: 11400000, guid: 4906e02cd94083e4b9a3ff65afbaa7ae, type: 2}
+    - {fileID: 11400000, guid: 457b5bd9d4c0aa940bbc9d0300ec96fe, type: 2}
+    - {fileID: 11400000, guid: 98fa084e09bd1974c9104697fb5e7344, type: 2}
+    - {fileID: 11400000, guid: aca5db6d4ade2ca42b273a54a86fa2d4, type: 2}
+    - {fileID: 11400000, guid: 01890b387bfab1a42838233525dc7e25, type: 2}
+    - {fileID: 11400000, guid: e64daca0bb1f7d24e9da057ca41d1480, type: 2}
+    - {fileID: 11400000, guid: d7c74a17158a8454396d8c6107df184a, type: 2}
+    - {fileID: 11400000, guid: c2e2fe624083032449950f6ca8b43e1a, type: 2}
+    - {fileID: 11400000, guid: 910b49de4ce52c04a83339ef4081d551, type: 2}
+    - {fileID: 11400000, guid: e555b56d435cc5b47b9387c3b5c4717b, type: 2}
+    - {fileID: 11400000, guid: efe6e01b327c93e41a1982d04df529ce, type: 2}
+    - {fileID: 11400000, guid: 9c96ec7791b665b438ccc68b9f504537, type: 2}
+    - {fileID: 11400000, guid: 24e65cd33fc0be1478bf29b3f2ad62cd, type: 2}
+    - {fileID: 11400000, guid: 108cc065cd2f91b41beafb564a7fa85d, type: 2}
+    - {fileID: 11400000, guid: 73a7149baa7067c40adfd38d55765297, type: 2}
+    - {fileID: 11400000, guid: 6b6e6f426f86f7848b4a4be49594bfaf, type: 2}
+    - {fileID: 11400000, guid: 245077e7ec5282f4cac095fc34404240, type: 2}
+    - {fileID: 11400000, guid: d1b17bceacbb5a64fbc9c445499ad08b, type: 2}
+    - {fileID: 11400000, guid: af8c3910e6fa49c4092effa116fbcdea, type: 2}
+    - {fileID: 11400000, guid: aeed82d3054e99642ae3ab5a70ddea5b, type: 2}
+    - {fileID: 11400000, guid: b28d84d0564542d448c7ef8bb277f869, type: 2}
+    - {fileID: 11400000, guid: c8791301a32707f4c90798f461919d4e, type: 2}
+    - {fileID: 11400000, guid: a87ff9f216232e74ebf07536db8fc8fe, type: 2}
+    - {fileID: 11400000, guid: a0773b271e953a24a8e70b075d1629d1, type: 2}
+    - {fileID: 11400000, guid: a5264ad4f182e954998622e9dfd04eaf, type: 2}
+    egg:
+    - {fileID: 11400000, guid: ba69f2a49fe555244bcdf6166b9c707a, type: 2}
+    - {fileID: 11400000, guid: a3141f3701da7e845b6613318548ef94, type: 2}
+    - {fileID: 11400000, guid: 5350773795886c948935d6228abf2235, type: 2}
+    - {fileID: 11400000, guid: 242b847baf7676e4ebed256578bd08cb, type: 2}
+    - {fileID: 11400000, guid: 6523aa95e43009b459edf4ba34e79f1f, type: 2}
+    - {fileID: 11400000, guid: 3ae6de2e27c249a4988815803c1e50b9, type: 2}
+    tutor:
+    - {fileID: 11400000, guid: d40ad06284bfc6d43ab9c244133ad39d, type: 2}
+    - {fileID: 11400000, guid: 336eda2a3f8b3644fb6f6298c28bdf94, type: 2}
+    - {fileID: 11400000, guid: e6a3aa8344fe01847b6f6213f9adf458, type: 2}
+    - {fileID: 11400000, guid: 1dbaa2d97fe93894e87e1c4fd90a0aa8, type: 2}
+    - {fileID: 11400000, guid: 0b51e867242d2284d9ce9eca8298ff83, type: 2}
+    - {fileID: 11400000, guid: 47c47ea3865939a45b86a936fbeb62aa, type: 2}
+    - {fileID: 11400000, guid: 539c45d5e7c7072449a96ff19e1a326e, type: 2}
+    - {fileID: 11400000, guid: e222f25d7ae68dd4b8738850bf2cc879, type: 2}
+  evolutions:
+    possibleEvolutions:
+    - triggerType: 0
+      minLevel: 30
+      useItem: {fileID: 0}
+      heldItem: {fileID: 0}
+      knownMove: {fileID: 0}
+      knownMoveType: {fileID: 0}
+      minAffection: -1
+      minBeauty: -1
+      minHappiness: -1
+      needRain: 0
+      timeOfDay: 
+      tradeSpecies: 
+      evolution: {fileID: 11400000, guid: e982f520881df6937944e4c776587474, type: 2}
+  expGroup: 1
+  catchRate: 190
+  baseFriendship: 70
+  baseStats:
+    maxHealth: 53
+    attack: 54
+    defense: 53
+    specialAttack: 37
+    specialDefense: 46
+    speed: 45
+  expYield: 58
+  yields:
+    maxHealth: 0
+    attack: 1
+    defense: 0
+    specialAttack: 0
+    specialDefense: 0
+    speed: 0

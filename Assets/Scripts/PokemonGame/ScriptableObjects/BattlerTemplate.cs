@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using PokeApiNet;
 using PokemonGame.General;
 using PokemonGame.Global;
+using Gender = PokemonGame.General.Gender;
 
 namespace PokemonGame.ScriptableObjects
 {
@@ -76,121 +78,83 @@ namespace PokemonGame.ScriptableObjects
 
         public void TryFillInfo()
         {
-            FillBasicInfo();
-            FillYieldInfo();
+            if (pokeClient == null)
+            {
+                pokeClient = new PokeApiClient();
+            }
+            
+            FillBasicInfoAsync();
 
             FillMoveAsync();
             FillEvolutionsAsync();
         }
 
-        private void FillBasicInfo()
+        private async void FillBasicInfoAsync()
         {
-            StreamReader streamReader =
-                new StreamReader("C:\\Users\\Mr. Monster\\Documents\\Pokemon Gen 7 database\\Pokemon Database.csv");
-            bool found = false;
-            bool endOfFile = false;
-            string data = "";
-            int dexNo = 0;
-            while (!found && !endOfFile)
-            {
-                string dataString = streamReader.ReadLine();
-                if (dataString == null)
-                {
-                    endOfFile = true;
-                    break;
-                }
-
-                var dataValues = Regex.Split(dataString, @"(?<=[^ ]),(?=[^ ])", RegexOptions.None);
-
-                if (dataValues[2].Replace("\"", "") == name)
-                {
-                    found = true;
-                    data = dataString;
-                    dexNo = int.Parse(dataValues[1]);
-                }
-            }
-
-            streamReader.Close();
-
-            if (found)
-            {
-                data = data.Replace("\"", "");
-                data = data.Replace("NULL", "");
-                var values = Regex.Split(data, @"(?<=[^ ]),(?=[^ ])", RegexOptions.None);
-
-                primaryType = (BasicType)Enum.Parse(typeof(BasicType), values[9], true);
-                if (!string.IsNullOrEmpty(values[10]))
-                {
-                    secondaryType = (BasicType)Enum.Parse(typeof(BasicType), values[10], true);
-                }
-
-                catchRate = int.Parse(values[37]);
-                baseStats.maxHealth = int.Parse(values[23]);
-                baseStats.attack = int.Parse(values[24]);
-                baseStats.defense = int.Parse(values[25]);
-                baseStats.specialAttack = int.Parse(values[26]);
-                baseStats.specialDefense = int.Parse(values[27]);
-                baseStats.speed = int.Parse(values[28]);
-                baseFriendship = int.Parse(values[21]);
-                this.dexNo = dexNo;
-
-                texture = new Sprites();
-
-                texture.basic = Resources.Load<Sprite>($"Pokemon Game/sprites/{dexNo}");
-                texture.shiny = Resources.Load<Sprite>($"Pokemon Game/sprites/shiny/{dexNo}");
-                texture.female = Resources.Load<Sprite>($"Pokemon Game/sprites/female/{dexNo}");
-                texture.femaleShiny = Resources.Load<Sprite>($"Pokemon Game/sprites/shiny/female/{dexNo}");
-                texture.basicBack = Resources.Load<Sprite>($"Pokemon Game/sprites/back/{dexNo}");
-                texture.shinyBack = Resources.Load<Sprite>($"Pokemon Game/sprites/back/shiny/{dexNo}");
-                texture.femaleBack = Resources.Load<Sprite>($"Pokemon Game/sprites/back/female/{dexNo}");
-                texture.femaleShinyBack = Resources.Load<Sprite>($"Pokemon Game/sprites/back/shiny/female/{dexNo}");
-
-                expGroup = (ExperienceGroup)Enum.Parse(typeof(ExperienceGroup), values[38].Replace(" ", ""), true);
-            }
+            await FillBasicInfo(this);
         }
 
-        private void FillYieldInfo()
+        private static async Task FillBasicInfo(BattlerTemplate template)
         {
-            Debug.Log("getting yield info");
+            /*
+              TO FILL:
+              Primary Type --------DONE
+              Secondary Type ------DONE
+              Catch Rate ----------DONE
+              All Base stats  -----DONE
+              Base friendship -----DONE
+              Dex Number ----------DONE
+              All Texture inf -----DONE
+              Exp Group -----------DONE
+              All Yields ----------DONE
+              Exp Yield -----------DONE
+             */
             
-            StreamReader streamReader =
-                new StreamReader("C:\\Users\\Mr. Monster\\Documents\\Pokemon Gen 7 database\\yield values.csv");
-            bool found = false;
-            bool endOfFile = false;
-            string data = "";
-            while (!found && !endOfFile)
-            {
-                string dataString = streamReader.ReadLine();
-                if (dataString == null)
-                {
-                    endOfFile = true;
-                    break;
-                }
+            Pokemon pokemon = await pokeClient.GetResourceAsync<Pokemon>(template.name.ToLower());
+            PokemonSpecies species = await pokeClient.GetResourceAsync<PokemonSpecies>(template.name.ToLower());
+            template.baseFriendship = species.BaseHappiness.HasValue ? species.BaseHappiness.Value : 0;
+            template.expYield = pokemon.BaseExperience.HasValue ? pokemon.BaseExperience.Value : 0;
+            template.catchRate = species.CaptureRate.HasValue ? species.CaptureRate.Value : 0;
 
-                var dataValues = Regex.Split(dataString, @"(?<=[^']),(?=[^'])", RegexOptions.None);
+            template.baseStats.maxHealth = pokemon.Stats[0].BaseStat;
+            template.baseStats.attack = pokemon.Stats[1].BaseStat;
+            template.baseStats.defense = pokemon.Stats[2].BaseStat;
+            template.baseStats.specialAttack = pokemon.Stats[3].BaseStat;
+            template.baseStats.specialDefense = pokemon.Stats[4].BaseStat;
+            template.baseStats.speed = pokemon.Stats[5].BaseStat;
+            
+            template.yields.maxHealth = pokemon.Stats[0].Effort;
+            template.yields.attack = pokemon.Stats[1].Effort;
+            template.yields.defense = pokemon.Stats[2].Effort;
+            template.yields.specialAttack = pokemon.Stats[3].Effort;
+            template.yields.specialDefense = pokemon.Stats[4].Effort;
+            template.yields.speed = pokemon.Stats[5].Effort;
 
-                if (dataValues[0].Replace("\"", "") == name)
-                {
-                    found = true;
-                    data = dataString;
-                }
-            }
+            template.primaryType = ToEnum<BasicType>(pokemon.Types[0].Type.Name);
+            if (pokemon.Types.Count > 1)
+                template.secondaryType = ToEnum<BasicType>(pokemon.Types[0].Type.Name);
+            else
+                template.secondaryType = BasicType.None;
 
-            streamReader.Close();
+            Debug.Log(species.PokedexNumbers[0].EntryNumber);
+            template.dexNo = species.PokedexNumbers[0].EntryNumber; // national dex
+            template.expGroup = ToEnum<ExperienceGroup>(species.GrowthRate.Name.Replace("-",""));
 
-            if (found)
-            {
-                data = data.Replace("\"", "");
-                var stats = Regex.Split(data, @"(?<=[^']),(?=[^'])", RegexOptions.None);
-
-                expYield = int.Parse(stats[1]);
-                yields.maxHealth = int.Parse(stats[2]);
-                yields.attack = int.Parse(stats[3]);
-                yields.defense = int.Parse(stats[4]);
-                yields.specialAttack = int.Parse(stats[5]);
-                yields.specialDefense = int.Parse(stats[6]);
-                yields.speed = int.Parse(stats[7]);
-            }
+            Sprites texture = new Sprites();
+            texture.basic = Resources.Load<Sprite>($"Pokemon Game/sprites/{template.dexNo}");
+            texture.shiny = Resources.Load<Sprite>($"Pokemon Game/sprites/shiny/{template.dexNo}");
+            texture.female = Resources.Load<Sprite>($"Pokemon Game/sprites/female/{template.dexNo}");
+            texture.femaleShiny = Resources.Load<Sprite>($"Pokemon Game/sprites/shiny/female/{template.dexNo}");
+            texture.basicBack = Resources.Load<Sprite>($"Pokemon Game/sprites/back/{template.dexNo}");
+            texture.shinyBack = Resources.Load<Sprite>($"Pokemon Game/sprites/back/shiny/{template.dexNo}");
+            texture.femaleBack = Resources.Load<Sprite>($"Pokemon Game/sprites/back/female/{template.dexNo}");
+            texture.femaleShinyBack = Resources.Load<Sprite>($"Pokemon Game/sprites/back/shiny/female/{template.dexNo}");
+            template.texture = texture;
+        }
+        
+        public static T ToEnum<T>(string value)
+        {
+            return (T) Enum.Parse(typeof(T), value, true);
         }
 
         public async void FillEvolutionsAsync()
@@ -242,18 +206,18 @@ namespace PokemonGame.ScriptableObjects
             data.evolution = Registry.GetBattlerTemplate(link.Species.Name);
 
             EvolutionDetail evoDets = link.EvolutionDetails[0];
-
-            if (method == "level-up")
+            
+            switch (method)
             {
-                data.triggerType = EvolutionTriggerType.Level;
-            }
-            else if (method == "use-item")
-            {
-                data.triggerType = EvolutionTriggerType.UseItem;
-            }
-            else if (method == "trade")
-            {
-                data.triggerType = EvolutionTriggerType.Trade;
+                case "level-up":
+                    data.triggerType = EvolutionTriggerType.Level;
+                    break;
+                case "use-item":
+                    data.triggerType = EvolutionTriggerType.UseItem;
+                    break;
+                case "trade":
+                    data.triggerType = EvolutionTriggerType.Trade;
+                    break;
             }
 
             data.minLevel = evoDets.MinLevel ?? -1;
@@ -279,11 +243,6 @@ namespace PokemonGame.ScriptableObjects
 
         private static async Task FillMoveInfo(BattlerTemplate template)
         {
-            if (pokeClient == null)
-            {
-                pokeClient = new PokeApiClient();
-            }
-            
             Pokemon pokemon = await pokeClient.GetResourceAsync<Pokemon>(template.name.ToLower());
 
             // List<PokeApiNet.Move> allMoves = await pokeClient.GetResourceAsync(pokemon.Moves.Select(move => move.Move));

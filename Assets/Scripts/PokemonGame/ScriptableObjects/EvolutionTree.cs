@@ -54,10 +54,10 @@ namespace PokemonGame.ScriptableObjects
 
     public enum ExperienceGroup
     {
-        MediumFast,
-        Erratic,
-        Fluctuating,
         MediumSlow,
+        Medium,
+        FastThenVerySlow,
+        SlowThenVeryFast,
         Fast,
         Slow
     }
