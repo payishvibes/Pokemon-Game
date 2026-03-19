@@ -18,11 +18,11 @@ MonoBehaviour:
   texture:
     basic: {fileID: 21300000, guid: c3ac6a17cca0b8045805ae0cd46d763e, type: 3}
     female: {fileID: 0}
-    basicBack: {fileID: 0}
+    basicBack: {fileID: 21300000, guid: f906a7efd1222f0e3828268bc2640041, type: 3}
     femaleBack: {fileID: 0}
     shiny: {fileID: 21300000, guid: 1fa316b1308b60648874cc7da391cea7, type: 3}
     femaleShiny: {fileID: 0}
-    shinyBack: {fileID: 0}
+    shinyBack: {fileID: 21300000, guid: c2fbdb3d05388d7788d18129e0c1fa18, type: 3}
     femaleShinyBack: {fileID: 0}
   dexNo: 687
   possibleMoves:

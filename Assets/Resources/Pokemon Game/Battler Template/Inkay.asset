@@ -16,13 +16,13 @@ MonoBehaviour:
   primaryType: 2
   secondaryType: 2
   texture:
-    basic: {fileID: 0}
+    basic: {fileID: 21300000, guid: 07736eba813cbd043bf21c59a156c903, type: 3}
     female: {fileID: 0}
-    basicBack: {fileID: 0}
+    basicBack: {fileID: 21300000, guid: 76a25365833c82a49a5fc15d4028a7de, type: 3}
     femaleBack: {fileID: 0}
-    shiny: {fileID: 0}
+    shiny: {fileID: 21300000, guid: f6e90d1952da4c145a33cf53159e2dcd, type: 3}
     femaleShiny: {fileID: 0}
-    shinyBack: {fileID: 0}
+    shinyBack: {fileID: 21300000, guid: fab9faf58ab17ca469aa177e68dc2d28, type: 3}
     femaleShinyBack: {fileID: 0}
   dexNo: 686
   possibleMoves:
