@@ -3,7 +3,6 @@ using PokemonGame.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using UnityEngine.UI.Extensions;
 
 namespace PokemonGame.Dialogue
 {
@@ -25,7 +24,8 @@ namespace PokemonGame.Dialogue
         
         [Header("Dialogue Panels")]
         [SerializeField] private GameObject dialoguePanel;
-        [SerializeField] private List<GameObject> dialoguePanels;
+        private Button DialoguePanelButton => dialoguePanels[(int)currentDialogueBoxType];
+        [SerializeField] private List<Button> dialoguePanels;
         
         [Space]
         [SerializeField] private GameObject[] choices;
@@ -39,7 +39,7 @@ namespace PokemonGame.Dialogue
         private DialogueVariables _dialogueVariables;
         private DialogueMethods _dialogueMethods;
 
-        public bool dialogueIsPlaying { get; private set; }
+        public bool DialogueIsPlaying { get; private set; }
         public DialogueTrigger currentTrigger;
         [SerializeField] private PlayerMovement movement;
         
@@ -110,11 +110,19 @@ namespace PokemonGame.Dialogue
 
         public void PressedContinue()
         {
+            bool wasInitiallyPlayingAnimation = _textAnimPlaying;
+            
             if (_textAnimPlaying)
             {
                 _textAnimPlaying = false;
             }
-            else if (!HasChoices())
+            else
+            {
+                ExpandingButton dialogueButton = DialoguePanelButton.GetComponent<ExpandingButton>();
+                dialogueButton.InitiateClick();
+            }
+            
+            if (!HasChoices() && !wasInitiallyPlayingAnimation)
             {
                 ContinueStory();
             }
@@ -122,7 +130,7 @@ namespace PokemonGame.Dialogue
 
         private void BackPressed(InputAction.CallbackContext context)
         {
-            if (cancelChoiceId != -1 && HasChoices() && dialogueIsPlaying)
+            if (cancelChoiceId != -1 && HasChoices() && DialogueIsPlaying)
             {
                 MakeChoice(cancelChoiceId);
             }
@@ -140,7 +148,7 @@ namespace PokemonGame.Dialogue
 
         private void Start()
         {
-            dialogueIsPlaying = false;
+            DialogueIsPlaying = false;
             dialoguePanel.SetActive(false);
             _choicesText = new TextMeshProUGUI[choices.Length];
             
@@ -169,7 +177,7 @@ namespace PokemonGame.Dialogue
         public void QueDialogue(TextAsset inkJson, DialogueTrigger trigger, string id, bool autostart, DialogueBoxType boxType, Dictionary<string, string> variables = null)
         {
             QueuedDialogue dialogue = new QueuedDialogue(trigger, variables, id, inkJson, boxType, autostart && !_forceStopNextQueued);
-            if (_queue.Count > 0 || dialogueIsPlaying || _didntAutoStartCurrentLoaded) // if we can actually begin the dialogue or if we need to wait
+            if (_queue.Count > 0 || DialogueIsPlaying || _didntAutoStartCurrentLoaded) // if we can actually begin the dialogue or if we need to wait
             {
                 OnDialogueQueued?.Invoke(this, new DialogueQueuedEventArgs(trigger, dialogue));
                 _queue.Enqueue(dialogue);
@@ -193,7 +201,7 @@ namespace PokemonGame.Dialogue
         public void QueDialogue(string text, DialogueTrigger trigger, string id, bool autostart, DialogueBoxType boxType)
         {
             QueuedDialogue dialogue = new QueuedDialogue(trigger, id, text, boxType, autostart && !_forceStopNextQueued);
-            if (_queue.Count > 0 || dialogueIsPlaying || _didntAutoStartCurrentLoaded) // if we can actually begin the dialogue or if we need to wait
+            if (_queue.Count > 0 || DialogueIsPlaying || _didntAutoStartCurrentLoaded) // if we can actually begin the dialogue or if we need to wait
             {
                 OnDialogueQueued?.Invoke(this, new DialogueQueuedEventArgs(trigger, dialogue));
                 _queue.Enqueue(dialogue);
@@ -240,7 +248,7 @@ namespace PokemonGame.Dialogue
             }
             else
             {
-                dialogueIsPlaying = false;
+                DialogueIsPlaying = false;
                 dialoguePanel.SetActive(false);
                 _didntAutoStartCurrentLoaded = true;
             }
@@ -285,7 +293,7 @@ namespace PokemonGame.Dialogue
                         currentQueuedDialogue.text));
             }
             _didntAutoStartCurrentLoaded = false;
-            dialogueIsPlaying = true;
+            DialogueIsPlaying = true;
             dialoguePanel.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -335,7 +343,7 @@ namespace PokemonGame.Dialogue
                     Cursor.lockState = CursorLockMode.Locked;
                     Cursor.visible = false;
                 }
-                dialogueIsPlaying = false;
+                DialogueIsPlaying = false;
                 dialoguePanel.SetActive(false);
                 currentTrigger.EndDialogue();
                 OnDialogueEnded?.Invoke(this, new DialogueEndedEventArgs(currentTrigger, currentQueuedDialogue, id, false));
@@ -347,7 +355,7 @@ namespace PokemonGame.Dialogue
         /// </summary>
         private void ContinueStory()
         {
-            dialogueIsPlaying = true;
+            DialogueIsPlaying = true;
             StopAllCoroutines();
             ClearChoices();
 
@@ -483,27 +491,22 @@ namespace PokemonGame.Dialogue
         private IEnumerator DisplayText(string nextSentence, DialogueBoxType boxType, bool showChoices, bool handleTags)
         {
             _textAnimPlaying = true;
-            
-            EventSystem.current.SetSelectedGameObject(dialoguePanel.GetComponentsInChildren<Button>()[0].gameObject);
 
             currentDialogueBoxType = boxType;
 
             foreach (var panel in dialoguePanels)
             {
-                panel.SetActive(false);
+                panel.gameObject.SetActive(false);
             }
 
             int boxTypeIndex = (int)boxType;
 
-            dialoguePanels[boxTypeIndex].SetActive(true);
+            dialoguePanels[boxTypeIndex].gameObject.SetActive(true);
             EventSystem.current.SetSelectedGameObject(dialoguePanels[boxTypeIndex].gameObject);
             TextMeshProUGUI textToUse = dialoguePanels[boxTypeIndex].GetComponentInChildren<TextMeshProUGUI>();;
-            ExpandingButton buttonToUse = dialoguePanels[boxTypeIndex].GetComponent<ExpandingButton>();
             GameObject indicatorToUse = dialoguePanels[boxTypeIndex].transform.GetChild(1).GetChild(0).gameObject;
             
             indicatorToUse.SetActive(false);
-
-            bool interupted = false;
             
             // actually display text lol, everything else is just additional stuff
             textToUse.text = "";
@@ -511,7 +514,6 @@ namespace PokemonGame.Dialogue
             {
                 if (!_textAnimPlaying)
                 {
-                    interupted = true;
                     break;
                 }
                 textToUse.text += letter;
@@ -519,10 +521,6 @@ namespace PokemonGame.Dialogue
             }
 
             textToUse.text = nextSentence;
-            if (interupted)
-            {
-                buttonToUse.SetPreviousScale();
-            }
             _textAnimPlaying = false;
 
             if (showChoices)
@@ -588,28 +586,9 @@ namespace PokemonGame.Dialogue
                     + currentChoices.Count);
             }
 
-            // Change the navigation up from the dialogue panel to the lowest dialogue choice button
+            // Disable the display from being interacted with
             if (currentChoices.Count > 0)
-            {
-                Button dialogueNavButton = dialoguePanels[0].GetComponent<Button>();
-                
-                switch (currentDialogueBoxType)
-                {
-                    case DialogueBoxType.Dialogue:
-                        dialogueNavButton = dialoguePanels[0].GetComponent<Button>(); 
-                        break;
-                    case DialogueBoxType.Narration:
-                        dialogueNavButton = dialoguePanels[1].GetComponent<Button>();
-                        break;
-                    case DialogueBoxType.Event:
-                        dialogueNavButton = dialoguePanels[2].GetComponent<Button>();
-                        break;
-                }
-                
-                Navigation nav = dialogueNavButton.navigation;
-                nav.selectOnUp = _choicesText[currentChoices.Count - 1].transform.parent.GetComponent<Button>();
-                dialogueNavButton.navigation = nav;
-            }
+                DialoguePanelButton.interactable = false;
             
             int index = 0;
             
@@ -625,6 +604,10 @@ namespace PokemonGame.Dialogue
                 choices[i].gameObject.SetActive(false);
                 yield return null;
             }
+            
+            // hover over the first choice
+            if (currentChoices.Count > 0)
+                EventSystem.current.SetSelectedGameObject(choices[0]);
         }
         
         /// <summary>
@@ -633,6 +616,7 @@ namespace PokemonGame.Dialogue
         /// <param name="choiceIndex">The choicer index of the player wants to make</param>
         public void MakeChoice(int choiceIndex)
         {
+            DialoguePanelButton.interactable = true;
             _currentStory.ChooseChoiceIndex(choiceIndex);
 
             cancelChoiceId = -1;

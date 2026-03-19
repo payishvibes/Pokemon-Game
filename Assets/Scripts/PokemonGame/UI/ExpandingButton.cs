@@ -1,4 +1,5 @@
 using System;
+using PokemonGame.General;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -9,9 +10,12 @@ namespace PokemonGame.UI
     public class ExpandingButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
     {
         [SerializeField] private bool expandWhenHover = true;
+        [SerializeField] private bool hasClickOverride = false;
         [SerializeField] private float scale = 1.1f;
         [SerializeField] private float speed = 4f;
-        [SerializeField] private Transform targetGraphic;
+        [SerializeField] private Button targetButton;
+        [SerializeField] private bool hasTargetOverride;
+        [ConditionalHide("hasTargetOverride", true)] public Transform targetGraphic;
         [SerializeField] private UnityEvent onHover;
 
         private bool _hovering = false;
@@ -20,34 +24,35 @@ namespace PokemonGame.UI
 
         protected void Awake()
         {
+            if (!targetButton)
+            {
+                targetButton = GetComponent<Button>();
+            }
+
+            if (!targetGraphic)
+            {
+                targetGraphic = targetButton.targetGraphic.transform;
+            }
             _baseScale = targetGraphic.localScale;
         }
 
         private void OnEnable()
         {
-            targetGraphic.GetComponent<Button>().onClick.AddListener(ButtonClicked);
+            targetButton.onClick.AddListener(ButtonClicked);
         }
 
         private void OnDisable()
         {
-            targetGraphic.GetComponent<Button>().onClick.RemoveListener(ButtonClicked);
+            targetButton.onClick.RemoveListener(ButtonClicked);
         }
 
         private void OnValidate()
         {
-            if (targetGraphic == null)
+            if (targetButton == null)
             {
-                targetGraphic = GetComponent<Button>().transform;
+                targetButton = GetComponent<Button>();
             }
         }
-
-        private void ButtonClicked()
-        {
-            _previousScale = targetGraphic.localScale;
-            targetGraphic.localScale = _baseScale;
-        }
-
-        private Vector3 _previousScale;
 
         private void Update()
         {
@@ -102,16 +107,23 @@ namespace PokemonGame.UI
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            if (expandWhenHover)
+            ButtonClicked();
+        }
+
+        private void ButtonClicked()
+        {
+            if (!hasClickOverride)
             {
-                _previousScale = targetGraphic.localScale;
-                targetGraphic.localScale = _baseScale;
+                InitiateClick();
             }
         }
 
-        public void SetPreviousScale()
+        public void InitiateClick()
         {
-            targetGraphic.localScale = _previousScale;
+            if (expandWhenHover && targetButton.interactable)
+            {
+                targetGraphic.localScale = _baseScale;
+            }
         }
     }
 }

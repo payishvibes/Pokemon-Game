@@ -1,4 +1,3 @@
-using System;
 using PokemonGame.Dialogue;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -88,7 +87,7 @@ namespace PokemonGame.Game
 
         private void OnOptionsOpened(InputAction.CallbackContext obj)
         {
-            if (!DialogueManager.instance.dialogueIsPlaying && SceneManager.GetActiveScene().name != "Battle")
+            if (!DialogueManager.instance.DialogueIsPlaying && SceneManager.GetActiveScene().name != "Battle")
             {
                 ToggleMenu();
             }

@@ -78,7 +78,7 @@ namespace PokemonGame.Dialogue
         /// </summary>
         protected void StartDialogue()
         {
-            if(DialogueManager.instance.currentTrigger == this && !DialogueManager.instance.dialogueIsPlaying)
+            if(DialogueManager.instance.currentTrigger == this && !DialogueManager.instance.DialogueIsPlaying)
             {
                 DialogueManager.instance.StartDialogue(this);
                 DialogueWasCalled?.Invoke(gameObject, EventArgs.Empty);

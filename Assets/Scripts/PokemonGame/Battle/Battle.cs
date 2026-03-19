@@ -770,20 +770,20 @@ namespace PokemonGame.Battle
                     break;
                 case "playerTwoFainted":
                     Debug.Log("finished fainted dialogue");
-                    if (!args.moreToGo || !DialogueManager.instance.dialogueIsPlaying)
+                    if (!args.moreToGo || !DialogueManager.instance.DialogueIsPlaying)
                     {
                         TurnQueueItemEnded();
                     }
                     break;
                 case "playerOneFainted":
                     Debug.Log("finished fainted dialogue");
-                    if (!args.moreToGo || !DialogueManager.instance.dialogueIsPlaying)
+                    if (!args.moreToGo || !DialogueManager.instance.DialogueIsPlaying)
                     {
                         TurnQueueItemEnded();
                     }
                     break;
                 case "generalFinishing":
-                    if (!args.moreToGo || !DialogueManager.instance.dialogueIsPlaying)
+                    if (!args.moreToGo || !DialogueManager.instance.DialogueIsPlaying)
                     {
                         TurnQueueItemEnded();
                     }

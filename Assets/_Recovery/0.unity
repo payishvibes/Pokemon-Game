@@ -519,7 +519,6 @@ MonoBehaviour:
   scale: 1.1
   speed: 4
   targetGraphic: {fileID: 278660028}
-  targetButton: {fileID: 0}
   onHover:
     m_PersistentCalls:
       m_Calls: []
@@ -714,7 +713,6 @@ MonoBehaviour:
   scale: 1.1
   speed: 4
   targetGraphic: {fileID: 420519845}
-  targetButton: {fileID: 420519848}
   onHover:
     m_PersistentCalls:
       m_Calls: []
@@ -1812,7 +1810,6 @@ MonoBehaviour:
   scale: 1.1
   speed: 4
   targetGraphic: {fileID: 1501792698}
-  targetButton: {fileID: 0}
   onHover:
     m_PersistentCalls:
       m_Calls: []
@@ -2115,7 +2112,6 @@ MonoBehaviour:
   scale: 1.1
   speed: 4
   targetGraphic: {fileID: 1632985771}
-  targetButton: {fileID: 1632985774}
   onHover:
     m_PersistentCalls:
       m_Calls: []
@@ -2561,7 +2557,6 @@ MonoBehaviour:
   scale: 1.1
   speed: 4
   targetGraphic: {fileID: 453293116288280096}
-  targetButton: {fileID: 0}
   onHover:
     m_PersistentCalls:
       m_Calls: []
@@ -2732,7 +2727,6 @@ MonoBehaviour:
   scale: 1.1
   speed: 4
   targetGraphic: {fileID: 453293116360056953}
-  targetButton: {fileID: 0}
   onHover:
     m_PersistentCalls:
       m_Calls: []
@@ -3441,7 +3435,6 @@ MonoBehaviour:
   scale: 1.1
   speed: 4
   targetGraphic: {fileID: 453293117287746523}
-  targetButton: {fileID: 453293117287746525}
   onHover:
     m_PersistentCalls:
       m_Calls: []
@@ -3612,7 +3605,6 @@ MonoBehaviour:
   scale: 1.1
   speed: 4
   targetGraphic: {fileID: 453293117388818676}
-  targetButton: {fileID: 0}
   onHover:
     m_PersistentCalls:
       m_Calls: []

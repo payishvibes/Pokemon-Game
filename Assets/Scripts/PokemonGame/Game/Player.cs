@@ -39,7 +39,7 @@ namespace PokemonGame.Game
 
         private void FixedUpdate()
         {
-            if(look && !DialogueManager.instance.dialogueIsPlaying)
+            if(look && !DialogueManager.instance.DialogueIsPlaying)
             {
                 StopLooking();
             }
