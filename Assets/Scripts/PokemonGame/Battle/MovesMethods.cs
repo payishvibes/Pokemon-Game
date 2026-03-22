@@ -31,7 +31,7 @@ namespace PokemonGame.Battle
             //Checking to see if the move is capable of hitting the opponent battler
             foreach (var hType in move.type.cantHit)
             {
-                if (hType == Type.FromBasic(battlerBeingAttacked.source.primaryType) || hType == Type.FromBasic(battlerBeingAttacked.source.secondaryType))
+                if (hType == Type.FromBasic(battlerBeingAttacked.source.GetPrimaryType()) || hType == Type.FromBasic(battlerBeingAttacked.source.GetSecondaryType()))
                 {
                     Debug.Log(move.type + " can't hit that battler");
                     effectiveIndex = 3;
@@ -44,11 +44,11 @@ namespace PokemonGame.Battle
             //Calculating type disadvantages
             foreach (var weakType in move.type.weakAgainst)
             {
-                if (weakType == Type.FromBasic(battlerBeingAttacked.source.primaryType))
+                if (weakType == Type.FromBasic(battlerBeingAttacked.source.GetPrimaryType()))
                 {
                     type /= 2;
                 }
-                if (weakType == Type.FromBasic(battlerBeingAttacked.source.secondaryType))
+                if (weakType == Type.FromBasic(battlerBeingAttacked.source.GetSecondaryType()))
                 {
                     type /= 2;
                 }
@@ -57,11 +57,11 @@ namespace PokemonGame.Battle
             //Calculating type advantages
             foreach (var strongType in move.type.strongAgainst)
             {
-                if (strongType == Type.FromBasic(battlerBeingAttacked.source.primaryType))
+                if (strongType == Type.FromBasic(battlerBeingAttacked.source.GetPrimaryType()))
                 {
                     type *= 2;
                 }
-                if (strongType == Type.FromBasic(battlerBeingAttacked.source.secondaryType))
+                if (strongType == Type.FromBasic(battlerBeingAttacked.source.GetSecondaryType()))
                 {
                     type *= 2;
                 }
@@ -75,7 +75,7 @@ namespace PokemonGame.Battle
 
             //STAB =  Same type attack bonus
             int stab = 1;
-            if (move.type == Type.FromBasic(battlerThatUsed.source.primaryType))
+            if (move.type == Type.FromBasic(battlerThatUsed.source.GetPrimaryType()))
             {
                 stab = 2;
             }

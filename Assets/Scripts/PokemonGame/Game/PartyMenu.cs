@@ -82,13 +82,13 @@ public class PartyMenu : MonoBehaviour
         polygon.VerticesDistances[5] = Mathf.Sqrt(currentBattler.stats.speed / 260f);
         speedStat.text = currentBattler.stats.speed.ToString();
 
-        type1.GetComponentInChildren<Image>().color = Type.FromBasic(currentBattler.source.primaryType).color;
-        type1.GetComponentInChildren<TextMeshProUGUI>().text = currentBattler.source.primaryType.ToString();
-        if (currentBattler.source.secondaryType != BasicType.None)
+        type1.GetComponentInChildren<Image>().color = Type.FromBasic(currentBattler.source.GetPrimaryType()).color;
+        type1.GetComponentInChildren<TextMeshProUGUI>().text = currentBattler.source.GetPrimaryType().ToString();
+        if (currentBattler.source.GetSecondaryType() != BasicType.None)
         {
             type2.SetActive(true);
-            type2.GetComponentInChildren<Image>().color = Type.FromBasic(currentBattler.source.secondaryType).color;
-            type2.GetComponentInChildren<TextMeshProUGUI>().text = currentBattler.source.secondaryType.ToString();
+            type2.GetComponentInChildren<Image>().color = Type.FromBasic(currentBattler.source.GetSecondaryType()).color;
+            type2.GetComponentInChildren<TextMeshProUGUI>().text = currentBattler.source.GetSecondaryType().ToString();
         }
         else
         {

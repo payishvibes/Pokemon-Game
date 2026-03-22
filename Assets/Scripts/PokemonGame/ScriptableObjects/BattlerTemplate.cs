@@ -1,15 +1,10 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using PokeApiNet;
 using PokemonGame.General;
 using PokemonGame.Global;
-using Gender = PokemonGame.General.Gender;
 
 namespace PokemonGame.ScriptableObjects
 {
@@ -21,61 +16,128 @@ namespace PokemonGame.ScriptableObjects
     [CreateAssetMenu(order = 1, fileName = "New Battler Template", menuName = "Pokemon Game/New Battler Template")]
     public class BattlerTemplate : ScriptableObject
     {
-        public static PokeApiClient pokeClient;
+        private static PokeApiClient pokeClient;
 
         /// <summary>
         /// The name of the battler species
         /// </summary>
-        public new string name;
+        [SerializeField] private new string name;
         /// <summary>
         /// The primary type of the battler species
         /// </summary>
-        public BasicType primaryType;
+        [SerializeField] private BasicType primaryType;
         /// <summary>
         /// The secondary type of the battler species
         /// </summary>
-        public BasicType secondaryType;
+        [SerializeField] private BasicType secondaryType;
         /// <summary>
         /// The <see cref="Sprites"/> information for the battler species
         /// </summary>
-        public Sprites texture;
+        [SerializeField] private Sprites texture;
         /// <summary>
         /// The pokedex number of the battler
         /// </summary>
-        public int dexNo;
+        [SerializeField] private int dexNo;
         /// <summary>
         /// The possible moves the battler can learn
         /// </summary>
-        public PossibleMoves possibleMoves;
+        [SerializeField] private PossibleMoves possibleMoves;
         /// <summary>
         /// The evolutions the battler can have
         /// </summary>
-        public Evolution evolutions;
+        [SerializeField] private Evolution evolutions;
         /// <summary>
         /// The <see cref="ExperienceGroup"/> of the battler
         /// </summary>
-        public ExperienceGroup expGroup;
+        [SerializeField] private ExperienceGroup expGroup;
         /// <summary>
         /// The catch rate of the battler
         /// </summary>
-        [Space] [Header("Stats")] public int catchRate;
+        [Space] [Header("Stats")] [SerializeField] private int catchRate;
         /// <summary>
         /// The base friendship of the battler
         /// </summary>
-        public int baseFriendship;
+        [SerializeField] private int baseFriendship;
         /// <summary>
         /// The base stats of the battler
         /// </summary>
-        public BattlerStats baseStats;
+        [SerializeField] private BattlerStats baseStats;
         /// <summary>
         /// The exp yield of the battler
         /// </summary>
-        public int expYield;
+        [SerializeField] private int expYield;
         /// <summary>
         /// The IV yields of the battler
         /// </summary>
-        public BattlerStats yields;
+        [SerializeField] private BattlerStats yields;
 
+        public virtual string GetName()
+        {
+            return name;
+        }
+
+        public virtual BasicType GetPrimaryType()
+        {
+            return primaryType;
+        }
+
+        public virtual BasicType GetSecondaryType()
+        {
+            return secondaryType;
+        }
+
+        public virtual Sprites GetTexture()
+        {
+            return texture;
+        }
+
+        public virtual int GetDexNo()
+        {
+            return dexNo;
+        }
+
+        public virtual PossibleMoves GetPossibleMoves()
+        {
+            return possibleMoves;
+        }
+
+        public virtual Evolution GetEvolutions()
+        {
+            return evolutions;
+        }
+
+        public virtual ExperienceGroup GetExpGroup()
+        {
+            return expGroup;
+        }
+
+        public virtual int GetCatchRate()
+        {
+            return catchRate;
+        }
+
+        public virtual int GetBaseFriendship()
+        {
+            return baseFriendship;
+        }
+
+        public virtual BattlerStats GetBaseStats()
+        {
+            return baseStats;
+        }
+
+        public virtual int GetExpYield()
+        {
+            return expYield;
+        }
+
+        public virtual BattlerStats GetYields()
+        {
+            return yields;
+        }
+
+        #region Auto Complete Stuff
+        
         public void TryFillInfo()
         {
             if (pokeClient == null)
@@ -307,6 +369,8 @@ namespace PokemonGame.ScriptableObjects
 
             template.possibleMoves = newPossibleMoves;
         }
+
+        #endregion
     }
 
     /// <summary>

@@ -1347,12 +1347,12 @@ namespace PokemonGame.Battle
             
             if (!onlineBattle)
             {
-                playerOneCurrentBattler.EVs.maxHealth += playerTwoCurrentBattler.source.yields.maxHealth;
-                playerOneCurrentBattler.EVs.attack += playerTwoCurrentBattler.source.yields.attack;
-                playerOneCurrentBattler.EVs.defense += playerTwoCurrentBattler.source.yields.defense;
-                playerOneCurrentBattler.EVs.specialAttack += playerTwoCurrentBattler.source.yields.specialAttack;
-                playerOneCurrentBattler.EVs.specialDefense += playerTwoCurrentBattler.source.yields.specialDefense;
-                playerOneCurrentBattler.EVs.speed += playerTwoCurrentBattler.source.yields.speed;
+                playerOneCurrentBattler.EVs.maxHealth += playerTwoCurrentBattler.source.GetYields().maxHealth;
+                playerOneCurrentBattler.EVs.attack += playerTwoCurrentBattler.source.GetYields().attack;
+                playerOneCurrentBattler.EVs.defense += playerTwoCurrentBattler.source.GetYields().defense;
+                playerOneCurrentBattler.EVs.specialAttack += playerTwoCurrentBattler.source.GetYields().specialAttack;
+                playerOneCurrentBattler.EVs.specialDefense += playerTwoCurrentBattler.source.GetYields().specialDefense;
+                playerOneCurrentBattler.EVs.speed += playerTwoCurrentBattler.source.GetYields().speed;
             }
         }
         

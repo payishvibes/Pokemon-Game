@@ -243,7 +243,7 @@ namespace PokemonGame.General
 
         private void CheckIfCanEvolve()
         {
-            foreach (var evolution in source.evolutions.possibleEvolutions)
+            foreach (var evolution in source.GetEvolutions().possibleEvolutions)
             {
                 if (evolution.triggerType == EvolutionTriggerType.Level)
                 {
@@ -371,7 +371,7 @@ namespace PokemonGame.General
         /// <returns>The list of moves</returns>
         public List<Move> GetMostRecentMoves()
         {
-            SerializableDictionary<Move, int> levelUpMoves = source.possibleMoves.levelup;
+            SerializableDictionary<Move, int> levelUpMoves = source.GetPossibleMoves().levelup;
             var sortedLevelUpMoves = levelUpMoves.OrderBy(x => x.Value).ToList();
 
             sortedLevelUpMoves.Reverse();
@@ -491,25 +491,25 @@ namespace PokemonGame.General
                     break;
             }
 
-            stats.maxHealth = Mathf.FloorToInt(((2f * source.baseStats.maxHealth + IVs.maxHealth + Mathf.FloorToInt(EVs.maxHealth / 4f)) * level)/(100)) + level + 10;
+            stats.maxHealth = Mathf.FloorToInt(((2f * source.GetBaseStats().maxHealth + IVs.maxHealth + Mathf.FloorToInt(EVs.maxHealth / 4f)) * level)/(100)) + level + 10;
             
-            stats.attack = Mathf.FloorToInt(((2f * source.baseStats.attack + IVs.attack + Mathf.FloorToInt(EVs.attack / 4f)) *
+            stats.attack = Mathf.FloorToInt(((2f * source.GetBaseStats().attack + IVs.attack + Mathf.FloorToInt(EVs.attack / 4f)) *
                 level) / 100) + 5;
             stats.attack = Mathf.FloorToInt(stats.attack * attackModifier);
             
-            stats.defense = Mathf.FloorToInt(((2f * source.baseStats.defense + IVs.attack + Mathf.FloorToInt(EVs.defense / 4f)) *
+            stats.defense = Mathf.FloorToInt(((2f * source.GetBaseStats().defense + IVs.attack + Mathf.FloorToInt(EVs.defense / 4f)) *
                 level) / 100) + 5;
             stats.defense = Mathf.FloorToInt(stats.defense * defenseModifier);
             
-            stats.specialAttack = Mathf.FloorToInt(((2f * source.baseStats.specialAttack + IVs.specialAttack + Mathf.FloorToInt(EVs.specialAttack / 4f)) *
+            stats.specialAttack = Mathf.FloorToInt(((2f * source.GetBaseStats().specialAttack + IVs.specialAttack + Mathf.FloorToInt(EVs.specialAttack / 4f)) *
                 level) / 100) + 5;
             stats.specialAttack = Mathf.FloorToInt(stats.specialAttack * specialAttackModifier);
             
-            stats.specialDefense = Mathf.FloorToInt(((2f * source.baseStats.specialDefense + IVs.specialDefense + Mathf.FloorToInt(EVs.specialDefense / 4f)) *
+            stats.specialDefense = Mathf.FloorToInt(((2f * source.GetBaseStats().specialDefense + IVs.specialDefense + Mathf.FloorToInt(EVs.specialDefense / 4f)) *
                 level) / 100) + 5;
             stats.specialDefense = Mathf.FloorToInt(stats.specialDefense * specialDefenseModifier);
             
-            stats.speed = Mathf.FloorToInt(((2f * source.baseStats.speed + IVs.speed + Mathf.FloorToInt(EVs.speed / 4f)) *
+            stats.speed = Mathf.FloorToInt(((2f * source.GetBaseStats().speed + IVs.speed + Mathf.FloorToInt(EVs.speed / 4f)) *
                 level) / 100) + 5;
             stats.speed = Mathf.FloorToInt(stats.speed * speedModifier);
         }
@@ -580,17 +580,17 @@ namespace PokemonGame.General
         {
             if (shiny)
             {
-                if (source.texture.female != null && gender == Gender.Female)
+                if (source.GetTexture().female != null && gender == Gender.Female)
                 {
-                    return source.texture.femaleShiny;
+                    return source.GetTexture().femaleShiny;
                 }
-                return source.texture.shiny;
+                return source.GetTexture().shiny;
             }
-            if (source.texture.female != null && gender == Gender.Female)
+            if (source.GetTexture().female != null && gender == Gender.Female)
             {
-                return source.texture.female;
+                return source.GetTexture().female;
             }
-            return source.texture.basic;
+            return source.GetTexture().basic;
         }
 
         /// <summary>
@@ -599,7 +599,7 @@ namespace PokemonGame.General
         /// <returns>The best back sprite</returns>
         public Sprite GetSpriteBack()
         {
-            return source.texture.basicBack;
+            return source.GetTexture().basicBack;
         }
 
         /// <summary>

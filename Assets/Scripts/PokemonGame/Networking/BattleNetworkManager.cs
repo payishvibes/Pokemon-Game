@@ -217,7 +217,7 @@ namespace PokemonGame.Networking
 
             foreach (var potentialBattler in allTemplates)
             {
-                bool valid = potentialBattler.evolutions.possibleEvolutions.Count == 0;
+                bool valid = potentialBattler.GetEvolutions().possibleEvolutions.Count == 0;
                 
                 // no more funny man :(
                 if (potentialBattler.name == "Sans")
@@ -286,10 +286,10 @@ namespace PokemonGame.Networking
             
             for (int i = 0; i < 6; i++)
             {
-                BattlerTemplate template = potential[UnityEngine.Random.Range(0, potential.Count)];
+                BattlerTemplate template = potential[Random.Range(0, potential.Count)];
                 
                 Battler battler = Battler.Init(template, level, template.name, new List<Move>(), true);
-                List<Move> moves = battler.source.possibleMoves.levelup.Keys.ToList();
+                List<Move> moves = battler.source.GetPossibleMoves().levelup.Keys.ToList();
                 
                 for (int j = 0; j < 4; j++)
                 {

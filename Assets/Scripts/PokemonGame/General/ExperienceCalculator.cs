@@ -18,7 +18,7 @@ namespace PokemonGame.General
 
             float s = noOfBattlersParticipated;
 
-            float b = defeated.source.expYield;
+            float b = defeated.source.GetExpYield();
 
             float L = defeated.level;
 
@@ -41,7 +41,7 @@ namespace PokemonGame.General
         {
             int required = 0;
 
-            switch (battler.source.expGroup)
+            switch (battler.source.GetExpGroup())
             {
                 case ExperienceGroup.Slow:
                     required = SlowGrowth(battler.level+1) - SlowGrowth(battler.level);
@@ -153,7 +153,7 @@ namespace PokemonGame.General
             switch (ball.name)
             {
                 case "Fast Ball":
-                    if (target.source.baseStats.speed > 100)
+                    if (target.source.GetBaseStats().speed > 100)
                     {
                         ballBonus = 4;
                     }
@@ -200,7 +200,7 @@ namespace PokemonGame.General
                     break;
             }
             
-            float a = ((3f*target.stats.maxHealth - 2f * target.currentHealth)/(3f*target.stats.maxHealth)) * target.source.catchRate * ballBonus * statusBonus;
+            float a = ((3f*target.stats.maxHealth - 2f * target.currentHealth)/(3f*target.stats.maxHealth)) * target.source.GetCatchRate() * ballBonus * statusBonus;
             
             return a <= Random.Range(0, 255);
         }
