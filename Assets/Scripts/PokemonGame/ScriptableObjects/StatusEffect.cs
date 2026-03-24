@@ -1,10 +1,10 @@
+using System;
 using System.Collections.Generic;
-using PokemonGame.Global;
 
 namespace PokemonGame.ScriptableObjects
 {
-    using System;
     using General;
+    using Global;
     using UnityEngine;
     using UnityEngine.Events;
 
@@ -47,15 +47,15 @@ namespace PokemonGame.ScriptableObjects
     [Serializable]
     public class StatusEventTrigger
     {
-        public StatusEffectCaller trigger;
+        public EffectTrigger trigger;
         public UnityEvent<StatusEffectEventArgs> EffectEvent;
     }
+}
 
-    [Serializable]
-    public enum StatusEffectCaller
-    {
-        Passive,
-        StartOfTurn,
-        EndOfTurn
-    }
+[Serializable]
+public enum EffectTrigger
+{
+    StartOfTurn,
+    EndOfTurn,
+    EnterBattleSelf,
 }

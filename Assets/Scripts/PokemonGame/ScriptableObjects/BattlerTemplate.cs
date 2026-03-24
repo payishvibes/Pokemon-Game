@@ -21,55 +21,55 @@ namespace PokemonGame.ScriptableObjects
         /// <summary>
         /// The name of the battler species
         /// </summary>
-        [SerializeField] private new string name;
+        public new string name;
         /// <summary>
         /// The primary type of the battler species
         /// </summary>
-        [SerializeField] private BasicType primaryType;
+        public BasicType primaryType;
         /// <summary>
         /// The secondary type of the battler species
         /// </summary>
-        [SerializeField] private BasicType secondaryType;
+        public BasicType secondaryType;
         /// <summary>
         /// The <see cref="Sprites"/> information for the battler species
         /// </summary>
-        [SerializeField] private Sprites texture;
+        public Sprites texture;
         /// <summary>
         /// The pokedex number of the battler
         /// </summary>
-        [SerializeField] private int dexNo;
+        public int dexNo;
         /// <summary>
         /// The possible moves the battler can learn
         /// </summary>
-        [SerializeField] private PossibleMoves possibleMoves;
+        public PossibleMoves possibleMoves;
         /// <summary>
         /// The evolutions the battler can have
         /// </summary>
-        [SerializeField] private Evolution evolutions;
+        public Evolution evolutions;
         /// <summary>
         /// The <see cref="ExperienceGroup"/> of the battler
         /// </summary>
-        [SerializeField] private ExperienceGroup expGroup;
+        public ExperienceGroup expGroup;
         /// <summary>
         /// The catch rate of the battler
         /// </summary>
-        [Space] [Header("Stats")] [SerializeField] private int catchRate;
+        [Space] [Header("Stats")] public int catchRate;
         /// <summary>
         /// The base friendship of the battler
         /// </summary>
-        [SerializeField] private int baseFriendship;
+        public int baseFriendship;
         /// <summary>
         /// The base stats of the battler
         /// </summary>
-        [SerializeField] private BattlerStats baseStats;
+        public BattlerStats baseStats;
         /// <summary>
         /// The exp yield of the battler
         /// </summary>
-        [SerializeField] private int expYield;
+        public int expYield;
         /// <summary>
         /// The IV yields of the battler
         /// </summary>
-        [SerializeField] private BattlerStats yields;
+        public BattlerStats yields;
 
         public virtual string GetName()
         {

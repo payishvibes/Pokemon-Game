@@ -197,6 +197,8 @@ namespace PokemonGame.Battle
             DialogueManager.instance.OnDialogueEnded += DialogueEnded;
             partyOne.PartyAllDefeated += PlayerOnePartyAllDefeated;
             partyTwo.PartyAllDefeated += PlayerTwoPartyAllDefeated;
+            
+            OnChangeBattler += BattlerSwapped;
 
             if (!onlineBattle)
             {
@@ -222,6 +224,8 @@ namespace PokemonGame.Battle
             partyOne.PartyAllDefeated -= PlayerOnePartyAllDefeated;
             partyTwo.PartyAllDefeated -= PlayerTwoPartyAllDefeated;
             DialogueManager.instance.OnDialogueEnded -= DialogueEnded;
+            
+            OnChangeBattler -= BattlerSwapped;
             
             for (int i = 0; i < partyOne.Count; i++)
             {
@@ -398,9 +402,9 @@ namespace PokemonGame.Battle
                     turnItemQueue.Add(playerTwoAction);
                 }
                 
-                QueueTurnItem(TurnItemType.StartOfTurnStatusEffects);
+                QueueTurnItem(TurnItemType.StartOfTurnEffects);
                 QueueMoves();
-                QueueTurnItem(TurnItemType.EndOfTurnStatusEffects);
+                QueueTurnItem(TurnItemType.EndOfTurnEffects);
             }
             
             if (IsNotOnlineHost())
@@ -493,17 +497,17 @@ namespace PokemonGame.Battle
                     else
                         BeginSwapPlayerTwoBattler();
                     break;
-                case TurnItemType.StartOfTurnStatusEffects:
+                case TurnItemType.StartOfTurnEffects:
                     if (onlineBattle)
-                        BattleNetworkManager.Instance.ServerSendTurnStartOfTurnStatusEffects();
+                        BattleNetworkManager.Instance.ServerSendTurnStartOfTurnEffects();
                     else
-                        RunStartOfTurnStatusEffects();
+                        RunStartOfTurnEffects();
                     break;
-                case TurnItemType.EndOfTurnStatusEffects:
+                case TurnItemType.EndOfTurnEffects:
                     if (onlineBattle)
-                        BattleNetworkManager.Instance.ServerSendTurnEndOfTurnStatusEffects();
+                        BattleNetworkManager.Instance.ServerSendTurnEndOfTurnEffects();
                     else
-                        RunEndOfTurnStatusEffects();
+                        RunEndOfTurnEffects();
                     break;
                 case TurnItemType.PlayerTwoParalysed:
                     if (onlineBattle)
@@ -1120,7 +1124,9 @@ namespace PokemonGame.Battle
             // actually has like a usable accuracy
             if (playerOneMoveToDo.accuracy != 0 && !Mathf.Approximately(playerOneMoveToDo.accuracy, 1))
             {
-                missed = Random.Range(1, 101) > playerOneMoveToDo.accuracy * 100;
+                float accuracy = StatStages.GetMultiplierFromStage(playerOneCurrentBattler.modifierStats.accuracyStage, true, false);
+                float evasiveness = StatStages.GetMultiplierFromStage(playerTwoCurrentBattler.modifierStats.evasionStage, true, true);
+                missed = Random.Range(1, 101) > playerOneMoveToDo.accuracy * accuracy * evasiveness * 100;
             }
             
             int moveToDoIndex = GetIndexOfMovePlayerOne(playerOneMoveToDo);
@@ -1172,7 +1178,9 @@ namespace PokemonGame.Battle
             // actually has like a usable accuracy
             if (playerTwoMoveToDo.accuracy != 0 && !Mathf.Approximately(playerTwoMoveToDo.accuracy, 1))
             {
-                missed = Random.Range(1, 101) > playerTwoMoveToDo.accuracy * 100;
+                float accuracy = StatStages.GetMultiplierFromStage(playerTwoCurrentBattler.modifierStats.accuracyStage, true, false);
+                float evasiveness = StatStages.GetMultiplierFromStage(playerOneCurrentBattler.modifierStats.evasionStage, true, true);
+                missed = Random.Range(1, 101) > playerTwoMoveToDo.accuracy * accuracy * evasiveness * 100;
             }
             
             int moveToDoIndex = GetIndexOfMovePlayerTwo(playerTwoMoveToDo);
@@ -1239,8 +1247,8 @@ namespace PokemonGame.Battle
                 return;
             }
 
-            float playerAdjustedSpeed = playerOneCurrentBattler.stats.speed;
-            float playerTwoAdjustedSpeed = playerTwoCurrentBattler.stats.speed;
+            float playerAdjustedSpeed = playerOneCurrentBattler.stats.speed * StatStages.GetMultiplierFromStage(playerOneCurrentBattler.modifierStats.speedStage, false, false);
+            float playerTwoAdjustedSpeed = playerTwoCurrentBattler.stats.speed * StatStages.GetMultiplierFromStage(playerTwoCurrentBattler.modifierStats.speedStage, false, false);
 
             if (playerOneCurrentBattler.statusEffect == Registry.GetStatusEffect("Paralysed"))
             {
@@ -1393,31 +1401,76 @@ namespace PokemonGame.Battle
             Debug.LogWarning($"Could not find move {move.name} on the current player battler");
             return -1;
         }
-        
-        public void RunEndOfTurnStatusEffects()
+
+        private void BattlerSwapped(object sender, int e)
         {
-            bool anyEffects = false;
+            if (e == 0)
+            {
+                PlayerOneEffectMethods(EffectTrigger.EnterBattleSelf);
+            }
+            else
+            {
+                PlayerTwoEffectMethods(EffectTrigger.EnterBattleSelf);
+            }
+        }
+        
+        public void RunEndOfTurnEffects()
+        {
+            EffectMethods(EffectTrigger.EndOfTurn);
+        }
+
+        private void EffectMethods(EffectTrigger trigger)
+        {
+            bool queuedDialogue = false;
+            EventHandler<DialogueQueuedEventArgs> dialogueQueued = (sender, eventArgs) =>
+            {
+                queuedDialogue = true;
+            };
             
+            DialogueManager.instance.OnDialogueQueued += dialogueQueued;
+
+            PlayerOneEffectMethods(trigger, false);
+            PlayerTwoEffectMethods(trigger, false);
+            
+            DialogueManager.instance.OnDialogueQueued -= dialogueQueued;
+
+            if (!queuedDialogue)
+            {
+                TurnQueueItemEnded();
+            }
+        }
+
+        private void PlayerOneEffectMethods(EffectTrigger trigger, bool callEnd = true)
+        {
+            bool queuedDialogue = false;
+            EventHandler<DialogueQueuedEventArgs> dialogueQueued = (sender, eventArgs) =>
+            {
+                queuedDialogue = true;
+            };
+            
+            DialogueManager.instance.OnDialogueQueued += dialogueQueued;
+
             if (!playerOneCurrentBattler.isFainted)
             {
-                foreach (var trigger in playerOneCurrentBattler.statusEffect.triggers)
+                if (playerOneCurrentBattler.statusEffect)
                 {
-                    if (trigger.trigger == StatusEffectCaller.EndOfTurn)
+                    foreach (var effectTrigger in playerOneCurrentBattler.statusEffect.triggers)
                     {
-                        trigger.EffectEvent.Invoke(new StatusEffectEventArgs(playerOneCurrentBattler));
-                        anyEffects = true;
+                        if (effectTrigger.trigger == trigger)
+                        {
+                            effectTrigger.EffectEvent.Invoke(new StatusEffectEventArgs(playerOneCurrentBattler));
+                        }
                     }
                 }
-            }
-            
-            if (!playerTwoCurrentBattler.isFainted)
-            {
-                foreach (var trigger in playerTwoCurrentBattler.statusEffect.triggers)
+
+                if (playerOneCurrentBattler.ability)
                 {
-                    if (trigger.trigger == StatusEffectCaller.EndOfTurn)
+                    foreach (var abilityTrigger in playerOneCurrentBattler.ability.triggers)
                     {
-                        trigger.EffectEvent.Invoke(new StatusEffectEventArgs(playerTwoCurrentBattler));
-                        anyEffects = true;
+                        if (abilityTrigger.trigger == trigger)
+                        {
+                            abilityTrigger.effectEvent.Invoke(new AbilityEventArgs(playerOneCurrentBattler));
+                        }
                     }
                 }
             }
@@ -1425,47 +1478,63 @@ namespace PokemonGame.Battle
             partyOne.CheckDefeatedStatus();
             partyTwo.CheckDefeatedStatus();
             
-            if (!anyEffects)
+            DialogueManager.instance.OnDialogueQueued -= dialogueQueued;
+
+            if (!queuedDialogue && callEnd)
+            {
+                TurnQueueItemEnded();
+            }
+        }
+
+        private void PlayerTwoEffectMethods(EffectTrigger trigger, bool callEnd = true)
+        {
+            bool queuedDialogue = false;
+            EventHandler<DialogueQueuedEventArgs> dialogueQueued = (sender, eventArgs) =>
+            {
+                queuedDialogue = true;
+            };
+            
+            DialogueManager.instance.OnDialogueQueued += dialogueQueued;
+
+            if (!playerTwoCurrentBattler.isFainted)
+            {
+                if (playerTwoCurrentBattler.statusEffect)
+                {
+                    foreach (var effectTrigger in playerTwoCurrentBattler.statusEffect.triggers)
+                    {
+                        if (effectTrigger.trigger == trigger)
+                        {
+                            effectTrigger.EffectEvent.Invoke(new StatusEffectEventArgs(playerTwoCurrentBattler));
+                        }
+                    }
+                }
+
+                if (playerTwoCurrentBattler.ability)
+                {
+                    foreach (var abilityTrigger in playerTwoCurrentBattler.ability.triggers)
+                    {
+                        if (abilityTrigger.trigger == trigger)
+                        {
+                            abilityTrigger.effectEvent.Invoke(new AbilityEventArgs(playerTwoCurrentBattler));
+                        }
+                    }
+                }
+            }
+            
+            partyOne.CheckDefeatedStatus();
+            partyTwo.CheckDefeatedStatus();
+            
+            DialogueManager.instance.OnDialogueQueued -= dialogueQueued;
+
+            if (!queuedDialogue && callEnd)
             {
                 TurnQueueItemEnded();
             }
         }
         
-        public void RunStartOfTurnStatusEffects()
+        public void RunStartOfTurnEffects()
         {
-            bool anyEffects = false;
-
-            if (!playerOneCurrentBattler.isFainted)
-            {
-                foreach (var trigger in playerOneCurrentBattler.statusEffect.triggers)
-                {
-                    if (trigger.trigger == StatusEffectCaller.StartOfTurn)
-                    {
-                        trigger.EffectEvent.Invoke(new StatusEffectEventArgs(playerOneCurrentBattler));
-                        anyEffects = true;
-                    }
-                }
-            }
-            
-            if (!playerTwoCurrentBattler.isFainted)
-            {
-                foreach (var trigger in playerTwoCurrentBattler.statusEffect.triggers)
-                {
-                    if (trigger.trigger == StatusEffectCaller.StartOfTurn)
-                    {
-                        trigger.EffectEvent.Invoke(new StatusEffectEventArgs(playerTwoCurrentBattler));
-                        anyEffects = true;
-                    }
-                }
-            }
-            
-            partyOne.CheckDefeatedStatus();
-            partyTwo.CheckDefeatedStatus();
-
-            if (!anyEffects)
-            {
-                TurnQueueItemEnded();
-            }
+            EffectMethods(EffectTrigger.StartOfTurn);
         }
 
         private IEnumerator ExitBattleWin()

@@ -25,6 +25,8 @@ MonoBehaviour:
     specialAttack: 20
     specialDefense: 20
     speed: 24
+    accuracyMultiplier: 0
+    evasionMultiplier: 0
   exp: 4035
   EVs:
     maxHealth: 0
@@ -33,6 +35,8 @@ MonoBehaviour:
     specialAttack: 0
     specialDefense: 0
     speed: 0
+    accuracyMultiplier: 0
+    evasionMultiplier: 0
   IVs:
     maxHealth: 0
     attack: 0
@@ -40,11 +44,14 @@ MonoBehaviour:
     specialAttack: 0
     specialDefense: 0
     speed: 0
+    accuracyMultiplier: 0
+    evasionMultiplier: 0
   nature: 0
   affection: 0
   isFainted: 0
   statusEffect: {fileID: 11400000, guid: 70a8b2171523288439f255c2f97685d9, type: 2}
   statusEffectSeverity: 0
+  ability: {fileID: 11400000, guid: 55b6f6e12a3f73a4699d41c3dd9d62d0, type: 2}
   moves:
   - {fileID: 11400000, guid: 71e65ff655656454b8becbb1cc1b57b4, type: 2}
   - {fileID: 11400000, guid: d4639e5cb3f782d4587a463bffb7265a, type: 2}
@@ -52,6 +59,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 24e65cd33fc0be1478bf29b3f2ad62cd, type: 2}
   movePpInfos: []
   sleepTurns: 0
+  modifierStats:
+    attackStage: 0
+    defenseStage: 0
+    specialAttackStage: 0
+    specialDefenseStage: 0
+    speedStage: 0
+    accuracyStage: 0
+    evasionStage: 0
   wantToEvolve: 0
   evolutionToPerform:
     triggerType: 0

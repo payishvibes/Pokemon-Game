@@ -1,6 +1,4 @@
 using PokemonGame.Dialogue;
-using PokemonGame.General;
-using PokemonGame.Global;
 
 namespace PokemonGame.Battle
 {

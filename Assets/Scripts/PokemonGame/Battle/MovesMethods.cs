@@ -80,9 +80,9 @@ namespace PokemonGame.Battle
                 stab = 2;
             }
 
-            int attack = 0;
-            int defense = 0;
-            int level = battlerThatUsed.stats.attack;
+            float attack = 0;
+            float defense = 0;
+            int level = battlerThatUsed.level;
             int power = move.damage;
             int item = 1;
             float critical = 1;
@@ -110,13 +110,13 @@ namespace PokemonGame.Battle
             
             if (move.category == MoveCategory.Physical)
             {
-                attack = battlerThatUsed.stats.attack;
-                defense = battlerBeingAttacked.stats.defense;
+                attack = battlerThatUsed.stats.attack * StatStages.GetMultiplierFromStage(battlerThatUsed.modifierStats.attackStage, false, false);
+                defense = battlerBeingAttacked.stats.defense * StatStages.GetMultiplierFromStage(battlerBeingAttacked.modifierStats.defenseStage, false, false);
             }
             else if (move.category == MoveCategory.Special)
             {
-                attack = battlerThatUsed.stats.specialAttack;
-                defense = battlerBeingAttacked.stats.specialDefense;
+                attack = battlerThatUsed.stats.specialAttack * StatStages.GetMultiplierFromStage(battlerThatUsed.modifierStats.specialAttackStage, false, false);
+                defense = battlerBeingAttacked.stats.specialDefense * StatStages.GetMultiplierFromStage(battlerBeingAttacked.modifierStats.specialDefenseStage, false, false);
             }
             
             // critical hit calc

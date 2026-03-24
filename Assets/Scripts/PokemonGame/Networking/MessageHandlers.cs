@@ -82,15 +82,15 @@ namespace PokemonGame.Networking
         {
             BattleNetworkManager.Instance.ClientGotTurnEndBattle(message);
         }
-        [MessageHandler((ushort)ServerToClientMessageId.TurnStartOfTurnStatusEffects)]
+        [MessageHandler((ushort)ServerToClientMessageId.TurnStartOfTurnEffects)]
         private static void ClientTurnStartOfTurnStatusEffects(Message message)
         {
-            BattleNetworkManager.Instance.ClientGotTurnStartOfTurnStatusEffects();
+            BattleNetworkManager.Instance.ClientGotTurnStartOfTurnEffects();
         }
-        [MessageHandler((ushort)ServerToClientMessageId.TurnEndOfTurnStatusEffects)]
+        [MessageHandler((ushort)ServerToClientMessageId.TurnEndOfTurnEffects)]
         private static void ClientTurnEndOfTurnStatusEffects(Message message)
         {
-            BattleNetworkManager.Instance.ClientGotTurnEndOfTurnStatusEffects();
+            BattleNetworkManager.Instance.ClientGotTurnEndOfTurnEffects();
         }
         [MessageHandler((ushort)ServerToClientMessageId.TurnPlayerParalysed)]
         private static void ClientTurnPlayerParalysed(Message message)

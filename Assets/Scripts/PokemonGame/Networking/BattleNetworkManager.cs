@@ -39,8 +39,8 @@ namespace PokemonGame.Networking
         TurnPlayerSwapBecauseFainted,
         TurnPlayerSwap,
         TurnEndBattle,
-        TurnStartOfTurnStatusEffects,
-        TurnEndOfTurnStatusEffects,
+        TurnStartOfTurnEffects,
+        TurnEndOfTurnEffects,
         TurnPlayerParalysed,
         TurnPlayerAsleep,
         TurnSequenceEnded,
@@ -509,14 +509,14 @@ namespace PokemonGame.Networking
             message.AddBool(playerTwoDefeated);
             Server.SendToAll(message);
         }
-        public void ServerSendTurnStartOfTurnStatusEffects()
+        public void ServerSendTurnStartOfTurnEffects()
         {
-            Message message =  Message.Create(MessageSendMode.Reliable, ServerToClientMessageId.TurnStartOfTurnStatusEffects);
+            Message message =  Message.Create(MessageSendMode.Reliable, ServerToClientMessageId.TurnStartOfTurnEffects);
             Server.SendToAll(message);
         }
-        public void ServerSendTurnEndOfTurnStatusEffects()
+        public void ServerSendTurnEndOfTurnEffects()
         {
-            Message message =  Message.Create(MessageSendMode.Reliable, ServerToClientMessageId.TurnEndOfTurnStatusEffects);
+            Message message =  Message.Create(MessageSendMode.Reliable, ServerToClientMessageId.TurnEndOfTurnEffects);
             Server.SendToAll(message);
         }
         public void ServerSendTurnPlayerParalysed(bool playerOne)
@@ -582,13 +582,13 @@ namespace PokemonGame.Networking
             
             Battle.Singleton.BeginEndBattleDialogue(playerTwoDefeated);
         }
-        public void ClientGotTurnStartOfTurnStatusEffects()
+        public void ClientGotTurnStartOfTurnEffects()
         {
-            Battle.Singleton.RunStartOfTurnStatusEffects();
+            Battle.Singleton.RunStartOfTurnEffects();
         }
-        public void ClientGotTurnEndOfTurnStatusEffects()
+        public void ClientGotTurnEndOfTurnEffects()
         {
-            Battle.Singleton.RunEndOfTurnStatusEffects();
+            Battle.Singleton.RunEndOfTurnEffects();
         }
         public void ClientGotTurnPlayerParalysed(Message message)
         {

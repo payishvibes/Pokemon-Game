@@ -273,8 +273,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expandWhenHover: 1
+  hasClickOverride: 0
   scale: 1.1
   speed: 4
+  targetButton: {fileID: 5731962}
+  hasTargetOverride: 0
   targetGraphic: {fileID: 5731961}
   onHover:
     m_PersistentCalls:
@@ -522,8 +525,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expandWhenHover: 1
+  hasClickOverride: 0
   scale: 1.1
   speed: 4
+  targetButton: {fileID: 29475083}
+  hasTargetOverride: 0
   targetGraphic: {fileID: 29475082}
   onHover:
     m_PersistentCalls:
@@ -801,8 +807,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expandWhenHover: 1
+  hasClickOverride: 0
   scale: 1.1
   speed: 4
+  targetButton: {fileID: 99341041}
+  hasTargetOverride: 0
   targetGraphic: {fileID: 99341040}
   onHover:
     m_PersistentCalls:
@@ -1725,8 +1734,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expandWhenHover: 1
+  hasClickOverride: 0
   scale: 1.1
   speed: 4
+  targetButton: {fileID: 203873637}
+  hasTargetOverride: 0
   targetGraphic: {fileID: 203873636}
   onHover:
     m_PersistentCalls:
@@ -1906,8 +1918,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expandWhenHover: 1
+  hasClickOverride: 0
   scale: 1.1
   speed: 4
+  targetButton: {fileID: 208705514}
+  hasTargetOverride: 0
   targetGraphic: {fileID: 208705513}
   onHover:
     m_PersistentCalls:
@@ -2178,8 +2193,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expandWhenHover: 1
+  hasClickOverride: 0
   scale: 1.1
   speed: 4
+  targetButton: {fileID: 215431433}
+  hasTargetOverride: 0
   targetGraphic: {fileID: 215431432}
   onHover:
     m_PersistentCalls:
@@ -2661,8 +2679,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expandWhenHover: 1
+  hasClickOverride: 0
   scale: 1.1
   speed: 4
+  targetButton: {fileID: 262383537}
+  hasTargetOverride: 0
   targetGraphic: {fileID: 262383536}
   onHover:
     m_PersistentCalls:
@@ -2881,8 +2902,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expandWhenHover: 1
+  hasClickOverride: 0
   scale: 1.1
   speed: 4
+  targetButton: {fileID: 304864053}
+  hasTargetOverride: 0
   targetGraphic: {fileID: 304864052}
   onHover:
     m_PersistentCalls:
@@ -3050,8 +3074,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expandWhenHover: 1
+  hasClickOverride: 0
   scale: 1.1
   speed: 4
+  targetButton: {fileID: 306563583}
+  hasTargetOverride: 0
   targetGraphic: {fileID: 306563582}
   onHover:
     m_PersistentCalls:
@@ -3510,8 +3537,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expandWhenHover: 1
+  hasClickOverride: 0
   scale: 1.1
   speed: 4
+  targetButton: {fileID: 331944867}
+  hasTargetOverride: 0
   targetGraphic: {fileID: 331944866}
   onHover:
     m_PersistentCalls:
@@ -4940,8 +4970,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expandWhenHover: 1
+  hasClickOverride: 0
   scale: 1.1
   speed: 4
+  targetButton: {fileID: 585518016}
+  hasTargetOverride: 0
   targetGraphic: {fileID: 585518015}
   onHover:
     m_PersistentCalls:
@@ -5416,8 +5449,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expandWhenHover: 1
+  hasClickOverride: 0
   scale: 1.1
   speed: 4
+  targetButton: {fileID: 701460036}
+  hasTargetOverride: 0
   targetGraphic: {fileID: 701460035}
   onHover:
     m_PersistentCalls:
@@ -5724,8 +5760,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expandWhenHover: 1
+  hasClickOverride: 0
   scale: 1.1
   speed: 4
+  targetButton: {fileID: 750359626}
+  hasTargetOverride: 0
   targetGraphic: {fileID: 750359625}
   onHover:
     m_PersistentCalls:
@@ -5905,8 +5944,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expandWhenHover: 1
+  hasClickOverride: 0
   scale: 1.1
   speed: 4
+  targetButton: {fileID: 763336075}
+  hasTargetOverride: 0
   targetGraphic: {fileID: 763336074}
   onHover:
     m_PersistentCalls:
@@ -6182,8 +6224,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expandWhenHover: 1
+  hasClickOverride: 0
   scale: 1.1
   speed: 4
+  targetButton: {fileID: 785704363}
+  hasTargetOverride: 0
   targetGraphic: {fileID: 785704362}
   onHover:
     m_PersistentCalls:
@@ -6853,8 +6898,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expandWhenHover: 1
+  hasClickOverride: 0
   scale: 1.1
   speed: 4
+  targetButton: {fileID: 906671530}
+  hasTargetOverride: 0
   targetGraphic: {fileID: 906671529}
   onHover:
     m_PersistentCalls:
@@ -7062,8 +7110,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expandWhenHover: 1
+  hasClickOverride: 0
   scale: 1.1
   speed: 4
+  targetButton: {fileID: 926478503}
+  hasTargetOverride: 0
   targetGraphic: {fileID: 926478502}
   onHover:
     m_PersistentCalls:
@@ -7341,8 +7392,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expandWhenHover: 1
+  hasClickOverride: 0
   scale: 1.1
   speed: 4
+  targetButton: {fileID: 968756366}
+  hasTargetOverride: 0
   targetGraphic: {fileID: 968756365}
   onHover:
     m_PersistentCalls:
@@ -7537,8 +7591,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expandWhenHover: 1
+  hasClickOverride: 0
   scale: 1.1
   speed: 4
+  targetButton: {fileID: 1033898699}
+  hasTargetOverride: 0
   targetGraphic: {fileID: 1033898695}
   onHover:
     m_PersistentCalls:
@@ -7700,7 +7757,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allowsGlobalTags: 1
-  battlerUsedText: {fileID: 4900000, guid: 06cf16b39212cf9468feeab7b70acc98, type: 3}
   shrinkEffectDelay: 1
   playerOneBattlerIndex: 0
   playerTwoBattlerIndex: 0
@@ -7814,8 +7870,8 @@ MonoBehaviour:
   - {fileID: 65742528}
   - {fileID: 2031095757}
   - {fileID: 1908592653}
-  partyAliveImage: {fileID: 21300000, guid: ba48c1b2d61cc234ba8770d7c9ef6644, type: 3}
-  partyFaintedImage: {fileID: 21300000, guid: 11f42103ea7f2bd419d6ea26798f0726, type: 3}
+  partyAliveImage: {fileID: 21300000, guid: cdda84c7952a340aabbc8800124850e0, type: 3}
+  partyFaintedImage: {fileID: 21300000, guid: 7382c9b3db4554bd3a571a85b77b6de2, type: 3}
   spawnEffect: {fileID: 6386010629427674053, guid: 44a8027545fd0b0498450780f13681bf,
     type: 3}
   faintedRequiredItems:
@@ -8345,8 +8401,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expandWhenHover: 1
+  hasClickOverride: 0
   scale: 1.1
   speed: 4
+  targetButton: {fileID: 1178402650}
+  hasTargetOverride: 0
   targetGraphic: {fileID: 1178402649}
   onHover:
     m_PersistentCalls:
@@ -8605,8 +8664,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expandWhenHover: 1
+  hasClickOverride: 0
   scale: 1.1
   speed: 4
+  targetButton: {fileID: 1208924948}
+  hasTargetOverride: 0
   targetGraphic: {fileID: 1208924947}
   onHover:
     m_PersistentCalls:
@@ -10506,8 +10568,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expandWhenHover: 1
+  hasClickOverride: 0
   scale: 1.1
   speed: 4
+  targetButton: {fileID: 1467763767}
+  hasTargetOverride: 0
   targetGraphic: {fileID: 1467763766}
   onHover:
     m_PersistentCalls:
@@ -11076,8 +11141,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expandWhenHover: 1
+  hasClickOverride: 0
   scale: 1.1
   speed: 4
+  targetButton: {fileID: 1580661781}
+  hasTargetOverride: 0
   targetGraphic: {fileID: 1580661780}
   onHover:
     m_PersistentCalls:
@@ -12067,8 +12135,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expandWhenHover: 1
+  hasClickOverride: 0
   scale: 1.1
   speed: 4
+  targetButton: {fileID: 1733417576}
+  hasTargetOverride: 0
   targetGraphic: {fileID: 1733417575}
   onHover:
     m_PersistentCalls:
@@ -12534,8 +12605,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expandWhenHover: 1
+  hasClickOverride: 0
   scale: 1.1
   speed: 4
+  targetButton: {fileID: 1838083528}
+  hasTargetOverride: 0
   targetGraphic: {fileID: 1838083527}
   onHover:
     m_PersistentCalls:
@@ -12707,8 +12781,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expandWhenHover: 1
+  hasClickOverride: 0
   scale: 1.1
   speed: 4
+  targetButton: {fileID: 1838204570}
+  hasTargetOverride: 0
   targetGraphic: {fileID: 1838204569}
   onHover:
     m_PersistentCalls:
@@ -12892,8 +12969,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expandWhenHover: 1
+  hasClickOverride: 0
   scale: 1.1
   speed: 4
+  targetButton: {fileID: 1865855788}
+  hasTargetOverride: 0
   targetGraphic: {fileID: 1865855787}
   onHover:
     m_PersistentCalls:
@@ -13061,8 +13141,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expandWhenHover: 1
+  hasClickOverride: 0
   scale: 1.1
   speed: 4
+  targetButton: {fileID: 1890642314}
+  hasTargetOverride: 0
   targetGraphic: {fileID: 1890642313}
   onHover:
     m_PersistentCalls:
@@ -13854,8 +13937,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expandWhenHover: 1
+  hasClickOverride: 0
   scale: 1.1
   speed: 4
+  targetButton: {fileID: 2014209715}
+  hasTargetOverride: 0
   targetGraphic: {fileID: 2014209714}
   onHover:
     m_PersistentCalls:

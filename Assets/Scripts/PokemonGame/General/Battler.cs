@@ -89,6 +89,11 @@ namespace PokemonGame.General
         public int statusEffectSeverity = 0;
         
         /// <summary>
+        /// The ability that the batter has
+        /// </summary>
+        public Ability ability;
+        
+        /// <summary>
         /// The list of moves that the battler has
         /// </summary>
         [Space]
@@ -116,6 +121,8 @@ namespace PokemonGame.General
         /// The number of turns the battler will be asleep for
         /// </summary>
         public int sleepTurns = 0;
+
+        public StatStages modifierStats;
 
         [HideInInspector] public bool wantToEvolve;
         [HideInInspector] public EvolutionData evolutionToPerform;
@@ -187,6 +194,11 @@ namespace PokemonGame.General
                 statusEffect = newEffect;
                 return true;
             }
+        }
+
+        public void ClearInBattleStats()
+        {
+            modifierStats = new StatStages();
         }
 
         private void HandleLevelUps()
@@ -534,7 +546,7 @@ namespace PokemonGame.General
         public static Battler Init(Battler sourceBattler, bool autoAssignHealth)
         {
             return Init(sourceBattler.source, sourceBattler.level, sourceBattler.name, sourceBattler.gender, sourceBattler.shiny, sourceBattler.isFainted,
-                sourceBattler.exp, sourceBattler.statusEffect, sourceBattler.sleepTurns, sourceBattler.statusEffectSeverity, sourceBattler.EVs, sourceBattler.IVs, sourceBattler.nature,
+                sourceBattler.exp, sourceBattler.statusEffect, sourceBattler.ability, sourceBattler.sleepTurns, sourceBattler.statusEffectSeverity, sourceBattler.EVs, sourceBattler.IVs, sourceBattler.nature,
                 sourceBattler.currentHealth,
                 sourceBattler.moves, autoAssignHealth);
         }
@@ -568,7 +580,7 @@ namespace PokemonGame.General
             Gender gender = Gender.Female;
             
             return Init(source, level, name, gender, shiny, false,
-                0, StatusEffect.Healthy, 0, 0, EVs, IVs, nature, 0,
+                0, StatusEffect.Healthy, null, 0, 0, EVs, IVs, nature, 0,
                 moves, autoAssignHealth);
         }
 
@@ -639,7 +651,7 @@ namespace PokemonGame.General
         /// <param name="autoAssignHealth">Weather to automatically set the current health to the max health</param>
         /// <returns>The created battler</returns>
         public static Battler Init(BattlerTemplate source, int level, string name, Gender gender, bool shiny, bool isFainted, int exp,
-            StatusEffect statusEffect, int sleepTurns, int statusEffectSeverity, BattlerStats EVs, BattlerStats IVs, Nature nature, int currentHealth, List<Move> moves, bool autoAssignHealth)
+            StatusEffect statusEffect, Ability ability, int sleepTurns, int statusEffectSeverity, BattlerStats EVs, BattlerStats IVs, Nature nature, int currentHealth, List<Move> moves, bool autoAssignHealth)
         {
             Battler returnBattler = CreateInstance<Battler>();
             
@@ -649,6 +661,7 @@ namespace PokemonGame.General
             returnBattler.isFainted = isFainted;
             returnBattler.exp = exp;
             returnBattler.statusEffect = statusEffect;
+            returnBattler.ability = ability;
             returnBattler.sleepTurns = sleepTurns;
             returnBattler.statusEffectSeverity = statusEffectSeverity;
             returnBattler.moves = new List<Move>();
@@ -745,6 +758,58 @@ namespace PokemonGame.General
         Genderless
     }
 
+    [Serializable]
+    public struct StatStages
+    {
+        public int attackStage;
+        public int defenseStage;
+        public int specialAttackStage;
+        public int specialDefenseStage;
+        public int speedStage;
+        public int accuracyStage;
+        public int evasionStage;
+
+        public static float GetMultiplierFromStage(int stage, bool abnormalStat, bool inverse)
+        {
+            if (stage == 0)
+            {
+                return 1;
+            }
+            
+            float returnValue = 1;
+            
+            if (!abnormalStat)
+            {
+                if (stage < 0)
+                {
+                    stage = -stage;
+                    returnValue= 2f / stage + 1;
+                }
+                else
+                {
+                    returnValue= stage + 1 / 2f;
+                }
+            }
+            else
+            {
+                if (stage < 0)
+                {
+                    stage = -stage;
+                    returnValue= 3f / stage + 2;
+                }
+                else
+                {
+                    returnValue= stage + 2 / 3f;
+                }
+            }
+
+            if (inverse)
+                returnValue = 1 / returnValue;
+            
+            return returnValue;
+        }
+    }
+
     /// <summary>
     /// Container for the stats associated with a battler
     /// </summary>
@@ -757,6 +822,8 @@ namespace PokemonGame.General
         public int specialAttack;
         public int specialDefense;
         public int speed;
+        public int accuracyMultiplier;
+        public int evasionMultiplier;
 
         public static BattlerStats Zero = new BattlerStats(0, 0, 0, 0, 0, 0);
 
@@ -768,6 +835,30 @@ namespace PokemonGame.General
             this.specialAttack = specialAttack;
             this.specialDefense = specialDefense;
             this.speed = speed;
+            accuracyMultiplier = 1;
+            evasionMultiplier = 1;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+            if (obj.GetType() != typeof(BattlerStats))
+                return false;
+            BattlerStats stats = (BattlerStats)obj;
+            if (stats.maxHealth != maxHealth)
+                return false;
+            if (stats.attack != attack)
+                return false;
+            if (stats.defense != defense)
+                return false;
+            if (stats.specialAttack != specialAttack)
+                return false;
+            if (stats.specialDefense != specialDefense)
+                return false;
+            if (stats.speed != speed)
+                return false;
+            return true;
         }
     }
 }
